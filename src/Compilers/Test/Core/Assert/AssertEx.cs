@@ -160,7 +160,7 @@ namespace Roslyn.Test.Utilities
         {
             if (actual == null || expected.IsDefault)
             {
-                Assert.True((actual == null) == expected.IsDefault, message);
+                CustomAssert.True((actual == null) == expected.IsDefault, message);
             }
             else
             {
@@ -172,7 +172,7 @@ namespace Roslyn.Test.Utilities
         {
             if (expected == null || actual.IsDefault)
             {
-                Assert.True((expected == null) == actual.IsDefault, message);
+                CustomAssert.True((expected == null) == actual.IsDefault, message);
             }
             else
             {
@@ -199,10 +199,10 @@ namespace Roslyn.Test.Utilities
             message.AppendLine("Actual:");
             message.AppendLine(actual);
 
-            Assert.True(false, message.ToString());
+            CustomAssert.True(false, message.ToString());
         }
 
-        public static void Equal<T>(
+        public static bool Equal<T>(
             IEnumerable<T> expected,
             IEnumerable<T> actual,
             IEqualityComparer<T> comparer = null,
@@ -212,18 +212,19 @@ namespace Roslyn.Test.Utilities
             string expectedValueSourcePath = null,
             int expectedValueSourceLine = 0)
         {
+            var toReturn = true;
             if (expected == null)
             {
-                Assert.Null(actual);
+                CustomAssert.Null(actual);
             }
             else
             {
-                Assert.NotNull(actual);
+                CustomAssert.NotNull(actual);
             }
 
             if (SequenceEqual(expected, actual, comparer))
             {
-                return;
+                return true;
             }
 
             string assertMessage = GetAssertMessage(expected, actual, comparer, itemInspector, itemSeparator, expectedValueSourcePath, expectedValueSourceLine);
@@ -231,9 +232,11 @@ namespace Roslyn.Test.Utilities
             if (message != null)
             {
                 assertMessage = message + "\r\n" + assertMessage;
+                toReturn = false;
             }
 
-            Assert.True(false, assertMessage);
+            CustomAssert.True(false, assertMessage);
+            return toReturn;
         }
 
         /// <summary>
@@ -275,7 +278,7 @@ namespace Roslyn.Test.Utilities
                 messageBuilder.AppendLine(line.Text);
             }
 
-            Assert.True(false, messageBuilder.ToString());
+            CustomAssert.True(false, messageBuilder.ToString());
         }
 
         public static void NotEqual<T>(IEnumerable<T> expected, IEnumerable<T> actual, IEqualityComparer<T> comparer = null, string message = null,
@@ -441,7 +444,7 @@ namespace Roslyn.Test.Utilities
                         ToString(actual, itemSeparator, itemInspector));
                 }
 
-                Assert.True(result, message);
+                CustomAssert.True(result, message);
             }
         }
 
@@ -454,7 +457,7 @@ namespace Roslyn.Test.Utilities
             if (!expectedSet.SetEquals(actual))
             {
                 var message = GetAssertMessage(ToString(expected, ",\r\n", itemInspector: withQuotes), ToString(actual, ",\r\n", itemInspector: withQuotes));
-                Assert.True(false, message);
+                CustomAssert.True(false, message);
             }
 
             string withQuotes(T t) => $"\"{Convert.ToString(t)}\"";
@@ -465,7 +468,7 @@ namespace Roslyn.Test.Utilities
             var none = !actual.Any(predicate);
             if (!none)
             {
-                Assert.True(none, string.Format(
+                CustomAssert.True(none, string.Format(
                     "Unexpected item found among existing items: {0}\nExisting items: {1}",
                     ToString(actual.First(predicate)),
                     ToString(actual)));
@@ -475,7 +478,7 @@ namespace Roslyn.Test.Utilities
         public static void Any<T>(IEnumerable<T> actual, Func<T, bool> predicate)
         {
             var any = actual.Any(predicate);
-            Assert.True(any, string.Format("No expected item was found.\nExisting items: {0}", ToString(actual)));
+            CustomAssert.True(any, string.Format("No expected item was found.\nExisting items: {0}", ToString(actual)));
         }
 
         public static void All<T>(IEnumerable<T> actual, Func<T, bool> predicate)
@@ -483,7 +486,7 @@ namespace Roslyn.Test.Utilities
             var all = actual.All(predicate);
             if (!all)
             {
-                Assert.True(all, string.Format(
+                CustomAssert.True(all, string.Format(
                     "Not all items satisfy condition:\n{0}",
                     ToString(actual.Where(i => !predicate(i)))));
             }
@@ -516,11 +519,11 @@ namespace Roslyn.Test.Utilities
 
         public static void NotNull<T>(T @object, string message = null)
         {
-            Assert.False(AssertEqualityComparer<T>.IsNull(@object), message);
+            CustomAssert.False(AssertEqualityComparer<T>.IsNull(@object), message);
         }
 
         // compares against a baseline
-        public static void AssertEqualToleratingWhitespaceDifferences(
+        public static bool AssertEqualToleratingWhitespaceDifferences(
             string expected,
             string actual,
             bool escapeQuotes = true,
@@ -532,8 +535,13 @@ namespace Roslyn.Test.Utilities
 
             if (normalizedExpected != normalizedActual)
             {
-                Assert.True(false, GetAssertMessage(expected, actual, escapeQuotes, expectedValueSourcePath, expectedValueSourceLine));
+                CustomAssert.True(false, GetAssertMessage(expected, actual, escapeQuotes, expectedValueSourcePath, expectedValueSourceLine));
             }
+
+            // LAFHIS:
+            // we want to track if both strings are equal or not
+            var toReturn = normalizedExpected != normalizedActual;
+            return toReturn;
         }
 
         // compares two results (no baseline)
@@ -558,7 +566,7 @@ namespace Roslyn.Test.Utilities
                     message = GetAssertMessage(result1, result2);
                 }
 
-                Assert.True(false, message);
+                CustomAssert.True(false, message);
             }
         }
 
@@ -566,14 +574,14 @@ namespace Roslyn.Test.Utilities
         {
             expectedSubString = NormalizeWhitespace(expectedSubString);
             actualString = NormalizeWhitespace(actualString);
-            Assert.Contains(expectedSubString, actualString, StringComparison.Ordinal);
+            CustomAssert.Contains(expectedSubString, actualString, StringComparison.Ordinal);
         }
 
         public static void AssertStartsWithToleratingWhitespaceDifferences(string expectedSubString, string actualString)
         {
             expectedSubString = NormalizeWhitespace(expectedSubString);
             actualString = NormalizeWhitespace(actualString);
-            Assert.StartsWith(expectedSubString, actualString, StringComparison.Ordinal);
+            CustomAssert.StartsWith(expectedSubString, actualString, StringComparison.Ordinal);
         }
 
         internal static string NormalizeWhitespace(string input)
@@ -716,12 +724,12 @@ namespace Roslyn.Test.Utilities
             public int GetHashCode(string str) => str.Trim().GetHashCode();
         }
 
-        public static void AssertLinesEqual(string expected, string actual, string message, string expectedValueSourcePath, int expectedValueSourceLine, bool escapeQuotes)
+        public static bool AssertLinesEqual(string expected, string actual, string message, string expectedValueSourcePath, int expectedValueSourceLine, bool escapeQuotes)
         {
             IEnumerable<string> GetLines(string str) =>
                 str.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-            AssertEx.Equal(
+            return AssertEx.Equal(
                 GetLines(expected),
                 GetLines(actual),
                 comparer: LineComparer.Instance,
@@ -746,7 +754,7 @@ namespace Roslyn.Test.Utilities
                     e = agg.InnerExceptions[0];
                 }
 
-                Assert.Equal(typeof(TException), e.GetType());
+                CustomAssert.Equal(typeof(TException), e.GetType());
                 checker?.Invoke((TException)e);
             }
         }
@@ -794,14 +802,14 @@ namespace Roslyn.Test.Utilities
                     builder.AppendLine("},");
                 }
 
-                Assert.True(false, builder.ToString());
+                CustomAssert.True(false, builder.ToString());
             }
         }
 
 #nullable enable
         public static void NotNull<T>([NotNull] T value)
         {
-            Assert.NotNull(value);
+            CustomAssert.NotNull(value);
             Debug.Assert(value is object);
         }
 

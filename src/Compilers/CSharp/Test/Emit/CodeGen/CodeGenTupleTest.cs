@@ -23879,7 +23879,9 @@ class C
                 derivedSymbol.AllInterfaces.Select(i => i.ToTestDisplayString()));
 
             var collection = tree.GetRoot().DescendantNodes().OfType<VariableDeclaratorSyntax>().ElementAt(3);
-            var collectionSymbol = (model.GetDeclaredSymbol(collection) as ILocalSymbol)?.Type;
+            // Lafhis
+            var temp = model.GetDeclaredSymbol(collection);
+            var collectionSymbol = (temp is ILocalSymbol) ? ((ILocalSymbol)temp).Type : null;
             Assert.Equal("Derived<(System.String a, System.String b)>", collectionSymbol.ToTestDisplayString());
 
             Assert.Equal(new[] {
@@ -23952,7 +23954,9 @@ class C
                 derivedSymbol.AllInterfaces.Select(i => i.ToTestDisplayString()));
 
             var collection = tree.GetRoot().DescendantNodes().OfType<VariableDeclaratorSyntax>().ElementAt(3);
-            var collectionSymbol = (model.GetDeclaredSymbol(collection) as ILocalSymbol)?.Type;
+            // Lafhis
+            var temp = model.GetDeclaredSymbol(collection);
+            var collectionSymbol = temp is ILocalSymbol ? ((ILocalSymbol)temp).Type : null;
             Assert.Equal("Derived<(System.Int32 notA, System.Int32 notB)>", collectionSymbol.ToTestDisplayString());
 
             Assert.Equal(new[] {
@@ -24025,7 +24029,9 @@ class C
                 derivedSymbol.AllInterfaces.Select(i => i.ToTestDisplayString()));
 
             var collection = tree.GetRoot().DescendantNodes().OfType<VariableDeclaratorSyntax>().ElementAt(3);
-            var collectionSymbol = (model.GetDeclaredSymbol(collection) as ILocalSymbol)?.Type;
+            // Lafhis
+            var temp = model.GetDeclaredSymbol(collection);
+            var collectionSymbol = temp is ILocalSymbol ? ((ILocalSymbol)temp).Type : null;
             Assert.Equal("Derived<System.Int32>", collectionSymbol.ToTestDisplayString());
 
             Assert.Equal(new[] {
@@ -24099,7 +24105,9 @@ class C
                 derivedSymbol.AllInterfaces.Select(i => i.ToTestDisplayString()));
 
             var collection = tree.GetRoot().DescendantNodes().OfType<VariableDeclaratorSyntax>().ElementAt(3);
-            var collectionSymbol = (model.GetDeclaredSymbol(collection) as ILocalSymbol)?.Type;
+            // Lafhis
+            var temp = model.GetDeclaredSymbol(collection);
+            var collectionSymbol = (temp is ILocalSymbol) ? ((ILocalSymbol)temp).Type : null;
             Assert.Equal("Derived<(System.String notA, System.String notB)>", collectionSymbol.ToTestDisplayString());
 
             Assert.Equal(new[] {

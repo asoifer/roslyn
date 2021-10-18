@@ -1508,7 +1508,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                     }
                     while (Equals(typeToCheck.OriginalDefinition, this.OriginalDefinition, TypeCompareKind.ConsiderEverything) && !typeToCheck.IsDefinition);
 
-                    arity = (typeToCheck as NamedTypeSymbol)?.Arity ?? 0;
+                    arity = typeToCheck is NamedTypeSymbol ? ((NamedTypeSymbol)typeToCheck).Arity : 0;
 
                     if (arity > 0 && arity < ValueTupleRestPosition && ((NamedTypeSymbol)typeToCheck).IsTupleTypeOfCardinality(out tupleCardinality))
                     {

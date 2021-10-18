@@ -195,7 +195,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Test.Utilities
                     return UsesIsNullable(((PointerTypeSymbol)type).PointedAtTypeWithAnnotations, inProgress);
                 case TypeKind.TypeParameter:
                     var typeParameter = (TypeParameterSymbol)type;
-                    if (inProgress?.ContainsReference(typeParameter) == true)
+                    // Lafhis
+                    if (inProgress != null ? inProgress.ContainsReference(typeParameter) == true : false)
                     {
                         return false;
                     }

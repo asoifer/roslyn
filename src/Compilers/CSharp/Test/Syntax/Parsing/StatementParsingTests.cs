@@ -55,18 +55,18 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "a();";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var es = (ExpressionStatementSyntax)statement;
-            Assert.NotNull(es.Expression);
-            Assert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
-            Assert.Equal(SyntaxKind.IdentifierName, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
-            Assert.Equal("a()", es.Expression.ToString());
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotNull(es.Expression);
+            CustomAssert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
+            CustomAssert.Equal("a()", es.Expression.ToString());
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -75,18 +75,18 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "a.b();";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var es = (ExpressionStatementSyntax)statement;
-            Assert.NotNull(es.Expression);
-            Assert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
-            Assert.Equal(SyntaxKind.SimpleMemberAccessExpression, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
-            Assert.Equal("a.b()", es.Expression.ToString());
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotNull(es.Expression);
+            CustomAssert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
+            CustomAssert.Equal(SyntaxKind.SimpleMemberAccessExpression, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
+            CustomAssert.Equal("a.b()", es.Expression.ToString());
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -95,17 +95,17 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "a<b>();";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
             var es = (ExpressionStatementSyntax)statement;
-            Assert.NotNull(es.Expression);
-            Assert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
-            Assert.Equal(SyntaxKind.GenericName, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
-            Assert.Equal("a<b>()", es.Expression.ToString());
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotNull(es.Expression);
+            CustomAssert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
+            CustomAssert.Equal(SyntaxKind.GenericName, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
+            CustomAssert.Equal("a<b>()", es.Expression.ToString());
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -114,18 +114,18 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "a<b>.c();";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var es = (ExpressionStatementSyntax)statement;
-            Assert.NotNull(es.Expression);
-            Assert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
-            Assert.Equal(SyntaxKind.SimpleMemberAccessExpression, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
-            Assert.Equal("a<b>.c()", es.Expression.ToString());
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotNull(es.Expression);
+            CustomAssert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
+            CustomAssert.Equal(SyntaxKind.SimpleMemberAccessExpression, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
+            CustomAssert.Equal("a<b>.c()", es.Expression.ToString());
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -134,18 +134,18 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "a.b<c>();";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var es = (ExpressionStatementSyntax)statement;
-            Assert.NotNull(es.Expression);
-            Assert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
-            Assert.Equal(SyntaxKind.SimpleMemberAccessExpression, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
-            Assert.Equal("a.b<c>()", es.Expression.ToString());
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotNull(es.Expression);
+            CustomAssert.Equal(SyntaxKind.InvocationExpression, es.Expression.Kind());
+            CustomAssert.Equal(SyntaxKind.SimpleMemberAccessExpression, ((InvocationExpressionSyntax)es.Expression).Expression.Kind());
+            CustomAssert.Equal("a.b<c>()", es.Expression.ToString());
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
         }
 
         private void TestPostfixUnaryOperator(SyntaxKind kind, ParseOptions options = null)
@@ -153,21 +153,21 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "a" + SyntaxFacts.GetText(kind) + ";";
             var statement = this.ParseStatement(text, options: options);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ExpressionStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var es = (ExpressionStatementSyntax)statement;
-            Assert.NotNull(es.Expression);
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotNull(es.Expression);
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
 
             var opKind = SyntaxFacts.GetPostfixUnaryExpression(kind);
-            Assert.Equal(opKind, es.Expression.Kind());
+            CustomAssert.Equal(opKind, es.Expression.Kind());
             var us = (PostfixUnaryExpressionSyntax)es.Expression;
-            Assert.Equal("a", us.Operand.ToString());
-            Assert.Equal(kind, us.OperatorToken.Kind());
+            CustomAssert.Equal("a", us.Operand.ToString());
+            CustomAssert.Equal(kind, us.OperatorToken.Kind());
         }
 
         [Fact]
@@ -184,24 +184,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -212,26 +212,26 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "var a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("var", ds.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, ds.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)ds.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("var", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, ds.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)ds.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -242,30 +242,30 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             (text).ToString();
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("(int, int)", ds.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.TupleType, ds.Declaration.Type.Kind());
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("(int, int)", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.TupleType, ds.Declaration.Type.Kind());
 
             var tt = (TupleTypeSyntax)ds.Declaration.Type;
 
-            Assert.Equal(SyntaxKind.PredefinedType, tt.Elements[0].Type.Kind());
-            Assert.Equal(SyntaxKind.None, tt.Elements[1].Identifier.Kind());
-            Assert.Equal(2, tt.Elements.Count);
+            CustomAssert.Equal(SyntaxKind.PredefinedType, tt.Elements[0].Type.Kind());
+            CustomAssert.Equal(SyntaxKind.None, tt.Elements[1].Identifier.Kind());
+            CustomAssert.Equal(2, tt.Elements.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -276,38 +276,38 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             (text).ToString();
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("(T x, (U k, V l, W m) y)", ds.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.TupleType, ds.Declaration.Type.Kind());
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("(T x, (U k, V l, W m) y)", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.TupleType, ds.Declaration.Type.Kind());
 
             var tt = (TupleTypeSyntax)ds.Declaration.Type;
 
-            Assert.Equal(SyntaxKind.IdentifierName, tt.Elements[0].Type.Kind());
-            Assert.Equal("y", tt.Elements[1].Identifier.ToString());
-            Assert.Equal(2, tt.Elements.Count);
+            CustomAssert.Equal(SyntaxKind.IdentifierName, tt.Elements[0].Type.Kind());
+            CustomAssert.Equal("y", tt.Elements[1].Identifier.ToString());
+            CustomAssert.Equal(2, tt.Elements.Count);
 
 
             tt = (TupleTypeSyntax)tt.Elements[1].Type;
 
-            Assert.Equal("(U k, V l, W m)", tt.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, tt.Elements[0].Type.Kind());
-            Assert.Equal("l", tt.Elements[1].Identifier.ToString());
-            Assert.Equal(3, tt.Elements.Count);
+            CustomAssert.Equal("(U k, V l, W m)", tt.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, tt.Elements[0].Type.Kind());
+            CustomAssert.Equal("l", tt.Elements[1].Identifier.ToString());
+            CustomAssert.Equal(3, tt.Elements.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -318,26 +318,26 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "dynamic a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("dynamic", ds.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, ds.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)ds.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("dynamic", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, ds.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)ds.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -346,24 +346,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T<a> b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T<a>", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T<a>", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("b", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("b", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -372,24 +372,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T.X.Y a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T.X.Y", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T.X.Y", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -398,24 +398,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T<t>.X<x>.Y<y> a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T<t>.X<x>.Y<y>", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T<t>.X<x>.Y<y>", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -424,24 +424,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T[][,][,,] a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T[][,][,,]", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T[][,][,,]", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -450,24 +450,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T* a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T*", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T*", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -476,24 +476,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T? a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T?", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T?", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -502,33 +502,33 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T a, b, c;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(3, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(3, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[1].Identifier);
-            Assert.Equal("b", ds.Declaration.Variables[1].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[1].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[1].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[1].Identifier);
+            CustomAssert.Equal("b", ds.Declaration.Variables[1].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[1].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[1].Initializer);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[2].Identifier);
-            Assert.Equal("c", ds.Declaration.Variables[2].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[2].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[2].Identifier);
+            CustomAssert.Equal("c", ds.Declaration.Variables[2].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[2].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -537,28 +537,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T a = b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -567,43 +567,43 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T a = va, b = vb, c = vc;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(3, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(3, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("va", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("va", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.Declaration.Variables[1].Identifier);
-            Assert.Equal("b", ds.Declaration.Variables[1].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[1].ArgumentList);
-            Assert.NotEqual(default, ds.Declaration.Variables[1].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[1].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[1].Initializer.Value);
-            Assert.Equal("vb", ds.Declaration.Variables[1].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[1].Identifier);
+            CustomAssert.Equal("b", ds.Declaration.Variables[1].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[1].ArgumentList);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[1].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[1].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[1].Initializer.Value);
+            CustomAssert.Equal("vb", ds.Declaration.Variables[1].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.Declaration.Variables[2].Identifier);
-            Assert.Equal("c", ds.Declaration.Variables[2].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[2].ArgumentList);
-            Assert.NotEqual(default, ds.Declaration.Variables[2].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[2].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[2].Initializer.Value);
-            Assert.Equal("vc", ds.Declaration.Variables[2].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[2].Identifier);
+            CustomAssert.Equal("c", ds.Declaration.Variables[2].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[2].ArgumentList);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[2].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[2].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[2].Initializer.Value);
+            CustomAssert.Equal("vc", ds.Declaration.Variables[2].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -612,29 +612,29 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "T a = {b, c};";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal(SyntaxKind.ArrayInitializerExpression, ds.Declaration.Variables[0].Initializer.Value.Kind());
-            Assert.Equal("{b, c}", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal(SyntaxKind.ArrayInitializerExpression, ds.Declaration.Variables[0].Initializer.Value.Kind());
+            CustomAssert.Equal("{b, c}", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -643,29 +643,29 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "const T a = b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(1, ds.Modifiers.Count);
-            Assert.Equal(SyntaxKind.ConstKeyword, ds.Modifiers[0].Kind());
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(1, ds.Modifiers.Count);
+            CustomAssert.Equal(SyntaxKind.ConstKeyword, ds.Modifiers[0].Kind());
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -674,30 +674,30 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "static T a = b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(1, statement.Errors().Length);
-            Assert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(1, statement.Errors().Length);
+            CustomAssert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(1, ds.Modifiers.Count);
-            Assert.Equal(SyntaxKind.StaticKeyword, ds.Modifiers[0].Kind());
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(1, ds.Modifiers.Count);
+            CustomAssert.Equal(SyntaxKind.StaticKeyword, ds.Modifiers[0].Kind());
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -706,30 +706,30 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "readonly T a = b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(1, statement.Errors().Length);
-            Assert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(1, statement.Errors().Length);
+            CustomAssert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(1, ds.Modifiers.Count);
-            Assert.Equal(SyntaxKind.ReadOnlyKeyword, ds.Modifiers[0].Kind());
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(1, ds.Modifiers.Count);
+            CustomAssert.Equal(SyntaxKind.ReadOnlyKeyword, ds.Modifiers[0].Kind());
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -738,30 +738,30 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "volatile T a = b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(1, statement.Errors().Length);
-            Assert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(1, statement.Errors().Length);
+            CustomAssert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(1, ds.Modifiers.Count);
-            Assert.Equal(SyntaxKind.VolatileKeyword, ds.Modifiers[0].Kind());
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(1, ds.Modifiers.Count);
+            CustomAssert.Equal(SyntaxKind.VolatileKeyword, ds.Modifiers[0].Kind());
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
-            Assert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.False(ds.Declaration.Variables[0].Initializer.EqualsToken.IsMissing);
+            CustomAssert.NotNull(ds.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", ds.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -770,24 +770,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "ref T a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("ref T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("ref T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
-            Assert.Null(ds.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.Null(ds.Declaration.Variables[0].Initializer);
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -796,29 +796,29 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "ref T a = ref b;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("ref T", ds.Declaration.Type.ToString());
-            Assert.Equal(1, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("ref T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(1, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
             var initializer = ds.Declaration.Variables[0].Initializer as EqualsValueClauseSyntax;
-            Assert.NotNull(initializer);
-            Assert.NotEqual(default, initializer.EqualsToken);
-            Assert.False(initializer.EqualsToken.IsMissing);
-            Assert.Equal(SyntaxKind.RefExpression, initializer.Value.Kind());
-            Assert.Equal("ref b", initializer.Value.ToString());
+            CustomAssert.NotNull(initializer);
+            CustomAssert.NotEqual(default, initializer.EqualsToken);
+            CustomAssert.False(initializer.EqualsToken.IsMissing);
+            CustomAssert.Equal(SyntaxKind.RefExpression, initializer.Value.Kind());
+            CustomAssert.Equal("ref b", initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -827,39 +827,39 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "ref T a = ref b, c = ref d;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(0, ds.Modifiers.Count);
-            Assert.NotNull(ds.Declaration.Type);
-            Assert.Equal("ref T", ds.Declaration.Type.ToString());
-            Assert.Equal(2, ds.Declaration.Variables.Count);
+            CustomAssert.Equal(0, ds.Modifiers.Count);
+            CustomAssert.NotNull(ds.Declaration.Type);
+            CustomAssert.Equal("ref T", ds.Declaration.Type.ToString());
+            CustomAssert.Equal(2, ds.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", ds.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[0].ArgumentList);
             var initializer = ds.Declaration.Variables[0].Initializer as EqualsValueClauseSyntax;
-            Assert.NotNull(initializer);
-            Assert.NotEqual(default, initializer.EqualsToken);
-            Assert.False(initializer.EqualsToken.IsMissing);
-            Assert.Equal(SyntaxKind.RefExpression, initializer.Value.Kind());
-            Assert.Equal("ref b", initializer.Value.ToString());
+            CustomAssert.NotNull(initializer);
+            CustomAssert.NotEqual(default, initializer.EqualsToken);
+            CustomAssert.False(initializer.EqualsToken.IsMissing);
+            CustomAssert.Equal(SyntaxKind.RefExpression, initializer.Value.Kind());
+            CustomAssert.Equal("ref b", initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.Declaration.Variables[1].Identifier);
-            Assert.Equal("c", ds.Declaration.Variables[1].Identifier.ToString());
-            Assert.Null(ds.Declaration.Variables[1].ArgumentList);
+            CustomAssert.NotEqual(default, ds.Declaration.Variables[1].Identifier);
+            CustomAssert.Equal("c", ds.Declaration.Variables[1].Identifier.ToString());
+            CustomAssert.Null(ds.Declaration.Variables[1].ArgumentList);
             initializer = ds.Declaration.Variables[1].Initializer as EqualsValueClauseSyntax;
-            Assert.NotNull(initializer);
-            Assert.NotEqual(default, initializer.EqualsToken);
-            Assert.False(initializer.EqualsToken.IsMissing);
-            Assert.Equal(SyntaxKind.RefExpression, initializer.Value.Kind());
-            Assert.Equal("ref d", initializer.Value.ToString());
+            CustomAssert.NotNull(initializer);
+            CustomAssert.NotEqual(default, initializer.EqualsToken);
+            CustomAssert.False(initializer.EqualsToken.IsMissing);
+            CustomAssert.Equal(SyntaxKind.RefExpression, initializer.Value.Kind());
+            CustomAssert.Equal("ref d", initializer.Value.ToString());
 
-            Assert.NotEqual(default, ds.SemicolonToken);
-            Assert.False(ds.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.False(ds.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -868,25 +868,25 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "fixed(T a = b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.FixedStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.FixedStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (FixedStatementSyntax)statement;
-            Assert.NotEqual(default, fs.FixedKeyword);
-            Assert.False(fs.FixedKeyword.IsMissing);
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.False(fs.FixedKeyword.IsMissing);
-            Assert.NotNull(fs.Declaration);
-            Assert.Equal(SyntaxKind.VariableDeclaration, fs.Declaration.Kind());
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("T", fs.Declaration.Type.ToString());
-            Assert.Equal(1, fs.Declaration.Variables.Count);
-            Assert.Equal("a = b", fs.Declaration.Variables[0].ToString());
-            Assert.NotNull(fs.Statement);
-            Assert.Equal(SyntaxKind.Block, fs.Statement.Kind());
-            Assert.Equal("{ }", fs.Statement.ToString());
+            CustomAssert.NotEqual(default, fs.FixedKeyword);
+            CustomAssert.False(fs.FixedKeyword.IsMissing);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.False(fs.FixedKeyword.IsMissing);
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.Equal(SyntaxKind.VariableDeclaration, fs.Declaration.Kind());
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("T", fs.Declaration.Type.ToString());
+            CustomAssert.Equal(1, fs.Declaration.Variables.Count);
+            CustomAssert.Equal("a = b", fs.Declaration.Variables[0].ToString());
+            CustomAssert.NotNull(fs.Statement);
+            CustomAssert.Equal(SyntaxKind.Block, fs.Statement.Kind());
+            CustomAssert.Equal("{ }", fs.Statement.ToString());
         }
 
         [Fact]
@@ -895,28 +895,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "fixed(var a = b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.FixedStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.FixedStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (FixedStatementSyntax)statement;
-            Assert.NotEqual(default, fs.FixedKeyword);
-            Assert.False(fs.FixedKeyword.IsMissing);
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.False(fs.FixedKeyword.IsMissing);
-            Assert.NotNull(fs.Declaration);
-            Assert.Equal(SyntaxKind.VariableDeclaration, fs.Declaration.Kind());
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("var", fs.Declaration.Type.ToString());
-            Assert.True(fs.Declaration.Type.IsVar);
-            Assert.Equal(SyntaxKind.IdentifierName, fs.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)fs.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, fs.Declaration.Variables.Count);
-            Assert.Equal("a = b", fs.Declaration.Variables[0].ToString());
-            Assert.NotNull(fs.Statement);
-            Assert.Equal(SyntaxKind.Block, fs.Statement.Kind());
-            Assert.Equal("{ }", fs.Statement.ToString());
+            CustomAssert.NotEqual(default, fs.FixedKeyword);
+            CustomAssert.False(fs.FixedKeyword.IsMissing);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.False(fs.FixedKeyword.IsMissing);
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.Equal(SyntaxKind.VariableDeclaration, fs.Declaration.Kind());
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("var", fs.Declaration.Type.ToString());
+            CustomAssert.True(fs.Declaration.Type.IsVar);
+            CustomAssert.Equal(SyntaxKind.IdentifierName, fs.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)fs.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, fs.Declaration.Variables.Count);
+            CustomAssert.Equal("a = b", fs.Declaration.Variables[0].ToString());
+            CustomAssert.NotNull(fs.Statement);
+            CustomAssert.Equal(SyntaxKind.Block, fs.Statement.Kind());
+            CustomAssert.Equal("{ }", fs.Statement.ToString());
         }
 
         [Fact]
@@ -925,26 +925,26 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "fixed(T a = b, c = d) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.FixedStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.FixedStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (FixedStatementSyntax)statement;
-            Assert.NotEqual(default, fs.FixedKeyword);
-            Assert.False(fs.FixedKeyword.IsMissing);
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.False(fs.FixedKeyword.IsMissing);
-            Assert.NotNull(fs.Declaration);
-            Assert.Equal(SyntaxKind.VariableDeclaration, fs.Declaration.Kind());
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("T", fs.Declaration.Type.ToString());
-            Assert.Equal(2, fs.Declaration.Variables.Count);
-            Assert.Equal("a = b", fs.Declaration.Variables[0].ToString());
-            Assert.Equal("c = d", fs.Declaration.Variables[1].ToString());
-            Assert.NotNull(fs.Statement);
-            Assert.Equal(SyntaxKind.Block, fs.Statement.Kind());
-            Assert.Equal("{ }", fs.Statement.ToString());
+            CustomAssert.NotEqual(default, fs.FixedKeyword);
+            CustomAssert.False(fs.FixedKeyword.IsMissing);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.False(fs.FixedKeyword.IsMissing);
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.Equal(SyntaxKind.VariableDeclaration, fs.Declaration.Kind());
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("T", fs.Declaration.Type.ToString());
+            CustomAssert.Equal(2, fs.Declaration.Variables.Count);
+            CustomAssert.Equal("a = b", fs.Declaration.Variables[0].ToString());
+            CustomAssert.Equal("c = d", fs.Declaration.Variables[1].ToString());
+            CustomAssert.NotNull(fs.Statement);
+            CustomAssert.Equal(SyntaxKind.Block, fs.Statement.Kind());
+            CustomAssert.Equal("{ }", fs.Statement.ToString());
         }
 
         [Fact]
@@ -953,14 +953,14 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = ";";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.EmptyStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.EmptyStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var es = (EmptyStatementSyntax)statement;
-            Assert.NotEqual(default, es.SemicolonToken);
-            Assert.False(es.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, es.SemicolonToken);
+            CustomAssert.False(es.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -969,19 +969,19 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "label: ;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LabeledStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LabeledStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ls = (LabeledStatementSyntax)statement;
-            Assert.NotEqual(default, ls.Identifier);
-            Assert.Equal("label", ls.Identifier.ToString());
-            Assert.NotEqual(default, ls.ColonToken);
-            Assert.Equal(SyntaxKind.ColonToken, ls.ColonToken.Kind());
-            Assert.NotNull(ls.Statement);
-            Assert.Equal(SyntaxKind.EmptyStatement, ls.Statement.Kind());
-            Assert.Equal(";", ls.Statement.ToString());
+            CustomAssert.NotEqual(default, ls.Identifier);
+            CustomAssert.Equal("label", ls.Identifier.ToString());
+            CustomAssert.NotEqual(default, ls.ColonToken);
+            CustomAssert.Equal(SyntaxKind.ColonToken, ls.ColonToken.Kind());
+            CustomAssert.NotNull(ls.Statement);
+            CustomAssert.Equal(SyntaxKind.EmptyStatement, ls.Statement.Kind());
+            CustomAssert.Equal(";", ls.Statement.ToString());
         }
 
         [Fact]
@@ -990,17 +990,17 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "break;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.BreakStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.BreakStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var b = (BreakStatementSyntax)statement;
-            Assert.NotEqual(default, b.BreakKeyword);
-            Assert.False(b.BreakKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.BreakKeyword, b.BreakKeyword.Kind());
-            Assert.NotEqual(default, b.SemicolonToken);
-            Assert.False(b.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, b.BreakKeyword);
+            CustomAssert.False(b.BreakKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.BreakKeyword, b.BreakKeyword.Kind());
+            CustomAssert.NotEqual(default, b.SemicolonToken);
+            CustomAssert.False(b.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1009,17 +1009,17 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "continue;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ContinueStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ContinueStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var cs = (ContinueStatementSyntax)statement;
-            Assert.NotEqual(default, cs.ContinueKeyword);
-            Assert.False(cs.ContinueKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ContinueKeyword, cs.ContinueKeyword.Kind());
-            Assert.NotEqual(default, cs.SemicolonToken);
-            Assert.False(cs.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, cs.ContinueKeyword);
+            CustomAssert.False(cs.ContinueKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ContinueKeyword, cs.ContinueKeyword.Kind());
+            CustomAssert.NotEqual(default, cs.SemicolonToken);
+            CustomAssert.False(cs.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1028,20 +1028,20 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "goto label;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.GotoStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.GotoStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var gs = (GotoStatementSyntax)statement;
-            Assert.NotEqual(default, gs.GotoKeyword);
-            Assert.False(gs.GotoKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.GotoKeyword, gs.GotoKeyword.Kind());
-            Assert.Equal(SyntaxKind.None, gs.CaseOrDefaultKeyword.Kind());
-            Assert.NotNull(gs.Expression);
-            Assert.Equal("label", gs.Expression.ToString());
-            Assert.NotEqual(default, gs.SemicolonToken);
-            Assert.False(gs.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, gs.GotoKeyword);
+            CustomAssert.False(gs.GotoKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.GotoKeyword, gs.GotoKeyword.Kind());
+            CustomAssert.Equal(SyntaxKind.None, gs.CaseOrDefaultKeyword.Kind());
+            CustomAssert.NotNull(gs.Expression);
+            CustomAssert.Equal("label", gs.Expression.ToString());
+            CustomAssert.NotEqual(default, gs.SemicolonToken);
+            CustomAssert.False(gs.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1050,22 +1050,22 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "goto case label;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.GotoCaseStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.GotoCaseStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var gs = (GotoStatementSyntax)statement;
-            Assert.NotEqual(default, gs.GotoKeyword);
-            Assert.False(gs.GotoKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.GotoKeyword, gs.GotoKeyword.Kind());
-            Assert.NotEqual(default, gs.CaseOrDefaultKeyword);
-            Assert.False(gs.CaseOrDefaultKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.CaseKeyword, gs.CaseOrDefaultKeyword.Kind());
-            Assert.NotNull(gs.Expression);
-            Assert.Equal("label", gs.Expression.ToString());
-            Assert.NotEqual(default, gs.SemicolonToken);
-            Assert.False(gs.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, gs.GotoKeyword);
+            CustomAssert.False(gs.GotoKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.GotoKeyword, gs.GotoKeyword.Kind());
+            CustomAssert.NotEqual(default, gs.CaseOrDefaultKeyword);
+            CustomAssert.False(gs.CaseOrDefaultKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, gs.CaseOrDefaultKeyword.Kind());
+            CustomAssert.NotNull(gs.Expression);
+            CustomAssert.Equal("label", gs.Expression.ToString());
+            CustomAssert.NotEqual(default, gs.SemicolonToken);
+            CustomAssert.False(gs.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1074,21 +1074,21 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "goto default;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.GotoDefaultStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.GotoDefaultStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var gs = (GotoStatementSyntax)statement;
-            Assert.NotEqual(default, gs.GotoKeyword);
-            Assert.False(gs.GotoKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.GotoKeyword, gs.GotoKeyword.Kind());
-            Assert.NotEqual(default, gs.CaseOrDefaultKeyword);
-            Assert.False(gs.CaseOrDefaultKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.DefaultKeyword, gs.CaseOrDefaultKeyword.Kind());
-            Assert.Null(gs.Expression);
-            Assert.NotEqual(default, gs.SemicolonToken);
-            Assert.False(gs.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, gs.GotoKeyword);
+            CustomAssert.False(gs.GotoKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.GotoKeyword, gs.GotoKeyword.Kind());
+            CustomAssert.NotEqual(default, gs.CaseOrDefaultKeyword);
+            CustomAssert.False(gs.CaseOrDefaultKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.DefaultKeyword, gs.CaseOrDefaultKeyword.Kind());
+            CustomAssert.Null(gs.Expression);
+            CustomAssert.NotEqual(default, gs.SemicolonToken);
+            CustomAssert.False(gs.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1097,18 +1097,18 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "return;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ReturnStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ReturnStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var rs = (ReturnStatementSyntax)statement;
-            Assert.NotEqual(default, rs.ReturnKeyword);
-            Assert.False(rs.ReturnKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ReturnKeyword, rs.ReturnKeyword.Kind());
-            Assert.Null(rs.Expression);
-            Assert.NotEqual(default, rs.SemicolonToken);
-            Assert.False(rs.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, rs.ReturnKeyword);
+            CustomAssert.False(rs.ReturnKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ReturnKeyword, rs.ReturnKeyword.Kind());
+            CustomAssert.Null(rs.Expression);
+            CustomAssert.NotEqual(default, rs.SemicolonToken);
+            CustomAssert.False(rs.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1117,19 +1117,19 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "return a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ReturnStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ReturnStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var rs = (ReturnStatementSyntax)statement;
-            Assert.NotEqual(default, rs.ReturnKeyword);
-            Assert.False(rs.ReturnKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ReturnKeyword, rs.ReturnKeyword.Kind());
-            Assert.NotNull(rs.Expression);
-            Assert.Equal("a", rs.Expression.ToString());
-            Assert.NotEqual(default, rs.SemicolonToken);
-            Assert.False(rs.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, rs.ReturnKeyword);
+            CustomAssert.False(rs.ReturnKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ReturnKeyword, rs.ReturnKeyword.Kind());
+            CustomAssert.NotNull(rs.Expression);
+            CustomAssert.Equal("a", rs.Expression.ToString());
+            CustomAssert.NotEqual(default, rs.SemicolonToken);
+            CustomAssert.False(rs.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1138,22 +1138,22 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "yield return a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.YieldReturnStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.YieldReturnStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ys = (YieldStatementSyntax)statement;
-            Assert.NotEqual(default, ys.YieldKeyword);
-            Assert.False(ys.YieldKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.YieldKeyword, ys.YieldKeyword.Kind());
-            Assert.NotEqual(default, ys.ReturnOrBreakKeyword);
-            Assert.False(ys.ReturnOrBreakKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ReturnKeyword, ys.ReturnOrBreakKeyword.Kind());
-            Assert.NotNull(ys.Expression);
-            Assert.Equal("a", ys.Expression.ToString());
-            Assert.NotEqual(default, ys.SemicolonToken);
-            Assert.False(ys.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ys.YieldKeyword);
+            CustomAssert.False(ys.YieldKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.YieldKeyword, ys.YieldKeyword.Kind());
+            CustomAssert.NotEqual(default, ys.ReturnOrBreakKeyword);
+            CustomAssert.False(ys.ReturnOrBreakKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ReturnKeyword, ys.ReturnOrBreakKeyword.Kind());
+            CustomAssert.NotNull(ys.Expression);
+            CustomAssert.Equal("a", ys.Expression.ToString());
+            CustomAssert.NotEqual(default, ys.SemicolonToken);
+            CustomAssert.False(ys.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1162,21 +1162,21 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "yield break;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.YieldBreakStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.YieldBreakStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ys = (YieldStatementSyntax)statement;
-            Assert.NotEqual(default, ys.YieldKeyword);
-            Assert.False(ys.YieldKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.YieldKeyword, ys.YieldKeyword.Kind());
-            Assert.NotEqual(default, ys.ReturnOrBreakKeyword);
-            Assert.False(ys.ReturnOrBreakKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.BreakKeyword, ys.ReturnOrBreakKeyword.Kind());
-            Assert.Null(ys.Expression);
-            Assert.NotEqual(default, ys.SemicolonToken);
-            Assert.False(ys.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ys.YieldKeyword);
+            CustomAssert.False(ys.YieldKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.YieldKeyword, ys.YieldKeyword.Kind());
+            CustomAssert.NotEqual(default, ys.ReturnOrBreakKeyword);
+            CustomAssert.False(ys.ReturnOrBreakKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.BreakKeyword, ys.ReturnOrBreakKeyword.Kind());
+            CustomAssert.Null(ys.Expression);
+            CustomAssert.NotEqual(default, ys.SemicolonToken);
+            CustomAssert.False(ys.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1185,18 +1185,18 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "throw;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ThrowStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ThrowStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (ThrowStatementSyntax)statement;
-            Assert.NotEqual(default, ts.ThrowKeyword);
-            Assert.False(ts.ThrowKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ThrowKeyword, ts.ThrowKeyword.ContextualKind());
-            Assert.Null(ts.Expression);
-            Assert.NotEqual(default, ts.SemicolonToken);
-            Assert.False(ts.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ts.ThrowKeyword);
+            CustomAssert.False(ts.ThrowKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ThrowKeyword, ts.ThrowKeyword.ContextualKind());
+            CustomAssert.Null(ts.Expression);
+            CustomAssert.NotEqual(default, ts.SemicolonToken);
+            CustomAssert.False(ts.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1205,19 +1205,19 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "throw a;";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ThrowStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ThrowStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (ThrowStatementSyntax)statement;
-            Assert.NotEqual(default, ts.ThrowKeyword);
-            Assert.False(ts.ThrowKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ThrowKeyword, ts.ThrowKeyword.ContextualKind());
-            Assert.NotNull(ts.Expression);
-            Assert.Equal("a", ts.Expression.ToString());
-            Assert.NotEqual(default, ts.SemicolonToken);
-            Assert.False(ts.SemicolonToken.IsMissing);
+            CustomAssert.NotEqual(default, ts.ThrowKeyword);
+            CustomAssert.False(ts.ThrowKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ThrowKeyword, ts.ThrowKeyword.ContextualKind());
+            CustomAssert.NotNull(ts.Expression);
+            CustomAssert.Equal("a", ts.Expression.ToString());
+            CustomAssert.NotEqual(default, ts.SemicolonToken);
+            CustomAssert.False(ts.SemicolonToken.IsMissing);
         }
 
         [Fact]
@@ -1226,28 +1226,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "try { } catch(T e) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.TryStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.TryStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (TryStatementSyntax)statement;
-            Assert.NotEqual(default, ts.TryKeyword);
-            Assert.False(ts.TryKeyword.IsMissing);
-            Assert.NotNull(ts.Block);
+            CustomAssert.NotEqual(default, ts.TryKeyword);
+            CustomAssert.False(ts.TryKeyword.IsMissing);
+            CustomAssert.NotNull(ts.Block);
 
-            Assert.Equal(1, ts.Catches.Count);
-            Assert.NotEqual(default, ts.Catches[0].CatchKeyword);
-            Assert.NotNull(ts.Catches[0].Declaration);
-            Assert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
-            Assert.NotNull(ts.Catches[0].Declaration.Type);
-            Assert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.Identifier);
-            Assert.Equal("e", ts.Catches[0].Declaration.Identifier.ToString());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
-            Assert.NotNull(ts.Catches[0].Block);
+            CustomAssert.Equal(1, ts.Catches.Count);
+            CustomAssert.NotEqual(default, ts.Catches[0].CatchKeyword);
+            CustomAssert.NotNull(ts.Catches[0].Declaration);
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Declaration.Type);
+            CustomAssert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.Identifier);
+            CustomAssert.Equal("e", ts.Catches[0].Declaration.Identifier.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Block);
 
-            Assert.Null(ts.Finally);
+            CustomAssert.Null(ts.Finally);
         }
 
         [Fact]
@@ -1256,27 +1256,27 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "try { } catch(T) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.TryStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.TryStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (TryStatementSyntax)statement;
-            Assert.NotEqual(default, ts.TryKeyword);
-            Assert.False(ts.TryKeyword.IsMissing);
-            Assert.NotNull(ts.Block);
+            CustomAssert.NotEqual(default, ts.TryKeyword);
+            CustomAssert.False(ts.TryKeyword.IsMissing);
+            CustomAssert.NotNull(ts.Block);
 
-            Assert.Equal(1, ts.Catches.Count);
-            Assert.NotEqual(default, ts.Catches[0].CatchKeyword);
-            Assert.NotNull(ts.Catches[0].Declaration);
-            Assert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
-            Assert.NotNull(ts.Catches[0].Declaration.Type);
-            Assert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.None, ts.Catches[0].Declaration.Identifier.Kind());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
-            Assert.NotNull(ts.Catches[0].Block);
+            CustomAssert.Equal(1, ts.Catches.Count);
+            CustomAssert.NotEqual(default, ts.Catches[0].CatchKeyword);
+            CustomAssert.NotNull(ts.Catches[0].Declaration);
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Declaration.Type);
+            CustomAssert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.None, ts.Catches[0].Declaration.Identifier.Kind());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Block);
 
-            Assert.Null(ts.Finally);
+            CustomAssert.Null(ts.Finally);
         }
 
         [Fact]
@@ -1285,22 +1285,22 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "try { } catch { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.TryStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.TryStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (TryStatementSyntax)statement;
-            Assert.NotEqual(default, ts.TryKeyword);
-            Assert.False(ts.TryKeyword.IsMissing);
-            Assert.NotNull(ts.Block);
+            CustomAssert.NotEqual(default, ts.TryKeyword);
+            CustomAssert.False(ts.TryKeyword.IsMissing);
+            CustomAssert.NotNull(ts.Block);
 
-            Assert.Equal(1, ts.Catches.Count);
-            Assert.NotEqual(default, ts.Catches[0].CatchKeyword);
-            Assert.Null(ts.Catches[0].Declaration);
-            Assert.NotNull(ts.Catches[0].Block);
+            CustomAssert.Equal(1, ts.Catches.Count);
+            CustomAssert.NotEqual(default, ts.Catches[0].CatchKeyword);
+            CustomAssert.Null(ts.Catches[0].Declaration);
+            CustomAssert.NotNull(ts.Catches[0].Block);
 
-            Assert.Null(ts.Finally);
+            CustomAssert.Null(ts.Finally);
         }
 
         [Fact]
@@ -1309,41 +1309,41 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "try { } catch(T e) { } catch(T2) { } catch { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.TryStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.TryStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (TryStatementSyntax)statement;
-            Assert.NotEqual(default, ts.TryKeyword);
-            Assert.False(ts.TryKeyword.IsMissing);
-            Assert.NotNull(ts.Block);
+            CustomAssert.NotEqual(default, ts.TryKeyword);
+            CustomAssert.False(ts.TryKeyword.IsMissing);
+            CustomAssert.NotNull(ts.Block);
 
-            Assert.Equal(3, ts.Catches.Count);
+            CustomAssert.Equal(3, ts.Catches.Count);
 
-            Assert.NotEqual(default, ts.Catches[0].CatchKeyword);
-            Assert.NotNull(ts.Catches[0].Declaration);
-            Assert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
-            Assert.NotNull(ts.Catches[0].Declaration.Type);
-            Assert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.Identifier);
-            Assert.Equal("e", ts.Catches[0].Declaration.Identifier.ToString());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
-            Assert.NotNull(ts.Catches[0].Block);
+            CustomAssert.NotEqual(default, ts.Catches[0].CatchKeyword);
+            CustomAssert.NotNull(ts.Catches[0].Declaration);
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Declaration.Type);
+            CustomAssert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.Identifier);
+            CustomAssert.Equal("e", ts.Catches[0].Declaration.Identifier.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Block);
 
-            Assert.NotEqual(default, ts.Catches[1].CatchKeyword);
-            Assert.NotNull(ts.Catches[1].Declaration);
-            Assert.NotEqual(default, ts.Catches[1].Declaration.OpenParenToken);
-            Assert.NotNull(ts.Catches[1].Declaration.Type);
-            Assert.Equal("T2", ts.Catches[1].Declaration.Type.ToString());
-            Assert.NotEqual(default, ts.Catches[1].Declaration.CloseParenToken);
-            Assert.NotNull(ts.Catches[1].Block);
+            CustomAssert.NotEqual(default, ts.Catches[1].CatchKeyword);
+            CustomAssert.NotNull(ts.Catches[1].Declaration);
+            CustomAssert.NotEqual(default, ts.Catches[1].Declaration.OpenParenToken);
+            CustomAssert.NotNull(ts.Catches[1].Declaration.Type);
+            CustomAssert.Equal("T2", ts.Catches[1].Declaration.Type.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[1].Declaration.CloseParenToken);
+            CustomAssert.NotNull(ts.Catches[1].Block);
 
-            Assert.NotEqual(default, ts.Catches[2].CatchKeyword);
-            Assert.Null(ts.Catches[2].Declaration);
-            Assert.NotNull(ts.Catches[2].Block);
+            CustomAssert.NotEqual(default, ts.Catches[2].CatchKeyword);
+            CustomAssert.Null(ts.Catches[2].Declaration);
+            CustomAssert.NotNull(ts.Catches[2].Block);
 
-            Assert.Null(ts.Finally);
+            CustomAssert.Null(ts.Finally);
         }
 
         [Fact]
@@ -1352,21 +1352,21 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "try { } finally { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.TryStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.TryStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (TryStatementSyntax)statement;
-            Assert.NotEqual(default, ts.TryKeyword);
-            Assert.False(ts.TryKeyword.IsMissing);
-            Assert.NotNull(ts.Block);
+            CustomAssert.NotEqual(default, ts.TryKeyword);
+            CustomAssert.False(ts.TryKeyword.IsMissing);
+            CustomAssert.NotNull(ts.Block);
 
-            Assert.Equal(0, ts.Catches.Count);
+            CustomAssert.Equal(0, ts.Catches.Count);
 
-            Assert.NotNull(ts.Finally);
-            Assert.NotEqual(default, ts.Finally.FinallyKeyword);
-            Assert.NotNull(ts.Finally.Block);
+            CustomAssert.NotNull(ts.Finally);
+            CustomAssert.NotEqual(default, ts.Finally.FinallyKeyword);
+            CustomAssert.NotNull(ts.Finally.Block);
         }
 
         [Fact]
@@ -1375,43 +1375,43 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "try { } catch(T e) { } catch(T2) { } catch { } finally { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.TryStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.TryStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ts = (TryStatementSyntax)statement;
-            Assert.NotEqual(default, ts.TryKeyword);
-            Assert.False(ts.TryKeyword.IsMissing);
-            Assert.NotNull(ts.Block);
+            CustomAssert.NotEqual(default, ts.TryKeyword);
+            CustomAssert.False(ts.TryKeyword.IsMissing);
+            CustomAssert.NotNull(ts.Block);
 
-            Assert.Equal(3, ts.Catches.Count);
+            CustomAssert.Equal(3, ts.Catches.Count);
 
-            Assert.NotEqual(default, ts.Catches[0].CatchKeyword);
-            Assert.NotNull(ts.Catches[0].Declaration);
-            Assert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
-            Assert.NotNull(ts.Catches[0].Declaration.Type);
-            Assert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.Identifier);
-            Assert.Equal("e", ts.Catches[0].Declaration.Identifier.ToString());
-            Assert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
-            Assert.NotNull(ts.Catches[0].Block);
+            CustomAssert.NotEqual(default, ts.Catches[0].CatchKeyword);
+            CustomAssert.NotNull(ts.Catches[0].Declaration);
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.OpenParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Declaration.Type);
+            CustomAssert.Equal("T", ts.Catches[0].Declaration.Type.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.Identifier);
+            CustomAssert.Equal("e", ts.Catches[0].Declaration.Identifier.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[0].Declaration.CloseParenToken);
+            CustomAssert.NotNull(ts.Catches[0].Block);
 
-            Assert.NotEqual(default, ts.Catches[1].CatchKeyword);
-            Assert.NotNull(ts.Catches[1].Declaration);
-            Assert.NotEqual(default, ts.Catches[1].Declaration.OpenParenToken);
-            Assert.NotNull(ts.Catches[1].Declaration.Type);
-            Assert.Equal("T2", ts.Catches[1].Declaration.Type.ToString());
-            Assert.NotEqual(default, ts.Catches[1].Declaration.CloseParenToken);
-            Assert.NotNull(ts.Catches[1].Block);
+            CustomAssert.NotEqual(default, ts.Catches[1].CatchKeyword);
+            CustomAssert.NotNull(ts.Catches[1].Declaration);
+            CustomAssert.NotEqual(default, ts.Catches[1].Declaration.OpenParenToken);
+            CustomAssert.NotNull(ts.Catches[1].Declaration.Type);
+            CustomAssert.Equal("T2", ts.Catches[1].Declaration.Type.ToString());
+            CustomAssert.NotEqual(default, ts.Catches[1].Declaration.CloseParenToken);
+            CustomAssert.NotNull(ts.Catches[1].Block);
 
-            Assert.NotEqual(default, ts.Catches[2].CatchKeyword);
-            Assert.Null(ts.Catches[2].Declaration);
-            Assert.NotNull(ts.Catches[2].Block);
+            CustomAssert.NotEqual(default, ts.Catches[2].CatchKeyword);
+            CustomAssert.Null(ts.Catches[2].Declaration);
+            CustomAssert.NotNull(ts.Catches[2].Block);
 
-            Assert.NotNull(ts.Finally);
-            Assert.NotEqual(default, ts.Finally.FinallyKeyword);
-            Assert.NotNull(ts.Finally.Block);
+            CustomAssert.NotNull(ts.Finally);
+            CustomAssert.NotEqual(default, ts.Finally.FinallyKeyword);
+            CustomAssert.NotNull(ts.Finally.Block);
         }
 
         [Fact]
@@ -1420,15 +1420,15 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "checked { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.CheckedStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.CheckedStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var cs = (CheckedStatementSyntax)statement;
-            Assert.NotEqual(default, cs.Keyword);
-            Assert.Equal(SyntaxKind.CheckedKeyword, cs.Keyword.Kind());
-            Assert.NotNull(cs.Block);
+            CustomAssert.NotEqual(default, cs.Keyword);
+            CustomAssert.Equal(SyntaxKind.CheckedKeyword, cs.Keyword.Kind());
+            CustomAssert.NotNull(cs.Block);
         }
 
         [Fact]
@@ -1437,15 +1437,15 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "unchecked { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UncheckedStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UncheckedStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var cs = (CheckedStatementSyntax)statement;
-            Assert.NotEqual(default, cs.Keyword);
-            Assert.Equal(SyntaxKind.UncheckedKeyword, cs.Keyword.Kind());
-            Assert.NotNull(cs.Block);
+            CustomAssert.NotEqual(default, cs.Keyword);
+            CustomAssert.Equal(SyntaxKind.UncheckedKeyword, cs.Keyword.Kind());
+            CustomAssert.NotNull(cs.Block);
         }
 
         [Fact]
@@ -1454,15 +1454,15 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "unsafe { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UnsafeStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UnsafeStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UnsafeStatementSyntax)statement;
-            Assert.NotEqual(default, us.UnsafeKeyword);
-            Assert.Equal(SyntaxKind.UnsafeKeyword, us.UnsafeKeyword.Kind());
-            Assert.NotNull(us.Block);
+            CustomAssert.NotEqual(default, us.UnsafeKeyword);
+            CustomAssert.Equal(SyntaxKind.UnsafeKeyword, us.UnsafeKeyword.Kind());
+            CustomAssert.NotNull(us.Block);
         }
 
         [Fact]
@@ -1471,20 +1471,20 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "while(a) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.WhileStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.WhileStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ws = (WhileStatementSyntax)statement;
-            Assert.NotEqual(default, ws.WhileKeyword);
-            Assert.Equal(SyntaxKind.WhileKeyword, ws.WhileKeyword.Kind());
-            Assert.NotEqual(default, ws.OpenParenToken);
-            Assert.NotNull(ws.Condition);
-            Assert.NotEqual(default, ws.CloseParenToken);
-            Assert.Equal("a", ws.Condition.ToString());
-            Assert.NotNull(ws.Statement);
-            Assert.Equal(SyntaxKind.Block, ws.Statement.Kind());
+            CustomAssert.NotEqual(default, ws.WhileKeyword);
+            CustomAssert.Equal(SyntaxKind.WhileKeyword, ws.WhileKeyword.Kind());
+            CustomAssert.NotEqual(default, ws.OpenParenToken);
+            CustomAssert.NotNull(ws.Condition);
+            CustomAssert.NotEqual(default, ws.CloseParenToken);
+            CustomAssert.Equal("a", ws.Condition.ToString());
+            CustomAssert.NotNull(ws.Statement);
+            CustomAssert.Equal(SyntaxKind.Block, ws.Statement.Kind());
         }
 
         [Fact]
@@ -1493,23 +1493,23 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "do { } while (a);";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.DoStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.DoStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ds = (DoStatementSyntax)statement;
-            Assert.NotEqual(default, ds.DoKeyword);
-            Assert.Equal(SyntaxKind.DoKeyword, ds.DoKeyword.Kind());
-            Assert.NotNull(ds.Statement);
-            Assert.NotEqual(default, ds.WhileKeyword);
-            Assert.Equal(SyntaxKind.WhileKeyword, ds.WhileKeyword.Kind());
-            Assert.Equal(SyntaxKind.Block, ds.Statement.Kind());
-            Assert.NotEqual(default, ds.OpenParenToken);
-            Assert.NotNull(ds.Condition);
-            Assert.NotEqual(default, ds.CloseParenToken);
-            Assert.Equal("a", ds.Condition.ToString());
-            Assert.NotEqual(default, ds.SemicolonToken);
+            CustomAssert.NotEqual(default, ds.DoKeyword);
+            CustomAssert.Equal(SyntaxKind.DoKeyword, ds.DoKeyword.Kind());
+            CustomAssert.NotNull(ds.Statement);
+            CustomAssert.NotEqual(default, ds.WhileKeyword);
+            CustomAssert.Equal(SyntaxKind.WhileKeyword, ds.WhileKeyword.Kind());
+            CustomAssert.Equal(SyntaxKind.Block, ds.Statement.Kind());
+            CustomAssert.NotEqual(default, ds.OpenParenToken);
+            CustomAssert.NotNull(ds.Condition);
+            CustomAssert.NotEqual(default, ds.CloseParenToken);
+            CustomAssert.Equal("a", ds.Condition.ToString());
+            CustomAssert.NotEqual(default, ds.SemicolonToken);
         }
 
         [Fact]
@@ -1518,24 +1518,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(;;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.Null(fs.Declaration);
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.Null(fs.Declaration);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1544,35 +1544,35 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(T a = 0;;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.NotNull(fs.Declaration);
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("T", fs.Declaration.Type.ToString());
-            Assert.Equal(1, fs.Declaration.Variables.Count);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("T", fs.Declaration.Type.ToString());
+            CustomAssert.Equal(1, fs.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1581,37 +1581,37 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(var a = 0;;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.NotNull(fs.Declaration);
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("var", fs.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, fs.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)fs.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, fs.Declaration.Variables.Count);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("var", fs.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, fs.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)fs.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, fs.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1620,43 +1620,43 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(T a = 0, b = 1;;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.NotNull(fs.Declaration);
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("T", fs.Declaration.Type.ToString());
-            Assert.Equal(2, fs.Declaration.Variables.Count);
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("T", fs.Declaration.Type.ToString());
+            CustomAssert.Equal(2, fs.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, fs.Declaration.Variables[1].Identifier);
-            Assert.Equal("b", fs.Declaration.Variables[1].Identifier.ToString());
-            Assert.NotNull(fs.Declaration.Variables[1].Initializer);
-            Assert.NotEqual(default, fs.Declaration.Variables[1].Initializer.EqualsToken);
-            Assert.NotNull(fs.Declaration.Variables[1].Initializer.Value);
-            Assert.Equal("1", fs.Declaration.Variables[1].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[1].Identifier);
+            CustomAssert.Equal("b", fs.Declaration.Variables[1].Identifier.ToString());
+            CustomAssert.NotNull(fs.Declaration.Variables[1].Initializer);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[1].Initializer.EqualsToken);
+            CustomAssert.NotNull(fs.Declaration.Variables[1].Initializer.Value);
+            CustomAssert.Equal("1", fs.Declaration.Variables[1].Initializer.Value.ToString());
 
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact, CompilerTrait(CompilerFeature.RefLocalsReturns)]
@@ -1729,27 +1729,27 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(a = 0;;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.Null(fs.Declaration);
-            Assert.Equal(1, fs.Initializers.Count);
-            Assert.Equal("a = 0", fs.Initializers[0].ToString());
+            CustomAssert.Null(fs.Declaration);
+            CustomAssert.Equal(1, fs.Initializers.Count);
+            CustomAssert.Equal("a = 0", fs.Initializers[0].ToString());
 
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1758,28 +1758,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(a = 0, b = 1;;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.Null(fs.Declaration);
-            Assert.Equal(2, fs.Initializers.Count);
-            Assert.Equal("a = 0", fs.Initializers[0].ToString());
-            Assert.Equal("b = 1", fs.Initializers[1].ToString());
+            CustomAssert.Null(fs.Declaration);
+            CustomAssert.Equal(2, fs.Initializers.Count);
+            CustomAssert.Equal("a = 0", fs.Initializers[0].ToString());
+            CustomAssert.Equal("b = 1", fs.Initializers[1].ToString());
 
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1788,28 +1788,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(; a;) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.Null(fs.Declaration);
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Declaration);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
 
-            Assert.NotNull(fs.Condition);
-            Assert.Equal("a", fs.Condition.ToString());
+            CustomAssert.NotNull(fs.Condition);
+            CustomAssert.Equal("a", fs.Condition.ToString());
 
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
-            Assert.Equal(0, fs.Incrementors.Count);
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Equal(0, fs.Incrementors.Count);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1818,28 +1818,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(; ; a++) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.Null(fs.Declaration);
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Null(fs.Declaration);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
 
-            Assert.Equal(1, fs.Incrementors.Count);
-            Assert.Equal("a++", fs.Incrementors[0].ToString());
+            CustomAssert.Equal(1, fs.Incrementors.Count);
+            CustomAssert.Equal("a++", fs.Incrementors[0].ToString());
 
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1848,29 +1848,29 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(; ; a++, b++) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.Null(fs.Declaration);
-            Assert.Equal(0, fs.Initializers.Count);
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.Null(fs.Condition);
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.Null(fs.Declaration);
+            CustomAssert.Equal(0, fs.Initializers.Count);
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.Null(fs.Condition);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
 
-            Assert.Equal(2, fs.Incrementors.Count);
-            Assert.Equal("a++", fs.Incrementors[0].ToString());
-            Assert.Equal("b++", fs.Incrementors[1].ToString());
+            CustomAssert.Equal(2, fs.Incrementors.Count);
+            CustomAssert.Equal("a++", fs.Incrementors[0].ToString());
+            CustomAssert.Equal("b++", fs.Incrementors[1].ToString());
 
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1879,41 +1879,41 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(T a = 0; a < 10; a++) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForKeyword);
-            Assert.False(fs.ForKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
-            Assert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotEqual(default, fs.ForKeyword);
+            CustomAssert.False(fs.ForKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.ForKeyword, fs.ForKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
 
-            Assert.NotNull(fs.Declaration);
-            Assert.NotNull(fs.Declaration.Type);
-            Assert.Equal("T", fs.Declaration.Type.ToString());
-            Assert.Equal(1, fs.Declaration.Variables.Count);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(fs.Declaration);
+            CustomAssert.NotNull(fs.Declaration.Type);
+            CustomAssert.Equal("T", fs.Declaration.Type.ToString());
+            CustomAssert.Equal(1, fs.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", fs.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, fs.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(fs.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("0", fs.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.Equal(0, fs.Initializers.Count);
+            CustomAssert.Equal(0, fs.Initializers.Count);
 
-            Assert.NotEqual(default, fs.FirstSemicolonToken);
-            Assert.NotNull(fs.Condition);
-            Assert.Equal("a < 10", fs.Condition.ToString());
+            CustomAssert.NotEqual(default, fs.FirstSemicolonToken);
+            CustomAssert.NotNull(fs.Condition);
+            CustomAssert.Equal("a < 10", fs.Condition.ToString());
 
-            Assert.NotEqual(default, fs.SecondSemicolonToken);
+            CustomAssert.NotEqual(default, fs.SecondSemicolonToken);
 
-            Assert.Equal(1, fs.Incrementors.Count);
-            Assert.Equal("a++", fs.Incrementors[0].ToString());
+            CustomAssert.Equal(1, fs.Incrementors.Count);
+            CustomAssert.Equal("a++", fs.Incrementors[0].ToString());
 
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1922,27 +1922,27 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "foreach(T a in b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForEachStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForEachKeyword);
-            Assert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.ForEachKeyword);
+            CustomAssert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
 
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.NotNull(fs.Type);
-            Assert.Equal("T", fs.Type.ToString());
-            Assert.NotEqual(default, fs.Identifier);
-            Assert.Equal("a", fs.Identifier.ToString());
-            Assert.NotEqual(default, fs.InKeyword);
-            Assert.False(fs.InKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
-            Assert.NotNull(fs.Expression);
-            Assert.Equal("b", fs.Expression.ToString());
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotNull(fs.Type);
+            CustomAssert.Equal("T", fs.Type.ToString());
+            CustomAssert.NotEqual(default, fs.Identifier);
+            CustomAssert.Equal("a", fs.Identifier.ToString());
+            CustomAssert.NotEqual(default, fs.InKeyword);
+            CustomAssert.False(fs.InKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
+            CustomAssert.NotNull(fs.Expression);
+            CustomAssert.Equal("b", fs.Expression.ToString());
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1951,31 +1951,31 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "for(T a in b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(1, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(1, statement.Errors().Length);
 
             var fs = (ForEachStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForEachKeyword);
-            Assert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
-            Assert.True(fs.ForEachKeyword.IsMissing);
-            Assert.Equal(1, fs.ForEachKeyword.TrailingTrivia.Count);
-            Assert.Equal(SyntaxKind.SkippedTokensTrivia, fs.ForEachKeyword.TrailingTrivia[0].Kind());
-            Assert.Equal("for", fs.ForEachKeyword.TrailingTrivia[0].ToString());
+            CustomAssert.NotEqual(default, fs.ForEachKeyword);
+            CustomAssert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
+            CustomAssert.True(fs.ForEachKeyword.IsMissing);
+            CustomAssert.Equal(1, fs.ForEachKeyword.TrailingTrivia.Count);
+            CustomAssert.Equal(SyntaxKind.SkippedTokensTrivia, fs.ForEachKeyword.TrailingTrivia[0].Kind());
+            CustomAssert.Equal("for", fs.ForEachKeyword.TrailingTrivia[0].ToString());
 
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.NotNull(fs.Type);
-            Assert.Equal("T", fs.Type.ToString());
-            Assert.NotEqual(default, fs.Identifier);
-            Assert.Equal("a", fs.Identifier.ToString());
-            Assert.NotEqual(default, fs.InKeyword);
-            Assert.False(fs.InKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
-            Assert.NotNull(fs.Expression);
-            Assert.Equal("b", fs.Expression.ToString());
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotNull(fs.Type);
+            CustomAssert.Equal("T", fs.Type.ToString());
+            CustomAssert.NotEqual(default, fs.Identifier);
+            CustomAssert.Equal("a", fs.Identifier.ToString());
+            CustomAssert.NotEqual(default, fs.InKeyword);
+            CustomAssert.False(fs.InKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
+            CustomAssert.NotNull(fs.Expression);
+            CustomAssert.Equal("b", fs.Expression.ToString());
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -1984,29 +1984,29 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "foreach(var a in b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForEachStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForEachKeyword);
-            Assert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.ForEachKeyword);
+            CustomAssert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
 
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.NotNull(fs.Type);
-            Assert.Equal("var", fs.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, fs.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)fs.Type).Identifier.Kind());
-            Assert.NotEqual(default, fs.Identifier);
-            Assert.Equal("a", fs.Identifier.ToString());
-            Assert.NotEqual(default, fs.InKeyword);
-            Assert.False(fs.InKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
-            Assert.NotNull(fs.Expression);
-            Assert.Equal("b", fs.Expression.ToString());
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotNull(fs.Type);
+            CustomAssert.Equal("var", fs.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, fs.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)fs.Type).Identifier.Kind());
+            CustomAssert.NotEqual(default, fs.Identifier);
+            CustomAssert.Equal("a", fs.Identifier.ToString());
+            CustomAssert.NotEqual(default, fs.InKeyword);
+            CustomAssert.False(fs.InKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
+            CustomAssert.NotNull(fs.Expression);
+            CustomAssert.Equal("b", fs.Expression.ToString());
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [Fact]
@@ -2015,21 +2015,21 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "if (a) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.IfStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.IfStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (IfStatementSyntax)statement;
-            Assert.NotEqual(default, ss.IfKeyword);
-            Assert.Equal(SyntaxKind.IfKeyword, ss.IfKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Condition);
-            Assert.Equal("a", ss.Condition.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotNull(ss.Statement);
+            CustomAssert.NotEqual(default, ss.IfKeyword);
+            CustomAssert.Equal(SyntaxKind.IfKeyword, ss.IfKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Condition);
+            CustomAssert.Equal("a", ss.Condition.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotNull(ss.Statement);
 
-            Assert.Null(ss.Else);
+            CustomAssert.Null(ss.Else);
         }
 
         [Fact]
@@ -2038,24 +2038,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "if (a) { } else { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.IfStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.IfStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (IfStatementSyntax)statement;
-            Assert.NotEqual(default, ss.IfKeyword);
-            Assert.Equal(SyntaxKind.IfKeyword, ss.IfKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Condition);
-            Assert.Equal("a", ss.Condition.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotNull(ss.Statement);
+            CustomAssert.NotEqual(default, ss.IfKeyword);
+            CustomAssert.Equal(SyntaxKind.IfKeyword, ss.IfKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Condition);
+            CustomAssert.Equal("a", ss.Condition.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotNull(ss.Statement);
 
-            Assert.NotNull(ss.Else);
-            Assert.NotEqual(default, ss.Else.ElseKeyword);
-            Assert.Equal(SyntaxKind.ElseKeyword, ss.Else.ElseKeyword.Kind());
-            Assert.NotNull(ss.Else.Statement);
+            CustomAssert.NotNull(ss.Else);
+            CustomAssert.NotEqual(default, ss.Else.ElseKeyword);
+            CustomAssert.Equal(SyntaxKind.ElseKeyword, ss.Else.ElseKeyword.Kind());
+            CustomAssert.NotNull(ss.Else.Statement);
         }
 
         [Fact]
@@ -2064,32 +2064,32 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "if (a) { } else if (b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.IfStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.IfStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (IfStatementSyntax)statement;
-            Assert.NotEqual(default, ss.IfKeyword);
-            Assert.Equal(SyntaxKind.IfKeyword, ss.IfKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Condition);
-            Assert.Equal("a", ss.Condition.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotNull(ss.Statement);
+            CustomAssert.NotEqual(default, ss.IfKeyword);
+            CustomAssert.Equal(SyntaxKind.IfKeyword, ss.IfKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Condition);
+            CustomAssert.Equal("a", ss.Condition.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotNull(ss.Statement);
 
-            Assert.NotNull(ss.Else);
-            Assert.NotEqual(default, ss.Else.ElseKeyword);
-            Assert.Equal(SyntaxKind.ElseKeyword, ss.Else.ElseKeyword.Kind());
-            Assert.NotNull(ss.Else.Statement);
+            CustomAssert.NotNull(ss.Else);
+            CustomAssert.NotEqual(default, ss.Else.ElseKeyword);
+            CustomAssert.Equal(SyntaxKind.ElseKeyword, ss.Else.ElseKeyword.Kind());
+            CustomAssert.NotNull(ss.Else.Statement);
 
             var subIf = (IfStatementSyntax)ss.Else.Statement;
-            Assert.NotEqual(default, subIf.IfKeyword);
-            Assert.Equal(SyntaxKind.IfKeyword, subIf.IfKeyword.Kind());
-            Assert.NotNull(subIf.Condition);
-            Assert.Equal("b", subIf.Condition.ToString());
-            Assert.NotEqual(default, subIf.CloseParenToken);
-            Assert.NotNull(subIf.Statement);
+            CustomAssert.NotEqual(default, subIf.IfKeyword);
+            CustomAssert.Equal(SyntaxKind.IfKeyword, subIf.IfKeyword.Kind());
+            CustomAssert.NotNull(subIf.Condition);
+            CustomAssert.Equal("b", subIf.Condition.ToString());
+            CustomAssert.NotEqual(default, subIf.CloseParenToken);
+            CustomAssert.NotNull(subIf.Statement);
         }
 
         [Fact]
@@ -2098,19 +2098,19 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "lock (a) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LockStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LockStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ls = (LockStatementSyntax)statement;
-            Assert.NotEqual(default, ls.LockKeyword);
-            Assert.Equal(SyntaxKind.LockKeyword, ls.LockKeyword.Kind());
-            Assert.NotEqual(default, ls.OpenParenToken);
-            Assert.NotNull(ls.Expression);
-            Assert.Equal("a", ls.Expression.ToString());
-            Assert.NotEqual(default, ls.CloseParenToken);
-            Assert.NotNull(ls.Statement);
+            CustomAssert.NotEqual(default, ls.LockKeyword);
+            CustomAssert.Equal(SyntaxKind.LockKeyword, ls.LockKeyword.Kind());
+            CustomAssert.NotEqual(default, ls.OpenParenToken);
+            CustomAssert.NotNull(ls.Expression);
+            CustomAssert.Equal("a", ls.Expression.ToString());
+            CustomAssert.NotEqual(default, ls.CloseParenToken);
+            CustomAssert.NotNull(ls.Statement);
         }
 
         [Fact]
@@ -2119,23 +2119,23 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "switch (a) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
             var diags = statement.ErrorsAndWarnings();
-            Assert.Equal(0, diags.Length);
+            CustomAssert.Equal(0, diags.Length);
 
             var ss = (SwitchStatementSyntax)statement;
-            Assert.NotEqual(default, ss.SwitchKeyword);
-            Assert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Expression);
-            Assert.Equal("a", ss.Expression.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotEqual(default, ss.OpenBraceToken);
-            Assert.Equal(0, ss.Sections.Count);
-            Assert.NotEqual(default, ss.CloseBraceToken);
+            CustomAssert.NotEqual(default, ss.SwitchKeyword);
+            CustomAssert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Expression);
+            CustomAssert.Equal("a", ss.Expression.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotEqual(default, ss.OpenBraceToken);
+            CustomAssert.Equal(0, ss.Sections.Count);
+            CustomAssert.NotEqual(default, ss.CloseBraceToken);
         }
 
         [Fact]
@@ -2144,33 +2144,33 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "switch (a) { case b:; }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (SwitchStatementSyntax)statement;
-            Assert.NotEqual(default, ss.SwitchKeyword);
-            Assert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Expression);
-            Assert.Equal("a", ss.Expression.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotEqual(default, ss.OpenBraceToken);
+            CustomAssert.NotEqual(default, ss.SwitchKeyword);
+            CustomAssert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Expression);
+            CustomAssert.Equal("a", ss.Expression.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotEqual(default, ss.OpenBraceToken);
 
-            Assert.Equal(1, ss.Sections.Count);
-            Assert.Equal(1, ss.Sections[0].Labels.Count);
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
-            Assert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
+            CustomAssert.Equal(1, ss.Sections.Count);
+            CustomAssert.Equal(1, ss.Sections[0].Labels.Count);
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
             var caseLabelSyntax = ss.Sections[0].Labels[0] as CaseSwitchLabelSyntax;
-            Assert.NotNull(caseLabelSyntax);
-            Assert.NotNull(caseLabelSyntax.Value);
-            Assert.Equal("b", caseLabelSyntax.Value.ToString());
-            Assert.NotEqual(default, caseLabelSyntax.ColonToken);
-            Assert.Equal(1, ss.Sections[0].Statements.Count);
-            Assert.Equal(";", ss.Sections[0].Statements[0].ToString());
+            CustomAssert.NotNull(caseLabelSyntax);
+            CustomAssert.NotNull(caseLabelSyntax.Value);
+            CustomAssert.Equal("b", caseLabelSyntax.Value.ToString());
+            CustomAssert.NotEqual(default, caseLabelSyntax.ColonToken);
+            CustomAssert.Equal(1, ss.Sections[0].Statements.Count);
+            CustomAssert.Equal(";", ss.Sections[0].Statements[0].ToString());
 
-            Assert.NotEqual(default, ss.CloseBraceToken);
+            CustomAssert.NotEqual(default, ss.CloseBraceToken);
         }
 
         [Fact]
@@ -2179,45 +2179,45 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "switch (a) { case b:; case c:; }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (SwitchStatementSyntax)statement;
-            Assert.NotEqual(default, ss.SwitchKeyword);
-            Assert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Expression);
-            Assert.Equal("a", ss.Expression.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotEqual(default, ss.OpenBraceToken);
+            CustomAssert.NotEqual(default, ss.SwitchKeyword);
+            CustomAssert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Expression);
+            CustomAssert.Equal("a", ss.Expression.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotEqual(default, ss.OpenBraceToken);
 
-            Assert.Equal(2, ss.Sections.Count);
+            CustomAssert.Equal(2, ss.Sections.Count);
 
-            Assert.Equal(1, ss.Sections[0].Labels.Count);
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
-            Assert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
+            CustomAssert.Equal(1, ss.Sections[0].Labels.Count);
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
             var caseLabelSyntax = ss.Sections[0].Labels[0] as CaseSwitchLabelSyntax;
-            Assert.NotNull(caseLabelSyntax);
-            Assert.NotNull(caseLabelSyntax.Value);
-            Assert.Equal("b", caseLabelSyntax.Value.ToString());
-            Assert.NotEqual(default, caseLabelSyntax.ColonToken);
-            Assert.Equal(1, ss.Sections[0].Statements.Count);
-            Assert.Equal(";", ss.Sections[0].Statements[0].ToString());
+            CustomAssert.NotNull(caseLabelSyntax);
+            CustomAssert.NotNull(caseLabelSyntax.Value);
+            CustomAssert.Equal("b", caseLabelSyntax.Value.ToString());
+            CustomAssert.NotEqual(default, caseLabelSyntax.ColonToken);
+            CustomAssert.Equal(1, ss.Sections[0].Statements.Count);
+            CustomAssert.Equal(";", ss.Sections[0].Statements[0].ToString());
 
-            Assert.Equal(1, ss.Sections[1].Labels.Count);
-            Assert.NotEqual(default, ss.Sections[1].Labels[0].Keyword);
-            Assert.Equal(SyntaxKind.CaseKeyword, ss.Sections[1].Labels[0].Keyword.Kind());
+            CustomAssert.Equal(1, ss.Sections[1].Labels.Count);
+            CustomAssert.NotEqual(default, ss.Sections[1].Labels[0].Keyword);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, ss.Sections[1].Labels[0].Keyword.Kind());
             var caseLabelSyntax2 = ss.Sections[1].Labels[0] as CaseSwitchLabelSyntax;
-            Assert.NotNull(caseLabelSyntax2);
-            Assert.NotNull(caseLabelSyntax2.Value);
-            Assert.Equal("c", caseLabelSyntax2.Value.ToString());
-            Assert.NotEqual(default, caseLabelSyntax2.ColonToken);
-            Assert.Equal(1, ss.Sections[1].Statements.Count);
-            Assert.Equal(";", ss.Sections[0].Statements[0].ToString());
+            CustomAssert.NotNull(caseLabelSyntax2);
+            CustomAssert.NotNull(caseLabelSyntax2.Value);
+            CustomAssert.Equal("c", caseLabelSyntax2.Value.ToString());
+            CustomAssert.NotEqual(default, caseLabelSyntax2.ColonToken);
+            CustomAssert.Equal(1, ss.Sections[1].Statements.Count);
+            CustomAssert.Equal(";", ss.Sections[0].Statements[0].ToString());
 
-            Assert.NotEqual(default, ss.CloseBraceToken);
+            CustomAssert.NotEqual(default, ss.CloseBraceToken);
         }
 
         [Fact]
@@ -2226,31 +2226,31 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "switch (a) { default:; }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (SwitchStatementSyntax)statement;
-            Assert.NotEqual(default, ss.SwitchKeyword);
-            Assert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Expression);
-            Assert.Equal("a", ss.Expression.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotEqual(default, ss.OpenBraceToken);
+            CustomAssert.NotEqual(default, ss.SwitchKeyword);
+            CustomAssert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Expression);
+            CustomAssert.Equal("a", ss.Expression.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotEqual(default, ss.OpenBraceToken);
 
-            Assert.Equal(1, ss.Sections.Count);
+            CustomAssert.Equal(1, ss.Sections.Count);
 
-            Assert.Equal(1, ss.Sections[0].Labels.Count);
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
-            Assert.Equal(SyntaxKind.DefaultKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
-            Assert.Equal(SyntaxKind.DefaultSwitchLabel, ss.Sections[0].Labels[0].Kind());
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].ColonToken);
-            Assert.Equal(1, ss.Sections[0].Statements.Count);
-            Assert.Equal(";", ss.Sections[0].Statements[0].ToString());
+            CustomAssert.Equal(1, ss.Sections[0].Labels.Count);
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
+            CustomAssert.Equal(SyntaxKind.DefaultKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
+            CustomAssert.Equal(SyntaxKind.DefaultSwitchLabel, ss.Sections[0].Labels[0].Kind());
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].ColonToken);
+            CustomAssert.Equal(1, ss.Sections[0].Statements.Count);
+            CustomAssert.Equal(";", ss.Sections[0].Statements[0].ToString());
 
-            Assert.NotEqual(default, ss.CloseBraceToken);
+            CustomAssert.NotEqual(default, ss.CloseBraceToken);
         }
 
         [Fact]
@@ -2259,40 +2259,40 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "switch (a) { case b: case c:; }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (SwitchStatementSyntax)statement;
-            Assert.NotEqual(default, ss.SwitchKeyword);
-            Assert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Expression);
-            Assert.Equal("a", ss.Expression.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotEqual(default, ss.OpenBraceToken);
+            CustomAssert.NotEqual(default, ss.SwitchKeyword);
+            CustomAssert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Expression);
+            CustomAssert.Equal("a", ss.Expression.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotEqual(default, ss.OpenBraceToken);
 
-            Assert.Equal(1, ss.Sections.Count);
+            CustomAssert.Equal(1, ss.Sections.Count);
 
-            Assert.Equal(2, ss.Sections[0].Labels.Count);
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
-            Assert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
+            CustomAssert.Equal(2, ss.Sections[0].Labels.Count);
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
             var caseLabelSyntax = ss.Sections[0].Labels[0] as CaseSwitchLabelSyntax;
-            Assert.NotNull(caseLabelSyntax);
-            Assert.NotNull(caseLabelSyntax.Value);
-            Assert.Equal("b", caseLabelSyntax.Value.ToString());
-            Assert.NotEqual(default, ss.Sections[0].Labels[1].Keyword);
-            Assert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[1].Keyword.Kind());
+            CustomAssert.NotNull(caseLabelSyntax);
+            CustomAssert.NotNull(caseLabelSyntax.Value);
+            CustomAssert.Equal("b", caseLabelSyntax.Value.ToString());
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[1].Keyword);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[1].Keyword.Kind());
             var caseLabelSyntax2 = ss.Sections[0].Labels[1] as CaseSwitchLabelSyntax;
-            Assert.NotNull(caseLabelSyntax2);
-            Assert.NotNull(caseLabelSyntax2.Value);
-            Assert.Equal("c", caseLabelSyntax2.Value.ToString());
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].ColonToken);
-            Assert.Equal(1, ss.Sections[0].Statements.Count);
-            Assert.Equal(";", ss.Sections[0].Statements[0].ToString());
+            CustomAssert.NotNull(caseLabelSyntax2);
+            CustomAssert.NotNull(caseLabelSyntax2.Value);
+            CustomAssert.Equal("c", caseLabelSyntax2.Value.ToString());
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].ColonToken);
+            CustomAssert.Equal(1, ss.Sections[0].Statements.Count);
+            CustomAssert.Equal(";", ss.Sections[0].Statements[0].ToString());
 
-            Assert.NotEqual(default, ss.CloseBraceToken);
+            CustomAssert.NotEqual(default, ss.CloseBraceToken);
         }
 
         [Fact]
@@ -2301,34 +2301,34 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "switch (a) { case b: s1(); s2(); }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.SwitchStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var ss = (SwitchStatementSyntax)statement;
-            Assert.NotEqual(default, ss.SwitchKeyword);
-            Assert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
-            Assert.NotEqual(default, ss.OpenParenToken);
-            Assert.NotNull(ss.Expression);
-            Assert.Equal("a", ss.Expression.ToString());
-            Assert.NotEqual(default, ss.CloseParenToken);
-            Assert.NotEqual(default, ss.OpenBraceToken);
+            CustomAssert.NotEqual(default, ss.SwitchKeyword);
+            CustomAssert.Equal(SyntaxKind.SwitchKeyword, ss.SwitchKeyword.Kind());
+            CustomAssert.NotEqual(default, ss.OpenParenToken);
+            CustomAssert.NotNull(ss.Expression);
+            CustomAssert.Equal("a", ss.Expression.ToString());
+            CustomAssert.NotEqual(default, ss.CloseParenToken);
+            CustomAssert.NotEqual(default, ss.OpenBraceToken);
 
-            Assert.Equal(1, ss.Sections.Count);
+            CustomAssert.Equal(1, ss.Sections.Count);
 
-            Assert.Equal(1, ss.Sections[0].Labels.Count);
-            Assert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
-            Assert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
+            CustomAssert.Equal(1, ss.Sections[0].Labels.Count);
+            CustomAssert.NotEqual(default, ss.Sections[0].Labels[0].Keyword);
+            CustomAssert.Equal(SyntaxKind.CaseKeyword, ss.Sections[0].Labels[0].Keyword.Kind());
             var caseLabelSyntax = ss.Sections[0].Labels[0] as CaseSwitchLabelSyntax;
-            Assert.NotNull(caseLabelSyntax);
-            Assert.NotNull(caseLabelSyntax.Value);
-            Assert.Equal("b", caseLabelSyntax.Value.ToString());
-            Assert.Equal(2, ss.Sections[0].Statements.Count);
-            Assert.Equal("s1();", ss.Sections[0].Statements[0].ToString());
-            Assert.Equal("s2();", ss.Sections[0].Statements[1].ToString());
+            CustomAssert.NotNull(caseLabelSyntax);
+            CustomAssert.NotNull(caseLabelSyntax.Value);
+            CustomAssert.Equal("b", caseLabelSyntax.Value.ToString());
+            CustomAssert.Equal(2, ss.Sections[0].Statements.Count);
+            CustomAssert.Equal("s1();", ss.Sections[0].Statements[0].ToString());
+            CustomAssert.Equal("s2();", ss.Sections[0].Statements[1].ToString());
 
-            Assert.NotEqual(default, ss.CloseBraceToken);
+            CustomAssert.NotEqual(default, ss.CloseBraceToken);
         }
 
         [Fact]
@@ -2337,20 +2337,20 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "using (a) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
-            Assert.Null(us.Declaration);
-            Assert.NotNull(us.Expression);
-            Assert.Equal("a", us.Expression.ToString());
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.Null(us.Declaration);
+            CustomAssert.NotNull(us.Expression);
+            CustomAssert.Equal("a", us.Expression.ToString());
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -2359,32 +2359,32 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "using (T a = b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("T", us.Declaration.Type.ToString());
-            Assert.Equal(1, us.Declaration.Variables.Count);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("T", us.Declaration.Type.ToString());
+            CustomAssert.Equal(1, us.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.Null(us.Expression);
+            CustomAssert.Null(us.Expression);
 
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -2393,27 +2393,27 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "using T a = b;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("T", us.Declaration.Type.ToString());
-            Assert.Equal(1, us.Declaration.Variables.Count);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
-            Assert.NotEqual(default, us.SemicolonToken);
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("T", us.Declaration.Type.ToString());
+            CustomAssert.Equal(1, us.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, us.SemicolonToken);
         }
 
         [Fact]
@@ -2452,34 +2452,34 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "using (var a = b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("var", us.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, us.Declaration.Variables.Count);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("var", us.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, us.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.Null(us.Expression);
+            CustomAssert.Null(us.Expression);
 
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -2488,28 +2488,28 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "using var a = b;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("var", us.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, us.Declaration.Variables.Count);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("var", us.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, us.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
         }
 
         [Fact]
@@ -2519,35 +2519,35 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "using public readonly var a = b;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(2, statement.Errors().Length);
-            Assert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
-            Assert.Equal("public", statement.Errors()[0].Arguments[0]);
-            Assert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[1].Code);
-            Assert.Equal("readonly", statement.Errors()[1].Arguments[0]);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(2, statement.Errors().Length);
+            CustomAssert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[0].Code);
+            CustomAssert.Equal("public", statement.Errors()[0].Arguments[0]);
+            CustomAssert.Equal((int)ErrorCode.ERR_BadMemberFlag, statement.Errors()[1].Code);
+            CustomAssert.Equal("readonly", statement.Errors()[1].Arguments[0]);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("var", us.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
-            Assert.Equal(2, us.Modifiers.Count);
-            Assert.Equal("public", us.Modifiers[0].ToString());
-            Assert.Equal("readonly", us.Modifiers[1].ToString());
-            Assert.Equal(1, us.Declaration.Variables.Count);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("var", us.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(2, us.Modifiers.Count);
+            CustomAssert.Equal("public", us.Modifiers[0].ToString());
+            CustomAssert.Equal("readonly", us.Modifiers[1].ToString());
+            CustomAssert.Equal(1, us.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
         }
 
         [Fact]
@@ -2617,30 +2617,30 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var text = "await using var a = b;";
             var statement = this.ParseStatement(text, 0, TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.AwaitKeyword);
-            Assert.Equal(SyntaxKind.AwaitKeyword, us.AwaitKeyword.ContextualKind());
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.AwaitKeyword);
+            CustomAssert.Equal(SyntaxKind.AwaitKeyword, us.AwaitKeyword.ContextualKind());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("var", us.Declaration.Type.ToString());
-            Assert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
-            Assert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
-            Assert.Equal(1, us.Declaration.Variables.Count);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("var", us.Declaration.Type.ToString());
+            CustomAssert.Equal(SyntaxKind.IdentifierName, us.Declaration.Type.Kind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)us.Declaration.Type).Identifier.Kind());
+            CustomAssert.Equal(1, us.Declaration.Variables.Count);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
         }
 
         [Fact]
@@ -2783,42 +2783,42 @@ class C
             var text = "using (T a = b, c = d) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("T", us.Declaration.Type.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("T", us.Declaration.Type.ToString());
 
-            Assert.Equal(2, us.Declaration.Variables.Count);
+            CustomAssert.Equal(2, us.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, us.Declaration.Variables[1].Identifier);
-            Assert.Equal("c", us.Declaration.Variables[1].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[1].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[1].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[1].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[1].Initializer.Value);
-            Assert.Equal("d", us.Declaration.Variables[1].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, us.Declaration.Variables[1].Identifier);
+            CustomAssert.Equal("c", us.Declaration.Variables[1].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[1].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[1].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[1].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[1].Initializer.Value);
+            CustomAssert.Equal("d", us.Declaration.Variables[1].Initializer.Value.ToString());
 
-            Assert.Null(us.Expression);
+            CustomAssert.Null(us.Expression);
 
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -2827,36 +2827,36 @@ class C
             var text = "using T a = b, c = d;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
 
-            Assert.NotNull(us.Declaration);
-            Assert.NotNull(us.Declaration.Type);
-            Assert.Equal("T", us.Declaration.Type.ToString());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.NotNull(us.Declaration.Type);
+            CustomAssert.Equal("T", us.Declaration.Type.ToString());
 
-            Assert.Equal(2, us.Declaration.Variables.Count);
+            CustomAssert.Equal(2, us.Declaration.Variables.Count);
 
-            Assert.NotEqual(default, us.Declaration.Variables[0].Identifier);
-            Assert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[0].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[0].Initializer.Value);
-            Assert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Identifier);
+            CustomAssert.Equal("a", us.Declaration.Variables[0].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[0].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[0].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[0].Initializer.Value);
+            CustomAssert.Equal("b", us.Declaration.Variables[0].Initializer.Value.ToString());
 
-            Assert.NotEqual(default, us.Declaration.Variables[1].Identifier);
-            Assert.Equal("c", us.Declaration.Variables[1].Identifier.ToString());
-            Assert.Null(us.Declaration.Variables[1].ArgumentList);
-            Assert.NotNull(us.Declaration.Variables[1].Initializer);
-            Assert.NotEqual(default, us.Declaration.Variables[1].Initializer.EqualsToken);
-            Assert.NotNull(us.Declaration.Variables[1].Initializer.Value);
-            Assert.Equal("d", us.Declaration.Variables[1].Initializer.Value.ToString());
+            CustomAssert.NotEqual(default, us.Declaration.Variables[1].Identifier);
+            CustomAssert.Equal("c", us.Declaration.Variables[1].Identifier.ToString());
+            CustomAssert.Null(us.Declaration.Variables[1].ArgumentList);
+            CustomAssert.NotNull(us.Declaration.Variables[1].Initializer);
+            CustomAssert.NotEqual(default, us.Declaration.Variables[1].Initializer.EqualsToken);
+            CustomAssert.NotNull(us.Declaration.Variables[1].Initializer.Value);
+            CustomAssert.Equal("d", us.Declaration.Variables[1].Initializer.Value.ToString());
         }
 
         [Fact]
@@ -2908,20 +2908,20 @@ class C
             var text = "using (f ? x = a : x = b) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
-            Assert.Null(us.Declaration);
-            Assert.NotNull(us.Expression);
-            Assert.Equal("f ? x = a : x = b", us.Expression.ToString());
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.Null(us.Declaration);
+            CustomAssert.NotNull(us.Expression);
+            CustomAssert.Equal("f ? x = a : x = b", us.Expression.ToString());
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -2930,16 +2930,16 @@ class C
             var text = "using var x = f ? a : b;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotNull(us.Declaration);
-            Assert.Equal("var x = f ? a : b", us.Declaration.ToString());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.Equal("var x = f ? a : b", us.Declaration.ToString());
         }
 
         [Fact]
@@ -2991,20 +2991,20 @@ class C
             var text = "using (f ? x = a) { }";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
-            Assert.NotNull(us.Declaration);
-            Assert.Equal("f ? x = a", us.Declaration.ToString());
-            Assert.Null(us.Expression);
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.Equal("f ? x = a", us.Declaration.ToString());
+            CustomAssert.Null(us.Expression);
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -3013,16 +3013,16 @@ class C
             var text = "using f ? x = a;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotNull(us.Declaration);
-            Assert.Equal("f ? x = a", us.Declaration.ToString());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.Equal("f ? x = a", us.Declaration.ToString());
         }
 
         [Fact]
@@ -3063,20 +3063,20 @@ class C
             var text = "using (f ? x, y) { }";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.UsingStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.UsingStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (UsingStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotEqual(default, us.OpenParenToken);
-            Assert.NotNull(us.Declaration);
-            Assert.Equal("f ? x, y", us.Declaration.ToString());
-            Assert.Null(us.Expression);
-            Assert.NotEqual(default, us.CloseParenToken);
-            Assert.NotNull(us.Statement);
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotEqual(default, us.OpenParenToken);
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.Equal("f ? x, y", us.Declaration.ToString());
+            CustomAssert.Null(us.Expression);
+            CustomAssert.NotEqual(default, us.CloseParenToken);
+            CustomAssert.NotNull(us.Statement);
         }
 
         [Fact]
@@ -3085,16 +3085,16 @@ class C
             var text = "using f ? x, y;";
             var statement = this.ParseStatement(text, options: TestOptions.Regular8);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var us = (LocalDeclarationStatementSyntax)statement;
-            Assert.NotEqual(default, us.UsingKeyword);
-            Assert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
-            Assert.NotNull(us.Declaration);
-            Assert.Equal("f ? x, y", us.Declaration.ToString());
+            CustomAssert.NotEqual(default, us.UsingKeyword);
+            CustomAssert.Equal(SyntaxKind.UsingKeyword, us.UsingKeyword.Kind());
+            CustomAssert.NotNull(us.Declaration);
+            CustomAssert.Equal("f ? x, y", us.Declaration.ToString());
         }
 
         [Fact]
@@ -3333,16 +3333,16 @@ class C
             var keywordText = SyntaxFacts.GetText(kind);
             var text = keywordText + " o = null;";
             var statement = this.ParseStatement(text);
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.LocalDeclarationStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
 
             var decl = (LocalDeclarationStatementSyntax)statement;
-            Assert.Equal(keywordText, decl.Declaration.Type.ToString());
-            Assert.IsType<IdentifierNameSyntax>(decl.Declaration.Type);
+            CustomAssert.Equal(keywordText, decl.Declaration.Type.ToString());
+            CustomAssert.IsType<IdentifierNameSyntax>(decl.Declaration.Type);
             var name = (IdentifierNameSyntax)decl.Declaration.Type;
-            Assert.Equal(kind, name.Identifier.ContextualKind());
-            Assert.Equal(SyntaxKind.IdentifierToken, name.Identifier.Kind());
+            CustomAssert.Equal(kind, name.Identifier.ContextualKind());
+            CustomAssert.Equal(SyntaxKind.IdentifierToken, name.Identifier.Kind());
         }
 
         [Fact]
@@ -3351,7 +3351,7 @@ class C
             var text = @"static char[] delimiter;";
             var tree = SyntaxFactory.ParseStatement(text);
             var toText = tree.ToFullString();
-            Assert.Equal(text, toText);
+            CustomAssert.Equal(text, toText);
         }
 
         [Fact]
@@ -3361,27 +3361,27 @@ class C
             var text = "foreach(T a in b) { }";
             var statement = this.ParseStatement(prefix + text, offset: prefix.Length);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(0, statement.Errors().Length);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.ForEachStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(0, statement.Errors().Length);
 
             var fs = (ForEachStatementSyntax)statement;
-            Assert.NotEqual(default, fs.ForEachKeyword);
-            Assert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
+            CustomAssert.NotEqual(default, fs.ForEachKeyword);
+            CustomAssert.Equal(SyntaxKind.ForEachKeyword, fs.ForEachKeyword.Kind());
 
-            Assert.NotEqual(default, fs.OpenParenToken);
-            Assert.NotNull(fs.Type);
-            Assert.Equal("T", fs.Type.ToString());
-            Assert.NotEqual(default, fs.Identifier);
-            Assert.Equal("a", fs.Identifier.ToString());
-            Assert.NotEqual(default, fs.InKeyword);
-            Assert.False(fs.InKeyword.IsMissing);
-            Assert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
-            Assert.NotNull(fs.Expression);
-            Assert.Equal("b", fs.Expression.ToString());
-            Assert.NotEqual(default, fs.CloseParenToken);
-            Assert.NotNull(fs.Statement);
+            CustomAssert.NotEqual(default, fs.OpenParenToken);
+            CustomAssert.NotNull(fs.Type);
+            CustomAssert.Equal("T", fs.Type.ToString());
+            CustomAssert.NotEqual(default, fs.Identifier);
+            CustomAssert.Equal("a", fs.Identifier.ToString());
+            CustomAssert.NotEqual(default, fs.InKeyword);
+            CustomAssert.False(fs.InKeyword.IsMissing);
+            CustomAssert.Equal(SyntaxKind.InKeyword, fs.InKeyword.Kind());
+            CustomAssert.NotNull(fs.Expression);
+            CustomAssert.Equal("b", fs.Expression.ToString());
+            CustomAssert.NotEqual(default, fs.CloseParenToken);
+            CustomAssert.NotNull(fs.Statement);
         }
 
         [WorkItem(684860, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/684860")]
@@ -3403,10 +3403,10 @@ class C
             var root = tree.GetRoot();
             var walker = new TokenAndTriviaWalker();
             walker.Visit(root);
-            Assert.True(walker.Tokens > n);
+            CustomAssert.True(walker.Tokens > n);
             var tokens1 = root.DescendantTokens(descendIntoTrivia: false).ToArray();
             var tokens2 = root.DescendantTokens(descendIntoTrivia: true).ToArray();
-            Assert.True((tokens2.Length - tokens1.Length) > n);
+            CustomAssert.True((tokens2.Length - tokens1.Length) > n);
         }
 
         [WorkItem(684860, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/684860")]
@@ -3430,9 +3430,9 @@ class C
             var root = tree.GetRoot();
             var walker = new TokenAndTriviaWalker();
             walker.Visit(root);
-            Assert.True(walker.Tokens > n);
+            CustomAssert.True(walker.Tokens > n);
             var tokens = root.DescendantTokens(descendIntoTrivia: true).ToArray();
-            Assert.True(tokens.Length > n);
+            CustomAssert.True(tokens.Length > n);
         }
 
         [Fact]
@@ -3457,8 +3457,8 @@ class C
                 CSharpTestBase.Diagnostic(ErrorCode.ERR_SyntaxError, "if").WithArguments("when", "if").WithLocation(7, 36));
 
             var filterClause = root.DescendantNodes().OfType<CatchFilterClauseSyntax>().Single();
-            Assert.Equal(SyntaxKind.WhenKeyword, filterClause.WhenKeyword.Kind());
-            Assert.True(filterClause.WhenKeyword.HasStructuredTrivia);
+            CustomAssert.Equal(SyntaxKind.WhenKeyword, filterClause.WhenKeyword.Kind());
+            CustomAssert.True(filterClause.WhenKeyword.HasStructuredTrivia);
         }
 
         [Fact]
@@ -3541,11 +3541,11 @@ class Program
 System.Console.WriteLine(true)";
             var statement = this.ParseStatement(text);
 
-            Assert.NotNull(statement);
-            Assert.Equal(SyntaxKind.IfStatement, statement.Kind());
-            Assert.Equal(text, statement.ToString());
-            Assert.Equal(1, statement.Errors().Length);
-            Assert.Equal((int)ErrorCode.ERR_SemicolonExpected, statement.Errors()[0].Code);
+            CustomAssert.NotNull(statement);
+            CustomAssert.Equal(SyntaxKind.IfStatement, statement.Kind());
+            CustomAssert.Equal(text, statement.ToString());
+            CustomAssert.Equal(1, statement.Errors().Length);
+            CustomAssert.Equal((int)ErrorCode.ERR_SemicolonExpected, statement.Errors()[0].Code);
         }
 
         [WorkItem(266237, "https://devdiv.visualstudio.com/DefaultCollection/DevDiv/_workitems?_a=edit&id=266237")]

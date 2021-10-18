@@ -50,7 +50,7 @@ namespace Roslyn.Test.Utilities
         {
             if (!CheckEqual(expectedRoot, actualRoot, ShallowElementComparer.Instance, out var firstMismatch))
             {
-                Assert.True(false, message +
+                CustomAssert.True(false, message +
                     GetAssertText(
                         GetXmlString(expectedRoot, expectedIsXmlLiteral),
                         GetXmlString(actualRoot, expectedIsXmlLiteral),
@@ -139,9 +139,9 @@ namespace Roslyn.Test.Utilities
         /// <returns>True if the elements are equal, false otherwise (in which case, firstMismatch will try to indicate a point of disagreement).</returns>
         private static bool CheckEqual(XElement expectedRoot, XElement actualRoot, IEqualityComparer<XElement> shallowComparer, out Tuple<XElement, XElement> firstMismatch)
         {
-            Assert.NotNull(expectedRoot);
-            Assert.NotNull(actualRoot);
-            Assert.NotNull(shallowComparer);
+            CustomAssert.NotNull(expectedRoot);
+            CustomAssert.NotNull(actualRoot);
+            CustomAssert.NotNull(shallowComparer);
 
             Tuple<XElement, XElement> rootPair = new Tuple<XElement, XElement>(expectedRoot, actualRoot);
 
@@ -217,8 +217,8 @@ namespace Roslyn.Test.Utilities
 
             public bool Equals(XElement element1, XElement element2)
             {
-                Assert.NotNull(element1);
-                Assert.NotNull(element2);
+                CustomAssert.NotNull(element1);
+                CustomAssert.NotNull(element2);
 
                 return element1.Name == "customDebugInfo"
                     ? element1.ToString() == element2.ToString()
@@ -242,8 +242,8 @@ namespace Roslyn.Test.Utilities
 
             public bool Equals(XElement element1, XElement element2)
             {
-                Assert.NotNull(element1);
-                Assert.NotNull(element2);
+                CustomAssert.NotNull(element1);
+                CustomAssert.NotNull(element2);
 
                 if (element1.Name != element2.Name)
                 {

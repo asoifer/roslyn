@@ -358,7 +358,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
                     if ((object)other != null)
                     {
-                        if ((nts as SourceNamedTypeSymbol)?.IsPartial == true && (other as SourceNamedTypeSymbol)?.IsPartial == true)
+                        // Lafhis
+                        if (nts is SourceNamedTypeSymbol && ((SourceNamedTypeSymbol)nts).IsPartial == true &&
+                            other is SourceNamedTypeSymbol && ((SourceNamedTypeSymbol)other).IsPartial == true)
                         {
                             diagnostics.Add(ErrorCode.ERR_PartialTypeKindConflict, symbol.Locations.FirstOrNone(), symbol);
                         }

@@ -53,7 +53,8 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
                 Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "condition").WithArguments("condition").WithLocation(6, 14)
             };
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+            var ok = VerifyOperationTreeAndDiagnosticsForTest_B<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+            var x = ok;
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]

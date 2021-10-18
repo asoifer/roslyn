@@ -71,7 +71,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                 testData: testData,
                 cancellationToken: default(CancellationToken));
 
-            Assert.True(emitResult.Success, "Diagnostics:\r\n" + string.Join("\r\n", emitResult.Diagnostics.Select(d => d.ToString())));
+            CustomAssert.True(emitResult.Success, "Diagnostics:\r\n" + string.Join("\r\n", emitResult.Diagnostics.Select(d => d.ToString())));
 
             if (expectedWarnings != null)
             {
@@ -85,7 +85,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
         {
             var stream = new MemoryStream();
             var emitResult = compilation.Emit(stream, options: options);
-            Assert.True(emitResult.Success, "Diagnostics: " + string.Join(", ", emitResult.Diagnostics.Select(d => d.ToString())));
+            CustomAssert.True(emitResult.Success, "Diagnostics: " + string.Join(", ", emitResult.Diagnostics.Select(d => d.ToString())));
 
             if (expectedWarnings != null)
             {
@@ -272,7 +272,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             void checkTimeout()
             {
                 const int timeout = 15000;
-                Assert.False(stopWatch.ElapsedMilliseconds > timeout, $"ValidateIOperations took too long: {stopWatch.ElapsedMilliseconds} ms");
+                CustomAssert.False(stopWatch.ElapsedMilliseconds > timeout, $"ValidateIOperations took too long: {stopWatch.ElapsedMilliseconds} ms");
             }
 
             foreach (var tree in compilation.SyntaxTrees)
@@ -288,15 +288,15 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                     if (operation != null)
                     {
                         // Make sure IOperation returned by GetOperation(syntaxnode) will have same syntaxnode as the given syntaxnode(IOperation.Syntax == syntaxnode).
-                        Assert.True(node == operation.Syntax, $"Expected : {node} - Actual : {operation.Syntax}");
+                        CustomAssert.True(node == operation.Syntax, $"Expected : {node} - Actual : {operation.Syntax}");
 
-                        Assert.True(operation.Type == null || !operation.MustHaveNullType(), $"Unexpected non-null type: {operation.Type}");
+                        CustomAssert.True(operation.Type == null || !operation.MustHaveNullType(), $"Unexpected non-null type: {operation.Type}");
 
-                        Assert.Same(semanticModel, operation.SemanticModel);
-                        Assert.NotSame(semanticModel, ((Operation)operation).OwningSemanticModel);
-                        Assert.NotNull(((Operation)operation).OwningSemanticModel);
-                        Assert.Same(semanticModel, ((Operation)operation).OwningSemanticModel.ContainingModelOrSelf);
-                        Assert.Same(semanticModel, semanticModel.ContainingModelOrSelf);
+                        CustomAssert.Same(semanticModel, operation.SemanticModel);
+                        CustomAssert.NotSame(semanticModel, ((Operation)operation).OwningSemanticModel);
+                        CustomAssert.NotNull(((Operation)operation).OwningSemanticModel);
+                        CustomAssert.Same(semanticModel, ((Operation)operation).OwningSemanticModel.ContainingModelOrSelf);
+                        CustomAssert.Same(semanticModel, semanticModel.ContainingModelOrSelf);
 
                         if (operation.Parent == null)
                         {
@@ -323,7 +323,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                         }
                         catch (ArgumentException)
                         {
-                            Assert.False(true, $"Duplicate explicit node for syntax ({operation.Syntax.RawKind}): {operation.Syntax.ToString()}");
+                            CustomAssert.False(true, $"Duplicate explicit node for syntax ({operation.Syntax.RawKind}): {operation.Syntax.ToString()}");
                         }
                     }
 
@@ -361,7 +361,9 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
 
                     case IParameterInitializerOperation parameterInitializerOperation:
                         // https://github.com/dotnet/roslyn/issues/27594 tracks adding support for getting ControlFlowGraph for parameter initializers for local functions.
-                        if ((parameterInitializerOperation.Parameter.ContainingSymbol as IMethodSymbol)?.MethodKind != MethodKind.LocalFunction)
+                        // LAFHIS
+                        if ((parameterInitializerOperation.Parameter.ContainingSymbol is IMethodSymbol) &&
+                            ((IMethodSymbol)(parameterInitializerOperation.Parameter.ContainingSymbol)).MethodKind != MethodKind.LocalFunction)
                         {
                             ControlFlowGraphVerifier.GetFlowGraph(compilation, ControlFlowGraphBuilder.Create(root), associatedSymbol);
                         }

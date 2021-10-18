@@ -430,7 +430,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                         _ => null
                     };
 
-                    ReportTypeNamedRecord(identifier?.Text, this.DeclaringCompilation, diagnostics, identifier?.GetLocation() ?? Location.None);
+                    // Lafhis
+                    ReportTypeNamedRecord(identifier != null ? identifier.Value.Text : null, this.DeclaringCompilation, diagnostics, (identifier != null ? identifier.Value.GetLocation() : null) ?? Location.None);
                 }
             }
 
@@ -1454,7 +1455,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             if (member is NamedTypeSymbol type)
             {
                 Debug.Assert(forDiagnostics);
-                Debug.Assert(Volatile.Read(ref _lazyTypeMembers)?.Values.Any(types => types.Contains(t => t == (object)type)) == true);
+                // Lafhis
+                var temp = Volatile.Read(ref _lazyTypeMembers);
+                Debug.Assert(temp != null ? temp.Values.Any(types => types.Contains(t => t == (object)type)) == true : false);
                 return;
             }
             else if (member is TypeParameterSymbol || member is SynthesizedMethodBaseSymbol)
@@ -1469,10 +1472,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
 
             var declared = Volatile.Read(ref _lazyDeclaredMembersAndInitializers);
+            // Lafhis
+            var temp2 = Volatile.Read(ref _lazyMembersAndInitializers);
             Debug.Assert(declared != DeclaredMembersAndInitializers.UninitializedSentinel);
 
             if ((declared is object && (declared.NonTypeMembers.Contains(m => m == (object)member) || declared.RecordPrimaryConstructor == (object)member)) ||
-                Volatile.Read(ref _lazyMembersAndInitializers)?.NonTypeMembers.Contains(m => m == (object)member) == true)
+                (temp2 != null ? temp2.NonTypeMembers.Contains(m => m == (object)member) == true : false))
             {
                 return;
             }

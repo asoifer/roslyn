@@ -846,7 +846,7 @@ namespace System.Runtime.CompilerServices
                 source,
                 (s, _) =>
                 {
-                    Assert.True(expectedBlobs.ContainsKey(s), "Expecting marshalling blob for " + (isField ? "field " : "parameter ") + s);
+                    CustomAssert.True(expectedBlobs.ContainsKey(s), "Expecting marshalling blob for " + (isField ? "field " : "parameter ") + s);
                     return expectedBlobs[s];
                 },
                 isField);
@@ -905,7 +905,7 @@ namespace System.Runtime.CompilerServices
             var tree = Parse(text, options: options ?? TestOptions.RegularPreview);
             var parsedText = tree.GetRoot();
             // we validate the text roundtrips
-            Assert.Equal(text, parsedText.ToFullString());
+            CustomAssert.Equal(text, parsedText.ToFullString());
             return tree;
         }
 
@@ -1166,7 +1166,7 @@ namespace System.Runtime.CompilerServices
 
             CompilationExtensions.ValidateIOperations(createCompilationLambda);
             var c = createCompilationLambda();
-            Assert.NotNull(c.Assembly); // force creation of SourceAssemblySymbol
+            CustomAssert.NotNull(c.Assembly); // force creation of SourceAssemblySymbol
 
             ((SourceAssemblySymbol)c.Assembly).lazyAssemblyIdentity = identity;
             return c;
@@ -1264,15 +1264,15 @@ namespace System.Runtime.CompilerServices
             try
             {
                 CompileAndVerify(comp, expectedOutput: "", verify: verify); //need expected output to force execution
-                Assert.False(true, string.Format("Expected exception {0}({1})", typeof(T).Name, expectedMessage));
+                CustomAssert.False(true, string.Format("Expected exception {0}({1})", typeof(T).Name, expectedMessage));
             }
             catch (ExecutionException x)
             {
                 var e = x.InnerException;
-                Assert.IsType<T>(e);
+                CustomAssert.IsType<T>(e);
                 if (expectedMessage != null)
                 {
-                    Assert.Equal(expectedMessage, e.Message);
+                    CustomAssert.Equal(expectedMessage, e.Message);
                 }
             }
 
@@ -1383,7 +1383,7 @@ namespace System.Runtime.CompilerServices
         /// </summary>
         public TNode GetBindingNode<TNode>(CSharpCompilation compilation, int treeIndex = 0) where TNode : SyntaxNode
         {
-            Assert.True(compilation.SyntaxTrees.Length > treeIndex, "Compilation has enough trees");
+            CustomAssert.True(compilation.SyntaxTrees.Length > treeIndex, "Compilation has enough trees");
             var tree = compilation.SyntaxTrees[treeIndex];
 
             const string bindStart = "/*<bind>*/";
@@ -1404,7 +1404,7 @@ namespace System.Runtime.CompilerServices
         /// <returns></returns>
         public IList<TNode> GetBindingNodes<TNode>(CSharpCompilation compilation, int treeIndex = 0, int which = -1) where TNode : SyntaxNode
         {
-            Assert.True(compilation.SyntaxTrees.Length > treeIndex, "Compilation has enough trees");
+            CustomAssert.True(compilation.SyntaxTrees.Length > treeIndex, "Compilation has enough trees");
             var tree = compilation.SyntaxTrees[treeIndex];
 
             var nodeList = new List<TNode>();
@@ -1459,7 +1459,7 @@ namespace System.Runtime.CompilerServices
 
             start += startTag.Length;
             int end = text.IndexOf(endTag, StringComparison.Ordinal);
-            Assert.True(end > start, "Bind Pos: end > start");
+            CustomAssert.True(end > start, "Bind Pos: end > start");
             // get rid of white spaces if any
             var bindText = text.Substring(start, end - start).Trim();
             if (String.IsNullOrWhiteSpace(bindText))
@@ -1489,9 +1489,9 @@ namespace System.Runtime.CompilerServices
                 }
             }
 
-            Assert.NotNull(node); // If this trips, then node  wasn't found
-            Assert.IsAssignableFrom(typeof(TNode), node);
-            Assert.Equal(bindText, node.ToString());
+            CustomAssert.NotNull(node); // If this trips, then node  wasn't found
+            CustomAssert.IsAssignableFrom(typeof(TNode), node);
+            CustomAssert.Equal(bindText, node.ToString());
             return ((TNode)node);
         }
         #endregion
@@ -1612,7 +1612,7 @@ namespace System.Runtime.CompilerServices
             var method = (PEMethodSymbol)type.GetMembers(methodData.Method.MetadataName).Single();
 
             var bodyBlock = peModule.Module.GetMethodBodyOrThrow(method.Handle);
-            Assert.NotNull(bodyBlock);
+            CustomAssert.NotNull(bodyBlock);
 
             var moduleDecoder = new MetadataDecoder(peModule);
             var peMethod = (PEMethodSymbol)moduleDecoder.GetSymbolForILToken(method.Handle);
@@ -1702,7 +1702,9 @@ namespace System.Runtime.CompilerServices
             public override string VisualizeSymbol(uint token, OperandType operandType)
             {
                 Symbol reference = _decoder.GetSymbolForILToken(MetadataTokens.EntityHandle((int)token));
-                return string.Format("\"{0}\"", (reference is Symbol symbol) ? symbol.ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat) : (object)reference);
+                //return string.Format("\"{0}\"", (reference is Symbol symbol) ? symbol.ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat) : (object)reference);
+				// LAFHIS
+				return string.Format("\"{0}\"", reference is Symbol ? ((Symbol)reference).ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat) : (object)reference);
             }
 
             public override string VisualizeLocalType(object type)
@@ -1719,7 +1721,10 @@ namespace System.Runtime.CompilerServices
 
                     if (symbol is null)
                     {
-                        symbol = (type as Cci.IReference)?.GetInternalSymbol() as Symbol;
+                        //symbol = (type as Cci.IReference)?.GetInternalSymbol() as Symbol;
+						// LAFHIS
+						var temp = type as Cci.IReference;
+						symbol = temp?.GetInternalSymbol() as Symbol;
                     }
                 }
 
@@ -1745,7 +1750,7 @@ namespace System.Runtime.CompilerServices
             var operation = model.GetOperation(syntaxNode);
             if (operation != null)
             {
-                Assert.Same(model, operation.SemanticModel);
+                CustomAssert.Same(model, operation.SemanticModel);
             }
             return (operation, syntaxNode);
         }
@@ -1785,6 +1790,20 @@ namespace System.Runtime.CompilerServices
             return actualOperation;
         }
 
+        /// <summary>
+        /// LAFHIS
+        /// </summary>
+        protected static bool VerifyOperationTreeForTest_B<TSyntaxNode>(CSharpCompilation compilation, string expectedOperationTree, Action<IOperation, Compilation, SyntaxNode> additionalOperationTreeVerifier = null)
+            where TSyntaxNode : SyntaxNode
+        {
+            var (actualOperation, syntaxNode) = GetOperationAndSyntaxForTest<TSyntaxNode>(compilation);
+            var actualOperationTree = GetOperationTreeForTest(compilation, actualOperation);
+            var toReturn = OperationTreeVerifier.Verify(expectedOperationTree, actualOperationTree);
+            additionalOperationTreeVerifier?.Invoke(actualOperation, compilation, syntaxNode);
+
+            return toReturn;
+        }
+
         protected static void VerifyOperationTreeForNode(CSharpCompilation compilation, SemanticModel model, SyntaxNode syntaxNode, string expectedOperationTree)
         {
             VerifyOperationTree(compilation, model.GetOperation(syntaxNode), expectedOperationTree);
@@ -1792,7 +1811,7 @@ namespace System.Runtime.CompilerServices
 
         protected static void VerifyOperationTree(CSharpCompilation compilation, IOperation operation, string expectedOperationTree)
         {
-            Assert.NotNull(operation);
+            CustomAssert.NotNull(operation);
             var actualOperationTree = GetOperationTreeForTest(compilation, operation);
             OperationTreeVerifier.Verify(expectedOperationTree, actualOperationTree);
         }
@@ -1836,6 +1855,18 @@ namespace System.Runtime.CompilerServices
             VerifyOperationTreeForTest<TSyntaxNode>(compilation, expectedOperationTree, additionalOperationTreeVerifier);
         }
 
+        protected static bool VerifyOperationTreeAndDiagnosticsForTest_B<TSyntaxNode>(
+            CSharpCompilation compilation,
+            string expectedOperationTree,
+            DiagnosticDescription[] expectedDiagnostics,
+            Action<IOperation, Compilation, SyntaxNode> additionalOperationTreeVerifier = null)
+            where TSyntaxNode : SyntaxNode
+        {
+            var actualDiagnostics = compilation.GetDiagnostics().Where(d => d.Severity != DiagnosticSeverity.Hidden);
+            actualDiagnostics.Verify(expectedDiagnostics);
+            return VerifyOperationTreeForTest_B<TSyntaxNode>(compilation, expectedOperationTree, additionalOperationTreeVerifier);
+        }
+
         protected static void VerifyFlowGraphAndDiagnosticsForTest<TSyntaxNode>(
             CSharpCompilation compilation,
             string expectedFlowGraph,
@@ -1867,6 +1898,26 @@ namespace System.Runtime.CompilerServices
                 references,
                 additionalOperationTreeVerifier);
 
+        protected static bool VerifyOperationTreeAndDiagnosticsForTest_B<TSyntaxNode>(
+            string testSrc,
+            string expectedOperationTree,
+            DiagnosticDescription[] expectedDiagnostics,
+            CSharpCompilationOptions compilationOptions = null,
+            CSharpParseOptions parseOptions = null,
+            MetadataReference[] references = null,
+            Action<IOperation, Compilation, SyntaxNode> additionalOperationTreeVerifier = null,
+            bool useLatestFrameworkReferences = false)
+            where TSyntaxNode : SyntaxNode =>
+            VerifyOperationTreeAndDiagnosticsForTest_B<TSyntaxNode>(
+                testSrc,
+                expectedOperationTree,
+                useLatestFrameworkReferences ? TargetFramework.Mscorlib46Extended : TargetFramework.Standard,
+                expectedDiagnostics,
+                compilationOptions,
+                parseOptions,
+                references,
+                additionalOperationTreeVerifier);
+
         protected static void VerifyOperationTreeAndDiagnosticsForTest<TSyntaxNode>(
             string testSrc,
             string expectedOperationTree,
@@ -1884,6 +1935,25 @@ namespace System.Runtime.CompilerServices
                 options: compilationOptions ?? TestOptions.ReleaseDll,
                 targetFramework: targetFramework);
             VerifyOperationTreeAndDiagnosticsForTest<TSyntaxNode>(compilation, expectedOperationTree, expectedDiagnostics, additionalOperationTreeVerifier);
+        }
+
+        protected static bool VerifyOperationTreeAndDiagnosticsForTest_B<TSyntaxNode>(
+            string testSrc,
+            string expectedOperationTree,
+            TargetFramework targetFramework,
+            DiagnosticDescription[] expectedDiagnostics,
+            CSharpCompilationOptions compilationOptions = null,
+            CSharpParseOptions parseOptions = null,
+            MetadataReference[] references = null,
+            Action<IOperation, Compilation, SyntaxNode> additionalOperationTreeVerifier = null)
+            where TSyntaxNode : SyntaxNode
+        {
+            var compilation = CreateCompilation(
+                new[] { Parse(testSrc, filename: "file.cs", options: parseOptions) },
+                references,
+                options: compilationOptions ?? TestOptions.ReleaseDll,
+                targetFramework: targetFramework);
+            return VerifyOperationTreeAndDiagnosticsForTest_B<TSyntaxNode>(compilation, expectedOperationTree, expectedDiagnostics, additionalOperationTreeVerifier);
         }
 
         protected static void VerifyOperationTreeAndDiagnosticsForTest<TSyntaxNode>(

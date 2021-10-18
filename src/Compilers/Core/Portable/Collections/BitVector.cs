@@ -40,11 +40,20 @@ namespace Microsoft.CodeAnalysis
 
         public bool Equals(BitVector other)
         {
+			/* LAFHIS
             // Bit arrays only equal if their underlying sets are of the same size
             return _capacity == other._capacity
                 // and have the same set of bits set
                 && _bits0 == other._bits0
                 && _bits.AsSpan().SequenceEqual(other._bits.AsSpan());
+			*/
+			if (_capacity == other._capacity && _bits0 == other._bits0)
+			{
+				var a = _bits.AsSpan();
+				var b = other._bits.AsSpan();
+				return a.SequenceEqual(b);
+			}
+			return false;
         }
 
         public override bool Equals(object? obj)

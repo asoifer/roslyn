@@ -86,15 +86,18 @@ namespace Microsoft.CodeAnalysis
                 }
                 else
                 {
-                    Assert.True(false, DiagnosticDescription.GetAssertText(expected, actual));
+                    CustomAssert.True(false, DiagnosticDescription.GetAssertText(expected, actual));
                 }
             }
 
             // If any 'extra' errors appear that were not in the 'expected' list, fail test.
             if (unmatched.Count > 0)
             {
-                Assert.True(false, DiagnosticDescription.GetAssertText(expected, actual));
+                CustomAssert.True(false, DiagnosticDescription.GetAssertText(expected, actual));
             }
+
+            // LAFHIS: We add a custom assert because we want to execute at least one assert
+            CustomAssert.True(true, DiagnosticDescription.GetAssertText(expected, actual));
         }
 
         public static TCompilation VerifyDiagnostics<TCompilation>(this TCompilation c, params DiagnosticDescription[] expected)
@@ -118,18 +121,18 @@ namespace Microsoft.CodeAnalysis
                 if (c.IsUnreferencedAssemblyIdentityDiagnosticCode(diagnostic.Code))
                 {
                     var assemblyIds = c.GetUnreferencedAssemblyIdentities(diagnostic);
-                    Assert.False(assemblyIds.IsEmpty);
+                    CustomAssert.False(assemblyIds.IsEmpty);
 
                     var diagnosticMessage = diagnostic.GetMessage();
                     foreach (var id in assemblyIds)
                     {
-                        Assert.Contains(id.GetDisplayName(), diagnosticMessage);
+                        CustomAssert.Contains(id.GetDisplayName(), diagnosticMessage);
                     }
                 }
                 else
                 {
                     var assemblyIds = c.GetUnreferencedAssemblyIdentities(diagnostic);
-                    Assert.True(assemblyIds.IsEmpty);
+                    CustomAssert.True(assemblyIds.IsEmpty);
                 }
             }
         }
@@ -141,7 +144,7 @@ namespace Microsoft.CodeAnalysis
             Action<Exception, DiagnosticAnalyzer, Diagnostic> onAnalyzerException = null)
             where TCompilation : Compilation
         {
-            Assert.Equal(expectedCount, c.GetAnalyzerDiagnostics(analyzers, null, onAnalyzerException).Length);
+            CustomAssert.Equal(expectedCount, c.GetAnalyzerDiagnostics(analyzers, null, onAnalyzerException).Length);
         }
 
         public static TCompilation VerifyAnalyzerDiagnostics<TCompilation>(
@@ -293,7 +296,7 @@ namespace Microsoft.CodeAnalysis
             var analyzerManager = new AnalyzerManager(analyzersArray);
             var driver = AnalyzerDriver.CreateAndAttachToCompilation(c, analyzersArray, options, analyzerManager, onAnalyzerException,
                 analyzerExceptionFilter: null, reportAnalyzer: false, severityFilter: SeverityFilter.None, out var newCompilation, cancellationToken);
-            Debug.Assert(newCompilation.SemanticModelProvider != null);
+            CustomAssert.True(newCompilation.SemanticModelProvider != null);
             var compilerDiagnostics = newCompilation.GetDiagnostics(cancellationToken);
             var analyzerDiagnostics = driver.GetDiagnosticsAsync(newCompilation).Result;
             var allDiagnostics = includeCompilerDiagnostics ?
@@ -303,7 +306,7 @@ namespace Microsoft.CodeAnalysis
 
             if (!reportSuppressedDiagnostics)
             {
-                Assert.True(diagnostics.All(d => !d.IsSuppressed));
+                CustomAssert.True(diagnostics.All(d => !d.IsSuppressed));
             }
 
             return (TCompilation)newCompilation; // note this is a new compilation

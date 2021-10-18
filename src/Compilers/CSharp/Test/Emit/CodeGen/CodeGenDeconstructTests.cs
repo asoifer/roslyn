@@ -3595,7 +3595,8 @@ Deconstructing (1, hello)
 
         private static TypeSyntax GetTypeSyntax(SingleVariableDesignationSyntax decl)
         {
-            return (decl.Parent as DeclarationExpressionSyntax)?.Type;
+            // Lafhis
+            return decl.Parent is DeclarationExpressionSyntax ? ((DeclarationExpressionSyntax)(decl.Parent)).Type : null;
         }
 
         private static SingleVariableDesignationSyntax GetDeconstructionVariable(SyntaxTree tree, string name)

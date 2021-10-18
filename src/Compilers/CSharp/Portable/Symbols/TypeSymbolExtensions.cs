@@ -158,7 +158,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         public static bool IsNativeIntegerOrNullableNativeIntegerType(this TypeSymbol? type)
         {
-            return type?.StrippedType().IsNativeIntegerType == true;
+            // Lafhis
+            return (type?.Equals(null) ?? true) ? false : type.StrippedType().IsNativeIntegerType == true;
         }
 
         public static bool IsObjectType(this TypeSymbol type)

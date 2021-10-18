@@ -156,7 +156,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Test.Utilities
         private void ReportSymbol(Symbol symbol)
         {
             var type = (symbol as TypeSymbol) ?? symbol.GetTypeOrReturnType().Type;
-            var attribute = GetNativeIntegerAttribute((symbol is MethodSymbol method) ? method.GetReturnTypeAttributes() : symbol.GetAttributes());
+            //var attribute = GetNativeIntegerAttribute((symbol is MethodSymbol method) ? method.GetReturnTypeAttributes() : symbol.GetAttributes());
+			// LAFHIS
+			var method = symbol as MethodSymbol; // TEMP VARIABLE
+			var attribute = GetNativeIntegerAttribute(method != null ? method.GetReturnTypeAttributes() : symbol.GetAttributes());
             Debug.Assert((type?.ContainsNativeInteger() != true) || (attribute != null));
             if (attribute == null)
             {

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Title="" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+<Nodes>
+<Node Id="1" Label="this" Category="EntryPoint" Style="Plain" />
+<Node Id="3" Label="statement" Category="EntryPoint" Style="Plain" />
+<Node Id="2" Label="5 - OBJECT - Default" Category="Vertex" Style="Plain" />
+<Node Id="5" Label="8" Category="Cluster" Style="Plain" />
+<Node Id="4" Label="40 - Lexer - Default" Category="Vertex" Style="Plain" />
+<Node Id="6" Label="575" Category="Cluster" Style="Plain" />
+<Node Id="7" Label="9973 - Lexer - Default" Category="Vertex" Style="Plain" />
+</Nodes>
+<Links>
+<Link Source="1" Target="2" Label="OBJECT - Default" />
+<Link Source="3" Target="4" Label="SyntaxNode - Default" />
+<Link Source="2" Target="5" Label="Cluster" />
+<Link Source="5" Target="2" Label="OBJECT - Default | __SIGMA__ | OBJECT - Default" />
+<Link Source="5" Target="2" Label="StatementParsingTests - Default | _output | OBJECT - Default" />
+<Link Source="4" Target="6" Label="Cluster" />
+<Link Source="6" Target="4" Label="Lexer - Default | TextWindow | SlidingTextWindow - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _leadingTriviaCache | SyntaxListBuilder - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _leadingTriviaCache | OBJECT - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _trailingTriviaCache | SyntaxListBuilder - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _trailingTriviaCache | OBJECT - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _options | CSharpParseOptions - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _builder | StringBuilder - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _identBuffer | char[] - Default" />
+<Link Source="6" Target="4" Label="Lexer - Default | _cache | LexerCache - Default" />
+<Link Source="6" Target="4" Label="SlidingTextWindow - Default | _text | SourceText - Default" />
+<Link Source="6" Target="4" Label="SlidingTextWindow - Default | _strings | StringTable - Default" />
+<Link Source="6" Target="4" Label="SlidingTextWindow - Default | _characterWindow | char[] - Default" />
+<Link Source="6" Target="4" Label="OBJECT - Default | __SIGMA__ | OBJECT - Default" />
+<Link Source="6" Target="4" Label="OBJECT - Default | _leadingTriviaCache | SyntaxListBuilder - Default" />
+<Link Source="6" Target="4" Label="OBJECT - Default | _leadingTriviaCache | OBJECT - Default" />
+<Link Source="6" Target="4" Label="OBJECT - Default | _trailingTriviaCache | SyntaxListBuilder - Default" />
+<Link Source="6" Target="4" Label="OBJECT - Default | _trailingTriviaCache | OBJECT - Default" />
+<Link Source="6" Target="4" Label="OBJECT - Default | _currentToken | OBJECT - Default" />
+<Link Source="6" Target="4" Label="CSharpParseOptions - Default | PreprocessorSymbols | ImmutableArray - Default" />
+<Link Source="6" Target="4" Label="CSharpParseOptions - Default | _features | ImmutableDictionary - Default" />
+<Link Source="6" Target="4" Label="LexerCache - Default | _triviaMap | TextKeyedCache - Default" />
+<Link Source="6" Target="4" Label="LexerCache - Default | _tokenMap | TextKeyedCache - Default" />
+<Link Source="6" Target="4" Label="LexerCache - Default | _keywordKindMap | CachingIdentityFactory - Default" />
+<Link Source="6" Target="4" Label="Func - Default | __SIGMA__ | LanguageParser - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | lexer | Lexer - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | cancellationToken | CancellationToken - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | _currentNode | BlendedNode - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | _firstBlender | Blender - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | _lexedTokens | Microsoft.CodeAnalysis.ArrayElement<Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxToken>[] - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | _pool | SyntaxListPool - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | _syntaxFactoryContext | SyntaxFactoryContext - Default" />
+<Link Source="6" Target="4" Label="LanguageParser - Default | _syntaxFactory | ContextAwareSyntax - Default" />
+<Link Source="6" Target="7" Label="LanguageParser - Default | _currentToken | OBJECT - Default" />
+<Link Source="7" Target="6" Label="Cluster" />
+</Links>
+<Categories>
+<Category Id="EntryPoint" Background="Black" />
+<Category Id="Vertex" Background="Grey" />
+<Category Id="Cluster" Background="White" />
+</Categories>
+</DirectedGraph>

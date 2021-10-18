@@ -376,8 +376,13 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                     // Avoid resolving previously resolved missing references. If we call to the resolver again we would create new assembly symbols for them,
                     // which would not match the previously created ones. As a result we would get duplicate PE types and conversion errors.
-                    var implicitReferenceResolutions = compilation.ScriptCompilationInfo?.PreviousScriptCompilation?.GetBoundReferenceManager().ImplicitReferenceResolutions ??
-                        ImmutableDictionary<AssemblyIdentity, PortableExecutableReference?>.Empty;
+
+                    // Lafhis
+                    var temp1 = compilation.ScriptCompilationInfo;
+                    var temp2 = temp1 != null ? temp1.PreviousScriptCompilation : null;
+                    var temp3 = temp2 != null ? temp2.GetBoundReferenceManager() : null;
+                    var temp4 = temp3 != null ? temp3.ImplicitReferenceResolutions : null;
+                    var implicitReferenceResolutions = temp4 ?? ImmutableDictionary<AssemblyIdentity, PortableExecutableReference?>.Empty;
 
                     BoundInputAssembly[] bindingResult = Bind(
                         compilation,

@@ -439,7 +439,8 @@ getOperation:
         /// Verify the type and nullability inferred by NullabilityWalker of all expressions in the source
         /// that are followed by specific annotations. Annotations are of the form /*T:type*/.
         /// </summary>
-        internal static void VerifyTypes(this CSharpCompilation compilation, SyntaxTree tree = null)
+		// LAFHIS
+		internal static void VerifyTypes(this CSharpCompilation compilation, SyntaxTree tree = null)
         {
             if (tree == null)
             {
@@ -454,7 +455,7 @@ getOperation:
             Assert.True(compilation.IsNullableAnalysisEnabledIn((CSharpSyntaxTree)tree, new TextSpan(0, tree.Length)));
 
             var root = tree.GetRoot();
-            var allAnnotations = getAnnotations();
+            var allAnnotations = getAnnotations(root);
             if (allAnnotations.IsEmpty)
             {
                 return;
@@ -482,10 +483,10 @@ getOperation:
                 AssertEx.Equal(expectedTypes, actualTypes, message: method.ToTestDisplayString());
             }
 
-            ImmutableArray<(ExpressionSyntax Expression, string Text, bool IsConverted)> getAnnotations()
+            ImmutableArray<(ExpressionSyntax Expression, string Text, bool IsConverted)> getAnnotations(SyntaxNode rootNode)
             {
                 var builder = ArrayBuilder<(ExpressionSyntax, string, bool)>.GetInstance();
-                foreach (var token in root.DescendantTokens())
+                foreach (var token in rootNode.DescendantTokens())
                 {
                     foreach (var trivia in token.TrailingTrivia)
                     {
@@ -499,7 +500,7 @@ getOperation:
                             if (text.EndsWith(suffix) && (startsWithTypePrefix || text.StartsWith(convertedPrefix)))
                             {
                                 var prefix = startsWithTypePrefix ? typePrefix : convertedPrefix;
-                                var expr = getEnclosingExpression(token);
+                                var expr = getEnclosingExpression(token, rootNode);
                                 Assert.True(expr != null, $"VerifyTypes could not find a matching expression for annotation '{text}'.");
 
                                 var content = text.Substring(prefix.Length, text.Length - prefix.Length - suffix.Length);
@@ -511,7 +512,7 @@ getOperation:
                 return builder.ToImmutableAndFree();
             }
 
-            ExpressionSyntax getEnclosingExpression(SyntaxToken token)
+            ExpressionSyntax getEnclosingExpression(SyntaxToken token, SyntaxNode rootNode)
             {
                 var node = token.Parent;
                 while (true)
@@ -521,7 +522,7 @@ getOperation:
                     {
                         return expr;
                     }
-                    if (node == root)
+                    if (node == rootNode)
                     {
                         break;
                     }

@@ -1921,7 +1921,7 @@ partial class C
             CompileAndVerify(source, options: TestOptions.ReleaseDll.WithMetadataImportOptions(MetadataImportOptions.All), symbolValidator: module =>
             {
                 var method = module.GlobalNamespace.GetMember<TypeSymbol>("C").GetMember<MethodSymbol>("F");
-                Assert.Equal("i", method.Parameters[0].Name);
+                CustomAssert.Equal("i", method.Parameters[0].Name);
             });
         }
 
@@ -1943,7 +1943,7 @@ partial class C
             CompileAndVerify(source, options: TestOptions.ReleaseDll.WithMetadataImportOptions(MetadataImportOptions.All), symbolValidator: module =>
             {
                 var method = module.GlobalNamespace.GetMember<TypeSymbol>("C").GetMember<MethodSymbol>("F");
-                Assert.Equal("i", method.Parameters[0].Name);
+                CustomAssert.Equal("i", method.Parameters[0].Name);
             });
         }
 
@@ -2316,8 +2316,8 @@ class Program
 
             var symbolInfo = model.GetSymbolInfo(node);
 
-            Assert.Null(symbolInfo.Symbol);
-            Assert.Equal(CandidateReason.NotReferencable, symbolInfo.CandidateReason);
+            CustomAssert.Null(symbolInfo.Symbol);
+            CustomAssert.Equal(CandidateReason.NotReferencable, symbolInfo.CandidateReason);
         }
 
         [Fact, WorkItem(1068547, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1068547")]
@@ -2335,8 +2335,8 @@ class Program
 
             var symbolInfo = model.GetSymbolInfo(node);
 
-            Assert.Null(symbolInfo.Symbol);
-            Assert.Equal(CandidateReason.NotReferencable, symbolInfo.CandidateReason);
+            CustomAssert.Null(symbolInfo.Symbol);
+            CustomAssert.Equal(CandidateReason.NotReferencable, symbolInfo.CandidateReason);
         }
 
         [Fact]
@@ -2552,7 +2552,7 @@ class C
             var x = foo.Parameters[0];
             var a = x.GetAttributes()[0];
             var i = a.ConstructorArguments.Single();
-            Assert.Equal((int)i.Value, (int)t.ConstantValue);
+            CustomAssert.Equal((int)i.Value, (int)t.ConstantValue);
         }
 
         [Fact, WorkItem(1078961, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1078961")]
@@ -2582,7 +2582,7 @@ class C
             var foo = (MethodSymbol)c.GetMembers("Foo").Single();
             var a = foo.GetAttributes()[0];
             var i = a.ConstructorArguments.Single();
-            Assert.Equal((int)i.Value, (int)t.ConstantValue);
+            CustomAssert.Equal((int)i.Value, (int)t.ConstantValue);
         }
 
         [Fact, WorkItem(1078961, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1078961")]
@@ -2612,7 +2612,7 @@ class C
             var tt = foo.TypeParameters[0];
             var a = tt.GetAttributes()[0];
             var i = a.ConstructorArguments.Single();
-            Assert.Equal((int)i.Value, (int)t.ConstantValue);
+            CustomAssert.Equal((int)i.Value, (int)t.ConstantValue);
         }
 
         [Fact, WorkItem(1078961, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1078961")]
@@ -2675,11 +2675,11 @@ class C
                 .OfType<IdentifierNameSyntax>()
                 .First(x => x.Parent.IsKind(SyntaxKind.SimpleMemberAccessExpression) && x.Identifier.ValueText.Equals("M0"));
 
-            Assert.Equal("A.B<string>.M0", identifierNameM0.Parent.ToString());
+            CustomAssert.Equal("A.B<string>.M0", identifierNameM0.Parent.ToString());
             var m0Symbol = model.GetSymbolInfo(identifierNameM0);
 
-            Assert.Equal("void NS.A.B<System.String>.M0()", m0Symbol.Symbol.ToTestDisplayString());
-            Assert.Equal(CandidateReason.None, m0Symbol.CandidateReason);
+            CustomAssert.Equal("void NS.A.B<System.String>.M0()", m0Symbol.Symbol.ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.None, m0Symbol.CandidateReason);
 
             var identifierNameM1 = tree
                 .GetRoot()
@@ -2687,11 +2687,11 @@ class C
                 .OfType<IdentifierNameSyntax>()
                 .First(x => x.Parent.IsKind(SyntaxKind.SimpleMemberAccessExpression) && x.Identifier.ValueText.Equals("M1"));
 
-            Assert.Equal("A.B<string>.M1", identifierNameM1.Parent.ToString());
+            CustomAssert.Equal("A.B<string>.M1", identifierNameM1.Parent.ToString());
             var m1Symbol = model.GetSymbolInfo(identifierNameM1);
 
-            Assert.Equal("void NS.A.B<System.String>.M1()", m1Symbol.Symbol.ToTestDisplayString());
-            Assert.Equal(CandidateReason.None, m1Symbol.CandidateReason);
+            CustomAssert.Equal("void NS.A.B<System.String>.M1()", m1Symbol.Symbol.ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.None, m1Symbol.CandidateReason);
         }
 
         [Fact, WorkItem(3096, "https://github.com/dotnet/roslyn/issues/3096")]
@@ -2731,19 +2731,19 @@ class A
                 .OfType<IdentifierNameSyntax>()
                 .Where(x => x.Identifier.ValueText.Equals("MyMethod")).ToArray();
 
-            Assert.Equal(4, identifiers.Length);
+            CustomAssert.Equal(4, identifiers.Length);
 
-            Assert.Equal("(MyDelegate<int>)MyMethod", identifiers[0].Parent.ToString());
-            Assert.Equal("void A.MyMethod(System.Int32 a)", model.GetSymbolInfo(identifiers[0]).Symbol.ToTestDisplayString());
+            CustomAssert.Equal("(MyDelegate<int>)MyMethod", identifiers[0].Parent.ToString());
+            CustomAssert.Equal("void A.MyMethod(System.Int32 a)", model.GetSymbolInfo(identifiers[0]).Symbol.ToTestDisplayString());
 
-            Assert.Equal("(MyDelegate<long>)MyMethod", identifiers[1].Parent.ToString());
-            Assert.Equal("void A.MyMethod(System.Int64 a)", model.GetSymbolInfo(identifiers[1]).Symbol.ToTestDisplayString());
+            CustomAssert.Equal("(MyDelegate<long>)MyMethod", identifiers[1].Parent.ToString());
+            CustomAssert.Equal("void A.MyMethod(System.Int64 a)", model.GetSymbolInfo(identifiers[1]).Symbol.ToTestDisplayString());
 
-            Assert.Equal("(MyDelegate<float>)MyMethod", identifiers[2].Parent.ToString());
-            Assert.Equal("void A.MyMethod(System.Single a)", model.GetSymbolInfo(identifiers[2]).Symbol.ToTestDisplayString());
+            CustomAssert.Equal("(MyDelegate<float>)MyMethod", identifiers[2].Parent.ToString());
+            CustomAssert.Equal("void A.MyMethod(System.Single a)", model.GetSymbolInfo(identifiers[2]).Symbol.ToTestDisplayString());
 
-            Assert.Equal("(MyDelegate<double>)MyMethod", identifiers[3].Parent.ToString());
-            Assert.Equal("void A.MyMethod(System.Double a)", model.GetSymbolInfo(identifiers[3]).Symbol.ToTestDisplayString());
+            CustomAssert.Equal("(MyDelegate<double>)MyMethod", identifiers[3].Parent.ToString());
+            CustomAssert.Equal("void A.MyMethod(System.Double a)", model.GetSymbolInfo(identifiers[3]).Symbol.ToTestDisplayString());
         }
 
         [Fact, WorkItem(3096, "https://github.com/dotnet/roslyn/issues/3096")]
@@ -2786,11 +2786,11 @@ class A
                 .OfType<IdentifierNameSyntax>()
                 .First(x => x.Parent.IsKind(SyntaxKind.SimpleMemberAccessExpression) && x.Identifier.ValueText.Equals("M0"));
 
-            Assert.Equal("b.M0", identifierNameM0.Parent.ToString());
+            CustomAssert.Equal("b.M0", identifierNameM0.Parent.ToString());
             var m0Symbol = model.GetSymbolInfo(identifierNameM0);
 
-            Assert.Equal("void NS.A.B<System.String>.M0<System.String>()", m0Symbol.Symbol.ToTestDisplayString());
-            Assert.Equal(CandidateReason.None, m0Symbol.CandidateReason);
+            CustomAssert.Equal("void NS.A.B<System.String>.M0<System.String>()", m0Symbol.Symbol.ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.None, m0Symbol.CandidateReason);
 
             var identifierNameM1 = tree
                 .GetRoot()
@@ -2798,11 +2798,11 @@ class A
                 .OfType<IdentifierNameSyntax>()
                 .First(x => x.Parent.IsKind(SyntaxKind.SimpleMemberAccessExpression) && x.Identifier.ValueText.Equals("M1"));
 
-            Assert.Equal("b.M1", identifierNameM1.Parent.ToString());
+            CustomAssert.Equal("b.M1", identifierNameM1.Parent.ToString());
             var m1Symbol = model.GetSymbolInfo(identifierNameM1);
 
-            Assert.Equal("void NS.A.B<System.String>.M1<System.String>()", m1Symbol.Symbol.ToTestDisplayString());
-            Assert.Equal(CandidateReason.None, m1Symbol.CandidateReason);
+            CustomAssert.Equal("void NS.A.B<System.String>.M1<System.String>()", m1Symbol.Symbol.ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.None, m1Symbol.CandidateReason);
         }
 
         [Fact, WorkItem(5170, "https://github.com/dotnet/roslyn/issues/5170")]
@@ -2837,7 +2837,7 @@ public static class LazyToStringExtension
             var model = compilation.GetSemanticModel(tree);
             var node = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.SimpleLambdaExpression)).Single();
             var param = node.ChildNodes().Where(n => n.IsKind(SyntaxKind.Parameter)).Single();
-            Assert.Equal("System.Reflection.PropertyInfo x", model.GetDeclaredSymbol(param).ToTestDisplayString());
+            CustomAssert.Equal("System.Reflection.PropertyInfo x", model.GetDeclaredSymbol(param).ToTestDisplayString());
         }
 
         [Fact, WorkItem(7520, "https://github.com/dotnet/roslyn/issues/7520")]
@@ -2876,13 +2876,13 @@ class C
 
             var param = lambda.ChildNodes().Where(n => n.IsKind(SyntaxKind.Parameter)).Single();
             var symbol1 = model.GetDeclaredSymbol(param);
-            Assert.Equal("System.Int32 i", symbol1.ToTestDisplayString());
+            CustomAssert.Equal("System.Int32 i", symbol1.ToTestDisplayString());
 
             var id = lambda.DescendantNodes().First(n => n.IsKind(SyntaxKind.IdentifierName));
             var symbol2 = model.GetSymbolInfo(id).Symbol;
-            Assert.Equal("System.Int32 i", symbol2.ToTestDisplayString());
+            CustomAssert.Equal("System.Int32 i", symbol2.ToTestDisplayString());
 
-            Assert.Same(symbol1, symbol2);
+            CustomAssert.Same(symbol1, symbol2);
         }
 
         [Fact, WorkItem(7520, "https://github.com/dotnet/roslyn/issues/7520")]
@@ -2918,13 +2918,13 @@ class C
 
             var param = lambda.ChildNodes().Where(n => n.IsKind(SyntaxKind.Parameter)).Single();
             var symbol1 = model.GetDeclaredSymbol(param);
-            Assert.Equal("System.Int32 i", symbol1.ToTestDisplayString());
+            CustomAssert.Equal("System.Int32 i", symbol1.ToTestDisplayString());
 
             var id = lambda.DescendantNodes().First(n => n.IsKind(SyntaxKind.IdentifierName));
             var symbol2 = model.GetSymbolInfo(id).Symbol;
-            Assert.Equal("System.Int32 i", symbol2.ToTestDisplayString());
+            CustomAssert.Equal("System.Int32 i", symbol2.ToTestDisplayString());
 
-            Assert.Same(symbol1, symbol2);
+            CustomAssert.Same(symbol1, symbol2);
         }
 
         [Fact, WorkItem(5128, "https://github.com/dotnet/roslyn/issues/5128")]
@@ -2985,26 +2985,26 @@ class C
             var model = comp.GetSemanticModel(tree);
 
             var node1 = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "Use").Single().Parent;
-            Assert.Equal("app.Use", node1.ToString());
+            CustomAssert.Equal("app.Use", node1.ToString());
             var group1 = model.GetMemberGroup(node1);
-            Assert.Equal(2, group1.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[0].ToTestDisplayString());
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
+            CustomAssert.Equal(2, group1.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[0].ToTestDisplayString());
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
                          group1[1].ToTestDisplayString());
 
             var symbolInfo1 = model.GetSymbolInfo(node1);
-            Assert.Null(symbolInfo1.Symbol);
-            Assert.Equal(1, symbolInfo1.CandidateSymbols.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", symbolInfo1.CandidateSymbols.Single().ToTestDisplayString());
-            Assert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
+            CustomAssert.Null(symbolInfo1.Symbol);
+            CustomAssert.Equal(1, symbolInfo1.CandidateSymbols.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", symbolInfo1.CandidateSymbols.Single().ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
 
             var node = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "AuthenticateAsync").Single().Parent;
 
-            Assert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
+            CustomAssert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
 
             var group = model.GetMemberGroup(node);
 
-            Assert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
+            CustomAssert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
         }
 
         [Fact, WorkItem(5128, "https://github.com/dotnet/roslyn/issues/5128")]
@@ -3065,26 +3065,26 @@ class C
             var model = comp.GetSemanticModel(tree);
 
             var node1 = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "Use").Single().Parent;
-            Assert.Equal("app.Use", node1.ToString());
+            CustomAssert.Equal("app.Use", node1.ToString());
             var group1 = model.GetMemberGroup(node1);
-            Assert.Equal(2, group1.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
+            CustomAssert.Equal(2, group1.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
                          group1[0].ToTestDisplayString());
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[1].ToTestDisplayString());
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[1].ToTestDisplayString());
 
             var symbolInfo1 = model.GetSymbolInfo(node1);
-            Assert.Null(symbolInfo1.Symbol);
-            Assert.Equal(1, symbolInfo1.CandidateSymbols.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)", symbolInfo1.CandidateSymbols.Single().ToTestDisplayString());
-            Assert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
+            CustomAssert.Null(symbolInfo1.Symbol);
+            CustomAssert.Equal(1, symbolInfo1.CandidateSymbols.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)", symbolInfo1.CandidateSymbols.Single().ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
 
             var node = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "AuthenticateAsync").Single().Parent;
 
-            Assert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
+            CustomAssert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
 
             var group = model.GetMemberGroup(node);
 
-            Assert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
+            CustomAssert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
         }
 
         [Fact, WorkItem(5128, "https://github.com/dotnet/roslyn/issues/5128")]
@@ -3138,27 +3138,27 @@ class C
             var model = comp.GetSemanticModel(tree);
 
             var node1 = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "Use").Single().Parent;
-            Assert.Equal("app.Use", node1.ToString());
+            CustomAssert.Equal("app.Use", node1.ToString());
             var group1 = model.GetMemberGroup(node1);
-            Assert.Equal(2, group1.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[0].ToTestDisplayString());
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
+            CustomAssert.Equal(2, group1.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[0].ToTestDisplayString());
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
                          group1[1].ToTestDisplayString());
 
             var symbolInfo1 = model.GetSymbolInfo(node1);
-            Assert.Null(symbolInfo1.Symbol);
-            Assert.Equal(2, symbolInfo1.CandidateSymbols.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", symbolInfo1.CandidateSymbols[0].ToTestDisplayString());
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)", symbolInfo1.CandidateSymbols[1].ToTestDisplayString());
-            Assert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
+            CustomAssert.Null(symbolInfo1.Symbol);
+            CustomAssert.Equal(2, symbolInfo1.CandidateSymbols.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", symbolInfo1.CandidateSymbols[0].ToTestDisplayString());
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)", symbolInfo1.CandidateSymbols[1].ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
 
             var node = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "AuthenticateAsync").Single().Parent;
 
-            Assert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
+            CustomAssert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
 
             var group = model.GetMemberGroup(node);
 
-            Assert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
+            CustomAssert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
         }
 
         [Fact, WorkItem(5128, "https://github.com/dotnet/roslyn/issues/5128")]
@@ -3223,27 +3223,27 @@ class C
             var model = comp.GetSemanticModel(tree);
 
             var node1 = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "Use").Single().Parent;
-            Assert.Equal("app.Use", node1.ToString());
+            CustomAssert.Equal("app.Use", node1.ToString());
             var group1 = model.GetMemberGroup(node1);
-            Assert.Equal(2, group1.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[0].ToTestDisplayString());
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
+            CustomAssert.Equal(2, group1.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", group1[0].ToTestDisplayString());
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)",
                          group1[1].ToTestDisplayString());
 
             var symbolInfo1 = model.GetSymbolInfo(node1);
-            Assert.Null(symbolInfo1.Symbol);
-            Assert.Equal(2, symbolInfo1.CandidateSymbols.Length);
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", symbolInfo1.CandidateSymbols[0].ToTestDisplayString());
-            Assert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)", symbolInfo1.CandidateSymbols[1].ToTestDisplayString());
-            Assert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
+            CustomAssert.Null(symbolInfo1.Symbol);
+            CustomAssert.Equal(2, symbolInfo1.CandidateSymbols.Length);
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<RequestDelegate, RequestDelegate> middleware)", symbolInfo1.CandidateSymbols[0].ToTestDisplayString());
+            CustomAssert.Equal("IApplicationBuilder IApplicationBuilder.Use(System.Func<HttpContext, System.Func<System.Threading.Tasks.Task>, System.Threading.Tasks.Task> middleware)", symbolInfo1.CandidateSymbols[1].ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.OverloadResolutionFailure, symbolInfo1.CandidateReason);
 
             var node = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "AuthenticateAsync").Single().Parent;
 
-            Assert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
+            CustomAssert.Equal("ctx.Authentication.AuthenticateAsync", node.ToString());
 
             var group = model.GetMemberGroup(node);
 
-            Assert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
+            CustomAssert.Equal("System.Threading.Tasks.Task<AuthenticationResult> AuthenticationManager.AuthenticateAsync(System.String authenticationScheme)", group.Single().ToTestDisplayString());
         }
 
         [Fact, WorkItem(7101, "https://github.com/dotnet/roslyn/issues/7101")]
@@ -3328,30 +3328,30 @@ static class Extension2
             var model = comp.GetSemanticModel(tree);
 
             var node1 = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "MathMin").Single().Parent;
-            Assert.Equal("MathMin(0, 1)", node1.ToString());
+            CustomAssert.Equal("MathMin(0, 1)", node1.ToString());
 
             var names = model.LookupNames(node1.SpanStart);
-            Assert.False(names.Contains("MathMin"));
-            Assert.True(names.Contains("MathMax"));
-            Assert.True(names.Contains("F1"));
-            Assert.False(names.Contains("F2"));
-            Assert.False(names.Contains("MathMax2"));
-            Assert.False(names.Contains("MathMax3"));
+            CustomAssert.False(names.Contains("MathMin"));
+            CustomAssert.True(names.Contains("MathMax"));
+            CustomAssert.True(names.Contains("F1"));
+            CustomAssert.False(names.Contains("F2"));
+            CustomAssert.False(names.Contains("MathMax2"));
+            CustomAssert.False(names.Contains("MathMax3"));
 
-            Assert.True(model.LookupSymbols(node1.SpanStart, name: "MathMin").IsEmpty);
-            Assert.Equal(1, model.LookupSymbols(node1.SpanStart, name: "MathMax").Length);
-            Assert.Equal(1, model.LookupSymbols(node1.SpanStart, name: "F1").Length);
-            Assert.True(model.LookupSymbols(node1.SpanStart, name: "F2").IsEmpty);
-            Assert.True(model.LookupSymbols(node1.SpanStart, name: "MathMax2").IsEmpty);
-            Assert.True(model.LookupSymbols(node1.SpanStart, name: "MathMax3").IsEmpty);
+            CustomAssert.True(model.LookupSymbols(node1.SpanStart, name: "MathMin").IsEmpty);
+            CustomAssert.Equal(1, model.LookupSymbols(node1.SpanStart, name: "MathMax").Length);
+            CustomAssert.Equal(1, model.LookupSymbols(node1.SpanStart, name: "F1").Length);
+            CustomAssert.True(model.LookupSymbols(node1.SpanStart, name: "F2").IsEmpty);
+            CustomAssert.True(model.LookupSymbols(node1.SpanStart, name: "MathMax2").IsEmpty);
+            CustomAssert.True(model.LookupSymbols(node1.SpanStart, name: "MathMax3").IsEmpty);
 
             var symbols = model.LookupSymbols(node1.SpanStart);
-            Assert.False(symbols.Where(s => s.Name == "MathMin").Any());
-            Assert.True(symbols.Where(s => s.Name == "MathMax").Any());
-            Assert.True(symbols.Where(s => s.Name == "F1").Any());
-            Assert.False(symbols.Where(s => s.Name == "F2").Any());
-            Assert.False(symbols.Where(s => s.Name == "MathMax2").Any());
-            Assert.False(symbols.Where(s => s.Name == "MathMax3").Any());
+            CustomAssert.False(symbols.Where(s => s.Name == "MathMin").Any());
+            CustomAssert.True(symbols.Where(s => s.Name == "MathMax").Any());
+            CustomAssert.True(symbols.Where(s => s.Name == "F1").Any());
+            CustomAssert.False(symbols.Where(s => s.Name == "F2").Any());
+            CustomAssert.False(symbols.Where(s => s.Name == "MathMax2").Any());
+            CustomAssert.False(symbols.Where(s => s.Name == "MathMax3").Any());
         }
 
         [Fact, WorkItem(30726, "https://github.com/dotnet/roslyn/issues/30726")]
@@ -3453,20 +3453,20 @@ class Program
             var model = comp.GetSemanticModel(tree);
 
             var node1 = tree.GetRoot().DescendantNodes().Where(n => n.IsKind(SyntaxKind.IdentifierName) && ((IdentifierNameSyntax)n).Identifier.ValueText == "E").Single().Parent;
-            Assert.Equal("x.E1.E", node1.ToString());
-            Assert.Equal(SyntaxKind.QualifiedName, node1.Kind());
+            CustomAssert.Equal("x.E1.E", node1.ToString());
+            CustomAssert.Equal(SyntaxKind.QualifiedName, node1.Kind());
 
             var node2 = ((QualifiedNameSyntax)node1).Left;
-            Assert.Equal("x.E1", node2.ToString());
+            CustomAssert.Equal("x.E1", node2.ToString());
 
             var symbolInfo2 = model.GetSymbolInfo(node2);
-            Assert.Null(symbolInfo2.Symbol);
-            Assert.Equal("event System.EventHandler Program.E1", symbolInfo2.CandidateSymbols.Single().ToTestDisplayString());
-            Assert.Equal(CandidateReason.NotATypeOrNamespace, symbolInfo2.CandidateReason);
+            CustomAssert.Null(symbolInfo2.Symbol);
+            CustomAssert.Equal("event System.EventHandler Program.E1", symbolInfo2.CandidateSymbols.Single().ToTestDisplayString());
+            CustomAssert.Equal(CandidateReason.NotATypeOrNamespace, symbolInfo2.CandidateReason);
 
             var symbolInfo1 = model.GetSymbolInfo(node1);
-            Assert.Null(symbolInfo1.Symbol);
-            Assert.True(symbolInfo1.CandidateSymbols.IsEmpty);
+            CustomAssert.Null(symbolInfo1.Symbol);
+            CustomAssert.True(symbolInfo1.CandidateSymbols.IsEmpty);
         }
 
         [Fact, WorkItem(13617, "https://github.com/dotnet/roslyn/issues/13617")]
@@ -3634,7 +3634,7 @@ static class E
             var model = comp.GetSemanticModel(tree);
             var node = tree.GetRoot().DescendantNodes().OfType<IdentifierNameSyntax>().Where(n => n.ToString() == "G").First();
             var info = model.GetSymbolInfo(node);
-            Assert.Equal("System.Object A.G(System.String s)", info.Symbol.ToTestDisplayString());
+            CustomAssert.Equal("System.Object A.G(System.String s)", info.Symbol.ToTestDisplayString());
         }
 
         [Fact]
@@ -3661,7 +3661,7 @@ class X
 
             var lambda = tree.GetRoot().DescendantNodes().OfType<SimpleLambdaExpressionSyntax>().Single(s => s.Parameter.Identifier.Text == "x");
             var typeInfo = model.GetTypeInfo(lambda.Body);
-            Assert.Equal("System.Int32", typeInfo.Type.ToTestDisplayString());
+            CustomAssert.Equal("System.Int32", typeInfo.Type.ToTestDisplayString());
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests.PDB
                 // Bar.cs(1,1): error CS8055: Cannot emit debug information for a source text without encoding.
                 Diagnostic(ErrorCode.ERR_EncodinglessSyntaxTree, "class C { }").WithLocation(1, 1));
 
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests.PDB
 
             var result = comp.Emit(new MemoryStream(), pdbStream: new MemoryStream());
             result.Diagnostics.Verify();
-            Assert.True(result.Success);
+            CustomAssert.True(result.Success);
 
             var hash1 = CryptographicHashProvider.ComputeSha1(Encoding.Unicode.GetBytesWithPreamble(tree1.ToString())).ToArray();
             var hash3 = CryptographicHashProvider.ComputeSha1(new UTF8Encoding(true, false).GetBytesWithPreamble(tree3.ToString())).ToArray();
@@ -194,7 +194,7 @@ public class C
                 // error CS0041: Unexpected error writing debug information -- 'MockSymUnmanagedWriter error message'
                 Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments("MockSymUnmanagedWriter error message"));
 
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
@@ -225,7 +225,7 @@ public class C
                 // error CS0041: Unexpected error writing debug information -- 'The version of Windows PDB writer is older than required: '<lib name>''
                 Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments(string.Format(CodeAnalysisResources.SymWriterOlderVersionThanRequired, "<lib name>")));
 
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
@@ -256,7 +256,7 @@ public class C
                 // error CS0041: Unexpected error writing debug information -- 'Windows PDB writer doesn't support deterministic compilation: '<lib name>''
                 Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments(string.Format(CodeAnalysisResources.SymWriterNotDeterministic, "<lib name>")));
 
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
@@ -287,7 +287,7 @@ public class C
                 // error CS0041: Unexpected error writing debug information -- 'xxx'
                 Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments("xxx"));
 
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
         }
 
         [WorkItem(1067635, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1067635")]
@@ -501,7 +501,7 @@ public class C
             var peReader = new PEReader(c.EmitToArray(debugEntryPoint: f.GetPublicSymbol()));
             int peEntryPointToken = peReader.PEHeaders.CorHeader.EntryPointTokenOrRelativeVirtualAddress;
 
-            Assert.Equal(0, peEntryPointToken);
+            CustomAssert.Equal(0, peEntryPointToken);
         }
 
         [Fact]
@@ -526,7 +526,7 @@ public class C
 
             var mdReader = peReader.GetMetadataReader();
             var methodDef = mdReader.GetMethodDefinition((MethodDefinitionHandle)MetadataTokens.Handle(peEntryPointToken));
-            Assert.Equal("Main", mdReader.GetString(methodDef.Name));
+            CustomAssert.Equal("Main", mdReader.GetString(methodDef.Name));
         }
 
         [Fact]
@@ -542,10 +542,10 @@ public class C
             var f2 = c2.GetMember<MethodSymbol>("C.F");
             var g = c1.GetMember<MethodSymbol>("D.G");
             var d = c1.GetMember<NamedTypeSymbol>("D");
-            Assert.NotNull(f1);
-            Assert.NotNull(f2);
-            Assert.NotNull(g);
-            Assert.NotNull(d);
+            CustomAssert.NotNull(f1);
+            CustomAssert.NotNull(f2);
+            CustomAssert.NotNull(g);
+            CustomAssert.NotNull(d);
 
             var stInt = c1.GetSpecialType(SpecialType.System_Int32);
             var d_t_g_int = g.Construct(stInt);
@@ -12172,7 +12172,7 @@ class Program
                 var compilation = CreateCompilation("");
                 var result = compilation.Emit(outStream, options: new EmitOptions(pdbFilePath: "test\\?.pdb", debugInformationFormat: DebugInformationFormat.Embedded));
 
-                Assert.False(result.Success);
+                CustomAssert.False(result.Success);
                 result.Diagnostics.Verify(
                     // error CS2021: File name 'test\?.pdb' is empty, contains invalid characters, has a drive specification without an absolute path, or is too long
                     Diagnostic(ErrorCode.FTL_InvalidInputFileName).WithArguments("test\\?.pdb").WithLocation(1, 1));

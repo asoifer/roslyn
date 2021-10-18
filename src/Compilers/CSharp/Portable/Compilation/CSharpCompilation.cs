@@ -487,7 +487,9 @@ namespace Microsoft.CodeAnalysis.CSharp
             Debug.Assert(debugEntryPoint != null);
 
             // Debug entry point has to be a method definition from this compilation.
-            var methodSymbol = (debugEntryPoint as Symbols.PublicModel.MethodSymbol)?.UnderlyingMethodSymbol;
+            // Lafhis
+            var methodSymbol = debugEntryPoint is Symbols.PublicModel.MethodSymbol ?
+                ((Symbols.PublicModel.MethodSymbol)debugEntryPoint).UnderlyingMethodSymbol : null;
             if (methodSymbol?.DeclaringCompilation != this || !methodSymbol.IsDefinition)
             {
                 diagnostics.Add(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition, Location.None);
@@ -2295,7 +2297,10 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         internal override void ReportUnusedImports(SyntaxTree? filterTree, DiagnosticBag diagnostics, CancellationToken cancellationToken)
         {
-            if (_lazyImportInfos != null && filterTree?.Options.DocumentationMode != DocumentationMode.None)
+            // Lafhis
+            if (_lazyImportInfos != null &&
+                filterTree != null &&
+                filterTree.Options.DocumentationMode != DocumentationMode.None)
             {
                 foreach (ImportInfo info in _lazyImportInfos)
                 {
@@ -3697,7 +3702,11 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 if (!_lazyEmitNullablePublicOnly.HasValue())
                 {
-                    bool value = SyntaxTrees.FirstOrDefault()?.Options?.Features?.ContainsKey("nullablePublicOnly") == true;
+                    // Lafhis
+                    var firstSt = SyntaxTrees.FirstOrDefault();
+                    bool value = firstSt != null && firstSt.Options != null &&
+                        firstSt.Options.Features != null && 
+                        firstSt.Options.Features.ContainsKey("nullablePublicOnly") == true;
                     _lazyEmitNullablePublicOnly = value.ToThreeState();
                 }
                 return _lazyEmitNullablePublicOnly.Value();

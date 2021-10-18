@@ -9343,7 +9343,10 @@ tryAgain:
                 localFunction: out localFunction);
             _termState = saveTerm;
 
-            if (allowLocalFunctions && localFunction == null && (type as PredefinedTypeSyntax)?.Keyword.Kind == SyntaxKind.VoidKeyword)
+            // LAFHIS (we change the expression (type as PredefinedTypeSyntax)?.Keyword.Kind)
+            if (allowLocalFunctions && localFunction == null && 
+                (type is PredefinedTypeSyntax) &&
+                ((PredefinedTypeSyntax)type).Keyword.Kind == SyntaxKind.VoidKeyword)
             {
                 type = this.AddError(type, ErrorCode.ERR_NoVoidHere);
             }
@@ -10453,7 +10456,9 @@ tryAgain:
                 case SyntaxKind.IdentifierToken:
                     if (!IsTrueIdentifier())
                     {
-                        goto default;
+                        // LAFHIS: we don't support goto expressions
+                        //goto default;
+                        return false;
                     }
 
                     this.EatToken(); // eat the identifier

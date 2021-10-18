@@ -1198,10 +1198,11 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                 Assert.NotNull(operation.MatchedType);
             }
 
+            // Lafhis
             var designation =
-                (operation.Syntax as CSharp.Syntax.DeclarationPatternSyntax)?.Designation ??
-                (operation.Syntax as CSharp.Syntax.VarPatternSyntax)?.Designation ??
-                (operation.Syntax as CSharp.Syntax.VariableDesignationSyntax);
+                operation.Syntax is CSharp.Syntax.DeclarationPatternSyntax ? ((CSharp.Syntax.DeclarationPatternSyntax)operation.Syntax).Designation
+                : (operation.Syntax is CSharp.Syntax.VarPatternSyntax ? ((CSharp.Syntax.VarPatternSyntax)operation.Syntax).Designation :
+                operation.Syntax as CSharp.Syntax.VariableDesignationSyntax);
             if (designation.IsKind(CSharp.SyntaxKind.SingleVariableDesignation))
             {
                 Assert.NotNull(operation.DeclaredSymbol);
@@ -1237,7 +1238,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                     break;
             }
 
-            var designation = (operation.Syntax as CSharp.Syntax.RecursivePatternSyntax)?.Designation;
+            var designation = operation.Syntax is CSharp.Syntax.RecursivePatternSyntax ? ((CSharp.Syntax.RecursivePatternSyntax)operation.Syntax).Designation : null;
             if (designation.IsKind(CSharp.SyntaxKind.SingleVariableDesignation))
             {
                 Assert.NotNull(operation.DeclaredSymbol);

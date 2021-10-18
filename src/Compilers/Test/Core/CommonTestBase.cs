@@ -49,9 +49,9 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             EmitOptions emitOptions = null,
             Verification verify = Verification.Passes)
         {
-            Assert.NotNull(compilation);
+            CustomAssert.NotNull(compilation);
 
-            Assert.True(expectedOutput == null ||
+            CustomAssert.True(expectedOutput == null ||
                 (compilation.Options.OutputKind == OutputKind.ConsoleApplication || compilation.Options.OutputKind == OutputKind.WindowsApplication),
                 "Compilation must be executable if output is expected.");
 
@@ -82,12 +82,12 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             else
             {
                 // only one emitter should return a verifier
-                Assert.Null(verifier);
+                CustomAssert.Null(verifier);
             }
 
             // If this fails, it means that more that all emitters failed to return a validator
             // (i.e. none thought that they were applicable for the given input parameters).
-            Assert.NotNull(result);
+            CustomAssert.NotNull(result);
 
             return result;
         }
@@ -98,7 +98,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                 compilation,
                 (s, _omitted1) =>
                 {
-                    Assert.True(expectedBlobs.ContainsKey(s), "Expecting marshalling blob for " + (isField ? "field " : "parameter ") + s);
+                    CustomAssert.True(expectedBlobs.ContainsKey(s), "Expecting marshalling blob for " + (isField ? "field " : "parameter ") + s);
                     return expectedBlobs[s];
                 },
                 isField);
@@ -111,13 +111,13 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
 
         internal static void RunValidators(CompilationVerifier verifier, Action<PEAssembly> assemblyValidator, Action<IModuleSymbol> symbolValidator)
         {
-            Assert.True(assemblyValidator != null || symbolValidator != null);
+            CustomAssert.True(assemblyValidator != null || symbolValidator != null);
 
             var emittedMetadata = verifier.GetMetadata();
 
             if (assemblyValidator != null)
             {
-                Assert.Equal(MetadataImageKind.Assembly, emittedMetadata.Kind);
+                CustomAssert.Equal(MetadataImageKind.Assembly, emittedMetadata.Kind);
 
                 var assembly = ((AssemblyMetadata)emittedMetadata).GetAssembly();
                 assemblyValidator(assembly);
@@ -181,8 +181,8 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
         {
             IlasmUtilities.IlasmTempAssembly(ilSource, appendDefaultHeader, includePdb, autoInherit, out var assemblyPath, out var pdbPath);
 
-            Assert.NotNull(assemblyPath);
-            Assert.Equal(pdbPath != null, includePdb);
+            CustomAssert.NotNull(assemblyPath);
+            CustomAssert.Equal(pdbPath != null, includePdb);
 
             using (new DisposableFile(assemblyPath))
             {
@@ -437,7 +437,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
         internal void AssertDeclaresType(PEModuleSymbol peModule, WellKnownType type, Accessibility expectedAccessibility)
         {
             var name = MetadataTypeName.FromFullName(type.GetMetadataName());
-            Assert.Equal(expectedAccessibility, peModule.LookupTopLevelMetadataType(ref name).DeclaredAccessibility);
+            CustomAssert.Equal(expectedAccessibility, peModule.LookupTopLevelMetadataType(ref name).DeclaredAccessibility);
         }
 
         #endregion
@@ -483,7 +483,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             foreach (var (child, parent) in parentMap)
             {
                 // check parent property returns same parent we gathered by walking down operation tree
-                Assert.Equal(child.Parent, parent);
+                CustomAssert.Equal(child.Parent, parent);
 
                 if (parent == null)
                 {
@@ -556,23 +556,23 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
 
                 var clonedOperation = OperationCloner.CloneOperation(operation);
 
-                Assert.Same(model, operation.SemanticModel);
-                Assert.Same(model, clonedOperation.SemanticModel);
-                Assert.NotSame(model, ((Operation)operation).OwningSemanticModel);
-                Assert.Same(((Operation)operation).OwningSemanticModel, ((Operation)clonedOperation).OwningSemanticModel);
+                CustomAssert.Same(model, operation.SemanticModel);
+                CustomAssert.Same(model, clonedOperation.SemanticModel);
+                CustomAssert.NotSame(model, ((Operation)operation).OwningSemanticModel);
+                CustomAssert.Same(((Operation)operation).OwningSemanticModel, ((Operation)clonedOperation).OwningSemanticModel);
 
                 // check whether cloned IOperation is same as original one
                 var original = OperationTreeVerifier.GetOperationTree(model.Compilation, operation);
                 var cloned = OperationTreeVerifier.GetOperationTree(model.Compilation, clonedOperation);
 
-                Assert.Equal(original, cloned);
+                CustomAssert.Equal(original, cloned);
 
                 // make sure cloned operation is value equal but doesn't share any IOperations
                 var originalSet = new HashSet<IOperation>(operation.DescendantsAndSelf());
                 var clonedSet = new HashSet<IOperation>(clonedOperation.DescendantsAndSelf());
 
-                Assert.Equal(originalSet.Count, clonedSet.Count);
-                Assert.Equal(0, originalSet.Intersect(clonedSet).Count());
+                CustomAssert.Equal(originalSet.Count, clonedSet.Count);
+                CustomAssert.Equal(0, originalSet.Intersect(clonedSet).Count());
             }
         }
 
@@ -588,7 +588,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
 
                 // operation tree's node must be part of root of semantic model which is 
                 // owner of operation's lifetime
-                Assert.True(semanticModel.Root.FullSpan.Contains(child.Syntax.FullSpan));
+                CustomAssert.True(semanticModel.Root.FullSpan.Contains(child.Syntax.FullSpan));
             }
         }
 
@@ -600,7 +600,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                 var operation = semanticModel.GetOperation(node);
                 if (operation != null)
                 {
-                    Assert.True(set.Contains(operation));
+                    CustomAssert.True(set.Contains(operation));
                 }
 
                 node = node.Parent;

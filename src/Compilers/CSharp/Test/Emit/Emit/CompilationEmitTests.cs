@@ -158,7 +158,7 @@ namespace N.Goo;
                 emitResult = comp.Emit(output, pdbStream: null, xmlDocumentationStream: null, win32Resources: null);
             }
 
-            Assert.False(emitResult.Success);
+            CustomAssert.False(emitResult.Success);
 
             emitResult.Diagnostics.Verify(
                 // (13,16): error CS1514: { expected
@@ -218,9 +218,9 @@ namespace Goo.Bar
                 mdOnlyImage = output.ToArray();
             }
 
-            Assert.True(emitResult.Success);
+            CustomAssert.True(emitResult.Success);
             emitResult.Diagnostics.Verify();
-            Assert.True(mdOnlyImage.Length > 0, "no metadata emitted");
+            CustomAssert.True(mdOnlyImage.Length > 0, "no metadata emitted");
 
             var srcUsing = @"
 using System;
@@ -241,9 +241,9 @@ class Test2
             {
                 emitResult = compUsing.Emit(output);
 
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
                 emitResult.Diagnostics.Verify();
-                Assert.True(output.ToArray().Length > 0, "no metadata emitted");
+                CustomAssert.True(output.ToArray().Length > 0, "no metadata emitted");
             }
         }
 
@@ -267,7 +267,7 @@ public class C
                 // (but the Main method is not emitted in the ref assembly...)
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
                 emitResult.Diagnostics.Verify();
 
                 VerifyEntryPoint(output, expectZero: false);
@@ -283,7 +283,7 @@ public class C
             {
                 stream.Position = 0;
                 int entryPoint = new PEHeaders(stream).CorHeader.EntryPointTokenOrRelativeVirtualAddress;
-                Assert.Equal(expectZero, entryPoint == 0);
+                CustomAssert.Equal(expectZero, entryPoint == 0);
             }
         }
 
@@ -360,7 +360,7 @@ public class C
 
                 peStream.Position = 0;
                 var mvid = BuildTasks.MvidReader.ReadAssemblyMvidOrEmpty(peStream);
-                Assert.Equal(TestPEBuilder.s_mvid, mvid);
+                CustomAssert.Equal(TestPEBuilder.s_mvid, mvid);
             }
         }
 
@@ -379,14 +379,14 @@ public class C
                 stream.Position = 0;
                 var mvidFromMvidReader = BuildTasks.MvidReader.ReadAssemblyMvidOrEmpty(stream);
 
-                Assert.NotEqual(Guid.Empty, mvidFromModuleDefinition);
+                CustomAssert.NotEqual(Guid.Empty, mvidFromModuleDefinition);
                 if (hasMvidSection)
                 {
-                    Assert.Equal(mvidFromModuleDefinition, mvidFromMvidReader);
+                    CustomAssert.Equal(mvidFromModuleDefinition, mvidFromMvidReader);
                 }
                 else
                 {
-                    Assert.Equal(Guid.Empty, mvidFromMvidReader);
+                    CustomAssert.Equal(Guid.Empty, mvidFromMvidReader);
                 }
             }
         }
@@ -406,7 +406,7 @@ public class C
             {
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
                 emitResult.Diagnostics.Verify();
 
                 VerifyMethods(output, "C", new[] { "System.Int32 C.<PrivateSetter>k__BackingField", "System.Int32 C.PrivateSetter.get", "void C.PrivateSetter.set",
@@ -432,7 +432,7 @@ public class C
             {
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
                 emitResult.Diagnostics.Verify();
 
                 VerifyMethods(output, "C", new[] { "System.Int32 C.<PrivateGetter>k__BackingField", "System.Int32 C.PrivateGetter.get", "void C.PrivateGetter.set",
@@ -456,7 +456,7 @@ public class C
             {
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
                 emitResult.Diagnostics.Verify();
 
                 VerifyMethods(output, "C", new[] { "System.Int32 C.this[System.Int32 i].get", "void C.this[System.Int32 i].set",
@@ -486,7 +486,7 @@ public class C : Base
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
                 emitResult.Diagnostics.Verify();
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
 
                 VerifyMethods(output, "C", new[] { "void C.Property.set", "C..ctor()", "System.Int32 C.Property.get", "System.Int32 C.Property { internal get; set; }" });
                 // A getter is synthesized on C.Property so that it can be marked as sealed. It is emitted despite being internal because it is virtual.
@@ -538,7 +538,7 @@ public class C
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
                 emitResult.Diagnostics.Verify();
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
 
                 VerifyMethods(output, "C", new[] { "C..ctor()" });
                 VerifyMethods(metadataOutput, "C", new[] { "C..ctor()" });
@@ -579,7 +579,7 @@ public class C
                 EmitResult emitResult = comp.Emit(output, metadataPEStream: metadataOutput,
                     options: new EmitOptions(includePrivateMembers: false));
                 emitResult.Diagnostics.Verify();
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
 
                 VerifyMethods(output, "C", new[] { "C..ctor()" });
                 VerifyMethods(metadataOutput, "C", new[] { "C..ctor()" });
@@ -763,17 +763,17 @@ public class D : ITest1
                 var module = (PEModuleSymbol)referencedAssembly.Modules[0];
 
                 var itest1 = module.GlobalNamespace.GetMember<NamedTypeSymbol>("ITest1");
-                Assert.NotNull(itest1.GetAttribute("System.Runtime.InteropServices", "TypeIdentifierAttribute"));
+                CustomAssert.NotNull(itest1.GetAttribute("System.Runtime.InteropServices", "TypeIdentifierAttribute"));
 
                 var method = (PEMethodSymbol)itest1.GetMember("M");
-                Assert.Equal("S ITest1.M()", method.ToTestDisplayString());
+                CustomAssert.Equal("S ITest1.M()", method.ToTestDisplayString());
 
                 var s = (NamedTypeSymbol)method.ReturnType;
-                Assert.Equal("S", s.ToTestDisplayString());
-                Assert.NotNull(s.GetAttribute("System.Runtime.InteropServices", "TypeIdentifierAttribute"));
+                CustomAssert.Equal("S", s.ToTestDisplayString());
+                CustomAssert.NotNull(s.GetAttribute("System.Runtime.InteropServices", "TypeIdentifierAttribute"));
 
                 var field = s.GetMember("field");
-                Assert.Equal("System.Int32 S.field", field.ToTestDisplayString());
+                CustomAssert.Equal("System.Int32 S.field", field.ToTestDisplayString());
             }
         }
 
@@ -847,21 +847,21 @@ public class D
                 var itest1 = module.GlobalNamespace.GetMember<NamedTypeSymbol>("ITest1");
                 if (expectMissing)
                 {
-                    Assert.Null(itest1);
-                    Assert.Null(module.GlobalNamespace.GetMember<NamedTypeSymbol>("S"));
+                    CustomAssert.Null(itest1);
+                    CustomAssert.Null(module.GlobalNamespace.GetMember<NamedTypeSymbol>("S"));
                     return;
                 }
 
-                Assert.NotNull(itest1.GetAttribute("System.Runtime.InteropServices", "TypeIdentifierAttribute"));
+                CustomAssert.NotNull(itest1.GetAttribute("System.Runtime.InteropServices", "TypeIdentifierAttribute"));
 
                 var method = (PEMethodSymbol)itest1.GetMember("M");
-                Assert.Equal("S ITest1.M()", method.ToTestDisplayString());
+                CustomAssert.Equal("S ITest1.M()", method.ToTestDisplayString());
 
                 var s = (NamedTypeSymbol)method.ReturnType;
-                Assert.Equal("S", s.ToTestDisplayString());
+                CustomAssert.Equal("S", s.ToTestDisplayString());
 
                 var field = s.GetMember("field");
-                Assert.Equal("System.Int32 S.field", field.ToTestDisplayString());
+                CustomAssert.Equal("System.Int32 S.field", field.ToTestDisplayString());
             }
         }
 
@@ -923,13 +923,13 @@ public class C
 
             if (!includePrivateMembers)
             {
-                Assert.NotEqual(Guid.Empty, mvid1);
-                Assert.Equal(expectMatch, mvid1 == mvid2);
+                CustomAssert.NotEqual(Guid.Empty, mvid1);
+                CustomAssert.Equal(expectMatch, mvid1 == mvid2);
             }
             else
             {
-                Assert.Equal(Guid.Empty, mvid1);
-                Assert.Equal(Guid.Empty, mvid2);
+                CustomAssert.Equal(Guid.Empty, mvid1);
+                CustomAssert.Equal(Guid.Empty, mvid2);
             }
         }
 
@@ -962,7 +962,7 @@ public class C
                 AssertEx.Equal(metadataImage1, metadataImage2, message: "Expecting identical ref assemblies produced by refout");
 
                 var refAssembly1 = Assembly.ReflectionOnlyLoad(metadataImage1.ToArray());
-                Assert.DoesNotContain("A", refAssembly1.GetManifestResourceNames());
+                CustomAssert.DoesNotContain("A", refAssembly1.GetManifestResourceNames());
 
                 // Verify refonly
                 string name2 = GetUniqueName();
@@ -971,7 +971,7 @@ public class C
                 AssertEx.Equal(refOnlyMetadataImage1, refOnlyMetadataImage2, message: "Expecting identical ref assemblies produced by refonly");
 
                 var refOnlyAssembly1 = Assembly.ReflectionOnlyLoad(refOnlyMetadataImage1.ToArray());
-                Assert.DoesNotContain("A", refOnlyAssembly1.GetManifestResourceNames());
+                CustomAssert.DoesNotContain("A", refOnlyAssembly1.GetManifestResourceNames());
             }
 
             (ImmutableArray<byte>, ImmutableArray<byte>) emitRefOut(IEnumerable<ResourceDescription> manifestResources, string name)
@@ -1647,7 +1647,7 @@ comp => comp.VerifyDiagnostics(
             using (var reader = new PEReader(image))
             {
                 var flags = reader.PEHeaders.CorHeader.Flags;
-                Assert.Equal(expectSigned, flags.HasFlag(CorFlags.StrongNameSigned));
+                CustomAssert.Equal(expectSigned, flags.HasFlag(CorFlags.StrongNameSigned));
             }
         }
 
@@ -1656,11 +1656,11 @@ comp => comp.VerifyDiagnostics(
         {
             var id1 = ModuleMetadata.CreateFromImage(firstImage).GetMetadataReader().ReadAssemblyIdentityOrThrow();
             var id2 = ModuleMetadata.CreateFromImage(secondImage).GetMetadataReader().ReadAssemblyIdentityOrThrow();
-            Assert.Equal(expectMatch, id1 == id2);
+            CustomAssert.Equal(expectMatch, id1 == id2);
             if (expectPublicKey)
             {
-                Assert.True(id1.HasPublicKey);
-                Assert.True(id2.HasPublicKey);
+                CustomAssert.True(id1.HasPublicKey);
+                CustomAssert.True(id2.HasPublicKey);
             }
         }
 
@@ -1797,8 +1797,8 @@ public partial class C
                 using (var output = new MemoryStream())
                 {
                     var emitResult = comp.Emit(output, options: emitOptions);
-                    Assert.Equal(!success, emitResult.Diagnostics.HasAnyErrors());
-                    Assert.Equal(success, emitResult.Success);
+                    CustomAssert.Equal(!success, emitResult.Diagnostics.HasAnyErrors());
+                    CustomAssert.Equal(success, emitResult.Success);
                 }
             }
         }
@@ -2219,7 +2219,7 @@ struct S
             using (var output = new MemoryStream())
             using (var pdbOutput = new MemoryStream())
             {
-                Assert.Throws<ArgumentException>(() => comp.Emit(output, pdbOutput,
+                CustomAssert.Throws<ArgumentException>(() => comp.Emit(output, pdbOutput,
                     options: EmitOptions.Default.WithEmitMetadataOnly(true)));
             }
         }
@@ -2233,7 +2233,7 @@ struct S
             using (var output = new MemoryStream())
             using (var metadataPeOutput = new MemoryStream())
             {
-                Assert.Throws<ArgumentException>(() => comp.Emit(output, metadataPEStream: metadataPeOutput,
+                CustomAssert.Throws<ArgumentException>(() => comp.Emit(output, metadataPEStream: metadataPeOutput,
                     options: EmitOptions.Default.WithEmitMetadataOnly(true)));
             }
         }
@@ -2247,7 +2247,7 @@ struct S
             using (var output = new MemoryStream())
             using (var metadataPeOutput = new MemoryStream())
             {
-                Assert.Throws<ArgumentException>(() => comp.Emit(output, metadataPEStream: metadataPeOutput,
+                CustomAssert.Throws<ArgumentException>(() => comp.Emit(output, metadataPEStream: metadataPeOutput,
                     options: EmitOptions.Default.WithIncludePrivateMembers(true)));
             }
         }
@@ -2275,7 +2275,7 @@ struct S
             using (var output = new MemoryStream())
             using (var metadataPeOutput = new MemoryStream())
             {
-                Assert.Throws<ArgumentException>(() => comp.Emit(output, metadataPEStream: metadataPeOutput,
+                CustomAssert.Throws<ArgumentException>(() => comp.Emit(output, metadataPEStream: metadataPeOutput,
                     options: EmitOptions.Default));
             }
         }
@@ -2288,7 +2288,7 @@ struct S
 
             using (var output = new MemoryStream())
             {
-                Assert.Throws<ArgumentException>(() => comp.Emit(output,
+                CustomAssert.Throws<ArgumentException>(() => comp.Emit(output,
                     options: EmitOptions.Default.WithEmitMetadataOnly(true)));
             }
         }
@@ -2327,7 +2327,7 @@ struct S
 
             using (var output = new MemoryStream())
             {
-                Assert.Throws<ArgumentException>(() => comp.Emit(output,
+                CustomAssert.Throws<ArgumentException>(() => comp.Emit(output,
                     options: EmitOptions.Default.WithEmitMetadataOnly(true)
                         .WithDebugInformationFormat(DebugInformationFormat.Embedded)));
             }
@@ -2350,10 +2350,10 @@ public abstract class PublicClass
             using (var metadataOutput = new MemoryStream())
             {
                 var result = comp.Emit(output, pdbOutput, metadataPEStream: metadataOutput);
-                Assert.True(result.Success);
-                Assert.NotEqual(0, output.Position);
-                Assert.NotEqual(0, pdbOutput.Position);
-                Assert.NotEqual(0, metadataOutput.Position);
+                CustomAssert.True(result.Success);
+                CustomAssert.NotEqual(0, output.Position);
+                CustomAssert.NotEqual(0, pdbOutput.Position);
+                CustomAssert.NotEqual(0, metadataOutput.Position);
                 MetadataReaderUtils.AssertNotThrowNull(ImmutableArray.CreateRange(output.GetBuffer()));
                 MetadataReaderUtils.AssertEmptyOrThrowNull(ImmutableArray.CreateRange(metadataOutput.GetBuffer()));
             }
@@ -2392,7 +2392,7 @@ public class Class1 : CppCli.CppBase2, CppCli.CppInterface1
                 options: TestOptions.ReleaseDll,
                 assemblyName: libAssemblyName);
 
-            Assert.False(libComp.GetDiagnostics().Any());
+            CustomAssert.False(libComp.GetDiagnostics().Any());
 
             EmitResult emitResult;
             byte[] dllImage;
@@ -2402,9 +2402,9 @@ public class Class1 : CppCli.CppBase2, CppCli.CppInterface1
                 dllImage = output.ToArray();
             }
 
-            Assert.True(emitResult.Success);
+            CustomAssert.True(emitResult.Success);
             emitResult.Diagnostics.Verify();
-            Assert.True(dllImage.Length > 0, "no metadata emitted");
+            CustomAssert.True(dllImage.Length > 0, "no metadata emitted");
 
             // NOTE: this DLL won't PEVerify because there are no method bodies.
 
@@ -2426,9 +2426,9 @@ public class Class1 : CppCli.CppBase2, CppCli.CppInterface1
 
             context.Diagnostics.Verify();
             var symbolsSynthesizedCount = symbolSynthesized.Length;
-            Assert.True(symbolsSynthesizedCount > 0, "Expected more than 0 synthesized method symbols.");
-            Assert.Equal(symbolsSynthesizedCount, cciExplicit.Count());
-            Assert.Equal(symbolsSynthesizedCount, cciMethods.Count());
+            CustomAssert.True(symbolsSynthesizedCount > 0, "Expected more than 0 synthesized method symbols.");
+            CustomAssert.Equal(symbolsSynthesizedCount, cciExplicit.Count());
+            CustomAssert.Equal(symbolsSynthesizedCount, cciMethods.Count());
 
             var libAssemblyReference = MetadataReference.CreateFromImage(dllImage.AsImmutableOrNull());
 
@@ -2449,16 +2449,16 @@ class Class2
                 references: new MetadataReference[] { ilAssemblyReference, libAssemblyReference },
                 assemblyName: exeAssemblyName);
 
-            Assert.False(exeComp.GetDiagnostics().Any());
+            CustomAssert.False(exeComp.GetDiagnostics().Any());
 
             using (var output = new MemoryStream())
             {
                 emitResult = exeComp.Emit(output);
 
-                Assert.True(emitResult.Success);
+                CustomAssert.True(emitResult.Success);
                 emitResult.Diagnostics.Verify();
                 output.Flush();
-                Assert.True(output.Length > 0, "no metadata emitted");
+                CustomAssert.True(output.Length > 0, "no metadata emitted");
             }
 
             // NOTE: there's no point in trying to run the EXE since it depends on a DLL with no method bodies.
@@ -3068,8 +3068,8 @@ public class Test
                 emitResult = compilation.Emit(output, pdbStream: null, xmlDocumentationStream: null, win32Resources: null);
             }
 
-            Assert.False(emitResult.Success);
-            Assert.NotEmpty(emitResult.Diagnostics);
+            CustomAssert.False(emitResult.Success);
+            CustomAssert.NotEmpty(emitResult.Diagnostics);
         }
 
         [WorkItem(541639, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/541639")]
@@ -3101,7 +3101,7 @@ class C
                 emitResult = compilation.Emit(output, pdbStream: null, xmlDocumentationStream: null, win32Resources: null);
             }
 
-            Assert.True(emitResult.Success);
+            CustomAssert.True(emitResult.Success);
         }
 
         [WorkItem(541639, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/541639")]
@@ -3139,7 +3139,7 @@ class C
                 emitResult = compilation.Emit(output, pdbStream: null, xmlDocumentationStream: null, win32Resources: null);
             }
 
-            Assert.True(emitResult.Success);
+            CustomAssert.True(emitResult.Success);
         }
         #region "PE and metadata bits"
 
@@ -3161,7 +3161,7 @@ class C
             //EDMAURER this is built with a 2.0 mscorlib. The runtimeMetadataVersion should be the same as the runtimeMetadataVersion stored in the assembly
             //that contains System.Object.
             var metadataReader = ModuleMetadata.CreateFromStream(compilation.EmitToStream()).MetadataReader;
-            Assert.Equal("v2.0.50727", metadataReader.MetadataVersion);
+            CustomAssert.Equal("v2.0.50727", metadataReader.MetadataVersion);
         }
 
         [Fact]
@@ -3178,29 +3178,29 @@ class C
 
             var compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.AnyCpu));
             peHeaders = new PEHeaders(compilation.EmitToStream());
-            Assert.Equal(CorFlags.ILOnly, peHeaders.CorHeader.Flags);
+            CustomAssert.Equal(CorFlags.ILOnly, peHeaders.CorHeader.Flags);
 
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X86));
             peHeaders = new PEHeaders(compilation.EmitToStream());
-            Assert.Equal(CorFlags.ILOnly | CorFlags.Requires32Bit, peHeaders.CorHeader.Flags);
+            CustomAssert.Equal(CorFlags.ILOnly | CorFlags.Requires32Bit, peHeaders.CorHeader.Flags);
 
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X64));
             peHeaders = new PEHeaders(compilation.EmitToStream());
-            Assert.Equal(CorFlags.ILOnly, peHeaders.CorHeader.Flags);
-            Assert.True(peHeaders.Requires64Bits());
-            Assert.True(peHeaders.RequiresAmdInstructionSet());
+            CustomAssert.Equal(CorFlags.ILOnly, peHeaders.CorHeader.Flags);
+            CustomAssert.True(peHeaders.Requires64Bits());
+            CustomAssert.True(peHeaders.RequiresAmdInstructionSet());
 
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.AnyCpu32BitPreferred));
             peHeaders = new PEHeaders(compilation.EmitToStream());
-            Assert.False(peHeaders.Requires64Bits());
-            Assert.False(peHeaders.RequiresAmdInstructionSet());
-            Assert.Equal(CorFlags.ILOnly | CorFlags.Requires32Bit | CorFlags.Prefers32Bit, peHeaders.CorHeader.Flags);
+            CustomAssert.False(peHeaders.Requires64Bits());
+            CustomAssert.False(peHeaders.RequiresAmdInstructionSet());
+            CustomAssert.Equal(CorFlags.ILOnly | CorFlags.Requires32Bit | CorFlags.Prefers32Bit, peHeaders.CorHeader.Flags);
 
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.Arm));
             peHeaders = new PEHeaders(compilation.EmitToStream());
-            Assert.False(peHeaders.Requires64Bits());
-            Assert.False(peHeaders.RequiresAmdInstructionSet());
-            Assert.Equal(CorFlags.ILOnly, peHeaders.CorHeader.Flags);
+            CustomAssert.False(peHeaders.Requires64Bits());
+            CustomAssert.False(peHeaders.RequiresAmdInstructionSet());
+            CustomAssert.Equal(CorFlags.ILOnly, peHeaders.CorHeader.Flags);
         }
 
         [Fact]
@@ -3219,22 +3219,22 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream());
 
             //interesting COFF bits
-            Assert.False(peHeaders.Requires64Bits());
-            Assert.True(peHeaders.IsDll);
-            Assert.False(peHeaders.IsExe);
-            Assert.False(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
+            CustomAssert.False(peHeaders.Requires64Bits());
+            CustomAssert.True(peHeaders.IsDll);
+            CustomAssert.False(peHeaders.IsExe);
+            CustomAssert.False(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
             //interesting Optional PE header bits
             //We will use a range beginning with 0x30 to identify the Roslyn compiler family.
-            Assert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
-            Assert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
-            Assert.Equal(0x10000000u, peHeaders.PEHeader.ImageBase);
-            Assert.Equal(0x200, peHeaders.PEHeader.FileAlignment);
-            Assert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
+            CustomAssert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
+            CustomAssert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
+            CustomAssert.Equal(0x10000000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x200, peHeaders.PEHeader.FileAlignment);
+            CustomAssert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
             //Verify additional items 
-            Assert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfStackReserve);
-            Assert.Equal(0x1000u, peHeaders.PEHeader.SizeOfStackCommit);
-            Assert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve);
-            Assert.Equal(0x1000u, peHeaders.PEHeader.SizeOfHeapCommit);
+            CustomAssert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfStackReserve);
+            CustomAssert.Equal(0x1000u, peHeaders.PEHeader.SizeOfStackCommit);
+            CustomAssert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve);
+            CustomAssert.Equal(0x1000u, peHeaders.PEHeader.SizeOfHeapCommit);
         }
 
         [Fact]
@@ -3253,38 +3253,38 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream());
 
             //interesting COFF bits
-            Assert.True(peHeaders.Requires64Bits());
-            Assert.True(peHeaders.IsDll);
-            Assert.False(peHeaders.IsExe);
-            Assert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
+            CustomAssert.True(peHeaders.Requires64Bits());
+            CustomAssert.True(peHeaders.IsDll);
+            CustomAssert.False(peHeaders.IsExe);
+            CustomAssert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
             //interesting Optional PE header bits
             //We will use a range beginning with 0x30 to identify the Roslyn compiler family.
-            Assert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
-            Assert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
+            CustomAssert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
+            CustomAssert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
             // the default value is the same as the 32 bit default value
-            Assert.Equal(0x0000000180000000u, peHeaders.PEHeader.ImageBase);
-            Assert.Equal(0x00000200, peHeaders.PEHeader.FileAlignment);      //doesn't change based on architecture.
-            Assert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
+            CustomAssert.Equal(0x0000000180000000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x00000200, peHeaders.PEHeader.FileAlignment);      //doesn't change based on architecture.
+            CustomAssert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
             //Verify additional items
-            Assert.Equal(0x00400000u, peHeaders.PEHeader.SizeOfStackReserve);
-            Assert.Equal(0x4000u, peHeaders.PEHeader.SizeOfStackCommit);
-            Assert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve);
-            Assert.Equal(0x2000u, peHeaders.PEHeader.SizeOfHeapCommit);
-            Assert.Equal(0x8664, (ushort)peHeaders.CoffHeader.Machine);     //AMD64 (K8)
+            CustomAssert.Equal(0x00400000u, peHeaders.PEHeader.SizeOfStackReserve);
+            CustomAssert.Equal(0x4000u, peHeaders.PEHeader.SizeOfStackCommit);
+            CustomAssert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve);
+            CustomAssert.Equal(0x2000u, peHeaders.PEHeader.SizeOfHeapCommit);
+            CustomAssert.Equal(0x8664, (ushort)peHeaders.CoffHeader.Machine);     //AMD64 (K8)
 
             //default for non-arm, non-appcontainer outputs. EDMAURER: This is an intentional change from Dev11.
             //Should we find that it is too disruptive. We will consider rolling back.
             //It turns out to be too disruptive. Rolling back to 4.0
-            Assert.Equal(4, peHeaders.PEHeader.MajorSubsystemVersion);
-            Assert.Equal(0, peHeaders.PEHeader.MinorSubsystemVersion);
+            CustomAssert.Equal(4, peHeaders.PEHeader.MajorSubsystemVersion);
+            CustomAssert.Equal(0, peHeaders.PEHeader.MinorSubsystemVersion);
 
             //The following ensure that the runtime startup stub was not emitted. It is not needed on modern operating systems.
-            Assert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.RelativeVirtualAddress);
-            Assert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.Size);
-            Assert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.RelativeVirtualAddress);
-            Assert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.Size);
-            Assert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.RelativeVirtualAddress);
-            Assert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.Size);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.RelativeVirtualAddress);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.Size);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.RelativeVirtualAddress);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.Size);
+            CustomAssert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.RelativeVirtualAddress);
+            CustomAssert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.Size);
         }
 
         [Fact]
@@ -3303,28 +3303,28 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream());
 
             //interesting COFF bits
-            Assert.False(peHeaders.Requires64Bits());
-            Assert.True(peHeaders.IsDll);
-            Assert.False(peHeaders.IsExe);
-            Assert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
+            CustomAssert.False(peHeaders.Requires64Bits());
+            CustomAssert.True(peHeaders.IsDll);
+            CustomAssert.False(peHeaders.IsExe);
+            CustomAssert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
             //interesting Optional PE header bits
             //We will use a range beginning with 0x30 to identify the Roslyn compiler family.
-            Assert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
-            Assert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
+            CustomAssert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
+            CustomAssert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
             // the default value is the same as the 32 bit default value
-            Assert.Equal(0x10000000u, peHeaders.PEHeader.ImageBase);
-            Assert.Equal(0x200, peHeaders.PEHeader.FileAlignment);
-            Assert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
-            Assert.Equal(0x01c4, (ushort)peHeaders.CoffHeader.Machine);
-            Assert.Equal(6, peHeaders.PEHeader.MajorSubsystemVersion);    //Arm targets only run on 6.2 and above
-            Assert.Equal(2, peHeaders.PEHeader.MinorSubsystemVersion);
+            CustomAssert.Equal(0x10000000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x200, peHeaders.PEHeader.FileAlignment);
+            CustomAssert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
+            CustomAssert.Equal(0x01c4, (ushort)peHeaders.CoffHeader.Machine);
+            CustomAssert.Equal(6, peHeaders.PEHeader.MajorSubsystemVersion);    //Arm targets only run on 6.2 and above
+            CustomAssert.Equal(2, peHeaders.PEHeader.MinorSubsystemVersion);
             //The following ensure that the runtime startup stub was not emitted. It is not needed on modern operating systems.
-            Assert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.RelativeVirtualAddress);
-            Assert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.Size);
-            Assert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.RelativeVirtualAddress);
-            Assert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.Size);
-            Assert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.RelativeVirtualAddress);
-            Assert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.Size);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.RelativeVirtualAddress);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportAddressTableDirectory.Size);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.RelativeVirtualAddress);
+            CustomAssert.Equal(0, peHeaders.PEHeader.ImportTableDirectory.Size);
+            CustomAssert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.RelativeVirtualAddress);
+            CustomAssert.Equal(0, peHeaders.PEHeader.BaseRelocationTableDirectory.Size);
         }
 
         [Fact]
@@ -3343,30 +3343,30 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream());
 
             //interesting COFF bits
-            Assert.False(peHeaders.Requires64Bits());
-            Assert.True(peHeaders.IsExe);
-            Assert.False(peHeaders.IsDll);
-            Assert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
+            CustomAssert.False(peHeaders.Requires64Bits());
+            CustomAssert.True(peHeaders.IsExe);
+            CustomAssert.False(peHeaders.IsDll);
+            CustomAssert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
             //interesting Optional PE header bits
             //We will use a range beginning with 0x30 to identify the Roslyn compiler family.
-            Assert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
-            Assert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
-            Assert.Equal(0x00400000ul, peHeaders.PEHeader.ImageBase);
-            Assert.Equal(0x00000200, peHeaders.PEHeader.FileAlignment);
-            Assert.True(peHeaders.IsConsoleApplication); //should change if this is a windows app.
-            Assert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
-            Assert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfStackReserve);
-            Assert.Equal(0x1000u, peHeaders.PEHeader.SizeOfStackCommit);
-            Assert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve);
-            Assert.Equal(0x1000u, peHeaders.PEHeader.SizeOfHeapCommit);
+            CustomAssert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
+            CustomAssert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
+            CustomAssert.Equal(0x00400000ul, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x00000200, peHeaders.PEHeader.FileAlignment);
+            CustomAssert.True(peHeaders.IsConsoleApplication); //should change if this is a windows app.
+            CustomAssert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
+            CustomAssert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfStackReserve);
+            CustomAssert.Equal(0x1000u, peHeaders.PEHeader.SizeOfStackCommit);
+            CustomAssert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve);
+            CustomAssert.Equal(0x1000u, peHeaders.PEHeader.SizeOfHeapCommit);
 
             //The following ensure that the runtime startup stub was emitted. It is not needed on modern operating systems.
-            Assert.NotEqual(0, peHeaders.PEHeader.ImportAddressTableDirectory.RelativeVirtualAddress);
-            Assert.NotEqual(0, peHeaders.PEHeader.ImportAddressTableDirectory.Size);
-            Assert.NotEqual(0, peHeaders.PEHeader.ImportTableDirectory.RelativeVirtualAddress);
-            Assert.NotEqual(0, peHeaders.PEHeader.ImportTableDirectory.Size);
-            Assert.NotEqual(0, peHeaders.PEHeader.BaseRelocationTableDirectory.RelativeVirtualAddress);
-            Assert.NotEqual(0, peHeaders.PEHeader.BaseRelocationTableDirectory.Size);
+            CustomAssert.NotEqual(0, peHeaders.PEHeader.ImportAddressTableDirectory.RelativeVirtualAddress);
+            CustomAssert.NotEqual(0, peHeaders.PEHeader.ImportAddressTableDirectory.Size);
+            CustomAssert.NotEqual(0, peHeaders.PEHeader.ImportTableDirectory.RelativeVirtualAddress);
+            CustomAssert.NotEqual(0, peHeaders.PEHeader.ImportTableDirectory.Size);
+            CustomAssert.NotEqual(0, peHeaders.PEHeader.BaseRelocationTableDirectory.RelativeVirtualAddress);
+            CustomAssert.NotEqual(0, peHeaders.PEHeader.BaseRelocationTableDirectory.Size);
         }
 
         [Fact]
@@ -3383,22 +3383,22 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream());
 
             //interesting COFF bits
-            Assert.True(peHeaders.Requires64Bits());
-            Assert.True(peHeaders.IsExe);
-            Assert.False(peHeaders.IsDll);
-            Assert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
+            CustomAssert.True(peHeaders.Requires64Bits());
+            CustomAssert.True(peHeaders.IsExe);
+            CustomAssert.False(peHeaders.IsDll);
+            CustomAssert.True(peHeaders.CoffHeader.Characteristics.HasFlag(Characteristics.LargeAddressAware));
             //interesting Optional PE header bits
             //We will use a range beginning with 0x30 to identify the Roslyn compiler family.
-            Assert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
-            Assert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
-            Assert.Equal(0x0000000140000000ul, peHeaders.PEHeader.ImageBase);
-            Assert.Equal(0x200, peHeaders.PEHeader.FileAlignment);  //doesn't change based on architecture
-            Assert.True(peHeaders.IsConsoleApplication); //should change if this is a windows app.
-            Assert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
-            Assert.Equal(0x00400000u, peHeaders.PEHeader.SizeOfStackReserve);
-            Assert.Equal(0x4000u, peHeaders.PEHeader.SizeOfStackCommit);
-            Assert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve); //no sure why we don't bump this up relative to 32bit as well.
-            Assert.Equal(0x2000u, peHeaders.PEHeader.SizeOfHeapCommit);
+            CustomAssert.Equal(0x30, peHeaders.PEHeader.MajorLinkerVersion);
+            CustomAssert.Equal(0, peHeaders.PEHeader.MinorLinkerVersion);
+            CustomAssert.Equal(0x0000000140000000ul, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x200, peHeaders.PEHeader.FileAlignment);  //doesn't change based on architecture
+            CustomAssert.True(peHeaders.IsConsoleApplication); //should change if this is a windows app.
+            CustomAssert.Equal(0x8540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE
+            CustomAssert.Equal(0x00400000u, peHeaders.PEHeader.SizeOfStackReserve);
+            CustomAssert.Equal(0x4000u, peHeaders.PEHeader.SizeOfStackCommit);
+            CustomAssert.Equal(0x00100000u, peHeaders.PEHeader.SizeOfHeapReserve); //no sure why we don't bump this up relative to 32bit as well.
+            CustomAssert.Equal(0x2000u, peHeaders.PEHeader.SizeOfHeapCommit);
         }
 
         [Fact]
@@ -3415,7 +3415,7 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(highEntropyVirtualAddressSpace: true)));
 
             //interesting COFF bits
-            Assert.Equal(0x8560u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE | HIGH_ENTROPY_VA (0x20)
+            CustomAssert.Equal(0x8560u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE | HIGH_ENTROPY_VA (0x20)
         }
 
         [WorkItem(764418, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/764418")]
@@ -3433,7 +3433,7 @@ class C
             var peHeaders = new PEHeaders(compilation.EmitToStream());
 
             //interesting COFF bits
-            Assert.Equal(0x9540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE | IMAGE_DLLCHARACTERISTICS_APPCONTAINER (0x1000)
+            CustomAssert.Equal(0x9540u, (ushort)peHeaders.PEHeader.DllCharacteristics);  //DYNAMIC_BASE | NX_COMPAT | NO_SEH | TERMINAL_SERVER_AWARE | IMAGE_DLLCHARACTERISTICS_APPCONTAINER (0x1000)
         }
 
         [Fact]
@@ -3449,46 +3449,46 @@ class C
             // last four hex digits get zero'ed
             var compilation = CreateCompilation(source, options: TestOptions.ReleaseExe);
             var peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0x0000000010111111)));
-            Assert.Equal(0x10110000ul, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x10110000ul, peHeaders.PEHeader.ImageBase);
 
             // test rounding up of values
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe);
             peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0x8000)));
-            Assert.Equal(0x10000ul, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x10000ul, peHeaders.PEHeader.ImageBase);
 
             // values less than 0x8000 get default baseaddress
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe);
             peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0x7fff)));
-            Assert.Equal(0x00400000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x00400000u, peHeaders.PEHeader.ImageBase);
 
             // default for 32bit
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X86));
             peHeaders = new PEHeaders(compilation.EmitToStream(options: EmitOptions.Default));
-            Assert.Equal(0x00400000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x00400000u, peHeaders.PEHeader.ImageBase);
 
             // max for 32bit
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X86));
             peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0xffff7fff)));
-            Assert.Equal(0xffff0000ul, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0xffff0000ul, peHeaders.PEHeader.ImageBase);
 
             // max+1 for 32bit
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X86));
             peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0xffff8000)));
-            Assert.Equal(0x00400000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x00400000u, peHeaders.PEHeader.ImageBase);
 
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X64));
             peHeaders = new PEHeaders(compilation.EmitToStream(options: EmitOptions.Default));
-            Assert.Equal(0x0000000140000000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x0000000140000000u, peHeaders.PEHeader.ImageBase);
 
             // max for 64bit
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X64));
             peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0xffffffffffff7fff)));
-            Assert.Equal(0xffffffffffff0000ul, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0xffffffffffff0000ul, peHeaders.PEHeader.ImageBase);
 
             // max+1 for 64bit
             compilation = CreateCompilation(source, options: TestOptions.ReleaseExe.WithPlatform(Platform.X64));
             peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(baseAddress: 0xffffffffffff8000)));
-            Assert.Equal(0x0000000140000000u, peHeaders.PEHeader.ImageBase);
+            CustomAssert.Equal(0x0000000140000000u, peHeaders.PEHeader.ImageBase);
         }
 
         [Fact]
@@ -3503,7 +3503,7 @@ class C
 }";
             var compilation = CreateCompilation(source, options: TestOptions.ReleaseExe);
             var peHeaders = new PEHeaders(compilation.EmitToStream(options: new EmitOptions(fileAlignment: 1024)));
-            Assert.Equal(1024, peHeaders.PEHeader.FileAlignment);
+            CustomAssert.Equal(1024, peHeaders.PEHeader.FileAlignment);
         }
 
         #endregion
@@ -3576,7 +3576,7 @@ using System;
                                  var actualGlobalMembers = m.GlobalNamespace.GetMembers().Where(member => !member.IsImplicitlyDeclared).ToArray();
                                  for (int i = 0; i < System.Math.Max(expectedGlobalMembers.Length, actualGlobalMembers.Length); i++)
                                  {
-                                     Assert.Equal(expectedGlobalMembers[i], actualGlobalMembers[i].Name);
+                                     CustomAssert.Equal(expectedGlobalMembers[i], actualGlobalMembers[i].Name);
                                  }
 
                                  string[] expectedAMembers = {
@@ -3598,7 +3598,7 @@ using System;
 
                                  for (int i = 0; i < System.Math.Max(expectedAMembers.Length, actualAMembers.Length); i++)
                                  {
-                                     Assert.Equal(expectedAMembers[i], actualAMembers[i].Name);
+                                     CustomAssert.Equal(expectedAMembers[i], actualAMembers[i].Name);
                                  }
 
                                  string[] expectedBMembers = { ".ctor", "Invoke", "BeginInvoke", "EndInvoke" };
@@ -3606,7 +3606,7 @@ using System;
 
                                  for (int i = 0; i < System.Math.Max(expectedBMembers.Length, actualBMembers.Length); i++)
                                  {
-                                     Assert.Equal(expectedBMembers[i], actualBMembers[i].Name);
+                                     CustomAssert.Equal(expectedBMembers[i], actualBMembers[i].Name);
                                  }
 
                                  string[] expectedCMembers = {".cctor",
@@ -3708,22 +3708,22 @@ public class Test
             compilation.VerifyDiagnostics();
 
             var assembly = compilation.Assembly;
-            Assert.Equal(name, assembly.Name);
+            CustomAssert.Equal(name, assembly.Name);
 
             var module = assembly.Modules.Single();
-            Assert.Equal(nameWithExtension, module.Name);
+            CustomAssert.Equal(nameWithExtension, module.Name);
 
             var stream = new MemoryStream();
-            Assert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameWithExtension)).Success);
+            CustomAssert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameWithExtension)).Success);
 
             using (ModuleMetadata metadata = ModuleMetadata.CreateFromImage(stream.ToImmutable()))
             {
                 var peReader = metadata.Module.GetMetadataReader();
 
-                Assert.True(peReader.IsAssembly);
+                CustomAssert.True(peReader.IsAssembly);
 
-                Assert.Equal(name, peReader.GetString(peReader.GetAssemblyDefinition().Name));
-                Assert.Equal(nameWithExtension, peReader.GetString(peReader.GetModuleDefinition().Name));
+                CustomAssert.Equal(name, peReader.GetString(peReader.GetAssemblyDefinition().Name));
+                CustomAssert.Equal(nameWithExtension, peReader.GetString(peReader.GetModuleDefinition().Name));
             }
         }
 
@@ -3739,21 +3739,21 @@ public class Test
             compilation.VerifyDiagnostics();
 
             var assembly = compilation.Assembly;
-            Assert.Equal("?", assembly.Name);
+            CustomAssert.Equal("?", assembly.Name);
 
             var module = assembly.Modules.Single();
-            Assert.Equal(name + extension, module.Name);
+            CustomAssert.Equal(name + extension, module.Name);
 
             var stream = new MemoryStream();
-            Assert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: outputName + extension)).Success);
+            CustomAssert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: outputName + extension)).Success);
 
             using (ModuleMetadata metadata = ModuleMetadata.CreateFromImage(stream.ToImmutable()))
             {
                 var peReader = metadata.Module.GetMetadataReader();
 
-                Assert.False(peReader.IsAssembly);
+                CustomAssert.False(peReader.IsAssembly);
 
-                Assert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
+                CustomAssert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
             }
         }
 
@@ -3769,22 +3769,22 @@ public class Test
             compilation.VerifyDiagnostics();
 
             var assembly = compilation.Assembly;
-            Assert.Equal(name, assembly.Name);
+            CustomAssert.Equal(name, assembly.Name);
 
             var module = assembly.Modules.Single();
-            Assert.Equal(name + extension, module.Name);
+            CustomAssert.Equal(name + extension, module.Name);
 
             var stream = new MemoryStream();
-            Assert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride + extension)).Success);
+            CustomAssert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride + extension)).Success);
 
             using (ModuleMetadata metadata = ModuleMetadata.CreateFromImage(stream.ToImmutable()))
             {
                 var peReader = metadata.Module.GetMetadataReader();
 
-                Assert.True(peReader.IsAssembly);
+                CustomAssert.True(peReader.IsAssembly);
 
-                Assert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
-                Assert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
+                CustomAssert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
+                CustomAssert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
             }
         }
 
@@ -3800,22 +3800,22 @@ public class Test
             compilation.VerifyDiagnostics();
 
             var assembly = compilation.Assembly;
-            Assert.Equal(name, assembly.Name);
+            CustomAssert.Equal(name, assembly.Name);
 
             var module = assembly.Modules.Single();
-            Assert.Equal(name + extension, module.Name);
+            CustomAssert.Equal(name + extension, module.Name);
 
             var stream = new MemoryStream();
-            Assert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride)).Success);
+            CustomAssert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride)).Success);
 
             using (ModuleMetadata metadata = ModuleMetadata.CreateFromImage(stream.ToImmutable()))
             {
                 var peReader = metadata.Module.GetMetadataReader();
 
-                Assert.True(peReader.IsAssembly);
+                CustomAssert.True(peReader.IsAssembly);
 
-                Assert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
-                Assert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
+                CustomAssert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
+                CustomAssert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
             }
         }
 
@@ -3831,22 +3831,22 @@ public class Test
             compilation.VerifyDiagnostics();
 
             var assembly = compilation.Assembly;
-            Assert.Equal(name, assembly.Name);
+            CustomAssert.Equal(name, assembly.Name);
 
             var module = assembly.Modules.Single();
-            Assert.Equal(name + extension, module.Name);
+            CustomAssert.Equal(name + extension, module.Name);
 
             var stream = new MemoryStream();
-            Assert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride + extension)).Success);
+            CustomAssert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride + extension)).Success);
 
             using (ModuleMetadata metadata = ModuleMetadata.CreateFromImage(stream.ToImmutable()))
             {
                 var peReader = metadata.Module.GetMetadataReader();
 
-                Assert.True(peReader.IsAssembly);
+                CustomAssert.True(peReader.IsAssembly);
 
-                Assert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
-                Assert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
+                CustomAssert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
+                CustomAssert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
             }
         }
 
@@ -3862,22 +3862,22 @@ public class Test
             compilation.VerifyDiagnostics();
 
             var assembly = compilation.Assembly;
-            Assert.Equal(name, assembly.Name);
+            CustomAssert.Equal(name, assembly.Name);
 
             var module = assembly.Modules.Single();
-            Assert.Equal(name + extension, module.Name);
+            CustomAssert.Equal(name + extension, module.Name);
 
             var stream = new MemoryStream();
-            Assert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride)).Success);
+            CustomAssert.True(compilation.Emit(stream, options: new EmitOptions(outputNameOverride: nameOverride)).Success);
 
             using (ModuleMetadata metadata = ModuleMetadata.CreateFromImage(stream.ToImmutable()))
             {
                 var peReader = metadata.Module.GetMetadataReader();
 
-                Assert.True(peReader.IsAssembly);
+                CustomAssert.True(peReader.IsAssembly);
 
-                Assert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
-                Assert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
+                CustomAssert.Equal(nameOverride, peReader.GetString(peReader.GetAssemblyDefinition().Name));
+                CustomAssert.Equal(module.Name, peReader.GetString(peReader.GetModuleDefinition().Name));
             }
         }
 
@@ -3907,7 +3907,7 @@ public sealed class ContentType
                     EntityHandle scope = reader.GetTypeReference(typeRef).ResolutionScope;
                     if (scope.Kind == HandleKind.TypeReference)
                     {
-                        Assert.InRange(reader.GetRowNumber(scope), 1, reader.GetRowNumber(typeRef) - 1);
+                        CustomAssert.InRange(reader.GetRowNumber(scope), 1, reader.GetRowNumber(typeRef) - 1);
                     }
                 }
             }
@@ -3924,7 +3924,7 @@ public sealed class ContentType
                 // error CS2041: Invalid output name: Name contains invalid characters.
                 Diagnostic(ErrorCode.ERR_InvalidOutputName).WithArguments("Name contains invalid characters.").WithLocation(1, 1));
 
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
         }
 
         // Verify via MetadataReader - comp option
@@ -4326,11 +4326,11 @@ public class Test
 
             var result = c1.Emit(dllPath, pdbPath);
 
-            Assert.True(result.Success, "Compilation failed");
-            Assert.Empty(result.Diagnostics);
+            CustomAssert.True(result.Success, "Compilation failed");
+            CustomAssert.Empty(result.Diagnostics);
 
-            Assert.True(File.Exists(dllPath), "DLL does not exist");
-            Assert.True(File.Exists(pdbPath), "PDB does not exist");
+            CustomAssert.True(File.Exists(dllPath), "DLL does not exist");
+            CustomAssert.True(File.Exists(pdbPath), "PDB does not exist");
         }
 
         [Fact, WorkItem(540777, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/540777"), WorkItem(546354, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/546354")]
@@ -4725,7 +4725,7 @@ public interface IUsePlatform
             var comp = CreateEmptyCompilation("", new[] { TestReferences.SymbolsTests.netModule.x64COFF }, options: TestOptions.DebugDll);
             // modules not supported in ref emit
             CompileAndVerify(comp, verify: Verification.Fails);
-            Assert.NotSame(comp.Assembly.CorLibrary, comp.Assembly);
+            CustomAssert.NotSame(comp.Assembly.CorLibrary, comp.Assembly);
             comp.GetSpecialType(SpecialType.System_Int32);
         }
 
@@ -4773,8 +4773,8 @@ class Viewable
                 }
             }
 
-            Assert.NotEqual(0, P1RVA);
-            Assert.Equal(P2RVA, P1RVA);
+            CustomAssert.NotEqual(0, P1RVA);
+            CustomAssert.Equal(P2RVA, P1RVA);
         }
 
         private static bool SequenceMatches(byte[] buffer, int startIndex, byte[] pattern)
@@ -4822,14 +4822,14 @@ class C
             using (var stream = compilation.EmitToStream())
             {
                 var bytes = new byte[stream.Length];
-                Assert.Equal(bytes.Length, stream.Read(bytes, 0, bytes.Length));
+                CustomAssert.Equal(bytes.Length, stream.Read(bytes, 0, bytes.Length));
 
                 // The constant should appear exactly once
                 byte[] pattern = new byte[] { 0x25, 0x42, 0xDE, 0xBC, 0x9A, 0x30, 0x75, 0x86 };
                 int firstMatch = IndexOfPattern(bytes, 0, pattern);
-                Assert.True(firstMatch >= 0, "Couldn't find the expected byte pattern in the output.");
+                CustomAssert.True(firstMatch >= 0, "Couldn't find the expected byte pattern in the output.");
                 int secondMatch = IndexOfPattern(bytes, firstMatch + 1, pattern);
-                Assert.True(secondMatch < 0, "Expected to find just one occurrence of the pattern in the output.");
+                CustomAssert.True(secondMatch < 0, "Expected to find just one occurrence of the pattern in the output.");
             }
         }
 
@@ -4857,7 +4857,7 @@ class C
             // disposed stream is not writable
             var outReal = new MemoryStream();
             outReal.Dispose();
-            Assert.Throws<ArgumentException>(() => compilation.Emit(outReal));
+            CustomAssert.Throws<ArgumentException>(() => compilation.Emit(outReal));
         }
 
         [Fact]
@@ -4893,10 +4893,10 @@ class C
             // error CS0041: Unexpected error writing debug information -- 'Exception from HRESULT: 0x806D0004'
             var err = result.Diagnostics.Single();
 
-            Assert.Equal((int)ErrorCode.FTL_DebugEmitFailure, err.Code);
-            Assert.Equal(1, err.Arguments.Count);
+            CustomAssert.Equal((int)ErrorCode.FTL_DebugEmitFailure, err.Code);
+            CustomAssert.Equal(1, err.Arguments.Count);
             var ioExceptionMessage = new IOException().Message;
-            Assert.Equal(ioExceptionMessage, (string)err.Arguments[0]);
+            CustomAssert.Equal(ioExceptionMessage, (string)err.Arguments[0]);
 
             pdb.Dispose();
             result = compilation.Emit(output, pdbStream: pdb);
@@ -4904,9 +4904,9 @@ class C
             // error CS0041: Unexpected error writing debug information -- 'Exception from HRESULT: 0x806D0004'
             err = result.Diagnostics.Single();
 
-            Assert.Equal((int)ErrorCode.FTL_DebugEmitFailure, err.Code);
-            Assert.Equal(1, err.Arguments.Count);
-            Assert.Equal(ioExceptionMessage, (string)err.Arguments[0]);
+            CustomAssert.Equal((int)ErrorCode.FTL_DebugEmitFailure, err.Code);
+            CustomAssert.Equal(1, err.Arguments.Count);
+            CustomAssert.Equal(ioExceptionMessage, (string)err.Arguments[0]);
         }
 
         [ConditionalFact(typeof(WindowsDesktopOnly), Reason = ConditionalSkipReason.NetModulesNeedDesktop)]
@@ -5135,7 +5135,7 @@ public class X
             var broken = new BrokenStream();
             broken.BreakHow = BrokenStream.BreakHowType.ThrowOnWrite;
             var result = compilation.Emit(broken);
-            Assert.False(result.Success);
+            CustomAssert.False(result.Success);
             result.Diagnostics.Verify(
                 // error CS8104: An error occurred while writing the Portable Executable file.
                 Diagnostic(ErrorCode.ERR_PeWritingFailure).WithArguments(broken.ThrownException.ToString()).WithLocation(1, 1));
@@ -5157,7 +5157,7 @@ public class X
                     pdbStream: broken,
                     options: portablePdbOptions);
 
-                Assert.False(result.Success);
+                CustomAssert.False(result.Success);
                 result.Diagnostics.Verify(
                     // error CS0041: Unexpected error writing debug information -- 'I/O error occurred.'
                     Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments("I/O error occurred.").WithLocation(1, 1));
@@ -5165,7 +5165,7 @@ public class X
                 // Allow for cancellation
                 broken = new BrokenStream();
                 broken.BreakHow = BrokenStream.BreakHowType.CancelOnWrite;
-                Assert.Throws<OperationCanceledException>(() => comp.Emit(peStream,
+                CustomAssert.Throws<OperationCanceledException>(() => comp.Emit(peStream,
                     pdbStream: broken,
                     options: portablePdbOptions));
             }
@@ -5187,7 +5187,7 @@ public class X
             var broken = new BrokenStream();
             broken.BreakHow = BrokenStream.BreakHowType.CancelOnWrite;
 
-            Assert.Throws<OperationCanceledException>(() => compilation.Emit(broken));
+            CustomAssert.Throws<OperationCanceledException>(() => compilation.Emit(broken));
         }
 
         [Fact]
@@ -5232,14 +5232,14 @@ public class DerivingClass<T> : BaseClass<T>
             CompileAndVerify(comp, symbolValidator: module =>
             {
                 var b = module.GlobalNamespace.GetTypeMember("B");
-                Assert.Equal("B", b.Name);
-                Assert.False(b.IsErrorType());
-                Assert.Equal("sourceMod.dll", b.ContainingModule.Name);
+                CustomAssert.Equal("B", b.Name);
+                CustomAssert.False(b.IsErrorType());
+                CustomAssert.Equal("sourceMod.dll", b.ContainingModule.Name);
 
                 var a = b.BaseType();
-                Assert.Equal("A", a.Name);
-                Assert.False(a.IsErrorType());
-                Assert.Equal("refMod.netmodule", a.ContainingModule.Name);
+                CustomAssert.Equal("A", a.Name);
+                CustomAssert.False(a.IsErrorType());
+                CustomAssert.Equal("refMod.netmodule", a.ContainingModule.Name);
             });
         }
 
@@ -5274,13 +5274,13 @@ class X
             using var win32ResourcesStream = compilation.CreateDefaultWin32Resources(versionResource: true, noManifest: false, manifestContents: null, iconInIcoFormat: null);
 
             var emitResult = compilation.Emit(output, pdbStream, xmlDocumentationStream, win32ResourcesStream);
-            Assert.False(emitResult.Success);
+            CustomAssert.False(emitResult.Success);
 
-            Assert.Equal(0, output.Length);
-            Assert.Equal(0, pdbStream.Length);
+            CustomAssert.Equal(0, output.Length);
+            CustomAssert.Equal(0, pdbStream.Length);
 
             // https://github.com/dotnet/roslyn/issues/37996 tracks revisiting the below behavior.
-            Assert.True(xmlDocumentationStream.Length > 0);
+            CustomAssert.True(xmlDocumentationStream.Length > 0);
 
             emitResult.Diagnostics.Verify(
                 // (4,9): error CS0169: The field 'X._f' is never used
@@ -5323,9 +5323,9 @@ public class Y { }
             var emitOptions = new EmitOptions(metadataOnly: true);
 
             var emitResult = compilation.Emit(output, options: emitOptions);
-            Assert.True(emitResult.Success);
+            CustomAssert.True(emitResult.Success);
 
-            Assert.True(output.Length > 0);
+            CustomAssert.True(output.Length > 0);
 
             emitResult.Diagnostics.Verify(
                 // (4,19): error CS0612: 'Y' is obsolete

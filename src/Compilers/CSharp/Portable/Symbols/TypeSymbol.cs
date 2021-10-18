@@ -1267,7 +1267,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
                         for (int i = implementations.Count - 1; i >= 0; i--)
                         {
-                            if (bases.ContainsKey(implementations[i].MethodSet.First().ContainingType))
+                            // Lafhis
+                            var temp = implementations[i];
+                            if (bases.ContainsKey(temp.MethodSet.First().ContainingType))
                             {
                                 // new candidate is more specific
                                 implementations.RemoveAt(i);
@@ -1312,8 +1314,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                         break;
                     default:
                         result = null;
-                        conflictingImplementation1 = implementations[0].MethodSet.First();
-                        conflictingImplementation2 = implementations[1].MethodSet.First();
+                        // Lafhis
+                        var temp1 = implementations[0];
+                        conflictingImplementation1 = temp1.MethodSet.First();
+                        var temp2 = implementations[1];
+                        conflictingImplementation2 = temp2.MethodSet.First();
                         break;
                 }
 

@@ -17,6 +17,7 @@ using Microsoft.CodeAnalysis.Operations;
 using Microsoft.CodeAnalysis.PooledObjects;
 using Microsoft.CodeAnalysis.VisualBasic;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Roslyn.Test.Utilities;
 using Roslyn.Utilities;
 using Xunit;
 
@@ -68,8 +69,8 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                     return default;
             }
 
-            Assert.NotNull(graph);
-            Assert.Same(operationRoot, graph.OriginalOperation);
+            CustomAssert.NotNull(graph);
+            CustomAssert.Same(operationRoot, graph.OriginalOperation);
             var declaredSymbol = model.GetDeclaredSymbol(operationRoot.Syntax);
             return (graph, declaredSymbol);
         }
@@ -86,7 +87,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             var reachabilityVector = BasicBlockReachabilityDataFlowAnalyzer.Run(graph);
             for (int i = 0; i < graph.Blocks.Length; i++)
             {
-                Assert.Equal(graph.Blocks[i].IsReachable, reachabilityVector[i]);
+                CustomAssert.Equal(graph.Blocks[i].IsReachable, reachabilityVector[i]);
             }
         }
 
@@ -118,48 +119,48 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             {
                 var block = blocks[i];
 
-                Assert.Equal(i, block.Ordinal);
+                CustomAssert.Equal(i, block.Ordinal);
 
                 switch (block.Kind)
                 {
                     case BasicBlockKind.Block:
-                        Assert.NotEqual(0, i);
-                        Assert.NotEqual(blocks.Length - 1, i);
+                        CustomAssert.NotEqual(0, i);
+                        CustomAssert.NotEqual(blocks.Length - 1, i);
                         break;
 
                     case BasicBlockKind.Entry:
-                        Assert.Equal(0, i);
-                        Assert.Empty(block.Operations);
-                        Assert.Empty(block.Predecessors);
-                        Assert.Null(block.BranchValue);
-                        Assert.NotNull(block.FallThroughSuccessor);
-                        Assert.NotNull(block.FallThroughSuccessor.Destination);
-                        Assert.Null(block.ConditionalSuccessor);
-                        Assert.Same(graph.Root, currentRegion);
-                        Assert.Same(currentRegion, block.EnclosingRegion);
-                        Assert.Equal(0, currentRegion.FirstBlockOrdinal);
-                        Assert.Same(enclosing, currentRegion.EnclosingRegion);
-                        Assert.Null(currentRegion.ExceptionType);
-                        Assert.Empty(currentRegion.Locals);
-                        Assert.Empty(currentRegion.LocalFunctions);
-                        Assert.Empty(currentRegion.CaptureIds);
-                        Assert.Equal(ControlFlowRegionKind.Root, currentRegion.Kind);
-                        Assert.True(block.IsReachable);
+                        CustomAssert.Equal(0, i);
+                        CustomAssert.Empty(block.Operations);
+                        CustomAssert.Empty(block.Predecessors);
+                        CustomAssert.Null(block.BranchValue);
+                        CustomAssert.NotNull(block.FallThroughSuccessor);
+                        CustomAssert.NotNull(block.FallThroughSuccessor.Destination);
+                        CustomAssert.Null(block.ConditionalSuccessor);
+                        CustomAssert.Same(graph.Root, currentRegion);
+                        CustomAssert.Same(currentRegion, block.EnclosingRegion);
+                        CustomAssert.Equal(0, currentRegion.FirstBlockOrdinal);
+                        CustomAssert.Same(enclosing, currentRegion.EnclosingRegion);
+                        CustomAssert.Null(currentRegion.ExceptionType);
+                        CustomAssert.Empty(currentRegion.Locals);
+                        CustomAssert.Empty(currentRegion.LocalFunctions);
+                        CustomAssert.Empty(currentRegion.CaptureIds);
+                        CustomAssert.Equal(ControlFlowRegionKind.Root, currentRegion.Kind);
+                        CustomAssert.True(block.IsReachable);
                         break;
 
                     case BasicBlockKind.Exit:
-                        Assert.Equal(blocks.Length - 1, i);
-                        Assert.Empty(block.Operations);
-                        Assert.Null(block.FallThroughSuccessor);
-                        Assert.Null(block.ConditionalSuccessor);
-                        Assert.Null(block.BranchValue);
-                        Assert.Same(graph.Root, currentRegion);
-                        Assert.Same(currentRegion, block.EnclosingRegion);
-                        Assert.Equal(i, currentRegion.LastBlockOrdinal);
+                        CustomAssert.Equal(blocks.Length - 1, i);
+                        CustomAssert.Empty(block.Operations);
+                        CustomAssert.Null(block.FallThroughSuccessor);
+                        CustomAssert.Null(block.ConditionalSuccessor);
+                        CustomAssert.Null(block.BranchValue);
+                        CustomAssert.Same(graph.Root, currentRegion);
+                        CustomAssert.Same(currentRegion, block.EnclosingRegion);
+                        CustomAssert.Equal(i, currentRegion.LastBlockOrdinal);
                         break;
 
                     default:
-                        Assert.False(true, $"Unexpected block kind {block.Kind}");
+                        CustomAssert.False(true, $"Unexpected block kind {block.Kind}");
                         break;
                 }
 
@@ -185,20 +186,20 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                     for (var predecessorIndex = 0; predecessorIndex < predecessors.Length; predecessorIndex++)
                     {
                         var predecessorBranch = predecessors[predecessorIndex];
-                        Assert.Same(block, predecessorBranch.Destination);
+                        CustomAssert.Same(block, predecessorBranch.Destination);
                         var predecessor = predecessorBranch.Source;
-                        Assert.True(previousPredecessorOrdinal < predecessor.Ordinal);
+                        CustomAssert.True(previousPredecessorOrdinal < predecessor.Ordinal);
                         previousPredecessorOrdinal = predecessor.Ordinal;
-                        Assert.Same(blocks[predecessor.Ordinal], predecessor);
+                        CustomAssert.Same(blocks[predecessor.Ordinal], predecessor);
 
                         if (predecessorBranch.IsConditionalSuccessor)
                         {
-                            Assert.Same(predecessor.ConditionalSuccessor, predecessorBranch);
-                            Assert.NotEqual(ControlFlowConditionKind.None, predecessor.ConditionKind);
+                            CustomAssert.Same(predecessor.ConditionalSuccessor, predecessorBranch);
+                            CustomAssert.NotEqual(ControlFlowConditionKind.None, predecessor.ConditionKind);
                         }
                         else
                         {
-                            Assert.Same(predecessor.FallThroughSuccessor, predecessorBranch);
+                            CustomAssert.Same(predecessor.FallThroughSuccessor, predecessorBranch);
                         }
 
                         stringBuilder.Append($" [{getBlockId(predecessor)}");
@@ -206,11 +207,11 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                         if (predecessorIndex < predecessors.Length - 1 && predecessors[predecessorIndex + 1].Source == predecessor)
                         {
                             // Multiple branches from same predecessor - one must be conditional and other fall through.
-                            Assert.True(predecessorBranch.IsConditionalSuccessor);
+                            CustomAssert.True(predecessorBranch.IsConditionalSuccessor);
                             predecessorIndex++;
                             predecessorBranch = predecessors[predecessorIndex];
-                            Assert.Same(predecessor.FallThroughSuccessor, predecessorBranch);
-                            Assert.False(predecessorBranch.IsConditionalSuccessor);
+                            CustomAssert.Same(predecessor.FallThroughSuccessor, predecessorBranch);
+                            CustomAssert.False(predecessorBranch.IsConditionalSuccessor);
 
                             stringBuilder.Append("*2");
                         }
@@ -237,25 +238,25 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
 
                 if (block.ConditionKind != ControlFlowConditionKind.None)
                 {
-                    Assert.NotNull(conditionalBranch);
-                    Assert.True(conditionalBranch.IsConditionalSuccessor);
+                    CustomAssert.NotNull(conditionalBranch);
+                    CustomAssert.True(conditionalBranch.IsConditionalSuccessor);
 
-                    Assert.Same(block, conditionalBranch.Source);
+                    CustomAssert.Same(block, conditionalBranch.Source);
                     if (conditionalBranch.Destination != null)
                     {
-                        Assert.Same(blocks[conditionalBranch.Destination.Ordinal], conditionalBranch.Destination);
+                        CustomAssert.Same(blocks[conditionalBranch.Destination.Ordinal], conditionalBranch.Destination);
                     }
 
-                    Assert.NotEqual(ControlFlowBranchSemantics.Return, conditionalBranch.Semantics);
-                    Assert.NotEqual(ControlFlowBranchSemantics.Throw, conditionalBranch.Semantics);
-                    Assert.NotEqual(ControlFlowBranchSemantics.StructuredExceptionHandling, conditionalBranch.Semantics);
+                    CustomAssert.NotEqual(ControlFlowBranchSemantics.Return, conditionalBranch.Semantics);
+                    CustomAssert.NotEqual(ControlFlowBranchSemantics.Throw, conditionalBranch.Semantics);
+                    CustomAssert.NotEqual(ControlFlowBranchSemantics.StructuredExceptionHandling, conditionalBranch.Semantics);
 
-                    Assert.True(block.ConditionKind == ControlFlowConditionKind.WhenTrue || block.ConditionKind == ControlFlowConditionKind.WhenFalse);
+                    CustomAssert.True(block.ConditionKind == ControlFlowConditionKind.WhenTrue || block.ConditionKind == ControlFlowConditionKind.WhenFalse);
                     string jumpIfTrue = block.ConditionKind == ControlFlowConditionKind.WhenTrue ? "True" : "False";
                     appendLine($"    Jump if {jumpIfTrue} ({conditionalBranch.Semantics}) to Block[{getDestinationString(ref conditionalBranch)}]");
 
                     IOperation value = block.BranchValue;
-                    Assert.NotNull(value);
+                    CustomAssert.NotNull(value);
                     validateRoot(value);
                     stringBuilder.Append(getOperationTree(value));
                     validateBranch(block, conditionalBranch);
@@ -263,33 +264,33 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                 }
                 else
                 {
-                    Assert.Null(conditionalBranch);
-                    Assert.Equal(ControlFlowConditionKind.None, block.ConditionKind);
+                    CustomAssert.Null(conditionalBranch);
+                    CustomAssert.Equal(ControlFlowConditionKind.None, block.ConditionKind);
                 }
 
                 ControlFlowBranch nextBranch = block.FallThroughSuccessor;
 
                 if (block.Kind == BasicBlockKind.Exit)
                 {
-                    Assert.Null(nextBranch);
-                    Assert.Null(block.BranchValue);
+                    CustomAssert.Null(nextBranch);
+                    CustomAssert.Null(block.BranchValue);
                 }
                 else
                 {
-                    Assert.NotNull(nextBranch);
-                    Assert.False(nextBranch.IsConditionalSuccessor);
+                    CustomAssert.NotNull(nextBranch);
+                    CustomAssert.False(nextBranch.IsConditionalSuccessor);
 
-                    Assert.Same(block, nextBranch.Source);
+                    CustomAssert.Same(block, nextBranch.Source);
                     if (nextBranch.Destination != null)
                     {
-                        Assert.Same(blocks[nextBranch.Destination.Ordinal], nextBranch.Destination);
+                        CustomAssert.Same(blocks[nextBranch.Destination.Ordinal], nextBranch.Destination);
                     }
 
                     if (nextBranch.Semantics == ControlFlowBranchSemantics.StructuredExceptionHandling)
                     {
-                        Assert.Null(nextBranch.Destination);
-                        Assert.Equal(block.EnclosingRegion.LastBlockOrdinal, block.Ordinal);
-                        Assert.True(block.EnclosingRegion.Kind == ControlFlowRegionKind.Filter || block.EnclosingRegion.Kind == ControlFlowRegionKind.Finally);
+                        CustomAssert.Null(nextBranch.Destination);
+                        CustomAssert.Equal(block.EnclosingRegion.LastBlockOrdinal, block.Ordinal);
+                        CustomAssert.True(block.EnclosingRegion.Kind == ControlFlowRegionKind.Filter || block.EnclosingRegion.Kind == ControlFlowRegionKind.Finally);
                     }
 
                     appendLine($"    Next ({nextBranch.Semantics}) Block[{getDestinationString(ref nextBranch)}]");
@@ -297,14 +298,14 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
 
                     if (value != null)
                     {
-                        Assert.True(ControlFlowBranchSemantics.Return == nextBranch.Semantics || ControlFlowBranchSemantics.Throw == nextBranch.Semantics);
+                        CustomAssert.True(ControlFlowBranchSemantics.Return == nextBranch.Semantics || ControlFlowBranchSemantics.Throw == nextBranch.Semantics);
                         validateRoot(value);
                         stringBuilder.Append(getOperationTree(value));
                     }
                     else
                     {
-                        Assert.NotEqual(ControlFlowBranchSemantics.Return, nextBranch.Semantics);
-                        Assert.NotEqual(ControlFlowBranchSemantics.Throw, nextBranch.Semantics);
+                        CustomAssert.NotEqual(ControlFlowBranchSemantics.Return, nextBranch.Semantics);
+                        CustomAssert.NotEqual(ControlFlowBranchSemantics.Throw, nextBranch.Semantics);
                     }
 
                     validateBranch(block, nextBranch);
@@ -324,18 +325,18 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             foreach (IMethodSymbol m in graph.LocalFunctions)
             {
                 ControlFlowGraph g = localFunctionsMap[m];
-                Assert.Same(g, graph.GetLocalFunctionControlFlowGraph(m));
-                Assert.Same(g, graph.GetLocalFunctionControlFlowGraphInScope(m));
-                Assert.Same(graph, g.Parent);
+                CustomAssert.Same(g, graph.GetLocalFunctionControlFlowGraph(m));
+                CustomAssert.Same(g, graph.GetLocalFunctionControlFlowGraphInScope(m));
+                CustomAssert.Same(graph, g.Parent);
             }
 
-            Assert.Equal(graph.LocalFunctions.Length, localFunctionsMap.Count);
+            CustomAssert.Equal(graph.LocalFunctions.Length, localFunctionsMap.Count);
 
             foreach (KeyValuePair<IFlowAnonymousFunctionOperation, ControlFlowGraph> pair in anonymousFunctionsMap)
             {
-                Assert.Same(pair.Value, graph.GetAnonymousFunctionControlFlowGraph(pair.Key));
-                Assert.Same(pair.Value, graph.GetAnonymousFunctionControlFlowGraphInScope(pair.Key));
-                Assert.Same(graph, pair.Value.Parent);
+                CustomAssert.Same(pair.Value, graph.GetAnonymousFunctionControlFlowGraph(pair.Key));
+                CustomAssert.Same(pair.Value, graph.GetAnonymousFunctionControlFlowGraphInScope(pair.Key));
+                CustomAssert.Same(graph, pair.Value.Parent);
             }
 
             bool doCaptureVerification = true;
@@ -1036,7 +1037,9 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                             {
                                 case CSharp.SyntaxKind.ObjectCreationExpression:
                                 case CSharp.SyntaxKind.ImplicitObjectCreationExpression:
-                                    if (((CSharp.Syntax.BaseObjectCreationExpressionSyntax)syntax).Initializer?.Expressions.Any() == true)
+                                    // LAFHIS
+                                    var initializer = ((CSharp.Syntax.BaseObjectCreationExpressionSyntax)syntax).Initializer;
+                                    if (initializer != null ? initializer.Expressions.Any() == true : false)
                                     {
                                         return true;
                                     }
@@ -1064,8 +1067,16 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                                     break;
 
                                 case CSharp.SyntaxKind.Argument:
-                                    if ((parent = parent.Parent)?.Kind() == CSharp.SyntaxKind.BracketedArgumentList &&
-                                        (parent = parent.Parent)?.Kind() == CSharp.SyntaxKind.ImplicitElementAccess &&
+                                    // LAFHIS
+                                    //if ((parent = parent.Parent)?.Kind() == CSharp.SyntaxKind.BracketedArgumentList &&
+                                    //    (parent = parent.Parent)?.Kind() == CSharp.SyntaxKind.ImplicitElementAccess &&
+                                    //    parent.Parent is AssignmentExpressionSyntax assignment && assignment.Kind() == CSharp.SyntaxKind.SimpleAssignmentExpression &&
+                                    //    assignment.Left == parent &&
+                                    //    assignment.Parent?.Kind() == CSharp.SyntaxKind.ObjectInitializerExpression &&
+                                    //    (assignment.Right.Kind() == CSharp.SyntaxKind.CollectionInitializerExpression ||
+                                    //    assignment.Right.Kind() == CSharp.SyntaxKind.ObjectInitializerExpression))
+                                    if ((parent = parent.Parent) != null && parent.Kind() == CSharp.SyntaxKind.BracketedArgumentList &&
+                                        (parent = parent.Parent) != null && parent.Kind() == CSharp.SyntaxKind.ImplicitElementAccess &&
                                         parent.Parent is AssignmentExpressionSyntax assignment && assignment.Kind() == CSharp.SyntaxKind.SimpleAssignmentExpression &&
                                         assignment.Left == parent &&
                                         assignment.Parent?.Kind() == CSharp.SyntaxKind.ObjectInitializerExpression &&
@@ -1330,7 +1341,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             {
                 if (region.FirstBlockOrdinal != firstBlockOrdinal)
                 {
-                    Assert.Same(currentRegion, region);
+                    CustomAssert.Same(currentRegion, region);
 
                     if (lastPrintedBlockIsInCurrentRegion)
                     {
@@ -1347,66 +1358,69 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                 switch (region.Kind)
                 {
                     case ControlFlowRegionKind.Filter:
-                        Assert.Empty(region.Locals);
-                        Assert.Empty(region.LocalFunctions);
-                        Assert.Equal(firstBlockOrdinal, region.EnclosingRegion.FirstBlockOrdinal);
-                        Assert.Same(region.ExceptionType, region.EnclosingRegion.ExceptionType);
+                        CustomAssert.Empty(region.Locals);
+                        CustomAssert.Empty(region.LocalFunctions);
+                        CustomAssert.Equal(firstBlockOrdinal, region.EnclosingRegion.FirstBlockOrdinal);
+                        CustomAssert.Same(region.ExceptionType, region.EnclosingRegion.ExceptionType);
                         enterRegion($".filter {{{getRegionId(region)}}}");
                         break;
                     case ControlFlowRegionKind.Try:
-                        Assert.Null(region.ExceptionType);
-                        Assert.Equal(firstBlockOrdinal, region.EnclosingRegion.FirstBlockOrdinal);
+                        CustomAssert.Null(region.ExceptionType);
+                        CustomAssert.Equal(firstBlockOrdinal, region.EnclosingRegion.FirstBlockOrdinal);
                         enterRegion($".try {{{getRegionId(region.EnclosingRegion)}, {getRegionId(region)}}}");
                         break;
                     case ControlFlowRegionKind.FilterAndHandler:
-                        enterRegion($".catch {{{getRegionId(region)}}} ({region.ExceptionType?.ToTestDisplayString() ?? "null"})");
+                        // Lafhis
+                        var exceptionTypeText = region.ExceptionType != null ? region.ExceptionType.ToTestDisplayString() : "null";
+                        enterRegion($".catch {{{getRegionId(region)}}} ({exceptionTypeText})");
                         break;
                     case ControlFlowRegionKind.Finally:
-                        Assert.Null(region.ExceptionType);
+                        CustomAssert.Null(region.ExceptionType);
                         enterRegion($".finally {{{getRegionId(region)}}}");
                         break;
                     case ControlFlowRegionKind.Catch:
                         switch (region.EnclosingRegion.Kind)
                         {
                             case ControlFlowRegionKind.FilterAndHandler:
-                                Assert.Same(region.ExceptionType, region.EnclosingRegion.ExceptionType);
+                                CustomAssert.Same(region.ExceptionType, region.EnclosingRegion.ExceptionType);
                                 enterRegion($".handler {{{getRegionId(region)}}}");
                                 break;
                             case ControlFlowRegionKind.TryAndCatch:
-                                enterRegion($".catch {{{getRegionId(region)}}} ({region.ExceptionType?.ToTestDisplayString() ?? "null"})");
+                                var anotherExceptionTypeText = region.ExceptionType != null ? region.ExceptionType.ToTestDisplayString() : "null";
+                                enterRegion($".catch {{{getRegionId(region)}}} ({anotherExceptionTypeText})");
                                 break;
                             default:
-                                Assert.False(true, $"Unexpected region kind {region.EnclosingRegion.Kind}");
+                                CustomAssert.False(true, $"Unexpected region kind {region.EnclosingRegion.Kind}");
                                 break;
                         }
                         break;
                     case ControlFlowRegionKind.LocalLifetime:
-                        Assert.Null(region.ExceptionType);
-                        Assert.False(region.Locals.IsEmpty && region.LocalFunctions.IsEmpty && region.CaptureIds.IsEmpty);
+                        CustomAssert.Null(region.ExceptionType);
+                        CustomAssert.False(region.Locals.IsEmpty && region.LocalFunctions.IsEmpty && region.CaptureIds.IsEmpty);
                         enterRegion($".locals {{{getRegionId(region)}}}");
                         break;
 
                     case ControlFlowRegionKind.TryAndCatch:
                     case ControlFlowRegionKind.TryAndFinally:
-                        Assert.Empty(region.Locals);
-                        Assert.Empty(region.LocalFunctions);
-                        Assert.Empty(region.CaptureIds);
-                        Assert.Null(region.ExceptionType);
+                        CustomAssert.Empty(region.Locals);
+                        CustomAssert.Empty(region.LocalFunctions);
+                        CustomAssert.Empty(region.CaptureIds);
+                        CustomAssert.Null(region.ExceptionType);
                         break;
 
                     case ControlFlowRegionKind.StaticLocalInitializer:
-                        Assert.Null(region.ExceptionType);
-                        Assert.Empty(region.Locals);
+                        CustomAssert.Null(region.ExceptionType);
+                        CustomAssert.Empty(region.Locals);
                         enterRegion($".static initializer {{{getRegionId(region)}}}");
                         break;
 
                     case ControlFlowRegionKind.ErroneousBody:
-                        Assert.Null(region.ExceptionType);
+                        CustomAssert.Null(region.ExceptionType);
                         enterRegion($".erroneous body {{{getRegionId(region)}}}");
                         break;
 
                     default:
-                        Assert.False(true, $"Unexpected region kind {region.Kind}");
+                        CustomAssert.False(true, $"Unexpected region kind {region.Kind}");
                         break;
                 }
 
@@ -1437,7 +1451,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                     appendLine("");
                     var g = graph.GetLocalFunctionControlFlowGraph(method);
                     localFunctionsMap.Add(method, g);
-                    Assert.Equal(OperationKind.LocalFunction, g.OriginalOperation.Kind);
+                    CustomAssert.Equal(OperationKind.LocalFunction, g.OriginalOperation.Kind);
                     GetFlowGraph(stringBuilder, compilation, g, region, $"#{i}{regionId}", indent + 4, associatedSymbol);
                     appendLine("}");
                 }
@@ -1462,7 +1476,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
                                 goto endRegion;
 
                             default:
-                                Assert.False(true, $"Unexpected region kind {region.EnclosingRegion.Kind}");
+                                CustomAssert.False(true, $"Unexpected region kind {region.EnclosingRegion.Kind}");
                                 break;
                         }
 
@@ -1475,7 +1489,7 @@ endRegion:
                     case ControlFlowRegionKind.TryAndFinally:
                         break;
                     default:
-                        Assert.False(true, $"Unexpected region kind {region.Kind}");
+                        CustomAssert.False(true, $"Unexpected region kind {region.Kind}");
                         break;
                 }
 
@@ -1486,17 +1500,17 @@ endRegion:
             {
                 if (branch.Destination == null)
                 {
-                    Assert.Empty(branch.FinallyRegions);
-                    Assert.Empty(branch.LeavingRegions);
-                    Assert.Empty(branch.EnteringRegions);
-                    Assert.True(ControlFlowBranchSemantics.None == branch.Semantics || ControlFlowBranchSemantics.Throw == branch.Semantics ||
+                    CustomAssert.Empty(branch.FinallyRegions);
+                    CustomAssert.Empty(branch.LeavingRegions);
+                    CustomAssert.Empty(branch.EnteringRegions);
+                    CustomAssert.True(ControlFlowBranchSemantics.None == branch.Semantics || ControlFlowBranchSemantics.Throw == branch.Semantics ||
                                 ControlFlowBranchSemantics.Rethrow == branch.Semantics || ControlFlowBranchSemantics.StructuredExceptionHandling == branch.Semantics ||
                                 ControlFlowBranchSemantics.ProgramTermination == branch.Semantics || ControlFlowBranchSemantics.Error == branch.Semantics);
                     return;
                 }
 
-                Assert.True(ControlFlowBranchSemantics.Regular == branch.Semantics || ControlFlowBranchSemantics.Return == branch.Semantics);
-                Assert.True(branch.Destination.Predecessors.Contains(p => p.Source == fromBlock));
+                CustomAssert.True(ControlFlowBranchSemantics.Regular == branch.Semantics || ControlFlowBranchSemantics.Return == branch.Semantics);
+                CustomAssert.True(branch.Destination.Predecessors.Contains(p => p.Source == fromBlock));
 
                 if (!branch.FinallyRegions.IsEmpty)
                 {
@@ -1509,7 +1523,7 @@ endRegion:
                     appendLine($"        Leaving:" + buildList(branch.LeavingRegions));
                     foreach (ControlFlowRegion r in branch.LeavingRegions)
                     {
-                        Assert.Same(remainedIn1, r);
+                        CustomAssert.Same(remainedIn1, r);
                         remainedIn1 = r.EnclosingRegion;
                     }
                 }
@@ -1521,12 +1535,12 @@ endRegion:
                     for (int j = branch.EnteringRegions.Length - 1; j >= 0; j--)
                     {
                         ControlFlowRegion r = branch.EnteringRegions[j];
-                        Assert.Same(remainedIn2, r);
+                        CustomAssert.Same(remainedIn2, r);
                         remainedIn2 = r.EnclosingRegion;
                     }
                 }
 
-                Assert.Same(remainedIn1.EnclosingRegion, remainedIn2.EnclosingRegion);
+                CustomAssert.Same(remainedIn1.EnclosingRegion, remainedIn2.EnclosingRegion);
 
                 string buildList(ImmutableArray<ControlFlowRegion> list)
                 {
@@ -1544,18 +1558,18 @@ endRegion:
             void validateRoot(IOperation root)
             {
                 visitor.Visit(root);
-                Assert.Null(root.Parent);
-                Assert.Null(((Operation)root).OwningSemanticModel);
-                Assert.Null(root.SemanticModel);
-                Assert.True(CanBeInControlFlowGraph(root), $"Unexpected node kind OperationKind.{root.Kind}");
+                CustomAssert.Null(root.Parent);
+                CustomAssert.Null(((Operation)root).OwningSemanticModel);
+                CustomAssert.Null(root.SemanticModel);
+                CustomAssert.True(CanBeInControlFlowGraph(root), $"Unexpected node kind OperationKind.{root.Kind}");
 
                 foreach (var operation in root.Descendants())
                 {
                     visitor.Visit(operation);
-                    Assert.NotNull(operation.Parent);
-                    Assert.Null(((Operation)operation).OwningSemanticModel);
-                    Assert.Null(operation.SemanticModel);
-                    Assert.True(CanBeInControlFlowGraph(operation), $"Unexpected node kind OperationKind.{operation.Kind}");
+                    CustomAssert.NotNull(operation.Parent);
+                    CustomAssert.Null(((Operation)operation).OwningSemanticModel);
+                    CustomAssert.Null(operation.SemanticModel);
+                    CustomAssert.True(CanBeInControlFlowGraph(operation), $"Unexpected node kind OperationKind.{operation.Kind}");
                 }
             }
 
@@ -1599,12 +1613,12 @@ endRegion:
                 if (referencedLocalsAndMethods.Count != 0)
                 {
                     ISymbol symbol = referencedLocalsAndMethods.First();
-                    Assert.True(false, $"{(symbol.Kind == SymbolKind.Local ? "Local" : "Method")} without owning region {symbol.ToTestDisplayString()} in [{getBlockId(block)}]\n{finalGraph()}");
+                    CustomAssert.True(false, $"{(symbol.Kind == SymbolKind.Local ? "Local" : "Method")} without owning region {symbol.ToTestDisplayString()} in [{getBlockId(block)}]\n{finalGraph()}");
                 }
 
                 if (referencedCaptureIds.Count != 0)
                 {
-                    Assert.True(false, $"Capture [{referencedCaptureIds.First().Value}] without owning region in [{getBlockId(block)}]\n{finalGraph()}");
+                    CustomAssert.True(false, $"Capture [{referencedCaptureIds.First().Value}] without owning region in [{getBlockId(block)}]\n{finalGraph()}");
                 }
             }
 
@@ -1704,7 +1718,7 @@ endRegion:
         {
             if (!value)
             {
-                Assert.True(value, $"{message}\n{finalGraph()}");
+                CustomAssert.True(value, $"{message}\n{finalGraph()}");
             }
         }
 
@@ -1739,7 +1753,7 @@ endRegion:
                 var g = _graph.GetAnonymousFunctionControlFlowGraph(operation);
                 int id = _anonymousFunctionsMap.Count;
                 _anonymousFunctionsMap.Add(operation, g);
-                Assert.Equal(OperationKind.AnonymousFunction, g.OriginalOperation.Kind);
+                CustomAssert.Equal(OperationKind.AnonymousFunction, g.OriginalOperation.Kind);
                 GetFlowGraph(_builder, _compilation, g, _region, $"#A{id}{_idSuffix}", _currentIndent.Length + 4, _associatedSymbol);
                 LogString("}");
                 LogNewLine();
@@ -1883,7 +1897,7 @@ endRegion:
                     return true;
             }
 
-            Assert.True(false, $"Unhandled node kind OperationKind.{n.Kind}");
+            CustomAssert.True(false, $"Unhandled node kind OperationKind.{n.Kind}");
             return false;
         }
 

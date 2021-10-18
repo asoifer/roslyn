@@ -420,8 +420,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         internal static FlowAnalysisAnnotations GetFlowAnalysisAnnotations(this PropertySymbol property)
         {
-            var annotations = property.GetOwnOrInheritedGetMethod()?.ReturnTypeFlowAnalysisAnnotations ?? FlowAnalysisAnnotations.None;
-            if (property.GetOwnOrInheritedSetMethod()?.Parameters.Last().FlowAnalysisAnnotations is { } setterAnnotations)
+            // Lafhis
+            var temp = property.GetOwnOrInheritedGetMethod();
+            var annotations = (temp != null ? temp.ReturnTypeFlowAnalysisAnnotations : FlowAnalysisAnnotations.None);
+            var temp2 = temp != null && temp.Parameters.Length > 0 ? temp.Parameters.Last() : null;
+            if (temp2 != null && temp2.FlowAnalysisAnnotations is { } setterAnnotations)
             {
                 annotations |= setterAnnotations;
             }

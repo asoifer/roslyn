@@ -33,7 +33,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         internal static SynthesizedSimpleProgramEntryPointSymbol? GetSimpleProgramEntryPoint(CSharpCompilation compilation)
         {
-            return (SynthesizedSimpleProgramEntryPointSymbol?)GetSimpleProgramNamedTypeSymbol(compilation)?.GetMembersAndInitializers().NonTypeMembers[0];
+            // Lafhis
+            var temp2 = GetSimpleProgramNamedTypeSymbol(compilation);
+            var temp3 = temp2?.GetMembersAndInitializers();
+            var temp = temp3 != null ? temp3.NonTypeMembers[0] : null;
+            return (SynthesizedSimpleProgramEntryPointSymbol?)temp;
         }
 
         private static SimpleProgramNamedTypeSymbol? GetSimpleProgramNamedTypeSymbol(CSharpCompilation compilation)
