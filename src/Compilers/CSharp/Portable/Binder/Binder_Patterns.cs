@@ -666,7 +666,9 @@ namespace Microsoft.CodeAnalysis.CSharp
         {
             return type.IsStructType() && type.Name == "ValueTuple" && type.GetArity() == 0 &&
                 type.ContainingSymbol is var declContainer && declContainer.Kind == SymbolKind.Namespace && declContainer.Name == "System" &&
-                (declContainer.ContainingSymbol as NamespaceSymbol)?.IsGlobalNamespace == true;
+                // LAFHIS
+                //(declContainer.ContainingSymbol as NamespaceSymbol)?.IsGlobalNamespace == true
+                ((declContainer.ContainingSymbol is NamespaceSymbol) ? ((NamespaceSymbol)declContainer.ContainingSymbol).IsGlobalNamespace == true : false);
         }
 
         private BoundPattern BindRecursivePattern(

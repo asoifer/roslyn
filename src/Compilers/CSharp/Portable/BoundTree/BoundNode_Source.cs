@@ -220,7 +220,10 @@ namespace Microsoft.CodeAnalysis.CSharp
                         }
                     case BoundLiteral literal:
                         {
-                            var value = literal.ConstantValue?.Value?.ToString();
+                            // LAFHIS
+                            var a = literal.ConstantValue;
+                            object? b = a != null ? a.Value : null; 
+                            var value = b != null ? b.ToString() : (string)null;
                             if (value is null)
                             {
                                 append("null");

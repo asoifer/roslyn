@@ -1594,7 +1594,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             // appropriate errors are reported elsewhere. Let's not synthesize
             // forwarding methods, or modify metadata virtualness of the
             // implementing accessors, even for public ones.
-            if (interfaceMethod.AssociatedSymbol?.IsEventOrPropertyWithImplementableNonPublicAccessor() == true)
+            // LAFHIS:
+            if (interfaceMethod.AssociatedSymbol != null && 
+                interfaceMethod.AssociatedSymbol.IsEventOrPropertyWithImplementableNonPublicAccessor() == true)
             {
                 return null;
             }

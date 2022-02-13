@@ -617,7 +617,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 tests.Add(Tests.False.Instance);
             }
-            else if (values?.Complement().IsEmpty != true)
+            // LAFHIS
+            else if ((values != null ? values.Complement().IsEmpty : false) != true)
             {
                 tests.Add(new Tests.One(new BoundDagRelationalTest(rel.Syntax, rel.Relation, rel.ConstantValue, output, rel.HasErrors)));
             }

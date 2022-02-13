@@ -1000,11 +1000,13 @@ done:
             CSharpSyntaxNode bodySyntax = null;
 
             // All locals are declared within the body of the method.
-            if (blockBody?.Span.Contains(localPosition) == true)
+            // LAFHIS
+            if (blockBody != null && blockBody.Span.Contains(localPosition) == true)
             {
                 bodySyntax = blockBody;
             }
-            else if (expressionBody?.Span.Contains(localPosition) == true)
+            // LAFHIS
+            else if (expressionBody != null && expressionBody.Span.Contains(localPosition) == true)
             {
                 bodySyntax = expressionBody;
             }

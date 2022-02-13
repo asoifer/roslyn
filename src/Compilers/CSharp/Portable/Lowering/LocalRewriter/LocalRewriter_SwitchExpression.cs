@@ -116,13 +116,25 @@ namespace Microsoft.CodeAnalysis.CSharp
                     if (produceDetailedSequencePoints)
                         result.Add(new BoundRestorePreviousSequencePoint(node.Syntax, restorePointForSwitchBody));
                     var objectType = _factory.SpecialType(SpecialType.System_Object);
-                    var thrownExpression =
-                        (implicitConversionExists(savedInputExpression, objectType) &&
-                                _factory.WellKnownMember(WellKnownMember.System_Runtime_CompilerServices_SwitchExpressionException__ctorObject, isOptional: true) is MethodSymbol exception1)
-                            ? _factory.New(exception1, _factory.Convert(objectType, savedInputExpression)) :
-                        (_factory.WellKnownMember(WellKnownMember.System_Runtime_CompilerServices_SwitchExpressionException__ctor, isOptional: true) is MethodSymbol exception0)
-                            ? _factory.New(exception0) :
-                        _factory.New(_factory.WellKnownMethod(WellKnownMember.System_InvalidOperationException__ctor));
+                    // LAFHIS
+                    var thrownExpression = (BoundObjectCreationExpression)null;
+                    var temp1 = implicitConversionExists(savedInputExpression, objectType);
+                    var temp3 = _factory.WellKnownMember(WellKnownMember.System_Runtime_CompilerServices_SwitchExpressionException__ctorObject, isOptional: true);
+                    var temp2 = temp1 && temp3 is MethodSymbol;
+                    if (temp2)
+                    {
+                        thrownExpression = _factory.New((MethodSymbol)temp3, _factory.Convert(objectType, savedInputExpression));
+                    } 
+                    else
+                    {
+                        var temp4 = _factory.WellKnownMember(WellKnownMember.System_Runtime_CompilerServices_SwitchExpressionException__ctor, isOptional: true);
+                        if (temp4 is MethodSymbol)
+                            thrownExpression = _factory.New((MethodSymbol)temp4);
+                        else
+                        {
+                            thrownExpression = _factory.New(_factory.WellKnownMethod(WellKnownMember.System_InvalidOperationException__ctor));
+                        }
+                    }   
                     result.Add(_factory.Throw(thrownExpression));
                 }
 

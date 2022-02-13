@@ -594,7 +594,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Emit
             CommonAssemblyWellKnownAttributeData<NamedTypeSymbol> wellKnownAttributeData,
             ArrayBuilder<Cci.ExportedType>? builder)
         {
-            if (wellKnownAttributeData?.ForwardedTypes?.Count > 0)
+            // LAFHIS
+            if (wellKnownAttributeData != null && wellKnownAttributeData.ForwardedTypes != null && wellKnownAttributeData.ForwardedTypes.Count > 0)
             {
                 // (type, index of the parent exported type in builder, or -1 if the type is a top-level type)
                 var stack = ArrayBuilder<(NamedTypeSymbol type, int parentIndex)>.GetInstance();

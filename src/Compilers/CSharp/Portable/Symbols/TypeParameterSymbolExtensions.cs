@@ -26,10 +26,14 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                         {
                             return true;
                         }
-                        visited ??= new HashSet<TypeParameterSymbol>();
+                        // LAFHIS
+                        if (visited == null)
+                            visited = new HashSet<TypeParameterSymbol>();
                         if (visited.Add(typeParameter))
                         {
-                            stack ??= new Stack<TypeParameterSymbol>();
+                            // LAFHIS
+                            if (stack == null)
+                                stack = new Stack<TypeParameterSymbol>();
                             stack.Push(typeParameter);
                         }
                     }

@@ -2113,7 +2113,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                     convertedNullability = new NullabilityInfo(CodeAnalysis.NullableAnnotation.NotAnnotated, CodeAnalysis.NullableFlowState.NotNull);
                     conversion = new Conversion(ConversionKind.AnonymousFunction, lambda.Symbol, false);
                 }
-                else if ((highestBoundExpr as BoundConversion)?.Conversion.IsTupleLiteralConversion == true)
+                // LAFHIS
+                else if ((highestBoundExpr is BoundConversion) && ((BoundConversion)highestBoundExpr).Conversion.IsTupleLiteralConversion)
                 {
                     var tupleLiteralConversion = (BoundConversion)highestBoundExpr;
                     if (tupleLiteralConversion.Operand.Kind == BoundKind.ConvertedTupleLiteral)
@@ -5072,7 +5073,11 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             if (declarationSyntax.Parent is TupleTypeSyntax tupleTypeSyntax)
             {
-                return (GetSymbolInfo(tupleTypeSyntax, cancellationToken).Symbol.GetSymbol() as NamedTypeSymbol)?.TupleElements.ElementAtOrDefault(tupleTypeSyntax.Elements.IndexOf(declarationSyntax)).GetPublicSymbol();
+                // LAFHIS
+                var temp = GetSymbolInfo(tupleTypeSyntax, cancellationToken).Symbol.GetSymbol();
+                if (temp is NamedTypeSymbol namedTypeSymbol)
+                    return namedTypeSymbol.TupleElements.ElementAtOrDefault(tupleTypeSyntax.Elements.IndexOf(declarationSyntax)).GetPublicSymbol();
+                return null;
             }
 
             return null;

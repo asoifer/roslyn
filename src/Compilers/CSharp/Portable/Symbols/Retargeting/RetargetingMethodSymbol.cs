@@ -238,7 +238,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Retargeting
                     return data;
                 }
 
-                if (data?.CallingConventionTypes.IsEmpty == false)
+                // LAFHIS
+                if (data != null && data.CallingConventionTypes.IsEmpty == false)
                 {
                     var builder = PooledHashSet<INamedTypeSymbolInternal>.GetInstance();
                     foreach (var identifier in data.CallingConventionTypes)

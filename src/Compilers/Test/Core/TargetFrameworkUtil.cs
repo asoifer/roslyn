@@ -144,18 +144,19 @@ namespace Roslyn.Test.Utilities
                 return references;
             }
 
-            checkForDuplicateReferences();
+            checkForDuplicateReferences(references, additionalReferences);
             return references.AddRange(additionalReferences);
 
             // Check to see if there are any duplicate references. This guards against tests inadvertently passing multiple copies of 
             // say System.Core to the tests and implicitly depending on the higher one to win. The few tests which actually mean to 
             // pass multiple versions of a DLL should manually construct the reference list and not use this helper.
-            void checkForDuplicateReferences()
+            // LAFHIS
+            void checkForDuplicateReferences(ImmutableArray<MetadataReference> refer, IEnumerable<MetadataReference> additRef)
             {
-                var nameSet = new HashSet<string>(getNames(references), StringComparer.OrdinalIgnoreCase);
-                foreach (var r in additionalReferences)
+                var nameSet = new HashSet<string>(getNames(refer), StringComparer.OrdinalIgnoreCase);
+                foreach (var r in additRef)
                 {
-                    if (references.Contains(r))
+                    if (refer.Contains(r))
                     {
                         throw new Exception($"Duplicate reference detected {r.Display}");
                     }

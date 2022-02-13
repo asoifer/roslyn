@@ -471,7 +471,9 @@ namespace Microsoft.CodeAnalysis.CSharp
             get
             {
                 ParameterSymbol thisParameter = null;
-                (_symbol as MethodSymbol)?.TryGetThisParameter(out thisParameter);
+                // LAFHIS
+                if (_symbol is MethodSymbol)
+                    ((MethodSymbol)_symbol).TryGetThisParameter(out thisParameter);
                 return thisParameter;
             }
         }
@@ -565,7 +567,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                     if (Binder.AccessingAutoPropertyFromConstructor(access, _symbol))
                     {
-                        var backingField = (access.PropertySymbol as SourcePropertySymbolBase)?.BackingField;
+                        // LAFHIS
+                        var backingField = (access.PropertySymbol is SourcePropertySymbolBase) ? ((SourcePropertySymbolBase)access.PropertySymbol).BackingField : null;
                         if (backingField != null)
                         {
                             VisitFieldAccessInternal(access.ReceiverOpt, backingField);
@@ -797,7 +800,9 @@ namespace Microsoft.CodeAnalysis.CSharp
         /// <param name="target">Statement containing the target label</param>
         private bool ResolveBranches(LabelSymbol label, BoundStatement target)
         {
-            target?.AssertIsLabeledStatementWithLabel(label);
+            // LAFHIS
+            if (target != null)
+                target.AssertIsLabeledStatementWithLabel(label);
 
             bool labelStateChanged = false;
             var pendingBranches = PendingBranches;
@@ -1321,7 +1326,9 @@ namespace Microsoft.CodeAnalysis.CSharp
         /// </summary>
         protected virtual void VisitArguments(ImmutableArray<BoundExpression> arguments, ImmutableArray<RefKind> refKindsOpt, MethodSymbol method)
         {
-            Debug.Assert(method?.OriginalDefinition.MethodKind != MethodKind.LocalFunction);
+            // LAFHIS
+            if (method != null)
+                Debug.Assert(method.OriginalDefinition.MethodKind != MethodKind.LocalFunction);
             VisitArgumentsBeforeCall(arguments, refKindsOpt);
             VisitArgumentsAfterCall(arguments, refKindsOpt, method);
         }
@@ -1968,7 +1975,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             if (Binder.AccessingAutoPropertyFromConstructor(node, _symbol))
             {
-                var backingField = (property as SourcePropertySymbolBase)?.BackingField;
+                // LAFHIS
+                var backingField = (property is SourcePropertySymbolBase) ? ((SourcePropertySymbolBase)property).BackingField : null;
                 if (backingField != null)
                 {
                     VisitFieldAccessInternal(node.ReceiverOpt, backingField);

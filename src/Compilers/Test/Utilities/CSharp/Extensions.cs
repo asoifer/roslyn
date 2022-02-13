@@ -17,6 +17,7 @@ using Microsoft.CodeAnalysis.CSharp.Symbols;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.PooledObjects;
 using Microsoft.CodeAnalysis.Text;
+using Roslyn.Test.Utilities;
 using Roslyn.Utilities;
 using Xunit;
 
@@ -188,7 +189,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var members = GetMembers(((CSharpCompilation)compilation).GlobalNamespace, qualifiedName, out lastContainer);
             if (members.IsEmpty)
             {
-                Assert.True(false, string.Format("Could not find member named '{0}'.  Available members:\r\n{1}",
+                CustomAssert.True(false, string.Format("Could not find member named '{0}'.  Available members:\r\n{1}",
                     qualifiedName, string.Join("\r\n", lastContainer.GetMembers().Select(m => "\t\t" + m.Name))));
             }
             return members;
@@ -250,7 +251,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             }
             else if (members.Length > 1)
             {
-                Assert.True(false, "Found multiple members of specified name:\r\n" + string.Join("\r\n", members));
+                CustomAssert.True(false, "Found multiple members of specified name:\r\n" + string.Join("\r\n", members));
             }
 
             return members.Single();
@@ -266,7 +267,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             }
             else if (members.Length > 1)
             {
-                Assert.True(false, "Found multiple members of specified name:\r\n" + string.Join("\r\n", members));
+                CustomAssert.True(false, "Found multiple members of specified name:\r\n" + string.Join("\r\n", members));
             }
 
             return members.Single();
@@ -366,17 +367,17 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         public static void VerifyValue<T>(this CSharpAttributeData attr, int i, TypedConstantKind kind, T v)
         {
             var arg = attr.CommonConstructorArguments[i];
-            Assert.Equal(kind, arg.Kind);
-            Assert.True(IsEqual(arg, v));
+            CustomAssert.Equal(kind, arg.Kind);
+            CustomAssert.True(IsEqual(arg, v));
         }
 
         public static void VerifyNamedArgumentValue<T>(this CSharpAttributeData attr, int i, string name, TypedConstantKind kind, T v)
         {
             var namedArg = attr.CommonNamedArguments[i];
-            Assert.Equal(namedArg.Key, name);
+            CustomAssert.Equal(namedArg.Key, name);
             var arg = namedArg.Value;
-            Assert.Equal(arg.Kind, kind);
-            Assert.True(IsEqual(arg, v));
+            CustomAssert.Equal(arg.Kind, kind);
+            CustomAssert.True(IsEqual(arg, v));
         }
 
         internal static bool IsEqual(TypedConstant arg, object expected)
@@ -420,7 +421,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                     //Can't always simply compare string as <T>.ToString() is IL format
                     return IsEqual(typeSym, expType);
                 default:
-                    //Assert.Equal(expected, CType(arg.Value, T))
+                    //CustomAssert.Equal(expected, CType(arg.Value, T))
                     return expected == null ? arg.Value == null : expected.Equals(arg.Value);
             }
         }
@@ -523,19 +524,19 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
         public static void CheckAccessorShape(this MethodSymbol accessor, Symbol propertyOrEvent)
         {
-            Assert.Same(propertyOrEvent, accessor.AssociatedSymbol);
+            CustomAssert.Same(propertyOrEvent, accessor.AssociatedSymbol);
 
             CheckAccessorModifiers(accessor, propertyOrEvent);
 
-            Assert.Contains(accessor, propertyOrEvent.ContainingType.GetMembers(accessor.Name));
+            CustomAssert.Contains(accessor, propertyOrEvent.ContainingType.GetMembers(accessor.Name));
 
             var propertyOrEventType = propertyOrEvent.GetTypeOrReturnType().Type;
             switch (accessor.MethodKind)
             {
                 case MethodKind.EventAdd:
                 case MethodKind.EventRemove:
-                    Assert.Equal(SpecialType.System_Void, accessor.ReturnType.SpecialType);
-                    Assert.Equal(propertyOrEventType, accessor.Parameters.Single().Type);
+                    CustomAssert.Equal(SpecialType.System_Void, accessor.ReturnType.SpecialType);
+                    CustomAssert.Equal(propertyOrEventType, accessor.Parameters.Single().Type);
                     break;
                 case MethodKind.PropertyGet:
                 case MethodKind.PropertySet:
@@ -544,48 +545,48 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
                     if (isSetter)
                     {
-                        Assert.Equal(SpecialType.System_Void, accessor.ReturnType.SpecialType);
+                        CustomAssert.Equal(SpecialType.System_Void, accessor.ReturnType.SpecialType);
                     }
                     else
                     {
-                        Assert.Equal(propertyOrEventType, accessor.ReturnType);
+                        CustomAssert.Equal(propertyOrEventType, accessor.ReturnType);
                     }
 
                     var propertyParameters = property.Parameters;
                     var accessorParameters = accessor.Parameters;
-                    Assert.Equal(propertyParameters.Length, accessorParameters.Length - (isSetter ? 1 : 0));
+                    CustomAssert.Equal(propertyParameters.Length, accessorParameters.Length - (isSetter ? 1 : 0));
                     for (int i = 0; i < propertyParameters.Length; i++)
                     {
                         var propertyParam = propertyParameters[i];
                         var accessorParam = accessorParameters[i];
-                        Assert.Equal(propertyParam.Type, accessorParam.Type);
-                        Assert.Equal(propertyParam.RefKind, accessorParam.RefKind);
-                        Assert.Equal(propertyParam.Name, accessorParam.Name);
+                        CustomAssert.Equal(propertyParam.Type, accessorParam.Type);
+                        CustomAssert.Equal(propertyParam.RefKind, accessorParam.RefKind);
+                        CustomAssert.Equal(propertyParam.Name, accessorParam.Name);
                     }
 
                     if (isSetter)
                     {
                         var valueParameter = accessorParameters[propertyParameters.Length];
-                        Assert.Equal(propertyOrEventType, valueParameter.Type);
-                        Assert.Equal(RefKind.None, valueParameter.RefKind);
-                        Assert.Equal(ParameterSymbol.ValueParameterName, valueParameter.Name);
+                        CustomAssert.Equal(propertyOrEventType, valueParameter.Type);
+                        CustomAssert.Equal(RefKind.None, valueParameter.RefKind);
+                        CustomAssert.Equal(ParameterSymbol.ValueParameterName, valueParameter.Name);
                     }
                     break;
                 default:
-                    Assert.False(true, "Unexpected accessor kind " + accessor.MethodKind);
+                    CustomAssert.False(true, "Unexpected accessor kind " + accessor.MethodKind);
                     break;
             }
         }
 
         internal static void CheckAccessorModifiers(this MethodSymbol accessor, Symbol propertyOrEvent)
         {
-            Assert.Equal(propertyOrEvent.DeclaredAccessibility, accessor.DeclaredAccessibility);
-            Assert.Equal(propertyOrEvent.IsAbstract, accessor.IsAbstract);
-            Assert.Equal(propertyOrEvent.IsOverride, accessor.IsOverride);
-            Assert.Equal(propertyOrEvent.IsVirtual, accessor.IsVirtual);
-            Assert.Equal(propertyOrEvent.IsSealed, accessor.IsSealed);
-            Assert.Equal(propertyOrEvent.IsExtern, accessor.IsExtern);
-            Assert.Equal(propertyOrEvent.IsStatic, accessor.IsStatic);
+            CustomAssert.Equal(propertyOrEvent.DeclaredAccessibility, accessor.DeclaredAccessibility);
+            CustomAssert.Equal(propertyOrEvent.IsAbstract, accessor.IsAbstract);
+            CustomAssert.Equal(propertyOrEvent.IsOverride, accessor.IsOverride);
+            CustomAssert.Equal(propertyOrEvent.IsVirtual, accessor.IsVirtual);
+            CustomAssert.Equal(propertyOrEvent.IsSealed, accessor.IsSealed);
+            CustomAssert.Equal(propertyOrEvent.IsExtern, accessor.IsExtern);
+            CustomAssert.Equal(propertyOrEvent.IsStatic, accessor.IsStatic);
         }
     }
 }

@@ -380,7 +380,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return false;
             }
 
-            if (namedType == semanticModelOpt?.Compilation.ScriptGlobalsType)
+            // LAFHIS
+            if (semanticModelOpt is not null && namedType == semanticModelOpt.Compilation.ScriptGlobalsType)
             {
                 return false;
             }

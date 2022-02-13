@@ -690,7 +690,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         private static bool IsInvariantArray(TypeSymbol? type)
         {
-            return (type as ArrayTypeSymbol)?.ElementType.IsSealed == true;
+            // LAFHIS
+            return (type is ArrayTypeSymbol) && ((ArrayTypeSymbol)type).ElementType.IsSealed;
         }
 
         private BoundExpression BoxReceiver(BoundExpression rewrittenReceiver, NamedTypeSymbol memberContainingType)

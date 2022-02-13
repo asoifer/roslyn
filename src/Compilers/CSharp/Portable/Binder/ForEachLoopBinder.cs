@@ -235,10 +235,13 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 var expr = _syntax.Expression;
                 ReportBadAwaitDiagnostics(expr, _syntax.AwaitKeyword.GetLocation(), diagnostics, ref hasErrors);
-                var placeholder = new BoundAwaitableValuePlaceholder(expr, valEscape: this.LocalScopeDepth, builder.MoveNextInfo?.Method.ReturnType ?? CreateErrorType());
+                // LAFHIS
+                var placeholder = new BoundAwaitableValuePlaceholder(expr, valEscape: this.LocalScopeDepth, 
+                    (builder.MoveNextInfo != null ? builder.MoveNextInfo.Method.ReturnType : null) ?? CreateErrorType());
                 awaitInfo = BindAwaitInfo(placeholder, expr, diagnostics, ref hasErrors);
 
-                if (!hasErrors && awaitInfo.GetResult?.ReturnType.SpecialType != SpecialType.System_Boolean)
+                // LAFHIS
+                if (!hasErrors && (awaitInfo.GetResult == null || awaitInfo.GetResult.ReturnType.SpecialType != SpecialType.System_Boolean))
                 {
                     diagnostics.Add(ErrorCode.ERR_BadGetAsyncEnumerator, expr.Location, getEnumeratorMethod.ReturnTypeWithAnnotations, getEnumeratorMethod);
                     hasErrors = true;
@@ -858,7 +861,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                     // Well-known members are matched by signature: we shouldn't find it if it doesn't have exactly 1 parameter.
                     Debug.Assert(getEnumeratorMethod is null or { ParameterCount: 1 });
 
-                    if (getEnumeratorMethod?.Parameters[0].IsOptional == false)
+                    // LAFHIS
+                    if (getEnumeratorMethod != null && !getEnumeratorMethod.Parameters[0].IsOptional)
                     {
                         // This indicates a problem with the well-known IAsyncEnumerable type - it should have an optional cancellation token.
                         diagnostics.Add(ErrorCode.ERR_AwaitForEachMissingMember, _syntax.Expression.Location, unwrappedCollectionExprType, GetAsyncEnumeratorMethodName);
@@ -1019,8 +1023,9 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             if (collectionExprType.IsDynamic())
             {
+                // LAFHIS
                 builder.ElementTypeWithAnnotations = TypeWithAnnotations.Create(
-                    ((_syntax as ForEachStatementSyntax)?.Type.IsVar == true) ?
+                    (((_syntax is ForEachStatementSyntax) ? ((ForEachStatementSyntax)_syntax).Type.IsVar : false) == true) ?
                         (TypeSymbol)DynamicTypeSymbol.Instance :
                         GetSpecialType(SpecialType.System_Object, diagnostics, _syntax));
             }

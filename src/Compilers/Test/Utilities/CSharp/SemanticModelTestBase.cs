@@ -12,6 +12,7 @@ using Microsoft.CodeAnalysis.CSharp.Symbols;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp.Test.Utilities;
 using Microsoft.CodeAnalysis.Test.Utilities;
+using Roslyn.Test.Utilities;
 using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
@@ -98,7 +99,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             var model = compilation.GetSemanticModel(tree);
             var constructorInitializer = GetFirstConstructorInitializer(tree.GetCompilationUnitRoot());
 
-            Assert.NotNull(constructorInitializer);
+            CustomAssert.NotNull(constructorInitializer);
 
             return model.GetSpeculativeSymbolInfo(constructorInitializer.SpanStart, constructorInitializer);
         }

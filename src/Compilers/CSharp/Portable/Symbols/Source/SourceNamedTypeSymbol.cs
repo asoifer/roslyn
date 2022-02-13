@@ -356,7 +356,12 @@ next:;
                     }
                     else
                     {
-                        (otherPartialClauses ??= ArrayBuilder<ImmutableArray<TypeParameterConstraintClause>>.GetInstance()).Add(constraints);
+                        // LAFHIS
+                        if (otherPartialClauses == null)
+                        { 
+                            otherPartialClauses = ArrayBuilder<ImmutableArray<TypeParameterConstraintClause>>.GetInstance();
+                            otherPartialClauses.Add(constraints);
+                        }
                     }
                 }
 
@@ -439,7 +444,12 @@ next:;
                     }
                     else
                     {
-                        (otherPartialClauses ??= ArrayBuilder<ImmutableArray<TypeParameterConstraintClause>>.GetInstance()).Add(constraints);
+                        // LAFHIS
+                        if (otherPartialClauses == null)
+                        { 
+                            otherPartialClauses = ArrayBuilder<ImmutableArray<TypeParameterConstraintClause>>.GetInstance();
+                            otherPartialClauses.Add(constraints);
+                        }
                     }
                 }
 
@@ -568,8 +578,9 @@ next:;
                     return false;
                 }
 
-                originalConstraintTypesMap ??= toDictionary(originalConstraintTypes,
-                                                            TypeWithAnnotations.EqualsComparer.IgnoreNullableModifiersForReferenceTypesComparer);
+                // LAFHIS
+                if (originalConstraintTypesMap == null)
+                    originalConstraintTypesMap = toDictionary(originalConstraintTypes, TypeWithAnnotations.EqualsComparer.IgnoreNullableModifiersForReferenceTypesComparer);
                 SmallDictionary<TypeWithAnnotations, int> clauseConstraintTypesMap = toDictionary(clause.ConstraintTypes, originalConstraintTypesMap.Comparer);
 
                 foreach (int index1 in originalConstraintTypesMap.Values)
@@ -1548,8 +1559,13 @@ next:;
 
         internal override bool Equals(TypeSymbol t2, TypeCompareKind comparison)
         {
-            return t2 is NativeIntegerTypeSymbol nativeInteger ?
-                nativeInteger.Equals(this, comparison) :
+            // LAFHIS
+            //return t2 is NativeIntegerTypeSymbol nativeInteger ?
+            //    nativeInteger.Equals(this, comparison) :
+            //    base.Equals(t2, comparison);
+
+            return t2 is NativeIntegerTypeSymbol ?
+                ((NativeIntegerTypeSymbol)t2).Equals(this, comparison) :
                 base.Equals(t2, comparison);
         }
     }

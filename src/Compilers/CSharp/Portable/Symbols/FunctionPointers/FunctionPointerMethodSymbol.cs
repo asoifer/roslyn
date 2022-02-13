@@ -34,7 +34,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
             else
             {
-                FunctionPointerParameterSyntax? returnTypeParameter = syntax.ParameterList.Parameters[^1];
+                // LAFHIS
+                //FunctionPointerParameterSyntax? returnTypeParameter = syntax.ParameterList.Parameters[^1];
+                FunctionPointerParameterSyntax? returnTypeParameter = syntax.ParameterList.Parameters[syntax.ParameterList.Parameters.Count - 1];
                 SyntaxTokenList modifiers = returnTypeParameter.Modifiers;
                 for (int i = 0; i < modifiers.Count; i++)
                 {
@@ -106,7 +108,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
             static CallingConvention getCallingConvention(CSharpCompilation compilation, FunctionPointerCallingConventionSyntax? callingConventionSyntax, ArrayBuilder<CustomModifier> customModifiers, DiagnosticBag diagnostics)
             {
-                switch (callingConventionSyntax?.ManagedOrUnmanagedKeyword.Kind())
+                // LAFHIS
+                var temp = callingConventionSyntax != null ? callingConventionSyntax.ManagedOrUnmanagedKeyword.Kind() : (SyntaxKind?)null;
+                switch (temp)
                 {
                     case null:
                         return CallingConvention.Default;

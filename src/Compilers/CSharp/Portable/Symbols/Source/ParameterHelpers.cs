@@ -457,8 +457,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             {
                 Debug.Assert(parameter.ContainingSymbol is FunctionPointerMethodSymbol or { ContainingType: not null });
                 // error CS0721: '{0}': static types cannot be used as parameters
+                // LAFHIS
                 diagnostics.Add(
-                    ErrorFacts.GetStaticClassParameterCode(parameter.ContainingSymbol.ContainingType?.IsInterfaceType() ?? false),
+                    ErrorFacts.GetStaticClassParameterCode(
+                        parameter.ContainingSymbol.ContainingType.Equals(null) ?
+                        parameter.ContainingSymbol.ContainingType.IsInterfaceType() : false),
                     owner.Locations.IsEmpty ? parameterSyntax.GetLocation() : owner.Locations[0],
                     parameter.Type);
             }

@@ -671,7 +671,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                                 : GetAccessorName(explicitlyImplementedPropertyOpt.MetadataName,
                                     isGetMethod, isWinMdOutput: _property.IsCompilationOutputWinMdObj()); //Not name - could be indexer placeholder
 
-                            string? aliasQualifierOpt = _property.GetExplicitInterfaceSpecifier()?.Name.GetAliasQualifierOpt();
+                            // LAFHIS
+                            var temp = _property.GetExplicitInterfaceSpecifier();
+                            string? aliasQualifierOpt = temp != null ? temp.Name.GetAliasQualifierOpt() : (string?)null;
                             name = ExplicitInterfaceHelpers.GetMemberName(accessorName, explicitlyImplementedPropertyOpt.ContainingType, aliasQualifierOpt);
                         }
                     }

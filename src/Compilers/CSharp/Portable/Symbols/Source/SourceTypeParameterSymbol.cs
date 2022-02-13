@@ -185,7 +185,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                     lazyAttributesStored = LoadAndValidateAttributes(
                         OneOrMany.Create(this.MergedAttributeDeclarationSyntaxLists),
                         ref _lazyCustomAttributesBag,
-                        binderOpt: (ContainingSymbol as LocalFunctionSymbol)?.SignatureBinder);
+                        binderOpt:
+                        // LAFHIS
+                        //(ContainingSymbol as LocalFunctionSymbol)?.SignatureBinder)
+                        (ContainingSymbol is LocalFunctionSymbol) ? ((LocalFunctionSymbol)ContainingSymbol).SignatureBinder : null);
                 }
                 else
                 {

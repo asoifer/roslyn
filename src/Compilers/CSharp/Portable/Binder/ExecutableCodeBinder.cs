@@ -119,14 +119,18 @@ namespace Microsoft.CodeAnalysis.CSharp
                 }
             }
 
-            Location errorLocation = (iterator as SynthesizedSimpleProgramEntryPointSymbol)?.ReturnTypeSyntax.GetLocation() ?? iterator.Locations[0];
+            // LAFHIS
+            Location errorLocation = ((iterator is SynthesizedSimpleProgramEntryPointSymbol) ? ((SynthesizedSimpleProgramEntryPointSymbol)iterator).ReturnTypeSyntax.GetLocation() : null) ?? iterator.Locations[0];
+
             if (iterator.IsVararg)
             {
                 // error CS1636: __arglist is not allowed in the parameter list of iterators
                 diagnostics.Add(ErrorCode.ERR_VarargsIterator, errorLocation);
             }
 
-            if (((iterator as SourceMemberMethodSymbol)?.IsUnsafe == true || (iterator as LocalFunctionSymbol)?.IsUnsafe == true)
+            // LAFHIS
+            if ((((iterator is SourceMemberMethodSymbol) && ((SourceMemberMethodSymbol)iterator).IsUnsafe)
+                || ((iterator is LocalFunctionSymbol) && ((LocalFunctionSymbol)iterator).IsUnsafe))
                 && compilation.Options.AllowUnsafe) // Don't cascade
             {
                 diagnostics.Add(ErrorCode.ERR_IllegalInnerUnsafe, errorLocation);

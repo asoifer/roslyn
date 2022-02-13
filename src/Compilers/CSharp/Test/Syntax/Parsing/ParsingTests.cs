@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp.Test.Utilities;
 using Microsoft.CodeAnalysis.Test.Utilities;
+using Roslyn.Test.Utilities;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -38,7 +39,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                 if (hasNext)
                 {
                     DumpAndCleanup();
-                    Assert.False(hasNext, "Test contains unconsumed syntax left over from UsingNode()");
+                    CustomAssert.False(hasNext, "Test contains unconsumed syntax left over from UsingNode()");
                 }
             }
         }
@@ -91,7 +92,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         {
             var node = SyntaxFactory.ParseStatement(text, options: options);
             // we validate the text roundtrips
-            Assert.Equal(text, node.ToFullString());
+            CustomAssert.Equal(text, node.ToFullString());
             var actualErrors = node.GetDiagnostics();
             actualErrors.Verify(expectedErrors);
             UsingNode(node);
@@ -109,7 +110,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             if (consumeFullText)
             {
                 // we validate the text roundtrips
-                Assert.Equal(text, node.ToFullString());
+                CustomAssert.Equal(text, node.ToFullString());
             }
 
             var actualErrors = node.GetDiagnostics();
@@ -125,7 +126,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         protected void UsingNode(string text, CSharpSyntaxNode node, DiagnosticDescription[] expectedErrors)
         {
             // we validate the text roundtrips
-            Assert.Equal(text, node.ToFullString());
+            CustomAssert.Equal(text, node.ToFullString());
             var actualErrors = node.GetDiagnostics();
             actualErrors.Verify(expectedErrors);
             UsingNode(node);
@@ -186,13 +187,13 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         {
             try
             {
-                Assert.True(_treeEnumerator!.MoveNext());
-                Assert.Equal(kind, _treeEnumerator.Current.Kind());
-                Assert.False(_treeEnumerator.Current.IsMissing);
+                CustomAssert.True(_treeEnumerator!.MoveNext());
+                CustomAssert.Equal(kind, _treeEnumerator.Current.Kind());
+                CustomAssert.False(_treeEnumerator.Current.IsMissing);
 
                 if (value != null)
                 {
-                    Assert.Equal(_treeEnumerator.Current.ToString(), value);
+                    CustomAssert.Equal(_treeEnumerator.Current.ToString(), value);
                 }
 
                 return _treeEnumerator.Current;
@@ -212,10 +213,10 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         {
             try
             {
-                Assert.True(_treeEnumerator!.MoveNext());
+                CustomAssert.True(_treeEnumerator!.MoveNext());
                 SyntaxNodeOrToken current = _treeEnumerator.Current;
-                Assert.Equal(kind, current.Kind());
-                Assert.True(current.IsMissing);
+                CustomAssert.Equal(kind, current.Kind());
+                CustomAssert.True(current.IsMissing);
                 return current;
             }
             catch when (DumpAndCleanup())
@@ -234,7 +235,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             {
                 var tk = _treeEnumerator.Current.Kind();
                 DumpAndCleanup();
-                Assert.False(true, "Found unexpected node or token of kind: " + tk);
+                CustomAssert.False(true, "Found unexpected node or token of kind: " + tk);
             }
         }
 

@@ -234,7 +234,9 @@ namespace Roslyn.Test.Utilities
             CompilationTestData testData,
             EmitOptions emitOptions)
         {
-            emitOptions ??= EmitOptions.Default.WithDebugInformationFormat(DebugInformationFormat.Embedded);
+            // LAFHIS
+            if (emitOptions == null)
+                emitOptions = EmitOptions.Default.WithDebugInformationFormat(DebugInformationFormat.Embedded);
 
             using var executableStream = new MemoryStream();
 

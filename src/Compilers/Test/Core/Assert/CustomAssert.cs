@@ -92,6 +92,18 @@ namespace Roslyn.Test.Utilities
             return true;
         }
 
+        public static bool Contains<T>(IEnumerable<T> collection, Predicate<T> filter)
+        {
+            Assert.Contains(collection, filter);
+            return true;
+        }
+
+        public static bool Contains<T>(T expected, IEnumerable<T> collection)
+        {
+            Assert.Contains(expected, collection);
+            return true;
+        }
+
         public static bool DoesNotContain(string expectedSubstring, string[] actualString)
         {
             Assert.DoesNotContain(expectedSubstring, actualString);

@@ -284,7 +284,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             if (IsTupleType)
             {
                 var result = GetMembers().WhereAsArray((m, name) => m.Name == name, name);
-                cacheResult(result);
+                cacheResult(result, name);
                 return result;
             }
 
@@ -301,10 +301,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
 
             var substitutedMembers = builder.ToImmutableAndFree();
-            cacheResult(substitutedMembers);
+            cacheResult(substitutedMembers, name);
             return substitutedMembers;
 
-            void cacheResult(ImmutableArray<Symbol> result)
+            // LAFHIS
+            void cacheResult(ImmutableArray<Symbol> result, string name2)
             {
                 // cache of size 8 seems reasonable here.
                 // considering that substituted methods have about 10 reference fields,
@@ -312,7 +313,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 var cache = _lazyMembersByNameCache ??
                             (_lazyMembersByNameCache = new ConcurrentCache<string, ImmutableArray<Symbol>>(8));
 
-                cache.TryAdd(name, result);
+                cache.TryAdd(name2, result);
             }
         }
 

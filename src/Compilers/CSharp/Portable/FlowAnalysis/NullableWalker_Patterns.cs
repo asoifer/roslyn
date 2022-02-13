@@ -169,7 +169,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                             {
                                 BoundSubpattern item = rp.Properties[i];
                                 Symbol symbol = item.Symbol;
-                                if (symbol?.ContainingType.Equals(inputType, TypeCompareKind.AllIgnoreOptions) == true)
+                                // LAFHIS
+                                if (symbol is not null && symbol.ContainingType.Equals(inputType, TypeCompareKind.AllIgnoreOptions))
                                 {
                                     LearnFromAnyNullPatterns(GetOrCreateSlot(symbol, inputSlot), symbol.GetTypeOrReturnType().Type, item.Pattern);
                                 }

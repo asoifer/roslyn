@@ -28,7 +28,13 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         public FieldOrPropertyInitializer(FieldSymbol fieldOpt, SyntaxNode syntax)
         {
-            Debug.Assert(((syntax.IsKind(SyntaxKind.EqualsValueClause) || syntax.IsKind(SyntaxKind.Parameter)) && fieldOpt != null) || syntax is StatementSyntax);
+            // LAFHIS
+            var a1 = syntax.IsKind(SyntaxKind.EqualsValueClause);
+            var a2 = syntax.IsKind(SyntaxKind.Parameter);
+            var a3 = fieldOpt != null;
+            var a4 = syntax is StatementSyntax;
+
+            Debug.Assert(((a1 || a2) && a3) || a4);
 
             FieldOpt = fieldOpt;
             Syntax = syntax.GetReference();

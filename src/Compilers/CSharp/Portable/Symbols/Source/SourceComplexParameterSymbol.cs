@@ -73,7 +73,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             _lazyDefaultSyntaxValue = ConstantValue.Unset;
         }
 
-        private Binder ParameterBinderOpt => (ContainingSymbol as LocalFunctionSymbol)?.ParameterBinder;
+        // LAFHIS
+        private Binder ParameterBinderOpt => (ContainingSymbol is LocalFunctionSymbol) ? ((LocalFunctionSymbol)ContainingSymbol).ParameterBinder : null;
 
         internal override SyntaxReference SyntaxReference => _syntaxRef;
 
@@ -196,7 +197,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 #nullable enable
 
         internal static SyntaxNode? GetDefaultValueSyntaxForIsNullableAnalysisEnabled(ParameterSyntax? parameterSyntax) =>
-            parameterSyntax?.Default?.Value;
+            // LAFHIS
+            //parameterSyntax?.Default?.Value
+            parameterSyntax != null && parameterSyntax.Default != null ? parameterSyntax.Default.Value : null;
 
         private ConstantValue DefaultSyntaxValue
         {

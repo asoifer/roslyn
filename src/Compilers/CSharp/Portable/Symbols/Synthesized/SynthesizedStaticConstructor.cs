@@ -378,8 +378,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             return containingType.CalculateSyntaxOffsetInSynthesizedConstructor(localPosition, localTree, isStatic: true);
         }
 
+        // LAFHIS
         internal sealed override bool IsNullableAnalysisEnabled() =>
-            (ContainingType as SourceMemberContainerTypeSymbol)?.IsNullableEnabledForConstructorsAndInitializers(useStatic: true) ?? false;
+            (ContainingType is SourceMemberContainerTypeSymbol) ? 
+            ((SourceMemberContainerTypeSymbol)ContainingType).IsNullableEnabledForConstructorsAndInitializers(useStatic: true) : false;
 
         internal bool ShouldEmit(ImmutableArray<BoundInitializer> boundInitializersOpt = default)
         {

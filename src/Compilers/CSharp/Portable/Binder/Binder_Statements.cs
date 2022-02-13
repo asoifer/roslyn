@@ -889,7 +889,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             out ExpressionSyntax value)
         {
             RefKind expressionRefKind = RefKind.None;
-            value = initializer?.Value.CheckAndUnwrapRefExpression(diagnostics, out expressionRefKind);
+            // LAFHIS
+            value = initializer != null ? initializer.Value.CheckAndUnwrapRefExpression(diagnostics, out expressionRefKind) : null;
             if (variableRefKind == RefKind.None)
             {
                 valueKind = BindValueKind.RValue;
@@ -1636,10 +1637,15 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         private static bool IsConstructorOrField(Symbol member, bool isStatic)
         {
-            return (member as MethodSymbol)?.MethodKind == (isStatic ?
+            return 
+                // LAFHIS
+                ((member is MethodSymbol) ? ((MethodSymbol)member).MethodKind == (isStatic ?
                                                                 MethodKind.StaticConstructor :
-                                                                MethodKind.Constructor) ||
-                    (member as FieldSymbol)?.IsStatic == isStatic;
+                                                                MethodKind.Constructor) : false)
+                                                                ||
+                    // LAFHIS
+                    //(member as FieldSymbol)?.IsStatic == isStatic
+                    ((member is FieldSymbol) ? ((FieldSymbol)member).IsStatic == isStatic : false);
         }
 
         private TypeSymbol GetAccessThroughType(BoundExpression receiver)

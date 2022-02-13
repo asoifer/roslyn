@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Symbols;
 using Microsoft.CodeAnalysis.Test.Utilities;
+using Roslyn.Test.Utilities;
 using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
@@ -61,7 +62,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         public static T GetIndexer<T>(this NamespaceOrTypeSymbol type, string name) where T : PropertySymbol
         {
             T member = type.GetMembers(WellKnownMemberNames.Indexer).Where(i => i.MetadataName == name).Single() as T;
-            Assert.NotNull(member);
+            CustomAssert.NotNull(member);
             return member;
         }
 

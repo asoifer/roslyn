@@ -82,7 +82,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         private BoundExpression LiftRangeExpression(BoundRangeExpression node, BoundExpression? left, BoundExpression? right)
         {
             Debug.Assert(node.Type.IsNullableType());
-            Debug.Assert(left?.Type?.IsNullableType() == true || right?.Type?.IsNullableType() == true);
+            // LAFHIS
+            Debug.Assert((left != null && !(left.Type is null) && left.Type.IsNullableType()) || (right != null && !(right.Type is null) && right.Type.IsNullableType()));
             Debug.Assert(!(left is null && right is null));
             Debug.Assert(node.MethodOpt is { });
 

@@ -13,7 +13,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             get
             {
                 var leftType = LeftOperand.Type;
-                if (leftType?.IsNullableType() != true)
+                // LAFHIS
+                if (leftType is null || leftType.IsNullableType() != true)
                 {
                     return false;
                 }

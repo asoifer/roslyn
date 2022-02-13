@@ -304,7 +304,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
                     closeKind: SyntaxKind.CloseParenToken);
 
                 parsePropertyPatternClause(out PropertyPatternClauseSyntax propertyPatternClause0);
-                parseDesignation(out VariableDesignationSyntax designation0);
+                parseDesignation(whenIsKeyword, out VariableDesignationSyntax designation0);
 
                 if (type == null &&
                     propertyPatternClause0 == null &&
@@ -336,13 +336,13 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
 
             if (parsePropertyPatternClause(out PropertyPatternClauseSyntax propertyPatternClause))
             {
-                parseDesignation(out VariableDesignationSyntax designation0);
+                parseDesignation(whenIsKeyword, out VariableDesignationSyntax designation0);
                 return _syntaxFactory.RecursivePattern(type, positionalPatternClause: null, propertyPatternClause, designation0);
             }
 
             if (type != null)
             {
-                if (parseDesignation(out VariableDesignationSyntax designation))
+                if (parseDesignation(whenIsKeyword, out VariableDesignationSyntax designation))
                 {
                     return _syntaxFactory.DeclarationPattern(type, designation);
                 }
@@ -375,10 +375,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
                 return false;
             }
 
-            bool parseDesignation(out VariableDesignationSyntax designationResult)
+            // LAFHIS
+            bool parseDesignation(bool whenIsKeywordB, out VariableDesignationSyntax designationResult)
             {
                 designationResult = null;
-                if (this.IsTrueIdentifier() && this.IsValidPatternDesignation(whenIsKeyword))
+                if (this.IsTrueIdentifier() && this.IsValidPatternDesignation(whenIsKeywordB))
                 {
                     designationResult = ParseSimpleDesignation();
                     return true;

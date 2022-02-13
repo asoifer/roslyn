@@ -60,7 +60,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             this._scopeBinder = scopeBinder;
             this._containingSymbol = containingSymbol;
             this._identifierToken = identifierToken;
-            this._typeSyntax = allowRefKind ? typeSyntax?.SkipRef(out this._refKind) : typeSyntax;
+            // LAFHIS
+            //this._typeSyntax = allowRefKind ? typeSyntax?.SkipRef(out this._refKind) : typeSyntax;
+            this._typeSyntax = allowRefKind ? (typeSyntax != null ? typeSyntax.SkipRef(out this._refKind) : null) : typeSyntax;
             this._declarationKind = declarationKind;
 
             // create this eagerly as it will always be needed for the EnsureSingleDefinition

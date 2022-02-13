@@ -57,7 +57,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 Debug.Assert(method.MethodKind != MethodKind.AnonymousFunction);
 
                 // Add implicit "return default(T)" if this is a submission that does not have a trailing expression.
-                var submissionResultType = (method as SynthesizedInteractiveInitializerMethod)?.ResultType;
+                // LAFHIS
+                var submissionResultType = (method is SynthesizedInteractiveInitializerMethod) ? ((SynthesizedInteractiveInitializerMethod)method).ResultType : null;
                 if (!hasTrailingExpression && ((object)submissionResultType != null))
                 {
                     Debug.Assert(!submissionResultType.IsVoidType());

@@ -238,7 +238,11 @@ namespace Microsoft.CodeAnalysis.CSharp
             // delegate Invoke method if Invoke has a Task-like return type.
             // Otherwise the return type is Task or Task<T>.
             NamedTypeSymbol taskType = null;
-            var delegateReturnType = delegateType?.GetDelegateType()?.DelegateInvokeMethod?.ReturnType as NamedTypeSymbol;
+            // LAFHIS
+            NamedTypeSymbol? a = !(delegateType is null) ? delegateType.GetDelegateType() : null;
+            MethodSymbol b = !(a is null) ? a.DelegateInvokeMethod : null;
+            NamedTypeSymbol delegateReturnType = !(b is null) ? b.ReturnType as NamedTypeSymbol : null;
+            //var delegateReturnType = delegateType?.GetDelegateType()?.DelegateInvokeMethod?.ReturnType as NamedTypeSymbol;
             if ((object)delegateReturnType != null && !delegateReturnType.IsVoidType())
             {
                 object builderType;

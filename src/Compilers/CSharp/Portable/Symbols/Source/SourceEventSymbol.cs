@@ -570,7 +570,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             {
                 // Diagnostic reported by parser.
             }
-            else if (!this.IsNoMoreVisibleThan(this.Type, ref useSiteDiagnostics) && (CSharpSyntaxNode as EventDeclarationSyntax)?.ExplicitInterfaceSpecifier == null)
+            // LAFHIS
+            else if (!this.IsNoMoreVisibleThan(this.Type, ref useSiteDiagnostics) &&
+                //(CSharpSyntaxNode as EventDeclarationSyntax)?.ExplicitInterfaceSpecifier == null
+                ((!(CSharpSyntaxNode is EventDeclarationSyntax)) ||
+                ((EventDeclarationSyntax)CSharpSyntaxNode).ExplicitInterfaceSpecifier == null))
             {
                 // Dev10 reports different errors for field-like events (ERR_BadVisFieldType) and custom events (ERR_BadVisPropertyType).
                 // Both seem odd, so add a new one.

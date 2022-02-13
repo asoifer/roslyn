@@ -90,10 +90,12 @@ namespace Microsoft.CodeAnalysis.CSharp
                     }
                     break;
 
+                // LAFHIS
                 case CodeAnalysis.NullableAnnotation.NotAnnotated:
                     if (format.MiscellaneousOptions.IncludesOption(SymbolDisplayMiscellaneousOptions.IncludeNotNullableReferenceTypeModifier) &&
                         !type.IsValueType &&
-                        (type as Symbols.PublicModel.TypeSymbol)?.UnderlyingTypeSymbol.IsTypeParameterDisallowingAnnotationInCSharp8() != true)
+                        ((type is not Symbols.PublicModel.TypeSymbol) ||
+                        ((Symbols.PublicModel.TypeSymbol)type).UnderlyingTypeSymbol.IsTypeParameterDisallowingAnnotationInCSharp8() != true))
                     {
                         return true;
                     }
@@ -311,7 +313,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             // It would be nice to handle VB NoPia symbols too, but it's not worth the effort.
 
-            NamedTypeSymbol underlyingTypeSymbol = (symbol as Symbols.PublicModel.NamedTypeSymbol)?.UnderlyingNamedTypeSymbol;
+            // LAFHIS
+            NamedTypeSymbol underlyingTypeSymbol = (symbol is Symbols.PublicModel.NamedTypeSymbol) ? ((Symbols.PublicModel.NamedTypeSymbol)symbol).UnderlyingNamedTypeSymbol : null;
             var illegalGenericInstantiationSymbol = underlyingTypeSymbol as NoPiaIllegalGenericInstantiationSymbol;
 
             if ((object)illegalGenericInstantiationSymbol != null)
@@ -488,7 +491,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             bool containsModopt(INamedTypeSymbol symbol)
             {
-                NamedTypeSymbol underlyingTypeSymbol = (symbol as Symbols.PublicModel.NamedTypeSymbol)?.UnderlyingNamedTypeSymbol;
+                // LAFHIS
+                NamedTypeSymbol underlyingTypeSymbol = (symbol is Symbols.PublicModel.NamedTypeSymbol temp) ? temp.UnderlyingNamedTypeSymbol : null;
                 ImmutableArray<ImmutableArray<CustomModifier>> modifiers = GetTypeArgumentsModifiers(underlyingTypeSymbol);
                 if (modifiers.IsDefault)
                 {

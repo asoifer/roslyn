@@ -730,7 +730,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
             if (!_managedKindUseSiteDiagnostics.IsEmpty)
             {
-                useSiteDiagnostics ??= new HashSet<DiagnosticInfo>();
+                // LAFHIS
+                if (useSiteDiagnostics == null)
+                    useSiteDiagnostics = new HashSet<DiagnosticInfo>();
                 useSiteDiagnostics.AddAll(_managedKindUseSiteDiagnostics);
             }
 
@@ -1565,7 +1567,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             var interfaces = GetInterfacesToEmit();
 
             // https://github.com/dotnet/roslyn/issues/30080: Report diagnostics for base type and interfaces at more specific locations.
-            if (hasBaseTypeOrInterface(t => t.ContainsNativeInteger()))
+            // LAFHIS
+            if (hasBaseTypeOrInterface(t => t.ContainsNativeInteger(), baseType, interfaces))
             {
                 compilation.EnsureNativeIntegerAttributeExists(diagnostics, location, modifyCompilation: true);
             }
@@ -1577,7 +1580,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                     compilation.EnsureNullableContextAttributeExists(diagnostics, location, modifyCompilation: true);
                 }
 
-                if (hasBaseTypeOrInterface(t => t.NeedsNullableAttribute()))
+                if (hasBaseTypeOrInterface(t => t.NeedsNullableAttribute(), baseType, interfaces))
                 {
                     compilation.EnsureNullableAttributeExists(diagnostics, location, modifyCompilation: true);
                 }
@@ -1590,10 +1593,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 Binder.ReportMissingTupleElementNamesAttributesIfNeeded(compilation, location, diagnostics);
             }
 
-            bool hasBaseTypeOrInterface(Func<NamedTypeSymbol, bool> predicate)
+            // LAFHIS
+            bool hasBaseTypeOrInterface(Func<NamedTypeSymbol, bool> predicate, NamedTypeSymbol baseTy, ImmutableArray<NamedTypeSymbol> inter)
             {
-                return ((object)baseType != null && predicate(baseType)) ||
-                    interfaces.Any(predicate);
+                return ((object)baseTy != null && predicate(baseTy)) ||
+                    inter.Any(predicate);
             }
 
             static bool needsTupleElementNamesAttribute(TypeSymbol type)

@@ -41,7 +41,10 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             void recordDefinitions(ImmutableArray<ParameterSymbol> definitions)
             {
-                var declarationMap = _definitionMap ??= new SmallDictionary<string, ParameterSymbol>();
+                // LAFHIS
+                if (_definitionMap == null)
+                    _definitionMap = new SmallDictionary<string, ParameterSymbol>();
+                var declarationMap = _definitionMap;
                 foreach (var s in definitions)
                 {
                     if (!s.IsDiscard && !declarationMap.ContainsKey(s.Name))

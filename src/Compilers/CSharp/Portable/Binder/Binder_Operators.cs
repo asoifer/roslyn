@@ -3056,7 +3056,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 TypeWithAnnotations targetTypeWithAnnotations = BindType(possibleType, bindAsTypeDiagnostics, out AliasSymbol alias);
                 TypeSymbol targetType = targetTypeWithAnnotations.Type;
                 boundType = new BoundTypeExpression(possibleType, alias, targetTypeWithAnnotations);
-                return !(targetType?.IsErrorType() == true && bindAsTypeDiagnostics.HasAnyResolvedErrors());
+                // LAFHIS
+                return !((!targetType.Equals(null) ? targetType.IsErrorType() : false) == true && bindAsTypeDiagnostics.HasAnyResolvedErrors());
             }
 
         }
@@ -3931,7 +3932,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 noCommonTypeError = hadMultipleCandidates ? ErrorCode.ERR_AmbigQM : ErrorCode.ERR_InvalidQM;
 
             var constantValue = FoldConditionalOperator(condition, trueExpr, falseExpr);
-            bool hasErrors = type?.IsErrorType() == true || constantValue?.IsBad == true;
+            // LAFHIS
+            bool hasErrors = (!type.Equals(null) ? type.IsErrorType() : false) == true || constantValue?.IsBad == true;
             return new BoundUnconvertedConditionalOperator(node, condition, trueExpr, falseExpr, constantValue, noCommonTypeError, type, hasErrors);
         }
 

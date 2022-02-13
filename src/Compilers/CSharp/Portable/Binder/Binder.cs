@@ -854,7 +854,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                     }
                     if (snippet != null)
                     {
-                        sub.Add(new TreeDumperNode($"scope", $"{snippet} ({scope.ScopeDesignator?.Kind()})", null));
+                        // LAFHIS
+                        var temp = scope.ScopeDesignator != null ? scope.ScopeDesignator.Kind() : default(SyntaxKind);
+                        sub.Add(new TreeDumperNode($"scope", $"{snippet} ({temp})", null));
                     }
                     if (current != null)
                     {

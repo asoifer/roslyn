@@ -59,8 +59,9 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             TypeSymbol leftOperatorSourceOpt = left.Type?.StrippedType();
             TypeSymbol rightOperatorSourceOpt = right.Type?.StrippedType();
-            bool leftSourceIsInterface = leftOperatorSourceOpt?.IsInterfaceType() == true;
-            bool rightSourceIsInterface = rightOperatorSourceOpt?.IsInterfaceType() == true;
+            // LAFHIS
+            bool leftSourceIsInterface = leftOperatorSourceOpt is not null && leftOperatorSourceOpt.IsInterfaceType();
+            bool rightSourceIsInterface = rightOperatorSourceOpt is not null && rightOperatorSourceOpt.IsInterfaceType();
 
             // The following is a slight rewording of the specification to emphasize that not all
             // operands of a binary operation need to have a type.

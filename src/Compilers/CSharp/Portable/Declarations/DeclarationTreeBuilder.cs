@@ -70,7 +70,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                 else if (acceptSimpleProgram && member.IsKind(SyntaxKind.GlobalStatement))
                 {
                     var global = (GlobalStatementSyntax)member;
-                    firstGlobalStatement ??= global;
+                    // LAFHIS
+                    if (firstGlobalStatement == null)
+                        firstGlobalStatement = global;
                     var topLevelStatement = global.Statement;
 
                     if (!hasAwaitExpressions)

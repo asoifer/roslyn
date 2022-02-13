@@ -31,7 +31,9 @@ namespace Microsoft.CodeAnalysis.CSharp
         /// <returns>True if a reference to "this" is available.</returns>
         internal bool HasThis(bool isExplicit, out bool inStaticContext)
         {
-            var memberOpt = this.ContainingMemberOrLambda?.ContainingNonLambdaMember();
+            // LAFHIS
+            var memberOpt = this.ContainingMemberOrLambda != null ?
+                this.ContainingMemberOrLambda.ContainingNonLambdaMember() : (Symbol)null;
             if (memberOpt?.IsStatic == true)
             {
                 inStaticContext = memberOpt.Kind == SymbolKind.Field || memberOpt.Kind == SymbolKind.Method || memberOpt.Kind == SymbolKind.Property;
@@ -1755,7 +1757,14 @@ namespace Microsoft.CodeAnalysis.CSharp
                                 this.Compilation, name: "var", arity: 0, errorInfo: null, variableUsedBeforeDeclaration: true);
                             isNullableUnknown = true;
                         }
-                        else if ((localSymbol as SourceLocalSymbol)?.IsVar == true && localSymbol.ForbiddenZone?.Contains(node) == true)
+                        else if (
+                            // LAFHIS
+                            //(localSymbol as SourceLocalSymbol)?.IsVar == true && 
+                            (localSymbol is SourceLocalSymbol) &&
+                            ((SourceLocalSymbol)localSymbol).IsVar &&
+                            // localSymbol.ForbiddenZone?.Contains(node) == true
+                            localSymbol.ForbiddenZone != null &&
+                            localSymbol.ForbiddenZone.Contains(node))
                         {
                             // A var (type-inferred) local variable has been used in its own initialization (the "forbidden zone").
                             // There are many cases where this occurs, including:
@@ -2259,7 +2268,10 @@ namespace Microsoft.CodeAnalysis.CSharp
             BoundExpression left = BindRangeExpressionOperand(node.LeftOperand, diagnostics);
             BoundExpression right = BindRangeExpressionOperand(node.RightOperand, diagnostics);
 
-            if (left?.Type.IsNullableType() == true || right?.Type.IsNullableType() == true)
+            if (
+                // LAFHIS
+                (left != null && left.Type.IsNullableType() == true) || 
+                (right != null && right.Type.IsNullableType() == true))
             {
                 // Used in lowering to construct the nullable
                 GetSpecialType(SpecialType.System_Boolean, diagnostics, node);
@@ -2287,7 +2299,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             BoundExpression boundOperand = BindValue(operand, diagnostics, BindValueKind.RValue);
             TypeSymbol indexType = GetWellKnownType(WellKnownType.System_Index, diagnostics, operand);
 
-            if (boundOperand.Type?.IsNullableType() == true)
+            // LAFHIS
+            if (!boundOperand.Type.Equals(null) && boundOperand.Type.IsNullableType() == true)
             {
                 // Used in lowering to construct the nullable
                 GetSpecialTypeMember(SpecialMember.System_Nullable_T__ctor, diagnostics, operand);
@@ -5216,7 +5229,7 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                     hasErrors &= ReportBadDynamicArguments(node, argArray, refKindsArray, diagnostics, queryClause: null);
 
-                    boundInitializerOpt = makeBoundInitializerOpt();
+                    boundInitializerOpt = makeBoundInitializerOpt(initializerSyntaxOpt, initializerTypeOpt, typeNode, type, diagnostics);
                     result = new BoundDynamicObjectCreationExpression(
                         node,
                         typeName,
@@ -5292,7 +5305,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         diagnostics);
                 }
 
-                boundInitializerOpt = makeBoundInitializerOpt();
+                boundInitializerOpt = makeBoundInitializerOpt(initializerSyntaxOpt, initializerTypeOpt, typeNode, type, diagnostics);
                 result = new BoundObjectCreationExpression(
                     node,
                     method,
@@ -5344,20 +5357,21 @@ namespace Microsoft.CodeAnalysis.CSharp
             childNodes.AddRange(BuildArgumentsForErrorRecovery(analyzedArguments, candidateConstructors));
             if (initializerSyntaxOpt != null)
             {
-                childNodes.Add(boundInitializerOpt ?? makeBoundInitializerOpt());
+                childNodes.Add(boundInitializerOpt ?? makeBoundInitializerOpt(initializerSyntaxOpt, initializerTypeOpt, typeNode, type, diagnostics));
             }
 
             return new BoundBadExpression(node, resultKind, symbols.ToImmutableAndFree(), childNodes.ToImmutableAndFree(), type);
 
-            BoundObjectInitializerExpressionBase makeBoundInitializerOpt()
+            // LAFHIS
+            BoundObjectInitializerExpressionBase makeBoundInitializerOpt(InitializerExpressionSyntax initializerSyntaxOpt2, TypeSymbol initializerTypeOpt2, SyntaxNode typeNode2, NamedTypeSymbol type2, DiagnosticBag diagnostics2)
             {
-                if (initializerSyntaxOpt != null)
+                if (initializerSyntaxOpt2 != null)
                 {
-                    return BindInitializerExpression(syntax: initializerSyntaxOpt,
-                                                     type: initializerTypeOpt ?? type,
-                                                     typeSyntax: typeNode,
+                    return BindInitializerExpression(syntax: initializerSyntaxOpt2,
+                                                     type: initializerTypeOpt2 ?? type2,
+                                                     typeSyntax: typeNode2,
                                                      isForNewInstance: true,
-                                                     diagnostics: diagnostics);
+                                                     diagnostics: diagnostics2);
                 }
                 return null;
             }
@@ -8502,7 +8516,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             // create surrogate receiver
             var receiverType = receiver.Type;
-            if (receiverType?.IsNullableType() == true)
+            // LAFHIS
+            if (!receiverType.Equals(null) && receiverType.IsNullableType() == true)
             {
                 receiverType = receiverType.GetNullableUnderlyingType();
             }

@@ -1478,7 +1478,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                     // We do the same for async Main methods, since it is unlikely that user code will be awaiting the Task:
                     // AsyncForwardEntryPoint <Main> -> kick-off method Main -> MoveNext.
 
-                    bool isAsyncMainMoveNext = entryPointOpt?.UserMain.Equals(kickoffMethod) == true;
+                    // LAFHIS
+                    bool isAsyncMainMoveNext = entryPointOpt != null && entryPointOpt.UserMain.Equals(kickoffMethod);
 
                     moveNextBodyDebugInfoOpt = new AsyncMoveNextBodyDebugInfo(
                         kickoffMethod.GetCciAdapter(),

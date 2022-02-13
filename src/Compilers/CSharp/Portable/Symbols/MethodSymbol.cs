@@ -985,15 +985,18 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             foreach (var callConvTypedConstant in value.Values)
             {
                 Debug.Assert(callConvTypedConstant.Kind == TypedConstantKind.Type);
-                if (!(callConvTypedConstant.ValueInternal is NamedTypeSymbol callConvType)
-                    || !FunctionPointerTypeSymbol.IsCallingConventionModifier(callConvType))
+                // LAFHIS
+                if (!(callConvTypedConstant.ValueInternal is NamedTypeSymbol)
+                    || !FunctionPointerTypeSymbol.IsCallingConventionModifier((NamedTypeSymbol)callConvTypedConstant.ValueInternal))
                 {
                     // `{0}` is not a valid calling convention type for 'UnmanagedCallersOnly'.
-                    diagnostics?.Add(ErrorCode.ERR_InvalidUnmanagedCallersOnlyCallConv, location!, callConvTypedConstant.ValueInternal ?? "null");
+                    // LAFHIS
+                    if (diagnostics != null)
+                        diagnostics.Add(ErrorCode.ERR_InvalidUnmanagedCallersOnlyCallConv, location, callConvTypedConstant.ValueInternal ?? "null");
                 }
                 else
                 {
-                    _ = builder.Add(callConvType);
+                    _ = builder.Add((NamedTypeSymbol)callConvTypedConstant.ValueInternal);
                 }
 
             }
@@ -1012,16 +1015,22 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         {
             Debug.Assert((location == null) == (diagnostics == null));
 
-            if (!IsStatic || MethodKind is not (MethodKind.Ordinary or MethodKind.LocalFunction))
+            // LAFHIS
+            //if (!IsStatic || MethodKind is not (MethodKind.Ordinary or MethodKind.LocalFunction))
+            if (!IsStatic || !(MethodKind is MethodKind.Ordinary || MethodKind is MethodKind.LocalFunction))
             {
                 // `UnmanagedCallersOnly` can only be applied to ordinary static methods or local functions.
-                diagnostics?.Add(ErrorCode.ERR_UnmanagedCallersOnlyRequiresStatic, location);
+                // LAFHIS
+                if (diagnostics != null)
+                    diagnostics.Add(ErrorCode.ERR_UnmanagedCallersOnlyRequiresStatic, location);
                 return true;
             }
 
             if (isGenericMethod(this) || ContainingType.IsGenericType)
             {
-                diagnostics?.Add(ErrorCode.ERR_UnmanagedCallersOnlyMethodOrTypeCannotBeGeneric, location);
+                // LAFHIS
+                if (diagnostics != null)
+                    diagnostics.Add(ErrorCode.ERR_UnmanagedCallersOnlyMethodOrTypeCannotBeGeneric, location);
                 return true;
             }
 

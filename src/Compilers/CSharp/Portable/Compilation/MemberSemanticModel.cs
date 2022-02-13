@@ -901,14 +901,20 @@ namespace Microsoft.CodeAnalysis.CSharp
             }
 
             var bound = GetUpperBoundNode(node);
-            BoundAwaitableInfo awaitableInfo = (((bound as BoundExpressionStatement)?.Expression ?? bound) as BoundAwaitExpression)?.AwaitableInfo;
+            // LAFHIS
+            var temp = bound as BoundExpressionStatement;
+            var exp = temp?.Expression;
+            var temp2 = (exp ?? bound);
+            var awaitableInfo = (temp2 is BoundAwaitExpression) ? ((BoundAwaitExpression)temp2).AwaitableInfo : null;
             if (awaitableInfo == null)
             {
                 return default(AwaitExpressionInfo);
             }
 
+            // LAFHIS
+            var temp3 = awaitableInfo.GetAwaiter;
             return new AwaitExpressionInfo(
-                getAwaiter: (IMethodSymbol)awaitableInfo.GetAwaiter?.ExpressionSymbol.GetPublicSymbol(),
+                getAwaiter: temp3 is not null ? (IMethodSymbol)temp3.ExpressionSymbol.GetPublicSymbol() : null,
                 isCompleted: awaitableInfo.IsCompleted.GetPublicSymbol(),
                 getResult: awaitableInfo.GetResult.GetPublicSymbol(),
                 isDynamic: awaitableInfo.IsDynamic);
@@ -965,11 +971,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                 }
             }
 
+            // LAFHIS
+            var temp = enumeratorInfoOpt.CurrentPropertyGetter;
+            var temp2 = temp is not null ? ((PropertySymbol)temp.AssociatedSymbol) : null;
+
             return new ForEachStatementInfo(
                 enumeratorInfoOpt.IsAsync,
                 enumeratorInfoOpt.GetEnumeratorInfo.Method.GetPublicSymbol(),
                 enumeratorInfoOpt.MoveNextInfo.Method.GetPublicSymbol(),
-                currentProperty: ((PropertySymbol)enumeratorInfoOpt.CurrentPropertyGetter?.AssociatedSymbol).GetPublicSymbol(),
+                currentProperty: temp2.GetPublicSymbol(),
                 disposeMethod.GetPublicSymbol(),
                 enumeratorInfoOpt.ElementType.GetPublicSymbol(),
                 boundForEach.ElementConversion,
@@ -1028,7 +1038,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         private SymbolInfo GetSymbolInfoForQuery(BoundQueryClause bound)
         {
-            var call = bound?.Operation as BoundCall;
+            // LAFHIS
+            var call = bound is not null ? bound.Operation as BoundCall : null;
             if (call == null)
             {
                 return SymbolInfo.None;
@@ -1095,7 +1106,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         {
             CheckSyntaxNode(declaratorSyntax);
 
-            var tupleLiteral = declaratorSyntax?.Parent as TupleExpressionSyntax;
+            // LAFHIS
+            var tupleLiteral = declaratorSyntax is not null ? declaratorSyntax.Parent as TupleExpressionSyntax : null;
 
             // for now only arguments of a tuple literal may declare symbols
             if (tupleLiteral == null)
@@ -1123,7 +1135,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         {
             var bound = this.GetLowerBoundNode(declaratorSyntax);
 
-            return (bound as BoundTupleExpression)?.Type as NamedTypeSymbol;
+            // LAFHIS
+            return (bound is BoundTupleExpression) ? ((BoundTupleExpression)bound).Type as NamedTypeSymbol : null;
         }
 
         public override SyntaxTree SyntaxTree
@@ -1171,34 +1184,48 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             // if binding root is parameter, make it equal value
             // we need to do this since node map doesn't contain bound node for parameter
-            if (bindingRoot is ParameterSyntax parameter && parameter.Default?.FullSpan.Contains(node.Span) == true)
+            // LAFHIS
+            if (bindingRoot is ParameterSyntax &&
+                ((ParameterSyntax)bindingRoot).Default is not null &&
+                ((ParameterSyntax)bindingRoot).Default.FullSpan.Contains(node.Span) == true)
             {
-                return parameter.Default;
+                return ((ParameterSyntax)bindingRoot).Default;
             }
 
             // if binding root is field variable declarator, make it initializer
             // we need to do this since node map doesn't contain bound node for field/event variable declarator
-            if (bindingRoot is VariableDeclaratorSyntax variableDeclarator && variableDeclarator.Initializer?.FullSpan.Contains(node.Span) == true)
+            // LAFHIS
+            if (bindingRoot is VariableDeclaratorSyntax && 
+                ((VariableDeclaratorSyntax)bindingRoot).Initializer is not null &&
+                ((VariableDeclaratorSyntax)bindingRoot).Initializer.FullSpan.Contains(node.Span) == true)
             {
-                if (variableDeclarator.Parent?.Parent.IsKind(SyntaxKind.FieldDeclaration) == true ||
-                    variableDeclarator.Parent?.Parent.IsKind(SyntaxKind.EventFieldDeclaration) == true)
+                if ((((VariableDeclaratorSyntax)bindingRoot).Parent is not null && 
+                    ((VariableDeclaratorSyntax)bindingRoot).Parent.Parent.IsKind(SyntaxKind.FieldDeclaration) == true) ||
+                    (((VariableDeclaratorSyntax)bindingRoot).Parent is not null &&
+                    ((VariableDeclaratorSyntax)bindingRoot).Parent.Parent.IsKind(SyntaxKind.EventFieldDeclaration) == true))
                 {
-                    return variableDeclarator.Initializer;
+                    return ((VariableDeclaratorSyntax)bindingRoot).Initializer;
                 }
             }
 
             // if binding root is enum member declaration, make it equal value
             // we need to do this since node map doesn't contain bound node for enum member decl
-            if (bindingRoot is EnumMemberDeclarationSyntax enumMember && enumMember.EqualsValue?.FullSpan.Contains(node.Span) == true)
+            // LAFHIS
+            if (bindingRoot is EnumMemberDeclarationSyntax &&
+                ((EnumMemberDeclarationSyntax)bindingRoot).EqualsValue is not null &&
+                ((EnumMemberDeclarationSyntax)bindingRoot).EqualsValue.FullSpan.Contains(node.Span) == true)
             {
-                return enumMember.EqualsValue;
+                return ((EnumMemberDeclarationSyntax)bindingRoot).EqualsValue;
             }
 
             // if binding root is property member declaration, make it equal value
             // we need to do this since node map doesn't contain bound node for property initializer
-            if (bindingRoot is PropertyDeclarationSyntax propertyMember && propertyMember.Initializer?.FullSpan.Contains(node.Span) == true)
+            // LAFHIS
+            if (bindingRoot is PropertyDeclarationSyntax && 
+                ((PropertyDeclarationSyntax)bindingRoot).Initializer is not null &&
+                ((PropertyDeclarationSyntax)bindingRoot).Initializer.FullSpan.Contains(node.Span) == true)
             {
-                return propertyMember.Initializer;
+                return ((PropertyDeclarationSyntax)bindingRoot).Initializer;
             }
 
             return bindingRoot;
@@ -1809,7 +1836,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                         // In some error scenarios, we end-up with a method group as the receiver,
                         // let's get to real receiver.
-                        while (receiver?.Kind == BoundKind.MethodGroup)
+                        // LAFHIS
+                        while (receiver is not null && receiver.Kind == BoundKind.MethodGroup)
                         {
                             receiver = ((BoundMethodGroup)receiver).ReceiverOpt;
                         }

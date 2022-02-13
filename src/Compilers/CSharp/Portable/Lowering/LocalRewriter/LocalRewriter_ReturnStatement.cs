@@ -44,9 +44,13 @@ namespace Microsoft.CodeAnalysis.CSharp
                     return true;
                 }
 
-                return
-                    (method as SourceMemberMethodSymbol)?.IsExpressionBodied ??
-                    (method as LocalFunctionSymbol)?.IsExpressionBodied ?? false;
+                // LAFHIS
+                var temp = false;
+                if (method is SourceMemberMethodSymbol)
+                    temp = ((SourceMemberMethodSymbol)method).IsExpressionBodied;
+                else if (method is LocalFunctionSymbol)
+                    temp = ((LocalFunctionSymbol)method).IsExpressionBodied;
+                return temp;
             }
         }
     }

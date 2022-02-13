@@ -302,7 +302,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             }
 
             //cannot capture stack-only types.
-            if (method.RequiresInstanceReceiver && methodGroup.Receiver?.Type?.IsRestrictedType() == true)
+            // LAFHIS
+            if (method.RequiresInstanceReceiver && methodGroup.Receiver != null && methodGroup.Receiver.Type is not null && methodGroup.Receiver.Type.IsRestrictedType())
             {
                 return Conversion.NoConversion;
             }

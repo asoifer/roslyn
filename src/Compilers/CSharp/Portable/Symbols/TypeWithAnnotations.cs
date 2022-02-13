@@ -49,7 +49,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         private TypeWithAnnotations(TypeSymbol defaultType, NullableAnnotation nullableAnnotation, Extensions extensions)
         {
-            Debug.Assert(defaultType?.IsNullableType() != true || nullableAnnotation == NullableAnnotation.Annotated);
+            // LAFHIS
+            var a1 = defaultType is null;
+            var a2 = !a1 ? defaultType.IsNullableType() : true;
+            var a3 = nullableAnnotation == NullableAnnotation.Annotated;
+            Debug.Assert(a1 || a2 != true || a3);
             Debug.Assert(extensions != null);
 
             DefaultType = defaultType;
@@ -91,7 +95,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             {
                 case NullableAnnotation.Oblivious:
                 case NullableAnnotation.NotAnnotated:
-                    if (typeSymbol?.IsNullableType() == true)
+                    // LAFHIS
+                    if (typeSymbol is not null && typeSymbol.IsNullableType())
                     {
                         // int?, T? where T : struct (add annotation)
                         nullableAnnotation = NullableAnnotation.Annotated;
@@ -130,7 +135,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 return NullableAnnotation;
             }
 
-            if (Type?.IsPossiblyNullableReferenceTypeTypeParameter() == true)
+            // LAFHIS
+            if (Type is null && Type.IsPossiblyNullableReferenceTypeTypeParameter() == true)
             {
                 return NullableAnnotation.Annotated;
             }
@@ -197,22 +203,23 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 }
                 else
                 {
-                    return makeNullableT();
+                    return makeNullableT(compilation, typeSymbol);
                 }
             }
 
             if (((TypeParameterSymbol)typeSymbol).TypeParameterKind == TypeParameterKind.Cref)
             {
                 // We always bind annotated type parameters in cref as `Nullable<T>`
-                return makeNullableT();
+                return makeNullableT(compilation, typeSymbol);
             }
 
             // It is not safe to check if a type parameter is a reference type right away, this can send us into a cycle.
             // In this case we delay asking this question as long as possible.
             return CreateLazyNullableType(compilation, this);
 
-            TypeWithAnnotations makeNullableT()
-                => Create(compilation.GetSpecialType(SpecialType.System_Nullable_T).Construct(ImmutableArray.Create(typeSymbol)));
+            // LAFHIS
+            TypeWithAnnotations makeNullableT(CSharpCompilation comp, TypeSymbol typeSym)
+                => Create(comp.GetSpecialType(SpecialType.System_Nullable_T).Construct(ImmutableArray.Create(typeSym)));
         }
 #nullable disable
 
@@ -310,7 +317,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         private bool IsSafeToResolve()
         {
-            var declaringMethod = (DefaultType as TypeParameterSymbol)?.DeclaringMethod as SourceOrdinaryMethodSymbol;
+            // LAFHIS
+            //var declaringMethod = (DefaultType as TypeParameterSymbol)?.DeclaringMethod as SourceOrdinaryMethodSymbol;
+            var declaringMethod = (DefaultType is TypeParameterSymbol) ? ((TypeParameterSymbol)DefaultType).DeclaringMethod as SourceOrdinaryMethodSymbol : null;
             return !((object)declaringMethod != null && !declaringMethod.HasComplete(CompletionPart.FinishMethodChecks) &&
                    (declaringMethod.IsOverride || declaringMethod.IsExplicitInterfaceImplementation));
         }

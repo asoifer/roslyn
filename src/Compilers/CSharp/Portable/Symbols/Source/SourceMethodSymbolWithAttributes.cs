@@ -278,7 +278,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                     declarations,
                     ref lazyCustomAttributesBag,
                     symbolPart,
-                    binderOpt: (this as LocalFunctionSymbol)?.SignatureBinder);
+                    binderOpt:
+                    // LAFHIS
+                    //(this as LocalFunctionSymbol)?.SignatureBinder
+                    (this is LocalFunctionSymbol) ? ((LocalFunctionSymbol)this).SignatureBinder : null);
             }
 
             if (bagCreatedOnThisThread)

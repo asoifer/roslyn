@@ -83,7 +83,9 @@ namespace Microsoft.CodeAnalysis.CSharp
         }
 
         public bool IsLocalFunctionInvocation =>
-            MethodGroup?.Methods.Count == 1 && // Local functions cannot be overloaded
+            // LAFHIS
+            MethodGroup != null &&
+            MethodGroup.Methods.Count == 1 && // Local functions cannot be overloaded
             MethodGroup.Methods[0].MethodKind == MethodKind.LocalFunction;
 
         public void Free()

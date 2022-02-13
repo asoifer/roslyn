@@ -196,8 +196,9 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         protected override bool NeedsProxy(Symbol localOrParameter)
         {
+            // LAFHIS
             Debug.Assert(localOrParameter is LocalSymbol || localOrParameter is ParameterSymbol ||
-                (localOrParameter as MethodSymbol)?.MethodKind == MethodKind.LocalFunction);
+                ((localOrParameter is MethodSymbol) && ((MethodSymbol)localOrParameter).MethodKind == MethodKind.LocalFunction));
             return _allCapturedVariables.Contains(localOrParameter);
         }
 
@@ -1519,7 +1520,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 _framePointers.TryGetValue(translatedLambdaContainer, out _innermostFramePointer);
             }
 
-            _currentTypeParameters = containerAsFrame?.TypeParameters.Concat(synthesizedMethod.TypeParameters) ?? synthesizedMethod.TypeParameters;
+            // LAFHIS
+            _currentTypeParameters = (!(containerAsFrame is null) ? containerAsFrame.TypeParameters.Concat(synthesizedMethod.TypeParameters) : synthesizedMethod.TypeParameters);
             _currentLambdaBodyTypeMap = synthesizedMethod.TypeMap;
 
             if (node.Body is BoundBlock block)

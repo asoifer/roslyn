@@ -518,6 +518,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         }
 
         private static BaseParameterListSyntax? GetParameterListSyntax(CSharpSyntaxNode syntax)
-            => (syntax as IndexerDeclarationSyntax)?.ParameterList;
+            =>
+            // LAFHIS
+            //(syntax as IndexerDeclarationSyntax)?.ParameterList
+            (syntax is IndexerDeclarationSyntax) ? ((IndexerDeclarationSyntax)syntax).ParameterList : null;
     }
 }

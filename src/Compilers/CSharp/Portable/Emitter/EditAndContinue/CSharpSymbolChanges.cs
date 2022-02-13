@@ -19,7 +19,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Emit
 
         protected override ISymbolInternal GetISymbolInternalOrNull(ISymbol symbol)
         {
-            return (symbol as Symbols.PublicModel.Symbol)?.UnderlyingSymbol;
+            // LAFHIS
+            return (symbol is Symbols.PublicModel.Symbol temp) ? temp.UnderlyingSymbol : null;
         }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.CodeAnalysis.CSharp.Symbols;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp.Test.Utilities;
 using Microsoft.CodeAnalysis.Test.Utilities;
+using Roslyn.Test.Utilities;
 using Roslyn.Utilities;
 using Xunit;
 
@@ -61,7 +62,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         {
             var comp = CSharpTestBase.CreateCompilation(source);
             var diagnostics = comp.GetDiagnostics();
-            Assert.Equal(diagStrings.Length, diagnostics.Length);
+            CustomAssert.Equal(diagStrings.Length, diagnostics.Length);
             CompilingTestBase.TestDiagnostics(diagnostics, diagStrings);
         }
 
@@ -135,7 +136,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             int expectedLength = expectedErrorDesp.Length;
             int actualLength = actualErrors.Count();
 
-            Assert.True(
+            CustomAssert.True(
                 expectedLength == actualLength,
                 String.Format(
                     "ErrCount {0} != {1}{2}Actual errors are:{2}{3}",
@@ -179,19 +180,19 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
                 var acterr = actualSortedDesp[idx];
 
-                Assert.Equal(experr.Code, acterr.Code);
+                CustomAssert.Equal(experr.Code, acterr.Code);
                 if (experr.Line > 0 && experr.Column > 0)
                 {
-                    Assert.True(experr.Line == acterr.Line, String.Format("Line {0}!={1}", experr.Line, acterr.Line));
-                    Assert.True(experr.Column == acterr.Column, String.Format("Col {0}!={1}", experr.Column, acterr.Column));
+                    CustomAssert.True(experr.Line == acterr.Line, String.Format("Line {0}!={1}", experr.Line, acterr.Line));
+                    CustomAssert.True(experr.Column == acterr.Column, String.Format("Col {0}!={1}", experr.Column, acterr.Column));
                 }
 
-                Assert.True(experr.IsWarning == acterr.IsWarning, String.Format("IsWarning {0}!={1}", experr.IsWarning, acterr.IsWarning));
+                CustomAssert.True(experr.IsWarning == acterr.IsWarning, String.Format("IsWarning {0}!={1}", experr.IsWarning, acterr.IsWarning));
 
                 //if the expected contains parameters, validate those too.
                 if (experr.Parameters != null)
                 {
-                    Assert.True(experr.Parameters.SequenceEqual(acterr.Parameters), String.Format("Param: {0}!={1}", experr.Parameters.Count(), acterr.Parameters.Count()));
+                    CustomAssert.True(experr.Parameters.SequenceEqual(acterr.Parameters), String.Format("Param: {0}!={1}", experr.Parameters.Count(), acterr.Parameters.Count()));
                 }
 
                 idx++;
@@ -207,10 +208,10 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                 return;
 
             // TODO: for now, we only expected actual errors including all expected errors
-            // Assert.Equal(expectedErrorDesp.Length, actualErrors.Count);
+            // CustomAssert.Equal(expectedErrorDesp.Length, actualErrors.Count);
 
             // allow actual errors contain more same errors, no line & column check
-            Assert.InRange(expectedErrorDesp.Length, 0, actualErrors.Count());
+            CustomAssert.InRange(expectedErrorDesp.Length, 0, actualErrors.Count());
 
             var expectedCodes = (from e in expectedErrorDesp
                                  orderby e.Code
@@ -226,7 +227,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                 var actualGroupCount = actualGroup != null ? actualGroup.Count() : 0;
                 // Same error code *should* be same error type: error/warning
                 // In other words, 0 <= # of expected occurrences <= # of actual occurrences
-                Assert.InRange(expectedGroup.Count(), 0, actualGroupCount);
+                CustomAssert.InRange(expectedGroup.Count(), 0, actualGroupCount);
             }
         }
     }

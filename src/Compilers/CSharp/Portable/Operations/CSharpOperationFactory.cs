@@ -295,7 +295,8 @@ namespace Microsoft.CodeAnalysis.Operations
                 case BoundKind.TypeOrValueExpression:
                 case BoundKind.IndexOrRangePatternIndexerAccess:
 
-                    ConstantValue? constantValue = (boundNode as BoundExpression)?.ConstantValue;
+                    // LAFHIS
+                    ConstantValue? constantValue = (boundNode is BoundExpression temp) ? temp.ConstantValue : null;
                     bool isImplicit = boundNode.WasCompilerGenerated;
 
                     if (!isImplicit)
@@ -381,7 +382,9 @@ namespace Microsoft.CodeAnalysis.Operations
             {
                 case BoundKind.LocalDeclaration:
                     {
-                        return ImmutableArray.Create(CreateVariableDeclaratorInternal((BoundLocalDeclaration)declaration, (declarationSyntax as VariableDeclarationSyntax)?.Variables[0] ?? declarationSyntax));
+                        // LAFHIS
+                        return ImmutableArray.Create(CreateVariableDeclaratorInternal((BoundLocalDeclaration)declaration, 
+                            ((declarationSyntax is VariableDeclarationSyntax temp)? temp.Variables[0] : null) ?? declarationSyntax));
                     }
                 case BoundKind.MultipleLocalDeclarations:
                 case BoundKind.UsingLocalDeclarations:
@@ -936,9 +939,11 @@ namespace Microsoft.CodeAnalysis.Operations
         private ILocalFunctionOperation CreateBoundLocalFunctionStatementOperation(BoundLocalFunctionStatement boundLocalFunctionStatement)
         {
             IBlockOperation? body = (IBlockOperation?)Create(boundLocalFunctionStatement.Body);
-            IBlockOperation? ignoredBody = boundLocalFunctionStatement is { BlockBody: { }, ExpressionBody: { } exprBody }
-                ? (IBlockOperation?)Create(exprBody)
-                : null;
+            // LAFHIS
+            IBlockOperation? ignoredBody = null;
+            if (boundLocalFunctionStatement is { BlockBody: { }, ExpressionBody: { } exprBody })
+                ignoredBody = (IBlockOperation?)Create(exprBody);
+
             IMethodSymbol symbol = boundLocalFunctionStatement.Symbol.GetPublicSymbol();
             SyntaxNode syntax = boundLocalFunctionStatement.Syntax;
             bool isImplicit = boundLocalFunctionStatement.WasCompilerGenerated;
@@ -983,9 +988,11 @@ namespace Microsoft.CodeAnalysis.Operations
                     // Semantic model has a special case here that we match: if the underlying syntax is missing, don't create a conversion expression,
                     // and instead directly return the operand, which will be a BoundBadExpression. When we generate a node for the BoundBadExpression,
                     // the resulting IOperation will also have a null Type.
+                    // LAFHIS
                     Debug.Assert(boundOperand.Kind == BoundKind.BadExpression ||
-                                 ((boundOperand as BoundLambda)?.Body.Statements.SingleOrDefault() as BoundReturnStatement)?.
-                                     ExpressionOpt?.Kind == BoundKind.BadExpression);
+                                 ((boundOperand is BoundLambda temp && temp.Body.Statements.SingleOrDefault() is BoundReturnStatement) ? 
+                                    ((BoundReturnStatement)temp.Body.Statements.SingleOrDefault()).ExpressionOpt != null &&
+                                    ((BoundReturnStatement)temp.Body.Statements.SingleOrDefault()).Kind == BoundKind.BadExpression : false));
                     return Create(boundOperand);
                 }
 
@@ -1631,6 +1638,21 @@ namespace Microsoft.CodeAnalysis.Operations
                                     ? compilation.GetWellKnownType(WellKnownType.System_IAsyncDisposable)
                                     : compilation.GetSpecialType(SpecialType.System_IDisposable);
 
+                // LAFHIS
+                var getEnumeratorInfo = enumeratorInfoOpt.GetEnumeratorInfo;
+                var temp = getEnumeratorInfo is { Method: { IsExtensionMethod: true } } 
+                                                        ? Operation.SetParentOperation(
+                                                            DeriveArguments(
+                                                                getEnumeratorInfo.Method,
+                                                                getEnumeratorInfo.Arguments,
+                                                                argumentsToParametersOpt: default,
+                                                                getEnumeratorInfo.DefaultArguments,
+                                                                getEnumeratorInfo.Expanded,
+                                                                boundForEachStatement.Expression.Syntax,
+                                                                invokedAsExtensionMethod: true),
+                                                            null)
+                                                        : default;
+
                 info = new ForEachLoopOperationInfo(enumeratorInfoOpt.ElementType.GetPublicSymbol(),
                                                     enumeratorInfoOpt.GetEnumeratorInfo.Method.GetPublicSymbol(),
                                                     ((PropertySymbol)enumeratorInfoOpt.CurrentPropertyGetter.AssociatedSymbol).GetPublicSymbol(),
@@ -1643,21 +1665,11 @@ namespace Microsoft.CodeAnalysis.Operations
                                                                                                                             iDisposable,
                                                                                                                             ref useSiteDiagnostics).IsImplicit :
                                                                                      false,
-                                                    enumeratorInfoOpt.PatternDisposeInfo?.Method.GetPublicSymbol(),
+                                                    // LAFHIS
+                                                    enumeratorInfoOpt.PatternDisposeInfo is not null ? enumeratorInfoOpt.PatternDisposeInfo.Method.GetPublicSymbol() : null,
                                                     enumeratorInfoOpt.CurrentConversion,
                                                     boundForEachStatement.ElementConversion,
-                                                    getEnumeratorArguments: enumeratorInfoOpt.GetEnumeratorInfo is { Method: { IsExtensionMethod: true } } getEnumeratorInfo
-                                                        ? Operation.SetParentOperation(
-                                                            DeriveArguments(
-                                                                getEnumeratorInfo.Method,
-                                                                getEnumeratorInfo.Arguments,
-                                                                argumentsToParametersOpt: default,
-                                                                getEnumeratorInfo.DefaultArguments,
-                                                                getEnumeratorInfo.Expanded,
-                                                                boundForEachStatement.Expression.Syntax,
-                                                                invokedAsExtensionMethod: true),
-                                                            null)
-                                                        : default,
+                                                    getEnumeratorArguments: temp,
                                                     disposeArguments: enumeratorInfoOpt.PatternDisposeInfo is object
                                                         ? CreateDisposeArguments(enumeratorInfoOpt.PatternDisposeInfo, boundForEachStatement.Syntax)
                                                         : default);

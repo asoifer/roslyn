@@ -644,7 +644,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 diagnostics.Add(ErrorCode.ERR_InitializerAddHasWrongSignature, location, symbol);
             }
-            else if (nodeOpt?.Kind() == SyntaxKind.AwaitExpression && symbol.Name == WellKnownMemberNames.GetAwaiter)
+            // LAFHIS
+            else if (nodeOpt != null && nodeOpt.Kind() == SyntaxKind.AwaitExpression && symbol.Name == WellKnownMemberNames.GetAwaiter)
             {
                 diagnostics.Add(ErrorCode.ERR_BadAwaitArg, location, receiverOpt.Type);
             }
@@ -1173,7 +1174,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                 argument.Kind != BoundKind.OutVariablePendingInference &&
                 argument.Kind != BoundKind.DiscardExpression)
             {
-                TypeSymbol parameterType = UnwrapIfParamsArray(parameter, isLastParameter) is TypeSymbol t ? t : parameter.Type;
+                // LAFHIS
+                var temp = UnwrapIfParamsArray(parameter, isLastParameter);
+                TypeSymbol parameterType = temp is TypeSymbol ? (TypeSymbol)temp : parameter.Type;
 
                 // If the problem is that a lambda isn't convertible to the given type, also report why.
                 // The argument and parameter type might match, but may not have same in/out modifiers

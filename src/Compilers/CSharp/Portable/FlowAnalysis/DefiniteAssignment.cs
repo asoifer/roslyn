@@ -511,7 +511,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 // We don't know any other way this can happen, but if it does we recover gracefully in production.
                 Debug.Assert(newCode != oldCode || oldCode == ErrorCode.ERR_InsufficientStack, oldCode.ToString());
 
-                var args = diagnostic is DiagnosticWithInfo { Info: { Arguments: var arguments } } ? arguments : diagnostic.Arguments.ToArray();
+                // LAFHIS
+                var args = diagnostic is DiagnosticWithInfo ? ((DiagnosticWithInfo)diagnostic).Info.Arguments : diagnostic.Arguments.ToArray();
                 diagnostics.Add(newCode, diagnostic.Location, args);
             }
 
@@ -965,7 +966,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                         if (Binder.AccessingAutoPropertyFromConstructor(propAccess, this.CurrentSymbol))
                         {
                             var propSymbol = propAccess.PropertySymbol;
-                            member = (propSymbol as SourcePropertySymbolBase)?.BackingField;
+                            // LAFHIS
+                            member = (propSymbol is SourcePropertySymbolBase) ? ((SourcePropertySymbolBase)propSymbol).BackingField : null;
                             if (member is null)
                             {
                                 return false;
@@ -1190,7 +1192,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                         if (Binder.AccessingAutoPropertyFromConstructor(propertyAccess, this.CurrentSymbol))
                         {
                             var property = propertyAccess.PropertySymbol;
-                            var backingField = (property as SourcePropertySymbolBase)?.BackingField;
+                            // LAFHIS
+                            var backingField = (property is SourcePropertySymbolBase) ? ((SourcePropertySymbolBase)property).BackingField : null;
                             if (backingField != null)
                             {
                                 if (!MayRequireTracking(propertyAccess.ReceiverOpt, backingField) || IsAssigned(propertyAccess.ReceiverOpt, out unassignedSlot))
@@ -1868,7 +1871,10 @@ namespace Microsoft.CodeAnalysis.CSharp
         public override BoundNode VisitLocal(BoundLocal node)
         {
             LocalSymbol localSymbol = node.LocalSymbol;
-            if ((localSymbol as SourceLocalSymbol)?.IsVar == true && localSymbol.ForbiddenZone?.Contains(node.Syntax) == true)
+            // LAFHIS
+            var tempLocalSymbol = localSymbol as SourceLocalSymbol;
+            if (tempLocalSymbol != null && tempLocalSymbol.IsVar && 
+                tempLocalSymbol.ForbiddenZone != null && tempLocalSymbol.ForbiddenZone.Contains(node.Syntax))
             {
                 // Since we've already reported a use of the variable where not permitted, we
                 // suppress the diagnostic that the variable may not be assigned where used.
@@ -2223,7 +2229,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             if (Binder.AccessingAutoPropertyFromConstructor(node, this.CurrentSymbol))
             {
                 var property = node.PropertySymbol;
-                var backingField = (property as SourcePropertySymbolBase)?.BackingField;
+                // LAFHIS
+                var backingField = (property is SourcePropertySymbolBase) ? ((SourcePropertySymbolBase)property).BackingField : null;
                 if (backingField != null)
                 {
                     if (MayRequireTracking(node.ReceiverOpt, backingField))

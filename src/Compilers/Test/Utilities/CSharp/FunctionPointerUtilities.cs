@@ -25,108 +25,108 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             static void verifyPointerType(FunctionPointerTypeSymbol symbol)
             {
-                Assert.Equal(SymbolKind.FunctionPointerType, symbol.Kind);
-                Assert.Equal(TypeKind.FunctionPointer, symbol.TypeKind);
+                CustomAssert.Equal(SymbolKind.FunctionPointerType, symbol.Kind);
+                CustomAssert.Equal(TypeKind.FunctionPointer, symbol.TypeKind);
 
-                Assert.False(symbol.IsReferenceType);
-                Assert.False(symbol.IsRefLikeType);
-                Assert.False(symbol.IsReadOnly);
-                Assert.False(symbol.IsStatic);
-                Assert.False(symbol.IsAbstract);
-                Assert.False(symbol.IsSealed);
-                Assert.False(symbol.CanBeReferencedByName);
-                Assert.True(symbol.IsTypeOrTypeAlias());
+                CustomAssert.False(symbol.IsReferenceType);
+                CustomAssert.False(symbol.IsRefLikeType);
+                CustomAssert.False(symbol.IsReadOnly);
+                CustomAssert.False(symbol.IsStatic);
+                CustomAssert.False(symbol.IsAbstract);
+                CustomAssert.False(symbol.IsSealed);
+                CustomAssert.False(symbol.CanBeReferencedByName);
+                CustomAssert.True(symbol.IsTypeOrTypeAlias());
 
-                Assert.True(symbol.IsValueType);
-                Assert.True(symbol.CanBeAssignedNull());
+                CustomAssert.True(symbol.IsValueType);
+                CustomAssert.True(symbol.CanBeAssignedNull());
 
-                Assert.Null(symbol.ContainingSymbol);
-                Assert.Null(symbol.BaseTypeNoUseSiteDiagnostics);
-                Assert.Null(symbol.ObsoleteAttributeData);
+                CustomAssert.Null(symbol.ContainingSymbol);
+                CustomAssert.Null(symbol.BaseTypeNoUseSiteDiagnostics);
+                CustomAssert.Null(symbol.ObsoleteAttributeData);
 
-                Assert.Empty(symbol.Locations);
-                Assert.Empty(symbol.DeclaringSyntaxReferences);
-                Assert.Empty(symbol.GetMembers());
-                Assert.Empty(symbol.GetTypeMembers());
-                Assert.Empty(symbol.InterfacesNoUseSiteDiagnostics());
+                CustomAssert.Empty(symbol.Locations);
+                CustomAssert.Empty(symbol.DeclaringSyntaxReferences);
+                CustomAssert.Empty(symbol.GetMembers());
+                CustomAssert.Empty(symbol.GetTypeMembers());
+                CustomAssert.Empty(symbol.InterfacesNoUseSiteDiagnostics());
             }
 
             static void verifySignature(MethodSymbol symbol)
             {
-                Assert.NotNull(symbol);
+                CustomAssert.NotNull(symbol);
 
-                Assert.Equal(MethodKind.FunctionPointerSignature, symbol.MethodKind);
-                Assert.Equal(string.Empty, symbol.Name);
-                Assert.Equal(0, symbol.Arity);
-                Assert.Equal(default, symbol.ImplementationAttributes);
-                Assert.Equal(Accessibility.NotApplicable, symbol.DeclaredAccessibility);
-                Assert.Equal(FlowAnalysisAnnotations.None, symbol.ReturnTypeFlowAnalysisAnnotations);
-                Assert.Equal(FlowAnalysisAnnotations.None, symbol.FlowAnalysisAnnotations);
+                CustomAssert.Equal(MethodKind.FunctionPointerSignature, symbol.MethodKind);
+                CustomAssert.Equal(string.Empty, symbol.Name);
+                CustomAssert.Equal(0, symbol.Arity);
+                CustomAssert.Equal(default, symbol.ImplementationAttributes);
+                CustomAssert.Equal(Accessibility.NotApplicable, symbol.DeclaredAccessibility);
+                CustomAssert.Equal(FlowAnalysisAnnotations.None, symbol.ReturnTypeFlowAnalysisAnnotations);
+                CustomAssert.Equal(FlowAnalysisAnnotations.None, symbol.FlowAnalysisAnnotations);
 
-                Assert.False(symbol.IsExtensionMethod);
-                Assert.False(symbol.HidesBaseMethodsByName);
-                Assert.False(symbol.IsStatic);
-                Assert.False(symbol.IsAsync);
-                Assert.False(symbol.IsVirtual);
-                Assert.False(symbol.IsOverride);
-                Assert.False(symbol.IsAbstract);
-                Assert.False(symbol.IsExtern);
-                Assert.False(symbol.IsExtensionMethod);
-                Assert.False(symbol.IsSealed);
-                Assert.False(symbol.IsExtern);
-                Assert.False(symbol.HasSpecialName);
-                Assert.False(symbol.HasDeclarativeSecurity);
-                Assert.False(symbol.RequiresSecurityObject);
-                Assert.False(symbol.IsDeclaredReadOnly);
-                Assert.False(symbol.IsMetadataNewSlot(true));
-                Assert.False(symbol.IsMetadataNewSlot(false));
-                Assert.False(symbol.IsMetadataVirtual(true));
-                Assert.False(symbol.IsMetadataVirtual(false));
+                CustomAssert.False(symbol.IsExtensionMethod);
+                CustomAssert.False(symbol.HidesBaseMethodsByName);
+                CustomAssert.False(symbol.IsStatic);
+                CustomAssert.False(symbol.IsAsync);
+                CustomAssert.False(symbol.IsVirtual);
+                CustomAssert.False(symbol.IsOverride);
+                CustomAssert.False(symbol.IsAbstract);
+                CustomAssert.False(symbol.IsExtern);
+                CustomAssert.False(symbol.IsExtensionMethod);
+                CustomAssert.False(symbol.IsSealed);
+                CustomAssert.False(symbol.IsExtern);
+                CustomAssert.False(symbol.HasSpecialName);
+                CustomAssert.False(symbol.HasDeclarativeSecurity);
+                CustomAssert.False(symbol.RequiresSecurityObject);
+                CustomAssert.False(symbol.IsDeclaredReadOnly);
+                CustomAssert.False(symbol.IsMetadataNewSlot(true));
+                CustomAssert.False(symbol.IsMetadataNewSlot(false));
+                CustomAssert.False(symbol.IsMetadataVirtual(true));
+                CustomAssert.False(symbol.IsMetadataVirtual(false));
 
-                Assert.Equal(symbol.IsVararg, symbol.CallingConvention.IsCallingConvention(CallingConvention.ExtraArguments));
+                CustomAssert.Equal(symbol.IsVararg, symbol.CallingConvention.IsCallingConvention(CallingConvention.ExtraArguments));
 
-                Assert.True(symbol.IsImplicitlyDeclared);
+                CustomAssert.True(symbol.IsImplicitlyDeclared);
 
-                Assert.Null(symbol.ContainingSymbol);
-                Assert.Null(symbol.AssociatedSymbol);
-                Assert.Null(symbol.ReturnValueMarshallingInformation);
+                CustomAssert.Null(symbol.ContainingSymbol);
+                CustomAssert.Null(symbol.AssociatedSymbol);
+                CustomAssert.Null(symbol.ReturnValueMarshallingInformation);
 
-                Assert.Empty(symbol.TypeParameters);
-                Assert.Empty(symbol.ExplicitInterfaceImplementations);
-                Assert.Empty(symbol.Locations);
-                Assert.Empty(symbol.DeclaringSyntaxReferences);
-                Assert.Empty(symbol.TypeArgumentsWithAnnotations);
-                Assert.Empty(symbol.GetAppliedConditionalSymbols());
-                Assert.Empty(symbol.ReturnNotNullIfParameterNotNull);
+                CustomAssert.Empty(symbol.TypeParameters);
+                CustomAssert.Empty(symbol.ExplicitInterfaceImplementations);
+                CustomAssert.Empty(symbol.Locations);
+                CustomAssert.Empty(symbol.DeclaringSyntaxReferences);
+                CustomAssert.Empty(symbol.TypeArgumentsWithAnnotations);
+                CustomAssert.Empty(symbol.GetAppliedConditionalSymbols());
+                CustomAssert.Empty(symbol.ReturnNotNullIfParameterNotNull);
             }
 
             static void verifyParameter(ParameterSymbol symbol, MethodSymbol containing)
             {
-                Assert.NotNull(symbol);
+                CustomAssert.NotNull(symbol);
 
-                Assert.Same(symbol.ContainingSymbol, containing);
+                CustomAssert.Same(symbol.ContainingSymbol, containing);
 
-                Assert.Equal(string.Empty, symbol.Name);
-                Assert.Equal(FlowAnalysisAnnotations.None, symbol.FlowAnalysisAnnotations);
+                CustomAssert.Equal(string.Empty, symbol.Name);
+                CustomAssert.Equal(FlowAnalysisAnnotations.None, symbol.FlowAnalysisAnnotations);
 
-                Assert.False(symbol.IsDiscard);
-                Assert.False(symbol.IsParams);
-                Assert.False(symbol.IsMetadataOptional);
-                Assert.False(symbol.IsIDispatchConstant);
-                Assert.False(symbol.IsIUnknownConstant);
-                Assert.False(symbol.IsCallerFilePath);
-                Assert.False(symbol.IsCallerLineNumber);
-                Assert.False(symbol.IsCallerFilePath);
-                Assert.False(symbol.IsCallerMemberName);
+                CustomAssert.False(symbol.IsDiscard);
+                CustomAssert.False(symbol.IsParams);
+                CustomAssert.False(symbol.IsMetadataOptional);
+                CustomAssert.False(symbol.IsIDispatchConstant);
+                CustomAssert.False(symbol.IsIUnknownConstant);
+                CustomAssert.False(symbol.IsCallerFilePath);
+                CustomAssert.False(symbol.IsCallerLineNumber);
+                CustomAssert.False(symbol.IsCallerFilePath);
+                CustomAssert.False(symbol.IsCallerMemberName);
 
-                Assert.True(symbol.IsImplicitlyDeclared);
+                CustomAssert.True(symbol.IsImplicitlyDeclared);
 
-                Assert.Null(symbol.MarshallingInformation);
-                Assert.Null(symbol.ExplicitDefaultConstantValue);
+                CustomAssert.Null(symbol.MarshallingInformation);
+                CustomAssert.Null(symbol.ExplicitDefaultConstantValue);
 
-                Assert.Empty(symbol.Locations);
-                Assert.Empty(symbol.DeclaringSyntaxReferences);
-                Assert.Empty(symbol.NotNullIfParameterNotNull);
+                CustomAssert.Empty(symbol.Locations);
+                CustomAssert.Empty(symbol.DeclaringSyntaxReferences);
+                CustomAssert.Empty(symbol.NotNullIfParameterNotNull);
             }
         }
 
@@ -147,7 +147,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             if (expectedType is null)
             {
                 exprType = semanticInfo.ConvertedType;
-                Assert.Null(semanticInfo.Type);
+                CustomAssert.Null(semanticInfo.Type);
             }
             else
             {
@@ -157,7 +157,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             if (expectedConvertedType is null)
             {
-                Assert.Equal(semanticInfo.Type, semanticInfo.ConvertedType, SymbolEqualityComparer.IncludeNullability);
+                CustomAssert.Equal(semanticInfo.Type, semanticInfo.ConvertedType, SymbolEqualityComparer.IncludeNullability);
             }
             else
             {
@@ -179,25 +179,25 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
                 case PrefixUnaryExpressionSyntax { RawKind: (int)SyntaxKind.AddressOfExpression, Operand: var operand }:
                     // Members should only be accessible from the underlying operand
-                    Assert.Empty(semanticInfo.MemberGroup);
+                    CustomAssert.Empty(semanticInfo.MemberGroup);
                     var expectedConversionKind = (expectedType, expectedConvertedType, expectedSymbol) switch
                     {
                         (null, null, _) => ConversionKind.Identity,
                         (_, _, null) => ConversionKind.NoConversion,
                         (_, _, _) => ConversionKind.MethodGroup,
                     };
-                    Assert.Equal(expectedConversionKind, semanticInfo.ImplicitConversion.Kind);
+                    CustomAssert.Equal(expectedConversionKind, semanticInfo.ImplicitConversion.Kind);
 
                     semanticInfo = model.GetSemanticInfoSummary(operand);
-                    Assert.Null(semanticInfo.Type);
-                    Assert.Null(semanticInfo.ConvertedType);
+                    CustomAssert.Null(semanticInfo.Type);
+                    CustomAssert.Null(semanticInfo.ConvertedType);
                     if (expectedSymbolCandidates != null)
                     {
                         AssertEx.Equal(expectedSymbolCandidates, semanticInfo.MemberGroup.Select(s => s.ToTestDisplayString(includeNonNullable: false)));
                     }
                     else
                     {
-                        Assert.Contains(semanticInfo.MemberGroup, actual => actual.ToTestDisplayString(includeNonNullable: false) == expectedSymbol);
+                        CustomAssert.Contains(semanticInfo.MemberGroup, actual => actual.ToTestDisplayString(includeNonNullable: false) == expectedSymbol);
                     }
 
                     verifySymbolInfo(expectedSymbol, expectedCandidateReason, expectedSymbolCandidates, semanticInfo);
@@ -213,21 +213,21 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             {
                 if (expectedSymbol is object)
                 {
-                    Assert.Empty(semanticInfo.CandidateSymbols);
+                    CustomAssert.Empty(semanticInfo.CandidateSymbols);
                     AssertEx.Equal(expectedSymbol, semanticInfo.Symbol.ToTestDisplayString(includeNonNullable: false));
-                    Assert.Equal(CandidateReason.None, semanticInfo.CandidateReason);
+                    CustomAssert.Equal(CandidateReason.None, semanticInfo.CandidateReason);
                 }
                 else if (expectedSymbolCandidates is object)
                 {
-                    Assert.Null(semanticInfo.Symbol);
-                    Assert.Equal(expectedReason, semanticInfo.CandidateReason);
+                    CustomAssert.Null(semanticInfo.Symbol);
+                    CustomAssert.Equal(expectedReason, semanticInfo.CandidateReason);
                     AssertEx.Equal(expectedSymbolCandidates, semanticInfo.CandidateSymbols.Select(s => s.ToTestDisplayString(includeNonNullable: false)));
                 }
                 else
                 {
-                    Assert.Null(semanticInfo.Symbol);
-                    Assert.Empty(semanticInfo.CandidateSymbols);
-                    Assert.Equal(CandidateReason.None, semanticInfo.CandidateReason);
+                    CustomAssert.Null(semanticInfo.Symbol);
+                    CustomAssert.Empty(semanticInfo.CandidateSymbols);
+                    CustomAssert.Equal(CandidateReason.None, semanticInfo.CandidateReason);
                 }
             }
 
@@ -250,12 +250,12 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             static void assertEqualSemanticInformation(SemanticModel model, TypeSyntax typeSyntax, ITypeSymbol signatureType)
             {
                 var semanticInfo = model.GetSemanticInfoSummary(typeSyntax);
-                Assert.Equal<ISymbol>(signatureType, semanticInfo.Type, SymbolEqualityComparer.Default);
-                Assert.Equal(semanticInfo.Type, semanticInfo.ConvertedType, SymbolEqualityComparer.IncludeNullability);
+                CustomAssert.Equal<ISymbol>(signatureType, semanticInfo.Type, SymbolEqualityComparer.Default);
+                CustomAssert.Equal(semanticInfo.Type, semanticInfo.ConvertedType, SymbolEqualityComparer.IncludeNullability);
 
-                Assert.Equal(CandidateReason.None, semanticInfo.CandidateReason);
-                Assert.Equal(signatureType, semanticInfo.Type, SymbolEqualityComparer.Default);
-                Assert.Empty(semanticInfo.CandidateSymbols);
+                CustomAssert.Equal(CandidateReason.None, semanticInfo.CandidateReason);
+                CustomAssert.Equal(signatureType, semanticInfo.Type, SymbolEqualityComparer.Default);
+                CustomAssert.Empty(semanticInfo.CandidateSymbols);
 
                 if (typeSyntax is FunctionPointerTypeSyntax { ParameterList: { Parameters: var paramSyntaxes } })
                 {
@@ -273,83 +273,83 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             FunctionPointerUtilities.CommonVerifyFunctionPointer(funcPtr);
 
             var signature = funcPtr.Signature;
-            Assert.Equal(expectedConvention, signature.CallingConvention);
+            CustomAssert.Equal(expectedConvention, signature.CallingConvention);
 
-            Assert.Equal(returnVerifier.RefKind, signature.RefKind);
+            CustomAssert.Equal(returnVerifier.RefKind, signature.RefKind);
             switch (signature.RefKind)
             {
                 case RefKind.RefReadOnly:
-                    Assert.True(CustomModifierUtils.HasInAttributeModifier(signature.RefCustomModifiers));
-                    Assert.False(CustomModifierUtils.HasOutAttributeModifier(signature.RefCustomModifiers));
+                    CustomAssert.True(CustomModifierUtils.HasInAttributeModifier(signature.RefCustomModifiers));
+                    CustomAssert.False(CustomModifierUtils.HasOutAttributeModifier(signature.RefCustomModifiers));
                     break;
 
                 case RefKind.None:
                 case RefKind.Ref:
-                    Assert.False(CustomModifierUtils.HasInAttributeModifier(signature.RefCustomModifiers));
-                    Assert.False(CustomModifierUtils.HasOutAttributeModifier(signature.RefCustomModifiers));
+                    CustomAssert.False(CustomModifierUtils.HasInAttributeModifier(signature.RefCustomModifiers));
+                    CustomAssert.False(CustomModifierUtils.HasOutAttributeModifier(signature.RefCustomModifiers));
                     break;
 
                 case RefKind.Out:
                 default:
-                    Assert.True(false, $"Cannot have a return ref kind of {signature.RefKind}");
+                    CustomAssert.True(false, $"Cannot have a return ref kind of {signature.RefKind}");
                     break;
             }
             returnVerifier.TypeVerifier(signature.ReturnType);
 
-            Assert.Equal(argumentVerifiers.Length, signature.ParameterCount);
+            CustomAssert.Equal(argumentVerifiers.Length, signature.ParameterCount);
             for (int i = 0; i < argumentVerifiers.Length; i++)
             {
                 var parameter = signature.Parameters[i];
-                Assert.Equal(argumentVerifiers[i].RefKind, parameter.RefKind);
+                CustomAssert.Equal(argumentVerifiers[i].RefKind, parameter.RefKind);
                 argumentVerifiers[i].TypeVerifier(parameter.Type);
                 switch (parameter.RefKind)
                 {
                     case RefKind.Out:
-                        Assert.True(CustomModifierUtils.HasOutAttributeModifier(parameter.RefCustomModifiers));
-                        Assert.False(CustomModifierUtils.HasInAttributeModifier(parameter.RefCustomModifiers));
+                        CustomAssert.True(CustomModifierUtils.HasOutAttributeModifier(parameter.RefCustomModifiers));
+                        CustomAssert.False(CustomModifierUtils.HasInAttributeModifier(parameter.RefCustomModifiers));
                         break;
 
                     case RefKind.In:
-                        Assert.True(CustomModifierUtils.HasInAttributeModifier(parameter.RefCustomModifiers));
-                        Assert.False(CustomModifierUtils.HasOutAttributeModifier(parameter.RefCustomModifiers));
+                        CustomAssert.True(CustomModifierUtils.HasInAttributeModifier(parameter.RefCustomModifiers));
+                        CustomAssert.False(CustomModifierUtils.HasOutAttributeModifier(parameter.RefCustomModifiers));
                         break;
 
                     case RefKind.Ref:
                     case RefKind.None:
-                        Assert.False(CustomModifierUtils.HasInAttributeModifier(parameter.RefCustomModifiers));
-                        Assert.False(CustomModifierUtils.HasOutAttributeModifier(parameter.RefCustomModifiers));
+                        CustomAssert.False(CustomModifierUtils.HasInAttributeModifier(parameter.RefCustomModifiers));
+                        CustomAssert.False(CustomModifierUtils.HasOutAttributeModifier(parameter.RefCustomModifiers));
                         break;
 
                     default:
-                        Assert.True(false, $"Cannot have a return ref kind of {parameter.RefKind}");
+                        CustomAssert.True(false, $"Cannot have a return ref kind of {parameter.RefKind}");
                         break;
                 }
             }
         }
 
-        public static Action<TypeSymbol> IsVoidType() => typeSymbol => Assert.True(typeSymbol.IsVoidType());
+        public static Action<TypeSymbol> IsVoidType() => typeSymbol => CustomAssert.True(typeSymbol.IsVoidType());
 
         public static Action<TypeSymbol> IsSpecialType(SpecialType specialType)
-            => typeSymbol => Assert.Equal(specialType, typeSymbol.SpecialType);
+            => typeSymbol => CustomAssert.Equal(specialType, typeSymbol.SpecialType);
 
         public static Action<TypeSymbol> IsTypeName(string typeName)
-            => typeSymbol => Assert.Equal(typeName, typeSymbol.Name);
+            => typeSymbol => CustomAssert.Equal(typeName, typeSymbol.Name);
 
         public static Action<TypeSymbol> IsArrayType(Action<TypeSymbol> arrayTypeVerifier)
             => typeSymbol =>
             {
-                Assert.True(typeSymbol.IsArray());
+                CustomAssert.True(typeSymbol.IsArray());
                 arrayTypeVerifier(((ArrayTypeSymbol)typeSymbol).ElementType);
             };
 
         public static Action<TypeSymbol> IsUnsupportedType()
-            => typeSymbol => Assert.True(typeSymbol is UnsupportedMetadataTypeSymbol);
+            => typeSymbol => CustomAssert.True(typeSymbol is UnsupportedMetadataTypeSymbol);
 
         public static Action<TypeSymbol> IsFunctionPointerTypeSymbol(CallingConvention callingConvention, (RefKind, Action<TypeSymbol>) returnVerifier, params (RefKind, Action<TypeSymbol>)[] argumentVerifiers)
             => typeSymbol => VerifyFunctionPointerSymbol((FunctionPointerTypeSymbol)typeSymbol, callingConvention, returnVerifier, argumentVerifiers);
 
         public static Action<TypeSymbol> IsErrorType()
-            => typeSymbol => Assert.True(typeSymbol.IsErrorType());
+            => typeSymbol => CustomAssert.True(typeSymbol.IsErrorType());
 
     }
 }

@@ -793,10 +793,14 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Retargeting
 
                 // A retargeted error symbol must trigger an error on use so that a dependent compilation won't
                 // improperly succeed. We therefore ensure we have a use-site diagnostic.
+                // LAFHIS
                 return
-                    (type as ExtendedErrorTypeSymbol)?.AsUnreported() ?? // preserve diagnostic information if possible
+                    ((type is ExtendedErrorTypeSymbol) ? ((ExtendedErrorTypeSymbol)type).AsUnreported() : (ExtendedErrorTypeSymbol)null) ?? // preserve diagnostic information if possible
                     new ExtendedErrorTypeSymbol(type, type.ResultKind,
-                        type.ErrorInfo ?? new CSDiagnosticInfo(ErrorCode.ERR_ErrorInReferencedAssembly, type.ContainingAssembly?.Identity.GetDisplayName() ?? string.Empty), true);
+                        type.ErrorInfo ?? new CSDiagnosticInfo(ErrorCode.ERR_ErrorInReferencedAssembly, 
+                        // LAFHIS
+                        (type.ContainingAssembly != null ? type.ContainingAssembly.Identity.GetDisplayName() : (string)null) ?? string.Empty),
+                        true);
             }
 
             public ImmutableArray<Symbol> Retarget(ImmutableArray<Symbol> arr)

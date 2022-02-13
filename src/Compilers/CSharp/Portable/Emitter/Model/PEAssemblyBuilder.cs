@@ -106,24 +106,25 @@ namespace Microsoft.CodeAnalysis.CSharp.Emit
         {
             if (!context.IsRefAssembly)
             {
-                return getFiles(ref _lazyFiles);
+                return getFiles(ref _lazyFiles, context, _sourceAssembly);
             }
-            return getFiles(ref _lazyFilesWithoutManifestResources);
+            return getFiles(ref _lazyFilesWithoutManifestResources, context, _sourceAssembly);
 
-            ImmutableArray<Cci.IFileReference> getFiles(ref ImmutableArray<Cci.IFileReference> lazyFiles)
+            // LAFHIS
+            ImmutableArray<Cci.IFileReference> getFiles(ref ImmutableArray<Cci.IFileReference> lazyFiles, EmitContext contxt, SourceAssemblySymbol sourceAssSymbol)
             {
                 if (lazyFiles.IsDefault)
                 {
                     var builder = ArrayBuilder<Cci.IFileReference>.GetInstance();
                     try
                     {
-                        var modules = _sourceAssembly.Modules;
+                        var modules = sourceAssSymbol.Modules;
                         for (int i = 1; i < modules.Length; i++)
                         {
-                            builder.Add((Cci.IFileReference)Translate(modules[i], context.Diagnostics));
+                            builder.Add((Cci.IFileReference)Translate(modules[i], contxt.Diagnostics));
                         }
 
-                        if (!context.IsRefAssembly)
+                        if (!contxt.IsRefAssembly)
                         {
                             // resources are not emitted into ref assemblies
                             foreach (ResourceDescription resource in ManifestResources)
@@ -138,9 +139,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Emit
                         // Dev12 compilers don't report ERR_CryptoHashFailed if there are no files to be hashed.
                         if (ImmutableInterlocked.InterlockedInitialize(ref lazyFiles, builder.ToImmutable()) && lazyFiles.Length > 0)
                         {
-                            if (!CryptographicHashProvider.IsSupportedAlgorithm(_sourceAssembly.HashAlgorithm))
+                            if (!CryptographicHashProvider.IsSupportedAlgorithm(sourceAssSymbol.HashAlgorithm))
                             {
-                                context.Diagnostics.Add(new CSDiagnostic(new CSDiagnosticInfo(ErrorCode.ERR_CryptoHashFailed), NoLocation.Singleton));
+                                contxt.Diagnostics.Add(new CSDiagnostic(new CSDiagnosticInfo(ErrorCode.ERR_CryptoHashFailed), NoLocation.Singleton));
                             }
                         }
                     }

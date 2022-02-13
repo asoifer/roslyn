@@ -250,16 +250,24 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         internal override bool TryGetSpeculativeSemanticModelCore(SyntaxTreeSemanticModel parentModel, int position, ConstructorInitializerSyntax constructorInitializer, out SemanticModel speculativeModel)
         {
-            if (MemberSymbol is MethodSymbol methodSymbol && methodSymbol.MethodKind == MethodKind.Constructor &&
-                Root.FindToken(position).Parent?.AncestorsAndSelf().OfType<ConstructorInitializerSyntax>().FirstOrDefault()?.Parent == Root)
+            // LAFHIS
+            if (MemberSymbol is MethodSymbol methodSymbol && methodSymbol.MethodKind == MethodKind.Constructor)
             {
-                var binder = this.GetEnclosingBinder(position);
-                if (binder != null)
+                var temp = Root.FindToken(position).Parent;
+                if (temp is not null)
                 {
-                    binder = new WithNullableContextBinder(SyntaxTree, position, binder);
-                    binder = new ExecutableCodeBinder(constructorInitializer, methodSymbol, binder);
-                    speculativeModel = CreateSpeculative(parentModel, methodSymbol, constructorInitializer, binder, position);
-                    return true;
+                    var temp2 = temp.AncestorsAndSelf().OfType<ConstructorInitializerSyntax>().FirstOrDefault();
+                    if (temp2 is not null && temp2.Parent == Root)
+                    { 
+                        var binder = this.GetEnclosingBinder(position);
+                        if (binder != null)
+                        {
+                            binder = new WithNullableContextBinder(SyntaxTree, position, binder);
+                            binder = new ExecutableCodeBinder(constructorInitializer, methodSymbol, binder);
+                            speculativeModel = CreateSpeculative(parentModel, methodSymbol, constructorInitializer, binder, position);
+                            return true;
+                        }
+                    }
                 }
             }
 
@@ -269,16 +277,22 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         internal override bool TryGetSpeculativeSemanticModelCore(SyntaxTreeSemanticModel parentModel, int position, PrimaryConstructorBaseTypeSyntax constructorInitializer, out SemanticModel speculativeModel)
         {
-            if (MemberSymbol is SynthesizedRecordConstructor primaryCtor &&
-                Root.FindToken(position).Parent?.AncestorsAndSelf().OfType<PrimaryConstructorBaseTypeSyntax>().FirstOrDefault() == primaryCtor.GetSyntax().PrimaryConstructorBaseType)
+            // LAFHIS
+            var temp = MemberSymbol as SynthesizedRecordConstructor;
+            if (temp is not null)
             {
-                var binder = this.GetEnclosingBinder(position);
-                if (binder != null)
-                {
-                    binder = new WithNullableContextBinder(SyntaxTree, position, binder);
-                    binder = new ExecutableCodeBinder(constructorInitializer, primaryCtor, binder);
-                    speculativeModel = CreateSpeculative(parentModel, primaryCtor, constructorInitializer, binder, position);
-                    return true;
+                var temp2 = Root.FindToken(position).Parent;
+                if (temp2 is not null && 
+                    temp2.AncestorsAndSelf().OfType<PrimaryConstructorBaseTypeSyntax>().FirstOrDefault() == temp.GetSyntax().PrimaryConstructorBaseType)
+                { 
+                    var binder = this.GetEnclosingBinder(position);
+                    if (binder != null)
+                    {
+                        binder = new WithNullableContextBinder(SyntaxTree, position, binder);
+                        binder = new ExecutableCodeBinder(constructorInitializer, temp, binder);
+                        speculativeModel = CreateSpeculative(parentModel, temp, constructorInitializer, binder, position);
+                        return true;
+                    }
                 }
             }
 

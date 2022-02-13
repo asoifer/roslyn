@@ -135,7 +135,9 @@ namespace Microsoft.CodeAnalysis.CSharp
             SymbolDisplayFormat? format = null)
         {
             // null indicates the default format
-            format ??= SymbolDisplayFormat.CSharpErrorMessageFormat;
+            // LAFHIS
+            if (format == null)
+                format = SymbolDisplayFormat.CSharpErrorMessageFormat;
             return ToDisplayParts(
                 symbol.WithNullableAnnotation(nullableAnnotation), semanticModelOpt: null, positionOpt: -1, format: format, minimal: false);
         }
@@ -159,7 +161,9 @@ namespace Microsoft.CodeAnalysis.CSharp
             int position,
             SymbolDisplayFormat? format = null)
         {
-            format ??= SymbolDisplayFormat.MinimallyQualifiedFormat;
+            // LAFHIS
+            if (format == null)
+                format = SymbolDisplayFormat.MinimallyQualifiedFormat;
             return ToDisplayParts(symbol, semanticModel, position, format, minimal: true);
         }
 
@@ -172,7 +176,9 @@ namespace Microsoft.CodeAnalysis.CSharp
             int position,
             SymbolDisplayFormat? format = null)
         {
-            format ??= SymbolDisplayFormat.MinimallyQualifiedFormat;
+            // LAFHIS
+            if (format == null)
+                format = SymbolDisplayFormat.MinimallyQualifiedFormat;
             return ToDisplayParts(symbol, nullableFlowState, semanticModel, position, format, minimal: true);
         }
 
@@ -183,7 +189,9 @@ namespace Microsoft.CodeAnalysis.CSharp
             int position,
             SymbolDisplayFormat? format = null)
         {
-            format ??= SymbolDisplayFormat.MinimallyQualifiedFormat;
+            // LAFHIS
+            if (format == null)
+                format = SymbolDisplayFormat.MinimallyQualifiedFormat;
             return ToDisplayParts(symbol.WithNullableAnnotation(nullableAnnotation), semanticModel, position, format, minimal: true);
         }
 #pragma warning restore RS0026 // Do not add multiple public overloads with optional parameters

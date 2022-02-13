@@ -125,7 +125,8 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 foreach (var ((expr, originalSymbol), updatedSymbol) in _updatedSymbolsMap)
                 {
-                    var debugText = expr?.Syntax.ToFullString() ?? originalSymbol.ToDisplayString();
+                    // LAFHIS
+                    var debugText = (expr != null ? expr.Syntax.ToFullString() : null) ?? originalSymbol.ToDisplayString();
                     Debug.Assert((object)originalSymbol != updatedSymbol, $"Recorded exact same symbol for {debugText}");
                     RoslynDebug.Assert(originalSymbol is object, $"Recorded null original symbol for {debugText}");
                     RoslynDebug.Assert(updatedSymbol is object, $"Recorded null updated symbol for {debugText}");

@@ -210,13 +210,20 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return true;
             }
             else if (this.Flags.Includes(BinderFlags.InFinallyBlock) &&
-                (node.SyntaxTree as CSharpSyntaxTree)?.Options?.IsFeatureEnabled(MessageID.IDS_AwaitInCatchAndFinally) == false)
+                // LAFHIS
+                //(node.SyntaxTree as CSharpSyntaxTree)?.Options?.IsFeatureEnabled(MessageID.IDS_AwaitInCatchAndFinally) == false
+                (node.SyntaxTree is CSharpSyntaxTree) &&
+                ((CSharpSyntaxTree)node.SyntaxTree).Options != null &&
+                ((CSharpSyntaxTree)node.SyntaxTree).Options.IsFeatureEnabled(MessageID.IDS_AwaitInCatchAndFinally) == false)
             {
                 Error(diagnostics, ErrorCode.ERR_BadAwaitInFinally, location);
                 return true;
             }
             else if (this.Flags.Includes(BinderFlags.InCatchBlock) &&
-                (node.SyntaxTree as CSharpSyntaxTree)?.Options?.IsFeatureEnabled(MessageID.IDS_AwaitInCatchAndFinally) == false)
+                //(node.SyntaxTree as CSharpSyntaxTree)?.Options?.IsFeatureEnabled(MessageID.IDS_AwaitInCatchAndFinally) == false)
+                (node.SyntaxTree is CSharpSyntaxTree) &&
+                ((CSharpSyntaxTree)node.SyntaxTree).Options != null &&
+                ((CSharpSyntaxTree)node.SyntaxTree).Options.IsFeatureEnabled(MessageID.IDS_AwaitInCatchAndFinally) == false)
             {
                 Error(diagnostics, ErrorCode.ERR_BadAwaitInCatch, location);
                 return true;

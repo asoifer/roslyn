@@ -29,7 +29,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         internal static void CheckISymbols<TSymbol>(ImmutableArray<TSymbol> symbols, params string[] descriptions)
             where TSymbol : ISymbol
         {
-            Assert.Equal(descriptions.Length, symbols.Length);
+            CustomAssert.Equal(descriptions.Length, symbols.Length);
 
             string[] symbolDescriptions = (from s in symbols select s.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)).ToArray();
             Array.Sort(descriptions);
@@ -37,14 +37,14 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             for (int i = 0; i < descriptions.Length; i++)
             {
-                Assert.Equal(symbolDescriptions[i], descriptions[i]);
+                CustomAssert.Equal(symbolDescriptions[i], descriptions[i]);
             }
         }
 
         internal static void CheckSymbols<TSymbol>(ImmutableArray<TSymbol> symbols, params string[] descriptions)
             where TSymbol : Symbol
         {
-            Assert.Equal(descriptions.Length, symbols.Length);
+            CustomAssert.Equal(descriptions.Length, symbols.Length);
 
             string[] symbolDescriptions = (from s in symbols select s.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)).ToArray();
             Array.Sort(descriptions);
@@ -52,14 +52,14 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             for (int i = 0; i < descriptions.Length; i++)
             {
-                Assert.Equal(symbolDescriptions[i], descriptions[i]);
+                CustomAssert.Equal(symbolDescriptions[i], descriptions[i]);
             }
         }
 
         public static void CheckSymbolsUnordered<TSymbol>(ImmutableArray<TSymbol> symbols, params string[] descriptions)
             where TSymbol : ISymbol
         {
-            Assert.Equal(descriptions.Length, symbols.Length);
+            CustomAssert.Equal(descriptions.Length, symbols.Length);
             AssertEx.SetEqual(symbols.Select(s => s.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)), descriptions);
         }
 
@@ -71,17 +71,17 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
         public static void CheckSymbol(ISymbol symbol, string description)
         {
-            Assert.Equal(symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat), description);
+            CustomAssert.Equal(symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat), description);
         }
 
         internal static void CheckSymbol(Symbol symbol, string description)
         {
-            Assert.Equal(symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat), description);
+            CustomAssert.Equal(symbol.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat), description);
         }
 
         internal static void CheckConstraints(ITypeParameterSymbol symbol, TypeParameterConstraintKind constraints, params string[] constraintTypes)
         {
-            Assert.Equal(constraints, GetTypeParameterConstraints(symbol));
+            CustomAssert.Equal(constraints, GetTypeParameterConstraints(symbol));
             CheckISymbols(symbol.ConstraintTypes, constraintTypes);
         }
 
@@ -94,14 +94,14 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         {
             var reducedFrom = reducedMethod.ReducedFrom;
             CheckReducedExtensionMethod(reducedMethod, reducedFrom);
-            Assert.Equal(reducedMethod.CallsiteReducedFromMethod.Parameters[0].Type, reducedMethod.ReceiverType);
+            CustomAssert.Equal(reducedMethod.CallsiteReducedFromMethod.Parameters[0].Type, reducedMethod.ReceiverType);
 
             var constructedFrom = reducedMethod.ConstructedFrom;
             CheckConstructedMethod(reducedMethod, constructedFrom);
 
             var reducedAndConstructedFrom = constructedFrom.ReducedFrom;
             CheckReducedExtensionMethod(constructedFrom, reducedAndConstructedFrom);
-            Assert.Same(reducedFrom, reducedAndConstructedFrom);
+            CustomAssert.Same(reducedFrom, reducedAndConstructedFrom);
 
             var constructedAndExtendedFrom = reducedFrom.ConstructedFrom;
             CheckConstructedMethod(reducedFrom, constructedAndExtendedFrom);
@@ -115,17 +115,17 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
         public static void CheckReducedExtensionMethod(IMethodSymbol reducedMethod, IMethodSymbol reducedFrom)
         {
-            Assert.NotNull(reducedFrom);
-            Assert.Equal(reducedMethod.ReducedFrom, reducedFrom);
-            Assert.Null(reducedFrom.ReducedFrom);
+            CustomAssert.NotNull(reducedFrom);
+            CustomAssert.Equal(reducedMethod.ReducedFrom, reducedFrom);
+            CustomAssert.Null(reducedFrom.ReducedFrom);
 
-            Assert.True(reducedFrom.IsExtensionMethod);
-            Assert.True(reducedMethod.IsExtensionMethod);
-            Assert.Equal(reducedMethod.IsImplicitlyDeclared, reducedFrom.IsImplicitlyDeclared);
-            Assert.Equal(reducedMethod.CanBeReferencedByName, reducedFrom.CanBeReferencedByName);
+            CustomAssert.True(reducedFrom.IsExtensionMethod);
+            CustomAssert.True(reducedMethod.IsExtensionMethod);
+            CustomAssert.Equal(reducedMethod.IsImplicitlyDeclared, reducedFrom.IsImplicitlyDeclared);
+            CustomAssert.Equal(reducedMethod.CanBeReferencedByName, reducedFrom.CanBeReferencedByName);
 
             int n = reducedMethod.Parameters.Count();
-            Assert.Equal(reducedFrom.Parameters.Count(), n + 1);
+            CustomAssert.Equal(reducedFrom.Parameters.Count(), n + 1);
 
             CheckTypeParameters(reducedMethod);
             CheckTypeParameters(reducedFrom);
@@ -138,13 +138,13 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
         public static void CheckConstructedMethod(IMethodSymbol constructedMethod, IMethodSymbol constructedFrom)
         {
-            Assert.NotNull(constructedFrom);
+            CustomAssert.NotNull(constructedFrom);
 
-            Assert.Same(constructedFrom, constructedMethod.ConstructedFrom);
-            Assert.Same(constructedFrom, constructedMethod.OriginalDefinition);
+            CustomAssert.Same(constructedFrom, constructedMethod.ConstructedFrom);
+            CustomAssert.Same(constructedFrom, constructedMethod.OriginalDefinition);
 
-            Assert.Same(constructedFrom, constructedFrom.ConstructedFrom);
-            Assert.Same(constructedFrom, constructedFrom.OriginalDefinition);
+            CustomAssert.Same(constructedFrom, constructedFrom.ConstructedFrom);
+            CustomAssert.Same(constructedFrom, constructedFrom.OriginalDefinition);
 
             CheckTypeParameters(constructedMethod);
             CheckTypeParameters(constructedFrom);
@@ -158,11 +158,11 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         private static void CheckTypeParameters(IMethodSymbol method)
         {
             var constructedFrom = method.ConstructedFrom;
-            Assert.NotNull(constructedFrom);
+            CustomAssert.NotNull(constructedFrom);
 
             foreach (var typeParameter in method.TypeParameters)
             {
-                Assert.Equal<ISymbol>(typeParameter.ContainingSymbol, constructedFrom);
+                CustomAssert.Equal<ISymbol>(typeParameter.ContainingSymbol, constructedFrom);
             }
         }
 
@@ -340,8 +340,8 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
         public static List<string> LookupNames(this SemanticModel model, int position, INamespaceOrTypeSymbol container = null, bool namespacesAndTypesOnly = false, bool useBaseReferenceAccessibility = false)
         {
-            Assert.True(!useBaseReferenceAccessibility || (object)container == null);
-            Assert.True(!useBaseReferenceAccessibility || !namespacesAndTypesOnly);
+            CustomAssert.True(!useBaseReferenceAccessibility || (object)container == null);
+            CustomAssert.True(!useBaseReferenceAccessibility || !namespacesAndTypesOnly);
             var symbols = useBaseReferenceAccessibility
                 ? model.LookupBaseMembers(position)
                 : namespacesAndTypesOnly
@@ -360,11 +360,11 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             }
             else if (iop is { Type: { } })
             {
-                Assert.Equal(typeInfo.Type.NullableAnnotation, iop.Type.NullableAnnotation);
+                CustomAssert.Equal(typeInfo.Type.NullableAnnotation, iop.Type.NullableAnnotation);
             }
             else
             {
-                Assert.True(isValidDeclaration(expression));
+                CustomAssert.True(isValidDeclaration(expression));
 
                 static bool isValidDeclaration(SyntaxNode expression)
                     => (expression.Parent is VariableDeclarationSyntax decl && decl.Type == expression) ||
@@ -380,11 +380,11 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 
             if (typeInfo.ConvertedType is null)
             {
-                Assert.Null(iop?.Type);
+                CustomAssert.Null(iop?.Type);
             }
             else if (iop is { Type: { } })
             {
-                Assert.Equal(typeInfo.ConvertedType.NullableAnnotation, iop.Type.NullableAnnotation);
+                CustomAssert.Equal(typeInfo.ConvertedType.NullableAnnotation, iop.Type.NullableAnnotation);
             }
 
             return typeInfo;
@@ -425,11 +425,11 @@ getOperation:
                     // `TypeInfo.Type` property represents the natural type of the switch expression.
                     case ITupleOperation { NaturalType: null }:
                     case ISwitchExpressionOperation _:
-                        Assert.True(iop.Type?.NullableAnnotation == typeInfo.ConvertedType?.NullableAnnotation);
+                        CustomAssert.True(iop.Type?.NullableAnnotation == typeInfo.ConvertedType?.NullableAnnotation);
                         break;
 
                     default:
-                        Assert.Null(iop?.Type);
+                        CustomAssert.Null(iop?.Type);
                         break;
                 }
             }
@@ -452,7 +452,7 @@ getOperation:
                 return;
             }
 
-            Assert.True(compilation.IsNullableAnalysisEnabledIn((CSharpSyntaxTree)tree, new TextSpan(0, tree.Length)));
+            CustomAssert.True(compilation.IsNullableAnalysisEnabledIn((CSharpSyntaxTree)tree, new TextSpan(0, tree.Length)));
 
             var root = tree.GetRoot();
             var allAnnotations = getAnnotations(root);
@@ -472,7 +472,7 @@ getOperation:
                 var actualTypes = annotations.SelectAsArray(annotation =>
                     {
                         var typeInfo = model.GetTypeInfoAndVerifyIOperation(annotation.Expression);
-                        Assert.NotEqual(CodeAnalysis.NullableFlowState.None, typeInfo.Nullability.FlowState);
+                        CustomAssert.NotEqual(CodeAnalysis.NullableFlowState.None, typeInfo.Nullability.FlowState);
                         // https://github.com/dotnet/roslyn/issues/35035: After refactoring symboldisplay, we should be able to just call something like typeInfo.Type.ToDisplayString(typeInfo.Nullability.FlowState, TypeWithState.TestDisplayFormat)
                         var type = TypeWithState.Create(
                             (annotation.IsConverted ? typeInfo.ConvertedType : typeInfo.Type).GetSymbol(),
@@ -501,7 +501,7 @@ getOperation:
                             {
                                 var prefix = startsWithTypePrefix ? typePrefix : convertedPrefix;
                                 var expr = getEnclosingExpression(token, rootNode);
-                                Assert.True(expr != null, $"VerifyTypes could not find a matching expression for annotation '{text}'.");
+                                CustomAssert.True(expr != null, $"VerifyTypes could not find a matching expression for annotation '{text}'.");
 
                                 var content = text.Substring(prefix.Length, text.Length - prefix.Length - suffix.Length);
                                 builder.Add((expr, content, !startsWithTypePrefix));

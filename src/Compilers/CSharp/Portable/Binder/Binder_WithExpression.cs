@@ -44,7 +44,12 @@ namespace Microsoft.CodeAnalysis.CSharp
                 }
                 else if (cloneMethod.GetUseSiteDiagnostic() is DiagnosticInfo info)
                 {
-                    (useSiteDiagnostics ??= new HashSet<DiagnosticInfo>()).Add(info);
+                    // LAFHIS
+                    if (useSiteDiagnostics == null)
+                    {
+                        useSiteDiagnostics = new HashSet<DiagnosticInfo>();
+                        useSiteDiagnostics.Add(info);
+                    }
                 }
 
                 diagnostics.Add(syntax.Expression, useSiteDiagnostics);

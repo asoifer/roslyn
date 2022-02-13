@@ -869,7 +869,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                         {
                             var methodDecl = (BaseMethodDeclarationSyntax)memberDecl;
                             var expressionBody = methodDecl.GetExpressionBodySyntax();
-                            return (expressionBody?.FullSpan.Contains(span) == true || methodDecl.Body?.FullSpan.Contains(span) == true) ?
+                            // LAFHIS
+                            return ((expressionBody is not null && expressionBody.FullSpan.Contains(span)) || 
+                                (methodDecl.Body is not null && methodDecl.Body.FullSpan.Contains(span))) ?
                                    GetOrAddModel(methodDecl) : null;
                         }
 
@@ -877,9 +879,11 @@ namespace Microsoft.CodeAnalysis.CSharp
                         {
                             ConstructorDeclarationSyntax constructorDecl = (ConstructorDeclarationSyntax)memberDecl;
                             var expressionBody = constructorDecl.GetExpressionBodySyntax();
-                            return (constructorDecl.Initializer?.FullSpan.Contains(span) == true ||
-                                    expressionBody?.FullSpan.Contains(span) == true ||
-                                    constructorDecl.Body?.FullSpan.Contains(span) == true) ?
+                            // LAFHIS
+                            var temp = constructorDecl.Initializer;
+                            return ((temp is not null && temp.FullSpan.Contains(span)) ||
+                                    (expressionBody is not null && expressionBody.FullSpan.Contains(span)) ||
+                                    (constructorDecl.Body is not null && constructorDecl.Body.FullSpan.Contains(span))) ?
                                    GetOrAddModel(constructorDecl) : null;
                         }
 
@@ -895,7 +899,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                         {
                             DestructorDeclarationSyntax destructorDecl = (DestructorDeclarationSyntax)memberDecl;
                             var expressionBody = destructorDecl.GetExpressionBodySyntax();
-                            return (expressionBody?.FullSpan.Contains(span) == true || destructorDecl.Body?.FullSpan.Contains(span) == true) ?
+                            // LAFHIS
+                            return ((expressionBody is not null && expressionBody.FullSpan.Contains(span)) || 
+                                (destructorDecl.Body is not null && destructorDecl.Body.FullSpan.Contains(span))) ?
                                    GetOrAddModel(destructorDecl) : null;
                         }
 
@@ -907,7 +913,10 @@ namespace Microsoft.CodeAnalysis.CSharp
                         // NOTE: not UnknownAccessorDeclaration since there's no corresponding method symbol from which to build a member model.
                         {
                             var accessorDecl = (AccessorDeclarationSyntax)memberDecl;
-                            return (accessorDecl.ExpressionBody?.FullSpan.Contains(span) == true || accessorDecl.Body?.FullSpan.Contains(span) == true) ?
+                            // LAFHIS
+                            var temp = accessorDecl.ExpressionBody;
+                            return ((temp is not null && temp.FullSpan.Contains(span)) || 
+                                (accessorDecl.Body is not null && accessorDecl.Body.FullSpan.Contains(span))) ?
                                    GetOrAddModel(accessorDecl) : null;
                         }
 
@@ -1885,7 +1894,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             // Might be a field
             Binder binder = GetEnclosingBinder(declarationSyntax.Position);
-            return binder?.LookupDeclaredField(declarationSyntax).GetPublicSymbol();
+            // LAFHIS
+            return binder is not null ? binder.LookupDeclaredField(declarationSyntax).GetPublicSymbol() : null;
         }
 
         internal override LocalSymbol GetAdjustedLocalSymbol(SourceLocalSymbol originalSymbol)

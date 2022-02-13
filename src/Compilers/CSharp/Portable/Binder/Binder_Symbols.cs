@@ -403,10 +403,10 @@ namespace Microsoft.CodeAnalysis.CSharp
             switch (syntax.Kind())
             {
                 case SyntaxKind.NullableType:
-                    return bindNullable();
+                    return bindNullable(syntax, diagnostics, basesBeingResolved);
 
                 case SyntaxKind.PredefinedType:
-                    return bindPredefined();
+                    return bindPredefined(syntax, diagnostics);
 
                 case SyntaxKind.IdentifierName:
                     return BindNonGenericSimpleNamespaceOrTypeOrAliasSymbol((IdentifierNameSyntax)syntax, diagnostics, basesBeingResolved, suppressUseSiteDiagnostics, qualifierOpt: null);
@@ -415,7 +415,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                     return BindGenericSimpleNamespaceOrTypeOrAliasSymbol((GenericNameSyntax)syntax, diagnostics, basesBeingResolved, qualifierOpt: null);
 
                 case SyntaxKind.AliasQualifiedName:
-                    return bindAlias();
+                    return bindAlias(syntax, diagnostics, basesBeingResolved, suppressUseSiteDiagnostics);
 
                 case SyntaxKind.QualifiedName:
                     {
@@ -435,7 +435,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                     }
 
                 case SyntaxKind.PointerType:
-                    return bindPointer();
+                    return bindPointer(syntax, diagnostics, basesBeingResolved);
 
                 case SyntaxKind.FunctionPointerType:
                     var functionPointerTypeSyntax = (FunctionPointerTypeSyntax)syntax;
@@ -483,11 +483,11 @@ namespace Microsoft.CodeAnalysis.CSharp
                     {
                         // This is invalid syntax for a type.  This arises when a constant pattern that fails to bind
                         // is attempted to be bound as a type pattern.
-                        return createErrorType();
+                        return createErrorType(syntax);
                     }
             }
 
-            void reportNullableReferenceTypesIfNeeded(SyntaxToken questionToken, TypeWithAnnotations typeArgument = default)
+            void reportNullableReferenceTypesIfNeeded(SyntaxToken questionToken, DiagnosticBag diagnostics, TypeWithAnnotations typeArgument = default)
             {
                 bool isNullableEnabled = AreNullableAnnotationsEnabled(questionToken);
                 bool isGeneratedCode = IsGeneratedCode(questionToken);
@@ -514,14 +514,14 @@ namespace Microsoft.CodeAnalysis.CSharp
                 }
             }
 
-            NamespaceOrTypeOrAliasSymbolWithAnnotations bindNullable()
+            NamespaceOrTypeOrAliasSymbolWithAnnotations bindNullable(ExpressionSyntax syntax, DiagnosticBag diagnostics, ConsList<TypeSymbol> basesBeingResolved)
             {
                 var nullableSyntax = (NullableTypeSyntax)syntax;
                 TypeSyntax typeArgumentSyntax = nullableSyntax.ElementType;
                 TypeWithAnnotations typeArgument = BindType(typeArgumentSyntax, diagnostics, basesBeingResolved);
                 TypeWithAnnotations constructedType = typeArgument.SetIsAnnotated(Compilation);
 
-                reportNullableReferenceTypesIfNeeded(nullableSyntax.QuestionToken, typeArgument);
+                reportNullableReferenceTypesIfNeeded(nullableSyntax.QuestionToken, diagnostics, typeArgument);
 
                 if (!ShouldCheckConstraints)
                 {
@@ -542,14 +542,14 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return constructedType;
             }
 
-            NamespaceOrTypeOrAliasSymbolWithAnnotations bindPredefined()
+            NamespaceOrTypeOrAliasSymbolWithAnnotations bindPredefined(ExpressionSyntax syntax, DiagnosticBag diagnostics)
             {
                 var predefinedType = (PredefinedTypeSyntax)syntax;
                 var type = BindPredefinedTypeSymbol(predefinedType, diagnostics);
                 return TypeWithAnnotations.Create(AreNullableAnnotationsEnabled(predefinedType.Keyword), type);
             }
 
-            NamespaceOrTypeOrAliasSymbolWithAnnotations bindAlias()
+            NamespaceOrTypeOrAliasSymbolWithAnnotations bindAlias(ExpressionSyntax syntax, DiagnosticBag diagnostics, ConsList<TypeSymbol> basesBeingResolved, bool suppressUseSiteDiagnostics)
             {
                 var node = (AliasQualifiedNameSyntax)syntax;
                 var bindingResult = BindNamespaceAliasSymbol(node.Alias, diagnostics);
@@ -564,7 +564,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return this.BindSimpleNamespaceOrTypeOrAliasSymbol(node.Name, diagnostics, basesBeingResolved, suppressUseSiteDiagnostics, left);
             }
 
-            NamespaceOrTypeOrAliasSymbolWithAnnotations bindPointer()
+            NamespaceOrTypeOrAliasSymbolWithAnnotations bindPointer(ExpressionSyntax syntax, DiagnosticBag diagnostics, ConsList<TypeSymbol> basesBeingResolved)
             {
                 var node = (PointerTypeSyntax)syntax;
                 var elementType = BindType(node.ElementType, diagnostics, basesBeingResolved);
@@ -578,7 +578,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return TypeWithAnnotations.Create(new PointerTypeSymbol(elementType));
             }
 
-            NamespaceOrTypeOrAliasSymbolWithAnnotations createErrorType()
+            NamespaceOrTypeOrAliasSymbolWithAnnotations createErrorType(ExpressionSyntax syntax)
             {
                 diagnostics.Add(ErrorCode.ERR_TypeExpected, syntax.GetLocation());
                 return TypeWithAnnotations.Create(CreateErrorType());
@@ -942,7 +942,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 case ArgumentSyntax parent when // nameof(nint)
                     (IsInsideNameof &&
                         parent.Parent?.Parent is InvocationExpressionSyntax invocation &&
-                        (invocation.Expression as IdentifierNameSyntax)?.Identifier.ContextualKind() == SyntaxKind.NameOfKeyword):
+                        // LAFHIS
+                        ((invocation.Expression is IdentifierNameSyntax) ? ((IdentifierNameSyntax)invocation.Expression).Identifier.ContextualKind() == SyntaxKind.NameOfKeyword : false)):
                     // Don't bind nameof(nint) or nameof(nuint) so that ERR_NameNotInContext is reported.
                     return null;
             }
@@ -1812,7 +1813,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                                     // '{0}' is an ambiguous reference between '{1}' and '{2}'
                                     info = new CSDiagnosticInfo(ErrorCode.ERR_AmbigContext, originalSymbols,
                                         new object[] {
-                                        (where as NameSyntax)?.ErrorDisplayName() ?? simpleName,
+                                            // LAFHIS
+                                        ((where is NameSyntax) ? ((NameSyntax)where).ErrorDisplayName() : null) ?? simpleName,
                                         new FormattedSymbol(first, SymbolDisplayFormat.CSharpErrorMessageFormat),
                                         new FormattedSymbol(second, SymbolDisplayFormat.CSharpErrorMessageFormat) });
                                 }
@@ -1951,14 +1953,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                                     //  SPEC:   is present, and a compile-time error results.
 
                                     info = new CSDiagnosticInfo(ErrorCode.ERR_AmbiguousAttribute, originalSymbols,
-                                        new object[] { (where as NameSyntax)?.ErrorDisplayName() ?? simpleName, first, second });
+                                        // LAFHIS
+                                        new object[] { ((where is NameSyntax) ? ((NameSyntax)where).ErrorDisplayName() : null) ?? simpleName, first, second });
                                 }
                                 else
                                 {
                                     // '{0}' is an ambiguous reference between '{1}' and '{2}'
                                     info = new CSDiagnosticInfo(ErrorCode.ERR_AmbigContext, originalSymbols,
                                         new object[] {
-                                        (where as NameSyntax)?.ErrorDisplayName() ?? simpleName,
+                                            // LAFHIS
+                                        ((where is NameSyntax) ? ((NameSyntax)where).ErrorDisplayName() : null) ?? simpleName,
                                         new FormattedSymbol(first, SymbolDisplayFormat.CSharpErrorMessageFormat),
                                         new FormattedSymbol(second, SymbolDisplayFormat.CSharpErrorMessageFormat) });
                                 }
@@ -2054,7 +2058,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                         node = node.Parent;
                     }
 
-                    CSDiagnosticInfo info = NotFound(where, simpleName, arity, (where as NameSyntax)?.ErrorDisplayName() ?? simpleName, diagnostics, aliasOpt, qualifierOpt, options);
+                    CSDiagnosticInfo info = NotFound(where, simpleName, arity,
+                        // LAFHIS
+                        ((where is NameSyntax) ? ((NameSyntax)where).ErrorDisplayName() : null) ?? simpleName, diagnostics, aliasOpt, qualifierOpt, options);
                     return new ExtendedErrorTypeSymbol(qualifierOpt ?? Compilation.Assembly.GlobalNamespace, simpleName, arity, info);
                 }
 
@@ -2334,7 +2340,11 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return diagnostics.Add(ErrorCode.ERR_AliasNotFound, location, whereText);
             }
 
-            if ((where as IdentifierNameSyntax)?.Identifier.Text == "var" && !options.IsAttributeTypeLookup())
+            if (
+                // LAFHIS
+                ((where is IdentifierNameSyntax) ? 
+                ((IdentifierNameSyntax)where).Identifier.Text == "var" : false)
+                && !options.IsAttributeTypeLookup())
             {
                 var code = (where.Parent is QueryClauseSyntax) ? ErrorCode.ERR_TypeVarNotFoundRangeVariable : ErrorCode.ERR_TypeVarNotFound;
                 return diagnostics.Add(code, location);

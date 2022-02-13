@@ -582,7 +582,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                     foreach (var argument in tupleSyntax.Arguments)
                     {
-                        locationBuilder.Add(argument.NameColon?.Name.Location);
+                        // LAFHIS
+                        locationBuilder.Add(argument.NameColon != null ? argument.NameColon.Name.Location : (Location)null);
                     }
 
                     targetType = targetType.WithElementNames(sourceTuple.ArgumentNamesOpt!,

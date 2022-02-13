@@ -445,7 +445,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
             if (builder == null)
             {
-                builder = new BoundSpillSequenceBuilder(lastSpill < newList.Length ? (newList[lastSpill] as BoundSpillSequenceBuilder)?.Syntax : null);
+                // LAFHIS
+                builder = new BoundSpillSequenceBuilder(lastSpill < newList.Length ? ((newList[lastSpill] is BoundSpillSequenceBuilder) ? ((BoundSpillSequenceBuilder)newList[lastSpill]).Syntax : null) : null);
             }
 
             var result = ArrayBuilder<BoundExpression>.GetInstance(newList.Length);

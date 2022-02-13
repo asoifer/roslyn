@@ -215,7 +215,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Emit
         {
             Debug.Assert(!(value is ISymbol));
 
-            var symbol = (value as ISymbolInternal)?.GetISymbol();
+            // LAFHIS
+            //var symbol = (value as ISymbolInternal)?.GetISymbol();
+            var symbol = (value is ISymbolInternal) ? ((ISymbolInternal)value).GetISymbol() : null;
 
             if (symbol != null)
             {

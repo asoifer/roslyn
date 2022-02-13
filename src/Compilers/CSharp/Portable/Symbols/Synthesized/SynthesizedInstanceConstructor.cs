@@ -275,8 +275,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             return ReturnTypeWithAnnotations.Type.GetUseSiteDiagnostic();
         }
 
+        // LAFHIS
         internal sealed override bool IsNullableAnalysisEnabled() =>
-            (ContainingType as SourceMemberContainerTypeSymbol)?.IsNullableEnabledForConstructorsAndInitializers(useStatic: false) ?? false;
+            (ContainingType is SourceMemberContainerTypeSymbol) ? 
+            ((SourceMemberContainerTypeSymbol)ContainingType).IsNullableEnabledForConstructorsAndInitializers(useStatic: false) : false;
 
         #endregion
 

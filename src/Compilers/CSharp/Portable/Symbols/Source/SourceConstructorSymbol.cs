@@ -183,12 +183,14 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         protected override bool IsWithinExpressionOrBlockBody(int position, out int offset)
         {
             ConstructorDeclarationSyntax ctorSyntax = GetSyntax();
-            if (ctorSyntax.Body?.Span.Contains(position) == true)
+            // LAFHIS
+            if (ctorSyntax.Body != null ? ctorSyntax.Body.Span.Contains(position) == true : false)
             {
                 offset = position - ctorSyntax.Body.Span.Start;
                 return true;
             }
-            else if (ctorSyntax.ExpressionBody?.Span.Contains(position) == true)
+            // LAFHIS
+            else if (ctorSyntax.ExpressionBody != null ? ctorSyntax.ExpressionBody.Span.Contains(position) == true : false)
             {
                 offset = position - ctorSyntax.ExpressionBody.Span.Start;
                 return true;

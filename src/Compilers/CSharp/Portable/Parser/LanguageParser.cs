@@ -6743,7 +6743,7 @@ done:;
             try
             {
                 var questionToken = this.EatToken();
-                if (!canFollowNullableType())
+                if (!canFollowNullableType(mode))
                 {
                     // Restore current token index
                     this.Reset(ref resetPoint);
@@ -6752,9 +6752,10 @@ done:;
 
                 return CheckFeatureAvailability(questionToken, MessageID.IDS_FeatureNullable);
 
-                bool canFollowNullableType()
+                // Lafhis
+                bool canFollowNullableType(ParseTypeMode lMode)
                 {
-                    switch (mode)
+                    switch (lMode)
                     {
                         case ParseTypeMode.AfterIs:
                         case ParseTypeMode.DefinitePattern:

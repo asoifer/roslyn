@@ -548,7 +548,10 @@ namespace Microsoft.CodeAnalysis.CSharp
                     // Note: RValueOnly is checked at the beginning of this method. Since we are here we need more than readable.
                     // "this" is readonly in members marked "readonly" and in members of readonly structs, unless we are in a constructor.
                     var isValueType = ((BoundThisReference)expr).Type.IsValueType;
-                    if (!isValueType || (RequiresAssignableVariable(valueKind) && (this.ContainingMemberOrLambda as MethodSymbol)?.IsEffectivelyReadOnly == true))
+                    if (!isValueType || (RequiresAssignableVariable(valueKind) &&
+                        // LAFHIS
+                        //(this.ContainingMemberOrLambda as MethodSymbol)?.IsEffectivelyReadOnly == true
+                        (this.ContainingMemberOrLambda is MethodSymbol) && ((MethodSymbol)this.ContainingMemberOrLambda).IsEffectivelyReadOnly))
                     {
                         Error(diagnostics, GetThisLvalueError(valueKind, isValueType), node, node);
                         return false;
@@ -974,9 +977,12 @@ namespace Microsoft.CodeAnalysis.CSharp
         /// </remarks>
         private static bool RequiresVariableReceiver(BoundExpression receiver, Symbol symbol)
         {
+            // LAFHIS
             return symbol.RequiresInstanceReceiver()
                 && symbol.Kind != SymbolKind.Event
-                && receiver?.Type?.IsValueType == true;
+                && receiver != null 
+                && !receiver.Type.Equals(null)
+                && receiver.Type.IsValueType == true;
         }
 
         private bool CheckCallValueKind(BoundCall call, SyntaxNode node, BindValueKind valueKind, bool checkingReceiver, DiagnosticBag diagnostics)
@@ -1335,7 +1341,8 @@ moreArguments:
             }
 
             // check receiver if ref-like
-            if (receiverOpt?.Type?.IsRefLikeType == true)
+            // LAFHIS
+            if (receiverOpt != null && !receiverOpt.Type.Equals(null) && receiverOpt.Type.IsRefLikeType)
             {
                 escapeScope = Math.Max(escapeScope, GetValEscape(receiverOpt, scopeOfTheContainingExpression));
             }

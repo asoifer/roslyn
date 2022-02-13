@@ -106,11 +106,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                 return false;
             }
 
-            if ((method as Symbols.PublicModel.MethodSymbol)?.UnderlyingMethodSymbol is SourcePropertyAccessorSymbol sourceAccessor &&
-                (propertyOpt as Symbols.PublicModel.PropertySymbol)?.UnderlyingSymbol is SourcePropertySymbolBase sourceProperty)
+            // LAFHIS
+            var a1 = method as Symbols.PublicModel.MethodSymbol;
+            var a2 = a1 != null ? a1.UnderlyingMethodSymbol as SourcePropertyAccessorSymbol : null;
+            var a3 = propertyOpt as Symbols.PublicModel.PropertySymbol;
+            var a4 = a3 != null ? a3.UnderlyingSymbol as SourcePropertySymbolBase : null;
+            if (a2 is not null && a4 is not null)
             {
                 // only display if the accessor is explicitly readonly
-                return sourceAccessor.LocalDeclaredReadOnly || sourceProperty.HasReadOnlyModifier;
+                return a2.LocalDeclaredReadOnly || a4.HasReadOnlyModifier;
             }
             else if (method is Symbols.PublicModel.MethodSymbol m)
             {
@@ -265,7 +269,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 builder.Add(CreatePart(SymbolDisplayPartKind.NumericLiteral, symbol, "lambda expression"));
                 return;
             }
-            else if ((symbol as Symbols.PublicModel.MethodSymbol)?.UnderlyingMethodSymbol is SynthesizedGlobalMethodSymbol) // It would be nice to handle VB symbols too, but it's not worth the effort.
+            // LAFHIS
+            else if ((symbol is Symbols.PublicModel.MethodSymbol) && ((Symbols.PublicModel.MethodSymbol)symbol).UnderlyingMethodSymbol is SynthesizedGlobalMethodSymbol) // It would be nice to handle VB symbols too, but it's not worth the effort.
             {
                 // Represents a compiler generated synthesized method symbol with a null containing
                 // type.

@@ -30,10 +30,11 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             if (defaultState == NullableFlowState.MaybeDefault &&
                 (type is null || type.IsTypeParameterDisallowingAnnotationInCSharp8()))
             {
-                Debug.Assert(type?.IsNullableTypeOrTypeParameter() != true);
+                // LAFHIS
+                Debug.Assert((!(type is null) ? type.IsNullableTypeOrTypeParameter() : false) != true);
                 return new TypeWithState(type, defaultState);
             }
-            var state = defaultState != NullableFlowState.NotNull && type?.CanContainNull() != false ? NullableFlowState.MaybeNull : NullableFlowState.NotNull;
+            var state = defaultState != NullableFlowState.NotNull && (type is null || type.CanContainNull()) ? NullableFlowState.MaybeNull : NullableFlowState.NotNull;
             return new TypeWithState(type, state);
         }
 
@@ -68,13 +69,19 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         private TypeWithState(TypeSymbol? type, NullableFlowState state)
         {
-            Debug.Assert(state == NullableFlowState.NotNull || type?.CanContainNull() != false);
+            Debug.Assert(state == NullableFlowState.NotNull || type is null || type.CanContainNull());
+            // LAFHIS
             Debug.Assert(state != NullableFlowState.MaybeDefault || type is null || type.IsTypeParameterDisallowingAnnotationInCSharp8());
             Type = type;
             State = state;
         }
 
-        public string GetDebuggerDisplay() => $"{{Type:{Type?.GetDebuggerDisplay()}, State:{State}{"}"}";
+        public string GetDebuggerDisplay()
+        {
+            // LAFHIS
+            var temp = Type is null ? "" : Type.GetDebuggerDisplay();
+            return $"{{Type:{temp}, State:{State}{"}"}";
+        }
 
         public override string ToString() => GetDebuggerDisplay();
 
@@ -84,14 +91,16 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
         public TypeWithAnnotations ToTypeWithAnnotations(CSharpCompilation compilation, bool asAnnotatedType = false)
         {
-            if (Type?.IsTypeParameterDisallowingAnnotationInCSharp8() == true)
+            // LAFHIS
+            if (Type is not null && Type.IsTypeParameterDisallowingAnnotationInCSharp8())
             {
                 var type = TypeWithAnnotations.Create(Type, NullableAnnotation.NotAnnotated);
                 return State == NullableFlowState.MaybeDefault ? type.SetIsAnnotated(compilation) : type;
             }
+            // LAFHIS
             NullableAnnotation annotation = asAnnotatedType ?
-                (Type?.IsValueType == true ? NullableAnnotation.NotAnnotated : NullableAnnotation.Annotated) :
-                (State.IsNotNull() || Type?.CanContainNull() == false ? NullableAnnotation.NotAnnotated : NullableAnnotation.Annotated);
+                ((Type is not null && Type.IsValueType) ? NullableAnnotation.NotAnnotated : NullableAnnotation.Annotated) :
+                (State.IsNotNull() || (Type is null || !Type.CanContainNull()) ? NullableAnnotation.NotAnnotated : NullableAnnotation.Annotated);
             return TypeWithAnnotations.Create(this.Type, annotation);
         }
 

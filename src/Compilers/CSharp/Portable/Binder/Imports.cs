@@ -593,7 +593,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 if (@using.NamespaceOrType.IsType)
                 {
                     var typeSymbol = (TypeSymbol)@using.NamespaceOrType;
-                    var location = @using.UsingDirective?.Name.Location ?? NoLocation.Singleton;
+                    // LAFHIS
+                    var location = (@using.UsingDirective != null ? @using.UsingDirective.Name.Location : null) ?? NoLocation.Singleton;
                     typeSymbol.CheckAllConstraints(_compilation, conversions, location, semanticDiagnostics);
                 }
             }

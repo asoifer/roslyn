@@ -101,7 +101,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                     return true;
                 }
                 var expression = this as BoundExpression;
-                return expression?.Type?.IsErrorType() == true;
+                // LAFHIS
+                return expression != null && !(expression.Type is null) && expression.Type.IsErrorType();
             }
         }
 

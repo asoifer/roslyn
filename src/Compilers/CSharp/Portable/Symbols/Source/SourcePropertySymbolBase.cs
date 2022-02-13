@@ -1499,7 +1499,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         protected abstract (TypeWithAnnotations Type, ImmutableArray<ParameterSymbol> Parameters) MakeParametersAndBindType(DiagnosticBag diagnostics);
 
         protected static ExplicitInterfaceSpecifierSyntax? GetExplicitInterfaceSpecifier(SyntaxNode syntax)
-            => (syntax as BasePropertyDeclarationSyntax)?.ExplicitInterfaceSpecifier;
+            =>
+            // LAFHIS
+            //(syntax as BasePropertyDeclarationSyntax)?.ExplicitInterfaceSpecifier
+            (syntax is BasePropertyDeclarationSyntax) ? ((BasePropertyDeclarationSyntax)syntax).ExplicitInterfaceSpecifier : null;
 
         internal ExplicitInterfaceSpecifierSyntax? GetExplicitInterfaceSpecifier()
             => GetExplicitInterfaceSpecifier(CSharpSyntaxNode);
