@@ -39,48 +39,175 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         /// </summary>
         Annotated,
     }
-
     internal static class NullableContextExtensions
     {
         internal static bool TryGetByte(this NullableContextKind kind, out byte? value)
         {
-            switch (kind)
+            try
             {
-                case NullableContextKind.Unknown:
-                    value = null;
-                    return false;
-                case NullableContextKind.None:
-                    value = null;
-                    return true;
-                case NullableContextKind.Oblivious:
-                    value = NullableAnnotationExtensions.ObliviousAttributeValue;
-                    return true;
-                case NullableContextKind.NotAnnotated:
-                    value = NullableAnnotationExtensions.NotAnnotatedAttributeValue;
-                    return true;
-                case NullableContextKind.Annotated:
-                    value = NullableAnnotationExtensions.AnnotatedAttributeValue;
-                    return true;
-                default:
-                    throw ExceptionUtilities.UnexpectedValue(kind);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10136, 1167, 2174);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1271, 2163);
+
+                switch (kind)
+                {
+
+                    case NullableContextKind.Unknown:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 1271, 2163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1372, 1385);
+
+                        value = null;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1407, 1420);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 1271, 2163);
+
+                    case NullableContextKind.None:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 1271, 2163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1490, 1503);
+
+                        value = null;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1525, 1537);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 1271, 2163);
+
+                    case NullableContextKind.Oblivious:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 1271, 2163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1612, 1673);
+
+                        value = NullableAnnotationExtensions.ObliviousAttributeValue;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1695, 1707);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 1271, 2163);
+
+                    case NullableContextKind.NotAnnotated:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 1271, 2163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1785, 1849);
+
+                        value = NullableAnnotationExtensions.NotAnnotatedAttributeValue;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1871, 1883);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 1271, 2163);
+
+                    case NullableContextKind.Annotated:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 1271, 2163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 1958, 2019);
+
+                        value = NullableAnnotationExtensions.AnnotatedAttributeValue;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2041, 2053);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 1271, 2163);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 1271, 2163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2101, 2148);
+
+                        throw f_10136_2107_2147(kind);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 1271, 2163);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10136, 1167, 2174);
+
+                System.Exception
+                f_10136_2107_2147(Microsoft.CodeAnalysis.CSharp.Symbols.NullableContextKind
+                o)
+                {
+                    var return_v = ExceptionUtilities.UnexpectedValue((object)o);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10136, 2107, 2147);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10136, 1167, 2174);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10136, 1167, 2174);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static NullableContextKind ToNullableContextFlags(this byte? value)
         {
-            switch (value)
+            try
             {
-                case null:
-                    return NullableContextKind.None;
-                case NullableAnnotationExtensions.ObliviousAttributeValue:
-                    return NullableContextKind.Oblivious;
-                case NullableAnnotationExtensions.NotAnnotatedAttributeValue:
-                    return NullableContextKind.NotAnnotated;
-                case NullableAnnotationExtensions.AnnotatedAttributeValue:
-                    return NullableContextKind.Annotated;
-                default:
-                    throw ExceptionUtilities.UnexpectedValue(value);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10136, 2186, 2931);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2287, 2920);
+
+                switch (value)
+                {
+
+                    case null:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 2287, 2920);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2366, 2398);
+
+                        return NullableContextKind.None;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 2287, 2920);
+
+                    case NullableAnnotationExtensions.ObliviousAttributeValue:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 2287, 2920);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2496, 2533);
+
+                        return NullableContextKind.Oblivious;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 2287, 2920);
+
+                    case NullableAnnotationExtensions.NotAnnotatedAttributeValue:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 2287, 2920);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2634, 2674);
+
+                        return NullableContextKind.NotAnnotated;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 2287, 2920);
+
+                    case NullableAnnotationExtensions.AnnotatedAttributeValue:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 2287, 2920);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2772, 2809);
+
+                        return NullableContextKind.Annotated;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 2287, 2920);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10136, 2287, 2920);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10136, 2857, 2905);
+
+                        throw f_10136_2863_2904(value);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10136, 2287, 2920);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10136, 2186, 2931);
+
+                System.Exception
+                f_10136_2863_2904(byte?
+                o)
+                {
+                    var return_v = ExceptionUtilities.UnexpectedValue((object)o);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10136, 2863, 2904);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10136, 2186, 2931);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10136, 2186, 2931);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static NullableContextExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10136, 1103, 2938);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10136, 1103, 2938);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10136, 1103, 2938);
+        }
+
     }
 }

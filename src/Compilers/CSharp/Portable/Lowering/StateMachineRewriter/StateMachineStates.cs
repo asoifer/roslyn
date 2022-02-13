@@ -8,11 +8,33 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     internal static class StateMachineStates
     {
-        internal const int FinishedStateMachine = -2;
-        internal const int NotStartedStateMachine = -1;
-        internal const int FirstUnusedState = 0;
+        internal const int
+        FinishedStateMachine = -2
+        ;
 
-        // used for async-iterators to distinguish initial state from running state (-1) so that DisposeAsync can throw in latter case
-        internal const int InitialAsyncIteratorStateMachine = -3;
+        internal const int
+        NotStartedStateMachine = -1
+        ;
+
+        internal const int
+        FirstUnusedState = 0
+        ;
+
+        internal const int
+        InitialAsyncIteratorStateMachine = -3
+        ;
+
+        static StateMachineStates()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10543, 277, 698);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10543, 353, 378);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10543, 408, 435);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10543, 465, 485);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10543, 653, 690);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10543, 277, 698);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10543, 277, 698);
+        }
+
     }
 }

@@ -8,232 +8,566 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// Defines a set of methods to determine how Unicode characters are treated by the C# compiler.
-    /// </summary>
     public static partial class SyntaxFacts
     {
-        /// <summary>
-        /// Returns true if the Unicode character is a hexadecimal digit.
-        /// </summary>
-        /// <param name="c">The Unicode character.</param>
-        /// <returns>true if the character is a hexadecimal digit 0-9, A-F, a-f.</returns>
         internal static bool IsHexDigit(char c)
         {
-            return (c >= '0' && c <= '9') ||
-                   (c >= 'A' && c <= 'F') ||
-                   (c >= 'a' && c <= 'f');
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 810, 1007);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 874, 996);
+
+                return (c >= '0' && (DynAbs.Tracing.TraceSender.Expression_True(10019, 882, 902) && c <= '9')) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 881, 949) || (c >= 'A' && (DynAbs.Tracing.TraceSender.Expression_True(10019, 928, 948) && c <= 'F'))) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 881, 995) || (c >= 'a' && (DynAbs.Tracing.TraceSender.Expression_True(10019, 974, 994) && c <= 'f')));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 810, 1007);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 810, 1007);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 810, 1007);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns true if the Unicode character is a binary (0-1) digit.
-        /// </summary>
-        /// <param name="c">The Unicode character.</param>
-        /// <returns>true if the character is a binary digit.</returns>
         internal static bool IsBinaryDigit(char c)
         {
-            return c == '0' | c == '1';
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 1275, 1380);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 1342, 1369);
+
+                return c == '0' | c == '1';
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 1275, 1380);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 1275, 1380);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 1275, 1380);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns true if the Unicode character is a decimal digit.
-        /// </summary>
-        /// <param name="c">The Unicode character.</param>
-        /// <returns>true if the Unicode character is a decimal digit.</returns>
         internal static bool IsDecDigit(char c)
         {
-            return c >= '0' && c <= '9';
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 1652, 1755);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 1716, 1744);
+
+                return c >= '0' && (DynAbs.Tracing.TraceSender.Expression_True(10019, 1723, 1743) && c <= '9');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 1652, 1755);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 1652, 1755);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 1652, 1755);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns the value of a hexadecimal Unicode character.
-        /// </summary>
-        /// <param name="c">The Unicode character.</param>
         internal static int HexValue(char c)
         {
-            Debug.Assert(IsHexDigit(c));
-            return (c >= '0' && c <= '9') ? c - '0' : (c & 0xdf) - 'A' + 10;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 1941, 2119);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 2002, 2030);
+
+                f_10019_2002_2029(f_10019_2015_2028(c));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 2044, 2108);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10019, 2051, 2073) || (((c >= '0' && (DynAbs.Tracing.TraceSender.Expression_True(10019, 2052, 2072) && c <= '9')) && DynAbs.Tracing.TraceSender.Conditional_F2(10019, 2076, 2083)) || DynAbs.Tracing.TraceSender.Conditional_F3(10019, 2086, 2107))) ? c - '0' : (c & 0xdf) - 'A' + 10;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 1941, 2119);
+
+                bool
+                f_10019_2015_2028(char
+                c)
+                {
+                    var return_v = IsHexDigit(c);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 2015, 2028);
+                    return return_v;
+                }
+
+
+                int
+                f_10019_2002_2029(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 2002, 2029);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 1941, 2119);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 1941, 2119);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns the value of a binary Unicode character.
-        /// </summary>
-        /// <param name="c">The Unicode character.</param>
         internal static int BinaryValue(char c)
         {
-            Debug.Assert(IsBinaryDigit(c));
-            return c - '0';
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 2300, 2435);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 2364, 2395);
+
+                f_10019_2364_2394(f_10019_2377_2393(c));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 2409, 2424);
+
+                return c - '0';
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 2300, 2435);
+
+                bool
+                f_10019_2377_2393(char
+                c)
+                {
+                    var return_v = IsBinaryDigit(c);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 2377, 2393);
+                    return return_v;
+                }
+
+
+                int
+                f_10019_2364_2394(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 2364, 2394);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 2300, 2435);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 2300, 2435);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns the value of a decimal Unicode character.
-        /// </summary>
-        /// <param name="c">The Unicode character.</param>
         internal static int DecValue(char c)
         {
-            Debug.Assert(IsDecDigit(c));
-            return c - '0';
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 2617, 2746);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 2678, 2706);
+
+                f_10019_2678_2705(f_10019_2691_2704(c));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 2720, 2735);
+
+                return c - '0';
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 2617, 2746);
+
+                bool
+                f_10019_2691_2704(char
+                c)
+                {
+                    var return_v = IsDecDigit(c);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 2691, 2704);
+                    return return_v;
+                }
+
+
+                int
+                f_10019_2678_2705(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 2678, 2705);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 2617, 2746);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 2617, 2746);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // UnicodeCategory value | Unicode designation
-        // -----------------------+-----------------------
-        // UppercaseLetter         "Lu" (letter, uppercase)
-        // LowercaseLetter         "Ll" (letter, lowercase)
-        // TitlecaseLetter         "Lt" (letter, titlecase)
-        // ModifierLetter          "Lm" (letter, modifier)
-        // OtherLetter             "Lo" (letter, other)
-        // NonSpacingMark          "Mn" (mark, nonspacing)
-        // SpacingCombiningMark    "Mc" (mark, spacing combining)
-        // EnclosingMark           "Me" (mark, enclosing)
-        // DecimalDigitNumber      "Nd" (number, decimal digit)
-        // LetterNumber            "Nl" (number, letter)
-        // OtherNumber             "No" (number, other)
-        // SpaceSeparator          "Zs" (separator, space)
-        // LineSeparator           "Zl" (separator, line)
-        // ParagraphSeparator      "Zp" (separator, paragraph)
-        // Control                 "Cc" (other, control)
-        // Format                  "Cf" (other, format)
-        // Surrogate               "Cs" (other, surrogate)
-        // PrivateUse              "Co" (other, private use)
-        // ConnectorPunctuation    "Pc" (punctuation, connector)
-        // DashPunctuation         "Pd" (punctuation, dash)
-        // OpenPunctuation         "Ps" (punctuation, open)
-        // ClosePunctuation        "Pe" (punctuation, close)
-        // InitialQuotePunctuation "Pi" (punctuation, initial quote)
-        // FinalQuotePunctuation   "Pf" (punctuation, final quote)
-        // OtherPunctuation        "Po" (punctuation, other)
-        // MathSymbol              "Sm" (symbol, math)
-        // CurrencySymbol          "Sc" (symbol, currency)
-        // ModifierSymbol          "Sk" (symbol, modifier)
-        // OtherSymbol             "So" (symbol, other)
-        // OtherNotAssigned        "Cn" (other, not assigned)
-
-        /// <summary>
-        /// Returns true if the Unicode character represents a whitespace.
-        /// </summary>
-        /// <param name="ch">The Unicode character.</param>
         public static bool IsWhitespace(char ch)
         {
-            // whitespace:
-            //   Any character with Unicode class Zs
-            //   Horizontal tab character (U+0009)
-            //   Vertical tab character (U+000B)
-            //   Form feed character (U+000C)
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 4892, 6523);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 5283, 6512);
 
-            // Space and no-break space are the only space separators (Zs) in ASCII range
+                return ch == ' '
+                || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 5330) || ch == '\t'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 5361) || ch == '\v'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 5392) || ch == '\f'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 5427) || ch == '\u00A0' // NO-BREAK SPACE
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 6369) || ch == '\uFEFF'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 6404) || ch == '\u001A'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 5290, 6511) || (ch > 255 && (DynAbs.Tracing.TraceSender.Expression_True(10019, 6426, 6510) && f_10019_6438_6476(ch) == UnicodeCategory.SpaceSeparator)));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 4892, 6523);
 
-            return ch == ' '
-                || ch == '\t'
-                || ch == '\v'
-                || ch == '\f'
-                || ch == '\u00A0' // NO-BREAK SPACE
-                                  // The native compiler, in ScanToken, recognized both the byte-order
-                                  // marker '\uFEFF' as well as ^Z '\u001A' as whitespace, although
-                                  // this is not to spec since neither of these are in Zs. For the
-                                  // sake of compatibility, we recognize them both here. Note: '\uFEFF'
-                                  // also happens to be a formatting character (class Cf), which means
-                                  // that it is a legal non-initial identifier character. So it's
-                                  // especially funny, because it will be whitespace UNLESS we happen
-                                  // to be scanning an identifier or keyword, in which case it winds
-                                  // up in the identifier or keyword.
-                || ch == '\uFEFF'
-                || ch == '\u001A'
-                || (ch > 255 && CharUnicodeInfo.GetUnicodeCategory(ch) == UnicodeCategory.SpaceSeparator);
+                System.Globalization.UnicodeCategory
+                f_10019_6438_6476(char
+                ch)
+                {
+                    var return_v = CharUnicodeInfo.GetUnicodeCategory(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 6438, 6476);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 4892, 6523);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 4892, 6523);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns true if the Unicode character is a newline character.
-        /// </summary>
-        /// <param name="ch">The Unicode character.</param>
         public static bool IsNewLine(char ch)
         {
-            // new-line-character:
-            //   Carriage return character (U+000D)
-            //   Line feed character (U+000A)
-            //   Next line character (U+0085)
-            //   Line separator character (U+2028)
-            //   Paragraph separator character (U+2029)
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 6718, 7239);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 7074, 7228);
 
-            return ch == '\r'
-                || ch == '\n'
-                || ch == '\u0085'
-                || ch == '\u2028'
-                || ch == '\u2029';
+                return ch == '\r'
+                || (DynAbs.Tracing.TraceSender.Expression_False(10019, 7081, 7122) || ch == '\n'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 7081, 7157) || ch == '\u0085'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 7081, 7192) || ch == '\u2028'
+                ) || (DynAbs.Tracing.TraceSender.Expression_False(10019, 7081, 7227) || ch == '\u2029');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 6718, 7239);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 6718, 7239);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 6718, 7239);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns true if the Unicode character can be the starting character of a C# identifier.
-        /// </summary>
-        /// <param name="ch">The Unicode character.</param>
         public static bool IsIdentifierStartCharacter(char ch)
         {
-            return UnicodeCharacterUtilities.IsIdentifierStartCharacter(ch);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 7460, 7614);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 7539, 7603);
+
+                return f_10019_7546_7602(ch);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 7460, 7614);
+
+                bool
+                f_10019_7546_7602(char
+                ch)
+                {
+                    var return_v = UnicodeCharacterUtilities.IsIdentifierStartCharacter(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 7546, 7602);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 7460, 7614);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 7460, 7614);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns true if the Unicode character can be a part of a C# identifier.
-        /// </summary>
-        /// <param name="ch">The Unicode character.</param>
         public static bool IsIdentifierPartCharacter(char ch)
         {
-            return UnicodeCharacterUtilities.IsIdentifierPartCharacter(ch);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 7819, 7971);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 7897, 7960);
+
+                return f_10019_7904_7959(ch);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 7819, 7971);
+
+                bool
+                f_10019_7904_7959(char
+                ch)
+                {
+                    var return_v = UnicodeCharacterUtilities.IsIdentifierPartCharacter(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 7904, 7959);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 7819, 7971);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 7819, 7971);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Check that the name is a valid identifier.
-        /// </summary>
         public static bool IsValidIdentifier(string name)
         {
-            return UnicodeCharacterUtilities.IsValidIdentifier(name);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 8086, 8228);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 8160, 8217);
+
+                return f_10019_8167_8216(name);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 8086, 8228);
+
+                bool
+                f_10019_8167_8216(string
+                name)
+                {
+                    var return_v = UnicodeCharacterUtilities.IsValidIdentifier(name);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 8167, 8216);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 8086, 8228);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 8086, 8228);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Spec section 2.4.2 says that identifiers are compared without regard
-        /// to leading "@" characters or unicode formatting characters.  As in dev10,
-        /// this is actually accomplished by dropping such characters during parsing.
-        /// Unfortunately, metadata names can still contain these characters and will
-        /// not be referenceable from source if they do (lookup will fail since the
-        /// characters will have been dropped from the search string).
-        /// See DevDiv #14432 for more.
-        /// </summary>
         internal static bool ContainsDroppedIdentifierCharacters(string? name)
         {
-            if (RoslynString.IsNullOrEmpty(name))
+            try
             {
-                return false;
-            }
-            if (name[0] == '@')
-            {
-                return true;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 8828, 9425);
 
-            int nameLength = name.Length;
-            for (int i = 0; i < nameLength; i++)
-            {
-                if (UnicodeCharacterUtilities.IsFormattingChar(name[i]))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 8923, 9021) || true) && (f_10019_8927_8959(name))
+                )
+
                 {
-                    return true;
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 8923, 9021);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 8993, 9006);
 
-            return false;
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 8923, 9021);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9035, 9114) || true) && (f_10019_9039_9046(name, 0) == '@')
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 9035, 9114);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9087, 9099);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 9035, 9114);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9130, 9159);
+
+                int
+                nameLength = f_10019_9147_9158(name)
+                ;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9182, 9187);
+                    for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9173, 9385) || true) && (i < nameLength)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9205, 9208)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 9173, 9385))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 9173, 9385);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9242, 9370) || true) && (f_10019_9246_9297(f_10019_9289_9296(name, i)))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 9242, 9370);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9339, 9351);
+
+                            return true;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 9242, 9370);
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10019, 1, 213);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10019, 1, 213);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9401, 9414);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 8828, 9425);
+
+                bool
+                f_10019_8927_8959(string?
+                value)
+                {
+                    var return_v = RoslynString.IsNullOrEmpty(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 8927, 8959);
+                    return return_v;
+                }
+
+
+                char
+                f_10019_9039_9046(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10019, 9039, 9046);
+                    return return_v;
+                }
+
+
+                int
+                f_10019_9147_9158(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10019, 9147, 9158);
+                    return return_v;
+                }
+
+
+                char
+                f_10019_9289_9296(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10019, 9289, 9296);
+                    return return_v;
+                }
+
+
+                bool
+                f_10019_9246_9297(char
+                ch)
+                {
+                    var return_v = UnicodeCharacterUtilities.IsFormattingChar(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10019, 9246, 9297);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 8828, 9425);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 8828, 9425);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsNonAsciiQuotationMark(char ch)
         {
-            // CONSIDER: There are others:
-            // http://en.wikipedia.org/wiki/Quotation_mark_glyphs#Quotation_marks_in_Unicode
-            switch (ch)
+            try
             {
-                case '\u2018': //LEFT SINGLE QUOTATION MARK
-                case '\u2019': //RIGHT SINGLE QUOTATION MARK
-                    return true;
-                case '\u201C': //LEFT DOUBLE QUOTATION MARK
-                case '\u201D': //RIGHT DOUBLE QUOTATION MARK
-                    return true;
-                default:
-                    return false;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10019, 9437, 10080);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9653, 10069);
+
+                switch (ch)
+                {
+
+                    case '\u2018': //LEFT SINGLE QUOTATION MARK
+                    case '\u2019': //RIGHT SINGLE QUOTATION MARK
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 9653, 10069);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9824, 9836);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 9653, 10069);
+
+                    case '\u201C': //LEFT DOUBLE QUOTATION MARK
+                    case '\u201D': //RIGHT DOUBLE QUOTATION MARK
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 9653, 10069);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 9981, 9993);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 9653, 10069);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10019, 9653, 10069);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10019, 10041, 10054);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10019, 9653, 10069);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10019, 9437, 10080);
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10019, 9437, 10080);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 9437, 10080);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        static SyntaxFacts()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10019, 480, 10087);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10081, 1099, 1204);
+            EqualityComparer = f_10081_1171_1203(); 
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10019, 480, 10087);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10019, 480, 10087);
+        }
+
+        public static System.Collections.Generic.IEqualityComparer<SyntaxKind> f_10081_1171_1203()
+        {
+            var temp = new SyntaxKindEqualityComparer();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(10081, 1171, 1203);
+            return temp;
         }
     }
 }

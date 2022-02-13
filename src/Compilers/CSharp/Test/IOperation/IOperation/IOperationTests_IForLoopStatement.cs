@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,13 +12,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation)]
+public partial class IOperationTests : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ForSimpleLoop()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,503,4069);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,708,956);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -31,8 +37,12 @@ class C
         System.Console.Write(""{0}"", x);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,970,3966);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -76,15 +86,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: x (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'x')
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 3) (Syntax: '3')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,3980,4058);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_3980_4057(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,503,4069);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,503,4069);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,503,4069);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_TrueCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,4081,7286);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,4286,4572);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -99,8 +129,12 @@ class C
         System.Console.Write(""{0},{1}"", i, j);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,4586,7183);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (j = 0; ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -138,15 +172,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
       IBranchOperation (BranchKind.Break, Label Id: 1) (OperationKind.Branch, Type: null) (Syntax: 'break;')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,7197,7275);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_7197_7274(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,4081,7286);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,4081,7286);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,4081,7286);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_FalseCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,7298,10507);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,7504,7791);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -161,8 +215,12 @@ class C
         System.Console.Write(""{0},{1}"", i, j);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,7805,10404);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (j = 0; ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: False) (Syntax: 'false')
@@ -200,15 +258,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
       IBranchOperation (BranchKind.Break, Label Id: 1) (OperationKind.Branch, Type: null) (Syntax: 'break;')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,10418,10496);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_10418_10495(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,7298,10507);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,7298,10507);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,7298,10507);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_WithContinue()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,10519,15051);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,10723,11029);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -223,8 +301,12 @@ class C
         System.Console.Write(""{0},{1}, "", i, j);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,11043,14948);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (i = 0, ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i < 5')
@@ -283,15 +365,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,14962,15040);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_14962_15039(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,10519,15051);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,10519,15051);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,10519,15051);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_WithBreak()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,15063,19579);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,15264,15566);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -306,8 +408,12 @@ class C
         System.Console.Write(""{0}, {1}"", i, j);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,15580,19476);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (i = 0, ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i < 5')
@@ -366,15 +472,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,19490,19568);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_19490_19567(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,15063,19579);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,15063,19579);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,15063,19579);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_WithNoStatement()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,19591,21944);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,19798,20052);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -388,8 +514,12 @@ class C
         System.Console.Write(""{0}"", i);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,20066,21841);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (;;) ... }')
   Condition: 
     null
@@ -419,15 +549,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 2) (Syntax: '2')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,21855,21933);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_21855_21932(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,19591,21944);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,19591,21944);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,19591,21944);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_MultipleInitializer()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,21956,26371);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,22167,22433);
+
+string 
+source = @"
 class C
 {
     static void Main()
@@ -440,8 +590,12 @@ class C
         System.Console.Write(""{0}"", i);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,22447,26268);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (i = i  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'j < 2')
@@ -497,15 +651,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,26282,26360);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_26282_26359(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,21956,26371);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,21956,26371);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,21956,26371);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_InitializerMissing()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,26383,28354);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,26593,26781);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -517,8 +691,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,26795,28251);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (; i <  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i < 10')
@@ -541,15 +719,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,28265,28343);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_28265_28342(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,26383,28354);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,26383,28354);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,26383,28354);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_DecreasingIterator()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,28366,31111);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,28576,28756);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -560,8 +758,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,28770,31008);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int k  ... }')
   Locals: Local_1: System.Int32 k
   Condition: 
@@ -594,15 +796,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,31022,31100);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_31022_31099(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,28366,31111);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,28366,31111);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,28366,31111);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_MethodCall()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,31123,33013);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,31325,31673);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -617,8 +839,12 @@ class C
     public static int Iterator() { return 1; }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,31687,32910);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (Initia ... }')
   Condition: 
     IInvocationOperation (System.Boolean C.Conditional()) (OperationKind.Invocation, Type: System.Boolean) (Syntax: 'Conditional()')
@@ -641,15 +867,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
             Arguments(0)
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,32924,33002);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_32924_33001(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,31123,33013);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,31123,33013);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,31123,33013);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_MissingForBody()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,33025,35718);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,33231,33388);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -657,8 +903,12 @@ class C
         /*<bind>*/for (int i = 10; i < 100; i = i + 1) ;/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,33402,35615);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ...  = i + 1) ;')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -691,15 +941,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   Body: 
     IEmptyOperation (OperationKind.Empty, Type: null) (Syntax: ';')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,35629,35707);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_35629_35706(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,33025,35718);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,33025,35718);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,33025,35718);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_Nested()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,35730,40887);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,35928,36182);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -712,8 +982,12 @@ class C
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,36196,40784);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -778,15 +1052,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                         ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
         Body: 
           IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,40798,40876);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_40798_40875(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,35730,40887);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,35730,40887);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,35730,40887);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ChangeOuterVariableInInnerLoop()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,40899,46632);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,41121,41400);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -801,8 +1095,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,41414,46529);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -874,15 +1172,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                     ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                   Right: 
                     ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,46543,46621);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_46543_46620(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,40899,46632);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,40899,46632);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,40899,46632);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_InnerLoopRefOuterIteration()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,46644,52171);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,46862,47119);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -896,8 +1214,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,47133,52068);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -966,15 +1288,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                         ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
         Body: 
           IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,52082,52160);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_52082_52159(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,46644,52171);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,46644,52171);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,46644,52171);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_BreakFromNestedLoop()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,52183,58139);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,52394,52705);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -990,8 +1332,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,52719,58036);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1067,15 +1413,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                 IBranchOperation (BranchKind.Break, Label Id: 3) (OperationKind.Branch, Type: null) (Syntax: 'break;')
               WhenFalse: 
                 null
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,58050,58128);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_58050_58127(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,52183,58139);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,52183,58139);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,52183,58139);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ContinueForNestedLoop()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,58151,66383);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,58364,58752);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1092,8 +1458,12 @@ class C
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,58766,66280);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1194,15 +1564,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                         ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                         InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                         OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,66294,66372);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_66294_66371(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,58151,66383);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,58151,66383);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,58151,66383);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_GotoForNestedLoop_1()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,66395,72783);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,66606,66935);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1219,8 +1609,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,66949,72680);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1299,15 +1693,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                             ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
                           Right: 
                             ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,72694,72772);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_72694_72771(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,66395,72783);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,66395,72783);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,66395,72783);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ThrowException()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,72795,77499);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,73001,73293);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1322,8 +1736,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,73307,77396);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1382,15 +1800,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                 Arguments(0)
                 Initializer: 
                   null
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,77410,77488);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_77410_77487(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,72795,77499);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,72795,77499);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,72795,77499);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ReturnInFor()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,77511,81168);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,77714,77973);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1405,8 +1843,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,77987,81065);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1452,15 +1894,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
             IReturnOperation (OperationKind.Return, Type: null) (Syntax: 'return;')
               ReturnedValue: 
                 null
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,81079,81157);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_81079_81156(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,77511,81168);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,77511,81168);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,77511,81168);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ChangeValueOfInit()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,81180,84840);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,81389,81592);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1472,8 +1934,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,81606,84737);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
     Local_2: System.Int32 j
@@ -1518,15 +1984,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
               ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
             Right: 
               ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 2) (Syntax: '2')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,84751,84829);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_84751_84828(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,81180,84840);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,81180,84840);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,81180,84840);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ChangeValueOfCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,84852,89481);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,85066,85322);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1540,8 +2026,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,85336,89378);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1600,15 +2090,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: c (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'c')
                 Right: 
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,89392,89470);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_89392_89469(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,84852,89481);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,84852,89481);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,84852,89481);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_UnreachableCode1()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,89493,91471);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,89701,89927);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1619,8 +2129,12 @@ class C
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,89941,91368);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (; fals ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: False) (Syntax: 'false')
@@ -1638,15 +2152,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.String, Constant: ""hello"") (Syntax: '""hello""')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,91382,91460);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_91382_91459(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,89493,91471);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,89493,91471);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,89493,91471);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ObjectInitAsInitializer()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,91483,96583);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,91698,91968);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1662,8 +2196,12 @@ public class F
     public string s;
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,91982,96480);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (F f =  ... }')
   Locals: Local_1: F f
   Condition: 
@@ -1720,15 +2258,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,96494,96572);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_96494_96571(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,91483,96583);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,91483,96583);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,91483,96583);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_DynamicInFor()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,96595,99934);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,96799,97482);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1764,8 +2322,12 @@ public class myFor
         System.Console.WriteLine(""Next"");
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,97496,99829);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (d.Init ... }')
   Condition: 
     IUnaryOperation (UnaryOperatorKind.True) (OperationKind.Unary, Type: System.Boolean, IsImplicit) (Syntax: 'd.Done')
@@ -1801,16 +2363,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
             ArgumentRefKinds(0)
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,99845,99923);
 
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
+f_22036_99845_99922(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,96595,99934);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,96595,99934);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,96595,99934);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_VarInFor()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,99946,102620);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,100146,100302);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1819,8 +2400,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,100316,102517);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (var i  ...  = i + 1) ;')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -1853,15 +2438,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   Body: 
     IEmptyOperation (OperationKind.Empty, Type: null) (Syntax: ';')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,102531,102609);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_102531_102608(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,99946,102620);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,99946,102620);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,99946,102620);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_QueryInInit()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,102632,119021);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,102835,103389);
+
+string 
+source = @"
 using System.Linq;
 using System.Collections.Generic;
 class C
@@ -1881,8 +2486,12 @@ class C
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,103403,118918);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (IEnume ... }')
   Locals: Local_1: System.Collections.Generic.IEnumerable<System.String> str
   Condition: 
@@ -2003,15 +2612,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
       IReturnOperation (OperationKind.Return, Type: null) (Syntax: 'return;')
         ReturnedValue: 
           null
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,118932,119010);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_118932_119009(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,102632,119021);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,102632,119021);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,102632,119021);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_QueryInBody()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,119033,132821);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,119236,119790);
+
+string 
+source = @"
 using System.Linq;
 using System.Collections.Generic;
 class C
@@ -2037,8 +2666,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,119804,132718);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -2139,15 +2772,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                                   IParameterReferenceOperation: w (OperationKind.ParameterReference, Type: System.String) (Syntax: 'w')
                       InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                       OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,132732,132810);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_132732_132809(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,119033,132821);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,119033,132821);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,119033,132821);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ExpressiontreeInInit()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,132833,139594);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,133045,133412);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -2162,8 +2815,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,133426,139491);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (e = x  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i < 5')
@@ -2228,15 +2885,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                           OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,139505,139583);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_139505_139582(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,132833,139594);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,132833,139594);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,132833,139594);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ExpressiontreeInIterator()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,139606,147540);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,139822,140186);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -2250,8 +2927,12 @@ class C
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,140200,147437);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -2332,15 +3013,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                           OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,147451,147529);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_147451_147528(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,139606,147540);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,139606,147540);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,139606,147540);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_CustomerTypeInFor()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,147552,150734);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,147761,148021);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -2355,8 +3056,12 @@ public class C1
         return obj;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,148035,150631);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (C1 i = ... l; i++) { }')
   Locals: Local_1: C1 i
   Condition: 
@@ -2392,15 +3097,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
               ILocalReferenceOperation: i (OperationKind.LocalReference, Type: C1) (Syntax: 'i')
   Body: 
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ }')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,150645,150723);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_150645_150722(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,147552,150734);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,147552,150734);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,147552,150734);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_PostFixIncrementInFor()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,150746,154262);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,150959,151197);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2412,8 +3137,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,151211,154159);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int j  ... }')
   Locals: Local_1: System.Int32 j
   Condition: 
@@ -2452,15 +3181,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,154173,154251);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_154173_154250(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,150746,154262);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,150746,154262);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,150746,154262);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_PreFixIncrementInFor()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,154274,157790);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,154486,154726);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2473,8 +3222,12 @@ class Program
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,154740,157687);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int j  ... }')
   Locals: Local_1: System.Int32 j
   Condition: 
@@ -2513,15 +3266,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,157701,157779);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_157701_157778(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,154274,157790);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,154274,157790);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,154274,157790);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_PreFixIncrementInCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,157802,160888);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,158020,158234);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2532,8 +3305,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,158248,160785);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -2567,15 +3344,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,160799,160877);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_160799_160876(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,157802,160888);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,157802,160888);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,157802,160888);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_PostFixDecrementInCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,160900,164910);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,161119,161401);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2591,8 +3388,12 @@ class Program
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,161415,164807);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -2635,15 +3436,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,164821,164899);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_164821_164898(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,160900,164910);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,160900,164910);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,160900,164910);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_InfiniteLoopVerify()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,164922,166868);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,165132,165338);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2654,8 +3475,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,165352,166765);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (; true ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -2673,15 +3498,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILiteralOperation (OperationKind.Literal, Type: System.String, Constant: ""z"") (Syntax: '""z""')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,166779,166857);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_166779_166856(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,164922,166868);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,164922,166868);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,164922,166868);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_InvalidExpression()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,166880,170097);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,167089,167273);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -2691,8 +3536,12 @@ class C
         }
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,167287,169994);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null, IsInvalid) (Syntax: 'for (int k  ... 100, j > 5;')
   Locals: Local_1: System.Int32 k
     Local_2: System.Int32 j
@@ -2730,15 +3579,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
               ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5, IsInvalid) (Syntax: '5')
   Body: 
     IEmptyOperation (OperationKind.Empty, Type: null, IsInvalid) (Syntax: ';')
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,170008,170086);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_170008_170085(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,166880,170097);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,166880,170097);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,166880,170097);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IForLoopStatement_ConditionOutVar()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,170109,177233);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,170316,170584);
+
+string 
+source = @"
 class P
 {
     private void M()
@@ -2750,8 +3619,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,170598,177130);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (var j  ... }')
   Locals: Local_1: System.Int32 j
     Local_2: System.Int32 i
@@ -2828,15 +3701,35 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                             null
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,177144,177222);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_177144_177221(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,170109,177233);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,170109,177233);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,170109,177233);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void IForLoopStatement_InvalidIterationVariableDeclaration()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,177245,179956);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,177406,177637);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2848,8 +3741,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,177651,179853);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null, IsInvalid) (Syntax: 'for (int i  ... }')
   Locals: Local_1: System.Int32 i
   Condition: 
@@ -2877,16 +3774,36 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            VerifyOperationTreeForTest<ForStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,179867,179945);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22036_179867_179944(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,177245,179956);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,177245,179956);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,177245,179956);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [WorkItem(21823, "https://github.com/dotnet/roslyn/issues/21823")]
         [Fact]
         public void IForLoopStatement_CollectionLocals()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,179968,184296);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,180186,180494);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2902,8 +3819,12 @@ class Program
         throw null;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,180508,184089);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (; GetB ... }')
   ConditionLocals: Local_1: System.Int32 a
   Condition: 
@@ -2943,17 +3864,40 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: a (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'a')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,184103,184156);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ForStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,184172,184285);
+
+f_22036_184172_184284(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,179968,184296);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,179968,184296);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,179968,184296);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void IForLoopStatement_MultipleIncrements()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,184308,187998);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,184452,184766);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -2970,8 +3914,12 @@ class Program
         throw null;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,184780,187791);
+
+string 
+expectedOperationTree = @"
 IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'for (;; Get ... }')
   Condition: 
     null
@@ -3007,17 +3955,40 @@ IForLoopOperation (LoopKind.For, Continue Label Id: 0, Exit Label Id: 1) (Operat
                   ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,187805,187858);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ForStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,187874,187987);
+
+f_22036_187874_187986(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,184308,187998);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,184308,187998);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,184308,187998);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,188010,196335);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,188154,188478);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(int result)
@@ -3033,10 +4004,17 @@ public sealed class MyClass
         throw null;
     }
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,188492,188545);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,188561,196212);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3168,15 +4146,35 @@ Block[B0] - Entry
 Block[B9] - Exit
     Predecessors: [B3]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,196226,196324);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22036_196226_196323(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,188010,196335);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,188010,196335);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,188010,196335);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,196347,200608);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,196491,196723);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(int result, int a, int b, bool c)
@@ -3187,10 +4185,17 @@ public sealed class MyClass
         }
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,196737,196790);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,196806,200485);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3271,15 +4276,35 @@ Block[B0] - Entry
 Block[B7] - Exit [UnReachable]
     Predecessors (0)
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,200499,200597);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22036_200499_200596(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,196347,200608);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,196347,200608);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,196347,200608);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_03()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,200620,206186);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,200764,201086);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(int result, int a, int b, bool c, int i, int j)
@@ -3295,10 +4320,17 @@ public sealed class MyClass
         throw null;
     }
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,201100,201153);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,201169,206063);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3404,15 +4436,35 @@ Block[B6] - Block
 Block[B9] - Exit
     Predecessors: [B7]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,206077,206175);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22036_206077_206174(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,200620,206186);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,200620,206186);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,200620,206186);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_04()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,206198,208334);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,206342,206559);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(bool result, bool a, bool b, bool c)
@@ -3423,10 +4475,17 @@ public sealed class MyClass
         }
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,206573,206626);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,206642,208211);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3466,15 +4525,35 @@ Block[B4] - Block
 Block[B5] - Exit
     Predecessors: [B2] [B3]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,208225,208323);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22036_208225_208322(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,206198,208334);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,206198,208334);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,206198,208334);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_05()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,208346,213576);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,208490,208736);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(int result, MyClass a, MyClass b)
@@ -3487,10 +4566,17 @@ public sealed class MyClass
 
     int f;
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,208750,208803);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,208819,213453);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3593,15 +4679,35 @@ Block[B0] - Entry
 Block[B8] - Exit
     Predecessors: [B2]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,213467,213565);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22036_213467_213564(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,208346,213576);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,208346,213576);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,208346,213576);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_06()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,213588,217012);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,213732,213973);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(bool result, bool x)
@@ -3613,10 +4719,17 @@ public sealed class MyClass
         }
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,213987,214040);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,214056,216889);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3681,15 +4794,35 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B2]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,216903,217001);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22036_216903_217000(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,213588,217012);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,213588,217012);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,213588,217012);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ForFlow_07()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22036,217024,220363);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,217168,217406);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(bool result, bool x)
@@ -3701,10 +4834,17 @@ public sealed class MyClass
         }
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,217420,217473);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,217489,220240);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3766,8 +4906,548 @@ Block[B0] - Entry
 Block[B5] - Exit
     Predecessors: [B2] [B3]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22036,220254,220352);
+
+f_22036_220254_220351(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22036,217024,220363);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22036,217024,220363);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22036,217024,220363);
+}
+		}
+
+int
+f_22036_3980_4057(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 3980, 4057);
+return 0;
+}
+
+
+int
+f_22036_7197_7274(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 7197, 7274);
+return 0;
+}
+
+
+int
+f_22036_10418_10495(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 10418, 10495);
+return 0;
+}
+
+
+int
+f_22036_14962_15039(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 14962, 15039);
+return 0;
+}
+
+
+int
+f_22036_19490_19567(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 19490, 19567);
+return 0;
+}
+
+
+int
+f_22036_21855_21932(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 21855, 21932);
+return 0;
+}
+
+
+int
+f_22036_26282_26359(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 26282, 26359);
+return 0;
+}
+
+
+int
+f_22036_28265_28342(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 28265, 28342);
+return 0;
+}
+
+
+int
+f_22036_31022_31099(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 31022, 31099);
+return 0;
+}
+
+
+int
+f_22036_32924_33001(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 32924, 33001);
+return 0;
+}
+
+
+int
+f_22036_35629_35706(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 35629, 35706);
+return 0;
+}
+
+
+int
+f_22036_40798_40875(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 40798, 40875);
+return 0;
+}
+
+
+int
+f_22036_46543_46620(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 46543, 46620);
+return 0;
+}
+
+
+int
+f_22036_52082_52159(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 52082, 52159);
+return 0;
+}
+
+
+int
+f_22036_58050_58127(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 58050, 58127);
+return 0;
+}
+
+
+int
+f_22036_66294_66371(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 66294, 66371);
+return 0;
+}
+
+
+int
+f_22036_72694_72771(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 72694, 72771);
+return 0;
+}
+
+
+int
+f_22036_77410_77487(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 77410, 77487);
+return 0;
+}
+
+
+int
+f_22036_81079_81156(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 81079, 81156);
+return 0;
+}
+
+
+int
+f_22036_84751_84828(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 84751, 84828);
+return 0;
+}
+
+
+int
+f_22036_89392_89469(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 89392, 89469);
+return 0;
+}
+
+
+int
+f_22036_91382_91459(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 91382, 91459);
+return 0;
+}
+
+
+int
+f_22036_96494_96571(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 96494, 96571);
+return 0;
+}
+
+
+int
+f_22036_99845_99922(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 99845, 99922);
+return 0;
+}
+
+
+int
+f_22036_102531_102608(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 102531, 102608);
+return 0;
+}
+
+
+int
+f_22036_118932_119009(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 118932, 119009);
+return 0;
+}
+
+
+int
+f_22036_132732_132809(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 132732, 132809);
+return 0;
+}
+
+
+int
+f_22036_139505_139582(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 139505, 139582);
+return 0;
+}
+
+
+int
+f_22036_147451_147528(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 147451, 147528);
+return 0;
+}
+
+
+int
+f_22036_150645_150722(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 150645, 150722);
+return 0;
+}
+
+
+int
+f_22036_154173_154250(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 154173, 154250);
+return 0;
+}
+
+
+int
+f_22036_157701_157778(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 157701, 157778);
+return 0;
+}
+
+
+int
+f_22036_160799_160876(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 160799, 160876);
+return 0;
+}
+
+
+int
+f_22036_164821_164898(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 164821, 164898);
+return 0;
+}
+
+
+int
+f_22036_166779_166856(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 166779, 166856);
+return 0;
+}
+
+
+int
+f_22036_170008_170085(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 170008, 170085);
+return 0;
+}
+
+
+int
+f_22036_177144_177221(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 177144, 177221);
+return 0;
+}
+
+
+int
+f_22036_179867_179944(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<ForStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 179867, 179944);
+return 0;
+}
+
+
+int
+f_22036_184172_184284(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ForStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 184172, 184284);
+return 0;
+}
+
+
+int
+f_22036_187874_187986(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ForStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 187874, 187986);
+return 0;
+}
+
+
+int
+f_22036_196226_196323(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 196226, 196323);
+return 0;
+}
+
+
+int
+f_22036_200499_200596(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 200499, 200596);
+return 0;
+}
+
+
+int
+f_22036_206077_206174(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 206077, 206174);
+return 0;
+}
+
+
+int
+f_22036_208225_208322(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 208225, 208322);
+return 0;
+}
+
+
+int
+f_22036_213467_213564(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 213467, 213564);
+return 0;
+}
+
+
+int
+f_22036_216903_217000(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 216903, 217000);
+return 0;
+}
+
+
+int
+f_22036_220254_220351(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22036, 220254, 220351);
+return 0;
+}
+
+}
 }

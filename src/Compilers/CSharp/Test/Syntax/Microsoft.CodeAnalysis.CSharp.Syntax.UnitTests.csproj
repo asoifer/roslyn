@@ -12,6 +12,7 @@
     <NoWarn>$(NoWarn);1570;1587</NoWarn>
   </PropertyGroup>
   <ItemGroup Label="Project References">
+    <ProjectReference Include="..\..\..\..\..\..\tracer\DynAbs.Tracing.FileTraceClient\DynAbs.Tracing.FileTraceClient.csproj" />
     <ProjectReference Include="..\..\..\Test\Core\Microsoft.CodeAnalysis.Test.Utilities.csproj" />
     <ProjectReference Include="..\..\..\Core\Portable\Microsoft.CodeAnalysis.csproj" />
     <ProjectReference Include="..\..\..\Test\Resources\Core\Microsoft.CodeAnalysis.Compiler.Test.Resources.csproj" />

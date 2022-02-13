@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,31 +9,89 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests.Emit
 {
-    public class Perf : CSharpTestBase
-    {
-        [Fact]
+public class Perf : CSharpTestBase
+{
+[Fact]
         public void Test()
+		{
+			try
         {
-            // This test ensures that our perf benchmark code compiles without problems.
-            // Benchmark code can be found in the following file under the 
-            // "CompilerTestResources" project that is part of Roslyn.sln -
-            //      $/Roslyn/Main/Open/Compilers/Test/Resources/Core/PerfTests/CSPerfTest.cs
+DynAbs.Tracing.TraceSender.TraceEnterMethod(23141,412,1849);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(23141,1491,1838);
 
-            // You can also use VS's "Navigate To" feature to find the above file easily -
-            // Just hit "Ctrl + ," and type "CSPerfTest.cs" in the dialog that pops up.
+f_23141_1491_1837(f_23141_1491_1543(this, f_23141_1508_1542()), f_23141_1773_1836(ErrorCode.HDN_UnusedUsingDirective, "using nested;"));
+DynAbs.Tracing.TraceSender.TraceExitMethod(23141,412,1849);
 
-            // Please note that if this test fails, it is likely because of a bug in the
-            // *product* and not in the *test* / *benchmark code* :)
-            // The benchmark code has been verified to compile fine against Dev10.
-            // So if the test fails we should fix the product bug that is causing the failure
-            // as opposed to 'fixing' the test by updating the benchmark code.
+string
+f_23141_1508_1542()
+{
+var return_v = TestResources.PerfTests.CSPerfTest;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23141, 1508, 1542);
+return return_v;
+}
 
-            //GNAMBOO: Changing this code has implications for perf tests.
-            CompileAndVerify(TestResources.PerfTests.CSPerfTest).
-                             VerifyDiagnostics(
-                                // (2416,9): info CS8019: Unnecessary using directive.
-                                //         using nested;
-                                Diagnostic(ErrorCode.HDN_UnusedUsingDirective, "using nested;"));
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_23141_1491_1543(Microsoft.CodeAnalysis.CSharp.UnitTests.Emit.Perf
+this_param,string
+source)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(23141, 1491, 1543);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_23141_1773_1836(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(23141, 1773, 1836);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_23141_1491_1837(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+this_param,params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expected)
+{
+var return_v = this_param.VerifyDiagnostics( expected);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(23141, 1491, 1837);
+return return_v;
+}
+
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23141,412,1849);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23141,412,1849);
+}
+		}
+
+public Perf()
+{
+DynAbs.Tracing.TraceSender.TraceEnterConstructor(23141,361,1856);
+DynAbs.Tracing.TraceSender.TraceExitConstructor(23141,361,1856);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23141,361,1856);
+}
+
+
+static Perf()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(23141,361,1856);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(23141,361,1856);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23141,361,1856);
+}
+
+		int ___ignore_me___=DynAbs.Tracing.TraceSender.TraceBeforeConstructor(23141,361,1856);
+}
 }

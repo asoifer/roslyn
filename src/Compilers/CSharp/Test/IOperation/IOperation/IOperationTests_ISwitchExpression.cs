@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,13 +12,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests_SwitchExpression : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+public partial class IOperationTests_SwitchExpression : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_Basic()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,571,2868);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,727,894);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -27,8 +33,12 @@ class X
         y = /*<bind>*/x switch { 1 => 2, 3 => 4, _ => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,908,2657);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (3 arms) (OperationKind.SwitchExpression, Type: System.Int32) (Syntax: 'x switch {  ... 4, _ => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -52,17 +62,40 @@ ISwitchExpressionOperation (3 arms) (OperationKind.SwitchExpression, Type: Syste
           IDiscardPatternOperation (OperationKind.DiscardPattern, Type: null) (Syntax: '_') (InputType: System.Int32?, NarrowedType: System.Int32?)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,2671,2724);
 
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,2740,2857);
+
+f_22064_2740_2856(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,571,2868);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,571,2868);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,571,2868);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_NoArms()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,2880,4067);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,3037,3181);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -71,26 +104,51 @@ class X
         y = /*<bind>*/x switch { }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,3195,3477);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (0 arms) (OperationKind.SwitchExpression, Type: System.Object) (Syntax: 'x switch { }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
   Arms(0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,25): warning CS8509: The switch expression does not handle all possible values of its input type (it is not exhaustive). For example, the pattern '_' is not covered.
-                //         y = /*<bind>*/x switch { }/*</bind>*/;
-                Diagnostic(ErrorCode.WRN_SwitchExpressionNotExhaustive, "switch").WithArguments("_").WithLocation(7, 25)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,3491,3925);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_3805_3909(f_22064_3805_3889(f_22064_3805_3870(ErrorCode.WRN_SwitchExpressionNotExhaustive, "switch"), "_"), 7, 25)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,3939,4056);
+
+f_22064_3939_4055(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,2880,4067);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,2880,4067);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,2880,4067);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_MissingPattern()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,4079,5694);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,4244,4393);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -99,8 +157,12 @@ class X
         y = /*<bind>*/x switch { => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,4407,5268);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch { => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -113,20 +175,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: Syste
                 Children(0)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,34): error CS8504: Pattern missing
-                //         y = /*<bind>*/x switch { => 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_MissingPattern, "=>").WithLocation(7, 34)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,5282,5552);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_5470_5536(f_22064_5470_5516(ErrorCode.ERR_MissingPattern, "=>"), 7, 34)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,5566,5683);
+
+f_22064_5566_5682(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,4079,5694);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,4079,5694);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,4079,5694);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_BadInput_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,5706,8245);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,5868,6027);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -135,8 +218,12 @@ class X
         y = /*<bind>*/x switch { 1 => 2, 3 => 4, _ => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,6041,7746);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (3 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch {  ... 4, _ => 5 }')
   Value: 
     IInvalidOperation (OperationKind.Invalid, Type: ?, IsInvalid) (Syntax: 'x')
@@ -161,20 +248,41 @@ ISwitchExpressionOperation (3 arms) (OperationKind.SwitchExpression, Type: Syste
           IDiscardPatternOperation (OperationKind.DiscardPattern, Type: null) (Syntax: '_') (InputType: ?, NarrowedType: ?)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,23): error CS0103: The name 'x' does not exist in the current context
-                //         y = /*<bind>*/x switch { 1 => 2, 3 => 4, _ => 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_NameNotInContext, "x").WithArguments("x").WithLocation(7, 23)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,7760,8103);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_8001_8087(f_22064_8001_8067(f_22064_8001_8048(ErrorCode.ERR_NameNotInContext, "x"), "x"), 7, 23)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,8117,8234);
+
+f_22064_8117_8233(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,5706,8245);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,5706,8245);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,5706,8245);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_NoCommonType_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,8257,10692);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,8423,8586);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -183,8 +291,12 @@ class X
         y = /*<bind>*/x switch { 1 => 2, _ => ""Z"" }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,8600,10478);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: System.Object) (Syntax: 'x switch {  ...  _ => ""Z"" }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -207,16 +319,40 @@ ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: Syste
             Conversion: CommonConversion (Exists: True, IsIdentity: False, IsNumeric: False, IsReference: True, IsUserDefined: False) (MethodSymbol: null)
             Operand: 
               ILiteralOperation (OperationKind.Literal, Type: System.String, Constant: ""Z"") (Syntax: '""Z""')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] { };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,10492,10550);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new DiagnosticDescription[] { }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,10564,10681);
+
+f_22064_10564_10680(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,8257,10692);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,8257,10692);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,8257,10692);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_NoCommonType_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,10704,13509);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,10870,11037);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -225,8 +361,12 @@ class X
         var z = /*<bind>*/x switch { 1 => 2, _ => ""Z"" }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,11051,12995);
+
+string 
+expectedOperationTree = @"
     ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: ?, IsInvalid) (Syntax: 'x switch {  ...  _ => ""Z"" }')
       Value: 
         IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -249,20 +389,41 @@ class X
                 Conversion: CommonConversion (Exists: False, IsIdentity: False, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                 Operand: 
                   ILiteralOperation (OperationKind.Literal, Type: System.String, Constant: ""Z"") (Syntax: '""Z""')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(7,29): error CS8506: No best type was found for the switch expression.
-                //         var z = /*<bind>*/x switch { 1 => 2, _ => "Z" }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_SwitchExpressionNoBestType, "switch").WithLocation(7, 29)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,13009,13367);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22064_13269_13351(f_22064_13269_13331(ErrorCode.ERR_SwitchExpressionNoBestType, "switch"), 7, 29)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,13381,13498);
+
+f_22064_13381_13497(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,10704,13509);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,10704,13509);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,10704,13509);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_MissingArrow()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,13521,15047);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,13684,13839);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -271,8 +432,12 @@ class X
         y = /*<bind>*/x switch { _ /*=>*/ 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,13853,14583);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch { _ /*=>*/ 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -282,20 +447,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: Syste
           IDiscardPatternOperation (OperationKind.DiscardPattern, Type: null) (Syntax: '_') (InputType: System.Int32?, NarrowedType: System.Int32?)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5, IsInvalid) (Syntax: '5')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,43): error CS1003: Syntax error, '=>' expected
-                //         y = /*<bind>*/x switch { _ /*=>*/ 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_SyntaxError, "5").WithArguments("=>", "").WithLocation(7, 43)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,14597,14905);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_14803_14889(f_22064_14803_14869(f_22064_14803_14845(ErrorCode.ERR_SyntaxError, "5"), "=>", ""), 7, 43)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,14919,15036);
+
+f_22064_14919_15035(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,13521,15047);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,13521,15047);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,13521,15047);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_MissingExpression()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,15059,16582);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,15227,15382);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -304,8 +490,12 @@ class X
         y = /*<bind>*/x switch { _ => /*5*/ }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,15396,16119);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: ?, IsInvalid) (Syntax: 'x switch { _ => /*5*/ }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -316,20 +506,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: ?, Is
         Value: 
           IInvalidOperation (OperationKind.Invalid, Type: null, IsInvalid) (Syntax: '')
             Children(0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,45): error CS1525: Invalid expression term '}'
-                //         y = /*<bind>*/x switch { _ => /*5*/ }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "}").WithArguments("}").WithLocation(7, 45)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,16133,16440);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_16339_16424(f_22064_16339_16404(f_22064_16339_16385(ErrorCode.ERR_InvalidExprTerm, "}"), "}"), 7, 45)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,16454,16571);
+
+f_22064_16454_16570(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,15059,16582);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,15059,16582);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,15059,16582);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_BadPattern()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,16594,18683);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,16755,16913);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -338,8 +549,12 @@ class X
         y = /*<bind>*/x switch { NotFound => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,16927,18172);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch {  ... ound => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -355,20 +570,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: Syste
                     Children(0)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,34): error CS0103: The name 'NotFound' does not exist in the current context
-                //         y = /*<bind>*/x switch { NotFound => 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_NameNotInContext, "NotFound").WithArguments("NotFound").WithLocation(7, 34)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,18186,18541);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_18425_18525(f_22064_18425_18505(f_22064_18425_18479(ErrorCode.ERR_NameNotInContext, "NotFound"), "NotFound"), 7, 34)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,18555,18672);
+
+f_22064_18555_18671(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,16594,18683);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,16594,18683);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,16594,18683);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_BadArmExpression()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,18695,20279);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,18862,19020);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -377,8 +613,12 @@ class X
         y = /*<bind>*/x switch { _ => NotFound }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,19034,19768);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: ?, IsInvalid) (Syntax: 'x switch {  ...  NotFound }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -389,20 +629,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: ?, Is
         Value: 
           IInvalidOperation (OperationKind.Invalid, Type: ?, IsInvalid) (Syntax: 'NotFound')
             Children(0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,39): error CS0103: The name 'NotFound' does not exist in the current context
-                //         y = /*<bind>*/x switch { _ => NotFound }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_NameNotInContext, "NotFound").WithArguments("NotFound").WithLocation(7, 39)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,19782,20137);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_20021_20121(f_22064_20021_20101(f_22064_20021_20075(ErrorCode.ERR_NameNotInContext, "NotFound"), "NotFound"), 7, 39)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,20151,20268);
+
+f_22064_20151_20267(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,18695,20279);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,18695,20279);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,18695,20279);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_SubsumedArm()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,20291,22444);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,20453,20612);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -411,8 +672,12 @@ class X
         y = /*<bind>*/x switch { _ => 5, 1 => 2 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,20626,21893);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch {  ... 5, 1 => 2 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -429,20 +694,41 @@ ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: Syste
               ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1, IsInvalid) (Syntax: '1')
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 2) (Syntax: '2')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,42): error CS8510: The pattern is unreachable. It has already been handled by a previous arm of the switch expression or it is impossible to match.
-                //         y = /*<bind>*/x switch { _ => 5, 1 => 2 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_SwitchArmSubsumed, "1").WithLocation(7, 42)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,21907,22302);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_22218_22286(f_22064_22218_22266(ErrorCode.ERR_SwitchArmSubsumed, "1"), 7, 42)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,22316,22433);
+
+f_22064_22316_22432(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,20291,22444);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,20291,22444);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,20291,22444);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_BasicGuard()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,22456,24375);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,22617,22791);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -451,8 +737,12 @@ class X
         y = /*<bind>*/x switch { 1 when b => 2, _ => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,22805,24166);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: System.Int32) (Syntax: 'x switch {  ... 2, _ => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -471,16 +761,40 @@ ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: Syste
           IDiscardPatternOperation (OperationKind.DiscardPattern, Type: null) (Syntax: '_') (InputType: System.Int32?, NarrowedType: System.Int32?)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,24180,24233);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,24247,24364);
+
+f_22064_24247_24363(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,22456,24375);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,22456,24375);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,22456,24375);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_FalseGuard()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,24387,26794);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,24548,24718);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -489,8 +803,12 @@ class X
         y = /*<bind>*/x switch { 1 => 2, _ when false => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,24732,26093);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: System.Int32) (Syntax: 'x switch {  ... alse => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -509,20 +827,41 @@ ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: Syste
           ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: False) (Syntax: 'false')
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,25): warning CS8846: The switch expression does not handle all possible values of its input type (it is not exhaustive). For example, the pattern '0' is not covered. However, a pattern with a 'when' clause might successfully match this value.
-                //         y = /*<bind>*/x switch { 1 => 2, _ when false => 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.WRN_SwitchExpressionNotExhaustiveWithWhen, "switch").WithArguments("0").WithLocation(7, 25)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,26107,26652);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_26524_26636(f_22064_26524_26616(f_22064_26524_26597(ErrorCode.WRN_SwitchExpressionNotExhaustiveWithWhen, "switch"), "0"), 7, 25)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,26666,26783);
+
+f_22064_26666_26782(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,24387,26794);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,24387,26794);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,24387,26794);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_TrueGuard()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,26806,28716);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,26966,27135);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -531,8 +870,12 @@ class X
         y = /*<bind>*/x switch { 1 => 2, _ when true => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,27149,28507);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: System.Int32) (Syntax: 'x switch {  ... true => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -551,16 +894,40 @@ ISwitchExpressionOperation (2 arms) (OperationKind.SwitchExpression, Type: Syste
           ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,28521,28574);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,28588,28705);
+
+f_22064_28588_28704(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,26806,28716);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,26806,28716);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,26806,28716);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_BadGuard()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,28728,30795);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,28887,29052);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -569,8 +936,12 @@ class X
         y = /*<bind>*/x switch { _ when NotFound => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,29066,30277);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch {  ... ound => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -586,20 +957,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: Syste
                 Children(0)
         Value: 
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,41): error CS0103: The name 'NotFound' does not exist in the current context
-                //         y = /*<bind>*/x switch { _ when NotFound => 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_NameNotInContext, "NotFound").WithArguments("NotFound").WithLocation(7, 41)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,30291,30653);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
+var 
+expectedDiagnostics = new[] {
+f_22064_30537_30637(f_22064_30537_30617(f_22064_30537_30591(ErrorCode.ERR_NameNotInContext, "NotFound"), "NotFound"), 7, 41)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,30667,30784);
+
+f_22064_30667_30783(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,28728,30795);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,28728,30795);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,28728,30795);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Patterns)]
         [Fact]
         public void SwitchExpression_LocalsClash()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,30807,33429);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,30969,31140);
+
+string 
+source = @"
 using System;
 class X
 {
@@ -608,8 +1000,12 @@ class X
         y = /*<bind>*/x switch { int z when x is int z => 5 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,31154,32907);
+
+string 
+expectedOperationTree = @"
 ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: System.Int32, IsInvalid) (Syntax: 'x switch {  ... nt z => 5 }')
   Value: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32?) (Syntax: 'x')
@@ -630,20 +1026,41 @@ ISwitchExpressionOperation (1 arms) (OperationKind.SwitchExpression, Type: Syste
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 5) (Syntax: '5')
         Locals: Local_1: System.Int32 z
           Local_2: System.Int32 z
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,54): error CS0128: A local variable or function named 'z' is already defined in this scope
-                //         y = /*<bind>*/x switch { int z when x is int z => 5 }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_LocalDuplicate, "z").WithArguments("z").WithLocation(7, 54)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,32921,33287);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+var 
+expectedDiagnostics = new[] {
+f_22064_33187_33271(f_22064_33187_33251(f_22064_33187_33232(ErrorCode.ERR_LocalDuplicate, "z"), "z"), 7, 54)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,33301,33418);
+
+f_22064_33301_33417(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,30807,33429);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,30807,33429);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,30807,33429);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void SwitchExpression_BasicFlow()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,33441,38480);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,33601,33847);
+
+string 
+source = @"
 public sealed class MyClass
 {
     void M(bool result, int input)
@@ -655,9 +1072,17 @@ public sealed class MyClass
             };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,33861,33914);
+
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,33928,38357);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -754,15 +1179,35 @@ Block[B0] - Entry
 Block[B8] - Exit
     Predecessors: [B7]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,38371,38469);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22064_38371_38468(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,33441,38480);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,33441,38480);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,33441,38480);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact, WorkItem(32216, "https://github.com/dotnet/roslyn/issues/32216")]
         public void SwitchExpression_CompoundGuard()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,38492,43253);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,38722,39000);
+
+string 
+source = @"
 #pragma warning disable CS8509
 public sealed class MyClass
 {
@@ -774,9 +1219,17 @@ public sealed class MyClass
             };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,39014,39067);
+
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,39081,43130);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -869,15 +1322,35 @@ Block[B0] - Entry
 Block[B8] - Exit
     Predecessors: [B7]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,43144,43242);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22064_43144_43241(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,38492,43253);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,38492,43253);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,38492,43253);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact, WorkItem(32216, "https://github.com/dotnet/roslyn/issues/32216")]
         public void SwitchExpression_CompoundInput()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,43265,48200);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,43495,43782);
+
+string 
+source = @"
 #pragma warning disable CS8509
 public sealed class MyClass
 {
@@ -889,9 +1362,17 @@ public sealed class MyClass
             };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,43796,43849);
+
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,43863,48077);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -987,15 +1468,35 @@ Block[B0] - Entry
 Block[B9] - Exit
     Predecessors: [B8]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,48091,48189);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22064_48091_48188(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,43265,48200);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,43265,48200);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,43265,48200);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact, WorkItem(32216, "https://github.com/dotnet/roslyn/issues/32216")]
         public void SwitchExpression_BadInput_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,48212,52594);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,48440,48682);
+
+string 
+source = @"
 #pragma warning disable CS8509
 public sealed class MyClass
 {
@@ -1007,13 +1508,18 @@ public sealed class MyClass
             };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,18): error CS0103: The name 'NotFound' does not exist in the current context
-                //         result = NotFound switch
-                Diagnostic(ErrorCode.ERR_NameNotInContext, "NotFound").WithArguments("NotFound").WithLocation(7, 18)
-                };
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,48696,49027);
+
+var 
+expectedDiagnostics = new[] {
+f_22064_48907_49007(f_22064_48907_48987(f_22064_48907_48961(ErrorCode.ERR_NameNotInContext, "NotFound"), "NotFound"), 7, 18)                }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,49041,52471);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1091,15 +1597,35 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,52485,52583);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22064_52485_52582(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,48212,52594);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,48212,52594);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,48212,52594);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact, WorkItem(32216, "https://github.com/dotnet/roslyn/issues/32216")]
         public void SwitchExpression_CompoundConsequence()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,52606,57483);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,52842,53142);
+
+string 
+source = @"
 #pragma warning disable CS8509
 public sealed class MyClass
 {
@@ -1111,9 +1637,17 @@ public sealed class MyClass
             };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,53156,53209);
+
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,53223,57360);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1206,15 +1740,35 @@ Block[B0] - Entry
 Block[B8] - Exit
     Predecessors: [B7]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,57374,57472);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22064_57374_57471(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,52606,57483);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,52606,57483);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,52606,57483);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact, WorkItem(32216, "https://github.com/dotnet/roslyn/issues/32216")]
         public void SwitchExpression_CompoundPattern()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,57495,63570);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,57727,58028);
+
+string 
+source = @"
 #pragma warning disable CS8509
 public sealed class MyClass
 {
@@ -1226,13 +1780,18 @@ public sealed class MyClass
             };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(9,18): error CS0150: A constant value is expected
-                //                 (a ? input1 : input2) => true
-                Diagnostic(ErrorCode.ERR_ConstantExpected, "a ? input1 : input2").WithLocation(9, 18)
-                };
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,58042,58342);
+
+var 
+expectedDiagnostics = new[] {
+f_22064_58237_58322(f_22064_58237_58302(ErrorCode.ERR_ConstantExpected, "a ? input1 : input2"), 9, 18)                }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,58356,63447);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1344,15 +1903,35 @@ Block[B0] - Entry
 Block[B10] - Exit
     Predecessors: [B9]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,63461,63559);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22064_63461_63558(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,57495,63570);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,57495,63570);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,57495,63570);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void SwitchExpression_Combinators()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22064,63582,73873);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,63744,64103);
+
+string 
+source = @"
 #pragma warning disable CS8509
 public sealed class MyClass
 {
@@ -1367,10 +1946,18 @@ public sealed class MyClass
         };
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                };
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,64117,64192);
+
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+                }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,64206,73693);
+
+string 
+expectedFlowGraph = @"
     Block[B0] - Entry
         Statements (0)
         Next (Regular) Block[B1]
@@ -1508,8 +2095,750 @@ public sealed class MyClass
     Block[B11] - Exit
         Predecessors: [B10]
         Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics, parseOptions: TestOptions.RegularWithPatternCombinators);
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22064,73707,73862);
+
+f_22064_73707_73861(source, expectedFlowGraph, expectedDiagnostics, parseOptions: TestOptions.RegularWithPatternCombinators);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22064,63582,73873);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22064,63582,73873);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,63582,73873);
+}
+		}
+
+public IOperationTests_SwitchExpression()
+{
+DynAbs.Tracing.TraceSender.TraceEnterConstructor(22064,477,73880);
+DynAbs.Tracing.TraceSender.TraceExitConstructor(22064,477,73880);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,477,73880);
+}
+
+
+static IOperationTests_SwitchExpression()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(22064,477,73880);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(22064,477,73880);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22064,477,73880);
+}
+
+		int ___ignore_me___=DynAbs.Tracing.TraceSender.TraceBeforeConstructor(22064,477,73880);
+
+int
+f_22064_2740_2856(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 2740, 2856);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_3805_3870(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 3805, 3870);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_3805_3889(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 3805, 3889);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_3805_3909(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 3805, 3909);
+return return_v;
+}
+
+
+int
+f_22064_3939_4055(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 3939, 4055);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_5470_5516(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 5470, 5516);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_5470_5536(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 5470, 5536);
+return return_v;
+}
+
+
+int
+f_22064_5566_5682(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 5566, 5682);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_8001_8048(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 8001, 8048);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_8001_8067(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 8001, 8067);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_8001_8087(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 8001, 8087);
+return return_v;
+}
+
+
+int
+f_22064_8117_8233(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 8117, 8233);
+return 0;
+}
+
+
+int
+f_22064_10564_10680(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 10564, 10680);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_13269_13331(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 13269, 13331);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_13269_13351(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 13269, 13351);
+return return_v;
+}
+
+
+int
+f_22064_13381_13497(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 13381, 13497);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_14803_14845(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 14803, 14845);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_14803_14869(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 14803, 14869);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_14803_14889(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 14803, 14889);
+return return_v;
+}
+
+
+int
+f_22064_14919_15035(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 14919, 15035);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_16339_16385(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 16339, 16385);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_16339_16404(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 16339, 16404);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_16339_16424(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 16339, 16424);
+return return_v;
+}
+
+
+int
+f_22064_16454_16570(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 16454, 16570);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_18425_18479(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 18425, 18479);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_18425_18505(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 18425, 18505);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_18425_18525(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 18425, 18525);
+return return_v;
+}
+
+
+int
+f_22064_18555_18671(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 18555, 18671);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_20021_20075(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 20021, 20075);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_20021_20101(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 20021, 20101);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_20021_20121(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 20021, 20121);
+return return_v;
+}
+
+
+int
+f_22064_20151_20267(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 20151, 20267);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_22218_22266(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 22218, 22266);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_22218_22286(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 22218, 22286);
+return return_v;
+}
+
+
+int
+f_22064_22316_22432(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 22316, 22432);
+return 0;
+}
+
+
+int
+f_22064_24247_24363(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 24247, 24363);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_26524_26597(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 26524, 26597);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_26524_26616(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 26524, 26616);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_26524_26636(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 26524, 26636);
+return return_v;
+}
+
+
+int
+f_22064_26666_26782(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 26666, 26782);
+return 0;
+}
+
+
+int
+f_22064_28588_28704(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 28588, 28704);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_30537_30591(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 30537, 30591);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_30537_30617(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 30537, 30617);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_30537_30637(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 30537, 30637);
+return return_v;
+}
+
+
+int
+f_22064_30667_30783(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 30667, 30783);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_33187_33232(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 33187, 33232);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_33187_33251(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 33187, 33251);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_33187_33271(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 33187, 33271);
+return return_v;
+}
+
+
+int
+f_22064_33301_33417(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<SwitchExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 33301, 33417);
+return 0;
+}
+
+
+int
+f_22064_38371_38468(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 38371, 38468);
+return 0;
+}
+
+
+int
+f_22064_43144_43241(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 43144, 43241);
+return 0;
+}
+
+
+int
+f_22064_48091_48188(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 48091, 48188);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_48907_48961(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 48907, 48961);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_48907_48987(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 48907, 48987);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_48907_49007(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 48907, 49007);
+return return_v;
+}
+
+
+int
+f_22064_52485_52582(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 52485, 52582);
+return 0;
+}
+
+
+int
+f_22064_57374_57471(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 57374, 57471);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_58237_58302(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 58237, 58302);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22064_58237_58322(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 58237, 58322);
+return return_v;
+}
+
+
+int
+f_22064_63461_63558(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 63461, 63558);
+return 0;
+}
+
+
+int
+f_22064_73707_73861(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+parseOptions)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics, parseOptions:parseOptions);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22064, 73707, 73861);
+return 0;
+}
+
+}
 }

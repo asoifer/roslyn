@@ -7,6 +7,17 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     public partial class BaseMethodDeclarationSyntax
     {
         public abstract override SyntaxList<AttributeListSyntax> AttributeLists { get; }
+
         public abstract override SyntaxTokenList Modifiers { get; }
+
+        static BaseMethodDeclarationSyntax()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10742, 263, 484);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10742, 263, 484);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10742, 263, 484);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10742, 263, 484);
     }
 }

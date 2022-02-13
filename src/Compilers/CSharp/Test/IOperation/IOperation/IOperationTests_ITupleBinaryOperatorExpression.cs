@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,46 +12,77 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
     public partial class IOperationTests : SemanticModelTestBase
-    {
-        [Fact]
+{
+[Fact]
         public void VerifyTupleEqualityBinaryOperator()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,582,1349);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,670,801);
+
+var 
+source = @"
 class C
 {
     bool F((int, int) x, (int, int) y)
     {
         return /*<bind>*/x == y/*</bind>*/;
     }
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,817,1240);
 
-            string expectedOperationTree =
+string 
+expectedOperationTree =
 @"
 ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Type: System.Boolean) (Syntax: 'x == y')
   Left: 
     IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: (System.Int32, System.Int32)) (Syntax: 'x')
   Right: 
     IParameterReferenceOperation: y (OperationKind.ParameterReference, Type: (System.Int32, System.Int32)) (Syntax: 'y')
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,1256,1338);
 
-            VerifyOperationTreeForTest<BinaryExpressionSyntax>(source, expectedOperationTree);
+f_22069_1256_1337(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,582,1349);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,582,1349);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,582,1349);
+}
+		}
 
-        [Fact]
+[Fact]
         public void VerifyTupleEqualityBinaryOperator_WithTupleLiteral()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,1361,2386);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,1466,1588);
+
+var 
+source = @"
 class C
 {
     bool F((int, int) x)
     {
         return /*<bind>*/x == (1, 2)/*</bind>*/;
     }
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,1604,2277);
 
-            string expectedOperationTree =
+string 
+expectedOperationTree =
 @"
 ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Type: System.Boolean) (Syntax: 'x == (1, 2)')
   Left: 
@@ -62,24 +93,46 @@ ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Ty
       Elements(2):
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 2) (Syntax: '2')
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,2293,2375);
 
-            VerifyOperationTreeForTest<BinaryExpressionSyntax>(source, expectedOperationTree);
+f_22069_2293_2374(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,1361,2386);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,1361,2386);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,1361,2386);
+}
+		}
 
-        [Fact]
+[Fact]
         public void VerifyTupleEqualityBinaryOperator_WithNotEquals()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,2398,4068);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,2500,2624);
+
+var 
+source = @"
 class C
 {
     bool F((long, byte) y)
     {
         return /*<bind>*/(1, 2) != y/*</bind>*/;
     }
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,2640,3959);
 
-            string expectedOperationTree =
+string 
+expectedOperationTree =
 @"
 ITupleBinaryOperation (BinaryOperatorKind.NotEquals) (OperationKind.TupleBinary, Type: System.Boolean) (Syntax: '(1, 2) != y')
   Left: 
@@ -96,24 +149,46 @@ ITupleBinaryOperation (BinaryOperatorKind.NotEquals) (OperationKind.TupleBinary,
       Conversion: CommonConversion (Exists: True, IsIdentity: False, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
       Operand: 
         IParameterReferenceOperation: y (OperationKind.ParameterReference, Type: (System.Int64, System.Byte)) (Syntax: 'y')
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,3975,4057);
 
-            VerifyOperationTreeForTest<BinaryExpressionSyntax>(source, expectedOperationTree);
+f_22069_3975_4056(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,2398,4068);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,2398,4068);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,2398,4068);
+}
+		}
 
-        [Fact]
+[Fact]
         public void VerifyTupleEqualityBinaryOperator_WithNullsAndConversions()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,4080,6594);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,4192,4325);
+
+var 
+source = @"
 class C
 {
     bool F()
     {
         return /*<bind>*/(null, (1, 2L)) == (null, (3L, 4))/*</bind>*/;
     }
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,4341,6485);
 
-            string expectedOperationTree =
+string 
+expectedOperationTree =
 @"
 ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Type: System.Boolean) (Syntax: '(null, (1,  ... l, (3L, 4))')
   Left: 
@@ -142,24 +217,46 @@ ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Ty
                   Conversion: CommonConversion (Exists: True, IsIdentity: False, IsNumeric: True, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   Operand: 
                     ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 4) (Syntax: '4')
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,6501,6583);
 
-            VerifyOperationTreeForTest<BinaryExpressionSyntax>(source, expectedOperationTree);
+f_22069_6501_6582(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,4080,6594);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,4080,6594);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,4080,6594);
+}
+		}
 
-        [Fact]
+[Fact]
         public void VerifyTupleEqualityBinaryOperator_WithDefault()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,6606,7701);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,6706,6832);
+
+var 
+source = @"
 class C
 {
     bool F((int, string) y)
     {
         return /*<bind>*/y == default/*</bind>*/;
     }
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,6848,7592);
 
-            string expectedOperationTree =
+string 
+expectedOperationTree =
 @"
 ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Type: System.Boolean) (Syntax: 'y == default')
   Left: 
@@ -169,15 +266,34 @@ ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Ty
       Conversion: CommonConversion (Exists: True, IsIdentity: False, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
       Operand: 
         IDefaultValueOperation (OperationKind.DefaultValue, Type: (System.Int32, System.String)) (Syntax: 'default')
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,7608,7690);
 
-            VerifyOperationTreeForTest<BinaryExpressionSyntax>(source, expectedOperationTree);
+f_22069_7608_7689(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,6606,7701);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,6606,7701);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,6606,7701);
+}
+		}
 
-        [Fact]
+[Fact]
         public void VerifyTupleEqualityBinaryOperator_VerifyChildren()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,7713,9104);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,7816,7951);
+
+string 
+source = @"
 class C
 {
     void M1((int, int) t1, long l)
@@ -185,8 +301,12 @@ class C
         _ = /*<bind>*/t1 == (l, l)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree =
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,7965,8997);
+
+string 
+expectedOperationTree =
 @"
 ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Type: System.Boolean) (Syntax: 't1 == (l, l)')
     Left: 
@@ -200,14 +320,34 @@ ITupleBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.TupleBinary, Ty
         Elements(2):
             IParameterReferenceOperation: l (OperationKind.ParameterReference, Type: System.Int64) (Syntax: 'l')
             IParameterReferenceOperation: l (OperationKind.ParameterReference, Type: System.Int64) (Syntax: 'l')
-";
-            VerifyOperationTreeForTest<BinaryExpressionSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,9011,9093);
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22069_9011_9092(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,7713,9104);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,7713,9104);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,7713,9104);
+}
+		}
+
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_NoControlFlow()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,9116,10767);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,9273,9415);
+
+var 
+source = @"
 class C
 {
     void F((int, int) x, (int, int) y, bool b)
@@ -215,9 +355,12 @@ class C
     {
         b = x == y;
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,9431,10573);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -240,17 +383,39 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,10589,10642);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,10658,10756);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_10658_10755(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,9116,10767);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,9116,10767);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,9116,10767);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_ControlFlowInLeftOperand()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,10779,15044);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,10947,11115);
+
+var 
+source = @"
 class C
 {
     void F((int, int)? x1, (int, int) x2, (int, int) y, bool b)
@@ -258,9 +423,12 @@ class C
     {
         b = (x1 ?? x2) == y;
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,11131,14850);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -340,17 +508,39 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,14866,14919);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,14935,15033);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_14935_15032(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,10779,15044);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,10779,15044);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,10779,15044);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_ControlFlowInRightOperand()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,15056,19605);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,15225,15393);
+
+var 
+source = @"
 class C
 {
     void F((int, int)? x1, (int, int) x2, (int, int) y, bool b)
@@ -358,9 +548,12 @@ class C
     {
         b = y == (x1 ?? x2);
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,15409,19411);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -444,17 +637,39 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,19427,19480);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,19496,19594);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_19496_19593(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,15056,19605);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,15056,19605);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,15056,19605);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_ControlFlowInBothOperands()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,19617,25985);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,19786,19980);
+
+var 
+source = @"
 class C
 {
     void F((int, int)? x1, (int, int) x2, (int, int)? y1, (int, int) y2, bool b)
@@ -462,9 +677,12 @@ class C
     {
         b = (x1 ?? x2) == (y1 ?? y2);
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,19996,25791);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -586,17 +804,39 @@ Block[B0] - Entry
 Block[B9] - Exit
     Predecessors: [B8]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,25807,25860);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,25876,25974);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_25876_25973(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,19617,25985);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,19617,25985);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,19617,25985);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_TupleExpressions_NoControlFlow()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,25997,28429);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,26171,26331);
+
+var 
+source = @"
 class C
 {
     void F(int i1, int i2, int i3, int i4, bool b)
@@ -604,9 +844,12 @@ class C
     {
         b = (i1, i2) == (i3, i4);
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,26347,28235);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -637,17 +880,39 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,28251,28304);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,28320,28418);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_28320_28417(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,25997,28429);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,25997,28429);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,25997,28429);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_TupleExpressions_ControlFlowInLeftOperand()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,28441,33646);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,28626,28801);
+
+var 
+source = @"
 class C
 {
     void F(int i1, int? i2, int i3, int i4, int i5, bool b)
@@ -655,9 +920,12 @@ class C
     {
         b = (i1, i2 ?? i5) == (i3, i4);
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,28817,33452);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -749,17 +1017,39 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,33468,33521);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,33537,33635);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_33537_33634(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,28441,33646);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,28441,33646);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,28441,33646);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_TupleExpressions_ControlFlowInRightOperand()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,33658,39402);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,33844,34019);
+
+var 
+source = @"
 class C
 {
     void F(int i1, int i2, int i3, int? i4, int i5, bool b)
@@ -767,9 +1057,12 @@ class C
     {
         b = (i1, i2) == (i3, i4 ?? i5);
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,34035,39208);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -869,17 +1162,39 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,39224,39277);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,39293,39391);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_39293_39390(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,33658,39402);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,33658,39402);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,33658,39402);
+}
+		}
 
-        [Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[Fact, CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         public void TupleBinaryOperator_TupleExpressions_ControlFlowInBothOperands()
+		{
+			try
         {
-            var source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22069,39414,46921);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,39600,39790);
+
+var 
+source = @"
 class C
 {
     void F(int? i1, int i2, int i3, int? i4, int i5, int i6, bool b)
@@ -887,9 +1202,12 @@ class C
     {
         b = (i1 ?? i5, i2) == (i3, i4 ?? i6);
     }/*</bind>*/
-}";
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,39806,46727);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1030,11 +1348,189 @@ Block[B0] - Entry
 Block[B10] - Exit
     Predecessors: [B9]
     Statements (0)
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,46743,46796);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22069,46812,46910);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+f_22069_46812_46909(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22069,39414,46921);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22069,39414,46921);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22069,39414,46921);
+}
+		}
+
+int
+f_22069_1256_1337(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<BinaryExpressionSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 1256, 1337);
+return 0;
+}
+
+
+int
+f_22069_2293_2374(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<BinaryExpressionSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 2293, 2374);
+return 0;
+}
+
+
+int
+f_22069_3975_4056(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<BinaryExpressionSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 3975, 4056);
+return 0;
+}
+
+
+int
+f_22069_6501_6582(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<BinaryExpressionSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 6501, 6582);
+return 0;
+}
+
+
+int
+f_22069_7608_7689(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<BinaryExpressionSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 7608, 7689);
+return 0;
+}
+
+
+int
+f_22069_9011_9092(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<BinaryExpressionSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 9011, 9092);
+return 0;
+}
+
+
+int
+f_22069_10658_10755(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 10658, 10755);
+return 0;
+}
+
+
+int
+f_22069_14935_15032(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 14935, 15032);
+return 0;
+}
+
+
+int
+f_22069_19496_19593(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 19496, 19593);
+return 0;
+}
+
+
+int
+f_22069_25876_25973(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 25876, 25973);
+return 0;
+}
+
+
+int
+f_22069_28320_28417(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 28320, 28417);
+return 0;
+}
+
+
+int
+f_22069_33537_33634(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 33537, 33634);
+return 0;
+}
+
+
+int
+f_22069_39293_39390(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 39293, 39390);
+return 0;
+}
+
+
+int
+f_22069_46812_46909(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22069, 46812, 46909);
+return 0;
+}
+
+}
 }

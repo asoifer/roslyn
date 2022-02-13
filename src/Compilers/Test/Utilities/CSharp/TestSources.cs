@@ -8,7 +8,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Test.Utilities
 {
     internal static class TestSources
     {
-        internal const string Span = @"
+        internal const string
+        Span = @"
 namespace System
 {
     public readonly ref struct Span<T>
@@ -223,9 +224,11 @@ namespace System
             throw new Exception(""add a case for: "" + typeof(T));
         }
     }
-}";
+}"
+        ;
 
-        internal const string Index = @"
+        internal const string
+        Index = @"
 
 namespace System
 {
@@ -317,9 +320,11 @@ namespace System
 
         public static implicit operator Index(int value) => FromStart(value);
     }
-}";
+}"
+        ;
 
-        internal const string Range = @"
+        internal const string
+        Range = @"
 namespace System
 {
     using System.Runtime.CompilerServices;
@@ -385,9 +390,11 @@ namespace System
             }
         }
     }
-}";
+}"
+        ;
 
-        public const string GetSubArray = @"
+        public const string
+        GetSubArray = @"
 namespace System.Runtime.CompilerServices
 {
     public static class RuntimeHelpers
@@ -402,6 +409,20 @@ namespace System.Runtime.CompilerServices
             return newArray;
         }
     }
-}";
+}"
+        ;
+
+        static TestSources()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(21020, 292, 11810);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21020, 364, 6815);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21020, 6850, 9386);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21020, 9421, 11250);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21020, 11283, 11802);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(21020, 292, 11810);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21020, 292, 11810);
+        }
+
     }
 }

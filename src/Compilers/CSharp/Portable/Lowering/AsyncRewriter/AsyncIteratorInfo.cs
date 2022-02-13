@@ -8,38 +8,71 @@ using Microsoft.CodeAnalysis.CSharp.Symbols;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// Additional information for rewriting an async-iterator.
-    /// </summary>
     internal sealed class AsyncIteratorInfo
     {
-        // This `ManualResetValueTaskSourceCore<bool>` struct implements the `IValueTaskSource` logic
         internal FieldSymbol PromiseOfValueOrEndField { get; }
 
-        // This `CancellationTokenSource` field helps combine two cancellation tokens
         internal FieldSymbol CombinedTokensField { get; }
 
-        // Stores the current/yielded value
         internal FieldSymbol CurrentField { get; }
 
-        // Whether the state machine is in dispose mode
         internal FieldSymbol DisposeModeField { get; }
 
-        // Method to fulfill the promise with a result: `void ManualResetValueTaskSourceCore<T>.SetResult(T result)`
         internal MethodSymbol SetResultMethod { get; }
 
-        // Method to fulfill the promise with an exception: `void ManualResetValueTaskSourceCore<T>.SetException(Exception error)`
         internal MethodSymbol SetExceptionMethod { get; }
 
         public AsyncIteratorInfo(FieldSymbol promiseOfValueOrEndField, FieldSymbol combinedTokensField, FieldSymbol currentField, FieldSymbol disposeModeField,
-            MethodSymbol setResultMethod, MethodSymbol setExceptionMethod)
+                    MethodSymbol setResultMethod, MethodSymbol setExceptionMethod)
         {
-            PromiseOfValueOrEndField = promiseOfValueOrEndField;
-            CombinedTokensField = combinedTokensField;
-            CurrentField = currentField;
-            DisposeModeField = disposeModeField;
-            SetResultMethod = setResultMethod;
-            SetExceptionMethod = setExceptionMethod;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10444, 1385, 1950);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 588, 642);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 741, 790);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 847, 889);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 958, 1004);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1134, 1180);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1324, 1373);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1637, 1689);
+
+                PromiseOfValueOrEndField = promiseOfValueOrEndField;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1703, 1745);
+
+                CombinedTokensField = combinedTokensField;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1759, 1787);
+
+                CurrentField = currentField;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1801, 1837);
+
+                DisposeModeField = disposeModeField;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1851, 1885);
+
+                SetResultMethod = setResultMethod;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10444, 1899, 1939);
+
+                SetExceptionMethod = setExceptionMethod;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10444, 1385, 1950);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10444, 1385, 1950);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10444, 1385, 1950);
+            }
         }
+
+        static AsyncIteratorInfo()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10444, 429, 1957);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10444, 429, 1957);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10444, 429, 1957);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10444, 429, 1957);
     }
 }

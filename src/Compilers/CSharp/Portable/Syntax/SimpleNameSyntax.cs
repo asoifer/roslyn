@@ -11,12 +11,36 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
 {
     public partial class SimpleNameSyntax
     {
-        // This override is only intended to support cases where a caller has a value statically typed as NameSyntax in hand 
-        // and neither knows nor cares to determine whether that name is qualified or not.
-        // If a value is statically typed as a SimpleNameSyntax calling this method is a waste.
         internal sealed override SimpleNameSyntax GetUnqualifiedName()
         {
-            return this;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10796, 792, 902);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10796, 879, 891);
+
+                return this;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10796, 792, 902);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10796, 792, 902);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10796, 792, 902);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static SimpleNameSyntax()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10796, 422, 909);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10796, 422, 909);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10796, 422, 909);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10796, 422, 909);
     }
 }

@@ -168,6 +168,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeStyleConfigFileGenerato
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Microsoft.CodeAnalysis.Collections", "src\Dependencies\Collections\Microsoft.CodeAnalysis.Collections.shproj", "{E919DD77-34F8-4F57-8058-4D3FF4C2B241}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynAbs.Tracing.FileTraceClient", "..\tracer\DynAbs.Tracing.FileTraceClient\DynAbs.Tracing.FileTraceClient.csproj", "{65157764-23D3-4995-98BC-30D7F3DBBB34}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\Analyzers\VisualBasic\CodeFixes\VisualBasicCodeFixes.projitems*{0141285d-8f6c-42c7-baf3-3c0ccd61c716}*SharedItemsImports = 5
@@ -466,6 +468,10 @@ Global
 		{432F4461-E198-44AA-8022-9E8C06A17C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{432F4461-E198-44AA-8022-9E8C06A17C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{432F4461-E198-44AA-8022-9E8C06A17C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65157764-23D3-4995-98BC-30D7F3DBBB34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65157764-23D3-4995-98BC-30D7F3DBBB34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65157764-23D3-4995-98BC-30D7F3DBBB34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65157764-23D3-4995-98BC-30D7F3DBBB34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

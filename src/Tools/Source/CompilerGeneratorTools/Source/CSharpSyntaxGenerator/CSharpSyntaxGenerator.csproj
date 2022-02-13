@@ -24,4 +24,7 @@
 
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="$(SourceGeneratorMicrosoftCodeAnalysisVersion)" PrivateAssets="all" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\tracer\DynAbs.Tracing.FileTraceClient\DynAbs.Tracing.FileTraceClient.csproj" />
+  </ItemGroup>
 </Project>

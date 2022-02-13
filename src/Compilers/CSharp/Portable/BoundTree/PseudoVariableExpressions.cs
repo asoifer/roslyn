@@ -4,13 +4,29 @@
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// BoundExpressions to be used for emit. The expressions are assumed
-    /// to be lowered and will not be visited by <see cref="BoundTreeWalker"/>.
-    /// </summary>
     internal abstract class PseudoVariableExpressions
     {
         internal abstract BoundExpression GetValue(BoundPseudoVariable variable, DiagnosticBag diagnostics);
+
         internal abstract BoundExpression GetAddress(BoundPseudoVariable variable);
+
+        public PseudoVariableExpressions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(10588, 451, 709);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(10588, 451, 709);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10588, 451, 709);
+        }
+
+
+        static PseudoVariableExpressions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10588, 451, 709);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10588, 451, 709);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10588, 451, 709);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10588, 451, 709);
     }
 }

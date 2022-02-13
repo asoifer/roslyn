@@ -19,895 +19,2385 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     internal abstract partial class ConversionsBase
     {
-        /// <remarks>
-        /// NOTE: Keep this method in sync with <see cref="AnalyzeImplicitUserDefinedConversionForV6SwitchGoverningType"/>.
-        /// </remarks>
         private UserDefinedConversionResult AnalyzeImplicitUserDefinedConversions(
-            BoundExpression sourceExpression,
-            TypeSymbol source,
-            TypeSymbol target,
-            ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+                    BoundExpression sourceExpression,
+                    TypeSymbol source,
+                    TypeSymbol target,
+                    ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            Debug.Assert(sourceExpression != null || (object)source != null);
-            Debug.Assert((object)target != null);
-
-            // User-defined conversions that involve generics can be quite strange. There
-            // are two basic problems: first, that generic user-defined conversions can be
-            // "shadowed" by built-in conversions, and second, that generic user-defined
-            // conversions can make conversions that would never have been legal user-defined
-            // conversions if declared non-generically. I call this latter kind of conversion
-            // a "suspicious" conversion.
-            //
-            // The shadowed conversions are easily dealt with:
-            //
-            // SPEC: If a predefined implicit conversion exists from a type S to type T,
-            // SPEC: all user-defined conversions, implicit or explicit, are ignored.
-            // SPEC: If a predefined explicit conversion exists from a type S to type T,
-            // SPEC: any user-defined explicit conversion from S to T are ignored.
-            //
-            // The rule above can come into play in cases like:
-            //
-            // sealed class C<T> { public static implicit operator T(C<T> c) { ... } }
-            // C<object> c = whatever;
-            // object o = c;
-            //
-            // The built-in implicit conversion from C<object> to object must shadow
-            // the user-defined implicit conversion.
-            //
-            // The caller of this method checks for user-defined conversions *after*
-            // predefined implicit conversions, so we already know that if we got here,
-            // there was no predefined implicit conversion. 
-            //
-            // Note that a user-defined *implicit* conversion may win over a built-in
-            // *explicit* conversion by the rule given above. That is, if we created
-            // an implicit conversion from T to C<T>, then the user-defined implicit 
-            // conversion from object to C<object> could be valid, even though that
-            // would be "replacing" a built-in explicit conversion with a user-defined
-            // implicit conversion. This is one of the "suspicious" conversions,
-            // as it would not be legal to declare a user-defined conversion from
-            // object in a non-generic type.
-            //
-            // The way the native compiler handles suspicious conversions involving
-            // interfaces is neither sensible nor in line with the rules in the 
-            // specification. It is not clear at this time whether we should be exactly
-            // matching the native compiler, the specification, or neither, in Roslyn.
-
-            // Spec (6.4.4 User-defined implicit conversions)
-            //   A user-defined implicit conversion from an expression E to type T is processed as follows:
-
-            // SPEC: Find the set of types D from which user-defined conversion operators...
-            var d = ArrayBuilder<NamedTypeSymbol>.GetInstance();
-            ComputeUserDefinedImplicitConversionTypeSet(source, target, d, ref useSiteDiagnostics);
-
-            // SPEC: Find the set of applicable user-defined and lifted conversion operators, U...
-            var ubuild = ArrayBuilder<UserDefinedConversionAnalysis>.GetInstance();
-            ComputeApplicableUserDefinedImplicitConversionSet(sourceExpression, source, target, d, ubuild, ref useSiteDiagnostics);
-            d.Free();
-            ImmutableArray<UserDefinedConversionAnalysis> u = ubuild.ToImmutableAndFree();
-
-            // SPEC: If U is empty, the conversion is undefined and a compile-time error occurs.
-            if (u.Length == 0)
+            try
             {
-                return UserDefinedConversionResult.NoApplicableOperators(u);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 846, 5958);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 1117, 1182);
 
-            // SPEC: Find the most specific source type SX of the operators in U...
-            TypeSymbol sx = MostSpecificSourceTypeForImplicitUserDefinedConversion(u, source, ref useSiteDiagnostics);
-            if ((object)sx == null)
+                f_10850_1117_1181(sourceExpression != null || (DynAbs.Tracing.TraceSender.Expression_False(10850, 1130, 1180) || (object)source != null));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 1196, 1233);
+
+                f_10850_1196_1232((object)target != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4156, 4208);
+
+                var
+                d = f_10850_4164_4207()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4222, 4309);
+
+                f_10850_4222_4308(source, target, d, ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4425, 4496);
+
+                var
+                ubuild = f_10850_4438_4495()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4510, 4629);
+
+                f_10850_4510_4628(this, sourceExpression, source, target, d, ubuild, ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4643, 4652);
+
+                f_10850_4643_4651(d);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4666, 4744);
+
+                ImmutableArray<UserDefinedConversionAnalysis>
+                u = f_10850_4716_4743(ubuild)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4858, 4984) || true) && (u.Length == 0)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 4858, 4984);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 4909, 4969);
+
+                    return UserDefinedConversionResult.NoApplicableOperators(u);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 4858, 4984);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5085, 5191);
+
+                TypeSymbol
+                sx = f_10850_5101_5190(this, u, source, ref useSiteDiagnostics)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5205, 5331) || true) && ((object)sx == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 5205, 5331);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5261, 5316);
+
+                    return UserDefinedConversionResult.NoBestSourceType(u);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 5205, 5331);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5432, 5538);
+
+                TypeSymbol
+                tx = f_10850_5448_5537(this, u, target, ref useSiteDiagnostics)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5552, 5678) || true) && ((object)tx == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 5552, 5678);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5608, 5663);
+
+                    return UserDefinedConversionResult.NoBestTargetType(u);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 5552, 5678);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5694, 5748);
+
+                int?
+                best = f_10850_5706_5747(sx, tx, u)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5762, 5875) || true) && (best == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 5762, 5875);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5812, 5860);
+
+                    return UserDefinedConversionResult.Ambiguous(u);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 5762, 5875);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 5891, 5947);
+
+                return UserDefinedConversionResult.Valid(u, f_10850_5935_5945(best));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 846, 5958);
+
+                int
+                f_10850_1117_1181(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 1117, 1181);
+                    return 0;
+                }
+
+
+                int
+                f_10850_1196_1232(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 1196, 1232);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                f_10850_4164_4207()
+                {
+                    var return_v = ArrayBuilder<NamedTypeSymbol>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 4164, 4207);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_4222_4308(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                s, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                t, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                d, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    ComputeUserDefinedImplicitConversionTypeSet(s, t, d, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 4222, 4308);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                f_10850_4438_4495()
+                {
+                    var return_v = ArrayBuilder<UserDefinedConversionAnalysis>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 4438, 4495);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_4510_4628(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression?
+                sourceExpression, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                source, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                target, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                d, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    this_param.ComputeApplicableUserDefinedImplicitConversionSet(sourceExpression, source, target, d, u, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 4510, 4628);
+                    return 0;
+                }
+
+
+                int
+                f_10850_4643_4651(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                this_param)
+                {
+                    this_param.Free();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 4643, 4651);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                f_10850_4716_4743(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                this_param)
+                {
+                    var return_v = this_param.ToImmutableAndFree();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 4716, 4743);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_5101_5190(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                source, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.MostSpecificSourceTypeForImplicitUserDefinedConversion(u, source, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 5101, 5190);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_5448_5537(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                target, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.MostSpecificTargetTypeForImplicitUserDefinedConversion(u, target, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 5448, 5537);
+                    return return_v;
+                }
+
+
+                int?
+                f_10850_5706_5747(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                sx, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                tx, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u)
+                {
+                    var return_v = MostSpecificConversionOperator(sx, tx, u);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 5706, 5747);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_5935_5945(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 5935, 5945);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return UserDefinedConversionResult.NoBestSourceType(u);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 846, 5958);
+                throw;
             }
-
-            // SPEC: Find the most specific target type TX of the operators in U...
-            TypeSymbol tx = MostSpecificTargetTypeForImplicitUserDefinedConversion(u, target, ref useSiteDiagnostics);
-            if ((object)tx == null)
+            finally
             {
-                return UserDefinedConversionResult.NoBestTargetType(u);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 846, 5958);
             }
-
-            int? best = MostSpecificConversionOperator(sx, tx, u);
-            if (best == null)
-            {
-                return UserDefinedConversionResult.Ambiguous(u);
-            }
-
-            return UserDefinedConversionResult.Valid(u, best.Value);
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static void ComputeUserDefinedImplicitConversionTypeSet(TypeSymbol s, TypeSymbol t, ArrayBuilder<NamedTypeSymbol> d, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            // Spec 6.4.4: User-defined implicit conversions
-            //   Find the set of types D from which user-defined conversion operators
-            //   will be considered. This set consists of S0 (if S0 is a class or struct),
-            //   the base classes of S0 (if S0 is a class), and T0 (if T0 is a class or struct).
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 5970, 6944);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 6508, 6578);
 
-            TypeSymbol s0 = GetUnderlyingEffectiveType(s, ref useSiteDiagnostics);
-            TypeSymbol t0 = GetUnderlyingEffectiveType(t, ref useSiteDiagnostics);
+                TypeSymbol
+                s0 = f_10850_6524_6577(s, ref useSiteDiagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 6592, 6662);
 
-            AddTypesParticipatingInUserDefinedConversion(d, s0, includeBaseTypes: true, useSiteDiagnostics: ref useSiteDiagnostics);
-            AddTypesParticipatingInUserDefinedConversion(d, t0, includeBaseTypes: false, useSiteDiagnostics: ref useSiteDiagnostics);
+                TypeSymbol
+                t0 = f_10850_6608_6661(t, ref useSiteDiagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 6678, 6798);
+
+                f_10850_6678_6797(d, s0, includeBaseTypes: true, useSiteDiagnostics: ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 6812, 6933);
+
+                f_10850_6812_6932(d, t0, includeBaseTypes: false, useSiteDiagnostics: ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 5970, 6944);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_6524_6577(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = GetUnderlyingEffectiveType(type, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 6524, 6577);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_6608_6661(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = GetUnderlyingEffectiveType(type, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 6608, 6661);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_6678_6797(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                result, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type, bool
+                includeBaseTypes, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    AddTypesParticipatingInUserDefinedConversion(result, type, includeBaseTypes: includeBaseTypes, useSiteDiagnostics: ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 6678, 6797);
+                    return 0;
+                }
+
+
+                int
+                f_10850_6812_6932(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                result, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type, bool
+                includeBaseTypes, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    AddTypesParticipatingInUserDefinedConversion(result, type, includeBaseTypes: includeBaseTypes, useSiteDiagnostics: ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 6812, 6932);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 5970, 6944);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 5970, 6944);
+            }
         }
 
-        /// <summary>
-        /// This method find the set of applicable user-defined and lifted conversion operators, u.
-        /// The set consists of the user-defined and lifted implicit conversion operators declared by
-        /// the classes and structs in d that convert from a type encompassing source to a type encompassed by target.
-        /// However if allowAnyTarget is true, then it considers all operators that convert from a type encompassing source
-        /// to any target. This flag must be set only if we are computing user defined conversions from a given source
-        /// type to any target type.
-        /// </summary>
-        /// <remarks>
-        /// Currently allowAnyTarget flag is only set to true by <see cref="AnalyzeImplicitUserDefinedConversionForV6SwitchGoverningType"/>,
-        /// where we must consider user defined implicit conversions from the type of the switch expression to
-        /// any of the possible switch governing types.
-        /// </remarks>
         private void ComputeApplicableUserDefinedImplicitConversionSet(
-            BoundExpression sourceExpression,
-            TypeSymbol source,
-            TypeSymbol target,
-            ArrayBuilder<NamedTypeSymbol> d,
-            ArrayBuilder<UserDefinedConversionAnalysis> u,
-            ref HashSet<DiagnosticInfo> useSiteDiagnostics,
-            bool allowAnyTarget = false)
+                    BoundExpression sourceExpression,
+                    TypeSymbol source,
+                    TypeSymbol target,
+                    ArrayBuilder<NamedTypeSymbol> d,
+                    ArrayBuilder<UserDefinedConversionAnalysis> u,
+                    ref HashSet<DiagnosticInfo> useSiteDiagnostics,
+                    bool allowAnyTarget = false)
         {
-            Debug.Assert(sourceExpression != null || (object)source != null);
-            Debug.Assert(((object)target != null) == !allowAnyTarget);
-            Debug.Assert(d != null);
-            Debug.Assert(u != null);
-
-            // SPEC: Find the set of applicable user-defined and lifted conversion operators, U.
-            // SPEC: The set consists of the user-defined and lifted implicit conversion operators
-            // SPEC: declared by the classes and structs in D that convert from a type encompassing
-            // SPEC: E to a type encompassed by T. If U is empty, the conversion is undefined and
-            // SPEC: a compile-time error occurs.
-
-            // SPEC: Give a user-defined conversion operator that converts from a non-nullable
-            // SPEC: value type S to a non-nullable value type T, a lifted conversion operator
-            // SPEC: exists that converts from S? to T?.
-
-            // DELIBERATE SPEC VIOLATION:
-            //
-            // The spec here essentially says that we add an applicable "regular" conversion and 
-            // an applicable lifted conversion, if there is one, to the candidate set, and then
-            // let them duke it out to determine which one is "best".
-            //
-            // This is not at all what the native compiler does, and attempting to implement
-            // the specification, or slight variations on it, produces too many backwards-compatibility
-            // breaking changes.
-            //
-            // The native compiler deviates from the specification in two major ways here.
-            // First, it does not add *both* the regular and lifted forms to the candidate set.
-            // Second, the way it characterizes a "lifted" form is very, very different from
-            // how the specification characterizes a lifted form. 
-            //
-            // An operation, in this case, X-->Y, is properly said to be "lifted" to X?-->Y? via
-            // the rule that X?-->Y? matches the behavior of X-->Y for non-null X, and converts
-            // null X to null Y otherwise.
-            //
-            // The native compiler, by contrast, takes the existing operator and "lifts" either
-            // the operator's parameter type or the operator's return type to nullable. For
-            // example, a conversion from X?-->Y would be "lifted" to X?-->Y? by making the
-            // conversion from X? to Y, and then from Y to Y?.  No "lifting" semantics
-            // are imposed; we do not check to see if the X? is null. This operator is not
-            // actually "lifted" at all; rather, an implicit conversion is applied to the 
-            // output. **The native compiler considers the result type Y? of that standard implicit
-            // conversion to be the result type of the "lifted" conversion**, rather than
-            // properly considering Y to be the result type of the conversion for the purposes 
-            // of computing the best output type.
-            //
-            // MOREOVER: the native compiler actually *does* implement nullable lifting semantics
-            // in the case where the input type of the user-defined conversion is a non-nullable
-            // value type and the output type is a nullable value type **or pointer type, or 
-            // reference type**. This is an enormous departure from the specification; the
-            // native compiler will take a user-defined conversion from X-->Y? or X-->C and "lift"
-            // it to a conversion from X?-->Y? or X?-->C that has nullable semantics.
-            // 
-            // This is quite confusing. In this code we will classify the conversion as either
-            // "normal" or "lifted" on the basis of *whether or not special lifting semantics
-            // are to be applied*. That is, whether or not a later rewriting pass is going to
-            // need to insert a check to see if the source expression is null, and decide
-            // whether or not to call the underlying unlifted conversion or produce a null
-            // value without calling the unlifted conversion.
-
-            // DELIBERATE SPEC VIOLATION (See bug 17021)
-            // The specification defines a type U as "encompassing" a type V
-            // if there is a standard implicit conversion from U to V, and
-            // neither are interface types.
-            //
-            // The intention of this language is to ensure that we do not allow user-defined
-            // conversions that involve interfaces. We have a reasonable expectation that a
-            // conversion that involves an interface is one that preserves referential identity,
-            // and user-defined conversions usually do not.
-            //
-            // Now, suppose we have a standard conversion from Alpha to Beta, a user-defined
-            // conversion from Beta to Gamma, and a standard conversion from Gamma to Delta.
-            // The specification allows the implicit conversion from Alpha to Delta only if 
-            // Beta encompasses Alpha and Delta encompasses Gamma.  And therefore, none of them
-            // can be interface types, de jure.
-            //
-            // However, the dev10 compiler only checks Alpha and Delta to see if they are interfaces,
-            // and allows Beta and Gamma to be interfaces. 
-            //
-            // So what's the big deal there? It's not legal to define a user-defined conversion where
-            // the input or output types are interfaces, right?
-            //
-            // It is not legal to define such a conversion, no, but it is legal to create one via generic
-            // construction. If we have a conversion from T to C<T>, then C<I> has a conversion from I to C<I>.
-            //
-            // The dev10 compiler fails to check for this situation. This means that, 
-            // you can convert from int to C<IComparable> because int implements IComparable, but cannot
-            // convert from IComparable to C<IComparable>!
-            //
-            // Unfortunately, we know of several real programs that rely upon this bug, so we are going
-            // to reproduce it here.
-
-            if ((object)source != null && source.IsInterfaceType() || (object)target != null && target.IsInterfaceType())
+            try
             {
-                return;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 7968, 19542);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 8376, 8441);
 
-            foreach (NamedTypeSymbol declaringType in d)
-            {
-                foreach (MethodSymbol op in declaringType.GetOperators(WellKnownMemberNames.ImplicitConversionName))
+                f_10850_8376_8440(sourceExpression != null || (DynAbs.Tracing.TraceSender.Expression_False(10850, 8389, 8439) || (object)source != null));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 8455, 8513);
+
+                f_10850_8455_8512(((object)target != null) == !allowAnyTarget);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 8527, 8551);
+
+                f_10850_8527_8550(d != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 8565, 8589);
+
+                f_10850_8565_8588(u != null);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 14648, 14812) || true) && ((object)source != null && (DynAbs.Tracing.TraceSender.Expression_True(10850, 14652, 14702) && f_10850_14678_14702(source)) || (DynAbs.Tracing.TraceSender.Expression_False(10850, 14652, 14756) || (object)target != null && (DynAbs.Tracing.TraceSender.Expression_True(10850, 14706, 14756) && f_10850_14732_14756(target))))
+                )
+
                 {
-                    // We might have a bad operator and be in an error recovery situation. Ignore it.
-                    if (op.ReturnsVoid || op.ParameterCount != 1)
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 14648, 14812);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 14790, 14797);
+
+                    return;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 14648, 14812);
+                }
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 14828, 19531);
+                    foreach (NamedTypeSymbol declaringType in f_10850_14870_14871_I(d))
                     {
-                        continue;
-                    }
-
-                    TypeSymbol convertsFrom = op.GetParameterType(0);
-                    TypeSymbol convertsTo = op.ReturnType;
-                    Conversion fromConversion = EncompassingImplicitConversion(sourceExpression, source, convertsFrom, ref useSiteDiagnostics);
-                    Conversion toConversion = allowAnyTarget ? Conversion.Identity :
-                        EncompassingImplicitConversion(null, convertsTo, target, ref useSiteDiagnostics);
-
-                    if (fromConversion.Exists && toConversion.Exists)
-                    {
-                        // There is an additional spec violation in the native compiler. Suppose
-                        // we have a conversion from X-->Y and are asked to do "Y? y = new X();"  Clearly
-                        // the intention is to convert from X-->Y via the implicit conversion, and then
-                        // stick a standard implicit conversion from Y-->Y? on the back end. **In this 
-                        // situation, the native compiler treats the conversion as though it were
-                        // actually X-->Y? in source for the purposes of determining the best target
-                        // type of an operator.
-                        //
-                        // We perpetuate this fiction here.
-
-                        if ((object)target != null && target.IsNullableType() && convertsTo.IsNonNullableValueType())
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 14828, 19531);
+                        try
                         {
-                            convertsTo = MakeNullableType(convertsTo);
-                            toConversion = allowAnyTarget ? Conversion.Identity :
-                                EncompassingImplicitConversion(null, convertsTo, target, ref useSiteDiagnostics);
-                        }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 14905, 19516);
+                            foreach (MethodSymbol op in f_10850_14933_15004_I(f_10850_14933_15004(declaringType, WellKnownMemberNames.ImplicitConversionName)))
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 14905, 19516);
 
-                        u.Add(UserDefinedConversionAnalysis.Normal(op, fromConversion, toConversion, convertsFrom, convertsTo));
-                    }
-                    else if ((object)source != null && source.IsNullableType() && convertsFrom.IsNonNullableValueType() &&
-                        (allowAnyTarget || target.CanBeAssignedNull()))
-                    {
-                        // As mentioned above, here we diverge from the specification, in two ways.
-                        // First, we only check for the lifted form if the normal form was inapplicable.
-                        // Second, we are supposed to apply lifting semantics only if the conversion 
-                        // parameter and return types are *both* non-nullable value types.
-                        //
-                        // In fact the native compiler determines whether to check for a lifted form on
-                        // the basis of:
-                        //
-                        // * Is the type we are ultimately converting from a nullable value type?
-                        // * Is the parameter type of the conversion a non-nullable value type?
-                        // * Is the type we are ultimately converting to a nullable value type, 
-                        //   pointer type, or reference type?
-                        //
-                        // If the answer to all those questions is "yes" then we lift to nullable
-                        // and see if the resulting operator is applicable.
-                        TypeSymbol nullableFrom = MakeNullableType(convertsFrom);
-                        TypeSymbol nullableTo = convertsTo.IsNonNullableValueType() ? MakeNullableType(convertsTo) : convertsTo;
-                        Conversion liftedFromConversion = EncompassingImplicitConversion(sourceExpression, source, nullableFrom, ref useSiteDiagnostics);
-                        Conversion liftedToConversion = !allowAnyTarget ?
-                            EncompassingImplicitConversion(null, nullableTo, target, ref useSiteDiagnostics) :
-                            Conversion.Identity;
-                        if (liftedFromConversion.Exists && liftedToConversion.Exists)
-                        {
-                            u.Add(UserDefinedConversionAnalysis.Lifted(op, liftedFromConversion, liftedToConversion, nullableFrom, nullableTo));
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15149, 15275) || true) && (f_10850_15153_15167(op) || (DynAbs.Tracing.TraceSender.Expression_False(10850, 15153, 15193) || f_10850_15171_15188(op) != 1))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 15149, 15275);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15243, 15252);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 15149, 15275);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15299, 15348);
+
+                                TypeSymbol
+                                convertsFrom = f_10850_15325_15347(op, 0)
+                                ;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15370, 15408);
+
+                                TypeSymbol
+                                convertsTo = f_10850_15394_15407(op)
+                                ;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15430, 15553);
+
+                                Conversion
+                                fromConversion = f_10850_15458_15552(this, sourceExpression, source, convertsFrom, ref useSiteDiagnostics)
+                                ;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15575, 15746);
+
+                                Conversion
+                                toConversion = (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 15601, 15615) || ((allowAnyTarget && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 15618, 15637)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 15665, 15745))) ? Conversion.Identity : f_10850_15665_15745(this, null, convertsTo, target, ref useSiteDiagnostics)
+                                ;
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 15770, 19497) || true) && (fromConversion.Exists && (DynAbs.Tracing.TraceSender.Expression_True(10850, 15774, 15818) && toConversion.Exists))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 15770, 19497);
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 16624, 17041) || true) && ((object)target != null && (DynAbs.Tracing.TraceSender.Expression_True(10850, 16628, 16677) && f_10850_16654_16677(target)) && (DynAbs.Tracing.TraceSender.Expression_True(10850, 16628, 16716) && f_10850_16681_16716(convertsTo)))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 16624, 17041);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 16774, 16816);
+
+                                        convertsTo = f_10850_16787_16815(this, convertsTo);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 16846, 17014);
+
+                                        toConversion = (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 16861, 16875) || ((allowAnyTarget && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 16878, 16897)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 16933, 17013))) ? Conversion.Identity : f_10850_16933_17013(this, null, convertsTo, target, ref useSiteDiagnostics);
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 16624, 17041);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 17069, 17173);
+
+                                    f_10850_17069_17172(
+                                                            u, f_10850_17075_17171(op, fromConversion, toConversion, convertsFrom, convertsTo));
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 15770, 19497);
+                                }
+
+                                else
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 15770, 19497);
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 17223, 19497) || true) && ((object)source != null && (DynAbs.Tracing.TraceSender.Expression_True(10850, 17227, 17276) && f_10850_17253_17276(source)) && (DynAbs.Tracing.TraceSender.Expression_True(10850, 17227, 17317) && f_10850_17280_17317(convertsFrom)) && (DynAbs.Tracing.TraceSender.Expression_True(10850, 17227, 17392) && (allowAnyTarget || (DynAbs.Tracing.TraceSender.Expression_False(10850, 17347, 17391) || f_10850_17365_17391(target)))))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 17223, 19497);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 18608, 18665);
+
+                                        TypeSymbol
+                                        nullableFrom = f_10850_18634_18664(this, convertsFrom)
+                                        ;
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 18691, 18795);
+
+                                        TypeSymbol
+                                        nullableTo = (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 18715, 18750) || ((f_10850_18715_18750(convertsTo) && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 18753, 18781)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 18784, 18794))) ? f_10850_18753_18781(this, convertsTo) : convertsTo
+                                        ;
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 18821, 18950);
+
+                                        Conversion
+                                        liftedFromConversion = f_10850_18855_18949(this, sourceExpression, source, nullableFrom, ref useSiteDiagnostics)
+                                        ;
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 18976, 19187);
+
+                                        Conversion
+                                        liftedToConversion = (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 19008, 19023) || ((!allowAnyTarget && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 19055, 19135)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 19167, 19186))) ? f_10850_19055_19135(this, null, nullableTo, target, ref useSiteDiagnostics) : Conversion.Identity
+                                        ;
+
+                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 19213, 19474) || true) && (liftedFromConversion.Exists && (DynAbs.Tracing.TraceSender.Expression_True(10850, 19217, 19273) && liftedToConversion.Exists))
+                                        )
+
+                                        {
+                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 19213, 19474);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 19331, 19447);
+
+                                            f_10850_19331_19446(u, f_10850_19337_19445(op, liftedFromConversion, liftedToConversion, nullableFrom, nullableTo));
+                                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 19213, 19474);
+                                        }
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 17223, 19497);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 15770, 19497);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 14905, 19516);
+                            }
                         }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(10850, 1, 4612);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(10850, 1, 4612);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 14828, 19531);
                     }
                 }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10850, 1, 4704);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10850, 1, 4704);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 7968, 19542);
+
+                int
+                f_10850_8376_8440(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 8376, 8440);
+                    return 0;
+                }
+
+
+                int
+                f_10850_8455_8512(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 8455, 8512);
+                    return 0;
+                }
+
+
+                int
+                f_10850_8527_8550(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 8527, 8550);
+                    return 0;
+                }
+
+
+                int
+                f_10850_8565_8588(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 8565, 8588);
+                    return 0;
+                }
+
+
+                bool
+                f_10850_14678_14702(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = type.IsInterfaceType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 14678, 14702);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_14732_14756(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = type.IsInterfaceType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 14732, 14756);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                f_10850_14933_15004(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                this_param, string
+                name)
+                {
+                    var return_v = this_param.GetOperators(name);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 14933, 15004);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_15153_15167(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param)
+                {
+                    var return_v = this_param.ReturnsVoid;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 15153, 15167);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_15171_15188(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param)
+                {
+                    var return_v = this_param.ParameterCount;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 15171, 15188);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_15325_15347(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param, int
+                index)
+                {
+                    var return_v = this_param.GetParameterType(index);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 15325, 15347);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_15394_15407(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param)
+                {
+                    var return_v = this_param.ReturnType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 15394, 15407);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_15458_15552(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression?
+                aExpr, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                a, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                b, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 15458, 15552);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_15665_15745(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression
+                aExpr, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                a, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                b, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 15665, 15745);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_16654_16677(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = type.IsNullableType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 16654, 16677);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_16681_16716(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                typeArgument)
+                {
+                    var return_v = typeArgument.IsNonNullableValueType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 16681, 16716);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_10850_16787_16815(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = this_param.MakeNullableType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 16787, 16815);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_16933_17013(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression
+                aExpr, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                a, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                b, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 16933, 17013);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis
+                f_10850_17075_17171(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                op, Microsoft.CodeAnalysis.CSharp.Conversion
+                sourceConversion, Microsoft.CodeAnalysis.CSharp.Conversion
+                targetConversion, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                fromType, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                toType)
+                {
+                    var return_v = UserDefinedConversionAnalysis.Normal(op, sourceConversion, targetConversion, fromType, toType);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 17075, 17171);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_17069_17172(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                this_param, Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 17069, 17172);
+                    return 0;
+                }
+
+
+                bool
+                f_10850_17253_17276(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = type.IsNullableType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 17253, 17276);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_17280_17317(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                typeArgument)
+                {
+                    var return_v = typeArgument.IsNonNullableValueType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 17280, 17317);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_17365_17391(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                type)
+                {
+                    var return_v = type.CanBeAssignedNull();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 17365, 17391);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_10850_18634_18664(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = this_param.MakeNullableType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 18634, 18664);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_18715_18750(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                typeArgument)
+                {
+                    var return_v = typeArgument.IsNonNullableValueType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 18715, 18750);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_10850_18753_18781(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = this_param.MakeNullableType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 18753, 18781);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_18855_18949(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression?
+                aExpr, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                a, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                b, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 18855, 18949);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_19055_19135(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression
+                aExpr, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                a, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                b, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 19055, 19135);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis
+                f_10850_19337_19445(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                op, Microsoft.CodeAnalysis.CSharp.Conversion
+                sourceConversion, Microsoft.CodeAnalysis.CSharp.Conversion
+                targetConversion, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                fromType, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                toType)
+                {
+                    var return_v = UserDefinedConversionAnalysis.Lifted(op, sourceConversion, targetConversion, fromType, toType);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 19337, 19445);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_19331_19446(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                this_param, Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 19331, 19446);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                f_10850_14933_15004_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 14933, 15004);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                f_10850_14870_14871_I(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 14870, 14871);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 7968, 19542);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 7968, 19542);
             }
         }
 
         private TypeSymbol MostSpecificSourceTypeForImplicitUserDefinedConversion(ImmutableArray<UserDefinedConversionAnalysis> u, TypeSymbol source, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            // SPEC: If any of the operators in U convert from S then SX is S.
-            if ((object)source != null)
+            try
             {
-                if (u.Any(conv => TypeSymbol.Equals(conv.FromType, source, TypeCompareKind.ConsiderEverything2)))
-                {
-                    return source;
-                }
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 19554, 20335);
 
-            // SPEC: Otherwise, SX is the most encompassed type in the set of
-            // SPEC: source types of the operators in U.
-            return MostEncompassedType(u, conv => conv.FromType, ref useSiteDiagnostics);
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 19848, 20094) || true) && ((object)source != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 19848, 20094);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 19908, 20079) || true) && (u.Any(conv => TypeSymbol.Equals(conv.FromType, source, TypeCompareKind.ConsiderEverything2)))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 19908, 20079);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 20046, 20060);
+
+                        return source;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 19908, 20079);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 19848, 20094);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 20247, 20324);
+
+                return f_10850_20254_20323(this, u, conv => conv.FromType, ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 19554, 20335);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_20254_20323(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                items, System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol>
+                extract, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.MostEncompassedType<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>(items, extract, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 20254, 20323);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 19554, 20335);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 19554, 20335);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private TypeSymbol MostSpecificTargetTypeForImplicitUserDefinedConversion(ImmutableArray<UserDefinedConversionAnalysis> u, TypeSymbol target, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            // SPEC: If any of the operators in U convert to T then TX is T.
-            // SPEC: Otherwise, TX is the most encompassing type in the set of
-            // SPEC: target types of the operators in U. 
-
-            // DELIBERATE SPEC VIOLATION:
-            // The native compiler deviates from the specification in the way it 
-            // determines what the "converts to" type is. The specification is pretty
-            // clear that the "converts to" type is the actual return type of the 
-            // conversion operator, or, in the case of a lifted operator, the lifted-to-
-            // nullable type. That is, if we have X-->Y then the converts-to type of
-            // the operator in its normal form is Y, and the converts-to type of the 
-            // operator in its lifted form is Y?. 
-            //
-            // The native compiler does not do this. Suppose we have a user-defined
-            // conversion X-->Y, and the assignment Y? y = new X(); -- the native 
-            // compiler will consider the converts-to type of X-->Y to be Y?, surprisingly
-            // enough. 
-            //
-            // We have previously written the appropriate "ToType" into the conversion analysis
-            // to perpetuate this fiction.
-
-            if (u.Any(conv => TypeSymbol.Equals(conv.ToType, target, TypeCompareKind.ConsiderEverything2)))
+            try
             {
-                return target;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 20347, 22113);
 
-            return MostEncompassingType(u, conv => conv.ToType, ref useSiteDiagnostics);
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 21853, 22010) || true) && (u.Any(conv => TypeSymbol.Equals(conv.ToType, target, TypeCompareKind.ConsiderEverything2)))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 21853, 22010);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 21981, 21995);
+
+                    return target;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 21853, 22010);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22026, 22102);
+
+                return f_10850_22033_22101(this, u, conv => conv.ToType, ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 20347, 22113);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_22033_22101(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                items, System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol>
+                extract, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.MostEncompassingType<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>(items, extract, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 22033, 22101);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 20347, 22113);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 20347, 22113);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static int LiftingCount(UserDefinedConversionAnalysis conv)
         {
-            int count = 0;
-            if (!TypeSymbol.Equals(conv.FromType, conv.Operator.GetParameterType(0), TypeCompareKind.ConsiderEverything2))
+            try
             {
-                count += 1;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 22125, 22628);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22217, 22231);
 
-            if (!TypeSymbol.Equals(conv.ToType, conv.Operator.ReturnType, TypeCompareKind.ConsiderEverything2))
+                int
+                count = 0
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22245, 22414) || true) && (!f_10850_22250_22354(conv.FromType, f_10850_22283_22316(conv.Operator, 0), TypeCompareKind.ConsiderEverything2))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 22245, 22414);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22388, 22399);
+
+                    count += 1;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 22245, 22414);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22430, 22588) || true) && (!f_10850_22435_22528(conv.ToType, f_10850_22466_22490(conv.Operator), TypeCompareKind.ConsiderEverything2))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 22430, 22588);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22562, 22573);
+
+                    count += 1;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 22430, 22588);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22604, 22617);
+
+                return count;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 22125, 22628);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_22283_22316(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param, int
+                index)
+                {
+                    var return_v = this_param.GetParameterType(index);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 22283, 22316);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_22250_22354(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                left, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                right, Microsoft.CodeAnalysis.TypeCompareKind
+                comparison)
+                {
+                    var return_v = TypeSymbol.Equals(left, right, comparison);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 22250, 22354);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_22466_22490(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param)
+                {
+                    var return_v = this_param.ReturnType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 22466, 22490);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_22435_22528(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                left, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                right, Microsoft.CodeAnalysis.TypeCompareKind
+                comparison)
+                {
+                    var return_v = TypeSymbol.Equals(left, right, comparison);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 22435, 22528);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                count += 1;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 22125, 22628);
+                throw;
             }
-
-            return count;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 22125, 22628);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static int? MostSpecificConversionOperator(TypeSymbol sx, TypeSymbol tx, ImmutableArray<UserDefinedConversionAnalysis> u)
         {
-            return MostSpecificConversionOperator(conv => TypeSymbol.Equals(conv.FromType, sx, TypeCompareKind.ConsiderEverything2) && TypeSymbol.Equals(conv.ToType, tx, TypeCompareKind.ConsiderEverything2), u);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 22640, 23004);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 22794, 22993);
+
+                return f_10850_22801_22992(conv => TypeSymbol.Equals(conv.FromType, sx, TypeCompareKind.ConsiderEverything2) && TypeSymbol.Equals(conv.ToType, tx, TypeCompareKind.ConsiderEverything2), u);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 22640, 23004);
+
+                int?
+                f_10850_22801_22992(System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, bool>
+                constraint, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u)
+                {
+                    var return_v = MostSpecificConversionOperator(constraint, u);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 22801, 22992);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 22640, 23004);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 22640, 23004);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Find the most specific among a set of conversion operators, with the given constraint on the conversion.
-        /// </summary>
         private static int? MostSpecificConversionOperator(Func<UserDefinedConversionAnalysis, bool> constraint, ImmutableArray<UserDefinedConversionAnalysis> u)
         {
-            // SPEC: If U contains exactly one user-defined conversion operator from SX to TX 
-            // SPEC: then that is the most-specific conversion operator;
-            //
-            // SPEC: Otherwise, if U contains exactly one lifted conversion operator that converts from
-            // SPEC: SX to TX then this is the most specific operator.
-            //
-            // SPEC: Otherwise, the conversion is ambiguous and a compile-time error occurs.
-            //
-            // SPEC ERROR:
-            //
-            // Clearly the text above cannot be correct because it gives undesirable results.
-            // Suppose we have structs E and F with an implicit user defined conversion from 
-            // F to E. We have an assignment from F to E?. Clearly what should happen is
-            // we should convert F to E, then convert E to E?.  But the spec says that this
-            // should be an error. Why? Because both F-->E and F?-->E? are added to the candidate
-            // set. What is SX? Clearly F, because there is a candidate that takes an F.  
-            // What is TX? Clearly E? because there is a candidate that returns an E?.  
-            // And now the overload resolution problem is ambiguous because neither operator
-            // takes SX and returns TX. 
-            //
-            // DELIBERATE SPEC VIOLATION:
-            //
-            // The native compiler takes a rather different approach than the approach described
-            // in the specification. Rather than adding both the lifted and unlifted forms of
-            // each operator to the candidate set, using those operators to determine the best
-            // source and target types, and then choosing the unique operator from that source type
-            // to that target type, it instead *transforms in place* the "from" and "to" types
-            // of each operator so that their nullability matches those of the source and target
-            // types. This can then lead to ambiguities; consider for example a type that
-            // has user defined conversions X-->Y and X-->Y?.  If we have a conversion from X to
-            // Y?, the spec would say that the operators X-->Y, its lifted form X?-->Y?, and
-            // X-->Y? are applicable candidates and that the best of them is X-->Y?.  
-            //
-            // The native compiler arrives at the same conclusion but by different logic; it says
-            // that X-->Y has a "half lifted" form X-->Y?, and that it is "worse" than X-->Y?
-            // because it is half lifted.
-
-            // Therefore we match this behavior by first checking to see if there is a unique
-            // best operator that converts from the source type to the target type with liftings
-            // on neither side.
-
-            BestIndex bestUnlifted = UniqueIndex(u,
-                conv =>
-                constraint(conv) &&
-                LiftingCount(conv) == 0);
-
-            if (bestUnlifted.Kind == BestIndexKind.Best)
+            try
             {
-                return bestUnlifted.Best;
-            }
-            else if (bestUnlifted.Kind == BestIndexKind.Ambiguous)
-            {
-                // If we got an ambiguity, don't continue. We need to bail immediately.
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 23181, 28885);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 26195, 26339);
 
-                // UNDONE: We can do better error reporting if we return the ambiguity and
-                // use that in the error message.
+                BestIndex
+                bestUnlifted = f_10850_26220_26338(u, conv =>
+                                constraint(conv) &&
+                                LiftingCount(conv) == 0)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 26355, 26834) || true) && (bestUnlifted.Kind == BestIndexKind.Best)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 26355, 26834);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 26432, 26457);
+
+                    return bestUnlifted.Best;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 26355, 26834);
+                }
+
+                else
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 26355, 26834);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 26491, 26834) || true) && (bestUnlifted.Kind == BestIndexKind.Ambiguous)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 26491, 26834);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 26807, 26819);
+
+                        return null;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 26491, 26834);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 26355, 26834);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 27632, 27778);
+
+                BestIndex
+                bestHalfLifted = f_10850_27659_27777(u, conv =>
+                                constraint(conv) &&
+                                LiftingCount(conv) == 1)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 27794, 28188) || true) && (bestHalfLifted.Kind == BestIndexKind.Best)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 27794, 28188);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 27873, 27900);
+
+                    return bestHalfLifted.Best;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 27794, 28188);
+                }
+
+                else
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 27794, 28188);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 27934, 28188) || true) && (bestHalfLifted.Kind == BestIndexKind.Ambiguous)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 27934, 28188);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28161, 28173);
+
+                        return null;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 27934, 28188);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 27794, 28188);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28286, 28433);
+
+                BestIndex
+                bestFullyLifted = f_10850_28314_28432(u, conv =>
+                                constraint(conv) &&
+                                LiftingCount(conv) == 2)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28449, 28846) || true) && (bestFullyLifted.Kind == BestIndexKind.Best)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 28449, 28846);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28529, 28557);
+
+                    return bestFullyLifted.Best;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 28449, 28846);
+                }
+
+                else
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 28449, 28846);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28591, 28846) || true) && (bestFullyLifted.Kind == BestIndexKind.Ambiguous)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 28591, 28846);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28819, 28831);
+
+                        return null;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 28591, 28846);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 28449, 28846);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 28862, 28874);
+
                 return null;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 23181, 28885);
+
+                Microsoft.CodeAnalysis.CSharp.BestIndex
+                f_10850_26220_26338(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                items, System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, bool>
+                predicate)
+                {
+                    var return_v = UniqueIndex(items, predicate);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 26220, 26338);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.BestIndex
+                f_10850_27659_27777(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                items, System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, bool>
+                predicate)
+                {
+                    var return_v = UniqueIndex(items, predicate);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 27659, 27777);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.BestIndex
+                f_10850_28314_28432(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                items, System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, bool>
+                predicate)
+                {
+                    var return_v = UniqueIndex(items, predicate);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 28314, 28432);
+                    return return_v;
+                }
+
             }
-
-            // There was no fully-unlifted operator. Check to see if there was any *half-lifted* operator. 
-            //
-            // For example, suppose we had a conversion from X-->Y?, and lifted it to X?-->Y?. (The spec
-            // says not to do such a lifting because Y? is not a non-nullable value type, but the native
-            // compiler does so and we are being compatible with it.) That would be a half-lifted operator.
-            //
-            // For example, suppose we had a conversion from X-->Y, and the assignment Y? y = new X(); --
-            // this would also be a "half lifted" conversion even though there is no "lifting" going on
-            // (in the sense that we are not checking the source to see if it is null.)
-            // 
-
-            BestIndex bestHalfLifted = UniqueIndex(u,
-                conv =>
-                constraint(conv) &&
-                LiftingCount(conv) == 1);
-
-            if (bestHalfLifted.Kind == BestIndexKind.Best)
+            catch
             {
-                return bestHalfLifted.Best;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 23181, 28885);
+                throw;
             }
-            else if (bestHalfLifted.Kind == BestIndexKind.Ambiguous)
+            finally
             {
-                // UNDONE: We can do better error reporting if we return the ambiguity and
-                // use that in the error message.
-                return null;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 23181, 28885);
             }
-
-            // Finally, see if there is a unique best *fully lifted* operator.
-
-            BestIndex bestFullyLifted = UniqueIndex(u,
-                conv =>
-                constraint(conv) &&
-                LiftingCount(conv) == 2);
-
-            if (bestFullyLifted.Kind == BestIndexKind.Best)
-            {
-                return bestFullyLifted.Best;
-            }
-            else if (bestFullyLifted.Kind == BestIndexKind.Ambiguous)
-            {
-                // UNDONE: We can do better error reporting if we return the ambiguity and
-                // use that in the error message.
-                return null;
-            }
-
-            return null;
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // Return the index of the *unique* item in the array that matches the predicate,
-        // or null if there is not one.
         private static BestIndex UniqueIndex<T>(ImmutableArray<T> items, Func<T, bool> predicate)
         {
-            if (items.IsEmpty)
+            try
             {
-                return BestIndex.None();
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 29029, 29840);
 
-            int? result = null;
-            for (int i = 0; i < items.Length; ++i)
-            {
-                if (predicate(items[i]))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29143, 29233) || true) && (items.IsEmpty)
+                )
+
                 {
-                    if (result == null)
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 29143, 29233);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29194, 29218);
+
+                    return BestIndex.None();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 29143, 29233);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29249, 29268);
+
+                int?
+                result = null
+                ;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29291, 29296);
+                    for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29282, 29738) || true) && (i < items.Length)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29316, 29319)
+        , ++i, DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 29282, 29738))
+
                     {
-                        result = i;
-                    }
-                    else
-                    {
-                        // Not unique.
-                        return BestIndex.IsAmbiguous(result.Value, i);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 29282, 29738);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29353, 29723) || true) && (f_10850_29357_29376<T>(predicate, items[i]))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 29353, 29723);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29418, 29704) || true) && (result == null)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 29418, 29704);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29486, 29497);
+
+                                result = i;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 29418, 29704);
+                            }
+
+                            else
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 29418, 29704);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29635, 29681);
+
+                                return BestIndex.IsAmbiguous(f_10850_29664_29676<T>(result), i);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 29418, 29704);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 29353, 29723);
+                        }
                     }
                 }
-            }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10850, 1, 457);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10850, 1, 457);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 29754, 29829);
 
-            return result == null ? BestIndex.None() : BestIndex.HasBest(result.Value);
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 29761, 29775) || ((result == null && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 29778, 29794)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 29797, 29828))) ? BestIndex.None() : BestIndex.HasBest(f_10850_29815_29827<T>(result));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 29029, 29840);
+
+                bool
+                f_10850_29357_29376<T>(System.Func<T, bool>
+                this_param, T
+                arg)
+                {
+                    var return_v = this_param.Invoke(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 29357, 29376);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_29664_29676<T>(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 29664, 29676);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_29815_29827<T>(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 29815, 29827);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 29029, 29840);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 29029, 29840);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // Is A encompassed by B?
         private bool IsEncompassedBy(BoundExpression aExpr, TypeSymbol a, TypeSymbol b, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            Debug.Assert((object)a != null);
-            Debug.Assert((object)b != null);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 29887, 30474);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 30039, 30071);
 
-            // SPEC: If a standard implicit conversion exists from a type A to a type B
-            // SPEC: and if neither A nor B is an interface type then A is said to be
-            // SPEC: encompassed by B, and B is said to encompass A.
+                f_10850_30039_30070((object)a != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 30085, 30117);
 
-            return EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics).Exists;
+                f_10850_30085_30116((object)b != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 30381, 30463);
+
+                return f_10850_30388_30455(this, aExpr, a, b, ref useSiteDiagnostics).Exists;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 29887, 30474);
+
+                int
+                f_10850_30039_30070(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 30039, 30070);
+                    return 0;
+                }
+
+
+                int
+                f_10850_30085_30116(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 30085, 30116);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_30388_30455(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression
+                aExpr, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                a, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                b, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.EncompassingImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 30388, 30455);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 29887, 30474);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 29887, 30474);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private Conversion EncompassingImplicitConversion(BoundExpression aExpr, TypeSymbol a, TypeSymbol b, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            Debug.Assert(aExpr != null || (object)a != null);
-            Debug.Assert((object)b != null);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 30486, 31306);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 30659, 30708);
 
-            // DELIBERATE SPEC VIOLATION: 
-            // We ought to be saying that an encompassing conversion never exists when one of
-            // the types is an interface type, but due to a desire to be compatible with a 
-            // dev10 bug, we allow it. See the comment regarding bug 17021 above for more details.
+                f_10850_30659_30707(aExpr != null || (DynAbs.Tracing.TraceSender.Expression_False(10850, 30672, 30706) || (object)a != null));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 30722, 30754);
 
-            var result = ClassifyStandardImplicitConversion(aExpr, a, b, ref useSiteDiagnostics);
-            return IsEncompassingImplicitConversionKind(result.Kind) ? result : Conversion.NoConversion;
+                f_10850_30722_30753((object)b != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 31104, 31189);
+
+                var
+                result = f_10850_31117_31188(this, aExpr, a, b, ref useSiteDiagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 31203, 31295);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 31210, 31259) || ((f_10850_31210_31259(result.Kind) && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 31262, 31268)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 31271, 31294))) ? result : Conversion.NoConversion;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 30486, 31306);
+
+                int
+                f_10850_30659_30707(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 30659, 30707);
+                    return 0;
+                }
+
+
+                int
+                f_10850_30722_30753(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 30722, 30753);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10850_31117_31188(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression?
+                sourceExpression, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                source, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                destination, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.ClassifyStandardImplicitConversion(sourceExpression, source, destination, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 31117, 31188);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_31210_31259(Microsoft.CodeAnalysis.CSharp.ConversionKind
+                kind)
+                {
+                    var return_v = IsEncompassingImplicitConversionKind(kind);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 31210, 31259);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 30486, 31306);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 30486, 31306);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static bool IsEncompassingImplicitConversionKind(ConversionKind kind)
         {
-            switch (kind)
+            try
             {
-                // Doesn't even exist.
-                case ConversionKind.NoConversion:
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 31318, 34171);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 31420, 34160);
 
-                // These are conversions from expression and do not apply.
-                // Specifically disallowed because there would be subtle consequences for the overload betterness rules.
-                case ConversionKind.ImplicitDynamic:
-                case ConversionKind.MethodGroup:
-                case ConversionKind.AnonymousFunction:
-                case ConversionKind.InterpolatedString:
-                case ConversionKind.SwitchExpression:
-                case ConversionKind.ConditionalExpression:
-                case ConversionKind.ImplicitEnumeration:
-                case ConversionKind.StackAllocToPointerType:
-                case ConversionKind.StackAllocToSpanType:
+                switch (kind)
+                {
 
-                // Not "standard".
-                case ConversionKind.ImplicitUserDefined:
-                case ConversionKind.ExplicitUserDefined:
+                    case ConversionKind.NoConversion:
 
-                // Not implicit.
-                case ConversionKind.ExplicitNumeric:
-                case ConversionKind.ExplicitEnumeration:
-                case ConversionKind.ExplicitNullable:
-                case ConversionKind.ExplicitReference:
-                case ConversionKind.Unboxing:
-                case ConversionKind.ExplicitDynamic:
-                case ConversionKind.ExplicitPointerToPointer:
-                case ConversionKind.ExplicitPointerToInteger:
-                case ConversionKind.ExplicitIntegerToPointer:
-                case ConversionKind.IntPtr:
-                case ConversionKind.ExplicitTupleLiteral:
-                case ConversionKind.ExplicitTuple:
-                    return false;
+                    // These are conversions from expression and do not apply.
+                    // Specifically disallowed because there would be subtle consequences for the overload betterness rules.
+                    case ConversionKind.ImplicitDynamic:
+                    case ConversionKind.MethodGroup:
+                    case ConversionKind.AnonymousFunction:
+                    case ConversionKind.InterpolatedString:
+                    case ConversionKind.SwitchExpression:
+                    case ConversionKind.ConditionalExpression:
+                    case ConversionKind.ImplicitEnumeration:
+                    case ConversionKind.StackAllocToPointerType:
+                    case ConversionKind.StackAllocToSpanType:
 
-                // Spec'd in C# 4.
-                case ConversionKind.Identity:
-                case ConversionKind.ImplicitNumeric:
-                case ConversionKind.ImplicitNullable:
-                case ConversionKind.ImplicitReference:
-                case ConversionKind.Boxing:
-                case ConversionKind.ImplicitConstant:
-                case ConversionKind.ImplicitPointerToVoid:
+                    // Not "standard".
+                    case ConversionKind.ImplicitUserDefined:
+                    case ConversionKind.ExplicitUserDefined:
 
-                // Added to spec in Roslyn timeframe.
-                case ConversionKind.NullLiteral:
-                case ConversionKind.ImplicitNullToPointer:
+                    // Not implicit.
+                    case ConversionKind.ExplicitNumeric:
+                    case ConversionKind.ExplicitEnumeration:
+                    case ConversionKind.ExplicitNullable:
+                    case ConversionKind.ExplicitReference:
+                    case ConversionKind.Unboxing:
+                    case ConversionKind.ExplicitDynamic:
+                    case ConversionKind.ExplicitPointerToPointer:
+                    case ConversionKind.ExplicitPointerToInteger:
+                    case ConversionKind.ExplicitIntegerToPointer:
+                    case ConversionKind.IntPtr:
+                    case ConversionKind.ExplicitTupleLiteral:
+                    case ConversionKind.ExplicitTuple:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 31420, 34160);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 33131, 33144);
 
-                // Added for C# 7.
-                case ConversionKind.ImplicitTupleLiteral:
-                case ConversionKind.ImplicitTuple:
-                case ConversionKind.ImplicitThrow:
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 31420, 34160);
 
-                // Added for C# 7.1
-                case ConversionKind.DefaultLiteral:
-                    return true;
+                    case ConversionKind.Identity:
+                    case ConversionKind.ImplicitNumeric:
+                    case ConversionKind.ImplicitNullable:
+                    case ConversionKind.ImplicitReference:
+                    case ConversionKind.Boxing:
+                    case ConversionKind.ImplicitConstant:
+                    case ConversionKind.ImplicitPointerToVoid:
 
-                default:
-                    throw ExceptionUtilities.UnexpectedValue(kind);
+                    // Added to spec in Roslyn timeframe.
+                    case ConversionKind.NullLiteral:
+                    case ConversionKind.ImplicitNullToPointer:
+
+                    // Added for C# 7.
+                    case ConversionKind.ImplicitTupleLiteral:
+                    case ConversionKind.ImplicitTuple:
+                    case ConversionKind.ImplicitThrow:
+
+                    // Added for C# 7.1
+                    case ConversionKind.DefaultLiteral:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 31420, 34160);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 34036, 34048);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 31420, 34160);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 31420, 34160);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 34098, 34145);
+
+                        throw f_10850_34104_34144(kind);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 31420, 34160);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 31318, 34171);
+
+                System.Exception
+                f_10850_34104_34144(Microsoft.CodeAnalysis.CSharp.ConversionKind
+                o)
+                {
+                    var return_v = ExceptionUtilities.UnexpectedValue((object)o);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 34104, 34144);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 31318, 34171);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 31318, 34171);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private TypeSymbol MostEncompassedType<T>(
-            ImmutableArray<T> items,
-            Func<T, TypeSymbol> extract,
-            ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+                    ImmutableArray<T> items,
+                    Func<T, TypeSymbol> extract,
+                    ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            return MostEncompassedType<T>(items, x => true, extract, ref useSiteDiagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 34183, 34483);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 34391, 34472);
+
+                return f_10850_34398_34471<T>(this, items, x => true, extract, ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 34183, 34483);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_34398_34471<T>(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, System.Collections.Immutable.ImmutableArray<T>
+                items, System.Func<T, bool>
+                valid, System.Func<T, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol>
+                extract, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.MostEncompassedType<T>(items, valid, extract, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 34398, 34471);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 34183, 34483);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 34183, 34483);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private TypeSymbol MostEncompassedType<T>(
-            ImmutableArray<T> items,
-            Func<T, bool> valid,
-            Func<T, TypeSymbol> extract,
-            ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+                    ImmutableArray<T> items,
+                    Func<T, bool> valid,
+                    Func<T, TypeSymbol> extract,
+                    ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            // SPEC: The most encompassed type is the one type in the set that 
-            // SPEC: is encompassed by all the other types.
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 34495, 37130);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 36033, 36098);
 
-            // We have a bit of a graph theory problem here. Suppose hypothetically
-            // speaking we have three types in the set such that:
-            //
-            // X is encompassed by Y
-            // X is encompassed by Z
-            // Y is encompassed by X
-            //
-            // In that situation, X is the unique type in the set that is encompassed
-            // by all the other types, despite the fact that it appears to be neither
-            // better nor worse than Y! 
-            //
-            // But in practice this situation never arises because implicit convertibility
-            // is transitive; if Y is implicitly convertible to X and X is implicitly convertible
-            // to Z, then Y is implicitly convertible to Z.
-            //
-            // Because we have this transitivity, we can rephrase the problem as follows:
-            //
-            // Find the unique best type in the set, where the best type is the type that is 
-            // better than every other type. By "X is better than Y" we mean "X is encompassed 
-            // by Y but Y is not encompassed by X".
+                HashSet<DiagnosticInfo>
+                _useSiteDiagnostics = useSiteDiagnostics
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 36112, 36992);
 
-            HashSet<DiagnosticInfo> _useSiteDiagnostics = useSiteDiagnostics;
-            int? best = UniqueBestValidIndex(items, valid,
-                (left, right) =>
+                int?
+                best = f_10850_36124_36991<T>(items, valid, (left, right) =>
+                                {
+                                    TypeSymbol leftType = extract(left);
+                                    TypeSymbol rightType = extract(right);
+                                    if (TypeSymbol.Equals(leftType, rightType, TypeCompareKind.ConsiderEverything2))
+                                    {
+                                        return BetterResult.Equal;
+                                    }
+
+                                    bool leftWins = IsEncompassedBy(null, leftType, rightType, ref _useSiteDiagnostics);
+                                    bool rightWins = IsEncompassedBy(null, rightType, leftType, ref _useSiteDiagnostics);
+                                    if (leftWins == rightWins)
+                                    {
+                                        return BetterResult.Neither;
+                                    }
+                                    return leftWins ? BetterResult.Left : BetterResult.Right;
+                                })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 37008, 37049);
+
+                useSiteDiagnostics = _useSiteDiagnostics;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 37063, 37119);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 37070, 37082) || ((best == null && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 37085, 37089)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 37092, 37118))) ? null : f_10850_37092_37118<T>(extract, items[f_10850_37106_37116<T>(best)]);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 34495, 37130);
+
+                int?
+                f_10850_36124_36991<T>(System.Collections.Immutable.ImmutableArray<T>
+                items, System.Func<T, bool>
+                valid, System.Func<T, T, Microsoft.CodeAnalysis.CSharp.BetterResult>
+                better)
                 {
-                    TypeSymbol leftType = extract(left);
-                    TypeSymbol rightType = extract(right);
-                    if (TypeSymbol.Equals(leftType, rightType, TypeCompareKind.ConsiderEverything2))
-                    {
-                        return BetterResult.Equal;
-                    }
+                    var return_v = UniqueBestValidIndex(items, valid, better);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 36124, 36991);
+                    return return_v;
+                }
 
-                    bool leftWins = IsEncompassedBy(null, leftType, rightType, ref _useSiteDiagnostics);
-                    bool rightWins = IsEncompassedBy(null, rightType, leftType, ref _useSiteDiagnostics);
-                    if (leftWins == rightWins)
-                    {
-                        return BetterResult.Neither;
-                    }
-                    return leftWins ? BetterResult.Left : BetterResult.Right;
-                });
 
-            useSiteDiagnostics = _useSiteDiagnostics;
-            return best == null ? null : extract(items[best.Value]);
+                int
+                f_10850_37106_37116<T>(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 37106, 37116);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_37092_37118<T>(System.Func<T, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol>
+                this_param, T
+                arg)
+                {
+                    var return_v = this_param.Invoke(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 37092, 37118);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 34495, 37130);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 34495, 37130);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private TypeSymbol MostEncompassingType<T>(
-            ImmutableArray<T> items,
-            Func<T, TypeSymbol> extract,
-            ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+                    ImmutableArray<T> items,
+                    Func<T, TypeSymbol> extract,
+                    ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            return MostEncompassingType<T>(items, x => true, extract, ref useSiteDiagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 37142, 37444);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 37351, 37433);
+
+                return f_10850_37358_37432<T>(this, items, x => true, extract, ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 37142, 37444);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_37358_37432<T>(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, System.Collections.Immutable.ImmutableArray<T>
+                items, System.Func<T, bool>
+                valid, System.Func<T, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol>
+                extract, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    var return_v = this_param.MostEncompassingType<T>(items, valid, extract, ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 37358, 37432);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 37142, 37444);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 37142, 37444);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private TypeSymbol MostEncompassingType<T>(
-            ImmutableArray<T> items,
-            Func<T, bool> valid,
-            Func<T, TypeSymbol> extract,
-            ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+                    ImmutableArray<T> items,
+                    Func<T, bool> valid,
+                    Func<T, TypeSymbol> extract,
+                    ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            // See comments above.
-            HashSet<DiagnosticInfo> _useSiteDiagnostics = useSiteDiagnostics;
-            int? best = UniqueBestValidIndex(items, valid,
-                (left, right) =>
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 37456, 38832);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 37735, 37800);
+
+                HashSet<DiagnosticInfo>
+                _useSiteDiagnostics = useSiteDiagnostics
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 37814, 38694);
+
+                int?
+                best = f_10850_37826_38693<T>(items, valid, (left, right) =>
+                                {
+                                    TypeSymbol leftType = extract(left);
+                                    TypeSymbol rightType = extract(right);
+                                    if (TypeSymbol.Equals(leftType, rightType, TypeCompareKind.ConsiderEverything2))
+                                    {
+                                        return BetterResult.Equal;
+                                    }
+
+                                    bool leftWins = IsEncompassedBy(null, rightType, leftType, ref _useSiteDiagnostics);
+                                    bool rightWins = IsEncompassedBy(null, leftType, rightType, ref _useSiteDiagnostics);
+                                    if (leftWins == rightWins)
+                                    {
+                                        return BetterResult.Neither;
+                                    }
+                                    return leftWins ? BetterResult.Left : BetterResult.Right;
+                                })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 38710, 38751);
+
+                useSiteDiagnostics = _useSiteDiagnostics;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 38765, 38821);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10850, 38772, 38784) || ((best == null && DynAbs.Tracing.TraceSender.Conditional_F2(10850, 38787, 38791)) || DynAbs.Tracing.TraceSender.Conditional_F3(10850, 38794, 38820))) ? null : f_10850_38794_38820<T>(extract, items[f_10850_38808_38818<T>(best)]);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 37456, 38832);
+
+                int?
+                f_10850_37826_38693<T>(System.Collections.Immutable.ImmutableArray<T>
+                items, System.Func<T, bool>
+                valid, System.Func<T, T, Microsoft.CodeAnalysis.CSharp.BetterResult>
+                better)
                 {
-                    TypeSymbol leftType = extract(left);
-                    TypeSymbol rightType = extract(right);
-                    if (TypeSymbol.Equals(leftType, rightType, TypeCompareKind.ConsiderEverything2))
-                    {
-                        return BetterResult.Equal;
-                    }
+                    var return_v = UniqueBestValidIndex(items, valid, better);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 37826, 38693);
+                    return return_v;
+                }
 
-                    bool leftWins = IsEncompassedBy(null, rightType, leftType, ref _useSiteDiagnostics);
-                    bool rightWins = IsEncompassedBy(null, leftType, rightType, ref _useSiteDiagnostics);
-                    if (leftWins == rightWins)
-                    {
-                        return BetterResult.Neither;
-                    }
-                    return leftWins ? BetterResult.Left : BetterResult.Right;
-                });
 
-            useSiteDiagnostics = _useSiteDiagnostics;
-            return best == null ? null : extract(items[best.Value]);
+                int
+                f_10850_38808_38818<T>(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 38808, 38818);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                f_10850_38794_38820<T>(System.Func<T, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol>
+                this_param, T
+                arg)
+                {
+                    var return_v = this_param.Invoke(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 38794, 38820);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 37456, 38832);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 37456, 38832);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // This method takes an array of items and a predicate which filters out the valid items.
-        // From the valid items we find the index of the *unique best item* in the array.
-        // In order for a valid item x to be considered best, x must be better than every other
-        // item. The "better" relation must be consistent; that is:
-        //
-        // better(x,y) == Left     requires that    better(y,x) == Right
-        // better(x,y) == Right    requires that    better(y,x) == Left
-        // better(x,y) == Neither  requires that    better(y,x) == Neither 
-        //
-        // It is possible for the array to contain the same item twice; if it does then
-        // the duplicate is ignored. That is, having the "best" item twice does not preclude
-        // it from being the best.
-
-        // UNDONE: Update this to give a BestIndex result that indicates ambiguity.
         private static int? UniqueBestValidIndex<T>(ImmutableArray<T> items, Func<T, bool> valid, Func<T, T, BetterResult> better)
         {
-            if (items.IsEmpty)
+            try
             {
-                return null;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10850, 39754, 42778);
 
-            int? candidateIndex = null;
-            T candidateItem = default(T);
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 39901, 39979) || true) && (items.IsEmpty)
+                )
 
-            for (int currentIndex = 0; currentIndex < items.Length; ++currentIndex)
-            {
-                T currentItem = items[currentIndex];
-                if (!valid(currentItem))
                 {
-                    continue;
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 39901, 39979);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 39952, 39964);
 
-                if (candidateIndex == null)
-                {
-                    candidateIndex = currentIndex;
-                    candidateItem = currentItem;
-                    continue;
-                }
-
-                BetterResult result = better(candidateItem, currentItem);
-
-                if (result == BetterResult.Equal)
-                {
-                    // The list had the same item twice. Just ignore it.
-                    continue;
-                }
-                else if (result == BetterResult.Neither)
-                {
-                    // Neither the current item nor the candidate item are better,
-                    // and therefore neither of them can be the best. We no longer
-                    // have a candidate for best item.
-                    candidateIndex = null;
-                    candidateItem = default(T);
-                }
-                else if (result == BetterResult.Right)
-                {
-                    // The candidate is worse than the current item, so replace it
-                    // with the current item.
-                    candidateIndex = currentIndex;
-                    candidateItem = currentItem;
-                }
-                // Otherwise, the candidate is better than the current item, so
-                // it continues to be the candidate.
-            }
-
-            if (candidateIndex == null)
-            {
-                return null;
-            }
-
-            // We had a candidate that was better than everything that came *after* it.
-            // Now verify that it was better than everything that came before it.
-
-            for (int currentIndex = 0; currentIndex < candidateIndex.Value; ++currentIndex)
-            {
-                T currentItem = items[currentIndex];
-                if (!valid(currentItem))
-                {
-                    continue;
-                }
-
-                BetterResult result = better(candidateItem, currentItem);
-                if (result != BetterResult.Left && result != BetterResult.Equal)
-                {
-                    // The candidate was not better than everything that came before it. There is 
-                    // no best item.
                     return null;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 39901, 39979);
                 }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 39995, 40022);
+
+                int?
+                candidateIndex = null
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40036, 40065);
+
+                T
+                candidateItem = default(T)
+                ;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40090, 40106);
+
+                    for (int
+        currentIndex = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40081, 41713) || true) && (currentIndex < items.Length)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40137, 40151)
+        , ++currentIndex, DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40081, 41713))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40081, 41713);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40185, 40221);
+
+                        T
+                        currentItem = items[currentIndex]
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40239, 40332) || true) && (!f_10850_40244_40262<T>(valid, currentItem))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40239, 40332);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40304, 40313);
+
+                            continue;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40239, 40332);
+                        }
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40352, 40550) || true) && (candidateIndex == null)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40352, 40550);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40420, 40450);
+
+                            candidateIndex = currentIndex;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40472, 40500);
+
+                            candidateItem = currentItem;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40522, 40531);
+
+                            continue;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40352, 40550);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40570, 40627);
+
+                        BetterResult
+                        result = f_10850_40592_40626<T>(better, candidateItem, currentItem)
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40647, 41563) || true) && (result == BetterResult.Equal)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40647, 41563);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40795, 40804);
+
+                            continue;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40647, 41563);
+                        }
+
+                        else
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40647, 41563);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 40846, 41563) || true) && (result == BetterResult.Neither)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40846, 41563);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41146, 41168);
+
+                                candidateIndex = null;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41190, 41217);
+
+                                candidateItem = default(T);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40846, 41563);
+                            }
+
+                            else
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 40846, 41563);
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41259, 41563) || true) && (result == BetterResult.Right)
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 41259, 41563);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41464, 41494);
+
+                                    candidateIndex = currentIndex;
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41516, 41544);
+
+                                    candidateItem = currentItem;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 41259, 41563);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40846, 41563);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 40647, 41563);
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10850, 1, 1633);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10850, 1, 1633);
+                }
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41729, 41816) || true) && (candidateIndex == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 41729, 41816);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 41789, 41801);
+
+                    return null;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 41729, 41816);
+                }
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42015, 42031);
+
+                    // We had a candidate that was better than everything that came *after* it.
+                    // Now verify that it was better than everything that came before it.
+
+                    for (int
+        currentIndex = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42006, 42649) || true) && (currentIndex < f_10850_42048_42068<T>(candidateIndex))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42070, 42084)
+        , ++currentIndex, DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 42006, 42649))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 42006, 42649);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42118, 42154);
+
+                        T
+                        currentItem = items[currentIndex]
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42172, 42265) || true) && (!f_10850_42177_42195<T>(valid, currentItem))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 42172, 42265);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42237, 42246);
+
+                            continue;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 42172, 42265);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42285, 42342);
+
+                        BetterResult
+                        result = f_10850_42307_42341<T>(better, candidateItem, currentItem)
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42360, 42634) || true) && (result != BetterResult.Left && (DynAbs.Tracing.TraceSender.Expression_True(10850, 42364, 42423) && result != BetterResult.Equal))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 42360, 42634);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42603, 42615);
+
+                            return null;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 42360, 42634);
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10850, 1, 644);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10850, 1, 644);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42745, 42767);
+
+                return candidateIndex;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10850, 39754, 42778);
+
+                bool
+                f_10850_40244_40262<T>(System.Func<T, bool>
+                this_param, T
+                arg)
+                {
+                    var return_v = this_param.Invoke(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 40244, 40262);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.BetterResult
+                f_10850_40592_40626<T>(System.Func<T, T, Microsoft.CodeAnalysis.CSharp.BetterResult>
+                this_param, T?
+                arg1, T
+                arg2)
+                {
+                    var return_v = this_param.Invoke(arg1, arg2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 40592, 40626);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_42048_42068<T>(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 42048, 42068);
+                    return return_v;
+                }
+
+
+                bool
+                f_10850_42177_42195<T>(System.Func<T, bool>
+                this_param, T
+                arg)
+                {
+                    var return_v = this_param.Invoke(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 42177, 42195);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.BetterResult
+                f_10850_42307_42341<T>(System.Func<T, T, Microsoft.CodeAnalysis.CSharp.BetterResult>
+                this_param, T?
+                arg1, T
+                arg2)
+                {
+                    var return_v = this_param.Invoke(arg1, arg2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 42307, 42341);
+                    return return_v;
+                }
+
             }
-
-            // The candidate was better than everything that came before it.
-
-            return candidateIndex;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 39754, 42778);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 39754, 42778);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private NamedTypeSymbol MakeNullableType(TypeSymbol type)
         {
-            var nullable = this.corLibrary.GetDeclaredSpecialType(SpecialType.System_Nullable_T);
-            return nullable.Construct(type);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 42790, 43014);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42872, 42957);
+
+                var
+                nullable = f_10850_42887_42956(this.corLibrary, SpecialType.System_Nullable_T)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 42971, 43003);
+
+                return f_10850_42978_43002(nullable, type);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 42790, 43014);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_10850_42887_42956(Microsoft.CodeAnalysis.CSharp.Symbols.AssemblySymbol
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                type)
+                {
+                    var return_v = this_param.GetDeclaredSpecialType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 42887, 42956);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_10850_42978_43002(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                this_param, params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+                typeArguments)
+                {
+                    var return_v = this_param.Construct(typeArguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 42978, 43002);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 42790, 43014);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 42790, 43014);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <remarks>
-        /// NOTE: Keep this method in sync with AnalyzeImplicitUserDefinedConversion.
-        /// </remarks>
         protected UserDefinedConversionResult AnalyzeImplicitUserDefinedConversionForV6SwitchGoverningType(TypeSymbol source, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
         {
-            // SPEC:    The governing type of a switch statement is established by the switch expression.
-            // SPEC:    1) If the type of the switch expression is sbyte, byte, short, ushort, int, uint,
-            // SPEC:       long, ulong, bool, char, string, or an enum-type, or if it is the nullable type
-            // SPEC:       corresponding to one of these types, then that is the governing type of the switch statement. 
-            // SPEC:    2) Otherwise, exactly one user-defined implicit conversion (§6.4) must exist from the
-            // SPEC:       type of the switch expression to one of the following possible governing types:
-            // SPEC:       sbyte, byte, short, ushort, int, uint, long, ulong, char, string, or, a nullable type
-            // SPEC:       corresponding to one of those types
-
-            // NOTE:    This method implements part (2) above, it should be called only if (1) is false for source type.
-            Debug.Assert((object)source != null);
-            Debug.Assert(!source.IsValidV6SwitchGoverningType());
-
-            // NOTE: For (2) we use an approach similar to native compiler's approach, but call into the common code for analyzing user defined implicit conversions.
-            // NOTE:    (a) Compute the set of types D from which user-defined conversion operators should be considered by considering only the source type.
-            // NOTE:    (b) Instead of computing applicable user defined implicit conversions U from the source type to a specific target type,
-            // NOTE:        we compute these from the source type to ANY target type.
-            // NOTE:    (c) From the conversions in U, select the most specific of them that targets a valid switch governing type
-
-            // SPEC VIOLATION: Because we use the same strategy for computing the most specific conversion, as the Dev10 compiler did (in fact
-            // SPEC VIOLATION: we share the code), we inherit any spec deviances in that analysis. Specifically, the analysis only considers
-            // SPEC VIOLATION: which conversion has the least amount of lifting, where a conversion may be considered to be in unlifted form,
-            // SPEC VIOLATION: half-lifted form (only the argument type or return type is lifted) or fully lifted form. The most specific computation
-            // SPEC VIOLATION: looks for a unique conversion that is least lifted. The spec, on the other hand, requires that the conversion
-            // SPEC VIOLATION: be *unique*, not merely most use the least amount of lifting among the applicable conversions.
-
-            // SPEC VIOLATION: This introduces a SPEC VIOLATION for the following tests in the native compiler:
-
-            // NOTE:    // See test SwitchTests.CS0166_AggregateTypeWithMultipleImplicitConversions_07
-            // NOTE:    struct Conv
-            // NOTE:    {
-            // NOTE:        public static implicit operator int (Conv C) { return 1; }
-            // NOTE:        public static implicit operator int (Conv? C2) { return 0; }
-            // NOTE:        public static int Main()
-            // NOTE:        {
-            // NOTE:            Conv? D = new Conv();
-            // NOTE:            switch(D)
-            // NOTE:            {   ...
-
-            // SPEC VIOLATION: Native compiler allows the above code to compile
-            // SPEC VIOLATION: even though there are two user-defined implicit conversions:
-            // SPEC VIOLATION: 1) To int type (applicable in normal form): public static implicit operator int (Conv? C2)
-            // SPEC VIOLATION: 2) To int? type (applicable in lifted form): public static implicit operator int (Conv C)
-
-            // NOTE:    // See also test SwitchTests.TODO
-            // NOTE:    struct Conv
-            // NOTE:    {
-            // NOTE:        public static implicit operator int? (Conv C) { return 1; }
-            // NOTE:        public static implicit operator string (Conv? C2) { return 0; }
-            // NOTE:        public static int Main()
-            // NOTE:        {
-            // NOTE:            Conv? D = new Conv();
-            // NOTE:            switch(D)
-            // NOTE:            {   ...
-
-            // SPEC VIOLATION: Native compiler allows the above code to compile too
-            // SPEC VIOLATION: even though there are two user-defined implicit conversions:
-            // SPEC VIOLATION: 1) To string type (applicable in normal form): public static implicit operator string (Conv? C2)
-            // SPEC VIOLATION: 2) To int? type (applicable in half-lifted form): public static implicit operator int? (Conv C)
-
-            // SPEC VIOLATION: This occurs because the native compiler compares the applicable conversions to find one with the least amount
-            // SPEC VIOLATION: of lifting, ignoring whether the return types are the same or not.
-            // SPEC VIOLATION: We do the same to maintain compatibility with the native compiler.
-
-            // (a) Compute the set of types D from which user-defined conversion operators should be considered by considering only the source type.
-            var d = ArrayBuilder<NamedTypeSymbol>.GetInstance();
-            ComputeUserDefinedImplicitConversionTypeSet(source, t: null, d: d, useSiteDiagnostics: ref useSiteDiagnostics);
-
-            // (b) Instead of computing applicable user defined implicit conversions U from the source type to a specific target type,
-            //     we compute these from the source type to ANY target type. We will filter out those that are valid switch governing
-            //     types later.
-            var ubuild = ArrayBuilder<UserDefinedConversionAnalysis>.GetInstance();
-            ComputeApplicableUserDefinedImplicitConversionSet(null, source, target: null, d: d, u: ubuild, useSiteDiagnostics: ref useSiteDiagnostics, allowAnyTarget: true);
-            d.Free();
-            ImmutableArray<UserDefinedConversionAnalysis> u = ubuild.ToImmutableAndFree();
-
-            // (c) Find that conversion with the least amount of lifting
-            int? best = MostSpecificConversionOperator(conv => conv.ToType.IsValidV6SwitchGoverningType(isTargetTypeOfUserDefinedOp: true), u);
-            if (best != null)
+            try
             {
-                return UserDefinedConversionResult.Valid(u, best.Value);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10850, 43160, 49848);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 44316, 44353);
 
-            return UserDefinedConversionResult.NoApplicableOperators(u);
+                f_10850_44316_44352((object)source != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 44367, 44420);
+
+                f_10850_44367_44419(!f_10850_44381_44418(source));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 48547, 48599);
+
+                var
+                d = f_10850_48555_48598()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 48613, 48724);
+
+                f_10850_48613_48723(source, t: null, d: d, useSiteDiagnostics: ref useSiteDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49044, 49115);
+
+                var
+                ubuild = f_10850_49057_49114()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49129, 49290);
+
+                f_10850_49129_49289(this, null, source, target: null, d: d, u: ubuild, useSiteDiagnostics: ref useSiteDiagnostics, allowAnyTarget: true);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49304, 49313);
+
+                f_10850_49304_49312(d);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49327, 49405);
+
+                ImmutableArray<UserDefinedConversionAnalysis>
+                u = f_10850_49377_49404(ubuild)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49495, 49626);
+
+                int?
+                best = f_10850_49507_49625(conv => conv.ToType.IsValidV6SwitchGoverningType(isTargetTypeOfUserDefinedOp: true), u)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49640, 49761) || true) && (best != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10850, 49640, 49761);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49690, 49746);
+
+                    return UserDefinedConversionResult.Valid(u, f_10850_49734_49744(best));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10850, 49640, 49761);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10850, 49777, 49837);
+
+                return UserDefinedConversionResult.NoApplicableOperators(u);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10850, 43160, 49848);
+
+                int
+                f_10850_44316_44352(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 44316, 44352);
+                    return 0;
+                }
+
+
+                bool
+                f_10850_44381_44418(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = type.IsValidV6SwitchGoverningType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 44381, 44418);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_44367_44419(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 44367, 44419);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                f_10850_48555_48598()
+                {
+                    var return_v = ArrayBuilder<NamedTypeSymbol>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 48555, 48598);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_48613_48723(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                s, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                t, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                d, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics)
+                {
+                    ComputeUserDefinedImplicitConversionTypeSet(s, t: t, d: d, useSiteDiagnostics: ref useSiteDiagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 48613, 48723);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                f_10850_49057_49114()
+                {
+                    var return_v = ArrayBuilder<UserDefinedConversionAnalysis>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 49057, 49114);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_49129_49289(Microsoft.CodeAnalysis.CSharp.ConversionsBase
+                this_param, Microsoft.CodeAnalysis.CSharp.BoundExpression
+                sourceExpression, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                source, Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                target, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                d, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u, ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+                useSiteDiagnostics, bool
+                allowAnyTarget)
+                {
+                    this_param.ComputeApplicableUserDefinedImplicitConversionSet(sourceExpression, source, target: target, d: d, u: u, useSiteDiagnostics: ref useSiteDiagnostics, allowAnyTarget: allowAnyTarget);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 49129, 49289);
+                    return 0;
+                }
+
+
+                int
+                f_10850_49304_49312(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+                this_param)
+                {
+                    this_param.Free();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 49304, 49312);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                f_10850_49377_49404(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                this_param)
+                {
+                    var return_v = this_param.ToImmutableAndFree();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 49377, 49404);
+                    return return_v;
+                }
+
+
+                int?
+                f_10850_49507_49625(System.Func<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis, bool>
+                constraint, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UserDefinedConversionAnalysis>
+                u)
+                {
+                    var return_v = MostSpecificConversionOperator(constraint, u);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10850, 49507, 49625);
+                    return return_v;
+                }
+
+
+                int
+                f_10850_49734_49744(int?
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10850, 49734, 49744);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10850, 43160, 49848);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10850, 43160, 49848);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
     }
 }

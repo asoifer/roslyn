@@ -61,21 +61,55 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         [Obsolete]
         Deprecated_ComrefCallLocal = 'r',
     }
-
     internal static class GeneratedNameKindExtensions
     {
         internal static bool IsTypeName(this GeneratedNameKind kind)
         {
-            switch (kind)
+            try
             {
-                case GeneratedNameKind.LambdaDisplayClass:
-                case GeneratedNameKind.StateMachineType:
-                case GeneratedNameKind.DynamicCallSiteContainerType:
-                    return true;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10662, 2251, 2675);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10662, 2336, 2664);
 
-                default:
-                    return false;
+                switch (kind)
+                {
+
+                    case GeneratedNameKind.LambdaDisplayClass:
+                    case GeneratedNameKind.StateMachineType:
+                    case GeneratedNameKind.DynamicCallSiteContainerType:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10662, 2336, 2664);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10662, 2574, 2586);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10662, 2336, 2664);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10662, 2336, 2664);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10662, 2636, 2649);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10662, 2336, 2664);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10662, 2251, 2675);
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10662, 2251, 2675);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10662, 2251, 2675);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static GeneratedNameKindExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10662, 2185, 2682);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10662, 2185, 2682);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10662, 2185, 2682);
+        }
+
     }
 }

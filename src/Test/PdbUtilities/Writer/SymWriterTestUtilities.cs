@@ -11,7 +11,16 @@ namespace Roslyn.Test.PdbUtilities
 {
     internal static class SymWriterTestUtilities
     {
-        public static readonly Func<ISymWriterMetadataProvider, SymUnmanagedWriter> ThrowingFactory =
-            _ => throw new SymUnmanagedWriterException("xxx", new NotSupportedException(), "<lib name>");
+        public static readonly Func<ISymWriterMetadataProvider, SymUnmanagedWriter> ThrowingFactory;
+
+        static SymWriterTestUtilities()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(24016, 320, 588);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(24016, 457, 580);
+            ThrowingFactory = _ => throw new SymUnmanagedWriterException("xxx", new NotSupportedException(), "<lib name>"); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(24016, 320, 588);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(24016, 320, 588);
+        }
+
     }
 }

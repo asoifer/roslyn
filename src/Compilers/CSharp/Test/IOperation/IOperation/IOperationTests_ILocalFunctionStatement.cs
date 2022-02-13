@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -15,13 +15,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation)]
+public partial class IOperationTests : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_ContainingMethodParameterReference()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,622,1824);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,782,975);
+
+string 
+source = @"
 class C
 {
     public void M(int x)
@@ -34,8 +40,12 @@ class C
         Local(0);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,989,1607);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 p1)) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local(i ... }')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
     IReturnOperation (OperationKind.Return, Type: null) (Syntax: 'return x++;')
@@ -43,17 +53,40 @@ ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 p1)) (Operation
         IIncrementOrDecrementOperation (Postfix) (OperationKind.Increment, Type: System.Int32) (Syntax: 'x++')
           Target: 
             IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'x')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,1621,1674);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,1690,1813);
+
+f_22046_1690_1812(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,622,1824);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,622,1824);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,622,1824);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_ContainingMethodParameterReference_ExpressionBodied()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,1836,3027);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,2013,2165);
+
+string 
+source = @"
 class C
 {
     public void M(int x)
@@ -62,8 +95,12 @@ class C
         Local(0);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,2179,2810);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 p1)) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local(i ... p1) => x++;')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> x++')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'x++')
@@ -71,17 +108,40 @@ ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 p1)) (Operation
         IIncrementOrDecrementOperation (Postfix) (OperationKind.Increment, Type: System.Int32) (Syntax: 'x++')
           Target: 
             IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'x')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,2824,2877);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,2893,3016);
+
+f_22046_2893_3015(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,1836,3027);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,1836,3027);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,1836,3027);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_LocalFunctionParameterReference()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,3039,4200);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,3196,3342);
+
+string 
+source = @"
 class C
 {
     public void M()
@@ -90,8 +150,12 @@ class C
         Local(0);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,3356,3983);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 x)) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local(int x) => x++;')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> x++')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'x++')
@@ -99,17 +163,40 @@ ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 x)) (OperationK
         IIncrementOrDecrementOperation (Postfix) (OperationKind.Increment, Type: System.Int32) (Syntax: 'x++')
           Target: 
             IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'x')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,3997,4050);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,4066,4189);
+
+f_22046_4066_4188(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,3039,4200);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,3039,4200);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,3039,4200);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_ContainingLocalFunctionParameterReference()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,4212,5618);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,4379,4622);
+
+string 
+source = @"
 class C
 {
     public void M()
@@ -123,8 +210,12 @@ class C
         LocalOuter(0);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,4636,5401);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 y)) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local(i ... ) => x + y;')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> x + y')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'x + y')
@@ -134,17 +225,40 @@ ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 y)) (OperationK
             IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'x')
           Right: 
             IParameterReferenceOperation: y (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'y')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,5415,5468);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,5484,5607);
+
+f_22046_5484_5606(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,4212,5618);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,4212,5618);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,4212,5618);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_LocalFunctionReference()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,5630,7764);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,5778,6037);
+
+string 
+source = @"
 class C
 {
     public void M()
@@ -157,8 +271,12 @@ class C
         Local3(x = 0);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,6051,7547);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local3(System.Int32 p1)) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local3( ... Local2(p1);')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> x + Local2(p1)')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'x + Local2(p1)')
@@ -175,17 +293,40 @@ ILocalFunctionOperation (Symbol: System.Int32 Local3(System.Int32 p1)) (Operatio
                     IParameterReferenceOperation: p1 (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'p1')
                     InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                     OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,7561,7614);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,7630,7753);
+
+f_22046_7630_7752(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,5630,7764);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,5630,7764);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,5630,7764);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_Recursion()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,7776,9788);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,7911,8054);
+
+string 
+source = @"
 class C
 {
     public void M(int x)
@@ -193,8 +334,12 @@ class C
         /*<bind>*/int Local(int p1) => Local(x + p1);/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,8068,9571);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 p1)) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local(i ... al(x + p1);')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> Local(x + p1)')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'Local(x + p1)')
@@ -211,17 +356,40 @@ ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 p1)) (Operation
                     IParameterReferenceOperation: p1 (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'p1')
                 InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                 OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,9585,9638);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,9654,9777);
+
+f_22046_9654_9776(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,7776,9788);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,7776,9788);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,7776,9788);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_Async()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,9800,12436);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,9931,10223);
+
+string 
+source = @"
 using System.Threading.Tasks;
 
 class C
@@ -237,8 +405,12 @@ class C
         LocalAsync(0).Wait();
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,10237,12183);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Threading.Tasks.Task<System.Int32> LocalAsync(System.Int32 p1)) (OperationKind.LocalFunction, Type: null) (Syntax: 'async Task< ... }')
   IBlockOperation (2 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
     IExpressionStatementOperation (OperationKind.ExpressionStatement, Type: null) (Syntax: 'await Task.Delay(0);')
@@ -260,17 +432,40 @@ ILocalFunctionOperation (Symbol: System.Threading.Tasks.Task<System.Int32> Local
             IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'x')
           Right: 
             IParameterReferenceOperation: p1 (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'p1')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,12197,12250);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics, useLatestFrameworkReferences: true);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,12266,12425);
+
+f_22046_12266_12424(source, expectedOperationTree, expectedDiagnostics, useLatestFrameworkReferences: true);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,9800,12436);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,9800,12436);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,9800,12436);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_CaptureForEachVar()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,12448,13493);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,12591,12804);
+
+string 
+source = @"
 class C
 {
     public void M(int[] array)
@@ -282,24 +477,51 @@ class C
         }
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,12818,13276);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local()) (OperationKind.LocalFunction, Type: null) (Syntax: 'int Local() => x;')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> x')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'x')
       ReturnedValue: 
         ILocalReferenceOperation: x (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'x')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,13290,13343);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,13359,13482);
+
+f_22046_13359_13481(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,12448,13493);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,12448,13493);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,12448,13493);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_UseOfUnusedVar()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,13505,14975);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,13645,13791);
+
+string 
+source = @"
 class C
 {
     void M()
@@ -309,8 +531,12 @@ class C
         /*<bind>*/void F() => x++;/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,13805,14538);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: void F()) (OperationKind.LocalFunction, Type: null) (Syntax: 'void F() => x++;')
   IBlockOperation (2 statements) (OperationKind.Block, Type: null) (Syntax: '=> x++')
     IExpressionStatementOperation (OperationKind.ExpressionStatement, Type: null, IsImplicit) (Syntax: 'x++')
@@ -321,21 +547,41 @@ ILocalFunctionOperation (Symbol: void F()) (OperationKind.LocalFunction, Type: n
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: '=> x++')
       ReturnedValue: 
         null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0165: Use of unassigned local variable 'x'
-                //         F();
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "F()").WithArguments("x").WithLocation(6, 9)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,14552,14825);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22046_14723_14809(f_22046_14723_14790(f_22046_14723_14771(ErrorCode.ERR_UseDefViolation, "F()"), "x"), 6, 9)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,14841,14964);
+
+f_22046_14841_14963(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,13505,14975);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,13505,14975);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,13505,14975);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_OutVar()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,14987,16415);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,15119,15282);
+
+string 
+source = @"
 class C
 {
     void M(int p)
@@ -345,8 +591,12 @@ class C
         F(out x);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,15296,16198);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: void F(out System.Int32 y)) (OperationKind.LocalFunction, Type: null) (Syntax: 'void F(out  ... ) => y = p;')
   IBlockOperation (2 statements) (OperationKind.Block, Type: null) (Syntax: '=> y = p')
     IExpressionStatementOperation (OperationKind.ExpressionStatement, Type: null, IsImplicit) (Syntax: 'y = p')
@@ -359,17 +609,40 @@ ILocalFunctionOperation (Symbol: void F(out System.Int32 y)) (OperationKind.Loca
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: '=> y = p')
       ReturnedValue: 
         null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,16212,16265);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,16281,16404);
+
+f_22046_16281_16403(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,14987,16415);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,14987,16415);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,14987,16415);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestInvalidLocalFunction_MissingBody()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,16427,18454);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,16571,16694);
+
+string 
+source = @"
 class C
 {
     void M(int p)
@@ -377,8 +650,12 @@ class C
         /*<bind>*/void F(out int y) => ;/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,16708,17372);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: void F(out System.Int32 y)) (OperationKind.LocalFunction, Type: null, IsInvalid) (Syntax: 'void F(out int y) => ;')
   IBlockOperation (2 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '=> ')
     IExpressionStatementOperation (OperationKind.ExpressionStatement, Type: null, IsInvalid, IsImplicit) (Syntax: '')
@@ -388,27 +665,43 @@ ILocalFunctionOperation (Symbol: void F(out System.Int32 y)) (OperationKind.Loca
     IReturnOperation (OperationKind.Return, Type: null, IsInvalid, IsImplicit) (Syntax: '=> ')
       ReturnedValue: 
         null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(6,40): error CS1525: Invalid expression term ';'
-                //         /*<bind>*/void F(out int y) => ;/*</bind>*/
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, ";").WithArguments(";").WithLocation(6, 40),
-                // file.cs(6,24): error CS0177: The out parameter 'y' must be assigned to before control leaves the current method
-                //         /*<bind>*/void F(out int y) => ;/*</bind>*/
-                Diagnostic(ErrorCode.ERR_ParamUnassigned, "F").WithArguments("y").WithLocation(6, 24),
-                // file.cs(6,24): warning CS8321: The local function 'F' is declared but never used
-                //         /*<bind>*/void F(out int y) => ;/*</bind>*/
-                Diagnostic(ErrorCode.WRN_UnreferencedLocalFunction, "F").WithArguments("F").WithLocation(6, 24)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,17386,18304);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22046_17608_17693(f_22046_17608_17673(f_22046_17608_17654(ErrorCode.ERR_InvalidExprTerm, ";"), ";"), 6, 40),
+f_22046_17916_18001(f_22046_17916_17981(f_22046_17916_17962(ErrorCode.ERR_ParamUnassigned, "F"), "y"), 6, 24),
+f_22046_18193_18288(f_22046_18193_18268(f_22046_18193_18249(ErrorCode.WRN_UnreferencedLocalFunction, "F"), "F"), 6, 24)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,18320,18443);
+
+f_22046_18320_18442(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,16427,18454);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,16427,18454);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,16427,18454);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestInvalidLocalFunction_MissingParameters()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,18466,19850);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,18616,18729);
+
+string 
+source = @"
 class C
 {
     void M(int p)
@@ -416,31 +709,53 @@ class C
         /*<bind>*/void F( { }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,18743,19129);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: void F()) (OperationKind.LocalFunction, Type: null, IsInvalid) (Syntax: 'void F( { }')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '{ }')
     IReturnOperation (OperationKind.Return, Type: null, IsInvalid, IsImplicit) (Syntax: '{ }')
       ReturnedValue: 
         null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(6,27): error CS1026: ) expected
-                //         /*<bind>*/void F( { }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "{").WithLocation(6, 27),
-                // file.cs(6,24): warning CS8321: The local function 'F' is declared but never used
-                //         /*<bind>*/void F( { }/*</bind>*/;
-                Diagnostic(ErrorCode.WRN_UnreferencedLocalFunction, "F").WithArguments("F").WithLocation(6, 24)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,19143,19700);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22046_19338_19407(f_22046_19338_19387(ErrorCode.ERR_CloseParenExpected, "{"), 6, 27),
+f_22046_19589_19684(f_22046_19589_19664(f_22046_19589_19645(ErrorCode.WRN_UnreferencedLocalFunction, "F"), "F"), 6, 24)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,19716,19839);
+
+f_22046_19716_19838(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,18466,19850);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,18466,19850);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,18466,19850);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestInvalidLocalFunction_InvalidReturnType()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,19862,21405);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,20012,20123);
+
+string 
+source = @"
 class C
 {
     void M(int p)
@@ -448,31 +763,51 @@ class C
         /*<bind>*/X F() { }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,20137,20374);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: X F()) (OperationKind.LocalFunction, Type: null, IsInvalid) (Syntax: 'X F() { }')
   IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ }')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0161: 'F()': not all code paths return a value
-                //         /*<bind>*/X F() { }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_ReturnExpected, "F").WithArguments("F()").WithLocation(6, 21),
-                // CS0246: The type or namespace name 'X' could not be found (are you missing a using directive or an assembly reference?)
-                //         /*<bind>*/X F() { }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_SingleTypeNameNotFound, "X").WithArguments("X").WithLocation(6, 19),
-                // CS8321: The local function 'F' is declared but never used
-                //         /*<bind>*/X F() { }/*</bind>*/;
-                Diagnostic(ErrorCode.WRN_UnreferencedLocalFunction, "F").WithArguments("F").WithLocation(6, 21)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,20388,21255);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22046_20590_20676(f_22046_20590_20656(f_22046_20590_20635(ErrorCode.ERR_ReturnExpected, "F"), "F()"), 6, 21),
+f_22046_20895_20987(f_22046_20895_20967(f_22046_20895_20948(ErrorCode.ERR_SingleTypeNameNotFound, "X"), "X"), 6, 19),
+f_22046_21144_21239(f_22046_21144_21219(f_22046_21144_21200(ErrorCode.WRN_UnreferencedLocalFunction, "F"), "F"), 6, 21)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,21271,21394);
+
+f_22046_21271_21393(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,19862,21405);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,19862,21405);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,19862,21405);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(24650, "https://github.com/dotnet/roslyn/issues/24650")]
         public void TestInvalidLocalFunction_ExpressionAndBlockBody()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,21417,23315);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,21638,21784);
+
+string 
+source = @"
 class C
 {
     void M(int p)
@@ -480,8 +815,12 @@ class C
         /*<bind>*/object F() => new object(); { return null; }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,21798,22398);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Object F()) (OperationKind.LocalFunction, Type: null) (Syntax: 'object F()  ... w object();')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> new object()')
     IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'new object()')
@@ -490,24 +829,42 @@ ILocalFunctionOperation (Symbol: System.Object F()) (OperationKind.LocalFunction
           Arguments(0)
           Initializer: 
             null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(6,49): error CS0127: Since 'C.M(int)' returns void, a return keyword must not be followed by an object expression
-                //         /*<bind>*/object F() => new object(); { return new object(); }/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_RetNoObjectRequired, "return").WithArguments("C.M(int)").WithLocation(6, 49),
-                // file.cs(6,26): warning CS8321: The local function 'F' is declared but never used
-                //         /*<bind>*/object F() => new object(); { return new object(); }/*</bind>*/;
-                Diagnostic(ErrorCode.WRN_UnreferencedLocalFunction, "F").WithArguments("F").WithLocation(6, 26)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,22412,23165);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22046_22730_22831(f_22046_22730_22811(f_22046_22730_22785(ErrorCode.ERR_RetNoObjectRequired, "return"), "C.M(int)"), 6, 49),
+f_22046_23054_23149(f_22046_23054_23129(f_22046_23054_23110(ErrorCode.WRN_UnreferencedLocalFunction, "F"), "F"), 6, 26)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,23181,23304);
+
+f_22046_23181_23303(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,21417,23315);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,21417,23315);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,21417,23315);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(24650, "https://github.com/dotnet/roslyn/issues/24650")]
         public void TestInvalidLocalFunction_BlockAndExpressionBody()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,23327,25936);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,23548,23694);
+
+string 
+source = @"
 class C
 {
     void M(int p)
@@ -515,8 +872,12 @@ class C
         /*<bind>*/object F() { return new object(); } => null;/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,23708,25079);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Object F()) (OperationKind.LocalFunction, Type: null, IsInvalid) (Syntax: 'object F()  ...  } => null;')
   Body: 
     IBlockOperation (1 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '{ return new object(); }')
@@ -534,24 +895,42 @@ ILocalFunctionOperation (Symbol: System.Object F()) (OperationKind.LocalFunction
             Conversion: CommonConversion (Exists: True, IsIdentity: False, IsNumeric: False, IsReference: True, IsUserDefined: False) (MethodSymbol: null)
             Operand: 
               ILiteralOperation (OperationKind.Literal, Type: null, Constant: null, IsInvalid) (Syntax: 'null')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // error CS8057: Block bodies and expression bodies cannot both be provided.
-                //         /*<bind>*/object F() { return new object(); } => null;/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_BlockBodyAndExpressionBody, "object F() { return new object(); } => null;").WithLocation(6, 19),
-                // warning CS8321: The local function 'F' is declared but never used
-                //         /*<bind>*/object F() { return new object(); } => null;/*</bind>*/;
-                Diagnostic(ErrorCode.WRN_UnreferencedLocalFunction, "F").WithArguments("F").WithLocation(6, 26)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,25093,25786);
 
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22046_25355_25475(f_22046_25355_25455(ErrorCode.ERR_BlockBodyAndExpressionBody, "object F() { return new object(); } => null;"), 6, 19),
+f_22046_25675_25770(f_22046_25675_25750(f_22046_25675_25731(ErrorCode.WRN_UnreferencedLocalFunction, "F"), "F"), 6, 26)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,25802,25925);
+
+f_22046_25802_25924(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,23327,25936);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,23327,25936);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,23327,25936);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(24650, "https://github.com/dotnet/roslyn/issues/24650")]
         public void TestLocalFunction_ExpressionBodyInnerMember()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,25948,27013);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,26165,26317);
+
+string 
+source = @"
 class C
 {
     public void M(int x)
@@ -560,25 +939,52 @@ class C
         Local(0);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,26331,26797);
+
+string 
+expectedOperationTree = @"
 IBlockOperation (1 statements) (OperationKind.Block, Type: null) (Syntax: '=> x++')
   IReturnOperation (OperationKind.Return, Type: null, IsImplicit) (Syntax: 'x++')
     ReturnedValue: 
       IIncrementOrDecrementOperation (Postfix) (OperationKind.Increment, Type: System.Int32) (Syntax: 'x++')
         Target: 
           IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'x')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,26811,26864);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ArrowExpressionClauseSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,26880,27002);
+
+f_22046_26880_27001(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,25948,27013);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,25948,27013);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,25948,27013);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_StaticWithShadowedVariableReference()
+		{
+			try
         {
-            string source =
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,27025,30601);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,27186,27523);
+
+string 
+source =
 @"#pragma warning disable 8321
 class C
 {
@@ -596,8 +1002,12 @@ class C
         }
         /*</bind>*/
     }
-}";
-            string expectedOperationTree = @"
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,27537,30104);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 y)) (OperationKind.LocalFunction, Type: null, IsInvalid) (Syntax: 'static int  ... }')
   IBlockOperation (2 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '{ ... }')
     IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (y > 0) ... }')
@@ -630,21 +1040,42 @@ ILocalFunctionOperation (Symbol: System.Int32 Local(System.Int32 y)) (OperationK
     IReturnOperation (OperationKind.Return, Type: null, IsInvalid) (Syntax: 'return x;')
       ReturnedValue: 
         IParameterReferenceOperation: x (OperationKind.ParameterReference, Type: System.Int32, IsInvalid) (Syntax: 'x')
-";
-            var expectedDiagnostics = new[]
-            {
-                // (14,20): error CS8421: A static local function cannot contain a reference to 'x'.
-                //             return x;
-                Diagnostic(ErrorCode.ERR_StaticLocalFunctionCannotCaptureVariable, "x").WithArguments("x").WithLocation(14, 20)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,30118,30453);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+var 
+expectedDiagnostics = new[]
+            {
+f_22046_30326_30437(f_22046_30326_30416(f_22046_30326_30397(ErrorCode.ERR_StaticLocalFunctionCannotCaptureVariable, "x"), "x"), 14, 20)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,30467,30590);
+
+f_22046_30467_30589(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,27025,30601);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,27025,30601);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,27025,30601);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void TestLocalFunction_StaticWithThisReference()
+		{
+			try
         {
-            string source =
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,30613,35444);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,30762,30983);
+
+string 
+source =
 @"#pragma warning disable 8321
 class C
 {
@@ -654,8 +1085,12 @@ class C
         static object Local() => ToString() + this.GetHashCode() + base.GetHashCode();
         /*</bind>*/
     }
-}";
-            string expectedOperationTree = @"
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,30997,34227);
+
+string 
+expectedOperationTree = @"
 ILocalFunctionOperation (Symbol: System.Object Local()) (OperationKind.LocalFunction, Type: null, IsInvalid) (Syntax: 'static obje ... HashCode();')
   IBlockOperation (1 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '=> ToString ... tHashCode()')
     IReturnOperation (OperationKind.Return, Type: null, IsInvalid, IsImplicit) (Syntax: 'ToString()  ... tHashCode()')
@@ -687,27 +1122,44 @@ ILocalFunctionOperation (Symbol: System.Object Local()) (OperationKind.LocalFunc
                       Instance Receiver: 
                         IInstanceReferenceOperation (ReferenceKind: ContainingTypeInstance) (OperationKind.InstanceReference, Type: System.Object, IsInvalid) (Syntax: 'base')
                       Arguments(0)
-";
-            var expectedDiagnostics = new[]
-            {
-                // (7,34): error CS8422: A static local function cannot contain a reference to 'this' or 'base'.
-                //         static object Local() => ToString() + this.GetHashCode() + base.GetHashCode();
-                Diagnostic(ErrorCode.ERR_StaticLocalFunctionCannotCaptureThis, "ToString").WithLocation(7, 34),
-                // (7,47): error CS8422: A static local function cannot contain a reference to 'this' or 'base'.
-                //         static object Local() => ToString() + this.GetHashCode() + base.GetHashCode();
-                Diagnostic(ErrorCode.ERR_StaticLocalFunctionCannotCaptureThis, "this").WithLocation(7, 47),
-                // (7,68): error CS8422: A static local function cannot contain a reference to 'this' or 'base'.
-                //         static object Local() => ToString() + this.GetHashCode() + base.GetHashCode();
-                Diagnostic(ErrorCode.ERR_StaticLocalFunctionCannotCaptureThis, "base").WithLocation(7, 68)
-            };
-            VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,34241,35296);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+var 
+expectedDiagnostics = new[]
+            {
+f_22046_34526_34620(f_22046_34526_34600(ErrorCode.ERR_StaticLocalFunctionCannotCaptureThis, "ToString"), 7, 34),
+f_22046_34860_34950(f_22046_34860_34930(ErrorCode.ERR_StaticLocalFunctionCannotCaptureThis, "this"), 7, 47),
+f_22046_35190_35280(f_22046_35190_35260(ErrorCode.ERR_StaticLocalFunctionCannotCaptureThis, "base"), 7, 68)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,35310,35433);
+
+f_22046_35310_35432(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,30613,35444);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,30613,35444);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,30613,35444);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,35456,39124);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,35610,35820);
+
+string 
+source = @"
 struct C
 {
     void M()
@@ -720,8 +1172,12 @@ struct C
         local(false, true);
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,35834,38936);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -777,17 +1233,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,38950,39003);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,39019,39113);
+
+f_22046_39019_39112(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,35456,39124);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,35456,39124);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,35456,39124);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,39136,41157);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,39290,39501);
+
+string 
+source = @"
 #pragma warning disable CS8321
 struct C
 {
@@ -799,8 +1278,12 @@ struct C
         }
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,39515,40969);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -841,17 +1324,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,40983,41036);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,41052,41146);
+
+f_22046_41052_41145(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,39136,41157);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,39136,41157);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,39136,41157);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_03()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,41169,42910);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,41323,41483);
+
+string 
+source = @"
 #pragma warning disable CS8321
 struct C
 {
@@ -860,8 +1366,12 @@ struct C
         void local(bool result, bool input)
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,41497,42192);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -890,24 +1400,42 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,44): error CS1002: ; expected
-                //         void local(bool result, bool input)
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(7, 44),
-                // file.cs(7,14): error CS8112: 'local(bool, bool)' is a local function and must therefore always have a body.
-                //         void local(bool result, bool input)
-                Diagnostic(ErrorCode.ERR_LocalFunctionMissingBody, "local").WithArguments("local(bool, bool)").WithLocation(7, 14)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,42206,42789);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = new[] {
+f_22046_42381_42448(f_22046_42381_42428(ErrorCode.ERR_SemicolonExpected, ""), 7, 44),
+f_22046_42659_42773(f_22046_42659_42753(f_22046_42659_42718(ErrorCode.ERR_LocalFunctionMissingBody, "local"), "local(bool, bool)"), 7, 14)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,42805,42899);
+
+f_22046_42805_42898(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,41169,42910);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,41169,42910);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,41169,42910);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_04()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,42922,46469);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,43076,43332);
+
+string 
+source = @"
 #pragma warning disable CS8321
 struct C
 {
@@ -920,8 +1448,12 @@ struct C
         => result = input2;
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,43346,45874);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -980,25 +1512,45 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(7,9): error CS8057: Block bodies and expression bodies cannot both be provided.
-                //         void local(bool result, bool input1, bool input2)
-                Diagnostic(ErrorCode.ERR_BlockBodyAndExpressionBody, @"void local(bool result, bool input1, bool input2)
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,45888,46348);
+
+var 
+expectedDiagnostics = new[] {
+f_22046_46125_46332(f_22046_46125_46313(ErrorCode.ERR_BlockBodyAndExpressionBody, @"void local(bool result, bool input1, bool input2)
         {
             result = input1;
         } 
-        => result = input2;").WithLocation(7, 9)
-            };
+        => result = input2;"), 7, 9)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,46364,46458);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+f_22046_46364_46457(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,42922,46469);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,42922,46469);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,42922,46469);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_05()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,46481,49711);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,46635,46920);
+
+string 
+source = @"
 #pragma warning disable CS8321
 struct C
 {
@@ -1011,8 +1563,12 @@ struct C
         void local2(bool result2, bool input2) => result2 = input2;
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,46934,49523);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1075,17 +1631,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,49537,49590);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,49606,49700);
+
+f_22046_49606_49699(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,46481,49711);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,46481,49711);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,46481,49711);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_06()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,49723,56357);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,49877,50195);
+
+string 
+source = @"
 struct C
 {
     void M(int input)
@@ -1103,8 +1682,12 @@ struct C
         local1(result);
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,50209,56169);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1197,17 +1780,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,56183,56236);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,56252,56346);
+
+f_22046_56252_56345(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,49723,56357);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,49723,56357);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,49723,56357);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_07()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,56369,58470);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,56523,56814);
+
+string 
+source = @"
 #pragma warning disable CS8321
 struct C
 {
@@ -1224,8 +1830,12 @@ struct C
         {}
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,56828,58282);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1266,17 +1876,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,58296,58349);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,58365,58459);
+
+f_22046_58365_58458(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,56369,58470);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,56369,58470);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,56369,58470);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_08()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,58482,63352);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,58636,58995);
+
+string 
+source = @"
 #pragma warning disable CS8321
 struct C
 {
@@ -1297,8 +1930,12 @@ struct C
         }
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,59009,63164);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1388,17 +2025,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,63178,63231);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,63247,63341);
+
+f_22046_63247_63340(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,58482,63352);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,58482,63352);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,58482,63352);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_09()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,63364,70510);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,63518,63780);
+
+string 
+source = @"
 #pragma warning disable CS8321
 class C
 {
@@ -1412,8 +2072,12 @@ class C
         }
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,63794,70322);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1563,17 +2227,40 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,70336,70389);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,70405,70499);
+
+f_22046_70405_70498(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,63364,70510);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,63364,70510);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,63364,70510);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_10()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,70522,78954);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,70676,71028);
+
+string 
+source = @"
 #pragma warning disable CS8321
 class C
 {
@@ -1589,8 +2276,12 @@ class C
         }
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,71042,78766);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1761,17 +2452,40 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,78780,78833);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,78849,78943);
+
+f_22046_78849_78942(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,70522,78954);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,70522,78954);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,70522,78954);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_11()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,78966,81299);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79120,79358);
+
+string 
+source = @"
 struct C
 {
     void M()
@@ -1785,50 +2499,122 @@ struct C
         };
     }/*</bind>*/
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79374,79418);
 
-            var compilation = CreateCompilation(source);
-            var tree = compilation.SyntaxTrees.Single();
-            var semanticModel = compilation.GetSemanticModel(tree);
-            var graphM = ControlFlowGraph.Create((IMethodBodyOperation)semanticModel.GetOperation(tree.GetRoot().DescendantNodes().OfType<MethodDeclarationSyntax>().First()));
+var 
+compilation = f_22046_79392_79417(source)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79432,79476);
 
-            Assert.NotNull(graphM);
-            Assert.Null(graphM.Parent);
+var 
+tree = compilation.SyntaxTrees.Single()
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79490,79545);
 
-            IMethodSymbol localFunctionD1 = getLocalFunction(graphM);
-            Assert.NotNull(localFunctionD1);
-            Assert.Equal("d1", localFunctionD1.Name);
+var 
+semanticModel = f_22046_79510_79544(compilation, tree)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79559,79722);
 
-            var graphD1 = graphM.GetLocalFunctionControlFlowGraph(localFunctionD1);
-            Assert.NotNull(graphD1);
-            Assert.Same(graphM, graphD1.Parent);
-            var graphD1_FromExtension = graphM.GetLocalFunctionControlFlowGraphInScope(localFunctionD1);
-            Assert.Same(graphD1, graphD1_FromExtension);
+var 
+graphM = f_22046_79572_79721(f_22046_79618_79720(semanticModel, f_22046_79645_79719(f_22046_79645_79711(f_22046_79645_79677(f_22046_79645_79659(tree))))))
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79738,79761);
 
-            IMethodSymbol localFunctionD2 = getLocalFunction(graphD1);
-            Assert.NotNull(localFunctionD2);
-            Assert.Equal("d2", localFunctionD2.Name);
+f_22046_79738_79760(graphM);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79775,79802);
 
-            var graphD2 = graphD1.GetLocalFunctionControlFlowGraph(localFunctionD2);
-            Assert.NotNull(graphD2);
-            Assert.Same(graphD1, graphD2.Parent);
+f_22046_79775_79801(f_22046_79787_79800(graphM));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79818,79875);
 
-            Assert.Throws<ArgumentNullException>(() => graphM.GetLocalFunctionControlFlowGraph(null));
-            Assert.Throws<ArgumentOutOfRangeException>(() => graphM.GetLocalFunctionControlFlowGraph(localFunctionD2));
-            Assert.Throws<ArgumentNullException>(() => graphM.GetLocalFunctionControlFlowGraphInScope(null));
-            Assert.Throws<ArgumentOutOfRangeException>(() => graphM.GetLocalFunctionControlFlowGraphInScope(localFunctionD2));
+IMethodSymbol 
+localFunctionD1 = f_22046_79850_79874(graphM)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79889,79921);
 
-            IMethodSymbol getLocalFunction(ControlFlowGraph graph)
-            {
-                return graph.LocalFunctions.Single();
-            }
+f_22046_79889_79920(localFunctionD1);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79935,79976);
+
+f_22046_79935_79975("d1", f_22046_79954_79974(localFunctionD1));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,79992,80063);
+
+var 
+graphD1 = f_22046_80006_80062(graphM, localFunctionD1)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80077,80101);
+
+f_22046_80077_80100(graphD1);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80115,80151);
+
+f_22046_80115_80150(graphM, f_22046_80135_80149(graphD1));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80165,80257);
+
+var 
+graphD1_FromExtension = f_22046_80193_80256(graphM, localFunctionD1)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80271,80315);
+
+f_22046_80271_80314(graphD1, graphD1_FromExtension);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80331,80389);
+
+IMethodSymbol 
+localFunctionD2 = f_22046_80363_80388(graphD1)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80403,80435);
+
+f_22046_80403_80434(localFunctionD2);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80449,80490);
+
+f_22046_80449_80489("d2", f_22046_80468_80488(localFunctionD2));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80506,80578);
+
+var 
+graphD2 = f_22046_80520_80577(graphD1, localFunctionD2)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80592,80616);
+
+f_22046_80592_80615(graphD2);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80630,80667);
+
+f_22046_80630_80666(graphD1, f_22046_80651_80665(graphD2));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80683,80773);
+
+f_22046_80683_80772(() => graphM.GetLocalFunctionControlFlowGraph(null));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80787,80894);
+
+f_22046_80787_80893(() => graphM.GetLocalFunctionControlFlowGraph(localFunctionD2));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,80908,81005);
+
+f_22046_80908_81004(() => graphM.GetLocalFunctionControlFlowGraphInScope(null));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81019,81133);
+
+f_22046_81019_81132(() => graphM.GetLocalFunctionControlFlowGraphInScope(localFunctionD2));
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,78966,81299);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,78966,81299);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,78966,81299);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_12()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,81311,83320);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81465,81631);
+
+string 
+source = @"
 struct C
 {
     void M()
@@ -1840,46 +2626,113 @@ struct C
         }
     }/*</bind>*/
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81647,81691);
 
-            var compilation = CreateCompilation(source);
-            var tree = compilation.SyntaxTrees.Single();
-            var semanticModel = compilation.GetSemanticModel(tree);
-            var graphM = ControlFlowGraph.Create((IMethodBodyOperation)semanticModel.GetOperation(tree.GetRoot().DescendantNodes().OfType<MethodDeclarationSyntax>().First()));
+var 
+compilation = f_22046_81665_81690(source)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81705,81749);
 
-            Assert.NotNull(graphM);
-            Assert.Null(graphM.Parent);
+var 
+tree = compilation.SyntaxTrees.Single()
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81763,81818);
 
-            IMethodSymbol localFunctionD1 = getLocalFunction(graphM, "d1");
-            Assert.NotNull(localFunctionD1);
-            IMethodSymbol localFunctionD2 = getLocalFunction(graphM, "d2");
-            Assert.NotNull(localFunctionD2);
+var 
+semanticModel = f_22046_81783_81817(compilation, tree)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81832,81995);
 
-            var graphD1 = graphM.GetLocalFunctionControlFlowGraph(localFunctionD1);
-            Assert.NotNull(graphD1);
-            Assert.Same(graphM, graphD1.Parent);
-            var graphD2 = graphM.GetLocalFunctionControlFlowGraph(localFunctionD2);
-            Assert.NotNull(graphD2);
-            Assert.Same(graphM, graphD2.Parent);
+var 
+graphM = f_22046_81845_81994(f_22046_81891_81993(semanticModel, f_22046_81918_81992(f_22046_81918_81984(f_22046_81918_81950(f_22046_81918_81932(tree))))))
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82011,82034);
 
-            var graphD1_FromExtension = graphM.GetLocalFunctionControlFlowGraphInScope(localFunctionD1);
-            Assert.Same(graphD1, graphD1_FromExtension);
+f_22046_82011_82033(graphM);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82048,82075);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => graphD2.GetLocalFunctionControlFlowGraph(localFunctionD1));
-            graphD1_FromExtension = graphD2.GetLocalFunctionControlFlowGraphInScope(localFunctionD1);
-            Assert.Same(graphD1, graphD1_FromExtension);
+f_22046_82048_82074(f_22046_82060_82073(graphM));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82091,82154);
 
-            IMethodSymbol getLocalFunction(ControlFlowGraph graph, string name)
-            {
-                return graph.LocalFunctions.Single(l => l.Name == name);
-            }
+IMethodSymbol 
+localFunctionD1 = f_22046_82123_82153(graphM, "d1")
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82168,82200);
+
+f_22046_82168_82199(localFunctionD1);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82214,82277);
+
+IMethodSymbol 
+localFunctionD2 = f_22046_82246_82276(graphM, "d2")
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82291,82323);
+
+f_22046_82291_82322(localFunctionD2);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82339,82410);
+
+var 
+graphD1 = f_22046_82353_82409(graphM, localFunctionD1)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82424,82448);
+
+f_22046_82424_82447(graphD1);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82462,82498);
+
+f_22046_82462_82497(graphM, f_22046_82482_82496(graphD1));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82512,82583);
+
+var 
+graphD2 = f_22046_82526_82582(graphM, localFunctionD2)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82597,82621);
+
+f_22046_82597_82620(graphD2);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82635,82671);
+
+f_22046_82635_82670(graphM, f_22046_82655_82669(graphD2));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82687,82779);
+
+var 
+graphD1_FromExtension = f_22046_82715_82778(graphM, localFunctionD1)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82793,82837);
+
+f_22046_82793_82836(graphD1, graphD1_FromExtension);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82853,82961);
+
+f_22046_82853_82960(() => graphD2.GetLocalFunctionControlFlowGraph(localFunctionD1));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,82975,83064);
+
+graphD1_FromExtension = f_22046_82999_83063(graphD2, localFunctionD1);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,83078,83122);
+
+f_22046_83078_83121(graphD1, graphD1_FromExtension);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,81311,83320);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,81311,83320);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,81311,83320);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void LocalFunctionFlow_StaticWithShadowedVariableReference()
+		{
+			try
         {
-            string source =
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,83332,91082);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,83519,83798);
+
+string 
+source =
 @"#pragma warning disable 0219
 #pragma warning disable 8321
 class C
@@ -1892,8 +2745,12 @@ class C
         static object Local(string y, object z) => x ?? y ?? z;
     }
     /*</bind>*/
-}";
-            string expectedGraph = @"
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,83812,90572);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2024,14 +2881,1701 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = new[]
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,90586,90963);
+
+var 
+expectedDiagnostics = new[]
             {
-                // (10,52): error CS8421: A static local function cannot contain a reference to 'x'.
-                //         static object Local(string y, object z) => x ?? y ?? z;
-                Diagnostic(ErrorCode.ERR_StaticLocalFunctionCannotCaptureVariable, "x").WithArguments("x").WithLocation(10, 52)
-            };
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+f_22046_90836_90947(f_22046_90836_90926(f_22046_90836_90907(ErrorCode.ERR_StaticLocalFunctionCannotCaptureVariable, "x"), "x"), 10, 52)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,90977,91071);
+
+f_22046_90977_91070(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,83332,91082);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,83332,91082);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,83332,91082);
+}
+		}
+
+int
+f_22046_1690_1812(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 1690, 1812);
+return 0;
+}
+
+
+int
+f_22046_2893_3015(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 2893, 3015);
+return 0;
+}
+
+
+int
+f_22046_4066_4188(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 4066, 4188);
+return 0;
+}
+
+
+int
+f_22046_5484_5606(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 5484, 5606);
+return 0;
+}
+
+
+int
+f_22046_7630_7752(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 7630, 7752);
+return 0;
+}
+
+
+int
+f_22046_9654_9776(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 9654, 9776);
+return 0;
+}
+
+
+int
+f_22046_12266_12424(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,bool
+useLatestFrameworkReferences)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics, useLatestFrameworkReferences:useLatestFrameworkReferences);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 12266, 12424);
+return 0;
+}
+
+
+int
+f_22046_13359_13481(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 13359, 13481);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_14723_14771(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 14723, 14771);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_14723_14790(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 14723, 14790);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_14723_14809(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 14723, 14809);
+return return_v;
+}
+
+
+int
+f_22046_14841_14963(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 14841, 14963);
+return 0;
+}
+
+
+int
+f_22046_16281_16403(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 16281, 16403);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_17608_17654(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 17608, 17654);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_17608_17673(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 17608, 17673);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_17608_17693(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 17608, 17693);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_17916_17962(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 17916, 17962);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_17916_17981(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 17916, 17981);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_17916_18001(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 17916, 18001);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_18193_18249(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 18193, 18249);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_18193_18268(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 18193, 18268);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_18193_18288(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 18193, 18288);
+return return_v;
+}
+
+
+int
+f_22046_18320_18442(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 18320, 18442);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_19338_19387(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 19338, 19387);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_19338_19407(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 19338, 19407);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_19589_19645(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 19589, 19645);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_19589_19664(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 19589, 19664);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_19589_19684(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 19589, 19684);
+return return_v;
+}
+
+
+int
+f_22046_19716_19838(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 19716, 19838);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_20590_20635(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 20590, 20635);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_20590_20656(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 20590, 20656);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_20590_20676(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 20590, 20676);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_20895_20948(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 20895, 20948);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_20895_20967(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 20895, 20967);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_20895_20987(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 20895, 20987);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_21144_21200(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 21144, 21200);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_21144_21219(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 21144, 21219);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_21144_21239(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 21144, 21239);
+return return_v;
+}
+
+
+int
+f_22046_21271_21393(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 21271, 21393);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_22730_22785(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 22730, 22785);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_22730_22811(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 22730, 22811);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_22730_22831(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 22730, 22831);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_23054_23110(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 23054, 23110);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_23054_23129(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 23054, 23129);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_23054_23149(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 23054, 23149);
+return return_v;
+}
+
+
+int
+f_22046_23181_23303(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 23181, 23303);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_25355_25455(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 25355, 25455);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_25355_25475(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 25355, 25475);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_25675_25731(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 25675, 25731);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_25675_25750(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 25675, 25750);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_25675_25770(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 25675, 25770);
+return return_v;
+}
+
+
+int
+f_22046_25802_25924(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 25802, 25924);
+return 0;
+}
+
+
+int
+f_22046_26880_27001(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ArrowExpressionClauseSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 26880, 27001);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_30326_30397(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 30326, 30397);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_30326_30416(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 30326, 30416);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_30326_30437(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 30326, 30437);
+return return_v;
+}
+
+
+int
+f_22046_30467_30589(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 30467, 30589);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_34526_34600(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 34526, 34600);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_34526_34620(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 34526, 34620);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_34860_34930(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 34860, 34930);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_34860_34950(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 34860, 34950);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_35190_35260(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 35190, 35260);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_35190_35280(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 35190, 35280);
+return return_v;
+}
+
+
+int
+f_22046_35310_35432(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<LocalFunctionStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 35310, 35432);
+return 0;
+}
+
+
+int
+f_22046_39019_39112(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 39019, 39112);
+return 0;
+}
+
+
+int
+f_22046_41052_41145(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 41052, 41145);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_42381_42428(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 42381, 42428);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_42381_42448(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 42381, 42448);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_42659_42718(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 42659, 42718);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_42659_42753(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 42659, 42753);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_42659_42773(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 42659, 42773);
+return return_v;
+}
+
+
+int
+f_22046_42805_42898(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 42805, 42898);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_46125_46313(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 46125, 46313);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_46125_46332(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 46125, 46332);
+return return_v;
+}
+
+
+int
+f_22046_46364_46457(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 46364, 46457);
+return 0;
+}
+
+
+int
+f_22046_49606_49699(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 49606, 49699);
+return 0;
+}
+
+
+int
+f_22046_56252_56345(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 56252, 56345);
+return 0;
+}
+
+
+int
+f_22046_58365_58458(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 58365, 58458);
+return 0;
+}
+
+
+int
+f_22046_63247_63340(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 63247, 63340);
+return 0;
+}
+
+
+int
+f_22046_70405_70498(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 70405, 70498);
+return 0;
+}
+
+
+int
+f_22046_78849_78942(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 78849, 78942);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22046_79392_79417(string
+source)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79392, 79417);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.SemanticModel
+f_22046_79510_79544(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SyntaxTree
+syntaxTree)
+{
+var return_v = this_param.GetSemanticModel( syntaxTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79510, 79544);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.SyntaxNode
+f_22046_79645_79659(Microsoft.CodeAnalysis.SyntaxTree
+this_param)
+{
+var return_v = this_param.GetRoot();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79645, 79659);
+return return_v;
+}
+
+
+System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxNode>
+f_22046_79645_79677(Microsoft.CodeAnalysis.SyntaxNode
+this_param)
+{
+var return_v = this_param.DescendantNodes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79645, 79677);
+return return_v;
+}
+
+
+System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>
+f_22046_79645_79711(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxNode>
+source)
+{
+var return_v = source.OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79645, 79711);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax
+f_22046_79645_79719(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>
+source)
+{
+var return_v = source.First<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79645, 79719);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.IOperation?
+f_22046_79618_79720(Microsoft.CodeAnalysis.SemanticModel
+this_param,Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax
+node)
+{
+var return_v = this_param.GetOperation( (Microsoft.CodeAnalysis.SyntaxNode)node);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79618, 79720);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_79572_79721(Microsoft.CodeAnalysis.IOperation?
+methodBody)
+{
+var return_v = ControlFlowGraph.Create( (Microsoft.CodeAnalysis.Operations.IMethodBodyOperation?)methodBody);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79572, 79721);
+return return_v;
+}
+
+
+int
+f_22046_79738_79760(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79738, 79760);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+f_22046_79787_79800(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param)
+{
+var return_v = this_param.Parent;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 79787, 79800);
+return return_v;
+}
+
+
+int
+f_22046_79775_79801(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+@object)
+{
+Assert.Null( (object?)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79775, 79801);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.IMethodSymbol
+f_22046_79850_79874(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+graph)
+{
+var return_v = getLocalFunction( graph);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79850, 79874);
+return return_v;
+}
+
+
+int
+f_22046_79889_79920(Microsoft.CodeAnalysis.IMethodSymbol
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79889, 79920);
+return 0;
+}
+
+
+string
+f_22046_79954_79974(Microsoft.CodeAnalysis.IMethodSymbol
+this_param)
+{
+var return_v = this_param.Name;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 79954, 79974);
+return return_v;
+}
+
+
+int
+f_22046_79935_79975(string
+expected,string
+actual)
+{
+Assert.Equal( expected, actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 79935, 79975);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_80006_80062(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = this_param.GetLocalFunctionControlFlowGraph( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80006, 80062);
+return return_v;
+}
+
+
+int
+f_22046_80077_80100(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80077, 80100);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+f_22046_80135_80149(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param)
+{
+var return_v = this_param.Parent;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 80135, 80149);
+return return_v;
+}
+
+
+int
+f_22046_80115_80150(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+actual)
+{
+Assert.Same( (object)expected, (object?)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80115, 80150);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_80193_80256(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+controlFlowGraph,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = controlFlowGraph.GetLocalFunctionControlFlowGraphInScope( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80193, 80256);
+return return_v;
+}
+
+
+int
+f_22046_80271_80314(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+actual)
+{
+Assert.Same( (object)expected, (object)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80271, 80314);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.IMethodSymbol
+f_22046_80363_80388(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+graph)
+{
+var return_v = getLocalFunction( graph);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80363, 80388);
+return return_v;
+}
+
+
+int
+f_22046_80403_80434(Microsoft.CodeAnalysis.IMethodSymbol
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80403, 80434);
+return 0;
+}
+
+
+string
+f_22046_80468_80488(Microsoft.CodeAnalysis.IMethodSymbol
+this_param)
+{
+var return_v = this_param.Name;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 80468, 80488);
+return return_v;
+}
+
+
+int
+f_22046_80449_80489(string
+expected,string
+actual)
+{
+Assert.Equal( expected, actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80449, 80489);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_80520_80577(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = this_param.GetLocalFunctionControlFlowGraph( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80520, 80577);
+return return_v;
+}
+
+
+int
+f_22046_80592_80615(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80592, 80615);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+f_22046_80651_80665(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param)
+{
+var return_v = this_param.Parent;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 80651, 80665);
+return return_v;
+}
+
+
+int
+f_22046_80630_80666(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+actual)
+{
+Assert.Same( (object)expected, (object?)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80630, 80666);
+return 0;
+}
+
+
+System.ArgumentNullException
+f_22046_80683_80772(System.Func<object>
+testCode)
+{
+var return_v = Assert.Throws<ArgumentNullException>( testCode);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80683, 80772);
+return return_v;
+}
+
+
+System.ArgumentOutOfRangeException
+f_22046_80787_80893(System.Func<object>
+testCode)
+{
+var return_v = Assert.Throws<ArgumentOutOfRangeException>( testCode);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80787, 80893);
+return return_v;
+}
+
+
+System.ArgumentNullException
+f_22046_80908_81004(System.Func<object>
+testCode)
+{
+var return_v = Assert.Throws<ArgumentNullException>( testCode);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 80908, 81004);
+return return_v;
+}
+
+
+System.ArgumentOutOfRangeException
+f_22046_81019_81132(System.Func<object>
+testCode)
+{
+var return_v = Assert.Throws<ArgumentOutOfRangeException>( testCode);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81019, 81132);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22046_81665_81690(string
+source)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81665, 81690);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.SemanticModel
+f_22046_81783_81817(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SyntaxTree
+syntaxTree)
+{
+var return_v = this_param.GetSemanticModel( syntaxTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81783, 81817);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.SyntaxNode
+f_22046_81918_81932(Microsoft.CodeAnalysis.SyntaxTree
+this_param)
+{
+var return_v = this_param.GetRoot();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81918, 81932);
+return return_v;
+}
+
+
+System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxNode>
+f_22046_81918_81950(Microsoft.CodeAnalysis.SyntaxNode
+this_param)
+{
+var return_v = this_param.DescendantNodes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81918, 81950);
+return return_v;
+}
+
+
+System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>
+f_22046_81918_81984(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxNode>
+source)
+{
+var return_v = source.OfType<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81918, 81984);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax
+f_22046_81918_81992(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>
+source)
+{
+var return_v = source.First<Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax>();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81918, 81992);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.IOperation?
+f_22046_81891_81993(Microsoft.CodeAnalysis.SemanticModel
+this_param,Microsoft.CodeAnalysis.CSharp.Syntax.MethodDeclarationSyntax
+node)
+{
+var return_v = this_param.GetOperation( (Microsoft.CodeAnalysis.SyntaxNode)node);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81891, 81993);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_81845_81994(Microsoft.CodeAnalysis.IOperation?
+methodBody)
+{
+var return_v = ControlFlowGraph.Create( (Microsoft.CodeAnalysis.Operations.IMethodBodyOperation?)methodBody);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 81845, 81994);
+return return_v;
+}
+
+
+int
+f_22046_82011_82033(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82011, 82033);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+f_22046_82060_82073(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param)
+{
+var return_v = this_param.Parent;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 82060, 82073);
+return return_v;
+}
+
+
+int
+f_22046_82048_82074(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+@object)
+{
+Assert.Null( (object?)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82048, 82074);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.IMethodSymbol
+f_22046_82123_82153(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+graph,string
+name)
+{
+var return_v = getLocalFunction( graph, name);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82123, 82153);
+return return_v;
+}
+
+
+int
+f_22046_82168_82199(Microsoft.CodeAnalysis.IMethodSymbol
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82168, 82199);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.IMethodSymbol
+f_22046_82246_82276(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+graph,string
+name)
+{
+var return_v = getLocalFunction( graph, name);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82246, 82276);
+return return_v;
+}
+
+
+int
+f_22046_82291_82322(Microsoft.CodeAnalysis.IMethodSymbol
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82291, 82322);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_82353_82409(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = this_param.GetLocalFunctionControlFlowGraph( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82353, 82409);
+return return_v;
+}
+
+
+int
+f_22046_82424_82447(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82424, 82447);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+f_22046_82482_82496(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param)
+{
+var return_v = this_param.Parent;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 82482, 82496);
+return return_v;
+}
+
+
+int
+f_22046_82462_82497(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+actual)
+{
+Assert.Same( (object)expected, (object?)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82462, 82497);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_82526_82582(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = this_param.GetLocalFunctionControlFlowGraph( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82526, 82582);
+return return_v;
+}
+
+
+int
+f_22046_82597_82620(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+@object)
+{
+Assert.NotNull( (object)@object);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82597, 82620);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+f_22046_82655_82669(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+this_param)
+{
+var return_v = this_param.Parent;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(22046, 82655, 82669);
+return return_v;
+}
+
+
+int
+f_22046_82635_82670(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph?
+actual)
+{
+Assert.Same( (object)expected, (object?)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82635, 82670);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_82715_82778(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+controlFlowGraph,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = controlFlowGraph.GetLocalFunctionControlFlowGraphInScope( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82715, 82778);
+return return_v;
+}
+
+
+int
+f_22046_82793_82836(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+actual)
+{
+Assert.Same( (object)expected, (object)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82793, 82836);
+return 0;
+}
+
+
+System.ArgumentOutOfRangeException
+f_22046_82853_82960(System.Func<object>
+testCode)
+{
+var return_v = Assert.Throws<ArgumentOutOfRangeException>( testCode);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82853, 82960);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+f_22046_82999_83063(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+controlFlowGraph,Microsoft.CodeAnalysis.IMethodSymbol
+localFunction)
+{
+var return_v = controlFlowGraph.GetLocalFunctionControlFlowGraphInScope( localFunction);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 82999, 83063);
+return return_v;
+}
+
+
+int
+f_22046_83078_83121(Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+expected,Microsoft.CodeAnalysis.FlowAnalysis.ControlFlowGraph
+actual)
+{
+Assert.Same( (object)expected, (object)actual);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 83078, 83121);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_90836_90907(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 90836, 90907);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_90836_90926(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 90836, 90926);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22046_90836_90947(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 90836, 90947);
+return return_v;
+}
+
+
+int
+f_22046_90977_91070(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22046, 90977, 91070);
+return 0;
+}
+
+
+            
+IMethodSymbol 
+getLocalFunction(ControlFlowGraph graph)
+		
+{
+			try
+            {
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,81149,81288);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,81236,81273);
+
+return graph.LocalFunctions.Single();
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,81149,81288);
+            }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,81149,81288);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,81149,81288);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+
+
+            
+IMethodSymbol 
+getLocalFunction(ControlFlowGraph graph, string name)
+		
+{
+			try
+            {
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22046,83138,83309);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22046,83238,83294);
+
+return graph.LocalFunctions.Single(l => l.Name == name);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22046,83138,83309);
+            }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22046,83138,83309);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22046,83138,83309);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+
+}
 }

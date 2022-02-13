@@ -103,7 +103,24 @@ done:
 
         internal override bool HasComplete(CompletionPart part)
         {
-            return _state.HasComplete(part);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10267, 4715, 4838);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10267, 4795, 4827);
+
+                return _state.HasComplete(part);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10267, 4715, 4838);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10267, 4715, 4838);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10267, 4715, 4838);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
     }
 }

@@ -10,27 +10,76 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// This binder keeps track of the local variable (if any) that is currently being evaluated
-    /// so that it can be passed into the next call to LocalSymbol.GetConstantValue (and
-    /// its callers).
-    /// </summary>
     internal sealed class LocalInProgressBinder : Binder
     {
         private readonly LocalSymbol _inProgress;
 
         internal LocalInProgressBinder(LocalSymbol inProgress, Binder next)
-            : base(next)
+        : base(f_10349_866_870_C(next))
         {
-            _inProgress = inProgress;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10349, 778, 932);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10349, 754, 765);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10349, 896, 921);
+
+                _inProgress = inProgress;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10349, 778, 932);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10349, 778, 932);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10349, 778, 932);
+            }
         }
 
         internal override LocalSymbol LocalInProgress
         {
             get
             {
-                return _inProgress;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10349, 1014, 1084);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10349, 1050, 1069);
+
+                    return _inProgress;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10349, 1014, 1084);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10349, 944, 1095);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10349, 944, 1095);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
+
+        static LocalInProgressBinder()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10349, 656, 1102);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10349, 656, 1102);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10349, 656, 1102);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10349, 656, 1102);
+
+        static Microsoft.CodeAnalysis.CSharp.Binder
+        f_10349_866_870_C(Microsoft.CodeAnalysis.CSharp.Binder
+        i)
+        {
+            var return_v = i;
+            DynAbs.Tracing.TraceSender.TraceBaseCall(10349, 778, 932);
+            return return_v;
+        }
+
     }
 }

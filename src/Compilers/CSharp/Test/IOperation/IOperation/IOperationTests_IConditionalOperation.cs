@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,13 +12,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation)]
+public partial class IOperationTests : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void ConditionalExpression_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22018,554,1558);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,686,853);
+
+string 
+source = @"
 class P
 {
     private void M()
@@ -28,8 +34,12 @@ class P
         var z = (/*<bind>*/true ? i : j/*</bind>*/);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,867,1342);
+
+string 
+expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: System.Int32) (Syntax: 'true ? i : j')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -37,17 +47,40 @@ IConditionalOperation (OperationKind.Conditional, Type: System.Int32) (Syntax: '
     ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
   WhenFalse: 
     ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,1356,1409);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ConditionalExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,1425,1547);
+
+f_22018_1425_1546(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22018,554,1558);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22018,554,1558);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22018,554,1558);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void ConditionalExpression_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22018,1570,2594);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,1702,1873);
+
+string 
+source = @"
 class P
 {
     private void M()
@@ -57,8 +90,12 @@ class P
         (/*<bind>*/true ? ref i : ref j/*</bind>*/) = 4;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,1887,2378);
+
+string 
+expectedOperationTree = @"
 IConditionalOperation (IsRef) (OperationKind.Conditional, Type: System.Int32) (Syntax: 'true ? ref i : ref j')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -66,17 +103,40 @@ IConditionalOperation (IsRef) (OperationKind.Conditional, Type: System.Int32) (S
     ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
   WhenFalse: 
     ILocalReferenceOperation: j (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'j')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,2392,2445);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ConditionalExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,2461,2583);
+
+f_22018_2461_2582(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22018,1570,2594);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22018,1570,2594);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22018,1570,2594);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ConditionalExpressionFlow_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22018,2606,6120);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,2768,2946);
+
+string 
+source = @"
 class P
 {
     void M(bool a, bool b)
@@ -86,8 +146,12 @@ class P
 
     static int[] GetArray() => null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,2960,5932);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -155,17 +219,40 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,5946,5999);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,6015,6109);
+
+f_22018_6015_6108(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22018,2606,6120);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22018,2606,6120);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22018,2606,6120);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ConditionalExpressionFlow_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22018,6132,10648);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,6294,6495);
+
+string 
+source = @"
 class P
 {
     void M(bool a, bool b, bool c)
@@ -175,8 +262,12 @@ class P
 
     static int[] GetArray() => null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,6509,10460);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -267,17 +358,40 @@ Block[B0] - Entry
 Block[B9] - Exit
     Predecessors: [B8]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,10474,10527);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,10543,10637);
+
+f_22018_10543_10636(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22018,6132,10648);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22018,6132,10648);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22018,6132,10648);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void ConditionalExpressionFlow_03()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22018,10660,15257);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,10822,11034);
+
+string 
+source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool d, bool e)
@@ -287,8 +401,12 @@ class P
 
     static bool[] GetArray() => null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,11048,15069);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -379,10 +497,87 @@ Block[B0] - Entry
 Block[B9] - Exit
     Predecessors: [B8]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,15083,15136);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22018,15152,15246);
+
+f_22018_15152_15245(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22018,10660,15257);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22018,10660,15257);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22018,10660,15257);
+}
+		}
+
+int
+f_22018_1425_1546(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ConditionalExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22018, 1425, 1546);
+return 0;
+}
+
+
+int
+f_22018_2461_2582(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ConditionalExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22018, 2461, 2582);
+return 0;
+}
+
+
+int
+f_22018_6015_6108(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22018, 6015, 6108);
+return 0;
+}
+
+
+int
+f_22018_10543_10636(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22018, 10543, 10636);
+return 0;
+}
+
+
+int
+f_22018_15152_15245(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22018, 15152, 15245);
+return 0;
+}
+
+}
 }

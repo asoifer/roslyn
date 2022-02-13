@@ -16,58 +16,150 @@ using Roslyn.Test.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    // Some utility functions for compiling and checking errors.
     public abstract class CompilingTestBase : CSharpTestBase
     {
-        private const string DefaultTypeName = "C";
-        private const string DefaultMethodName = "M";
+        private const string
+        DefaultTypeName = "C"
+        ;
+
+        private const string
+        DefaultMethodName = "M"
+        ;
 
         internal static BoundBlock ParseAndBindMethodBody(string program, string typeName = DefaultTypeName, string methodName = DefaultMethodName)
         {
-            var compilation = CreateCompilation(program);
-            var method = (MethodSymbol)compilation.GlobalNamespace.GetTypeMembers(typeName).Single().GetMembers(methodName).Single();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(21002, 861, 2026);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1025, 1070);
 
-            // Provide an Emit.Module so that the lowering passes will be run
-            var module = new PEAssemblyBuilder(
-                (SourceAssemblySymbol)compilation.Assembly,
-                emitOptions: EmitOptions.Default,
-                outputKind: OutputKind.ConsoleApplication,
-                serializationProperties: GetDefaultModulePropertiesForSerialization(),
-                manifestResources: Enumerable.Empty<ResourceDescription>());
+                var
+                compilation = f_21002_1043_1069(program)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1084, 1205);
 
-            TypeCompilationState compilationState = new TypeCompilationState(method.ContainingType, compilation, module);
+                var
+                method = (MethodSymbol)f_21002_1111_1195(f_21002_1111_1163(f_21002_1111_1138(compilation), typeName).Single(), methodName).Single()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1300, 1673);
 
-            var diagnostics = DiagnosticBag.GetInstance();
-            var block = MethodCompiler.BindMethodBody(method, compilationState, diagnostics);
-            diagnostics.Free();
-            return block;
+                var
+                module = f_21002_1313_1672((SourceAssemblySymbol)f_21002_1375_1395(compilation), emitOptions: EmitOptions.Default, outputKind: OutputKind.ConsoleApplication, serializationProperties: f_21002_1550_1594(), manifestResources: f_21002_1632_1671())
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1689, 1798);
+
+                TypeCompilationState
+                compilationState = f_21002_1729_1797(f_21002_1754_1775(method), compilation, module)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1814, 1860);
+
+                var
+                diagnostics = f_21002_1832_1859()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1874, 1955);
+
+                var
+                block = f_21002_1886_1954(method, compilationState, diagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 1969, 1988);
+
+                f_21002_1969_1987(diagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 2002, 2015);
+
+                return block;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(21002, 861, 2026);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(21002, 861, 2026);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21002, 861, 2026);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static string DumpDiagnostic(Diagnostic diagnostic)
         {
-            return string.Format("'{0}' {1}",
-                diagnostic.Location.SourceTree.GetText().ToString(diagnostic.Location.SourceSpan),
-                DiagnosticFormatter.Instance.Format(diagnostic.WithLocation(Location.None), EnsureEnglishUICulture.PreferredOrNull));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(21002, 2038, 2400);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 2121, 2389);
+
+                return f_21002_2128_2388("'{0}' {1}", f_21002_2172_2253(f_21002_2172_2212(f_21002_2172_2202(f_21002_2172_2191(diagnostic))), f_21002_2222_2252(f_21002_2222_2241(diagnostic))), f_21002_2272_2387(DiagnosticFormatter.Instance, f_21002_2308_2346(diagnostic, f_21002_2332_2345()), f_21002_2348_2386()));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(21002, 2038, 2400);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(21002, 2038, 2400);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21002, 2038, 2400);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         [Obsolete("Use VerifyDiagnostics", true)]
         public static void TestDiagnostics(IEnumerable<Diagnostic> diagnostics, params string[] diagStrings)
         {
-            AssertEx.SetEqual(diagStrings, diagnostics.Select(DumpDiagnostic));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(21002, 2412, 2666);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 2588, 2655);
+
+                f_21002_2588_2654(diagStrings, f_21002_2619_2653(diagnostics, DumpDiagnostic));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(21002, 2412, 2666);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(21002, 2412, 2666);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21002, 2412, 2666);
+            }
         }
 
-        // Do a full compilation and check all the errors.
         [Obsolete("Use VerifyDiagnostics", true)]
         public void TestAllErrors(string code, params string[] errors)
         {
-            var compilation = CreateCompilation(code);
-            var diagnostics = compilation.GetDiagnostics();
-            AssertEx.SetEqual(errors, diagnostics.Select(DumpDiagnostic));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(21002, 2738, 3066);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 2876, 2918);
+
+                var
+                compilation = f_21002_2894_2917(code)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 2932, 2979);
+
+                var
+                diagnostics = f_21002_2950_2978(compilation)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 2993, 3055);
+
+                f_21002_2993_3054(errors, diagnostics.Select(DumpDiagnostic));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(21002, 2738, 3066);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(21002, 2738, 3066);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21002, 2738, 3066);
+            }
         }
 
-        public const string LINQ =
-        #region the string LINQ defines a complete LINQ API called List1<T> (for instance method) and List2<T> (for extension methods)
- @"using System;
+        public const string
+        LINQ =
+                 @"using System;
 using System.Text;
 
 public delegate R Func1<in T1, out R>(T1 arg1);
@@ -814,7 +906,332 @@ public class Group1<K, T> : List1<T>
 //
 //}
 "
-        #endregion the string LINQ
-;
+                ;
+
+        public CompilingTestBase()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(21002, 678, 25421);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(21002, 678, 25421);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21002, 678, 25421);
+        }
+
+
+        static CompilingTestBase()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(21002, 678, 25421);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 772, 793);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 825, 848);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(21002, 3098, 25375);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(21002, 678, 25421);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(21002, 678, 25421);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(21002, 678, 25421);
+
+        static Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+        f_21002_1043_1069(string
+        source)
+        {
+            var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1043, 1069);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.Symbols.NamespaceSymbol
+        f_21002_1111_1138(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+        this_param)
+        {
+            var return_v = this_param.GlobalNamespace;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 1111, 1138);
+            return return_v;
+        }
+
+
+        static System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>
+        f_21002_1111_1163(Microsoft.CodeAnalysis.CSharp.Symbols.NamespaceSymbol
+        this_param, string
+        name)
+        {
+            var return_v = this_param.GetTypeMembers(name);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1111, 1163);
+            return return_v;
+        }
+
+
+        static System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.Symbol>
+        f_21002_1111_1195(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+        this_param, string
+        name)
+        {
+            var return_v = this_param.GetMembers(name);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1111, 1195);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.Symbols.AssemblySymbol
+        f_21002_1375_1395(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+        this_param)
+        {
+            var return_v = this_param.Assembly;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 1375, 1395);
+            return return_v;
+        }
+
+
+        static Microsoft.Cci.ModulePropertiesForSerialization
+        f_21002_1550_1594()
+        {
+            var return_v = GetDefaultModulePropertiesForSerialization();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1550, 1594);
+            return return_v;
+        }
+
+
+        static System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>
+        f_21002_1632_1671()
+        {
+            var return_v = Enumerable.Empty<ResourceDescription>();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1632, 1671);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.Emit.PEAssemblyBuilder
+        f_21002_1313_1672(Microsoft.CodeAnalysis.CSharp.Symbols.AssemblySymbol
+        sourceAssembly, Microsoft.CodeAnalysis.Emit.EmitOptions
+        emitOptions, Microsoft.CodeAnalysis.OutputKind
+        outputKind, Microsoft.Cci.ModulePropertiesForSerialization
+        serializationProperties, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>
+        manifestResources)
+        {
+            var return_v = new Microsoft.CodeAnalysis.CSharp.Emit.PEAssemblyBuilder((Microsoft.CodeAnalysis.CSharp.Symbols.SourceAssemblySymbol)sourceAssembly, emitOptions: emitOptions, outputKind: outputKind, serializationProperties: serializationProperties, manifestResources: manifestResources);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1313, 1672);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+        f_21002_1754_1775(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+        this_param)
+        {
+            var return_v = this_param.ContainingType;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 1754, 1775);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.TypeCompilationState
+        f_21002_1729_1797(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+        typeOpt, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+        compilation, Microsoft.CodeAnalysis.CSharp.Emit.PEAssemblyBuilder
+        moduleBuilderOpt)
+        {
+            var return_v = new Microsoft.CodeAnalysis.CSharp.TypeCompilationState(typeOpt, compilation, (Microsoft.CodeAnalysis.CSharp.Emit.PEModuleBuilder)moduleBuilderOpt);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1729, 1797);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.DiagnosticBag
+        f_21002_1832_1859()
+        {
+            var return_v = DiagnosticBag.GetInstance();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1832, 1859);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.BoundBlock
+        f_21002_1886_1954(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+        method, Microsoft.CodeAnalysis.CSharp.TypeCompilationState
+        compilationState, Microsoft.CodeAnalysis.DiagnosticBag
+        diagnostics)
+        {
+            var return_v = MethodCompiler.BindMethodBody(method, compilationState, diagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1886, 1954);
+            return return_v;
+        }
+
+
+        static int
+        f_21002_1969_1987(Microsoft.CodeAnalysis.DiagnosticBag
+        this_param)
+        {
+            this_param.Free();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 1969, 1987);
+            return 0;
+        }
+
+
+        static Microsoft.CodeAnalysis.Location
+        f_21002_2172_2191(Microsoft.CodeAnalysis.Diagnostic
+        this_param)
+        {
+            var return_v = this_param.Location;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 2172, 2191);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.SyntaxTree?
+        f_21002_2172_2202(Microsoft.CodeAnalysis.Location
+        this_param)
+        {
+            var return_v = this_param.SourceTree;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 2172, 2202);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.Text.SourceText
+        f_21002_2172_2212(Microsoft.CodeAnalysis.SyntaxTree?
+        this_param)
+        {
+            var return_v = this_param.GetText();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2172, 2212);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.Location
+        f_21002_2222_2241(Microsoft.CodeAnalysis.Diagnostic
+        this_param)
+        {
+            var return_v = this_param.Location;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 2222, 2241);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.Text.TextSpan
+        f_21002_2222_2252(Microsoft.CodeAnalysis.Location
+        this_param)
+        {
+            var return_v = this_param.SourceSpan;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 2222, 2252);
+            return return_v;
+        }
+
+
+        static string
+        f_21002_2172_2253(Microsoft.CodeAnalysis.Text.SourceText
+        this_param, Microsoft.CodeAnalysis.Text.TextSpan
+        span)
+        {
+            var return_v = this_param.ToString(span);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2172, 2253);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.Location
+        f_21002_2332_2345()
+        {
+            var return_v = Location.None;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 2332, 2345);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.Diagnostic
+        f_21002_2308_2346(Microsoft.CodeAnalysis.Diagnostic
+        this_param, Microsoft.CodeAnalysis.Location
+        location)
+        {
+            var return_v = this_param.WithLocation(location);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2308, 2346);
+            return return_v;
+        }
+
+
+        static System.Globalization.CultureInfo
+        f_21002_2348_2386()
+        {
+            var return_v = EnsureEnglishUICulture.PreferredOrNull;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(21002, 2348, 2386);
+            return return_v;
+        }
+
+
+        static string
+        f_21002_2272_2387(Microsoft.CodeAnalysis.DiagnosticFormatter
+        this_param, Microsoft.CodeAnalysis.Diagnostic
+        diagnostic, System.Globalization.CultureInfo
+        formatter)
+        {
+            var return_v = this_param.Format(diagnostic, (System.IFormatProvider)formatter);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2272, 2387);
+            return return_v;
+        }
+
+
+        static string
+        f_21002_2128_2388(string
+        format, string
+        arg0, string
+        arg1)
+        {
+            var return_v = string.Format(format, (object)arg0, (object)arg1);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2128, 2388);
+            return return_v;
+        }
+
+
+        static System.Collections.Generic.IEnumerable<string>
+        f_21002_2619_2653(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
+        source, System.Func<Microsoft.CodeAnalysis.Diagnostic, string>
+        selector)
+        {
+            var return_v = source.Select<Microsoft.CodeAnalysis.Diagnostic, string>(selector);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2619, 2653);
+            return return_v;
+        }
+
+
+        static int
+        f_21002_2588_2654(string[]
+        expected, System.Collections.Generic.IEnumerable<string>
+        actual)
+        {
+            AssertEx.SetEqual((System.Collections.Generic.IEnumerable<string>)expected, actual);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2588, 2654);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+        f_21002_2894_2917(string
+        source)
+        {
+            var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2894, 2917);
+            return return_v;
+        }
+
+
+        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
+        f_21002_2950_2978(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+        this_param)
+        {
+            var return_v = this_param.GetDiagnostics();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2950, 2978);
+            return return_v;
+        }
+
+
+        int
+        f_21002_2993_3054(string[]
+        expected, System.Collections.Generic.IEnumerable<string>
+        actual)
+        {
+            AssertEx.SetEqual((System.Collections.Generic.IEnumerable<string>)expected, actual);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(21002, 2993, 3054);
+            return 0;
+        }
+
     }
 }

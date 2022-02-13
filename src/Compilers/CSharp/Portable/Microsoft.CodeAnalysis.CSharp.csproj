@@ -20,7 +20,11 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS0162;CS1591;NU5105;RS0016</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tracer\DynAbs.Tracing.FileTraceClient\DynAbs.Tracing.FileTraceClient.csproj" />
     <ProjectReference Include="..\..\Core\Portable\Microsoft.CodeAnalysis.csproj" />
     <ProjectReference Include="..\..\..\Tools\Source\CompilerGeneratorTools\Source\CSharpSyntaxGenerator\CSharpSyntaxGenerator.csproj">
       <OutputItemType>Analyzer</OutputItemType>
@@ -50,6 +54,8 @@
          at least one subdirectory, which is our key that it's coming from a source generator as opposed to something that is coming from
          some other tool. -->
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/*/**/*.cs" />
+    <Compile Remove="Generated\CSharpSyntaxGenerator\**" />
+    <EmbeddedResource Remove="Generated\CSharpSyntaxGenerator\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="CSharpResources.resx" GenerateSource="true" />

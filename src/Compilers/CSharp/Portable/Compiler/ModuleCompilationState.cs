@@ -10,5 +10,23 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     internal sealed class ModuleCompilationState : ModuleCompilationState<NamedTypeSymbol, MethodSymbol>
     {
+        public ModuleCompilationState()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(10627, 325, 439);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(10627, 325, 439);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10627, 325, 439);
+        }
+
+
+        static ModuleCompilationState()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10627, 325, 439);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10627, 325, 439);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10627, 325, 439);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10627, 325, 439);
     }
 }

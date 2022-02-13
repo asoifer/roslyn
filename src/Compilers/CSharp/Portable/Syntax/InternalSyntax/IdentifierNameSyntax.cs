@@ -14,7 +14,45 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
     {
         public override string ToString()
         {
-            return this.Identifier.Text;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10825, 488, 585);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10825, 546, 574);
+
+                return f_10825_553_573(f_10825_553_568(this));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10825, 488, 585);
+
+                Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxToken
+                f_10825_553_568(Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.IdentifierNameSyntax
+                this_param)
+                {
+                    var return_v = this_param.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10825, 553, 568);
+                    return return_v;
+                }
+
+
+                string
+                f_10825_553_573(Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax.SyntaxToken
+                this_param)
+                {
+                    var return_v = this_param.Text;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10825, 553, 573);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10825, 488, 585);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10825, 488, 585);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10825, 428, 592);
     }
 }

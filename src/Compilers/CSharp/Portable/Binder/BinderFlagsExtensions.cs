@@ -6,19 +6,59 @@
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// Extension methods for the <see cref="BinderFlags"/> type.
-    /// </summary>
     internal static class BinderFlagsExtensions
     {
         public static bool Includes(this BinderFlags self, BinderFlags other)
         {
-            return (self & other) == other;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10298, 443, 579);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10298, 537, 568);
+
+                return (self & other) == other;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10298, 443, 579);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10298, 443, 579);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10298, 443, 579);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IncludesAny(this BinderFlags self, BinderFlags other)
         {
-            return (self & other) != 0;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10298, 591, 726);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10298, 688, 715);
+
+                return (self & other) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10298, 591, 726);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10298, 591, 726);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10298, 591, 726);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static BinderFlagsExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10298, 383, 733);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10298, 383, 733);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10298, 383, 733);
+        }
+
     }
 }

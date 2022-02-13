@@ -2,12 +2,76 @@
 
 using System.Runtime.CompilerServices;
 using Roslyn.Test.Utilities;
-
 internal sealed class InitializeTestModule
 {
     [ModuleInitializer]
     internal static void Initializer()
     {
-        RuntimeHelpers.RunModuleConstructor(typeof(TestBase).Module.ModuleHandle);
+        try
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(23143, 147, 304);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(23143, 223, 297);
+
+            f_23143_223_296(f_23143_259_295(f_23143_259_282(typeof(TestBase))));
+            DynAbs.Tracing.TraceSender.TraceExitStaticMethod(23143, 147, 304);
+
+            System.Reflection.Module
+            f_23143_259_282(System.Type
+            this_param)
+            {
+                var return_v = this_param.Module;
+                DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23143, 259, 282);
+                return return_v;
+            }
+
+
+            System.ModuleHandle
+            f_23143_259_295(System.Reflection.Module
+            this_param)
+            {
+                var return_v = this_param.ModuleHandle;
+                DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23143, 259, 295);
+                return return_v;
+            }
+
+
+            int
+            f_23143_223_296(System.ModuleHandle
+            module)
+            {
+                RuntimeHelpers.RunModuleConstructor(module);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(23143, 223, 296);
+                return 0;
+            }
+
+        }
+        catch
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23143, 147, 304);
+            throw;
+        }
+        finally
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23143, 147, 304);
+        }
     }
+
+    public InitializeTestModule()
+    {
+        DynAbs.Tracing.TraceSender.TraceEnterConstructor(23143, 96, 307);
+        DynAbs.Tracing.TraceSender.TraceExitConstructor(23143, 96, 307);
+
+        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23143, 96, 307);
+    }
+
+
+    static InitializeTestModule()
+    {
+        DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(23143, 96, 307);
+        DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(23143, 96, 307);
+
+        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23143, 96, 307);
+    }
+
+    int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(23143, 96, 307);
 }

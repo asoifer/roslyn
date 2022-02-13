@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,13 +11,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation)]
+public partial class IOperationTests : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_DynamicArgument()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,501,1366);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,646,805);
+
+string 
+source = @"
 class C
 {
     public C(int i)
@@ -29,8 +35,12 @@ class C
         var x = /*<bind>*/new C(d)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,819,1147);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(d)')
   Arguments(1):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: dynamic) (Syntax: 'd')
@@ -38,17 +48,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
   ArgumentRefKinds(0)
   Initializer: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,1161,1214);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,1230,1355);
+
+f_22029_1230_1354(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,501,1366);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,501,1366);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,501,1366);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_MultipleApplicableSymbols()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,1378,2291);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,1533,1730);
+
+string 
+source = @"
 class C
 {
     public C(int i)
@@ -64,8 +97,12 @@ class C
         var x = /*<bind>*/new C(d)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,1744,2072);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(d)')
   Arguments(1):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: dynamic) (Syntax: 'd')
@@ -73,17 +110,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
   ArgumentRefKinds(0)
   Initializer: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,2086,2139);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,2155,2280);
+
+f_22029_2155_2279(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,1378,2291);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,1378,2291);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,1378,2291);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_MultipleArgumentsAndApplicableSymbols()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,2303,3372);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,2470,2709);
+
+string 
+source = @"
 class C
 {
     public C(int i, char c)
@@ -100,8 +160,12 @@ class C
         var x = /*<bind>*/new C(d, c)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,2723,3153);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(d, c)')
   Arguments(2):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: dynamic) (Syntax: 'd')
@@ -110,17 +174,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
   ArgumentRefKinds(0)
   Initializer: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,3167,3220);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,3236,3361);
+
+f_22029_3236_3360(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,2303,3372);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,2303,3372);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,2303,3372);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_ArgumentNames()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,3384,4456);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,3527,3760);
+
+string 
+source = @"
 class C
 {
     public C(int i, char c)
@@ -136,8 +223,12 @@ class C
         var x = /*<bind>*/new C(i: d, c: e)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,3774,4237);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(i: d, c: e)')
   Arguments(2):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: dynamic) (Syntax: 'd')
@@ -148,17 +239,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
   ArgumentRefKinds(0)
   Initializer: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,4251,4304);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,4320,4445);
+
+f_22029_4320_4444(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,3384,4456);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,3384,4456);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,3384,4456);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_ArgumentRefKinds()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,4468,5668);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,4614,4855);
+
+string 
+source = @"
 class C
 {
     public C(ref object i, out int j, char c)
@@ -172,8 +286,12 @@ class C
         var x = /*<bind>*/new C(ref d, out k, e)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,4869,5449);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(ref d, out k, e)')
   Arguments(3):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: System.Object) (Syntax: 'd')
@@ -186,17 +304,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
     None
   Initializer: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,5463,5516);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,5532,5657);
+
+f_22029_5532_5656(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,4468,5668);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,4468,5668);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,4468,5668);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_Initializer()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,5680,7283);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,5821,6012);
+
+string 
+source = @"
 class C
 {
     public int X;
@@ -210,8 +351,12 @@ class C
         var x = /*<bind>*/new C(d) { X = 0 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,6026,7064);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(d) { X = 0 }')
   Arguments(1):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: dynamic) (Syntax: 'd')
@@ -227,17 +372,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
                   IInstanceReferenceOperation (ReferenceKind: ImplicitReceiver) (OperationKind.InstanceReference, Type: C, IsImplicit) (Syntax: 'X')
             Right: 
               ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 0) (Syntax: '0')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,7078,7131);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,7147,7272);
+
+f_22029_7147_7271(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,5680,7283);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,5680,7283);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,5680,7283);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_AllFields()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,7295,9141);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,7434,7715);
+
+string 
+source = @"
 class C
 {
     public int X;
@@ -256,8 +424,12 @@ class C
         var x = /*<bind>*/new C(ref i, c: d) { X = 0 }/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,7729,8922);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (Syntax: 'new C(ref i ... ) { X = 0 }')
   Arguments(2):
       ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
@@ -278,17 +450,40 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C) (
                   IInstanceReferenceOperation (ReferenceKind: ImplicitReceiver) (OperationKind.InstanceReference, Type: C, IsImplicit) (Syntax: 'X')
             Right: 
               ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 0) (Syntax: '0')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,8936,8989);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,9005,9130);
+
+f_22029_9005_9129(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,7295,9141);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,7295,9141);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,7295,9141);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_ErrorBadDynamicMethodArgLambda()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,9153,10883);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,9313,9536);
+
+string 
+source = @"
 using System;
 
 class C
@@ -303,8 +498,12 @@ class C
     {
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,9550,10292);
+
+string 
+expectedOperationTree = @"
 IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C, IsInvalid) (Syntax: 'new C(delegate { }, y)')
   Arguments(2):
       IAnonymousFunctionOperation (Symbol: lambda expression) (OperationKind.AnonymousFunction, Type: null, IsInvalid) (Syntax: 'delegate { }')
@@ -317,21 +516,41 @@ IDynamicObjectCreationOperation (OperationKind.DynamicObjectCreation, Type: C, I
   ArgumentRefKinds(0)
   Initializer: 
     null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS1977: Cannot use a lambda expression as an argument to a dynamically dispatched operation without first casting it to a delegate or expression tree type.
-                //         /*<bind>*/new C(delegate { }, y)/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_BadDynamicMethodArgLambda, "delegate { }").WithLocation(9, 25)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,10306,10731);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22029_10628_10715(f_22029_10628_10695(ErrorCode.ERR_BadDynamicMethodArgLambda, "delegate { }"), 9, 25)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,10747,10872);
+
+f_22029_10747_10871(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,9153,10883);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,9153,10883);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,9153,10883);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void DynamicObjectCreation_OVerloadResolutionFailure()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,10895,12063);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,11050,11248);
+
+string 
+source = @"
 class C
 {
     public C()
@@ -347,26 +566,50 @@ class C
         var x = /*<bind>*/new C(d)/*</bind>*/;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,11262,11502);
+
+string 
+expectedOperationTree = @"
 IInvalidOperation (OperationKind.Invalid, Type: C, IsInvalid) (Syntax: 'new C(d)')
   Children(1):
       IParameterReferenceOperation: d (OperationKind.ParameterReference, Type: dynamic) (Syntax: 'd')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS7036: There is no argument given that corresponds to the required formal parameter 'j' of 'C.C(int, int)'
-                //         var x = /*<bind>*/new C(d)/*</bind>*/;
-                Diagnostic(ErrorCode.ERR_NoCorrespondingArgument, "C").WithArguments("j", "C.C(int, int)").WithLocation(14, 31)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,11516,11911);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22029_11784_11895(f_22029_11784_11874(f_22029_11784_11838(ErrorCode.ERR_NoCorrespondingArgument, "C"), "j", "C.C(int, int)"), 14, 31)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,11927,12052);
+
+f_22029_11927_12051(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,10895,12063);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,10895,12063);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,10895,12063);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DynamicObjectCreationFlow_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,12075,13670);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,12237,12384);
+
+string 
+source = @"
 class C1
 {
     C1(int i) { }
@@ -375,10 +618,17 @@ class C1
         c1 = new C1(d);
     }/*</bind>*/
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,12398,12451);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,12467,13535);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -403,15 +653,35 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,13549,13659);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22029_13549_13658(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,12075,13670);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,12075,13670);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,12075,13670);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DynamicObjectCreationFlow_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,13682,18795);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,13844,14078);
+
+string 
+source = @"
 class C1
 {
     C1(int i) { }
@@ -422,10 +692,17 @@ class C1
     int I1 { get; set; }
     int I2 { get; set; }
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,14092,14145);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,14161,18660);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -521,15 +798,35 @@ Block[B0] - Entry
 Block[B7] - Exit
     Predecessors: [B6]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(source, expectedFlowGraph, expectedDiagnostics);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,18674,18784);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22029_18674_18783(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,13682,18795);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,13682,18795);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,13682,18795);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DynamicObjectCreationFlow_03()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22029,18807,24845);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,18969,19440);
+
+string 
+source = @"
 using System.Collections;
 using System.Collections.Generic;
 
@@ -544,10 +841,17 @@ class C1 : IEnumerable<int>
     IEnumerator IEnumerable.GetEnumerator() => throw new System.NotImplementedException();
     public void Add(int i) { }
 }
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,19454,19507);
 
-            string expectedFlowGraph = @"
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,19523,24710);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -645,10 +949,223 @@ Block[B0] - Entry
 Block[B7] - Exit
     Predecessors: [B6]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22029,24724,24834);
+
+f_22029_24724_24833(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22029,18807,24845);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22029,18807,24845);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22029,18807,24845);
+}
+		}
+
+int
+f_22029_1230_1354(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 1230, 1354);
+return 0;
+}
 
 
-    }
+int
+f_22029_2155_2279(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 2155, 2279);
+return 0;
+}
+
+
+int
+f_22029_3236_3360(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 3236, 3360);
+return 0;
+}
+
+
+int
+f_22029_4320_4444(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 4320, 4444);
+return 0;
+}
+
+
+int
+f_22029_5532_5656(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 5532, 5656);
+return 0;
+}
+
+
+int
+f_22029_7147_7271(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 7147, 7271);
+return 0;
+}
+
+
+int
+f_22029_9005_9129(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 9005, 9129);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22029_10628_10695(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 10628, 10695);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22029_10628_10715(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 10628, 10715);
+return return_v;
+}
+
+
+int
+f_22029_10747_10871(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 10747, 10871);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22029_11784_11838(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 11784, 11838);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22029_11784_11874(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 11784, 11874);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22029_11784_11895(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 11784, 11895);
+return return_v;
+}
+
+
+int
+f_22029_11927_12051(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 11927, 12051);
+return 0;
+}
+
+
+int
+f_22029_13549_13658(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 13549, 13658);
+return 0;
+}
+
+
+int
+f_22029_18674_18783(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 18674, 18783);
+return 0;
+}
+
+
+int
+f_22029_24724_24833(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22029, 24724, 24833);
+return 0;
+}
+
+}
 }

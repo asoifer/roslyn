@@ -13,10 +13,10 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    // NOTE: Skipped some expression tests.
     public class FlowTests : CSharpTestBase
     {
-        private const string prefix = @"
+        private const string
+        prefix = @"
 using System;
 
 // Need a base class with indexers.
@@ -88,16 +88,25 @@ public class DATest : DATestBase {
         public C(params int[] x) { }
         public C(out int x, params int[] y) { x = 0; }
     }
-";
+"
+        ;
 
-        private const string suffix = @"
-}";
+        private const string
+        suffix = @"
+}"
+        ;
 
         [Fact]
         [WorkItem(35011, "https://github.com/dotnet/roslyn/issues/35011")]
         public void SwitchConstantUnreachable()
         {
-            var src = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 3553, 6180);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 3709, 4615);
+
+                var
+                src = @"
 class C
 {
     const string S = ""abc"";
@@ -151,36 +160,248 @@ class C
         }
         // error
     }
-}";
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 4631, 4665);
 
-            var comp = CreateCompilation(src);
-            comp.VerifyDiagnostics(
-                // (40,17): warning CS0162: Unreachable code detected
-                //                 return S; // 1
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return").WithLocation(40, 17),
-                // (46,26): error CS0161: 'C.M5()': not all code paths return a value
-                //     public static string M5()
-                Diagnostic(ErrorCode.ERR_ReturnExpected, "M5").WithArguments("C.M5()").WithLocation(46, 26),
-                // (51,17): warning CS0162: Unreachable code detected
-                //                 return S; // 2
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return").WithLocation(51, 17));
-            comp = CreateCompilation(src, parseOptions: TestOptions.Regular7_3);
-            comp.VerifyDiagnostics(
-                // (40,17): warning CS0162: Unreachable code detected
-                //                 return S; // 1
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return").WithLocation(40, 17),
-                // (46,26): error CS0161: 'C.M5()': not all code paths return a value
-                //     public static string M5()
-                Diagnostic(ErrorCode.ERR_ReturnExpected, "M5").WithArguments("C.M5()").WithLocation(46, 26),
-                // (51,17): warning CS0162: Unreachable code detected
-                //                 return S; // 2
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return").WithLocation(51, 17));
+                var
+                comp = f_28002_4642_4664(src)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 4679, 5376);
+
+                f_28002_4679_5375(comp, f_28002_4842_4914(f_28002_4842_4893(ErrorCode.WRN_UnreachableCode, "return"), 40, 17), f_28002_5070_5161(f_28002_5070_5140(f_28002_5070_5116(ErrorCode.ERR_ReturnExpected, "M5"), "C.M5()"), 46, 26), f_28002_5302_5374(f_28002_5302_5353(ErrorCode.WRN_UnreachableCode, "return"), 51, 17));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 5390, 5458);
+
+                comp = f_28002_5397_5457(src, parseOptions: TestOptions.Regular7_3);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 5472, 6169);
+
+                f_28002_5472_6168(comp, f_28002_5635_5707(f_28002_5635_5686(ErrorCode.WRN_UnreachableCode, "return"), 40, 17), f_28002_5863_5954(f_28002_5863_5933(f_28002_5863_5909(ErrorCode.ERR_ReturnExpected, "M5"), "C.M5()"), 46, 26), f_28002_6095_6167(f_28002_6095_6146(ErrorCode.WRN_UnreachableCode, "return"), 51, 17));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 3553, 6180);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_4642_4664(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 4642, 4664);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_4842_4893(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 4842, 4893);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_4842_4914(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 4842, 4914);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5070_5116(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5070, 5116);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5070_5140(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5070, 5140);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5070_5161(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5070, 5161);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5302_5353(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5302, 5353);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5302_5374(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5302, 5374);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_4679_5375(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 4679, 5375);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_5397_5457(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, parseOptions: parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5397, 5457);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5635_5686(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5635, 5686);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5635_5707(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5635, 5707);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5863_5909(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5863, 5909);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5863_5933(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5863, 5933);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_5863_5954(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5863, 5954);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_6095_6146(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 6095, 6146);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_6095_6167(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 6095, 6167);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_5472_6168(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 5472, 6168);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 3553, 6180);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 3553, 6180);
+            }
         }
 
         [Fact]
         public void General()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 6192, 9467);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 6254, 7209);
+
+                var
+                source = prefix + @"
     // Value params and ref params are definitely assigned. Out params are not.
     public void T000(int a) { F(a); }
     public void T001(ref int a) { F(a); }
@@ -201,42 +422,220 @@ class C
         { int a; if (fFalse) F(a); else F(a); } // Error + Unreachable
         { int a; if (fFalse) F(a); else G(out a); F(a); } // Unreachable
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 7225, 9456);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (52,37): error CS0269: Use of unassigned out parameter 'a'
-                //     public void T002(out int a) { F(a); G(out a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolationOut, "a").WithArguments("a"),
-                // (55,17): error CS0177: The out parameter 'a' must be assigned to before control leaves the current method
-                //     public void T010(out int a) { } // Error
-                Diagnostic(ErrorCode.ERR_ParamUnassigned, "T010").WithArguments("a"),
-                // (57,17): error CS0177: The out parameter 'a' must be assigned to before control leaves the current method
-                //     public void T012(out int a) { if (f) G(out a); } // Error
-                Diagnostic(ErrorCode.ERR_ParamUnassigned, "T012").WithArguments("a"),
-                // (65,30): warning CS0162: Unreachable code detected
-                //         { int a; if (fFalse) F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (66,30): warning CS0162: Unreachable code detected
-                //         { int a; if (fFalse) F(a); else F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (67,30): warning CS0162: Unreachable code detected
-                //         { int a; if (fFalse) F(a); else G(out a); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (63,20): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (64,31): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (66,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse) F(a); else F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+                f_28002_7225_9455(f_28002_7225_7250(source), f_28002_7447_7515(f_28002_7447_7496(ErrorCode.ERR_UseDefViolationOut, "a"), "a"), f_28002_7725_7793(f_28002_7725_7774(ErrorCode.ERR_ParamUnassigned, "T010"), "a"), f_28002_8020_8088(f_28002_8020_8069(ErrorCode.ERR_ParamUnassigned, "T012"), "a"), f_28002_8250_8296(ErrorCode.WRN_UnreachableCode, "F"), f_28002_8477_8523(ErrorCode.WRN_UnreachableCode, "F"), f_28002_8706_8752(ErrorCode.WRN_UnreachableCode, "F"), f_28002_8905_8970(f_28002_8905_8951(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_9134_9199(f_28002_9134_9180(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_9389_9454(f_28002_9389_9435(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 6192, 9467);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_7225_7250(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 7225, 7250);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_7447_7496(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 7447, 7496);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_7447_7515(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 7447, 7515);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_7725_7774(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 7725, 7774);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_7725_7793(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 7725, 7793);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8020_8069(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8020, 8069);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8020_8088(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8020, 8088);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8250_8296(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8250, 8296);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8477_8523(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8477, 8523);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8706_8752(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8706, 8752);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8905_8951(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8905, 8951);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_8905_8970(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 8905, 8970);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_9134_9180(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 9134, 9180);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_9134_9199(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 9134, 9199);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_9389_9435(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 9389, 9435);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_9389_9454(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 9389, 9454);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_7225_9455(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 7225, 9455);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 6192, 9467);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 6192, 9467);
+            }
         }
 
         [Fact]
         public void IfStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 9479, 29723);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 9545, 15129);
+
+                var
+                source = prefix + @"
     // If statement.
     public void T100() {
         { int a; if (F(a)) No(); } // Error
@@ -340,189 +739,1576 @@ class C
         { int a; if (fFalse || G(out a)) No(); F(a); }
         { int a; if (fFalse || G(out a)) No(); else No(); F(a); }
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 15145, 29712);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (83,30): warning CS0162: Unreachable code detected
-                //         { int a; if (fFalse) F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (84,30): warning CS0162: Unreachable code detected
-                //         { int a; if (fFalse) F(a); else No(); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (85,30): warning CS0162: Unreachable code detected
-                //         { int a; if (fFalse) No(); else F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "No"),
-                // (88,40): warning CS0162: Unreachable code detected
-                //         { int a; if (fTrue) F(a); else No(); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "No"),
-                // (89,40): warning CS0162: Unreachable code detected
-                //         { int a; if (fTrue) No(); else F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (76,24): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (F(a)) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (77,24): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (F(a)) No(); else No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (79,27): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (80,27): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f) F(a); else No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (81,38): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (85,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse) No(); else F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (87,31): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (88,31): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue) F(a); else No(); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (100,50): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && G(out a)) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (101,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && G(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (102,56): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && G(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
+                f_28002_15145_29711(f_28002_15145_15170(source), f_28002_15350_15396(ErrorCode.WRN_UnreachableCode, "F"), f_28002_15569_15615(ErrorCode.WRN_UnreachableCode, "F"), f_28002_15796_15843(ErrorCode.WRN_UnreachableCode, "No"), f_28002_16023_16070(ErrorCode.WRN_UnreachableCode, "No"), f_28002_16242_16288(ErrorCode.WRN_UnreachableCode, "F"), f_28002_16451_16516(f_28002_16451_16497(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_16690_16755(f_28002_16690_16736(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_16915_16980(f_28002_16915_16961(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_17151_17216(f_28002_17151_17197(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_17387_17452(f_28002_17387_17433(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_17642_17707(f_28002_17642_17688(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_17871_17936(f_28002_17871_17917(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_18125_18190(f_28002_18125_18171(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_18374_18439(f_28002_18374_18420(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_18618_18683(f_28002_18618_18664(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_18873_18938(f_28002_18873_18919(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_19125_19212(f_28002_19125_19190(f_28002_19125_19171(ErrorCode.ERR_UseDefViolation, "a"), "a"), 106, 51), f_28002_19395_19482(f_28002_19395_19460(f_28002_19395_19441(ErrorCode.ERR_UseDefViolation, "a"), "a"), 107, 49), f_28002_19678_19765(f_28002_19678_19743(f_28002_19678_19724(ErrorCode.ERR_UseDefViolation, "a"), "a"), 110, 62), f_28002_19959_20046(f_28002_19959_20024(f_28002_19959_20005(ErrorCode.ERR_UseDefViolation, "a"), "a"), 111, 60), f_28002_20237_20324(f_28002_20237_20302(f_28002_20237_20283(ErrorCode.ERR_UseDefViolation, "a"), "a"), 112, 57), f_28002_20513_20600(f_28002_20513_20578(f_28002_20513_20559(ErrorCode.ERR_UseDefViolation, "a"), "a"), 113, 55), f_28002_20802_20889(f_28002_20802_20867(f_28002_20802_20848(ErrorCode.ERR_UseDefViolation, "a"), "a"), 114, 68), f_28002_21089_21176(f_28002_21089_21154(f_28002_21089_21135(ErrorCode.ERR_UseDefViolation, "a"), "a"), 115, 66), f_28002_21382_21469(f_28002_21382_21447(f_28002_21382_21428(ErrorCode.ERR_UseDefViolation, "a"), "a"), 116, 72), f_28002_21673_21760(f_28002_21673_21738(f_28002_21673_21719(ErrorCode.ERR_UseDefViolation, "a"), "a"), 117, 70), f_28002_22191_22278(f_28002_22191_22256(f_28002_22191_22237(ErrorCode.ERR_UseDefViolation, "a"), "a"), 129, 55), f_28002_22463_22550(f_28002_22463_22528(f_28002_22463_22509(ErrorCode.ERR_UseDefViolation, "a"), "a"), 130, 50), f_28002_22745_22832(f_28002_22745_22810(f_28002_22745_22791(ErrorCode.ERR_UseDefViolation, "a"), "a"), 131, 61), f_28002_23260_23347(f_28002_23260_23325(f_28002_23260_23306(ErrorCode.ERR_UseDefViolation, "a"), "a"), 136, 51), f_28002_23527_23614(f_28002_23527_23592(f_28002_23527_23573(ErrorCode.ERR_UseDefViolation, "a"), "a"), 137, 46), f_28002_23805_23892(f_28002_23805_23870(f_28002_23805_23851(ErrorCode.ERR_UseDefViolation, "a"), "a"), 138, 57), f_28002_24067_24154(f_28002_24067_24132(f_28002_24067_24113(ErrorCode.ERR_UseDefViolation, "a"), "a"), 141, 39), f_28002_24338_24425(f_28002_24338_24403(f_28002_24338_24384(ErrorCode.ERR_UseDefViolation, "a"), "a"), 142, 39), f_28002_24604_24691(f_28002_24604_24669(f_28002_24604_24650(ErrorCode.ERR_UseDefViolation, "a"), "a"), 144, 45), f_28002_24881_24968(f_28002_24881_24946(f_28002_24881_24927(ErrorCode.ERR_UseDefViolation, "a"), "a"), 145, 56), f_28002_25155_25242(f_28002_25155_25220(f_28002_25155_25201(ErrorCode.ERR_UseDefViolation, "a"), "a"), 149, 51), f_28002_25425_25512(f_28002_25425_25490(f_28002_25425_25471(ErrorCode.ERR_UseDefViolation, "a"), "a"), 150, 49), f_28002_25708_25795(f_28002_25708_25773(f_28002_25708_25754(ErrorCode.ERR_UseDefViolation, "a"), "a"), 151, 51), f_28002_25989_26076(f_28002_25989_26054(f_28002_25989_26035(ErrorCode.ERR_UseDefViolation, "a"), "a"), 152, 49), f_28002_26272_26359(f_28002_26272_26337(f_28002_26272_26318(ErrorCode.ERR_UseDefViolation, "a"), "a"), 153, 62), f_28002_26553_26640(f_28002_26553_26618(f_28002_26553_26599(ErrorCode.ERR_UseDefViolation, "a"), "a"), 154, 60), f_28002_26831_26918(f_28002_26831_26896(f_28002_26831_26877(ErrorCode.ERR_UseDefViolation, "a"), "a"), 155, 57), f_28002_27107_27194(f_28002_27107_27172(f_28002_27107_27153(ErrorCode.ERR_UseDefViolation, "a"), "a"), 156, 55), f_28002_27396_27483(f_28002_27396_27461(f_28002_27396_27442(ErrorCode.ERR_UseDefViolation, "a"), "a"), 157, 68), f_28002_27683_27770(f_28002_27683_27748(f_28002_27683_27729(ErrorCode.ERR_UseDefViolation, "a"), "a"), 158, 66), f_28002_27976_28063(f_28002_27976_28041(f_28002_27976_28022(ErrorCode.ERR_UseDefViolation, "a"), "a"), 159, 72), f_28002_28267_28354(f_28002_28267_28332(f_28002_28267_28313(ErrorCode.ERR_UseDefViolation, "a"), "a"), 160, 70), f_28002_28533_28620(f_28002_28533_28598(f_28002_28533_28579(ErrorCode.ERR_UseDefViolation, "a"), "a"), 163, 43), f_28002_28809_28896(f_28002_28809_28874(f_28002_28809_28855(ErrorCode.ERR_UseDefViolation, "a"), "a"), 164, 43), f_28002_29202_29289(f_28002_29202_29267(f_28002_29202_29248(ErrorCode.ERR_UseDefViolation, "a"), "a"), 166, 49), f_28002_29484_29571(f_28002_29484_29549(f_28002_29484_29530(ErrorCode.ERR_UseDefViolation, "a"), "a"), 167, 60));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 9479, 29723);
 
-                // (106,51): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() && GetNLS(out a)) F(a); } // error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(106, 51),
-                // (107,49): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() && GetLS(out a)) F(a); } // error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(107, 49),
-                // (110,62): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() && GetNLS(out a)) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(110, 62),
-                // (111,60): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() && GetLS(out a)) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(111, 60),
-                // (112,57): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() && GetNLS(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(112, 57),
-                // (113,55): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() && GetLS(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(113, 55),
-                // (114,68): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() && GetNLS(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(114, 68),
-                // (115,66): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() && GetLS(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(115, 66),
-                // (116,72): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() && GetNLS(out a)) No(); else G(out a); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(116, 72),
-                // (117,70): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() && GetLS(out a)) No(); else G(out a); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(117, 70),
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_15145_15170(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 15145, 15170);
+                    return return_v;
+                }
 
-                // Note: Dev10 spuriously reports (127,46,127,47): error CS0165: Use of unassigned local variable 'a'
-                // Note: Dev10 spuriously reports (128,46,128,47): error CS0165: Use of unassigned local variable 'a'
 
-                // (129,55): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse && G(out a)) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(129, 55),
-                // (130,50): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse && G(out a)) No(); F(a); } // Error 
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(130, 50),
-                // (131,61): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse && G(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(131, 61),
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_15350_15396(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 15350, 15396);
+                    return return_v;
+                }
 
-                // Note: Dev10 spuriously reports (134,42,134,43): error CS0165: Use of unassigned local variable 'a'
-                // Note: Dev10 spuriously reports (135,42,135,43): error CS0165: Use of unassigned local variable 'a'
 
-                // (136,51): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse && F(a)) No(); else F(a); }  // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(136, 51),
-                // (137,46): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse && F(a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(137, 46),
-                // (138,57): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fFalse && F(a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(138, 57),
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_15569_15615(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 15569, 15615);
+                    return return_v;
+                }
 
-                // (141,39): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || G(out a)) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(141, 39),
-                // (142,39): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || G(out a)) F(a); else No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(142, 39),
-                // (144,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || G(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(144, 45),
-                // (145,56): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || G(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(145, 56),
 
-                // (149,51): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() || GetNLS(out a)) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(149, 51),
-                // (150,49): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() || GetLS(out a)) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(150, 49),
-                // (151,51): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() || GetNLS(out a)) F(a); else No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(151, 51),
-                // (152,49): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() || GetLS(out a)) F(a); else No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(152, 49),
-                // (153,62): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() || GetNLS(out a)) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(153, 62),
-                // (154,60): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() || GetLS(out a)) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(154, 60),
-                // (155,57): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() || GetNLS(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(155, 57),
-                // (156,55): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() || GetLS(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(156, 55),
-                // (157,68): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() || GetNLS(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(157, 68),
-                // (158,66): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() || GetLS(out a)) No(); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(158, 66),
-                // (159,72): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetNLS() || GetNLS(out a)) G(out a); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(159, 72),
-                // (160,70): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (GetLS() || GetLS(out a)) G(out a); else No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(160, 70),
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_15796_15843(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 15796, 15843);
+                    return return_v;
+                }
 
-                // (163,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue || G(out a)) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(163, 43),
-                // (164,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue || G(out a)) F(a); else No(); } // Error 
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(164, 43),
 
-                // Note: Dev10 spuriously reports (165,56,165,57): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16023_16070(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16023, 16070);
+                    return return_v;
+                }
 
-                // (166,49): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue || G(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(166, 49),
-                // (167,60): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (fTrue || G(out a)) No(); else No(); F(a); } // Error 
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(167, 60)
 
-                // Note: Dev10 spuriously reports (168,66,168,67): error CS0165: Use of unassigned local variable 'a'
-                );
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16242_16288(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16242, 16288);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16451_16497(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16451, 16497);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16451_16516(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16451, 16516);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16690_16736(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16690, 16736);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16690_16755(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16690, 16755);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16915_16961(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16915, 16961);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_16915_16980(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 16915, 16980);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17151_17197(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17151, 17197);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17151_17216(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17151, 17216);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17387_17433(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17387, 17433);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17387_17452(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17387, 17452);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17642_17688(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17642, 17688);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17642_17707(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17642, 17707);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17871_17917(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17871, 17917);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_17871_17936(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 17871, 17936);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18125_18171(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18125, 18171);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18125_18190(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18125, 18190);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18374_18420(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18374, 18420);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18374_18439(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18374, 18439);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18618_18664(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18618, 18664);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18618_18683(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18618, 18683);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18873_18919(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18873, 18919);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_18873_18938(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 18873, 18938);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19125_19171(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19125, 19171);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19125_19190(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19125, 19190);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19125_19212(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19125, 19212);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19395_19441(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19395, 19441);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19395_19460(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19395, 19460);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19395_19482(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19395, 19482);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19678_19724(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19678, 19724);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19678_19743(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19678, 19743);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19678_19765(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19678, 19765);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19959_20005(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19959, 20005);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19959_20024(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19959, 20024);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_19959_20046(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 19959, 20046);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20237_20283(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20237, 20283);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20237_20302(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20237, 20302);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20237_20324(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20237, 20324);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20513_20559(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20513, 20559);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20513_20578(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20513, 20578);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20513_20600(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20513, 20600);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20802_20848(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20802, 20848);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20802_20867(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20802, 20867);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_20802_20889(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 20802, 20889);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21089_21135(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21089, 21135);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21089_21154(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21089, 21154);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21089_21176(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21089, 21176);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21382_21428(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21382, 21428);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21382_21447(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21382, 21447);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21382_21469(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21382, 21469);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21673_21719(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21673, 21719);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21673_21738(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21673, 21738);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_21673_21760(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 21673, 21760);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22191_22237(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22191, 22237);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22191_22256(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22191, 22256);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22191_22278(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22191, 22278);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22463_22509(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22463, 22509);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22463_22528(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22463, 22528);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22463_22550(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22463, 22550);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22745_22791(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22745, 22791);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22745_22810(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22745, 22810);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_22745_22832(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 22745, 22832);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23260_23306(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23260, 23306);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23260_23325(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23260, 23325);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23260_23347(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23260, 23347);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23527_23573(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23527, 23573);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23527_23592(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23527, 23592);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23527_23614(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23527, 23614);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23805_23851(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23805, 23851);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23805_23870(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23805, 23870);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_23805_23892(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 23805, 23892);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24067_24113(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24067, 24113);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24067_24132(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24067, 24132);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24067_24154(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24067, 24154);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24338_24384(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24338, 24384);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24338_24403(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24338, 24403);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24338_24425(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24338, 24425);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24604_24650(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24604, 24650);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24604_24669(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24604, 24669);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24604_24691(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24604, 24691);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24881_24927(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24881, 24927);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24881_24946(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24881, 24946);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_24881_24968(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 24881, 24968);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25155_25201(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25155, 25201);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25155_25220(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25155, 25220);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25155_25242(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25155, 25242);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25425_25471(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25425, 25471);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25425_25490(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25425, 25490);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25425_25512(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25425, 25512);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25708_25754(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25708, 25754);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25708_25773(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25708, 25773);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25708_25795(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25708, 25795);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25989_26035(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25989, 26035);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25989_26054(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25989, 26054);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_25989_26076(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 25989, 26076);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26272_26318(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26272, 26318);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26272_26337(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26272, 26337);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26272_26359(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26272, 26359);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26553_26599(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26553, 26599);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26553_26618(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26553, 26618);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26553_26640(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26553, 26640);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26831_26877(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26831, 26877);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26831_26896(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26831, 26896);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_26831_26918(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 26831, 26918);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27107_27153(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27107, 27153);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27107_27172(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27107, 27172);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27107_27194(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27107, 27194);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27396_27442(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27396, 27442);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27396_27461(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27396, 27461);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27396_27483(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27396, 27483);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27683_27729(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27683, 27729);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27683_27748(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27683, 27748);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27683_27770(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27683, 27770);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27976_28022(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27976, 28022);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27976_28041(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27976, 28041);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_27976_28063(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 27976, 28063);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28267_28313(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28267, 28313);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28267_28332(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28267, 28332);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28267_28354(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28267, 28354);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28533_28579(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28533, 28579);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28533_28598(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28533, 28598);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28533_28620(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28533, 28620);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28809_28855(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28809, 28855);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28809_28874(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28809, 28874);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_28809_28896(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 28809, 28896);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_29202_29248(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 29202, 29248);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_29202_29267(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 29202, 29267);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_29202_29289(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 29202, 29289);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_29484_29530(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 29484, 29530);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_29484_29549(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 29484, 29549);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_29484_29571(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 29484, 29571);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_15145_29711(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 15145, 29711);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 9479, 29723);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 9479, 29723);
+            }
         }
 
         [Fact]
         public void SwitchStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 29735, 36512);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 29805, 34646);
+
+                var
+                source = prefix + @"
     // Switch statement.
     public void T110() {
         if (f) { int a; switch (a) { case 0: No(); break; } } // Error
@@ -572,34 +2358,248 @@ class C
 
         if (f) { int a; switch (val) { default: goto case 0; case 0: goto default; } F(a); } // Unreachable
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 34662, 36501);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (121,86): warning CS0162: Unreachable code detected
-                //         if (f) { int a; switch (val) { default: goto case 0; case 0: goto default; } F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F").WithLocation(121, 86),
-                // (76,33): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; switch (a) { case 0: No(); break; } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(76, 33),
-                // (77,50): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; switch (val) { case 0: F(a); break; } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(77, 50),
-                // (78,75): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; switch (val) { case 0: G(out a); break; case 1: F(a); break; } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(78, 75),
-                // (83,64): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; switch (f || G(out a)) { case false: F(a); break; case true: No(); break; } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(83, 64),
-                // (86,88): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; switch (f && G(out a)) { case false: No(); break; case true: F(a); break; } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a").WithLocation(86, 88)
-                );
+                f_28002_34662_36500(f_28002_34662_34687(source), f_28002_34924_34992(f_28002_34924_34970(ErrorCode.WRN_UnreachableCode, "F"), 121, 86), f_28002_35182_35268(f_28002_35182_35247(f_28002_35182_35228(ErrorCode.ERR_UseDefViolation, "a"), "a"), 76, 33), f_28002_35460_35546(f_28002_35460_35525(f_28002_35460_35506(ErrorCode.ERR_UseDefViolation, "a"), "a"), 77, 50), f_28002_35763_35849(f_28002_35763_35828(f_28002_35763_35809(ErrorCode.ERR_UseDefViolation, "a"), "a"), 78, 75), f_28002_36079_36165(f_28002_36079_36144(f_28002_36079_36125(ErrorCode.ERR_UseDefViolation, "a"), "a"), 83, 64), f_28002_36395_36481(f_28002_36395_36460(f_28002_36395_36441(ErrorCode.ERR_UseDefViolation, "a"), "a"), 86, 88));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 29735, 36512);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_34662_34687(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 34662, 34687);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_34924_34970(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 34924, 34970);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_34924_34992(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 34924, 34992);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35182_35228(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35182, 35228);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35182_35247(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35182, 35247);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35182_35268(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35182, 35268);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35460_35506(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35460, 35506);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35460_35525(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35460, 35525);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35460_35546(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35460, 35546);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35763_35809(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35763, 35809);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35763_35828(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35763, 35828);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_35763_35849(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 35763, 35849);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_36079_36125(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 36079, 36125);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_36079_36144(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 36079, 36144);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_36079_36165(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 36079, 36165);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_36395_36441(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 36395, 36441);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_36395_36460(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 36395, 36460);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_36395_36481(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 36395, 36481);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_34662_36500(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 34662, 36500);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 29735, 36512);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 29735, 36512);
+            }
         }
 
         [Fact]
         public void WhileStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 36524, 46130);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 36593, 39585);
+
+                var
+                source = prefix + @"
     // While statement.
     public void T120() {
         // Unassigned.
@@ -658,97 +2658,496 @@ class C
         if (f) { int a; while (fTrue) { continue; } F(a); } // Unreachable
         if (f) { int a; while (fTrue) { if (f) continue; G(out a); break; } F(a); }
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 39601, 46119);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (56,40): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fFalse) F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (57,45): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fTrue) No(); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (52,34): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (F(a)) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (53,37): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (54,43): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (55,47): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f) G(out a); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (65,55): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f && G(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
+                f_28002_39601_46118(f_28002_39601_39626(source), f_28002_39816_39862(ErrorCode.WRN_UnreachableCode, "F"), f_28002_40039_40085(ErrorCode.WRN_UnreachableCode, "F"), f_28002_40258_40323(f_28002_40258_40304(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_40493_40558(f_28002_40493_40539(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_40734_40799(f_28002_40734_40780(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_40979_41044(f_28002_40979_41025(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_41232_41297(f_28002_41232_41278(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_41650_41715(f_28002_41650_41696(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_41897_41962(f_28002_41897_41943(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_42172_42237(f_28002_42172_42218(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_42536_42582(ErrorCode.WRN_UnreachableCode, "F"), f_28002_42757_42803(ErrorCode.WRN_UnreachableCode, "F"), f_28002_42999_43045(ErrorCode.WRN_UnreachableCode, "G"), f_28002_43245_43291(ErrorCode.WRN_UnreachableCode, "G"), f_28002_43491_43537(ErrorCode.WRN_UnreachableCode, "G"), f_28002_43757_43807(ErrorCode.WRN_UnreachableCode, "break"), f_28002_43989_44035(ErrorCode.WRN_UnreachableCode, "F"), f_28002_44221_44267(ErrorCode.WRN_UnreachableCode, "F"), f_28002_44452_44517(f_28002_44452_44498(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_44708_44773(f_28002_44708_44754(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_44978_45043(f_28002_44978_45024(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_45252_45317(f_28002_45252_45298(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_45510_45575(f_28002_45510_45556(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_45784_45849(f_28002_45784_45830(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_46052_46117(f_28002_46052_46098(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 36524, 46130);
 
-                // Note: Dev10 spuriously reports (72,56,72,57): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_39601_39626(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 39601, 39626);
+                    return return_v;
+                }
 
-                // (73,60): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fFalse && G(out a)) No(); F(a); } // Error. Unreachable expression, not statement
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (76,49): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f || G(out a)) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (80,53): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fTrue || G(out a)) F(a); } // Error, unreachable expression
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
 
-                // Note: Dev10 spuriously reports (81,61,81,62): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_39816_39862(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 39816, 39862);
+                    return return_v;
+                }
 
-                // (90,44): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (f) { break; F(a); } } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (91,43): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fTrue) { } F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (95,44): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (f) { break; G(out a); } F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "G"),
-                // (96,48): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fTrue) { break; G(out a); } F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "G"),
-                // (99,48): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fTrue) { break; G(out a); } F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "G"),
-                // (101,53): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fTrue) { if (fFalse) break; G(out a); break; } F(a); } // Unreachable (break)
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "break"),
-                // (103,47): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (f) { continue; F(a); } } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (104,53): warning CS0162: Unreachable code detected
-                //         if (f) { int a; while (fTrue) { continue; } F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (92,52): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fTrue) { break; } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (93,58): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f) { G(out a); break; } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (95,58): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (f) { break; G(out a); } F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (96,62): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fTrue) { break; G(out a); } F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (97,60): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fTrue || G(out a)) break; F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (99,62): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fTrue) { break; G(out a); } F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (100,69): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; while (fTrue) { if (f) break; G(out a); } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40039_40085(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40039, 40085);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40258_40304(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40258, 40304);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40258_40323(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40258, 40323);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40493_40539(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40493, 40539);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40493_40558(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40493, 40558);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40734_40780(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40734, 40780);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40734_40799(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40734, 40799);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40979_41025(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40979, 41025);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_40979_41044(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 40979, 41044);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_41232_41278(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 41232, 41278);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_41232_41297(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 41232, 41297);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_41650_41696(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 41650, 41696);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_41650_41715(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 41650, 41715);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_41897_41943(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 41897, 41943);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_41897_41962(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 41897, 41962);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_42172_42218(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 42172, 42218);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_42172_42237(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 42172, 42237);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_42536_42582(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 42536, 42582);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_42757_42803(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 42757, 42803);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_42999_43045(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 42999, 43045);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_43245_43291(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 43245, 43291);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_43491_43537(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 43491, 43537);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_43757_43807(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 43757, 43807);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_43989_44035(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 43989, 44035);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44221_44267(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44221, 44267);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44452_44498(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44452, 44498);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44452_44517(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44452, 44517);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44708_44754(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44708, 44754);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44708_44773(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44708, 44773);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44978_45024(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44978, 45024);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_44978_45043(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 44978, 45043);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_45252_45298(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 45252, 45298);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_45252_45317(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 45252, 45317);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_45510_45556(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 45510, 45556);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_45510_45575(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 45510, 45575);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_45784_45830(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 45784, 45830);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_45784_45849(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 45784, 45849);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_46052_46098(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 46052, 46098);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_46052_46117(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 46052, 46117);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_39601_46118(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 39601, 46118);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 36524, 46130);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 36524, 46130);
+            }
         }
 
         [WorkItem(529602, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/529602")]
         [Fact]
         public void DoWhileStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 46142, 51973);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 46305, 48309);
+
+                var
+                source = prefix + @"
     // Do statement.
     public void T130() {
         if (f) { int a; do F(a); while (f); } // Error
@@ -788,63 +3187,309 @@ class C
         if (f) { int a; do { if (f) continue; No(); } while (G(out a)); F(a); }
         if (f) { int a; do { if (f) continue; } while (fTrue); F(a); } // Unreachable
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 48325, 51962);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (57,49): warning CS0162: Unreachable code detected
-                //         if (f) { int a; do No(); while (fTrue); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (51,30): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do F(a); while (f); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (52,43): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do No(); while (F(a)); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (53,47): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do No(); while (f); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (60,59): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do No(); while (f && G(out a)); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (66,64): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do No(); while (fFalse && G(out a)); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
+                f_28002_48325_51961(f_28002_48325_48350(source), f_28002_48549_48595(ErrorCode.WRN_UnreachableCode, "F"), f_28002_48769_48834(f_28002_48769_48815(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_49011_49076(f_28002_49011_49057(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_49256_49321(f_28002_49256_49302(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_49513_49578(f_28002_49513_49559(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_49775_49840(f_28002_49775_49821(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_50143_50189(ErrorCode.WRN_UnreachableCode, "F"), f_28002_50579_50625(ErrorCode.WRN_UnreachableCode, "F"), f_28002_50827_50892(f_28002_50827_50873(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_51097_51162(f_28002_51097_51143(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_51358_51423(f_28002_51358_51404(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_51625_51690(f_28002_51625_51671(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_51895_51960(f_28002_51895_51941(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 46142, 51973);
 
-                // Note: Dev10 spuriously reports (70,65,70,66): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_48325_48350(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 48325, 48350);
+                    return return_v;
+                }
 
-                // (76,37): warning CS0162: Unreachable code detected
-                //         if (f) { int a; do { break; F(a); } while (f); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
 
-                // NOTE: By design, we will not match dev10's report of 
-                // (77,44,77,48): warning CS0162: Unreachable code detected
-                // See DevDiv #13696.
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_48549_48595(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 48549, 48595);
+                    return return_v;
+                }
 
-                // (86,64): warning CS0162: Unreachable code detected
-                //         if (f) { int a; do { if (f) continue; } while (fTrue); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (79,69): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do { if (f) break; G(out a); } while (f); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (80,72): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do { if (f) break; No(); } while (G(out a)); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (81,63): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do { if (f) break; } while (fTrue); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (83,68): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do { if (f) continue; G(out a); } while (F(a)); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (84,72): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; do { if (f) continue; G(out a); } while (f); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_48769_48815(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 48769, 48815);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_48769_48834(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 48769, 48834);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49011_49057(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49011, 49057);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49011_49076(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49011, 49076);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49256_49302(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49256, 49302);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49256_49321(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49256, 49321);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49513_49559(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49513, 49559);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49513_49578(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49513, 49578);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49775_49821(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49775, 49821);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_49775_49840(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 49775, 49840);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_50143_50189(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 50143, 50189);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_50579_50625(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 50579, 50625);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_50827_50873(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 50827, 50873);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_50827_50892(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 50827, 50892);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51097_51143(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51097, 51143);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51097_51162(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51097, 51162);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51358_51404(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51358, 51404);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51358_51423(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51358, 51423);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51625_51671(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51625, 51671);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51625_51690(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51625, 51690);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51895_51941(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51895, 51941);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_51895_51960(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 51895, 51960);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_48325_51961(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 48325, 51961);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 46142, 51973);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 46142, 51973);
+            }
         }
 
         [WorkItem(529602, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/529602")]
         [Fact]
         public void UnreachableDoWhileCondition()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 51985, 52515);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 52159, 52279);
+
+                var
+                source = @"
 class C
 {
     bool F()
@@ -853,18 +3498,55 @@ class C
         return true;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 52458, 52504);
 
-            // NOTE: By design, we will not match dev10's report of 
-            // warning CS0162: Unreachable code detected
-            // See DevDiv #13696.
-            CreateCompilation(source).VerifyDiagnostics();
+                f_28002_52458_52503(f_28002_52458_52483(source));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 51985, 52515);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_52458_52483(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 52458, 52483);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_52458_52503(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 52458, 52503);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 51985, 52515);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 51985, 52515);
+            }
         }
 
         [Fact]
         public void ForStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 52527, 61088);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 52594, 55451);
+
+                var
+                source = prefix + @"
     // For statement.
     public void T140() {
         if (f) { int a; for (F(a);;) No(); } // Error
@@ -924,107 +3606,571 @@ class C
         if (f) { int a; for (;;) { if (f) break; No(); } F(a); } // Error
         if (f) { int a; for (;;) { G(out a); if (f) break; } F(a); }
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 55467, 61077);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (55,40): warning CS0162: Unreachable code detected
-                //         if (f) { int a; for (;;) No(); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (58,40): warning CS0162: Unreachable code detected
-                //         if (f) { int a; for (;fFalse;) G(out a); F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "G"),
-                // (59,40): warning CS0162: Unreachable code detected
-                //         if (f) { int a; for (;fFalse;) F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (60,40): warning CS0162: Unreachable code detected
-                //         if (f) { int a; for (;;) No(); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (51,32): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (F(a);;) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (52,33): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;F(a);) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (53,34): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;;F(a)) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (54,36): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;;) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (56,43): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f;) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (57,47): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f;) G(out a); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (58,52): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;fFalse;) G(out a); F(a); } // Error + Unreachable
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (67,45): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f;G(out a)) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (68,51): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f;G(out a)) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (70,47): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f;) G(out a); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (74,55): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f && G(out a);) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
+                f_28002_55467_61076(f_28002_55467_55492(source), f_28002_55682_55728(ErrorCode.WRN_UnreachableCode, "F"), f_28002_55918_55964(ErrorCode.WRN_UnreachableCode, "G"), f_28002_56136_56182(ErrorCode.WRN_UnreachableCode, "F"), f_28002_56354_56400(ErrorCode.WRN_UnreachableCode, "F"), f_28002_56573_56638(f_28002_56573_56619(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_56811_56876(f_28002_56811_56857(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_57049_57114(f_28002_57049_57095(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_57283_57348(f_28002_57283_57329(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_57524_57589(f_28002_57524_57570(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_57769_57834(f_28002_57769_57815(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_58033_58098(f_28002_58033_58079(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_58276_58341(f_28002_58276_58322(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_58525_58590(f_28002_58525_58571(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_58770_58835(f_28002_58770_58816(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_59023_59088(f_28002_59023_59069(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_59405_59470(f_28002_59405_59451(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_59652_59717(f_28002_59652_59698(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_59921_59986(f_28002_59921_59967(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_60264_60310(ErrorCode.WRN_UnreachableCode, "F"), f_28002_60509_60574(f_28002_60509_60555(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_60751_60816(f_28002_60751_60797(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_61010_61075(f_28002_61010_61056(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 52527, 61088);
 
-                // Spurious Dev10: (81,56,81,57): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_55467_55492(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 55467, 55492);
+                    return return_v;
+                }
 
-                // (82,60): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;fFalse && G(out a);) No(); F(a); } // Error, unreachable expr
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (85,49): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;f || G(out a);) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (89,53): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;fTrue || G(out a);) F(a); } // Error, unreachable expr
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
 
-                // Spurious Dev10: (90,61,90,62): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_55682_55728(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 55682, 55728);
+                    return return_v;
+                }
 
-                // (100,32): warning CS0162: Unreachable code detected
-                //         if (f) { int a; for (;;F(a)) break; } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (103,34): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;;F(a)) { if (f) continue; G(out a); } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (104,43): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;;) break; F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (105,60): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; for (;;) { if (f) break; No(); } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_55918_55964(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 55918, 55964);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_56136_56182(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 56136, 56182);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_56354_56400(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 56354, 56400);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_56573_56619(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 56573, 56619);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_56573_56638(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 56573, 56638);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_56811_56857(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 56811, 56857);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_56811_56876(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 56811, 56876);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57049_57095(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57049, 57095);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57049_57114(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57049, 57114);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57283_57329(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57283, 57329);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57283_57348(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57283, 57348);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57524_57570(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57524, 57570);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57524_57589(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57524, 57589);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57769_57815(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57769, 57815);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_57769_57834(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 57769, 57834);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58033_58079(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58033, 58079);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58033_58098(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58033, 58098);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58276_58322(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58276, 58322);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58276_58341(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58276, 58341);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58525_58571(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58525, 58571);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58525_58590(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58525, 58590);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58770_58816(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58770, 58816);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_58770_58835(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 58770, 58835);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59023_59069(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59023, 59069);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59023_59088(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59023, 59088);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59405_59451(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59405, 59451);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59405_59470(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59405, 59470);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59652_59698(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59652, 59698);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59652_59717(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59652, 59717);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59921_59967(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59921, 59967);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_59921_59986(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 59921, 59986);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_60264_60310(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 60264, 60310);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_60509_60555(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 60509, 60555);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_60509_60574(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 60509, 60574);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_60751_60797(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 60751, 60797);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_60751_60816(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 60751, 60816);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_61010_61056(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61010, 61056);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_61010_61075(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61010, 61075);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_55467_61076(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 55467, 61076);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 52527, 61088);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 52527, 61088);
+            }
         }
 
         [Fact]
         public void ThrowStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 61100, 61954);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 61169, 61405);
+
+                var
+                source = prefix + @"
     // Throw statement.
     public void T150() {
         if (f) { int a; throw new Exception(F(a).ToString()); }
         if (f) { int a; throw new Exception(""x""); F(a); } // Unreachable
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 61421, 61943);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (52,51): warning CS0162: Unreachable code detected
-                //         if (f) { int a; throw new Exception("x"); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (51,47): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; throw new Exception(F(a).ToString()); }
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+                f_28002_61421_61942(f_28002_61421_61446(source), f_28002_61647_61693(ErrorCode.WRN_UnreachableCode, "F"), f_28002_61876_61941(f_28002_61876_61922(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 61100, 61954);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_61421_61446(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61421, 61446);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_61647_61693(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61647, 61693);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_61876_61922(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61876, 61922);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_61876_61941(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61876, 61941);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_61421_61942(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 61421, 61942);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 61100, 61954);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 61100, 61954);
+            }
         }
 
         [Fact]
         public void ReturnStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 61966, 64218);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 62036, 62566);
+
+                var
+                source = prefix + @"
     // Return statement.
     public bool T160() { int a; return F(a); } // Error
     public bool T161() { int a; return No(); F(a); } // Unreachable
@@ -1033,33 +4179,176 @@ class C
     public bool T164(out int a) { try { return No(); } finally { G(out a); } }
     public bool T165(out int a) { return G(out a); }
     public bool T166(out int a) { try { return G(out a); } finally { F(a); } } // Error
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 62582, 64207);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (50,42): error CS0165: Use of unassigned local variable 'a'
-                //     public bool T160() { int a; return F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (51,46): warning CS0162: Unreachable code detected
-                //     public bool T161() { int a; return No(); F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (52,44): error CS0269: Use of unassigned out parameter 'a'
-                //     public bool T162(out int a) { return F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolationOut, "a").WithArguments("a"),
-                // (52,35): error CS0177: The out parameter 'a' must be assigned to before control leaves the current method
-                //     public bool T162(out int a) { return F(a); } // Error
-                Diagnostic(ErrorCode.ERR_ParamUnassigned, "return F(a);").WithArguments("a"),
-                // (53,35): error CS0177: The out parameter 'a' must be assigned to before control leaves the current method
-                //     public bool T163(out int a) { return No(); } // Error
-                Diagnostic(ErrorCode.ERR_ParamUnassigned, "return No();").WithArguments("a"),
-                // (56,72): error CS0269: Use of unassigned out parameter 'a'
-                //     public bool T166(out int a) { try { return G(out a); } finally { F(a); } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolationOut, "a").WithArguments("a"));
+                f_28002_62582_64206(f_28002_62582_62607(source), f_28002_62800_62865(f_28002_62800_62846(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_63043_63089(ErrorCode.WRN_UnreachableCode, "F"), f_28002_63265_63333(f_28002_63265_63314(ErrorCode.ERR_UseDefViolationOut, "a"), "a"), f_28002_63556_63632(f_28002_63556_63613(ErrorCode.ERR_ParamUnassigned, "return F(a);"), "a"), f_28002_63855_63931(f_28002_63855_63912(ErrorCode.ERR_ParamUnassigned, "return No();"), "a"), f_28002_64137_64205(f_28002_64137_64186(ErrorCode.ERR_UseDefViolationOut, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 61966, 64218);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_62582_62607(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 62582, 62607);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_62800_62846(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 62800, 62846);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_62800_62865(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 62800, 62865);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63043_63089(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63043, 63089);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63265_63314(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63265, 63314);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63265_63333(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63265, 63333);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63556_63613(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63556, 63613);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63556_63632(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63556, 63632);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63855_63912(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63855, 63912);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_63855_63931(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 63855, 63931);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_64137_64186(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 64137, 64186);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_64137_64205(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 64137, 64205);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_62582_64206(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 62582, 64206);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 61966, 64218);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 61966, 64218);
+            }
         }
 
         [Fact]
         public void TryCatchStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 64230, 73128);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 64302, 66084);
+
+                var
+                source = prefix + @"
     // Try-catch statement.
     public void T170() {
         if (f) { int a; try { F(a); } catch (Exception e) { } finally { } } // Error
@@ -1088,90 +4377,550 @@ class C
         if (f) { int a; try { G(out a); } catch (Exception e) { } finally { for (;;) No(); } F(a); } // Unreachable
         if (f) { int a; try { goto L; } catch (Exception e) { } finally { for(;;) No(); } return; L: F(a); } // Unreachable
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 66100, 73117);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (67,63): warning CS0162: Unreachable code detected
-                //         if (f) { int a; try { G(out a); goto L; } finally { } return; L: F(a); }
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return"),
-                // (70,63): warning CS0162: Unreachable code detected
-                //         if (f) { int a; try { goto L; } finally { G(out a); } return; L: F(a); }
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return"),
-                // (74,94): warning CS0162: Unreachable code detected
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { } finally { for (;;) No(); } F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "F"),
-                // (75,91): warning CS0162: Unreachable code detected
-                //         if (f) { int a; try { goto L; } catch (Exception e) { } finally { for(;;) No(); } return; L: F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "return"),
-                // (75,99): warning CS0162: Unreachable code detected
-                //         if (f) { int a; try { goto L; } catch (Exception e) { } finally { for(;;) No(); } return; L: F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "L"),
-                // (51,33): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; try { F(a); } catch (Exception e) { } finally { } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (51,56): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { F(a); } catch (Exception e) { } finally { } } // Error
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (52,57): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; try { } catch (Exception e) { F(a); } finally { } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (52,50): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { } catch (Exception e) { F(a); } finally { } } // Error
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (53,50): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { } catch (Exception e) { } finally { F(a); } } // Error
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (53,69): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; try { } catch (Exception e) { } finally { F(a); } } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (54,50): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { } catch (Exception e) { } finally { } F(a); } // Error
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (54,71): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; try { } catch (Exception e) { } finally { } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (56,60): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { } F(a); } // Error
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (56,69): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (58,60): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { } finally { } F(a); } // Error
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (58,81): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { } finally { } F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (60,60): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { G(out a); } F(a); }
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (61,60): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { G(out a); } finally { } F(a); }
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (64,50): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { } catch (Exception e) { } finally { G(out a); } F(a); }
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (66,68): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); goto L; } catch (Exception e) { } return; L: F(a); }
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (68,68): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); goto L; } catch (Exception e) { } finally { } return; L: F(a); }
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (71,58): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { goto L; } catch (Exception e) { } finally { G(out a); } return; L: F(a); }
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (74,60): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { G(out a); } catch (Exception e) { } finally { for (;;) No(); } F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"),
-                // (75,58): warning CS0168: The variable 'e' is declared but never used
-                //         if (f) { int a; try { goto L; } catch (Exception e) { } finally { for(;;) No(); } return; L: F(a); } // Unreachable
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e"));
+                f_28002_66100_73116(f_28002_66100_66125(source), f_28002_66334_66385(ErrorCode.WRN_UnreachableCode, "return"), f_28002_66576_66627(ErrorCode.WRN_UnreachableCode, "return"), f_28002_66853_66899(ErrorCode.WRN_UnreachableCode, "F"), f_28002_67133_67184(ErrorCode.WRN_UnreachableCode, "return"), f_28002_67418_67464(ErrorCode.WRN_UnreachableCode, "L"), f_28002_67668_67733(f_28002_67668_67714(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_67946_68011(f_28002_67946_67992(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_68215_68280(f_28002_68215_68261(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_68493_68558(f_28002_68493_68539(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_68771_68836(f_28002_68771_68817(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_69040_69105(f_28002_69040_69086(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_69318_69383(f_28002_69318_69364(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_69587_69652(f_28002_69587_69633(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_69863_69928(f_28002_69863_69909(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_70130_70195(f_28002_70130_70176(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_70418_70483(f_28002_70418_70464(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_70697_70762(f_28002_70697_70743(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_70974_71039(f_28002_70974_71020(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_71263_71328(f_28002_71263_71309(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_71542_71607(f_28002_71542_71588(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_71828_71893(f_28002_71828_71874(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_72126_72191(f_28002_72126_72172(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_72424_72489(f_28002_72424_72470(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_72733_72798(f_28002_72733_72779(ErrorCode.WRN_UnreferencedVar, "e"), "e"), f_28002_73050_73115(f_28002_73050_73096(ErrorCode.WRN_UnreferencedVar, "e"), "e"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 64230, 73128);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_66100_66125(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 66100, 66125);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_66334_66385(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 66334, 66385);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_66576_66627(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 66576, 66627);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_66853_66899(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 66853, 66899);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_67133_67184(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 67133, 67184);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_67418_67464(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 67418, 67464);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_67668_67714(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 67668, 67714);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_67668_67733(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 67668, 67733);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_67946_67992(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 67946, 67992);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_67946_68011(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 67946, 68011);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_68215_68261(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 68215, 68261);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_68215_68280(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 68215, 68280);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_68493_68539(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 68493, 68539);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_68493_68558(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 68493, 68558);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_68771_68817(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 68771, 68817);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_68771_68836(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 68771, 68836);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69040_69086(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69040, 69086);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69040_69105(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69040, 69105);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69318_69364(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69318, 69364);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69318_69383(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69318, 69383);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69587_69633(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69587, 69633);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69587_69652(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69587, 69652);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69863_69909(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69863, 69909);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_69863_69928(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 69863, 69928);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70130_70176(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70130, 70176);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70130_70195(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70130, 70195);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70418_70464(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70418, 70464);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70418_70483(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70418, 70483);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70697_70743(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70697, 70743);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70697_70762(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70697, 70762);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70974_71020(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70974, 71020);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_70974_71039(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 70974, 71039);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_71263_71309(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 71263, 71309);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_71263_71328(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 71263, 71328);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_71542_71588(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 71542, 71588);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_71542_71607(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 71542, 71607);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_71828_71874(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 71828, 71874);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_71828_71893(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 71828, 71893);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_72126_72172(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 72126, 72172);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_72126_72191(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 72126, 72191);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_72424_72470(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 72424, 72470);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_72424_72489(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 72424, 72489);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_72733_72779(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 72733, 72779);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_72733_72798(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 72733, 72798);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_73050_73096(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 73050, 73096);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_73050_73115(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 73050, 73115);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_66100_73116(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 66100, 73116);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 64230, 73128);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 64230, 73128);
+            }
         }
 
         [Fact]
         public void ForEachStatement()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 73140, 74858);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 73211, 73721);
+
+                var
+                source = prefix + @"
     // Foreach statement.
     public void T180() {
         if (f) { int a; foreach (char ch in F(a).ToString()) No(); } // Error
@@ -1180,27 +4929,143 @@ class C
         if (f) { int a; foreach (char ch in ""abc"") No(); F(a); } // Error
         if (f) { int a; foreach (char ch in ""abc"") G(out a); F(a); } // Error
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 73737, 74847);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (51,47): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; foreach (char ch in F(a).ToString()) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (52,54): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; foreach (char ch in "abc") F(a); } // Error // BUG?: Error in wrong order.
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (54,60): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; foreach (char ch in "abc") No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (55,64): error CS0165: Use of unassigned local variable 'a'
-                //         if (f) { int a; foreach (char ch in "abc") G(out a); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+                f_28002_73737_74846(f_28002_73737_73762(source), f_28002_73977_74042(f_28002_73977_74023(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_74260_74325(f_28002_74260_74306(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_74518_74583(f_28002_74518_74564(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_74780_74845(f_28002_74780_74826(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 73140, 74858);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_73737_73762(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 73737, 73762);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_73977_74023(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 73977, 74023);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_73977_74042(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 73977, 74042);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_74260_74306(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 74260, 74306);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_74260_74325(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 74260, 74325);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_74518_74564(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 74518, 74564);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_74518_74583(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 74518, 74583);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_74780_74826(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 74780, 74826);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_74780_74845(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 74780, 74845);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_73737_74846(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 73737, 74846);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 73140, 74858);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 73140, 74858);
+            }
         }
 
         [Fact]
         public void UsingAndLockStatements()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 74870, 77187);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 74947, 75690);
+
+                var
+                source = prefix + @"
     // Using and Lock statements.
     public void T190() {
         { int a; using (Res(F(a))) No(); } // Error
@@ -1217,33 +5082,187 @@ class C
         { int a; lock (Res(G(out a))) No(); F(a); }
         { int a; lock (Res(No())) G(out a); F(a); }
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 75706, 77176);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (51,31): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; using (Res(F(a))) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (52,38): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; using (Res(No())) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (53,44): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; using (Res(No())) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (58,30): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; lock (Res(F(a))) No(); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (59,37): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; lock (Res(No())) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (60,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; lock (Res(No())) No(); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+                f_28002_75706_77175(f_28002_75706_75731(source), f_28002_75920_75985(f_28002_75920_75966(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_76156_76221(f_28002_76156_76202(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_76398_76463(f_28002_76398_76444(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_76633_76698(f_28002_76633_76679(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_76868_76933(f_28002_76868_76914(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_77109_77174(f_28002_77109_77155(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 74870, 77187);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_75706_75731(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 75706, 75731);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_75920_75966(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 75920, 75966);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_75920_75985(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 75920, 75985);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76156_76202(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76156, 76202);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76156_76221(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76156, 76221);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76398_76444(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76398, 76444);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76398_76463(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76398, 76463);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76633_76679(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76633, 76679);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76633_76698(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76633, 76698);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76868_76914(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76868, 76914);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_76868_76933(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 76868, 76933);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_77109_77155(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 77109, 77155);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_77109_77174(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 77109, 77174);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_75706_77175(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 75706, 77175);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 74870, 77187);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 74870, 77187);
+            }
         }
 
         [Fact]
         public void LogicalExpression()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 77199, 97871);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 77271, 84548);
+
+                var
+                source = prefix + @"
     // Logical and: E -> S && T
     public void T340() {
         // S -> DA then DA -> T and E -> DA
@@ -1411,210 +5430,1312 @@ class C
         { int a; F(fFalse || G(out a) ? 1 : a); }
         { int a; F(fFalse || G(out a) ? 1 : 2); F(a); }
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 84564, 97860);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (57,48): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f && G(out a)) && No()); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (61,41): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f || G(out a)) && F(a)); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (63,48): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f || G(out a)) && No()); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (64,49): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if ((f || G(out a)) && No()) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (65,60): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if ((f || G(out a)) && No()) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (69,59): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f || G(out a)) && (f && G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (72,59): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f || G(out a)) && (f || G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (76,27): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f && F(a)); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (78,38): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f && G(out a)); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (81,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f && (f && G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (84,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f && (f || G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (85,46): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && (f || G(out a))) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (86,57): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && (f || G(out a))) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (88,31): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f && f); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (89,32): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && f) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (90,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f && f) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (101,48): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f || G(out a)) || No()); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (105,41): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f && G(out a)) || F(a)); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (107,48): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f && G(out a)) || No()); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (108,49): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if ((f && G(out a)) || No()) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (109,60): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if ((f && G(out a)) || No()) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (113,59): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f && G(out a)) || (f || G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (116,59): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q((f && G(out a)) || (f && G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (120,27): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f || F(a)); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (122,38): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f || G(out a)); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (125,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f || (f || G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (128,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f || (f && G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (129,46): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || (f && G(out a))) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (130,57): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || (f && G(out a))) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (132,31): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(f || f); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (133,32): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || f) F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (134,43): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; if (f || f) No(); else F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (139,22): error CS0165: Use of unassigned local variable 'a'
-                //         { bool a; Q(!a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (142,30): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(!No()); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (145,41): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(!(f || G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (149,41): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; Q(!(f && G(out a))); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (156,21): error CS0165: Use of unassigned local variable 'a'
-                //         { bool a; F(a ? 1 : 2); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (159,24): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f ? a : 2); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (160,28): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f ? 1 : a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (161,34): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f ? 1 : 2); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (164,33): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fFalse ? 1 : a); } // 
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (166,28): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fTrue ? a : 2); } // Error - should it also be unreachable?
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (178,40): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f && G(out a) ? 1 : a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (179,46): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f && G(out a) ? 1 : 2); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
+                f_28002_84564_97859(f_28002_84564_84589(source), f_28002_84788_84853(f_28002_84788_84834(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_85028_85093(f_28002_85028_85074(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_85274_85339(f_28002_85274_85320(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_85521_85586(f_28002_85521_85567(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_85779_85844(f_28002_85779_85825(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_86036_86101(f_28002_86036_86082(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_86293_86358(f_28002_86293_86339(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_86519_86584(f_28002_86519_86565(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_86755_86820(f_28002_86755_86801(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_86998_87063(f_28002_86998_87044(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_87241_87306(f_28002_87241_87287(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_87485_87550(f_28002_87485_87531(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_87740_87805(f_28002_87740_87786(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_87969_88034(f_28002_87969_88015(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_88199_88264(f_28002_88199_88245(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_88440_88505(f_28002_88440_88486(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_88687_88752(f_28002_88687_88733(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_88928_88993(f_28002_88928_88974(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_89175_89240(f_28002_89175_89221(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_89423_89488(f_28002_89423_89469(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_89682_89747(f_28002_89682_89728(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_89940_90005(f_28002_89940_89986(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_90198_90263(f_28002_90198_90244(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_90425_90490(f_28002_90425_90471(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_90662_90727(f_28002_90662_90708(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_90906_90971(f_28002_90906_90952(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_91150_91215(f_28002_91150_91196(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_91395_91460(f_28002_91395_91441(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_91651_91716(f_28002_91651_91697(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_91881_91946(f_28002_91881_91927(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_92112_92177(f_28002_92112_92158(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_92354_92419(f_28002_92354_92400(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_92575_92640(f_28002_92575_92621(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_92804_92869(f_28002_92804_92850(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_93044_93109(f_28002_93044_93090(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_93284_93349(f_28002_93284_93330(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_93512_93577(f_28002_93512_93558(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_93739_93804(f_28002_93739_93785(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_93966_94031(f_28002_93966_94012(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_94199_94264(f_28002_94199_94245(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_94426_94491(f_28002_94426_94472(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_94690_94755(f_28002_94690_94736(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_94929_94994(f_28002_94929_94975(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_95174_95239(f_28002_95174_95220(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_95526_95591(f_28002_95526_95572(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_95776_95841(f_28002_95776_95822(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_96233_96298(f_28002_96233_96279(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_96494_96559(f_28002_96494_96540(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_96824_96889(f_28002_96824_96870(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_97069_97134(f_28002_97069_97115(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_97312_97377(f_28002_97312_97358(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_97669_97734(f_28002_97669_97715(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 77199, 97871);
 
-                // Dev10 spurious: (188,43,188,44): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_84564_84589(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 84564, 84589);
+                    return return_v;
+                }
 
-                // (189,45): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fFalse && G(out a) ? 1 : a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (190,51): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fFalse && G(out a) ? 1 : 2); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
 
-                // Dev10 spurious: (191,61,191,62): error CS0165: Use of unassigned local variable 'a'
-                // Dev10 spurious: (194,39,194,40): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_84788_84834(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 84788, 84834);
+                    return return_v;
+                }
 
-                // (195,41): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fFalse && F(a) ? 1 : a); } // Error on a
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (196,47): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fFalse && F(a) ? 1 : 2); F(a); } // Error on second F(a)
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
 
-                // Dev10 spurious: error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_84788_84853(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 84788, 84853);
+                    return return_v;
+                }
 
-                // (200,36): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f || G(out a) ? a : 2); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (202,46): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(f || G(out a) ? 1 : 2); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (206,40): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fTrue || G(out a) ? a : 2); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
 
-                // Dev10 spurious: (207,46,207,47): error CS0165: Use of unassigned local variable 'a'
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85028_85074(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85028, 85074);
+                    return return_v;
+                }
 
-                // (208,50): error CS0165: Use of unassigned local variable 'a'
-                //         { int a; F(fTrue || G(out a) ? 1 : 2); F(a); } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a")
 
-                // Dev10 spurious: (209,60,209,61): error CS0165: Use of unassigned local variable 'a'
-                );
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85028_85093(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85028, 85093);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85274_85320(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85274, 85320);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85274_85339(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85274, 85339);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85521_85567(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85521, 85567);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85521_85586(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85521, 85586);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85779_85825(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85779, 85825);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_85779_85844(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 85779, 85844);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86036_86082(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86036, 86082);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86036_86101(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86036, 86101);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86293_86339(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86293, 86339);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86293_86358(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86293, 86358);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86519_86565(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86519, 86565);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86519_86584(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86519, 86584);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86755_86801(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86755, 86801);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86755_86820(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86755, 86820);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86998_87044(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86998, 87044);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_86998_87063(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 86998, 87063);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87241_87287(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87241, 87287);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87241_87306(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87241, 87306);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87485_87531(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87485, 87531);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87485_87550(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87485, 87550);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87740_87786(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87740, 87786);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87740_87805(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87740, 87805);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87969_88015(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87969, 88015);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_87969_88034(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 87969, 88034);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88199_88245(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88199, 88245);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88199_88264(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88199, 88264);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88440_88486(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88440, 88486);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88440_88505(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88440, 88505);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88687_88733(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88687, 88733);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88687_88752(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88687, 88752);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88928_88974(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88928, 88974);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_88928_88993(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 88928, 88993);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89175_89221(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89175, 89221);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89175_89240(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89175, 89240);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89423_89469(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89423, 89469);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89423_89488(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89423, 89488);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89682_89728(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89682, 89728);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89682_89747(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89682, 89747);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89940_89986(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89940, 89986);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_89940_90005(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 89940, 90005);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90198_90244(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90198, 90244);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90198_90263(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90198, 90263);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90425_90471(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90425, 90471);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90425_90490(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90425, 90490);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90662_90708(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90662, 90708);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90662_90727(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90662, 90727);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90906_90952(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90906, 90952);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_90906_90971(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 90906, 90971);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91150_91196(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91150, 91196);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91150_91215(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91150, 91215);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91395_91441(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91395, 91441);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91395_91460(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91395, 91460);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91651_91697(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91651, 91697);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91651_91716(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91651, 91716);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91881_91927(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91881, 91927);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_91881_91946(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 91881, 91946);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92112_92158(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92112, 92158);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92112_92177(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92112, 92177);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92354_92400(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92354, 92400);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92354_92419(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92354, 92419);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92575_92621(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92575, 92621);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92575_92640(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92575, 92640);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92804_92850(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92804, 92850);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_92804_92869(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 92804, 92869);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93044_93090(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93044, 93090);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93044_93109(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93044, 93109);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93284_93330(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93284, 93330);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93284_93349(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93284, 93349);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93512_93558(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93512, 93558);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93512_93577(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93512, 93577);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93739_93785(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93739, 93785);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93739_93804(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93739, 93804);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93966_94012(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93966, 94012);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_93966_94031(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 93966, 94031);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94199_94245(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94199, 94245);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94199_94264(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94199, 94264);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94426_94472(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94426, 94472);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94426_94491(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94426, 94491);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94690_94736(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94690, 94736);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94690_94755(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94690, 94755);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94929_94975(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94929, 94975);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_94929_94994(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 94929, 94994);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_95174_95220(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 95174, 95220);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_95174_95239(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 95174, 95239);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_95526_95572(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 95526, 95572);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_95526_95591(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 95526, 95591);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_95776_95822(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 95776, 95822);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_95776_95841(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 95776, 95841);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_96233_96279(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 96233, 96279);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_96233_96298(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 96233, 96298);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_96494_96540(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 96494, 96540);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_96494_96559(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 96494, 96559);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_96824_96870(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 96824, 96870);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_96824_96889(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 96824, 96889);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_97069_97115(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 97069, 97115);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_97069_97134(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 97069, 97134);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_97312_97358(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 97312, 97358);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_97312_97377(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 97312, 97377);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_97669_97715(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 97669, 97715);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_97669_97734(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 97669, 97734);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_84564_97859(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 84564, 97859);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 77199, 97871);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 77199, 97871);
+            }
         }
 
         [Fact]
         public void WhidbeyBug467493()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 97883, 98884);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 97954, 98188);
+
+                var
+                source = prefix + @"
     // Whidbey bug #467493
     public static void M4() {
         int x;
         throw new Exception();
         ((DI)(delegate { if (x == 1) return 1; Console.WriteLine(""Bug""); }))();
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 98204, 98873);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (78,15): error CS1643: Not all code paths return a value in anonymous method of type 'DI'
-                //         ((DI)(delegate { if (x == 1) return 1; Console.WriteLine("Bug"); }))();
-                Diagnostic(ErrorCode.ERR_AnonymousReturnExpected, "delegate").WithArguments("anonymous method", "DI").WithLocation(78, 15),
-                // (78,9): warning CS0162: Unreachable code detected
-                //         ((DI)(delegate { if (x == 1) return 1; Console.WriteLine("Bug"); }))();
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "(").WithLocation(78, 9)
-                );
+                f_28002_98204_98872(f_28002_98204_98229(source), f_28002_98476_98598(f_28002_98476_98577(f_28002_98476_98537(ErrorCode.ERR_AnonymousReturnExpected, "delegate"), "anonymous method", "DI"), 78, 15), f_28002_98787_98853(f_28002_98787_98833(ErrorCode.WRN_UnreachableCode, "("), 78, 9));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 97883, 98884);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_98204_98229(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98204, 98229);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_98476_98537(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98476, 98537);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_98476_98577(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98476, 98577);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_98476_98598(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98476, 98598);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_98787_98833(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98787, 98833);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_98787_98853(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98787, 98853);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_98204_98872(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 98204, 98872);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 97883, 98884);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 97883, 98884);
+            }
         }
 
         [WorkItem(648107, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/648107")]
         [Fact]
         public void WhidbeyBug479106()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 98896, 99911);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 99059, 99554);
+
+                var
+                source = prefix + @"
     // Whidbey bug #479106
     public unsafe struct SF {
         public int x;
@@ -1633,42 +6754,190 @@ class C
             Console.WriteLine(b);
         }
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 99570, 99900);
 
-            CreateCompilation(source, options: TestOptions.UnsafeReleaseDll).VerifyDiagnostics(
-                // (62,18): error CS0165: Use of unassigned local variable 'a'
-                //             prgs[a].arr[0] = 5; // Error: a
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a")
-                );
+                f_28002_99570_99899(f_28002_99570_99634(source, options: TestOptions.UnsafeReleaseDll), f_28002_99815_99880(f_28002_99815_99861(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 98896, 99911);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_99570_99634(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 99570, 99634);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_99815_99861(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 99815, 99861);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_99815_99880(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 99815, 99880);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_99570_99899(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 99570, 99899);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 98896, 99911);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 98896, 99911);
+            }
         }
 
         [Fact, WorkItem(31370, "https://github.com/dotnet/roslyn/issues/31370")]
         public void WhidbeyBug467493_WithSuppression()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 99923, 101064);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 100076, 100312);
+
+                var
+                source = prefix + @"
     // Whidbey bug #467493
     public static void M4() {
         int x;
         throw new Exception();
         ((DI)(delegate { if (x == 1) return 1; Console.WriteLine(""Bug""); } !))();
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 100384, 101053);
 
-            // Covers GenerateExplicitConversionErrors
-            CreateCompilation(source).VerifyDiagnostics(
-                // (78,15): error CS1643: Not all code paths return a value in anonymous method of type 'DI'
-                //         ((DI)(delegate { if (x == 1) return 1; Console.WriteLine("Bug"); }))();
-                Diagnostic(ErrorCode.ERR_AnonymousReturnExpected, "delegate").WithArguments("anonymous method", "DI").WithLocation(78, 15),
-                // (78,9): warning CS0162: Unreachable code detected
-                //         ((DI)(delegate { if (x == 1) return 1; Console.WriteLine("Bug"); }))();
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "(").WithLocation(78, 9)
-                );
+                f_28002_100384_101052(f_28002_100384_100409(source), f_28002_100656_100778(f_28002_100656_100757(f_28002_100656_100717(ErrorCode.ERR_AnonymousReturnExpected, "delegate"), "anonymous method", "DI"), 78, 15), f_28002_100967_101033(f_28002_100967_101013(ErrorCode.WRN_UnreachableCode, "("), 78, 9));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 99923, 101064);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_100384_100409(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100384, 100409);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_100656_100717(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100656, 100717);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_100656_100757(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100656, 100757);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_100656_100778(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100656, 100778);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_100967_101013(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100967, 101013);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_100967_101033(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100967, 101033);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_100384_101052(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 100384, 101052);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 99923, 101064);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 99923, 101064);
+            }
         }
 
         [Fact]
         public void AccessingFixedFieldUsesTheReceiver()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 101076, 101588);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 101165, 101476);
+
+                var
+                source = prefix + @"
     // Whidbey bug #479106
     public unsafe struct SF {
         public int x;
@@ -1681,16 +6950,57 @@ class C
         SF2 s;
         s.z.arr[0]++; // OK
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 101492, 101577);
 
-            CreateCompilation(source, options: TestOptions.UnsafeReleaseDll).VerifyDiagnostics();
+                f_28002_101492_101576(f_28002_101492_101556(source, options: TestOptions.UnsafeReleaseDll));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 101076, 101588);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_101492_101556(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 101492, 101556);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_101492_101576(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 101492, 101576);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 101076, 101588);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 101076, 101588);
+            }
         }
 
         [WorkItem(529603, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/529603")]
         [Fact]
         public void TernaryOperator()
         {
-            var source = prefix + @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 101600, 140036);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 101762, 115097);
+
+                var
+                source = prefix + @"
     public static void M8()
     {
         int b = 1;
@@ -1821,261 +7131,1859 @@ class C
 /* DA ?DA :DAT-->DA  */ { int a; if (G(out a)        ? G(out a)        : (z && G(out a))) b = a; else d = a; } // OK
 /* DA ?DA :DAF-->DA  */ { int a; if (G(out a)        ? G(out a)        : (z || G(out a))) b = a; else d = a; } // OK
     }
-" + suffix;
+" + suffix
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 115113, 140025);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (61,58): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA --> NDA */       { int a; if (x               ? F(a) : F(b)) b = c; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (63,58): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF --> NDA */       { int a; if ((x || G(out a)) ? F(a) : F(b)) b = c; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (68,65): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA --> NDA */       { int a; if (x               ? F(b) : F(a)) b = c; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (69,65): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT --> NDA */       { int a; if ((x && G(out a)) ? F(b) : F(a)) b = c; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (75,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:NDA-->NDA */ { int a; if (x               ? y               : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (76,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:NDA-->NDA */ { int a; if (x               ? y               : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (77,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:DAT-->NDA */ { int a; if (x               ? y               : (z && G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (78,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:DAT-->NDA */ { int a; if (x               ? y               : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (79,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:DAF-->NDA */ { int a; if (x               ? y               : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (80,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:DAF-->NDA */ { int a; if (x               ? y               : (z || G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (81,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:DA -->NDA */ { int a; if (x               ? y               : G(out a))        b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (82,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?NDA:DA -->NDA */ { int a; if (x               ? y               : G(out a))        b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (83,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:NDA-->NDA */ { int a; if (x               ? (y && G(out a)) : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (84,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:NDA-->NDA */ { int a; if (x               ? (y && G(out a)) : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (85,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:DAT-->DAT */ { int a; if (x               ? (y && G(out a)) : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (86,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:DAT-->DAT */ { int a; if (x               ? (y && G(out a)) : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (87,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:DAF-->NDA */ { int a; if (x               ? (y && G(out a)) : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (88,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:DAF-->NDA */ { int a; if (x               ? (y && G(out a)) : (z || G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (89,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:DA -->DAT */ { int a; if (x               ? (y && G(out a)) : G(out a))        b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (90,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAT:DA -->DAT */ { int a; if (x               ? (y && G(out a)) : G(out a))        b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (91,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:NDA-->NDA */ { int a; if (x               ? (y || G(out a)) : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (92,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:NDA-->NDA */ { int a; if (x               ? (y || G(out a)) : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (93,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:DAT-->NDA */ { int a; if (x               ? (y || G(out a)) : (z && G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (94,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:DAT-->NDA */ { int a; if (x               ? (y || G(out a)) : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (95,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:DAF-->DAF */ { int a; if (x               ? (y || G(out a)) : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (96,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:DAF-->DAF */ { int a; if (x               ? (y || G(out a)) : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (97,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:DA -->DAF */ { int a; if (x               ? (y || G(out a)) : G(out a))        b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (98,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DAF:DA -->DAF */ { int a; if (x               ? (y || G(out a)) : G(out a))        b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (99,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DA :NDA-->NDA */ { int a; if (x               ? G(out a)        : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (100,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DA :NDA-->NDA */ { int a; if (x               ? G(out a)        : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (101,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DA :DAT-->DAT */ { int a; if (x               ? G(out a)        : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (102,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DA :DAT-->DAT */ { int a; if (x               ? G(out a)        : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (103,95): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DA :DAF-->DAF */ { int a; if (x               ? G(out a)        : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (104,107): error CS0165: Use of unassigned local variable 'a'
-                // /* NDA?DA :DAF-->DAF */ { int a; if (x               ? G(out a)        : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (106,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?NDA:NDA-->NDA */ { int a; if ((x && G(out a)) ? y               : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (107,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?NDA:NDA-->NDA */ { int a; if ((x && G(out a)) ? y               : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (108,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?NDA:DAT-->DAT */ { int a; if ((x && G(out a)) ? y               : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (109,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?NDA:DAT-->DAT */ { int a; if ((x && G(out a)) ? y               : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (110,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?NDA:DAF-->DAF */ { int a; if ((x && G(out a)) ? y               : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (111,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?NDA:DAF-->DAF */ { int a; if ((x && G(out a)) ? y               : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (113,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAT:NDA-->NDA */ { int a; if ((x && G(out a)) ? (y && G(out a)) : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (114,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAT:NDA-->NDA */ { int a; if ((x && G(out a)) ? (y && G(out a)) : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (115,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAT:DAT-->DAT */ { int a; if ((x && G(out a)) ? (y && G(out a)) : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (116,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAT:DAT-->DAT */ { int a; if ((x && G(out a)) ? (y && G(out a)) : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (117,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAT:DAF-->DAF */ { int a; if ((x && G(out a)) ? (y && G(out a)) : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (118,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAT:DAF-->DAF */ { int a; if ((x && G(out a)) ? (y && G(out a)) : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (120,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAF:NDA-->NDA */ { int a; if ((x && G(out a)) ? (y || G(out a)) : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (121,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAF:NDA-->NDA */ { int a; if ((x && G(out a)) ? (y || G(out a)) : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (122,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAF:DAT-->DAT */ { int a; if ((x && G(out a)) ? (y || G(out a)) : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (123,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAF:DAT-->DAT */ { int a; if ((x && G(out a)) ? (y || G(out a)) : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (124,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAF:DAF-->DAF */ { int a; if ((x && G(out a)) ? (y || G(out a)) : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (125,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DAF:DAF-->DAF */ { int a; if ((x && G(out a)) ? (y || G(out a)) : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (127,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DA :NDA-->NDA */ { int a; if ((x && G(out a)) ? G(out a)        : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (128,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DA :NDA-->NDA */ { int a; if ((x && G(out a)) ? G(out a)        : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (129,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DA :DAT-->DAT */ { int a; if ((x && G(out a)) ? G(out a)        : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (130,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DA :DAT-->DAT */ { int a; if ((x && G(out a)) ? G(out a)        : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (131,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DA :DAF-->DAF */ { int a; if ((x && G(out a)) ? G(out a)        : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (132,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAT?DA :DAF-->DAF */ { int a; if ((x && G(out a)) ? G(out a)        : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (134,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:NDA-->NDA */ { int a; if ((x || G(out a)) ? y               : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (135,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:NDA-->NDA */ { int a; if ((x || G(out a)) ? y               : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (136,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:DAT-->NDA */ { int a; if ((x || G(out a)) ? y               : (z && G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (137,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:DAT-->NDA */ { int a; if ((x || G(out a)) ? y               : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (138,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:DAF-->NDA */ { int a; if ((x || G(out a)) ? y               : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (139,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:DAF-->NDA */ { int a; if ((x || G(out a)) ? y               : (z || G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (140,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:DA -->NDA */ { int a; if ((x || G(out a)) ? y               : G(out a))        b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (141,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?NDA:DA -->NDA */ { int a; if ((x || G(out a)) ? y               : G(out a))        b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (142,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:NDA-->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : z)               b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (143,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:NDA-->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : z)               b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (144,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:DAT-->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : (z && G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (145,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:DAT-->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : (z && G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (146,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:DAF-->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : (z || G(out a))) b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (147,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:DAF-->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : (z || G(out a))) b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (148,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:DA -->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : G(out a))        b = a; else d = c; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (149,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAT:DA -->DAT */ { int a; if ((x || G(out a)) ? (y && G(out a)) : G(out a))        b = c; else d = a; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (150,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:NDA-->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : z)               b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (151,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:NDA-->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : z)               b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (152,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:DAT-->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : (z && G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (153,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:DAT-->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : (z && G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (154,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:DAF-->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : (z || G(out a))) b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (155,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:DAF-->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : (z || G(out a))) b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (156,95): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:DA -->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : G(out a))        b = a; else d = c; } // Error
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"),
-                // (157,107): error CS0165: Use of unassigned local variable 'a'
-                // /* DAF?DAF:DA -->DAF */ { int a; if ((x || G(out a)) ? (y || G(out a)) : G(out a))        b = c; else d = a; } // OK
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "a").WithArguments("a"));
+                f_28002_115113_140024(f_28002_115113_115138(source), f_28002_115373_115438(f_28002_115373_115419(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_115655_115720(f_28002_115655_115701(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_115937_116002(f_28002_115937_115983(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_116219_116284(f_28002_116219_116265(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_116523_116588(f_28002_116523_116569(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_116828_116893(f_28002_116828_116874(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_117132_117197(f_28002_117132_117178(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_117437_117502(f_28002_117437_117483(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_117741_117806(f_28002_117741_117787(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_118046_118111(f_28002_118046_118092(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_118350_118415(f_28002_118350_118396(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_118655_118720(f_28002_118655_118701(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_118959_119024(f_28002_118959_119005(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_119264_119329(f_28002_119264_119310(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_119565_119630(f_28002_119565_119611(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_119870_119935(f_28002_119870_119916(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_120174_120239(f_28002_120174_120220(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_120479_120544(f_28002_120479_120525(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_120780_120845(f_28002_120780_120826(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_121085_121150(f_28002_121085_121131(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_121389_121454(f_28002_121389_121435(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_121694_121759(f_28002_121694_121740(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_121998_122063(f_28002_121998_122044(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_122303_122368(f_28002_122303_122349(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_122607_122672(f_28002_122607_122653(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_122909_122974(f_28002_122909_122955(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_123213_123278(f_28002_123213_123259(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_123515_123580(f_28002_123515_123561(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_123819_123884(f_28002_123819_123865(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_124125_124190(f_28002_124125_124171(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_124427_124492(f_28002_124427_124473(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_124733_124798(f_28002_124733_124779(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_125038_125103(f_28002_125038_125084(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_125341_125406(f_28002_125341_125387(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_125646_125711(f_28002_125646_125692(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_125952_126017(f_28002_125952_125998(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_126254_126319(f_28002_126254_126300(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_126560_126625(f_28002_126560_126606(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_126865_126930(f_28002_126865_126911(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_127168_127233(f_28002_127168_127214(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_127473_127538(f_28002_127473_127519(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_127779_127844(f_28002_127779_127825(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_128081_128146(f_28002_128081_128127(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_128387_128452(f_28002_128387_128433(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_128692_128757(f_28002_128692_128738(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_128995_129060(f_28002_128995_129041(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_129300_129365(f_28002_129300_129346(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_129606_129671(f_28002_129606_129652(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_129908_129973(f_28002_129908_129954(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_130214_130279(f_28002_130214_130260(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_130519_130584(f_28002_130519_130565(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_130822_130887(f_28002_130822_130868(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_131127_131192(f_28002_131127_131173(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_131433_131498(f_28002_131433_131479(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_131735_131800(f_28002_131735_131781(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_132041_132106(f_28002_132041_132087(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_132346_132411(f_28002_132346_132392(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_132649_132714(f_28002_132649_132695(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_132954_133019(f_28002_132954_133000(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_133260_133325(f_28002_133260_133306(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_133565_133630(f_28002_133565_133611(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_133871_133936(f_28002_133871_133917(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_134176_134241(f_28002_134176_134222(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_134482_134547(f_28002_134482_134528(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_134788_134853(f_28002_134788_134834(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_135094_135159(f_28002_135094_135140(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_135396_135461(f_28002_135396_135442(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_135702_135767(f_28002_135702_135748(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_136004_136069(f_28002_136004_136050(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_136310_136375(f_28002_136310_136356(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_136612_136677(f_28002_136612_136658(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_136918_136983(f_28002_136918_136964(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_137220_137285(f_28002_137220_137266(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_137526_137591(f_28002_137526_137572(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_137831_137896(f_28002_137831_137877(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_138134_138199(f_28002_138134_138180(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_138439_138504(f_28002_138439_138485(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_138742_138807(f_28002_138742_138788(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_139047_139112(f_28002_139047_139093(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_139350_139415(f_28002_139350_139396(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_139655_139720(f_28002_139655_139701(ErrorCode.ERR_UseDefViolation, "a"), "a"), f_28002_139958_140023(f_28002_139958_140004(ErrorCode.ERR_UseDefViolation, "a"), "a"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 101600, 140036);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_115113_115138(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115113, 115138);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_115373_115419(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115373, 115419);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_115373_115438(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115373, 115438);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_115655_115701(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115655, 115701);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_115655_115720(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115655, 115720);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_115937_115983(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115937, 115983);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_115937_116002(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115937, 116002);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_116219_116265(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 116219, 116265);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_116219_116284(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 116219, 116284);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_116523_116569(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 116523, 116569);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_116523_116588(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 116523, 116588);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_116828_116874(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 116828, 116874);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_116828_116893(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 116828, 116893);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_117132_117178(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 117132, 117178);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_117132_117197(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 117132, 117197);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_117437_117483(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 117437, 117483);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_117437_117502(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 117437, 117502);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_117741_117787(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 117741, 117787);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_117741_117806(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 117741, 117806);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118046_118092(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118046, 118092);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118046_118111(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118046, 118111);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118350_118396(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118350, 118396);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118350_118415(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118350, 118415);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118655_118701(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118655, 118701);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118655_118720(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118655, 118720);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118959_119005(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118959, 119005);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_118959_119024(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 118959, 119024);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_119264_119310(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 119264, 119310);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_119264_119329(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 119264, 119329);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_119565_119611(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 119565, 119611);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_119565_119630(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 119565, 119630);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_119870_119916(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 119870, 119916);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_119870_119935(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 119870, 119935);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_120174_120220(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 120174, 120220);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_120174_120239(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 120174, 120239);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_120479_120525(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 120479, 120525);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_120479_120544(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 120479, 120544);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_120780_120826(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 120780, 120826);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_120780_120845(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 120780, 120845);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121085_121131(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121085, 121131);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121085_121150(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121085, 121150);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121389_121435(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121389, 121435);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121389_121454(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121389, 121454);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121694_121740(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121694, 121740);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121694_121759(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121694, 121759);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121998_122044(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121998, 122044);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_121998_122063(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 121998, 122063);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_122303_122349(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 122303, 122349);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_122303_122368(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 122303, 122368);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_122607_122653(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 122607, 122653);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_122607_122672(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 122607, 122672);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_122909_122955(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 122909, 122955);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_122909_122974(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 122909, 122974);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_123213_123259(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 123213, 123259);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_123213_123278(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 123213, 123278);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_123515_123561(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 123515, 123561);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_123515_123580(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 123515, 123580);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_123819_123865(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 123819, 123865);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_123819_123884(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 123819, 123884);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_124125_124171(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 124125, 124171);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_124125_124190(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 124125, 124190);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_124427_124473(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 124427, 124473);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_124427_124492(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 124427, 124492);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_124733_124779(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 124733, 124779);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_124733_124798(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 124733, 124798);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125038_125084(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125038, 125084);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125038_125103(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125038, 125103);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125341_125387(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125341, 125387);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125341_125406(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125341, 125406);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125646_125692(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125646, 125692);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125646_125711(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125646, 125711);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125952_125998(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125952, 125998);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_125952_126017(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 125952, 126017);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_126254_126300(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 126254, 126300);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_126254_126319(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 126254, 126319);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_126560_126606(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 126560, 126606);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_126560_126625(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 126560, 126625);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_126865_126911(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 126865, 126911);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_126865_126930(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 126865, 126930);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_127168_127214(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 127168, 127214);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_127168_127233(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 127168, 127233);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_127473_127519(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 127473, 127519);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_127473_127538(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 127473, 127538);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_127779_127825(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 127779, 127825);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_127779_127844(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 127779, 127844);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128081_128127(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128081, 128127);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128081_128146(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128081, 128146);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128387_128433(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128387, 128433);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128387_128452(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128387, 128452);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128692_128738(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128692, 128738);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128692_128757(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128692, 128757);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128995_129041(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128995, 129041);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_128995_129060(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 128995, 129060);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_129300_129346(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 129300, 129346);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_129300_129365(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 129300, 129365);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_129606_129652(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 129606, 129652);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_129606_129671(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 129606, 129671);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_129908_129954(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 129908, 129954);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_129908_129973(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 129908, 129973);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_130214_130260(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 130214, 130260);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_130214_130279(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 130214, 130279);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_130519_130565(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 130519, 130565);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_130519_130584(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 130519, 130584);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_130822_130868(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 130822, 130868);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_130822_130887(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 130822, 130887);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_131127_131173(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 131127, 131173);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_131127_131192(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 131127, 131192);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_131433_131479(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 131433, 131479);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_131433_131498(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 131433, 131498);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_131735_131781(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 131735, 131781);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_131735_131800(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 131735, 131800);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132041_132087(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132041, 132087);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132041_132106(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132041, 132106);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132346_132392(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132346, 132392);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132346_132411(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132346, 132411);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132649_132695(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132649, 132695);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132649_132714(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132649, 132714);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132954_133000(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132954, 133000);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_132954_133019(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 132954, 133019);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_133260_133306(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 133260, 133306);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_133260_133325(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 133260, 133325);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_133565_133611(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 133565, 133611);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_133565_133630(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 133565, 133630);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_133871_133917(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 133871, 133917);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_133871_133936(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 133871, 133936);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_134176_134222(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 134176, 134222);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_134176_134241(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 134176, 134241);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_134482_134528(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 134482, 134528);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_134482_134547(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 134482, 134547);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_134788_134834(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 134788, 134834);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_134788_134853(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 134788, 134853);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_135094_135140(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 135094, 135140);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_135094_135159(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 135094, 135159);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_135396_135442(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 135396, 135442);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_135396_135461(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 135396, 135461);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_135702_135748(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 135702, 135748);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_135702_135767(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 135702, 135767);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136004_136050(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136004, 136050);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136004_136069(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136004, 136069);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136310_136356(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136310, 136356);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136310_136375(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136310, 136375);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136612_136658(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136612, 136658);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136612_136677(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136612, 136677);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136918_136964(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136918, 136964);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_136918_136983(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 136918, 136983);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_137220_137266(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 137220, 137266);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_137220_137285(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 137220, 137285);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_137526_137572(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 137526, 137572);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_137526_137591(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 137526, 137591);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_137831_137877(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 137831, 137877);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_137831_137896(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 137831, 137896);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_138134_138180(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 138134, 138180);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_138134_138199(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 138134, 138199);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_138439_138485(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 138439, 138485);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_138439_138504(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 138439, 138504);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_138742_138788(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 138742, 138788);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_138742_138807(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 138742, 138807);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139047_139093(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139047, 139093);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139047_139112(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139047, 139112);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139350_139396(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139350, 139396);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139350_139415(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139350, 139415);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139655_139701(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139655, 139701);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139655_139720(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139655, 139720);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139958_140004(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139958, 140004);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_139958_140023(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 139958, 140023);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_115113_140024(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 115113, 140024);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 101600, 140036);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 101600, 140036);
+            }
         }
 
         [Fact, WorkItem(529603, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/529603")]
         public void IfConditionalAnd()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 140048, 140994);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 140201, 140610);
+
+                var
+                source = @"
 class C
 {
     static void Main(string[] args)
@@ -2095,19 +9003,78 @@ class C
         return true;
     }
 }
-";
-            // Bug#529603: Won't Fix (Native no error)
-            CreateCompilation(source).VerifyDiagnostics(
-                // (11,21): error CS0165: Use of unassigned local variable 'x'
-                //             int y = x; // x is definitely assigned if we reach this point
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "x").WithArguments("x"));
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 140680, 140983);
+
+                f_28002_140680_140982(f_28002_140680_140705(source), f_28002_140916_140981(f_28002_140916_140962(ErrorCode.ERR_UseDefViolation, "x"), "x"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 140048, 140994);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_140680_140705(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 140680, 140705);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_140916_140962(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 140916, 140962);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_140916_140981(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 140916, 140981);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_140680_140982(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 140680, 140982);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 140048, 140994);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 140048, 140994);
+            }
         }
 
         [WorkItem(545352, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/545352")]
         [Fact]
         public void UseDefViolationInDelegateInSwitchWithGoto()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 141006, 142108);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 141194, 141515);
+
+                var
+                source = @"
 public class C
 {
     public static void Main()
@@ -2123,21 +9090,88 @@ public class C
         }
     }
 }
-";
-            CreateCompilation(source).VerifyDiagnostics(
-                // (9,31): warning CS0162: Unreachable code detected
-                //                 System.Action a = delegate { int b; int c = b; }; // Error on b.
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "System"),
-                // (9,61): error CS0165: Use of unassigned local variable 'b'
-                //                 System.Action a = delegate { int b; int c = b; }; // Error on b.
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "b").WithArguments("b")
-                );
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 141529, 142097);
+
+                f_28002_141529_142096(f_28002_141529_141554(source), f_28002_141762_141813(ErrorCode.WRN_UnreachableCode, "System"), f_28002_142012_142077(f_28002_142012_142058(ErrorCode.ERR_UseDefViolation, "b"), "b"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 141006, 142108);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_141529_141554(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 141529, 141554);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_141762_141813(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 141762, 141813);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_142012_142058(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142012, 142058);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_142012_142077(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142012, 142077);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_141529_142096(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 141529, 142096);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 141006, 142108);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 141006, 142108);
+            }
         }
 
         [Fact]
         public void UseDefViolationInUnreachableDelegate()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 142120, 142918);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 142211, 142385);
+
+                var
+                source = @"
 class C
 {
     static void Main()
@@ -2148,21 +9182,88 @@ class C
         }
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 142401, 142907);
 
-            CreateCompilation(source).VerifyDiagnostics(
-                // (8,27): warning CS0162: Unreachable code detected
-                //             System.Action a = () => { int x; int y = x; };
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "System"),
-                // (8,54): error CS0165: Use of unassigned local variable 'x'
-                //             System.Action a = () => { int x; int y = x; };
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "x").WithArguments("x"));
+                f_28002_142401_142906(f_28002_142401_142426(source), f_28002_142612_142663(ErrorCode.WRN_UnreachableCode, "System"), f_28002_142840_142905(f_28002_142840_142886(ErrorCode.ERR_UseDefViolation, "x"), "x"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 142120, 142918);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_142401_142426(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142401, 142426);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_142612_142663(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142612, 142663);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_142840_142886(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142840, 142886);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_142840_142905(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142840, 142905);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_142401_142906(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 142401, 142906);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 142120, 142918);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 142120, 142918);
+            }
         }
 
         [Fact]
         public void UseDef_ExceptionFilters1()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 142930, 143270);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 143009, 143199);
+
+                var
+                source = @"
 class C
 {
     static void Main()
@@ -2175,14 +9276,55 @@ class C
         }
     }
 }
-";
-            CreateCompilation(source).VerifyDiagnostics();
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 143213, 143259);
+
+                f_28002_143213_143258(f_28002_143213_143238(source));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 142930, 143270);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_143213_143238(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143213, 143238);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_143213_143258(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143213, 143258);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 142930, 143270);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 142930, 143270);
+            }
         }
 
         [Fact]
         public void UseDef_ExceptionFilters2()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 143282, 143906);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 143361, 143577);
+
+                var
+                source = @"
 class C
 {
     static void Main()
@@ -2197,17 +9339,89 @@ class C
 
     static bool F() { return true; }
 }
-";
-            CreateCompilation(source).VerifyDiagnostics(
-                // (9,33): warning CS0168: The variable 'e' is declared but never used
-                //         catch (System.Exception e) when (true)
-                Diagnostic(ErrorCode.WRN_UnreferencedVar, "e").WithArguments("e").WithLocation(9, 33));
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 143591, 143895);
+
+                f_28002_143591_143894(f_28002_143591_143616(source), f_28002_143808_143893(f_28002_143808_143873(f_28002_143808_143854(ErrorCode.WRN_UnreferencedVar, "e"), "e"), 9, 33));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 143282, 143906);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_143591_143616(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143591, 143616);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_143808_143854(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143808, 143854);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_143808_143873(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143808, 143873);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_143808_143893(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143808, 143893);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_143591_143894(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 143591, 143894);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 143282, 143906);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 143282, 143906);
+            }
         }
 
         [Fact]
         public void UseDef_ExceptionFilters3()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 143918, 144323);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 143997, 144252);
+
+                var
+                source = @"
 using System;
 class C
 {
@@ -2224,14 +9438,55 @@ class C
         }
     }
 }
-";
-            CreateCompilation(source).VerifyDiagnostics();
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 144266, 144312);
+
+                f_28002_144266_144311(f_28002_144266_144291(source));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 143918, 144323);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_144266_144291(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 144266, 144291);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_144266_144311(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 144266, 144311);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 143918, 144323);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 143918, 144323);
+            }
         }
 
         [Fact]
         public void UseDef_ExceptionFilters4()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 144335, 144921);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 144414, 144625);
+
+                var
+                source = @"
 using System;
 class C
 {
@@ -2247,17 +9502,77 @@ class C
         }
     }
 }
-";
-            CreateCompilation(source).VerifyDiagnostics(
-                // (12,33): error CS0165: Use of unassigned local variable 'f'
-                //         catch (Exception e) when (f == e)
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "f").WithArguments("f"));
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 144639, 144910);
+
+                f_28002_144639_144909(f_28002_144639_144664(source), f_28002_144843_144908(f_28002_144843_144889(ErrorCode.ERR_UseDefViolation, "f"), "f"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 144335, 144921);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_144639_144664(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 144639, 144664);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_144843_144889(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 144843, 144889);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_144843_144908(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 144843, 144908);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_144639_144909(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 144639, 144909);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 144335, 144921);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 144335, 144921);
+            }
         }
 
         [Fact]
         public void UseDef_ExceptionFilters5()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 144933, 145687);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 145012, 145297);
+
+                var
+                source = @"
 using System;
 class C
 {
@@ -2276,18 +9591,77 @@ class C
         }
     }
 }
-";
-            // TODO (tomat): f is always gonna be assigned in subsequent filter expressions.
-            CreateCompilation(source).VerifyDiagnostics(
-                // (15,33): error CS0165: Use of unassigned local variable 'f'
-                //         catch (Exception e) when (f == e)
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "f").WithArguments("f"));
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 145405, 145676);
+
+                f_28002_145405_145675(f_28002_145405_145430(source), f_28002_145609_145674(f_28002_145609_145655(ErrorCode.ERR_UseDefViolation, "f"), "f"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 144933, 145687);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_145405_145430(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 145405, 145430);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_145609_145655(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 145609, 145655);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_145609_145674(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 145609, 145674);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_145405_145675(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 145405, 145675);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 144933, 145687);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 144933, 145687);
+            }
         }
 
         [Fact]
         public void UseDef_ExceptionFilters6()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 145699, 146359);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 145778, 146071);
+
+                var
+                source = @"
 using System;
 class C
 {
@@ -2305,17 +9679,77 @@ class C
         }
     }
 }
-";
-            CreateCompilation(source).VerifyDiagnostics(
-                // (15,31): error CS0165: Use of unassigned local variable 'g'
-                //             Console.WriteLine(g);
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "g").WithArguments("g"));
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 146085, 146348);
+
+                f_28002_146085_146347(f_28002_146085_146110(source), f_28002_146281_146346(f_28002_146281_146327(ErrorCode.ERR_UseDefViolation, "g"), "g"));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 145699, 146359);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_146085_146110(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146085, 146110);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_146281_146327(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146281, 146327);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_146281_146346(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146281, 146346);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_146085_146347(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146085, 146347);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 145699, 146359);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 145699, 146359);
+            }
         }
 
         [Fact]
         public void UseDef_CondAccess()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 146371, 147005);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 146443, 146709);
+
+                var
+                source = @"
 class C
 {
     C M1(out C arg)
@@ -2334,18 +9768,89 @@ class C
         System.Console.WriteLine(o);
     }
 }
-";
-            CreateCompilationWithMscorlib45(source).VerifyDiagnostics(
-    // (17,34): error CS0165: Use of unassigned local variable 'o'
-    //         System.Console.WriteLine(o);
-    Diagnostic(ErrorCode.ERR_UseDefViolation, "o").WithArguments("o").WithLocation(17, 34)
-    );
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 146723, 146994);
+
+                f_28002_146723_146993(f_28002_146723_146762(source), f_28002_146900_146986(f_28002_146900_146965(f_28002_146900_146946(ErrorCode.ERR_UseDefViolation, "o"), "o"), 17, 34));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 146371, 147005);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_146723_146762(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146723, 146762);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_146900_146946(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146900, 146946);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_146900_146965(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146900, 146965);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_146900_146986(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146900, 146986);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_146723_146993(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 146723, 146993);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 146371, 147005);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 146371, 147005);
+            }
         }
 
         [Fact]
         public void UseDef_CondAccess01()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 147017, 147667);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 147091, 147371);
+
+                var
+                source = @"
 class C
 {
     C M1(out C arg)
@@ -2364,18 +9869,89 @@ class C
         System.Console.WriteLine(o);
     }
 }
-";
-            CreateCompilationWithMscorlib45(source).VerifyDiagnostics(
-    // (17,34): error CS0165: Use of unassigned local variable 'o'
-    //         System.Console.WriteLine(o);
-    Diagnostic(ErrorCode.ERR_UseDefViolation, "o").WithArguments("o").WithLocation(17, 34)
-    );
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 147385, 147656);
+
+                f_28002_147385_147655(f_28002_147385_147424(source), f_28002_147562_147648(f_28002_147562_147627(f_28002_147562_147608(ErrorCode.ERR_UseDefViolation, "o"), "o"), 17, 34));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 147017, 147667);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_147385_147424(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 147385, 147424);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_147562_147608(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 147562, 147608);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_147562_147627(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 147562, 147627);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_147562_147648(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 147562, 147648);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_147385_147655(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 147385, 147655);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 147017, 147667);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 147017, 147667);
+            }
         }
 
         [Fact]
         public void UseDef_CondAccess02()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 147679, 148128);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 147753, 148043);
+
+                var
+                source = @"
 class C
 {
     C M1(out C arg)
@@ -2397,14 +9973,55 @@ class C
         var v = d ?. M1(out o) ?. M2(o);
     }
 }
-";
-            CreateCompilationWithMscorlib45(source).VerifyDiagnostics();
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 148057, 148117);
+
+                f_28002_148057_148116(f_28002_148057_148096(source));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 147679, 148128);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_148057_148096(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 148057, 148096);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_148057_148116(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 148057, 148116);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 147679, 148128);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 147679, 148128);
+            }
         }
 
         [Fact]
         public void UseDef_CondAccess03()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 148140, 148605);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 148214, 148514);
+
+                var
+                source = @"
 class C
 {
     C M1(out C arg)
@@ -2426,16 +10043,56 @@ class C
         var v = d.M1(out o) ?. M1(out o) ?. M2(o);
     }
 }
-";
-            CreateCompilationWithMscorlib45(source).VerifyDiagnostics(
-    );
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 148528, 148594);
+
+                f_28002_148528_148593(f_28002_148528_148567(source));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 148140, 148605);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_148528_148567(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 148528, 148567);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_148528_148593(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 148528, 148593);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 148140, 148605);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 148140, 148605);
+            }
         }
 
         [Fact, WorkItem(14651, "https://github.com/dotnet/roslyn/issues/14651")]
         public void IrrefutablePattern_1()
         {
-            var source =
-@"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 148617, 149180);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 148758, 149095);
+
+                var
+                source =
+                @"using System;
 class C
 {
     void TestFunc(int i)
@@ -2453,16 +10110,56 @@ class C
         Console.WriteLine(j);
     }
 }
-";
-            CreateCompilationWithMscorlib45(source).VerifyDiagnostics();
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149109, 149169);
+
+                f_28002_149109_149168(f_28002_149109_149148(source));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 148617, 149180);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_149109_149148(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 149109, 149148);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_149109_149168(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 149109, 149168);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 148617, 149180);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 148617, 149180);
+            }
         }
 
-        // DataFlowPass.VisitConversion with IsConditionalState.
         [Fact]
         public void OutVarConversion()
         {
-            var source =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 149258, 149648);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149329, 149547);
+
+                var
+                source =
+                @"class C
 {
     static object F(bool b)
     {
@@ -2473,53 +10170,216 @@ class C
         o = null;
         return true;
     }
-}";
-            var comp = CreateCompilation(source);
-            comp.VerifyDiagnostics();
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149561, 149598);
+
+                var
+                comp = f_28002_149572_149597(source)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149612, 149637);
+
+                f_28002_149612_149636(comp);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 149258, 149648);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_149572_149597(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 149572, 149597);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_149612_149636(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 149612, 149636);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 149258, 149648);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 149258, 149648);
+            }
         }
 
-        // DataFlowPass.VisitConversion with IsConditionalState.
         [Fact]
         public void IsPatternConversion()
         {
-            var source =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 149726, 150023);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149800, 149922);
+
+                var
+                source =
+                @"class C
 {
     static object F(object o)
     {
         return ((bool)(o is C c)) ? c: null;
     }
-}";
-            var comp = CreateCompilation(source);
-            comp.VerifyDiagnostics();
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149936, 149973);
+
+                var
+                comp = f_28002_149947_149972(source)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 149987, 150012);
+
+                f_28002_149987_150011(comp);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 149726, 150023);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_149947_149972(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 149947, 149972);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_149987_150011(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 149987, 150011);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 149726, 150023);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 149726, 150023);
+            }
         }
 
-        // DataFlowPass.VisitConversion with IsConditionalState.
         [Fact]
         public void IsPatternBadValueConversion()
         {
-            // C#7.0 does not support this particular pattern so the pattern
-            // expression is bound as a BadExpression with a conversion.
-            var source =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 150101, 150987);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 150335, 150462);
+
+                var
+                source =
+                @"class C
 {
     static T F<T>(System.ValueType o)
     {
         return o is T t ? t : default(T);
     }
-}";
-            var comp = CreateCompilation(source, parseOptions: TestOptions.Regular7);
-            comp.VerifyDiagnostics(
-                // (5,21): error CS8314: An expression of type 'ValueType' cannot be handled by a pattern of type 'T' in C# 7. Please use language version 7.1 or greater.
-                //         return o is T t ? t : default(T);
-                Diagnostic(ErrorCode.ERR_PatternWrongGenericTypeInVersion, "T").WithArguments("System.ValueType", "T", "7.0", "7.1").WithLocation(5, 21));
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 150476, 150549);
+
+                var
+                comp = f_28002_150487_150548(source, parseOptions: TestOptions.Regular7)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 150563, 150976);
+
+                f_28002_150563_150975(comp, f_28002_150838_150974(f_28002_150838_150954(f_28002_150838_150901(ErrorCode.ERR_PatternWrongGenericTypeInVersion, "T"), "System.ValueType", "T", "7.0", "7.1"), 5, 21));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 150101, 150987);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_150487_150548(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, parseOptions: parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 150487, 150548);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_150838_150901(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 150838, 150901);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_150838_150954(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 150838, 150954);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_150838_150974(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 150838, 150974);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_150563_150975(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 150563, 150975);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 150101, 150987);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 150101, 150987);
+            }
         }
 
         [Fact, WorkItem(19831, "https://github.com/dotnet/roslyn/issues/19831")]
         public void AssignedInFinallyUsedInTry()
         {
-            var source =
-@"  
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(28002, 150999, 152119);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 151146, 151774);
+
+                var
+                source =
+                @"  
     public class Program
     {
         static void Main(string[] args)
@@ -2554,12 +10414,98 @@ class C
             }
         }
     }
-";
-            CreateCompilationWithMscorlib45(source).VerifyDiagnostics(
-                // (28,17): error CS0165: Use of unassigned local variable 'obj'
-                //                 obj.ToString();
-                Diagnostic(ErrorCode.ERR_UseDefViolation, "obj").WithArguments("obj").WithLocation(28, 17)
-                );
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 151788, 152108);
+
+                f_28002_151788_152107(f_28002_151788_151827(source), f_28002_151998_152088(f_28002_151998_152067(f_28002_151998_152046(ErrorCode.ERR_UseDefViolation, "obj"), "obj"), 28, 17));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(28002, 150999, 152119);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_151788_151827(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 151788, 151827);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_151998_152046(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 151998, 152046);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_151998_152067(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 151998, 152067);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_28002_151998_152088(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 151998, 152088);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_28002_151788_152107(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(28002, 151788, 152107);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(28002, 150999, 152119);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 150999, 152119);
+            }
         }
+
+        public FlowTests()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(28002, 568, 152126);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(28002, 568, 152126);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 568, 152126);
+        }
+
+
+        static FlowTests()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(28002, 568, 152126);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 645, 3491);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(28002, 3525, 3540);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(28002, 568, 152126);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(28002, 568, 152126);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(28002, 568, 152126);
     }
 }

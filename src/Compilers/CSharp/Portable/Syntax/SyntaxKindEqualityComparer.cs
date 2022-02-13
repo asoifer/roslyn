@@ -12,22 +12,68 @@ namespace Microsoft.CodeAnalysis.CSharp
         {
             public bool Equals(SyntaxKind x, SyntaxKind y)
             {
-                return x == y;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10081, 453, 561);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10081, 532, 546);
+
+                    return x == y;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10081, 453, 561);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10081, 453, 561);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10081, 453, 561);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             public int GetHashCode(SyntaxKind obj)
             {
-                return (int)obj;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10081, 577, 679);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10081, 648, 664);
+
+                    return (int)obj;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10081, 577, 679);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10081, 577, 679);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10081, 577, 679);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
+
+            public SyntaxKindEqualityComparer()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10081, 349, 690);
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10081, 349, 690);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10081, 349, 690);
+            }
+
+
+            static SyntaxKindEqualityComparer()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10081, 349, 690);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10081, 349, 690);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10081, 349, 690);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10081, 349, 690);
         }
 
-        /// <summary>
-        /// A custom equality comparer for <see cref="SyntaxKind"/>
-        /// </summary>
-        /// <remarks>
-        /// PERF: The framework specializes EqualityComparer for enums, but only if the underlying type is System.Int32
-        /// Since SyntaxKind's underlying type is System.UInt16, ObjectEqualityComparer will be chosen instead.
-        /// </remarks>
-        public static IEqualityComparer<SyntaxKind> EqualityComparer { get; } = new SyntaxKindEqualityComparer();
+        public static IEqualityComparer<SyntaxKind> EqualityComparer { get; }
     }
 }

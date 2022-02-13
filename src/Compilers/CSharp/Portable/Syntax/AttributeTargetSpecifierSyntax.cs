@@ -12,7 +12,34 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
     {
         internal AttributeLocation GetAttributeLocation()
         {
-            return this.Identifier.ToAttributeLocation();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10740, 486, 616);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10740, 560, 605);
+
+                return this.Identifier.ToAttributeLocation();
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10740, 486, 616);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10740, 486, 616);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10740, 486, 616);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static AttributeTargetSpecifierSyntax()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10740, 392, 623);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10740, 392, 623);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10740, 392, 623);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10740, 392, 623);
     }
 }

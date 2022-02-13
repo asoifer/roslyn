@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,8 +11,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         Void = InternalErrorCode.Void,
         Unknown = InternalErrorCode.Unknown,
 
-        #region diagnostics introduced in C# 4 and earlier
-        //FTL_InternalError = 1,
+                //FTL_InternalError = 1,
         //FTL_FailedToLoadResource = 2,
         //FTL_NoMemory = 3,
         //ERR_WarningAsError = 4,
@@ -1096,12 +1095,10 @@ namespace Microsoft.CodeAnalysis.CSharp
         WRN_CLS_VolatileField = 3026,
         WRN_CLS_BadInterface = 3027,
         FTL_BadChecksumAlgorithm = 3028,
-        #endregion diagnostics introduced in C# 4 and earlier
-
+        
         // unused 3029-3999
 
-        #region diagnostics introduced in C# 5
-        // 4000 unused
+                // 4000 unused
         ERR_BadAwaitArgIntrinsic = 4001,
         // 4002 unused
         ERR_BadAwaitAsIdentifier = 4003,
@@ -1138,12 +1135,10 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_BadAwaitWithoutAsyncLambda = 4034,
         // ERR_BadAwaitWithoutAsyncAnonMeth = 4035,         Merged with ERR_BadAwaitWithoutAsyncLambda in Roslyn
         ERR_NoSuchMemberOrExtensionNeedUsing = 4036,
-        #endregion diagnostics introduced in C# 5
-
+        
         // unused 4037-4999
 
-        #region diagnostics introduced in C# 6
-        // WRN_UnknownOption = 5000,   //unused in Roslyn
+                // WRN_UnknownOption = 5000,   //unused in Roslyn
         ERR_NoEntryPoint = 5001,
 
         // huge gap here; available 5002-6999
@@ -1247,12 +1242,10 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_EncReferenceToAddedMember = 7101,
         ERR_MutuallyExclusiveOptions = 7102,
         ERR_InvalidDebugInfo = 7103,
-        #endregion diagnostics introduced in C# 6
-
+        
         // unused 7104-8000
 
-        #region more diagnostics introduced in Roslyn (C# 6)
-        WRN_UnimplementedCommandLineSwitch = 8001,
+                WRN_UnimplementedCommandLineSwitch = 8001,
         WRN_ReferencedAssemblyDoesNotHaveStrongName = 8002,
         ERR_InvalidSignaturePublicKey = 8003,
         ERR_ExportedTypeConflictsWithDeclaration = 8004,
@@ -1338,43 +1331,33 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_PublicSignButNoKey = 8102,
         ERR_TooManyUserStrings = 8103,
         ERR_PeWritingFailure = 8104,
-        #endregion diagnostics introduced in Roslyn (C# 6)
-
-        #region diagnostics introduced in C# 6 updates
-        WRN_AttributeIgnoredWhenPublicSigning = 8105,
+        
+                WRN_AttributeIgnoredWhenPublicSigning = 8105,
         ERR_OptionMustBeAbsolutePath = 8106,
-        #endregion diagnostics introduced in C# 6 updates
-
+        
         ERR_FeatureNotAvailableInVersion7 = 8107,
 
-        #region diagnostics for local functions introduced in C# 7
-        ERR_DynamicLocalFunctionParamsParameter = 8108,
+                ERR_DynamicLocalFunctionParamsParameter = 8108,
         ERR_ExpressionTreeContainsLocalFunction = 8110,
-        #endregion diagnostics for local functions introduced in C# 7
-
-        #region diagnostics for instrumentation
-
+        
+        
         ERR_InvalidInstrumentationKind = 8111,
 
-        #endregion
-
+        
         ERR_LocalFunctionMissingBody = 8112,
         ERR_InvalidHashAlgorithmName = 8113,
 
         // Unused 8113, 8114, 8115
 
-        #region diagnostics for pattern-matching introduced in C# 7
-        ERR_ThrowMisplaced = 8115,
+                ERR_ThrowMisplaced = 8115,
         ERR_PatternNullableType = 8116,
         ERR_BadPatternExpression = 8117,
         ERR_SwitchExpressionValueExpected = 8119,
         ERR_SwitchCaseSubsumed = 8120,
         ERR_PatternWrongType = 8121,
         ERR_ExpressionTreeContainsIsMatch = 8122,
-        #endregion diagnostics for pattern-matching introduced in C# 7
-
-        #region tuple diagnostics introduced in C# 7
-        WRN_TupleLiteralNameMismatch = 8123,
+        
+                WRN_TupleLiteralNameMismatch = 8123,
         ERR_TupleTooFewElements = 8124,
         ERR_TupleReservedElementName = 8125,
         ERR_TupleReservedElementNameAnyPosition = 8126,
@@ -1396,10 +1379,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_PartialMethodInconsistentTupleNames = 8142,
         ERR_ExpressionTreeContainsTupleLiteral = 8143,
         ERR_ExpressionTreeContainsTupleConversion = 8144,
-        #endregion tuple diagnostics introduced in C# 7
-
-        #region diagnostics for ref locals and ref returns introduced in C# 7
-        ERR_AutoPropertyCannotBeRefReturning = 8145,
+        
+                ERR_AutoPropertyCannotBeRefReturning = 8145,
         ERR_RefPropertyMustHaveGetAccessor = 8146,
         ERR_RefPropertyCannotHaveSetAccessor = 8147,
         ERR_CantChangeRefReturnOnOverride = 8148,
@@ -1433,10 +1414,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_BadIteratorLocalType = 8176,
         ERR_BadAsyncLocalType = 8177,
         ERR_RefReturningCallAndAwait = 8178,
-        #endregion diagnostics for ref locals and ref returns introduced in C# 7
-
-        #region stragglers for C# 7
-        ERR_PredefinedValueTupleTypeNotFound = 8179, // We need a specific error code for ValueTuple as an IDE codefix depends on it (AddNuget)
+        
+                ERR_PredefinedValueTupleTypeNotFound = 8179, // We need a specific error code for ValueTuple as an IDE codefix depends on it (AddNuget)
         ERR_SemiOrLBraceOrArrowExpected = 8180,
         ERR_NewWithTupleTypeSyntax = 8181,
         ERR_PredefinedValueTupleTypeMustBeStruct = 8182,
@@ -1447,24 +1426,18 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_TupleElementNamesInDeconstruction = 8187,
         ERR_ExpressionTreeContainsThrowExpression = 8188,
         ERR_DelegateRefMismatch = 8189,
-        #endregion stragglers for C# 7
-
-        #region diagnostics for parse options
-        ERR_BadSourceCodeKind = 8190,
+        
+                ERR_BadSourceCodeKind = 8190,
         ERR_BadDocumentationMode = 8191,
         ERR_BadLanguageVersion = 8192,
-        #endregion
-
+        
         // Unused 8193-8195
 
-        #region diagnostics for out var
-        ERR_ImplicitlyTypedOutVariableUsedInTheSameArgumentList = 8196,
+                ERR_ImplicitlyTypedOutVariableUsedInTheSameArgumentList = 8196,
         ERR_TypeInferenceFailedForImplicitlyTypedOutVariable = 8197,
         ERR_ExpressionTreeContainsOutVariable = 8198,
-        #endregion diagnostics for out var
-
-        #region more stragglers for C# 7
-        ERR_VarInvocationLvalueReserved = 8199,
+        
+                ERR_VarInvocationLvalueReserved = 8199,
         //ERR_ExpressionVariableInConstructorOrFieldInitializer = 8200,
         //ERR_ExpressionVariableInQueryClause = 8201,
         ERR_PublicSignNetModule = 8202,
@@ -1476,10 +1449,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_PatternDynamicType = 8208,
         ERR_VoidAssignment = 8209,
         ERR_VoidInTuple = 8210,
-        #endregion more stragglers for C# 7
-
-        #region diagnostics introduced for C# 7.1
-
+        
+        
         ERR_Merge_conflict_marker_encountered = 8300,
         ERR_InvalidPreprocessingSymbol = 8301,
         ERR_FeatureNotAvailableInVersion7_1 = 8302,
@@ -1498,18 +1469,14 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_PatternWrongGenericTypeInVersion = 8314,
         ERR_AmbigBinaryOpsOnDefault = 8315,
 
-        #endregion diagnostics introduced for C# 7.1
-
-        #region diagnostics introduced for C# 7.2
-        ERR_FeatureNotAvailableInVersion7_2 = 8320,
+        
+                ERR_FeatureNotAvailableInVersion7_2 = 8320,
         WRN_UnreferencedLocalFunction = 8321,
         ERR_DynamicLocalFunctionTypeParameter = 8322,
         ERR_BadNonTrailingNamedArgument = 8323,
         ERR_NamedArgumentSpecificationBeforeFixedArgumentInDynamicInvocation = 8324,
-        #endregion diagnostics introduced for C# 7.2
-
-        #region diagnostics introduced for `ref readonly`, `ref conditional` and `ref-like` features in C# 7.2
-        ERR_RefConditionalAndAwait = 8325,
+        
+                ERR_RefConditionalAndAwait = 8325,
         ERR_RefConditionalNeedsTwoRefs = 8326,
         ERR_RefConditionalDifferentTypes = 8327,
         ERR_BadParameterModifiers = 8328,
@@ -1543,23 +1510,19 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_EscapeStackAlloc = 8353,
         ERR_RefReturnThis = 8354,
         ERR_OutAttrOnInParam = 8355,
-        #endregion diagnostics introduced for `ref readonly`, `ref conditional` and `ref-like` features in C# 7.2
-
+        
         ERR_PredefinedValueTupleTypeAmbiguous3 = 8356,
         ERR_InvalidVersionFormatDeterministic = 8357,
         ERR_AttributeCtorInParameter = 8358,
 
-        #region diagnostics for FilterIsConstant warning message fix
-        WRN_FilterIsConstantFalse = 8359,
+                WRN_FilterIsConstantFalse = 8359,
         WRN_FilterIsConstantFalseRedundantTryCatch = 8360,
-        #endregion diagnostics for FilterIsConstant warning message fix
-
+        
         ERR_ConditionalInInterpolation = 8361,
         ERR_CantUseVoidInArglist = 8362,
         ERR_InDynamicMethodArg = 8364,
 
-        #region diagnostics introduced for C# 7.3
-        ERR_FeatureNotAvailableInVersion7_3 = 8370,
+                ERR_FeatureNotAvailableInVersion7_3 = 8370,
         WRN_AttributesOnBackingFieldsNotAvailable = 8371,
         ERR_DoNotUseFixedBufferAttrOnProperty = 8372,
         ERR_RefLocalOrParamExpected = 8373,
@@ -1579,14 +1542,12 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_TupleSizesMismatchForBinOps = 8384,
         ERR_ExprCannotBeFixed = 8385,
         ERR_InvalidObjectCreation = 8386,
-        #endregion diagnostics introduced for C# 7.3
-
+        
         WRN_TypeParameterSameAsOuterMethodTypeParameter = 8387,
         ERR_OutVariableCannotBeByRef = 8388,
         ERR_OmittedTypeArgument = 8389,
 
-        #region diagnostics introduced for C# 8.0
-        ERR_FeatureNotAvailableInVersion8 = 8400,
+                ERR_FeatureNotAvailableInVersion8 = 8400,
         ERR_AltInterpolatedVerbatimStringsNotAvailable = 8401,
         // Unused 8402
         ERR_IteratorMustBeAsync = 8403,
@@ -1613,8 +1574,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_ImplicitRangeIndexerWithName = 8429,
         // available range
 
-        #region diagnostics introduced for recursive patterns
-        ERR_WrongNumberOfSubpatterns = 8502,
+                ERR_WrongNumberOfSubpatterns = 8502,
         ERR_PropertyPatternNameMissing = 8503,
         ERR_MissingPattern = 8504,
         ERR_DefaultPattern = 8505,
@@ -1638,8 +1598,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_DiscardPatternInSwitchStatement = 8523,
         WRN_SwitchExpressionNotExhaustiveWithUnnamedEnumValue = 8524,
         // available 8525-8596
-        #endregion diagnostics introduced for recursive patterns
-
+        
         WRN_ThrowPossibleNull = 8597,
         ERR_IllegalSuppression = 8598,
         // available 8599,
@@ -1741,10 +1700,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
         ERR_ReAbstractionInNoPIAType = 8750,
 
-        #endregion diagnostics introduced for C# 8.0
-
-        #region diagnostics introduced in C# 9.0
-
+        
+        
         ERR_InternalError = 8751,
 
         ERR_ImplicitObjectCreationIllegalTargetType = 8752,
@@ -1930,8 +1887,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         ERR_RecordAmbigCtor = 8910,
         ERR_FunctionPointerTypesInAttributeNotSupported = 8911,
 
-        #endregion diagnostics introduced for C# 9.0
-
+        
         // Note: you will need to re-generate compiler code after adding warnings (eng\generate-compiler-code.cmd)
     }
 }

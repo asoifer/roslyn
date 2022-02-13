@@ -53,7 +53,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             return walker._builder.ToString();
         }
 
-        public static void Verify(string expectedOperationTree, string actualOperationTree)
+        public static bool Verify(string expectedOperationTree, string actualOperationTree)
         {
             char[] newLineChars = Environment.NewLine.ToCharArray();
             string actual = actualOperationTree.Trim(newLineChars);
@@ -62,7 +62,7 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
             expectedOperationTree = expectedOperationTree.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
             expectedOperationTree = expectedOperationTree.Replace("\"", "\"\"");
 
-            AssertEx.AssertEqualToleratingWhitespaceDifferences(expectedOperationTree, actual);
+            return AssertEx.AssertEqualToleratingWhitespaceDifferences(expectedOperationTree, actual);
         }
 
         #region Logging helpers

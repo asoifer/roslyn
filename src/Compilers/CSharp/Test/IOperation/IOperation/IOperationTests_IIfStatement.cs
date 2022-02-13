@@ -18,7 +18,13 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementSimpleIf()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 554, 2401);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 748, 947);
+
+                string
+                source = @"
 class P
 {
     private void M()
@@ -30,8 +36,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 961, 1873);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -46,21 +56,48 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
               ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0219: The variable 'condition' is assigned but its value is never used
-                //         bool condition = false;
-                Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "condition").WithArguments("condition").WithLocation(6, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 1887, 2226);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_2105_2210(f_22038_2105_2190(f_22038_2105_2163(ErrorCode.WRN_UnreferencedVarAssg, "condition"), "condition"), 6, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 2242, 2365);
+
+                var
+                ok = f_22038_2251_2364(source, expectedOperationTree, expectedDiagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 2379, 2390);
+
+                var
+                x = ok
+                ;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 554, 2401);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 554, 2401);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 554, 2401);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementSimpleIfWithElse()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 2413, 5121);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 2615, 2882);
+
+                string
+                source = @"
 class P
 {
     private void M()
@@ -76,8 +113,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 2896, 4430);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -99,24 +140,42 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
               ILocalReferenceOperation: condition (OperationKind.LocalReference, Type: System.Boolean) (Syntax: 'condition')
             Right: 
               ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: False) (Syntax: 'false')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0162: Unreachable code detected
-                //             condition = false;
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "condition").WithLocation(13, 13),
-                // CS0219: The variable 'condition' is assigned but its value is never used
-                //         bool condition = false;
-                Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "condition").WithArguments("condition").WithLocation(6, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 4444, 4982);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_4622_4697(f_22038_4622_4676(ErrorCode.WRN_UnreachableCode, "condition"), 13, 13),
+f_22038_4861_4966(f_22038_4861_4946(f_22038_4861_4919(ErrorCode.WRN_UnreferencedVarAssg, "condition"), "condition"), 6, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 4998, 5110);
+
+                f_22038_4998_5109(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 2413, 5121);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 2413, 5121);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 2413, 5121);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementSimpleIfWithConditionEvaluationTrue()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 5133, 7232);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 5354, 5557);
+
+                string
+                source = @"
 class P
 {
     private void M()
@@ -129,8 +188,12 @@ class P
 
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 5571, 6738);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (1 == 1) ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.Binary, Type: System.Boolean, Constant: True) (Syntax: '1 == 1')
@@ -149,22 +212,42 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (1 ==
               ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0219: The variable 'condition' is assigned but its value is never used
-                //         bool condition = false;
-                Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "condition").WithArguments("condition").WithLocation(6, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 6752, 7091);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_6970_7075(f_22038_6970_7055(f_22038_6970_7028(ErrorCode.WRN_UnreferencedVarAssg, "condition"), "condition"), 6, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 7107, 7219);
 
+                f_22038_7107_7218(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 5133, 7232);
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 5133, 7232);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 5133, 7232);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementSimpleIfNested1()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 7244, 11233);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 7445, 7776);
+
+                string
+                source = @"
 using System;
 class P
 {
@@ -184,8 +267,12 @@ class P
 
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 7790, 11027);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (m > 10) ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.GreaterThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'm > 10')
@@ -227,17 +314,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (m > 
                   ILocalReferenceOperation: n (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'n')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 11041, 11094);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 11110, 11222);
+
+                f_22038_11110_11221(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 7244, 11233);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 7244, 11233);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 7244, 11233);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementSimpleIfNested2()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 11245, 15268);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 11446, 11797);
+
+                string
+                source = @"
 using System;
 class P
 {
@@ -256,8 +366,12 @@ class P
             }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 11811, 15062);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (m > 10) ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.GreaterThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'm > 10')
@@ -299,17 +413,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (m > 
                       OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 15076, 15129);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 15145, 15257);
+
+                f_22038_15145_15256(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 11245, 15268);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 11245, 15268);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 11245, 15268);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithMultipleCondition()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 15280, 18245);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 15487, 15772);
+
+                string
+                source = @"
 using System;
 class P
 {
@@ -324,8 +461,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 15786, 18039);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (m >= n  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.ConditionalAnd) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'm >= n && m >= p')
@@ -355,17 +496,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (m >=
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 18053, 18106);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 18122, 18234);
+
+                f_22038_18122_18233(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 15280, 18245);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 15280, 18245);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 15280, 18245);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithElseIfCondition()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 18257, 23524);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 18462, 18875);
+
+                string
+                source = @"
 using System;
 class P
 {
@@ -388,8 +552,12 @@ class P
 
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 18889, 23318);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (n > 20) ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.GreaterThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'n > 20')
@@ -441,17 +609,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (n > 
                       ILiteralOperation (OperationKind.Literal, Type: System.String, Constant: ""Result3"") (Syntax: '""Result3""')
                       InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                       OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 23332, 23385);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 23401, 23513);
+
+                f_22038_23401_23512(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 18257, 23524);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 18257, 23524);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 18257, 23524);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithElseIfConditionOutVar()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 23536, 30821);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 23747, 24039);
+
+                string
+                source = @"
 class P
 {
     private void M()
@@ -463,8 +654,12 @@ class P
             System.Console.WriteLine($""i ={i}, s ={s}"");/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 24053, 30615);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (int.Try ... , s ={s}"");')
   Condition: 
     IInvocationOperation (System.Boolean System.Int32.TryParse(System.String s, out System.Int32 result)) (OperationKind.Invocation, Type: System.Boolean) (Syntax: 'int.TryPars ...  out var i)')
@@ -544,17 +739,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (int.
                           null
                 InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                 OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 30629, 30682);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 30698, 30810);
+
+                f_22038_30698_30809(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 23536, 30821);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 23536, 30821);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 23536, 30821);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithOutVar()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 30833, 33106);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 31029, 31392);
+
+                string
+                source = @"
 class P
 {
     private void M()
@@ -576,8 +794,12 @@ class P
         }
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 31406, 32900);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... eLine(A());')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -597,17 +819,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
                 OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 32914, 32967);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 32983, 33095);
+
+                f_22038_32983_33094(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 30833, 33106);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 30833, 33106);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 30833, 33106);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementExplicitEmbeddedOutVar()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 33118, 37016);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 33326, 33670);
+
+                string
+                source = @"
 class P
 {
     private void M()
@@ -626,8 +871,12 @@ class P
         }
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 33684, 36810);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -658,17 +907,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 36824, 36877);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 36893, 37005);
+
+                f_22038_36893_37004(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 33118, 37016);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 33118, 37016);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 33118, 37016);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementImplicitEmbeddedOutVar()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 37028, 40216);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 37236, 37596);
+
+                string
+                source = @"
 class Program
 {
     static void Main(string[] args)
@@ -686,8 +958,12 @@ class Program
         }
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 37610, 40010);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ...  int i, 1);')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -714,17 +990,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 40024, 40077);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 40093, 40205);
+
+                f_22038_40093_40204(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 37028, 40216);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 37028, 40216);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 37028, 40216);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithConditionPattern()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 40228, 42603);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 40434, 40673);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -739,8 +1038,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 40687, 42397);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (obj is  ... }')
   Condition: 
     IIsPatternOperation (OperationKind.IsPattern, Type: System.Boolean) (Syntax: 'obj is string str')
@@ -762,17 +1065,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (obj 
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 42411, 42464);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 42480, 42592);
+
+                f_22038_42480_42591(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 40228, 42603);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 40228, 42603);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 40228, 42603);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithPattern()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 42615, 44878);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 42812, 43142);
+
+                string
+                source = @"
 class Program
 {
     static void Main(string[] args)
@@ -788,8 +1114,12 @@ class Program
         System.Console.WriteLine(new string('*', i));
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 43156, 44672);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... A(25);')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -809,17 +1139,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
                 OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 44686, 44739);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 44755, 44867);
+
+                f_22038_44755_44866(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 42615, 44878);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 42615, 44878);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 42615, 44878);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithEmbeddedPattern()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 44890, 48065);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 45095, 45477);
+
+                string
+                source = @"
 class Program
 {
     static void Main(string[] args)
@@ -839,8 +1192,12 @@ class Program
         }
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 45491, 47859);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -867,17 +1224,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 47873, 47926);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 47942, 48054);
+
+                f_22038_47942_48053(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 44890, 48065);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 44890, 48065);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 44890, 48065);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(27866, "https://github.com/dotnet/roslyn/issues/27866")]
         public void IIfstatementWithIfMissing()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 48077, 52839);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 48276, 48475);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -890,8 +1270,12 @@ class P
         }
 /*</bind>*/    }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 48489, 51449);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: '/*<bind>*/e ... }')
   Condition: 
     IInvalidOperation (OperationKind.Invalid, Type: null) (Syntax: '')
@@ -924,36 +1308,46 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: '/*<bind>
                       null
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(7,6): error CS8641: 'else' cannot start a statement.
-                //     {
-                Diagnostic(ErrorCode.ERR_ElseCannotStartStatement, "").WithLocation(7, 6),
-                // file.cs(7,6): error CS1003: Syntax error, '(' expected
-                //     {
-                Diagnostic(ErrorCode.ERR_SyntaxError, "").WithArguments("(", "else").WithLocation(7, 6),
-                // file.cs(7,6): error CS1525: Invalid expression term 'else'
-                //     {
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(7, 6),
-                // file.cs(7,6): error CS1026: ) expected
-                //     {
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "").WithLocation(7, 6),
-                // file.cs(7,6): error CS1525: Invalid expression term 'else'
-                //     {
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(7, 6),
-                // file.cs(7,6): error CS1002: ; expected
-                //     {
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(7, 6)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 51463, 52700);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_51643_51716(f_22038_51643_51697(ErrorCode.ERR_ElseCannotStartStatement, ""), 7, 6),
+f_22038_51836_51923(f_22038_51836_51904(f_22038_51836_51877(ErrorCode.ERR_SyntaxError, ""), "(", "else"), 7, 6),
+f_22038_52047_52133(f_22038_52047_52114(f_22038_52047_52092(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 7, 6),
+f_22038_52237_52304(f_22038_52237_52285(ErrorCode.ERR_CloseParenExpected, ""), 7, 6),
+f_22038_52428_52514(f_22038_52428_52495(f_22038_52428_52473(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 7, 6),
+f_22038_52618_52684(f_22038_52618_52665(ErrorCode.ERR_SemicolonExpected, ""), 7, 6)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 52716, 52828);
+
+                f_22038_52716_52827(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 48077, 52839);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 48077, 52839);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 48077, 52839);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(27866, "https://github.com/dotnet/roslyn/issues/27866")]
         public void IIfstatementWithDoubleElse()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 52851, 58751);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 53051, 53490);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -980,8 +1374,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 53504, 57295);
+
+                string
+                expectedOperationTree = @"
 IBlockOperation (2 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '{ ... }')
   IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax: 'if (flag) ... }')
     Condition: 
@@ -1029,36 +1427,46 @@ IBlockOperation (2 statements) (OperationKind.Block, Type: null, IsInvalid) (Syn
                         IParameterReferenceOperation: flag (OperationKind.ParameterReference, Type: System.Boolean) (Syntax: 'flag')
                     InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                     OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(20,14): error CS8641: 'else' cannot start a statement.
-                //             }
-                Diagnostic(ErrorCode.ERR_ElseCannotStartStatement, "").WithLocation(20, 14),
-                // file.cs(20,14): error CS1003: Syntax error, '(' expected
-                //             }
-                Diagnostic(ErrorCode.ERR_SyntaxError, "").WithArguments("(", "else").WithLocation(20, 14),
-                // file.cs(20,14): error CS1525: Invalid expression term 'else'
-                //             }
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(20, 14),
-                // file.cs(20,14): error CS1026: ) expected
-                //             }
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "").WithLocation(20, 14),
-                // file.cs(20,14): error CS1525: Invalid expression term 'else'
-                //             }
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(20, 14),
-                // file.cs(20,14): error CS1002: ; expected
-                //             }
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(20, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 57309, 58618);
 
-            VerifyOperationTreeAndDiagnosticsForTest<BlockSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_57499_57574(f_22038_57499_57553(ErrorCode.ERR_ElseCannotStartStatement, ""), 20, 14),
+f_22038_57704_57793(f_22038_57704_57772(f_22038_57704_57745(ErrorCode.ERR_SyntaxError, ""), "(", "else"), 20, 14),
+f_22038_57927_58015(f_22038_57927_57994(f_22038_57927_57972(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 20, 14),
+f_22038_58129_58198(f_22038_58129_58177(ErrorCode.ERR_CloseParenExpected, ""), 20, 14),
+f_22038_58332_58420(f_22038_58332_58399(f_22038_58332_58377(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 20, 14),
+f_22038_58534_58602(f_22038_58534_58581(ErrorCode.ERR_SemicolonExpected, ""), 20, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 58634, 58740);
+
+                f_22038_58634_58739(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 52851, 58751);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 52851, 58751);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 52851, 58751);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(27866, "https://github.com/dotnet/roslyn/issues/27866")]
         public void IIfstatementWithElseKeywordPlacedAsIfEmbeddedStatement()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 58763, 62132);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 58991, 59224);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -1076,8 +1484,12 @@ class P
         }
 /*</bind>*/    }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 59238, 60586);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax: 'if (flag) ... }')
   Condition: 
     IParameterReferenceOperation: flag (OperationKind.ParameterReference, Type: System.Boolean) (Syntax: 'flag')
@@ -1101,36 +1513,46 @@ IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax
                 Arguments(0)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(12,28): error CS8641: 'else' cannot start a statement.
-                //         /*<bind>*/if (flag)
-                Diagnostic(ErrorCode.ERR_ElseCannotStartStatement, "").WithLocation(12, 28),
-                // file.cs(12,28): error CS1003: Syntax error, '(' expected
-                //         /*<bind>*/if (flag)
-                Diagnostic(ErrorCode.ERR_SyntaxError, "").WithArguments("(", "else").WithLocation(12, 28),
-                // file.cs(12,28): error CS1525: Invalid expression term 'else'
-                //         /*<bind>*/if (flag)
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(12, 28),
-                // file.cs(12,28): error CS1026: ) expected
-                //         /*<bind>*/if (flag)
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "").WithLocation(12, 28),
-                // file.cs(12,28): error CS1525: Invalid expression term 'else'
-                //         /*<bind>*/if (flag)
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(12, 28),
-                // file.cs(12,28): error CS1002: ; expected
-                //         /*<bind>*/if (flag)
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(12, 28)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 60600, 61993);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_60804_60879(f_22038_60804_60858(ErrorCode.ERR_ElseCannotStartStatement, ""), 12, 28),
+f_22038_61023_61112(f_22038_61023_61091(f_22038_61023_61064(ErrorCode.ERR_SyntaxError, ""), "(", "else"), 12, 28),
+f_22038_61260_61348(f_22038_61260_61327(f_22038_61260_61305(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 12, 28),
+f_22038_61476_61545(f_22038_61476_61524(ErrorCode.ERR_CloseParenExpected, ""), 12, 28),
+f_22038_61693_61781(f_22038_61693_61760(f_22038_61693_61738(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 12, 28),
+f_22038_61909_61977(f_22038_61909_61956(ErrorCode.ERR_SemicolonExpected, ""), 12, 28)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 62009, 62121);
+
+                f_22038_62009_62120(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 58763, 62132);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 58763, 62132);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 58763, 62132);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(27866, "https://github.com/dotnet/roslyn/issues/27866")]
         public void IIfstatementWithIfKeywordMissingAndDoubleElseKeywordsPresent()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 62144, 67125);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 62378, 62669);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -1152,8 +1574,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 62683, 64394);
+
+                string
+                expectedOperationTree = @"
 IBlockOperation (2 statements) (OperationKind.Block, Type: null, IsInvalid) (Syntax: '{ ... }')
   IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax: 'else ... }')
     Condition: 
@@ -1183,54 +1609,52 @@ IBlockOperation (2 statements) (OperationKind.Block, Type: null, IsInvalid) (Syn
               Instance Receiver: 
                 IInstanceReferenceOperation (ReferenceKind: ContainingTypeInstance) (OperationKind.InstanceReference, Type: P, IsImplicit) (Syntax: 'Op')
               Arguments(0)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(12,20): error CS8641: 'else' cannot start a statement.
-                //         /*<bind>*/{
-                Diagnostic(ErrorCode.ERR_ElseCannotStartStatement, "").WithLocation(12, 20),
-                // file.cs(12,20): error CS1003: Syntax error, '(' expected
-                //         /*<bind>*/{
-                Diagnostic(ErrorCode.ERR_SyntaxError, "").WithArguments("(", "else").WithLocation(12, 20),
-                // file.cs(12,20): error CS1525: Invalid expression term 'else'
-                //         /*<bind>*/{
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(12, 20),
-                // file.cs(12,20): error CS1026: ) expected
-                //         /*<bind>*/{
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "").WithLocation(12, 20),
-                // file.cs(12,20): error CS1525: Invalid expression term 'else'
-                //         /*<bind>*/{
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(12, 20),
-                // file.cs(12,20): error CS1002: ; expected
-                //         /*<bind>*/{
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(12, 20),
-                // file.cs(15,14): error CS8641: 'else' cannot start a statement.
-                //             }
-                Diagnostic(ErrorCode.ERR_ElseCannotStartStatement, "").WithLocation(15, 14),
-                // file.cs(15,14): error CS1003: Syntax error, '(' expected
-                //             }
-                Diagnostic(ErrorCode.ERR_SyntaxError, "").WithArguments("(", "else").WithLocation(15, 14),
-                // file.cs(15,14): error CS1525: Invalid expression term 'else'
-                //             }
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(15, 14),
-                // file.cs(15,14): error CS1026: ) expected
-                //             }
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "").WithLocation(15, 14),
-                // file.cs(15,14): error CS1525: Invalid expression term 'else'
-                //             }
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(15, 14),
-                // file.cs(15,14): error CS1002: ; expected
-                //             }
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(15, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 64408, 66992);
 
-            VerifyOperationTreeAndDiagnosticsForTest<BlockSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_64604_64679(f_22038_64604_64658(ErrorCode.ERR_ElseCannotStartStatement, ""), 12, 20),
+f_22038_64815_64904(f_22038_64815_64883(f_22038_64815_64856(ErrorCode.ERR_SyntaxError, ""), "(", "else"), 12, 20),
+f_22038_65044_65132(f_22038_65044_65111(f_22038_65044_65089(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 12, 20),
+f_22038_65252_65321(f_22038_65252_65300(ErrorCode.ERR_CloseParenExpected, ""), 12, 20),
+f_22038_65461_65549(f_22038_65461_65528(f_22038_65461_65506(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 12, 20),
+f_22038_65669_65737(f_22038_65669_65716(ErrorCode.ERR_SemicolonExpected, ""), 12, 20),
+f_22038_65873_65948(f_22038_65873_65927(ErrorCode.ERR_ElseCannotStartStatement, ""), 15, 14),
+f_22038_66078_66167(f_22038_66078_66146(f_22038_66078_66119(ErrorCode.ERR_SyntaxError, ""), "(", "else"), 15, 14),
+f_22038_66301_66389(f_22038_66301_66368(f_22038_66301_66346(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 15, 14),
+f_22038_66503_66572(f_22038_66503_66551(ErrorCode.ERR_CloseParenExpected, ""), 15, 14),
+f_22038_66706_66794(f_22038_66706_66773(f_22038_66706_66751(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 15, 14),
+f_22038_66908_66976(f_22038_66908_66955(ErrorCode.ERR_SemicolonExpected, ""), 15, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 67008, 67114);
+
+                f_22038_67008_67113(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 62144, 67125);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 62144, 67125);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 62144, 67125);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithElseMissing()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 67137, 70109);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 67338, 67591);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -1246,8 +1670,12 @@ class P
         else
 /*</bind>*/    }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 67605, 69534);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax: 'if (obj is  ... else')
   Condition: 
     IIsPatternOperation (OperationKind.IsPattern, Type: System.Boolean) (Syntax: 'obj is string str')
@@ -1272,24 +1700,42 @@ IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax
       Expression: 
         IInvalidOperation (OperationKind.Invalid, Type: null) (Syntax: '')
           Children(0)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS1525: Invalid expression term '}'
-                //         else
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("}").WithLocation(14, 13),
-                // CS1002: ; expected
-                //         else
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(14, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 69548, 69970);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_69710_69795(f_22038_69710_69774(f_22038_69710_69755(ErrorCode.ERR_InvalidExprTerm, ""), "}"), 14, 13),
+f_22038_69886_69954(f_22038_69886_69933(ErrorCode.ERR_SemicolonExpected, ""), 14, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 69986, 70098);
+
+                f_22038_69986_70097(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 67137, 70109);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 67137, 70109);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 67137, 70109);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithConditionMissing()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 70121, 72681);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 70327, 70571);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -1307,8 +1753,12 @@ class P
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 70585, 72022);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax: 'if () ... }')
   Condition: 
     IInvalidOperation (OperationKind.Invalid, Type: null, IsInvalid) (Syntax: '')
@@ -1331,24 +1781,42 @@ IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax
               ILocalReferenceOperation: a (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'a')
             Right: 
               ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 3) (Syntax: '3')
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS1525: Invalid expression term ')'
-                //         /*<bind>*/if ()
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, ")").WithArguments(")").WithLocation(9, 23),
-                // CS0219: The variable 'a' is assigned but its value is never used
-                //         int a = 1;
-                Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "a").WithArguments("a").WithLocation(8, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 72036, 72542);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_72209_72294(f_22038_72209_72274(f_22038_72209_72255(ErrorCode.ERR_InvalidExprTerm, ")"), ")"), 9, 23),
+f_22038_72437_72526(f_22038_72437_72506(f_22038_72437_72487(ErrorCode.WRN_UnreferencedVarAssg, "a"), "a"), 8, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 72558, 72670);
+
+                f_22038_72558_72669(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 70121, 72681);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 70121, 72681);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 70121, 72681);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithStatementMissing()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 72693, 76306);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 72899, 73077);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -1362,8 +1830,12 @@ class P
 /*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 73091, 74352);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax: 'if (a == 1) ... else')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'a == 1')
@@ -1388,42 +1860,48 @@ IConditionalOperation (OperationKind.Conditional, Type: null, IsInvalid) (Syntax
               Children(0)
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(10,30): error CS8641: 'else' cannot start a statement.
-                //         /*<bind>*/if (a == 1)
-                Diagnostic(ErrorCode.ERR_ElseCannotStartStatement, "").WithLocation(10, 30),
-                // file.cs(10,30): error CS1003: Syntax error, '(' expected
-                //         /*<bind>*/if (a == 1)
-                Diagnostic(ErrorCode.ERR_SyntaxError, "").WithArguments("(", "else").WithLocation(10, 30),
-                // file.cs(10,30): error CS1525: Invalid expression term 'else'
-                //         /*<bind>*/if (a == 1)
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(10, 30),
-                // file.cs(10,30): error CS1026: ) expected
-                //         /*<bind>*/if (a == 1)
-                Diagnostic(ErrorCode.ERR_CloseParenExpected, "").WithLocation(10, 30),
-                // file.cs(10,30): error CS1525: Invalid expression term 'else'
-                //         /*<bind>*/if (a == 1)
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("else").WithLocation(10, 30),
-                // file.cs(10,30): error CS1002: ; expected
-                //         /*<bind>*/if (a == 1)
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(10, 30),
-                // file.cs(11,13): error CS1525: Invalid expression term '}'
-                //         else
-                Diagnostic(ErrorCode.ERR_InvalidExprTerm, "").WithArguments("}").WithLocation(11, 13),
-                // file.cs(11,13): error CS1002: ; expected
-                //         else
-                Diagnostic(ErrorCode.ERR_SemicolonExpected, "").WithLocation(11, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 74366, 76167);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_74572_74647(f_22038_74572_74626(ErrorCode.ERR_ElseCannotStartStatement, ""), 10, 30),
+f_22038_74793_74882(f_22038_74793_74861(f_22038_74793_74834(ErrorCode.ERR_SyntaxError, ""), "(", "else"), 10, 30),
+f_22038_75032_75120(f_22038_75032_75099(f_22038_75032_75077(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 10, 30),
+f_22038_75250_75319(f_22038_75250_75298(ErrorCode.ERR_CloseParenExpected, ""), 10, 30),
+f_22038_75469_75557(f_22038_75469_75536(f_22038_75469_75514(ErrorCode.ERR_InvalidExprTerm, ""), "else"), 10, 30),
+f_22038_75687_75755(f_22038_75687_75734(ErrorCode.ERR_SemicolonExpected, ""), 10, 30),
+f_22038_75885_75970(f_22038_75885_75949(f_22038_75885_75930(ErrorCode.ERR_InvalidExprTerm, ""), "}"), 11, 13),
+f_22038_76083_76151(f_22038_76083_76130(ErrorCode.ERR_SemicolonExpected, ""), 11, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 76183, 76295);
+
+                f_22038_76183_76294(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 72693, 76306);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 72693, 76306);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 72693, 76306);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithFuncCall()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 76318, 78402);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 76516, 76838);
+
+                string
+                source = @"
 using System;
 
 class P
@@ -1444,8 +1922,12 @@ class P
         Console.WriteLine(""B"");
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 76852, 77991);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true) ... B();')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -1463,21 +1945,41 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (true
           Instance Receiver: 
             IInstanceReferenceOperation (ReferenceKind: ContainingTypeInstance) (OperationKind.InstanceReference, Type: P, IsImplicit) (Syntax: 'B')
           Arguments(0)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0162: Unreachable code detected
-                //             B();/*</bind>*/
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "B").WithLocation(11, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 78005, 78263);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_78180_78247(f_22038_78180_78226(ErrorCode.WRN_UnreachableCode, "B"), 11, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 78279, 78391);
+
+                f_22038_78279_78390(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 76318, 78402);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 76318, 78402);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 76318, 78402);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17601, "https://github.com/dotnet/roslyn/issues/17601")]
         public void IIfstatementWithDynamic()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 78414, 82453);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 78611, 78886);
+
+                string
+                source = @"
 using System;
 
 class C
@@ -1492,8 +1994,12 @@ class C
         return 2;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 78900, 82247);
+
+                string
+                expectedOperationTree = @"
 IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (d.GetTy ... }')
   Condition: 
     IUnaryOperation (UnaryOperatorKind.True) (OperationKind.Unary, Type: System.Boolean, IsImplicit) (Syntax: 'd.GetType() ... ).Equals(x)')
@@ -1535,17 +2041,40 @@ IConditionalOperation (OperationKind.Conditional, Type: null) (Syntax: 'if (d.Ge
           ILiteralOperation (OperationKind.Literal, Type: System.Int32, Constant: 1) (Syntax: '1')
   WhenFalse: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 82261, 82314);
 
-            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 82330, 82442);
+
+                f_22038_82330_82441(source, expectedOperationTree, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 78414, 82453);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 78414, 82453);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 78414, 82453);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_01()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 82465, 85026);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 82608, 82795);
+
+                string
+                source = @"
 class P
 {
     void M()
@@ -1557,8 +2086,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 82809, 84548);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1599,21 +2132,41 @@ Block[B0] - Entry
 Block[B3] - Exit
     Predecessors: [B1] [B2]
     Statements (0)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // CS0219: The variable 'condition' is assigned but its value is never used
-                //         bool condition = false;
-                Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "condition").WithArguments("condition").WithLocation(6, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 84562, 84901);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_84780_84885(f_22038_84780_84865(f_22038_84780_84838(ErrorCode.WRN_UnreferencedVarAssg, "condition"), "condition"), 6, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 84917, 85015);
+
+                f_22038_84917_85014(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 82465, 85026);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 82465, 85026);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 82465, 85026);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_02()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 85038, 87909);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 85181, 85419);
+
+                string
+                source = @"
 class P
 {
     void M()
@@ -1629,8 +2182,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 85433, 87186);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1671,24 +2228,42 @@ Block[B0] - Entry
 Block[B3] - Exit
     Predecessors: [B1] [B2]
     Statements (0)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(13,13): warning CS0162: Unreachable code detected
-                //             condition = true;
-                Diagnostic(ErrorCode.WRN_UnreachableCode, "condition").WithLocation(13, 13),
-                // file.cs(6,14): warning CS0219: The variable 'condition' is assigned but its value is never used
-                //         bool condition = false;
-                Diagnostic(ErrorCode.WRN_UnreferencedVarAssg, "condition").WithArguments("condition").WithLocation(6, 14)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 87200, 87784);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = new DiagnosticDescription[] {
+f_22038_87401_87476(f_22038_87401_87455(ErrorCode.WRN_UnreachableCode, "condition"), 13, 13),
+f_22038_87663_87768(f_22038_87663_87748(f_22038_87663_87721(ErrorCode.WRN_UnreferencedVarAssg, "condition"), "condition"), 6, 14)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 87800, 87898);
+
+                f_22038_87800_87897(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 85038, 87909);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 85038, 87909);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 85038, 87909);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_03()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 87921, 90414);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 88064, 88286);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b)
@@ -1703,8 +2278,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 88300, 90222);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1749,17 +2328,40 @@ Block[B4] - Block
 Block[B5] - Exit
     Predecessors: [B3] [B4]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 90236, 90289);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 90305, 90403);
+
+                f_22038_90305_90402(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 87921, 90414);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 87921, 90414);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 87921, 90414);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_04()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 90426, 93249);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 90569, 90825);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool result)
@@ -1774,9 +2376,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 90841, 93057);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1828,17 +2433,40 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 93071, 93124);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 93140, 93238);
+
+                f_22038_93140_93237(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 90426, 93249);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 90426, 93249);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 90426, 93249);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_05()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 93261, 96913);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 93404, 93650);
+
+                string
+                source = @"
 class P
 {
     void M(bool? a, bool b, bool result)
@@ -1853,8 +2481,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 93664, 96721);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1925,17 +2557,40 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 96735, 96788);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 96804, 96902);
+
+                f_22038_96804_96901(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 93261, 96913);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 93261, 96913);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 93261, 96913);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_06()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 96925, 99749);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 97068, 97327);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool result)
@@ -1950,9 +2605,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 97343, 99557);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2004,17 +2662,40 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 99571, 99624);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 99640, 99738);
+
+                f_22038_99640_99737(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 96925, 99749);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 96925, 99749);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 96925, 99749);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_07()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 99761, 102412);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 99904, 100123);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool d , bool e, bool result)
@@ -2025,9 +2706,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 100139, 102220);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2081,17 +2765,40 @@ Block[B6] - Block
 Block[B7] - Exit
     Predecessors: [B4] [B5] [B6]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 102234, 102287);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 102303, 102401);
+
+                f_22038_102303_102400(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 99761, 102412);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 99761, 102412);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 99761, 102412);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_08()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 102424, 105075);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 102567, 102786);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool d , bool e, bool result)
@@ -2102,9 +2809,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 102802, 104883);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2158,17 +2868,40 @@ Block[B6] - Block
 Block[B7] - Exit
     Predecessors: [B3] [B4] [B5] [B6]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 104897, 104950);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 104966, 105064);
+
+                f_22038_104966_105063(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 102424, 105075);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 102424, 105075);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 102424, 105075);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_09()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 105087, 107738);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 105230, 105449);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool d , bool e, bool result)
@@ -2179,9 +2912,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 105465, 107546);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2235,17 +2971,40 @@ Block[B6] - Block
 Block[B7] - Exit
     Predecessors: [B2] [B4] [B5] [B6]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 107560, 107613);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 107629, 107727);
+
+                f_22038_107629_107726(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 105087, 107738);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 105087, 107738);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 105087, 107738);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_10()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 107750, 117475);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 107893, 108211);
+
+                string
+                source = @"
 class P
 {
     void M(object a, object b, object c, object d , object e, object f, bool result)
@@ -2258,9 +3017,12 @@ class P
 
     static bool GetBool(object x) => false;
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 108227, 117283);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2452,17 +3214,40 @@ Block[B13] - Block
 Block[B14] - Exit
     Predecessors: [B8] [B12] [B13]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 117297, 117350);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 117366, 117464);
+
+                f_22038_117366_117463(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 107750, 117475);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 107750, 117475);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 107750, 117475);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_11()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 117487, 120909);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 117630, 117816);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, P b, P c, bool result)
@@ -2473,9 +3258,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 117832, 120466);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2537,21 +3325,41 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(6,13): error CS0029: Cannot implicitly convert type 'P' to 'bool'
-                //         if (a ? b : c)
-                Diagnostic(ErrorCode.ERR_NoImplicitConv, "a ? b : c").WithArguments("P", "bool").WithLocation(6, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 120480, 120784);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = new[] {
+f_22038_120668_120768(f_22038_120668_120748(f_22038_120668_120721(ErrorCode.ERR_NoImplicitConv, "a ? b : c"), "P", "bool"), 6, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 120800, 120898);
+
+                f_22038_120800_120897(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 117487, 120909);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 117487, 120909);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 117487, 120909);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_12()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 120921, 124574);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 121064, 121313);
+
+                string
+                source = @"
 class P
 {
     void M(bool? a, bool b, bool result)
@@ -2566,8 +3374,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 121327, 124382);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2638,17 +3450,40 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 124396, 124449);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 124465, 124563);
+
+                f_22038_124465_124562(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 120921, 124574);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 120921, 124574);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 120921, 124574);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_13()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 124586, 128896);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 124729, 124927);
+
+                string
+                source = @"
 class P
 {
     void M(bool? a, bool? b, bool c, bool result)
@@ -2659,8 +3494,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 124941, 128704);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2750,17 +3589,40 @@ Block[B6] - Block
 Block[B7] - Exit
     Predecessors: [B2] [B4] [B5] [B6]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 128718, 128771);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 128787, 128885);
+
+                f_22038_128787_128884(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 124586, 128896);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 124586, 128896);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 124586, 128896);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_14()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 128908, 137396);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 129051, 129395);
+
+                string
+                source = @"
 class P
 {
     void M(object a, object b, object c, object d, bool result)
@@ -2775,8 +3637,12 @@ class P
 
     static bool? GetNullableBool(object x) => false;
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 129409, 137204);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2938,17 +3804,40 @@ Block[B11] - Block
 Block[B12] - Exit
     Predecessors: [B6] [B10] [B11]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 137218, 137271);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 137287, 137385);
+
+                f_22038_137287_137384(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 128908, 137396);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 128908, 137396);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 128908, 137396);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_15()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 137408, 141422);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 137551, 137726);
+
+                string
+                source = @"
 class P
 {
     void M(P a, P b, bool result)
@@ -2959,9 +3848,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 137742, 140985);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3036,21 +3928,41 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(6,13): error CS0029: Cannot implicitly convert type 'P' to 'bool'
-                //         if (a ?? b)
-                Diagnostic(ErrorCode.ERR_NoImplicitConv, "a ?? b").WithArguments("P", "bool").WithLocation(6, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 140999, 141297);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = new[] {
+f_22038_141184_141281(f_22038_141184_141261(f_22038_141184_141234(ErrorCode.ERR_NoImplicitConv, "a ?? b"), "P", "bool"), 6, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 141313, 141411);
+
+                f_22038_141313_141410(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 137408, 141422);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 137408, 141422);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 137408, 141422);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_16()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 141434, 145637);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 141577, 141832);
+
+                string
+                source = @"
 class P
 {
     void M(bool? a, bool b, bool result)
@@ -3065,8 +3977,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 141846, 145445);
+
+                string
+                expectedFlowGraph = @"
     Block[B0] - Entry
         Statements (0)
         Next (Regular) Block[B1]
@@ -3132,17 +4048,40 @@ class P
     Block[B6] - Exit
         Predecessors: [B4] [B5]
         Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 145459, 145512);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 145528, 145626);
+
+                f_22038_145528_145625(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 141434, 145637);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 141434, 145637);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 141434, 145637);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_17()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 145649, 148955);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 145792, 146049);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool result)
@@ -3157,8 +4096,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 146063, 148763);
+
+                string
+                expectedFlowGraph = @"
     Block[B0] - Entry
         Statements (0)
         Next (Regular) Block[B1]
@@ -3208,17 +4151,40 @@ class P
     Block[B6] - Exit
         Predecessors: [B4] [B5]
         Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 148777, 148830);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 148846, 148944);
+
+                f_22038_148846_148943(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 145649, 148955);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 145649, 148955);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 145649, 148955);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_18()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 148967, 152273);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 149110, 149367);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool result)
@@ -3233,8 +4199,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 149381, 152081);
+
+                string
+                expectedFlowGraph = @"
     Block[B0] - Entry
         Statements (0)
         Next (Regular) Block[B1]
@@ -3284,17 +4254,40 @@ class P
     Block[B6] - Exit
         Predecessors: [B4] [B5]
         Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 152095, 152148);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 152164, 152262);
+
+                f_22038_152164_152261(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 148967, 152273);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 148967, 152273);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 148967, 152273);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_19()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 152285, 157326);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 152428, 152703);
+
+                string
+                source = @"
 class P
 {
     void M(bool result, System.Exception a, System.Exception b)
@@ -3309,8 +4302,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 152717, 156907);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3402,21 +4399,41 @@ Block[B7] - Block [UnReachable]
 Block[B8] - Exit [UnReachable]
     Predecessors: [B6] [B7]
     Statements (0)
-";
-            var expectedDiagnostics = new[] {
-                // file.cs(6,13): error CS8115: A throw expression is not allowed in this context.
-                //         if (throw null)
-                Diagnostic(ErrorCode.ERR_ThrowMisplaced, "throw").WithLocation(6, 13)
-            };
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 156921, 157201);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = new[] {
+f_22038_157116_157185(f_22038_157116_157165(ErrorCode.ERR_ThrowMisplaced, "throw"), 6, 13)            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 157217, 157315);
+
+                f_22038_157217_157314(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 152285, 157326);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 152285, 157326);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 152285, 157326);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_20()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 157338, 161075);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 157481, 157679);
+
+                string
+                source = @"
 class P
 {
     void M(bool? a, bool b, bool result)
@@ -3427,8 +4444,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 157693, 160883);
+
+                string
+                expectedFlowGraph = @"
     Block[B0] - Entry
         Statements (0)
         Next (Regular) Block[B1]
@@ -3489,17 +4510,40 @@ class P
     Block[B6] - Exit
         Predecessors: [B2] [B4] [B5]
         Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 160897, 160950);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 160966, 161064);
+
+                f_22038_160966_161063(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 157338, 161075);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 157338, 161075);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 157338, 161075);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_21()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 161087, 163472);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 161230, 161437);
+
+                string
+                source = @"
 class P
 {
     void M(bool a, bool b, bool c, bool d, bool result)
@@ -3510,9 +4554,12 @@ class P
         }
     }/*</bind>*/
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 161453, 163280);
 
-            string expectedFlowGraph = @"
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3559,17 +4606,40 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B2] [B3] [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 163294, 163347);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 163363, 163461);
+
+                f_22038_163363_163460(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 161087, 163472);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 161087, 163472);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 161087, 163472);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_22()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 163484, 166696);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 163627, 163824);
+
+                string
+                source = @"
 class P
 {
     void M(bool? a, bool b, bool c, bool result)
@@ -3580,8 +4650,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 163838, 166504);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3647,17 +4721,40 @@ Block[B5] - Block
 Block[B6] - Exit
     Predecessors: [B4] [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 166518, 166571);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 166587, 166685);
+
+                f_22038_166587_166684(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 163484, 166696);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 163484, 166696);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 163484, 166696);
+            }
         }
 
         [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void IfFlow_24()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(22038, 166708, 168431);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 166851, 167022);
+
+                string
+                source = @"
 class P
 {
     void M(dynamic a, bool result)
@@ -3668,8 +4765,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 167036, 168239);
+
+                string
+                expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -3697,10 +4798,2117 @@ Block[B2] - Block
 Block[B3] - Exit
     Predecessors: [B1] [B2]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 168253, 168306);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+                var
+                expectedDiagnostics = DiagnosticDescription.None
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(22038, 168322, 168420);
+
+                f_22038_168322_168419(source, expectedFlowGraph, expectedDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(22038, 166708, 168431);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22038, 166708, 168431);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22038, 166708, 168431);
+            }
         }
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_2105_2163(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 2105, 2163);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_2105_2190(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 2105, 2190);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_2105_2210(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 2105, 2210);
+            return return_v;
+        }
+
+
+        bool
+        f_22038_2251_2364(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            var return_v = VerifyOperationTreeAndDiagnosticsForTest_B<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 2251, 2364);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_4622_4676(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 4622, 4676);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_4622_4697(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 4622, 4697);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_4861_4919(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 4861, 4919);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_4861_4946(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 4861, 4946);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_4861_4966(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 4861, 4966);
+            return return_v;
+        }
+
+
+        int
+        f_22038_4998_5109(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 4998, 5109);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_6970_7028(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 6970, 7028);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_6970_7055(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 6970, 7055);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_6970_7075(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 6970, 7075);
+            return return_v;
+        }
+
+
+        int
+        f_22038_7107_7218(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 7107, 7218);
+            return 0;
+        }
+
+
+        int
+        f_22038_11110_11221(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 11110, 11221);
+            return 0;
+        }
+
+
+        int
+        f_22038_15145_15256(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 15145, 15256);
+            return 0;
+        }
+
+
+        int
+        f_22038_18122_18233(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 18122, 18233);
+            return 0;
+        }
+
+
+        int
+        f_22038_23401_23512(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 23401, 23512);
+            return 0;
+        }
+
+
+        int
+        f_22038_30698_30809(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 30698, 30809);
+            return 0;
+        }
+
+
+        int
+        f_22038_32983_33094(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 32983, 33094);
+            return 0;
+        }
+
+
+        int
+        f_22038_36893_37004(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 36893, 37004);
+            return 0;
+        }
+
+
+        int
+        f_22038_40093_40204(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 40093, 40204);
+            return 0;
+        }
+
+
+        int
+        f_22038_42480_42591(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 42480, 42591);
+            return 0;
+        }
+
+
+        int
+        f_22038_44755_44866(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 44755, 44866);
+            return 0;
+        }
+
+
+        int
+        f_22038_47942_48053(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 47942, 48053);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_51643_51697(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 51643, 51697);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_51643_51716(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 51643, 51716);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_51836_51877(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 51836, 51877);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_51836_51904(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 51836, 51904);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_51836_51923(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 51836, 51923);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52047_52092(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52047, 52092);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52047_52114(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52047, 52114);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52047_52133(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52047, 52133);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52237_52285(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52237, 52285);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52237_52304(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52237, 52304);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52428_52473(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52428, 52473);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52428_52495(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52428, 52495);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52428_52514(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52428, 52514);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52618_52665(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52618, 52665);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_52618_52684(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52618, 52684);
+            return return_v;
+        }
+
+
+        int
+        f_22038_52716_52827(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 52716, 52827);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57499_57553(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57499, 57553);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57499_57574(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57499, 57574);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57704_57745(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57704, 57745);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57704_57772(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57704, 57772);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57704_57793(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57704, 57793);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57927_57972(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57927, 57972);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57927_57994(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57927, 57994);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_57927_58015(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 57927, 58015);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58129_58177(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58129, 58177);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58129_58198(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58129, 58198);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58332_58377(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58332, 58377);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58332_58399(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58332, 58399);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58332_58420(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58332, 58420);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58534_58581(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58534, 58581);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_58534_58602(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58534, 58602);
+            return return_v;
+        }
+
+
+        int
+        f_22038_58634_58739(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 58634, 58739);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_60804_60858(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 60804, 60858);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_60804_60879(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 60804, 60879);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61023_61064(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61023, 61064);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61023_61091(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61023, 61091);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61023_61112(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61023, 61112);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61260_61305(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61260, 61305);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61260_61327(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61260, 61327);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61260_61348(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61260, 61348);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61476_61524(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61476, 61524);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61476_61545(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61476, 61545);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61693_61738(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61693, 61738);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61693_61760(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61693, 61760);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61693_61781(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61693, 61781);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61909_61956(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61909, 61956);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_61909_61977(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 61909, 61977);
+            return return_v;
+        }
+
+
+        int
+        f_22038_62009_62120(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 62009, 62120);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_64604_64658(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 64604, 64658);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_64604_64679(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 64604, 64679);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_64815_64856(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 64815, 64856);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_64815_64883(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 64815, 64883);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_64815_64904(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 64815, 64904);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65044_65089(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65044, 65089);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65044_65111(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65044, 65111);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65044_65132(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65044, 65132);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65252_65300(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65252, 65300);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65252_65321(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65252, 65321);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65461_65506(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65461, 65506);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65461_65528(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65461, 65528);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65461_65549(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65461, 65549);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65669_65716(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65669, 65716);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65669_65737(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65669, 65737);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65873_65927(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65873, 65927);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_65873_65948(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 65873, 65948);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66078_66119(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66078, 66119);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66078_66146(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66078, 66146);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66078_66167(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66078, 66167);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66301_66346(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66301, 66346);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66301_66368(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66301, 66368);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66301_66389(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66301, 66389);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66503_66551(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66503, 66551);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66503_66572(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66503, 66572);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66706_66751(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66706, 66751);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66706_66773(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66706, 66773);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66706_66794(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66706, 66794);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66908_66955(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66908, 66955);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_66908_66976(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 66908, 66976);
+            return return_v;
+        }
+
+
+        int
+        f_22038_67008_67113(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 67008, 67113);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_69710_69755(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 69710, 69755);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_69710_69774(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 69710, 69774);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_69710_69795(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 69710, 69795);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_69886_69933(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 69886, 69933);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_69886_69954(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 69886, 69954);
+            return return_v;
+        }
+
+
+        int
+        f_22038_69986_70097(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 69986, 70097);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_72209_72255(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72209, 72255);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_72209_72274(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72209, 72274);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_72209_72294(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72209, 72294);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_72437_72487(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72437, 72487);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_72437_72506(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72437, 72506);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_72437_72526(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72437, 72526);
+            return return_v;
+        }
+
+
+        int
+        f_22038_72558_72669(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 72558, 72669);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_74572_74626(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 74572, 74626);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_74572_74647(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 74572, 74647);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_74793_74834(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 74793, 74834);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_74793_74861(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 74793, 74861);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_74793_74882(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 74793, 74882);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75032_75077(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75032, 75077);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75032_75099(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75032, 75099);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75032_75120(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75032, 75120);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75250_75298(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75250, 75298);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75250_75319(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75250, 75319);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75469_75514(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75469, 75514);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75469_75536(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75469, 75536);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75469_75557(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75469, 75557);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75687_75734(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75687, 75734);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75687_75755(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75687, 75755);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75885_75930(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75885, 75930);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75885_75949(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75885, 75949);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_75885_75970(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 75885, 75970);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_76083_76130(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 76083, 76130);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_76083_76151(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 76083, 76151);
+            return return_v;
+        }
+
+
+        int
+        f_22038_76183_76294(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 76183, 76294);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_78180_78226(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 78180, 78226);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_78180_78247(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 78180, 78247);
+            return return_v;
+        }
+
+
+        int
+        f_22038_78279_78390(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 78279, 78390);
+            return 0;
+        }
+
+
+        int
+        f_22038_82330_82441(string
+        testSrc, string
+        expectedOperationTree, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyOperationTreeAndDiagnosticsForTest<IfStatementSyntax>(testSrc, expectedOperationTree, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 82330, 82441);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_84780_84838(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 84780, 84838);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_84780_84865(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 84780, 84865);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_84780_84885(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 84780, 84885);
+            return return_v;
+        }
+
+
+        int
+        f_22038_84917_85014(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 84917, 85014);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_87401_87455(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 87401, 87455);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_87401_87476(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 87401, 87476);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_87663_87721(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 87663, 87721);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_87663_87748(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 87663, 87748);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_87663_87768(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 87663, 87768);
+            return return_v;
+        }
+
+
+        int
+        f_22038_87800_87897(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 87800, 87897);
+            return 0;
+        }
+
+
+        int
+        f_22038_90305_90402(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 90305, 90402);
+            return 0;
+        }
+
+
+        int
+        f_22038_93140_93237(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 93140, 93237);
+            return 0;
+        }
+
+
+        int
+        f_22038_96804_96901(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 96804, 96901);
+            return 0;
+        }
+
+
+        int
+        f_22038_99640_99737(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 99640, 99737);
+            return 0;
+        }
+
+
+        int
+        f_22038_102303_102400(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 102303, 102400);
+            return 0;
+        }
+
+
+        int
+        f_22038_104966_105063(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 104966, 105063);
+            return 0;
+        }
+
+
+        int
+        f_22038_107629_107726(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 107629, 107726);
+            return 0;
+        }
+
+
+        int
+        f_22038_117366_117463(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 117366, 117463);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_120668_120721(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 120668, 120721);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_120668_120748(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 120668, 120748);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_120668_120768(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 120668, 120768);
+            return return_v;
+        }
+
+
+        int
+        f_22038_120800_120897(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 120800, 120897);
+            return 0;
+        }
+
+
+        int
+        f_22038_124465_124562(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 124465, 124562);
+            return 0;
+        }
+
+
+        int
+        f_22038_128787_128884(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 128787, 128884);
+            return 0;
+        }
+
+
+        int
+        f_22038_137287_137384(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 137287, 137384);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_141184_141234(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 141184, 141234);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_141184_141261(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, params object[]
+        arguments)
+        {
+            var return_v = this_param.WithArguments(arguments);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 141184, 141261);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_141184_141281(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 141184, 141281);
+            return return_v;
+        }
+
+
+        int
+        f_22038_141313_141410(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 141313, 141410);
+            return 0;
+        }
+
+
+        int
+        f_22038_145528_145625(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 145528, 145625);
+            return 0;
+        }
+
+
+        int
+        f_22038_148846_148943(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 148846, 148943);
+            return 0;
+        }
+
+
+        int
+        f_22038_152164_152261(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 152164, 152261);
+            return 0;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_157116_157165(Microsoft.CodeAnalysis.CSharp.ErrorCode
+        code, string
+        squiggledText)
+        {
+            var return_v = Diagnostic((object)code, squiggledText);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 157116, 157165);
+            return return_v;
+        }
+
+
+        Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        f_22038_157116_157185(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+        this_param, int
+        line, int
+        column)
+        {
+            var return_v = this_param.WithLocation(line, column);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 157116, 157185);
+            return return_v;
+        }
+
+
+        int
+        f_22038_157217_157314(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 157217, 157314);
+            return 0;
+        }
+
+
+        int
+        f_22038_160966_161063(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 160966, 161063);
+            return 0;
+        }
+
+
+        int
+        f_22038_163363_163460(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 163363, 163460);
+            return 0;
+        }
+
+
+        int
+        f_22038_166587_166684(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 166587, 166684);
+            return 0;
+        }
+
+
+        int
+        f_22038_168322_168419(string
+        testSrc, string
+        expectedFlowGraph, Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+        expectedDiagnostics)
+        {
+            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(testSrc, expectedFlowGraph, expectedDiagnostics);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(22038, 168322, 168419);
+            return 0;
+        }
+
     }
 }

@@ -10,28 +10,67 @@ namespace Microsoft.CodeAnalysis.CSharp
     {
         private static class ConversionEasyOut
         {
-            // There are situations in which we know that there is no unusual conversion going on
-            // (such as a conversion involving constants, enumerated types, and so on.) In those
-            // situations we can classify conversions via a simple table lookup:
-
-            // PERF: Use byte instead of ConversionKind so the compiler can use array literal initialization.
-            //       The most natural type choice, Enum arrays, are not blittable due to a CLR limitation.
             private static readonly byte[,] s_convkind;
 
             static ConversionEasyOut()
             {
-                const byte IDN = (byte)ConversionKind.Identity;
-                const byte IRF = (byte)ConversionKind.ImplicitReference;
-                const byte XRF = (byte)ConversionKind.ExplicitReference;
-                const byte XNM = (byte)ConversionKind.ExplicitNumeric;
-                const byte NOC = (byte)ConversionKind.NoConversion;
-                const byte BOX = (byte)ConversionKind.Boxing;
-                const byte UNB = (byte)ConversionKind.Unboxing;
-                const byte NUM = (byte)ConversionKind.ImplicitNumeric;
-                const byte NUL = (byte)ConversionKind.ImplicitNullable;
-                const byte XNL = (byte)ConversionKind.ExplicitNullable;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10839, 990, 8287);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 963, 973);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1049, 1096);
 
-                s_convkind = new byte[,] {
+                    const byte
+                    IDN = (byte)ConversionKind.Identity
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1114, 1170);
+
+                    const byte
+                    IRF = (byte)ConversionKind.ImplicitReference
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1188, 1244);
+
+                    const byte
+                    XRF = (byte)ConversionKind.ExplicitReference
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1262, 1316);
+
+                    const byte
+                    XNM = (byte)ConversionKind.ExplicitNumeric
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1334, 1385);
+
+                    const byte
+                    NOC = (byte)ConversionKind.NoConversion
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1403, 1448);
+
+                    const byte
+                    BOX = (byte)ConversionKind.Boxing
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1466, 1513);
+
+                    const byte
+                    UNB = (byte)ConversionKind.Unboxing
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1531, 1585);
+
+                    const byte
+                    NUM = (byte)ConversionKind.ImplicitNumeric
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1603, 1658);
+
+                    const byte
+                    NUL = (byte)ConversionKind.ImplicitNullable
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1676, 1731);
+
+                    const byte
+                    XNL = (byte)ConversionKind.ExplicitNullable
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 1751, 8272);
+
+                    s_convkind = new byte[,] {
                     // Converting Y to X:
                     //          obj  str  bool chr  i08  i16  i32  i64  u08  u16  u32  u64 nint nuint r32  r64  dec bool? chr? i08? i16? i32? i64? u08? u16? u32? u64?nint?nuint?r32? r64? dec? 
                     /*  obj */{ IDN, XRF, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB, UNB },
@@ -67,22 +106,161 @@ namespace Microsoft.CodeAnalysis.CSharp
                     /* r64? */{ BOX, NOC, NOC, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, NOC, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, IDN, XNL },
                     /* dec? */{ BOX, NOC, NOC, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, NOC, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, XNL, IDN }
                };
+                    DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10839, 990, 8287);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10839, 990, 8287);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10839, 990, 8287);
+                }
             }
 
             public static ConversionKind ClassifyConversion(TypeSymbol source, TypeSymbol target)
             {
-                int sourceIndex = source.TypeToIndex();
-                if (sourceIndex < 0)
+                try
                 {
-                    return ConversionKind.NoConversion;
+                    DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10839, 8303, 8876);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8421, 8460);
+
+                    int
+                    sourceIndex = f_10839_8439_8459(source)
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8478, 8593) || true) && (sourceIndex < 0)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10839, 8478, 8593);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8539, 8574);
+
+                        return ConversionKind.NoConversion;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10839, 8478, 8593);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8611, 8650);
+
+                    int
+                    targetIndex = f_10839_8629_8649(target)
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8668, 8783) || true) && (targetIndex < 0)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10839, 8668, 8783);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8729, 8764);
+
+                        return ConversionKind.NoConversion;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10839, 8668, 8783);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10839, 8801, 8861);
+
+                    return (ConversionKind)s_convkind[sourceIndex, targetIndex];
+                    DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10839, 8303, 8876);
+
+                    int
+                    f_10839_8439_8459(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                    type)
+                    {
+                        var return_v = type.TypeToIndex();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10839, 8439, 8459);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_10839_8629_8649(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                    type)
+                    {
+                        var return_v = type.TypeToIndex();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10839, 8629, 8649);
+                        return return_v;
+                    }
+
                 }
-                int targetIndex = target.TypeToIndex();
-                if (targetIndex < 0)
+                catch
                 {
-                    return ConversionKind.NoConversion;
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10839, 8303, 8876);
+                    throw;
                 }
-                return (ConversionKind)s_convkind[sourceIndex, targetIndex];
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10839, 8303, 8876);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
+
+        static ConversionsBase()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10839, 304, 8894);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10843, 661, 687);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10843, 82071, 82080);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10843, 82110, 82118);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10843, 82293, 83288);
+            s_implicitNumericConversions = new bool[,]{
+            // to     sb  b  s  us i ui  l ul  c  f  d  m
+            // from
+            /* sb */
+         { F, F, T, F, T, F, T, F, F, T, T, T },
+            /*  b */
+         { F, F, T, T, T, T, T, T, F, T, T, T },
+            /*  s */
+         { F, F, F, F, T, F, T, F, F, T, T, T },
+            /* us */
+         { F, F, F, F, T, T, T, T, F, T, T, T },
+            /*  i */
+         { F, F, F, F, F, F, T, F, F, T, T, T },
+            /* ui */
+         { F, F, F, F, F, F, T, T, F, T, T, T },
+            /*  l */
+         { F, F, F, F, F, F, F, F, F, T, T, T },
+            /* ul */
+         { F, F, F, F, F, F, F, F, F, T, T, T },
+            /*  c */
+         { F, F, F, T, T, T, T, T, F, T, T, T },
+            /*  f */
+         { F, F, F, F, F, F, F, F, F, F, T, F },
+            /*  d */
+         { F, F, F, F, F, F, F, F, F, F, F, F },
+            /*  m */
+         { F, F, F, F, F, F, F, F, F, F, F, F }
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10843, 83333, 84328);
+            s_explicitNumericConversions = new bool[,]{
+            // to     sb  b  s us  i ui  l ul  c  f  d  m
+            // from
+            /* sb */
+         { F, T, F, T, F, T, F, T, T, F, F, F },
+            /*  b */
+         { T, F, F, F, F, F, F, F, T, F, F, F },
+            /*  s */
+         { T, T, F, T, F, T, F, T, T, F, F, F },
+            /* us */
+         { T, T, T, F, F, F, F, F, T, F, F, F },
+            /*  i */
+         { T, T, T, T, F, T, F, T, T, F, F, F },
+            /* ui */
+         { T, T, T, T, T, F, F, F, T, F, F, F },
+            /*  l */
+         { T, T, T, T, T, T, F, T, T, F, F, F },
+            /* ul */
+         { T, T, T, T, T, T, T, F, T, F, F, F },
+            /*  c */
+         { T, T, T, F, F, F, F, F, F, F, F, F },
+            /*  f */
+         { T, T, T, T, T, T, T, T, T, F, F, T },
+            /*  d */
+         { T, T, T, T, T, T, T, T, T, T, F, T },
+            /*  m */
+         { T, T, T, T, T, T, T, T, T, T, T, F }
+        }; DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10839, 304, 8894);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10839, 304, 8894);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10839, 304, 8894);
     }
 }

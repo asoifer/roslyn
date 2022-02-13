@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -14,15 +14,20 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
     public partial class IOperationTests : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+{
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void MethodReference_NoControlFlow()
+		{
+			try
         {
-            // Verify method references with different kinds of instance references.
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22050,665,4337);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,914,1196);
+
+string 
+source = @"
 class C
 {
     public virtual int M1() => 0;
@@ -34,8 +39,12 @@ class C
         m3 = M2;
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,1210,4145);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -82,17 +91,40 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,4159,4212);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,4228,4326);
+
+f_22050_4228_4325(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22050,665,4337);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22050,665,4337);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22050,665,4337);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void MethodReference_ControlFlowInReceiver()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22050,4349,8235);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,4520,4691);
+
+string 
+source = @"
 class C
 {
     public int M1() => 0;
@@ -101,8 +133,12 @@ class C
         m = (c1 ?? c2).M1;
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,4705,8043);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -179,17 +215,40 @@ Block[B0] - Entry
 Block[B6] - Exit
     Predecessors: [B5]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,8057,8110);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,8126,8224);
+
+f_22050_8126_8223(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22050,4349,8235);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22050,4349,8235);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22050,4349,8235);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void MethodReference_ControlFlowInReceiver_StaticMethod()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22050,8247,13933);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,8431,8653);
+
+string 
+source = @"
 class C
 {
     public static int M1() => 0;
@@ -199,8 +258,12 @@ class C
         m2 = (c1 ?? c2).M1;
     }/*</bind>*/
 }
-";
-            string expectedFlowGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,8667,13104);
+
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -293,17 +356,133 @@ Block[B1] - Block
 Block[B7] - Exit
     Predecessors: [B6]
     Statements (0)
-";
-            var expectedDiagnostics = new DiagnosticDescription[] {
-                // file.cs(7,14): error CS0176: Member 'C.M1()' cannot be accessed with an instance reference; qualify it with a type name instead
-                //         m1 = c1.M1;
-                Diagnostic(ErrorCode.ERR_ObjectProhibited, "c1.M1").WithArguments("C.M1()").WithLocation(7, 14),
-                // file.cs(8,14): error CS0176: Member 'C.M1()' cannot be accessed with an instance reference; qualify it with a type name instead
-                //         m2 = (c1 ?? c2).M1;
-                Diagnostic(ErrorCode.ERR_ObjectProhibited, "(c1 ?? c2).M1").WithArguments("C.M1()").WithLocation(8, 14)
-            };
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,13118,13808);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedFlowGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = new DiagnosticDescription[] {
+f_22050_13379_13474(f_22050_13379_13454(f_22050_13379_13430(ErrorCode.ERR_ObjectProhibited, "c1.M1"), "C.M1()"), 7, 14),
+f_22050_13689_13792(f_22050_13689_13772(f_22050_13689_13748(ErrorCode.ERR_ObjectProhibited, "(c1 ?? c2).M1"), "C.M1()"), 8, 14)            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22050,13824,13922);
+
+f_22050_13824_13921(source, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22050,8247,13933);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22050,8247,13933);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22050,8247,13933);
+}
+		}
+
+int
+f_22050_4228_4325(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 4228, 4325);
+return 0;
+}
+
+
+int
+f_22050_8126_8223(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 8126, 8223);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22050_13379_13430(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13379, 13430);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22050_13379_13454(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13379, 13454);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22050_13379_13474(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13379, 13474);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22050_13689_13748(Microsoft.CodeAnalysis.CSharp.ErrorCode
+code,string
+squiggledText)
+{
+var return_v = Diagnostic( (object)code, squiggledText);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13689, 13748);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22050_13689_13772(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,params object[]
+arguments)
+{
+var return_v = this_param.WithArguments( arguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13689, 13772);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+f_22050_13689_13792(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+this_param,int
+line,int
+column)
+{
+var return_v = this_param.WithLocation( line, column);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13689, 13792);
+return return_v;
+}
+
+
+int
+f_22050_13824_13921(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22050, 13824, 13921);
+return 0;
+}
+
+}
 }

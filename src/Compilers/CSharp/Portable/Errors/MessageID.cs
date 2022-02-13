@@ -218,278 +218,860 @@ namespace Microsoft.CodeAnalysis.CSharp
         IDS_FeatureMixedDeclarationsAndExpressionsInDeconstruction = MessageBase + 12793,
     }
 
-    // Message IDs may refer to strings that need to be localized.
-    // This struct makes an IFormattable wrapper around a MessageID
     internal struct LocalizableErrorArgument : IFormattable
     {
+
         private readonly MessageID _id;
 
         internal LocalizableErrorArgument(MessageID id)
         {
-            _id = id;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10023, 11464, 11556);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 11536, 11545);
+
+                _id = id;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10023, 11464, 11556);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 11464, 11556);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 11464, 11556);
+            }
         }
 
         public override string ToString()
         {
-            return ToString(null, null);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10023, 11568, 11665);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 11626, 11654);
+
+                return ToString(null, null);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10023, 11568, 11665);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 11568, 11665);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 11568, 11665);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public string ToString(string? format, IFormatProvider? formatProvider)
         {
-            return ErrorFacts.GetMessage(_id, formatProvider as System.Globalization.CultureInfo);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10023, 11677, 11870);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 11773, 11859);
+
+                return f_10023_11780_11858(_id, formatProvider as System.Globalization.CultureInfo);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10023, 11677, 11870);
+
+                string
+                f_10023_11780_11858(Microsoft.CodeAnalysis.CSharp.MessageID
+                code, System.IFormatProvider?
+                culture)
+                {
+                    var return_v = ErrorFacts.GetMessage(code, (System.Globalization.CultureInfo?)culture);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 11780, 11858);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 11677, 11870);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 11677, 11870);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+        static LocalizableErrorArgument()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10023, 11349, 11877);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10023, 11349, 11877);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 11349, 11877);
         }
     }
-
-    // And this extension method makes it easy to localize MessageIDs:
-
     internal static partial class MessageIDExtensions
     {
         public static LocalizableErrorArgument Localize(this MessageID id)
         {
-            return new LocalizableErrorArgument(id);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10023, 12025, 12167);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 12116, 12156);
+
+                return f_10023_12123_12155(id);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10023, 12025, 12167);
+
+                Microsoft.CodeAnalysis.CSharp.LocalizableErrorArgument
+                f_10023_12123_12155(Microsoft.CodeAnalysis.CSharp.MessageID
+                id)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.LocalizableErrorArgument(id);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 12123, 12155);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 12025, 12167);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 12025, 12167);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // Returns the string to be used in the /features flag switch to enable the MessageID feature.
-        // Always call this before RequiredVersion:
-        //   If this method returns null, call RequiredVersion and use that.
-        //   If this method returns non-null, use that.
-        // Features should be mutually exclusive between RequiredFeature and RequiredVersion.
-        //   (hence the above rule - RequiredVersion throws when RequiredFeature returns non-null)
         internal static string? RequiredFeature(this MessageID feature)
         {
-            // Check for current experimental features, if any, in the current branch.
-            switch (feature)
+            try
             {
-                default:
-                    return null;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10023, 12666, 12959);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 12842, 12948);
+
+                switch (feature)
+                {
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 12842, 12948);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 12921, 12933);
+
+                        return null;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 12842, 12948);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10023, 12666, 12959);
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 12666, 12959);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 12666, 12959);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool CheckFeatureAvailability(
-            this MessageID feature,
-            DiagnosticBag diagnostics,
-            SyntaxNode syntax,
-            Location? location = null)
+                    this MessageID feature,
+                    DiagnosticBag diagnostics,
+                    SyntaxNode syntax,
+                    Location? location = null)
         {
-            var diag = GetFeatureAvailabilityDiagnosticInfo(feature, (CSharpParseOptions)syntax.SyntaxTree.Options);
-            if (diag is object)
+            try
             {
-                diagnostics.Add(diag, location ?? syntax.GetLocation());
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10023, 12971, 13500);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13191, 13295);
+
+                var
+                diag = f_10023_13202_13294(feature, f_10023_13268_13293(f_10023_13268_13285(syntax)))
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13309, 13463) || true) && (diag is object)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 13309, 13463);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13361, 13417);
+
+                    f_10023_13361_13416(diagnostics, diag, location ?? (DynAbs.Tracing.TraceSender.Expression_Null<Microsoft.CodeAnalysis.Location?>(10023, 13383, 13415) ?? f_10023_13395_13415(syntax)));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13435, 13448);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 13309, 13463);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13477, 13489);
+
+                return true;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10023, 12971, 13500);
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_10023_13268_13285(Microsoft.CodeAnalysis.SyntaxNode
+                this_param)
+                {
+                    var return_v = this_param.SyntaxTree;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10023, 13268, 13285);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ParseOptions
+                f_10023_13268_13293(Microsoft.CodeAnalysis.SyntaxTree
+                this_param)
+                {
+                    var return_v = this_param.Options;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10023, 13268, 13293);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo?
+                f_10023_13202_13294(Microsoft.CodeAnalysis.CSharp.MessageID
+                feature, Microsoft.CodeAnalysis.ParseOptions
+                options)
+                {
+                    var return_v = feature.GetFeatureAvailabilityDiagnosticInfo((Microsoft.CodeAnalysis.CSharp.CSharpParseOptions)options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 13202, 13294);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Location
+                f_10023_13395_13415(Microsoft.CodeAnalysis.SyntaxNode
+                this_param)
+                {
+                    var return_v = this_param.GetLocation();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 13395, 13415);
+                    return return_v;
+                }
+
+
+                int
+                f_10023_13361_13416(Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics, Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+                info, Microsoft.CodeAnalysis.Location
+                location)
+                {
+                    diagnostics.Add((Microsoft.CodeAnalysis.DiagnosticInfo)info, location);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 13361, 13416);
+                    return 0;
+                }
+
             }
-            return true;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 12971, 13500);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 12971, 13500);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool CheckFeatureAvailability(
-            this MessageID feature,
-            DiagnosticBag diagnostics,
-            Compilation compilation,
-            Location location)
+                    this MessageID feature,
+                    DiagnosticBag diagnostics,
+                    Compilation compilation,
+                    Location location)
         {
-            if (GetFeatureAvailabilityDiagnosticInfo(feature, (CSharpCompilation)compilation) is { } diagInfo)
+            try
             {
-                diagnostics.Add(diagInfo, location);
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10023, 13512, 13980);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13730, 13943) || true) && (f_10023_13734_13811(feature, compilation) is { } diagInfo)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 13730, 13943);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13861, 13897);
+
+                    f_10023_13861_13896(diagnostics, diagInfo, location);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13915, 13928);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 13730, 13943);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 13957, 13969);
+
+                return true;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10023, 13512, 13980);
+
+                Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo?
+                f_10023_13734_13811(Microsoft.CodeAnalysis.CSharp.MessageID
+                feature, Microsoft.CodeAnalysis.Compilation
+                compilation)
+                {
+                    var return_v = feature.GetFeatureAvailabilityDiagnosticInfo((Microsoft.CodeAnalysis.CSharp.CSharpCompilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 13734, 13811);
+                    return return_v;
+                }
+
+
+                int
+                f_10023_13861_13896(Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics, Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+                info, Microsoft.CodeAnalysis.Location
+                location)
+                {
+                    diagnostics.Add((Microsoft.CodeAnalysis.DiagnosticInfo)info, location);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 13861, 13896);
+                    return 0;
+                }
+
             }
-            return true;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 13512, 13980);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 13512, 13980);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static CSDiagnosticInfo? GetFeatureAvailabilityDiagnosticInfo(this MessageID feature, CSharpParseOptions options)
-            => options.IsFeatureEnabled(feature) ? null : GetDisabledFeatureDiagnosticInfo(feature, options.LanguageVersion);
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10023, 14128, 14240);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 14131, 14240);
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10023, 14131, 14164) || ((f_10023_14131_14164(options, feature) && DynAbs.Tracing.TraceSender.Conditional_F2(10023, 14167, 14171)) || DynAbs.Tracing.TraceSender.Conditional_F3(10023, 14174, 14240))) ? null : f_10023_14174_14240(feature, f_10023_14216_14239(options)); DynAbs.Tracing.TraceSender.TraceExitMethod(10023, 14128, 14240);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 14128, 14240);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 14128, 14240);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
         internal static CSDiagnosticInfo? GetFeatureAvailabilityDiagnosticInfo(this MessageID feature, CSharpCompilation compilation)
-            => compilation.IsFeatureEnabled(feature) ? null : GetDisabledFeatureDiagnosticInfo(feature, compilation.LanguageVersion);
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10023, 14392, 14512);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 14395, 14512);
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10023, 14395, 14432) || ((f_10023_14395_14432(compilation, feature) && DynAbs.Tracing.TraceSender.Conditional_F2(10023, 14435, 14439)) || DynAbs.Tracing.TraceSender.Conditional_F3(10023, 14442, 14512))) ? null : f_10023_14442_14512(feature, f_10023_14484_14511(compilation)); DynAbs.Tracing.TraceSender.TraceExitMethod(10023, 14392, 14512);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 14392, 14512);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 14392, 14512);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
         private static CSDiagnosticInfo GetDisabledFeatureDiagnosticInfo(MessageID feature, LanguageVersion availableVersion)
         {
-            string? requiredFeature = feature.RequiredFeature();
-            if (requiredFeature != null)
+            try
             {
-                return new CSDiagnosticInfo(ErrorCode.ERR_FeatureIsExperimental, feature.Localize(), requiredFeature);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10023, 14525, 15332);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 14667, 14719);
 
-            LanguageVersion requiredVersion = feature.RequiredVersion();
-            return requiredVersion == LanguageVersion.Preview.MapSpecifiedToEffectiveVersion()
-                ? new CSDiagnosticInfo(ErrorCode.ERR_FeatureInPreview, feature.Localize())
-                : new CSDiagnosticInfo(availableVersion.GetErrorCode(), feature.Localize(), new CSharpRequiredLanguageVersion(requiredVersion));
+                string?
+                requiredFeature = f_10023_14693_14718(feature)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 14733, 14911) || true) && (requiredFeature != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 14733, 14911);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 14794, 14896);
+
+                    return f_10023_14801_14895(ErrorCode.ERR_FeatureIsExperimental, f_10023_14859_14877(feature), requiredFeature);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 14733, 14911);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 14927, 14987);
+
+                LanguageVersion
+                requiredVersion = f_10023_14961_14986(feature)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 15001, 15321);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10023, 15008, 15083) || ((requiredVersion == f_10023_15027_15083(LanguageVersion.Preview) && DynAbs.Tracing.TraceSender.Conditional_F2(10023, 15103, 15175)) || DynAbs.Tracing.TraceSender.Conditional_F3(10023, 15195, 15320))) ? f_10023_15103_15175(ErrorCode.ERR_FeatureInPreview, f_10023_15156_15174(feature)) : f_10023_15195_15320(f_10023_15216_15247(availableVersion), f_10023_15249_15267(feature), f_10023_15269_15319(requiredVersion));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10023, 14525, 15332);
+
+                string?
+                f_10023_14693_14718(Microsoft.CodeAnalysis.CSharp.MessageID
+                feature)
+                {
+                    var return_v = feature.RequiredFeature();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14693, 14718);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.LocalizableErrorArgument
+                f_10023_14859_14877(Microsoft.CodeAnalysis.CSharp.MessageID
+                id)
+                {
+                    var return_v = id.Localize();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14859, 14877);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+                f_10023_14801_14895(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, params object[]
+                args)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo(code, args);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14801, 14895);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.LanguageVersion
+                f_10023_14961_14986(Microsoft.CodeAnalysis.CSharp.MessageID
+                feature)
+                {
+                    var return_v = feature.RequiredVersion();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14961, 14986);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.LanguageVersion
+                f_10023_15027_15083(Microsoft.CodeAnalysis.CSharp.LanguageVersion
+                version)
+                {
+                    var return_v = version.MapSpecifiedToEffectiveVersion();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15027, 15083);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.LocalizableErrorArgument
+                f_10023_15156_15174(Microsoft.CodeAnalysis.CSharp.MessageID
+                id)
+                {
+                    var return_v = id.Localize();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15156, 15174);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+                f_10023_15103_15175(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, params object[]
+                args)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo(code, args);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15103, 15175);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.ErrorCode
+                f_10023_15216_15247(Microsoft.CodeAnalysis.CSharp.LanguageVersion
+                version)
+                {
+                    var return_v = version.GetErrorCode();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15216, 15247);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.LocalizableErrorArgument
+                f_10023_15249_15267(Microsoft.CodeAnalysis.CSharp.MessageID
+                id)
+                {
+                    var return_v = id.Localize();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15249, 15267);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpRequiredLanguageVersion
+                f_10023_15269_15319(Microsoft.CodeAnalysis.CSharp.LanguageVersion
+                version)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.CSharpRequiredLanguageVersion(version);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15269, 15319);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+                f_10023_15195_15320(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, params object[]
+                args)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo(code, args);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15195, 15320);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 14525, 15332);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 14525, 15332);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static LanguageVersion RequiredVersion(this MessageID feature)
         {
-            Debug.Assert(RequiredFeature(feature) == null);
-
-            // Based on CSourceParser::GetFeatureUsage from SourceParser.cpp.
-            // Checks are in the LanguageParser unless otherwise noted.
-            switch (feature)
+            try
             {
-                // C# preview features.
-                case MessageID.IDS_FeatureMixedDeclarationsAndExpressionsInDeconstruction:
-                    return LanguageVersion.Preview;
-                // C# 9.0 features.
-                case MessageID.IDS_FeatureLambdaDiscardParameters: // semantic check
-                case MessageID.IDS_FeatureFunctionPointers:
-                case MessageID.IDS_FeatureLocalFunctionAttributes: // syntax check
-                case MessageID.IDS_FeatureExternLocalFunctions: // syntax check
-                case MessageID.IDS_FeatureImplicitObjectCreation: // syntax check
-                case MessageID.IDS_FeatureMemberNotNull:
-                case MessageID.IDS_FeatureAndPattern:
-                case MessageID.IDS_FeatureNotPattern:
-                case MessageID.IDS_FeatureOrPattern:
-                case MessageID.IDS_FeatureParenthesizedPattern:
-                case MessageID.IDS_FeatureTypePattern:
-                case MessageID.IDS_FeatureRelationalPattern:
-                case MessageID.IDS_FeatureExtensionGetEnumerator: // semantic check
-                case MessageID.IDS_FeatureExtensionGetAsyncEnumerator: // semantic check
-                case MessageID.IDS_FeatureNativeInt:
-                case MessageID.IDS_FeatureExtendedPartialMethods: // semantic check
-                case MessageID.IDS_TopLevelStatements:
-                case MessageID.IDS_FeatureInitOnlySetters: // semantic check
-                case MessageID.IDS_FeatureRecords:
-                case MessageID.IDS_FeatureTargetTypedConditional:  // semantic check
-                case MessageID.IDS_FeatureCovariantReturnsForOverrides: // semantic check
-                case MessageID.IDS_FeatureStaticAnonymousFunction: // syntax check
-                case MessageID.IDS_FeatureModuleInitializers: // semantic check on method attribute
-                case MessageID.IDS_FeatureDefaultTypeParameterConstraint:
-                    return LanguageVersion.CSharp9;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10023, 15344, 25735);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 15440, 15487);
 
-                case MessageID.IDS_FeatureVarianceSafetyForStaticInterfaceMembers: //semantic check
-                case MessageID.IDS_FeatureConstantInterpolatedStrings: //semantic check
-                    return LanguageVersion.Preview;
+                f_10023_15440_15486(f_10023_15453_15477(feature) == null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 15655, 25724);
 
-                // C# 8.0 features.
-                case MessageID.IDS_FeatureAltInterpolatedVerbatimStrings:
-                case MessageID.IDS_FeatureCoalesceAssignmentExpression:
-                case MessageID.IDS_FeatureUnconstrainedTypeParameterInNullCoalescingOperator:
-                case MessageID.IDS_FeatureNullableReferenceTypes: // syntax and semantic check
-                case MessageID.IDS_FeatureIndexOperator: // semantic check
-                case MessageID.IDS_FeatureRangeOperator: // semantic check
-                case MessageID.IDS_FeatureAsyncStreams:
-                case MessageID.IDS_FeatureRecursivePatterns:
-                case MessageID.IDS_FeatureUsingDeclarations:
-                case MessageID.IDS_FeatureStaticLocalFunctions:
-                case MessageID.IDS_FeatureNameShadowingInNestedFunctions:
-                case MessageID.IDS_FeatureUnmanagedConstructedTypes: // semantic check
-                case MessageID.IDS_FeatureObsoleteOnPropertyAccessor:
-                case MessageID.IDS_FeatureReadOnlyMembers:
-                case MessageID.IDS_DefaultInterfaceImplementation: // semantic check
-                case MessageID.IDS_OverrideWithConstraints: // semantic check
-                case MessageID.IDS_FeatureNestedStackalloc: // semantic check
-                case MessageID.IDS_FeatureNotNullGenericTypeConstraint:// semantic check
-                case MessageID.IDS_FeatureSwitchExpression:
-                case MessageID.IDS_FeatureAsyncUsing:
-                case MessageID.IDS_FeatureNullPointerConstantPattern: //semantic check
-                    return LanguageVersion.CSharp8;
+                switch (feature)
+                {
 
-                // C# 7.3 features.
-                case MessageID.IDS_FeatureAttributesOnBackingFields: // semantic check
-                case MessageID.IDS_FeatureImprovedOverloadCandidates: // semantic check
-                case MessageID.IDS_FeatureTupleEquality: // semantic check
-                case MessageID.IDS_FeatureRefReassignment:
-                case MessageID.IDS_FeatureRefFor:
-                case MessageID.IDS_FeatureRefForEach:
-                case MessageID.IDS_FeatureEnumGenericTypeConstraint: // semantic check
-                case MessageID.IDS_FeatureDelegateGenericTypeConstraint: // semantic check
-                case MessageID.IDS_FeatureUnmanagedGenericTypeConstraint: // semantic check
-                case MessageID.IDS_FeatureStackAllocInitializer:
-                case MessageID.IDS_FeatureExpressionVariablesInQueriesAndInitializers: // semantic check
-                case MessageID.IDS_FeatureExtensibleFixedStatement:  // semantic check
-                case MessageID.IDS_FeatureIndexingMovableFixedBuffers: //semantic check
-                    return LanguageVersion.CSharp7_3;
+                    case MessageID.IDS_FeatureMixedDeclarationsAndExpressionsInDeconstruction:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 15841, 15872);
 
-                // C# 7.2 features.
-                case MessageID.IDS_FeatureNonTrailingNamedArguments: // semantic check
-                case MessageID.IDS_FeatureLeadingDigitSeparator:
-                case MessageID.IDS_FeaturePrivateProtected:
-                case MessageID.IDS_FeatureReadOnlyReferences:
-                case MessageID.IDS_FeatureRefStructs:
-                case MessageID.IDS_FeatureReadOnlyStructs:
-                case MessageID.IDS_FeatureRefExtensionMethods:
-                case MessageID.IDS_FeatureRefConditional:
-                    return LanguageVersion.CSharp7_2;
+                        return LanguageVersion.Preview;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
 
-                // C# 7.1 features.
-                case MessageID.IDS_FeatureAsyncMain:
-                case MessageID.IDS_FeatureDefaultLiteral:
-                case MessageID.IDS_FeatureInferredTupleNames:
-                case MessageID.IDS_FeatureGenericPatternMatching:
-                    return LanguageVersion.CSharp7_1;
+                    case MessageID.IDS_FeatureLambdaDiscardParameters: // semantic check
+                    case MessageID.IDS_FeatureFunctionPointers:
+                    case MessageID.IDS_FeatureLocalFunctionAttributes: // syntax check
+                    case MessageID.IDS_FeatureExternLocalFunctions: // syntax check
+                    case MessageID.IDS_FeatureImplicitObjectCreation: // syntax check
+                    case MessageID.IDS_FeatureMemberNotNull:
+                    case MessageID.IDS_FeatureAndPattern:
+                    case MessageID.IDS_FeatureNotPattern:
+                    case MessageID.IDS_FeatureOrPattern:
+                    case MessageID.IDS_FeatureParenthesizedPattern:
+                    case MessageID.IDS_FeatureTypePattern:
+                    case MessageID.IDS_FeatureRelationalPattern:
+                    case MessageID.IDS_FeatureExtensionGetEnumerator: // semantic check
+                    case MessageID.IDS_FeatureExtensionGetAsyncEnumerator: // semantic check
+                    case MessageID.IDS_FeatureNativeInt:
+                    case MessageID.IDS_FeatureExtendedPartialMethods: // semantic check
+                    case MessageID.IDS_TopLevelStatements:
+                    case MessageID.IDS_FeatureInitOnlySetters: // semantic check
+                    case MessageID.IDS_FeatureRecords:
+                    case MessageID.IDS_FeatureTargetTypedConditional:  // semantic check
+                    case MessageID.IDS_FeatureCovariantReturnsForOverrides: // semantic check
+                    case MessageID.IDS_FeatureStaticAnonymousFunction: // syntax check
+                    case MessageID.IDS_FeatureModuleInitializers: // semantic check on method attribute
+                    case MessageID.IDS_FeatureDefaultTypeParameterConstraint:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 17668, 17699);
 
-                // C# 7 features.
-                case MessageID.IDS_FeatureBinaryLiteral:
-                case MessageID.IDS_FeatureDigitSeparator:
-                case MessageID.IDS_FeatureLocalFunctions:
-                case MessageID.IDS_FeatureRefLocalsReturns:
-                case MessageID.IDS_FeaturePatternMatching:
-                case MessageID.IDS_FeatureThrowExpression:
-                case MessageID.IDS_FeatureTuples:
-                case MessageID.IDS_FeatureOutVar:
-                case MessageID.IDS_FeatureExpressionBodiedAccessor:
-                case MessageID.IDS_FeatureExpressionBodiedDeOrConstructor:
-                case MessageID.IDS_FeatureDiscards:
-                    return LanguageVersion.CSharp7;
+                        return LanguageVersion.CSharp9;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
 
-                // C# 6 features.
-                case MessageID.IDS_FeatureExceptionFilter:
-                case MessageID.IDS_FeatureAutoPropertyInitializer:
-                case MessageID.IDS_FeatureNullPropagatingOperator:
-                case MessageID.IDS_FeatureExpressionBodiedMethod:
-                case MessageID.IDS_FeatureExpressionBodiedProperty:
-                case MessageID.IDS_FeatureExpressionBodiedIndexer:
-                case MessageID.IDS_FeatureNameof:
-                case MessageID.IDS_FeatureDictionaryInitializer:
-                case MessageID.IDS_FeatureUsingStatic:
-                case MessageID.IDS_FeatureInterpolatedStrings:
-                case MessageID.IDS_AwaitInCatchAndFinally:
-                case MessageID.IDS_FeatureReadonlyAutoImplementedProperties:
-                    return LanguageVersion.CSharp6;
+                    case MessageID.IDS_FeatureVarianceSafetyForStaticInterfaceMembers: //semantic check
+                    case MessageID.IDS_FeatureConstantInterpolatedStrings: //semantic check
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 17913, 17944);
 
-                // C# 5 features.
-                case MessageID.IDS_FeatureAsync:
-                    return LanguageVersion.CSharp5;
+                        return LanguageVersion.Preview;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
 
-                // C# 4 features.
-                case MessageID.IDS_FeatureDynamic: // Checked in the binder.
-                case MessageID.IDS_FeatureTypeVariance:
-                case MessageID.IDS_FeatureNamedArgument:
-                case MessageID.IDS_FeatureOptionalParameter:
-                    return LanguageVersion.CSharp4;
+                    case MessageID.IDS_FeatureAltInterpolatedVerbatimStrings:
+                    case MessageID.IDS_FeatureCoalesceAssignmentExpression:
+                    case MessageID.IDS_FeatureUnconstrainedTypeParameterInNullCoalescingOperator:
+                    case MessageID.IDS_FeatureNullableReferenceTypes: // syntax and semantic check
+                    case MessageID.IDS_FeatureIndexOperator: // semantic check
+                    case MessageID.IDS_FeatureRangeOperator: // semantic check
+                    case MessageID.IDS_FeatureAsyncStreams:
+                    case MessageID.IDS_FeatureRecursivePatterns:
+                    case MessageID.IDS_FeatureUsingDeclarations:
+                    case MessageID.IDS_FeatureStaticLocalFunctions:
+                    case MessageID.IDS_FeatureNameShadowingInNestedFunctions:
+                    case MessageID.IDS_FeatureUnmanagedConstructedTypes: // semantic check
+                    case MessageID.IDS_FeatureObsoleteOnPropertyAccessor:
+                    case MessageID.IDS_FeatureReadOnlyMembers:
+                    case MessageID.IDS_DefaultInterfaceImplementation: // semantic check
+                    case MessageID.IDS_OverrideWithConstraints: // semantic check
+                    case MessageID.IDS_FeatureNestedStackalloc: // semantic check
+                    case MessageID.IDS_FeatureNotNullGenericTypeConstraint:// semantic check
+                    case MessageID.IDS_FeatureSwitchExpression:
+                    case MessageID.IDS_FeatureAsyncUsing:
+                    case MessageID.IDS_FeatureNullPointerConstantPattern: //semantic check
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 19574, 19605);
 
-                // C# 3 features.
-                case MessageID.IDS_FeatureImplicitArray:
-                case MessageID.IDS_FeatureAnonymousTypes:
-                case MessageID.IDS_FeatureObjectInitializer:
-                case MessageID.IDS_FeatureCollectionInitializer:
-                case MessageID.IDS_FeatureLambda:
-                case MessageID.IDS_FeatureQueryExpression:
-                case MessageID.IDS_FeatureExtensionMethod:
-                case MessageID.IDS_FeaturePartialMethod:
-                case MessageID.IDS_FeatureImplicitLocal: // Checked in the binder.
-                case MessageID.IDS_FeatureAutoImplementedProperties:
-                    return LanguageVersion.CSharp3;
+                        return LanguageVersion.CSharp8;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
 
-                // C# 2 features.
-                case MessageID.IDS_FeatureGenerics: // Also affects crefs.
-                case MessageID.IDS_FeatureAnonDelegates:
-                case MessageID.IDS_FeatureGlobalNamespace: // Also affects crefs.
-                case MessageID.IDS_FeatureFixedBuffer:
-                case MessageID.IDS_FeatureStaticClasses:
-                case MessageID.IDS_FeaturePartialTypes:
-                case MessageID.IDS_FeaturePropertyAccessorMods:
-                case MessageID.IDS_FeatureExternAlias:
-                case MessageID.IDS_FeatureIterators:
-                case MessageID.IDS_FeatureDefault:
-                case MessageID.IDS_FeatureNullable:
-                case MessageID.IDS_FeaturePragma: // Checked in the directive parser.
-                case MessageID.IDS_FeatureSwitchOnBool: // Checked in the binder.
-                    return LanguageVersion.CSharp2;
+                    case MessageID.IDS_FeatureAttributesOnBackingFields: // semantic check
+                    case MessageID.IDS_FeatureImprovedOverloadCandidates: // semantic check
+                    case MessageID.IDS_FeatureTupleEquality: // semantic check
+                    case MessageID.IDS_FeatureRefReassignment:
+                    case MessageID.IDS_FeatureRefFor:
+                    case MessageID.IDS_FeatureRefForEach:
+                    case MessageID.IDS_FeatureEnumGenericTypeConstraint: // semantic check
+                    case MessageID.IDS_FeatureDelegateGenericTypeConstraint: // semantic check
+                    case MessageID.IDS_FeatureUnmanagedGenericTypeConstraint: // semantic check
+                    case MessageID.IDS_FeatureStackAllocInitializer:
+                    case MessageID.IDS_FeatureExpressionVariablesInQueriesAndInitializers: // semantic check
+                    case MessageID.IDS_FeatureExtensibleFixedStatement:  // semantic check
+                    case MessageID.IDS_FeatureIndexingMovableFixedBuffers: //semantic check
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 20707, 20740);
 
-                // Special C# 2 feature: only a warning in C# 1.
-                case MessageID.IDS_FeatureModuleAttrLoc:
-                    return LanguageVersion.CSharp1;
+                        return LanguageVersion.CSharp7_3;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
 
-                default:
-                    throw ExceptionUtilities.UnexpectedValue(feature);
+                    case MessageID.IDS_FeatureNonTrailingNamedArguments: // semantic check
+                    case MessageID.IDS_FeatureLeadingDigitSeparator:
+                    case MessageID.IDS_FeaturePrivateProtected:
+                    case MessageID.IDS_FeatureReadOnlyReferences:
+                    case MessageID.IDS_FeatureRefStructs:
+                    case MessageID.IDS_FeatureReadOnlyStructs:
+                    case MessageID.IDS_FeatureRefExtensionMethods:
+                    case MessageID.IDS_FeatureRefConditional:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 21317, 21350);
+
+                        return LanguageVersion.CSharp7_2;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureAsyncMain:
+                    case MessageID.IDS_FeatureDefaultLiteral:
+                    case MessageID.IDS_FeatureInferredTupleNames:
+                    case MessageID.IDS_FeatureGenericPatternMatching:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 21654, 21687);
+
+                        return LanguageVersion.CSharp7_1;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureBinaryLiteral:
+                    case MessageID.IDS_FeatureDigitSeparator:
+                    case MessageID.IDS_FeatureLocalFunctions:
+                    case MessageID.IDS_FeatureRefLocalsReturns:
+                    case MessageID.IDS_FeaturePatternMatching:
+                    case MessageID.IDS_FeatureThrowExpression:
+                    case MessageID.IDS_FeatureTuples:
+                    case MessageID.IDS_FeatureOutVar:
+                    case MessageID.IDS_FeatureExpressionBodiedAccessor:
+                    case MessageID.IDS_FeatureExpressionBodiedDeOrConstructor:
+                    case MessageID.IDS_FeatureDiscards:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 22403, 22434);
+
+                        return LanguageVersion.CSharp7;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureExceptionFilter:
+                    case MessageID.IDS_FeatureAutoPropertyInitializer:
+                    case MessageID.IDS_FeatureNullPropagatingOperator:
+                    case MessageID.IDS_FeatureExpressionBodiedMethod:
+                    case MessageID.IDS_FeatureExpressionBodiedProperty:
+                    case MessageID.IDS_FeatureExpressionBodiedIndexer:
+                    case MessageID.IDS_FeatureNameof:
+                    case MessageID.IDS_FeatureDictionaryInitializer:
+                    case MessageID.IDS_FeatureUsingStatic:
+                    case MessageID.IDS_FeatureInterpolatedStrings:
+                    case MessageID.IDS_AwaitInCatchAndFinally:
+                    case MessageID.IDS_FeatureReadonlyAutoImplementedProperties:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 23268, 23299);
+
+                        return LanguageVersion.CSharp6;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureAsync:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 23408, 23439);
+
+                        return LanguageVersion.CSharp5;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureDynamic: // Checked in the binder.
+                    case MessageID.IDS_FeatureTypeVariance:
+                    case MessageID.IDS_FeatureNamedArgument:
+                    case MessageID.IDS_FeatureOptionalParameter:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 23753, 23784);
+
+                        return LanguageVersion.CSharp4;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureImplicitArray:
+                    case MessageID.IDS_FeatureAnonymousTypes:
+                    case MessageID.IDS_FeatureObjectInitializer:
+                    case MessageID.IDS_FeatureCollectionInitializer:
+                    case MessageID.IDS_FeatureLambda:
+                    case MessageID.IDS_FeatureQueryExpression:
+                    case MessageID.IDS_FeatureExtensionMethod:
+                    case MessageID.IDS_FeaturePartialMethod:
+                    case MessageID.IDS_FeatureImplicitLocal: // Checked in the binder.
+                    case MessageID.IDS_FeatureAutoImplementedProperties:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 24471, 24502);
+
+                        return LanguageVersion.CSharp3;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureGenerics: // Also affects crefs.
+                    case MessageID.IDS_FeatureAnonDelegates:
+                    case MessageID.IDS_FeatureGlobalNamespace: // Also affects crefs.
+                    case MessageID.IDS_FeatureFixedBuffer:
+                    case MessageID.IDS_FeatureStaticClasses:
+                    case MessageID.IDS_FeaturePartialTypes:
+                    case MessageID.IDS_FeaturePropertyAccessorMods:
+                    case MessageID.IDS_FeatureExternAlias:
+                    case MessageID.IDS_FeatureIterators:
+                    case MessageID.IDS_FeatureDefault:
+                    case MessageID.IDS_FeatureNullable:
+                    case MessageID.IDS_FeaturePragma: // Checked in the directive parser.
+                    case MessageID.IDS_FeatureSwitchOnBool: // Checked in the binder.
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 25399, 25430);
+
+                        return LanguageVersion.CSharp2;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    case MessageID.IDS_FeatureModuleAttrLoc:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 25578, 25609);
+
+                        return LanguageVersion.CSharp1;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10023, 15655, 25724);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10023, 25659, 25709);
+
+                        throw f_10023_25665_25708(feature);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10023, 15655, 25724);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10023, 15344, 25735);
+
+                string?
+                f_10023_15453_15477(Microsoft.CodeAnalysis.CSharp.MessageID
+                feature)
+                {
+                    var return_v = feature.RequiredFeature();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15453, 15477);
+                    return return_v;
+                }
+
+
+                int
+                f_10023_15440_15486(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 15440, 15486);
+                    return 0;
+                }
+
+
+                System.Exception
+                f_10023_25665_25708(Microsoft.CodeAnalysis.CSharp.MessageID
+                o)
+                {
+                    var return_v = ExceptionUtilities.UnexpectedValue((object)o);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 25665, 25708);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10023, 15344, 25735);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 15344, 25735);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static MessageIDExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10023, 11959, 25742);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10023, 11959, 25742);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10023, 11959, 25742);
+        }
+
+
+        static bool
+        f_10023_14131_14164(Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+this_param, Microsoft.CodeAnalysis.CSharp.MessageID
+feature)
+        {
+            var return_v = this_param.IsFeatureEnabled(feature);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14131, 14164);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.LanguageVersion
+f_10023_14216_14239(Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+this_param)
+        {
+            var return_v = this_param.LanguageVersion;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10023, 14216, 14239);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+f_10023_14174_14240(Microsoft.CodeAnalysis.CSharp.MessageID
+feature, Microsoft.CodeAnalysis.CSharp.LanguageVersion
+availableVersion)
+        {
+            var return_v = GetDisabledFeatureDiagnosticInfo(feature, availableVersion);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14174, 14240);
+            return return_v;
+        }
+
+
+        static bool
+        f_10023_14395_14432(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation, Microsoft.CodeAnalysis.CSharp.MessageID
+feature)
+        {
+            var return_v = compilation.IsFeatureEnabled(feature);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14395, 14432);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.LanguageVersion
+f_10023_14484_14511(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param)
+        {
+            var return_v = this_param.LanguageVersion;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10023, 14484, 14511);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+        f_10023_14442_14512(Microsoft.CodeAnalysis.CSharp.MessageID
+        feature, Microsoft.CodeAnalysis.CSharp.LanguageVersion
+        availableVersion)
+        {
+            var return_v = GetDisabledFeatureDiagnosticInfo(feature, availableVersion);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(10023, 14442, 14512);
+            return return_v;
+        }
+
     }
 }

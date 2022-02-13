@@ -12,32 +12,58 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     public static class CSharpFileSystemExtensions
     {
-        /// <summary>
-        /// Emit the IL for the compilation into the specified stream.
-        /// </summary>
-        /// <param name="compilation">Compilation.</param>
-        /// <param name="outputPath">Path of the file to which the PE image will be written.</param>
-        /// <param name="pdbPath">Path of the file to which the compilation's debug info will be written.
-        /// Also embedded in the output file.  Null to forego PDB generation.
-        /// </param>
-        /// <param name="xmlDocumentationPath">Path of the file to which the compilation's XML documentation will be written.  Null to forego XML generation.</param>
-        /// <param name="win32ResourcesPath">Path of the file from which the compilation's Win32 resources will be read (in RES format).  
-        /// Null to indicate that there are none.</param>
-        /// <param name="manifestResources">List of the compilation's managed resources.  Null to indicate that there are none.</param>
-        /// <param name="cancellationToken">To cancel the emit process.</param>
-        /// <exception cref="ArgumentNullException">Compilation or path is null.</exception>
-        /// <exception cref="ArgumentException">Path is empty or invalid.</exception>
-        /// <exception cref="IOException">An error occurred while reading or writing a file.</exception>
         public static EmitResult Emit(
-            this CSharpCompilation compilation,
-            string outputPath,
-            string? pdbPath = null,
-            string? xmlDocumentationPath = null,
-            string? win32ResourcesPath = null,
-            IEnumerable<ResourceDescription>? manifestResources = null,
-            CancellationToken cancellationToken = default)
+                    this CSharpCompilation compilation,
+                    string outputPath,
+                    string? pdbPath = null,
+                    string? xmlDocumentationPath = null,
+                    string? win32ResourcesPath = null,
+                    IEnumerable<ResourceDescription>? manifestResources = null,
+                    CancellationToken cancellationToken = default)
         {
-            return FileSystemExtensions.Emit(compilation, outputPath, pdbPath, xmlDocumentationPath, win32ResourcesPath, manifestResources, cancellationToken);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10974, 1810, 2372);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10974, 2214, 2361);
+
+                return f_10974_2221_2360(compilation, outputPath, pdbPath, xmlDocumentationPath, win32ResourcesPath, manifestResources, cancellationToken);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10974, 1810, 2372);
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_10974_2221_2360(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                outputPath, string?
+                pdbPath, string?
+                xmlDocPath, string?
+                win32ResourcesPath, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>?
+                manifestResources, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = compilation.Emit(outputPath, pdbPath, xmlDocPath, win32ResourcesPath, manifestResources, cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10974, 2221, 2360);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10974, 1810, 2372);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10974, 1810, 2372);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static CSharpFileSystemExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10974, 387, 2379);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10974, 387, 2379);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10974, 387, 2379);
+        }
+
     }
 }

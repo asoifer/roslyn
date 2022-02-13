@@ -12,20 +12,35 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     internal partial class Binder
     {
-        /// <summary>
-        /// We represent the set of query variables in scope at a particular point by a RangeVariableMap.
-        /// Each query variable in scope has a key in this map.  If the corresponding value is empty, then
-        /// that query variable is represented directly by a lambda parameter.  If it is non-empty, then
-        /// to get the value of that query variable one starts with the first parameter of the current
-        /// lambda (the first parameter is always the transparent one), and dot through its members using
-        /// the names in the value list, in reverse order.  So, for example, if the query variable "x" has
-        /// a value in this map of ["Item2", "Item1", "Item1"], then the way to compute the value of that
-        /// query variable is starting with the current lambda's first parameter P, compute "P.Item1.Item1.Item2".
-        /// See also WithQueryLambdaParametersBinder.
-        /// </summary>
         private class RangeVariableMap : Dictionary<RangeVariableSymbol, ImmutableArray<string>>
         {
-            public RangeVariableMap() { }
+            public RangeVariableMap()
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(10291, 1521, 1550);
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(10291, 1521, 1550);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10291, 1521, 1550);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10291, 1521, 1550);
+                }
+            }
+
+            static RangeVariableMap()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10291, 1408, 1561);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10291, 1408, 1561);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10291, 1408, 1561);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10291, 1408, 1561);
         }
     }
 }

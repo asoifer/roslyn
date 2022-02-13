@@ -17,27 +17,53 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp.Symbols
 {
-    /// <summary>
-    /// Represents a parameter of a method or indexer.
-    /// </summary>
     internal abstract partial class ParameterSymbol : Symbol, IParameterSymbolInternal
     {
-        internal const string ValueParameterName = "value";
+        internal const string
+        ValueParameterName = "value"
+        ;
 
         internal ParameterSymbol()
         {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10143, 888, 936);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10200, 6793, 6805);
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10143, 888, 936);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 888, 936);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 888, 936);
+            }
         }
 
-        /// <summary>
-        /// The original definition of this symbol. If this symbol is constructed from another
-        /// symbol by type substitution then OriginalDefinition gets the original symbol as it was defined in
-        /// source or metadata.
-        /// </summary>
         public new virtual ParameterSymbol OriginalDefinition
         {
             get
             {
-                return this;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 1313, 1376);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 1349, 1361);
+
+                    return this;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 1313, 1376);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 1235, 1387);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 1235, 1387);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -45,56 +71,116 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         {
             get
             {
-                return this.OriginalDefinition;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 1481, 1563);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 1517, 1548);
+
+                    return f_10143_1524_1547(this);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 1481, 1563);
+
+                    Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                    f_10143_1524_1547(Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                    this_param)
+                    {
+                        var return_v = this_param.OriginalDefinition;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 1524, 1547);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 1399, 1574);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 1399, 1574);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Gets the type of the parameter along with its annotations.
-        /// </summary>
         public abstract TypeWithAnnotations TypeWithAnnotations { get; }
 
-        /// <summary>
-        /// Gets the type of the parameter.
-        /// </summary>
-        public TypeSymbol Type => TypeWithAnnotations.Type;
+        public TypeSymbol Type
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 1896, 1923);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 1899, 1923);
+                    return f_10143_1899_1918().Type; DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 1896, 1923);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 1896, 1923);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 1896, 1923);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        /// <summary>
-        /// Determines if the parameter ref, out or neither.
-        /// </summary>
         public abstract RefKind RefKind { get; }
 
-        /// <summary>
-        /// Returns true if the parameter is a discard parameter.
-        /// </summary>
         public abstract bool IsDiscard { get; }
 
-        /// <summary>
-        /// Custom modifiers associated with the ref modifier, or an empty array if there are none.
-        /// </summary>
         public abstract ImmutableArray<CustomModifier> RefCustomModifiers { get; }
 
-        /// <summary>
-        /// Describes how the parameter is marshalled when passed to native code.
-        /// Null if no specific marshalling information is available for the parameter.
-        /// </summary>
-        /// <remarks>PE symbols don't provide this information and always return null.</remarks>
         internal abstract MarshalPseudoCustomAttributeData MarshallingInformation { get; }
 
-        /// <summary>
-        /// Returns the marshalling type of this parameter, or 0 if marshalling information isn't available.
-        /// </summary>
-        /// <remarks>
-        /// By default this information is extracted from <see cref="MarshallingInformation"/> if available. 
-        /// Since the compiler does only need to know the marshalling type of symbols that aren't emitted 
-        /// PE symbols just decode the type from metadata and don't provide full marshalling information.
-        /// </remarks>
         internal virtual UnmanagedType MarshallingType
         {
             get
             {
-                var info = MarshallingInformation;
-                return info != null ? info.UnmanagedType : 0;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 3508, 3656);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 3544, 3578);
+
+                    var
+                    info = f_10143_3555_3577()
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 3596, 3641);
+
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(10143, 3603, 3615) || ((info != null && DynAbs.Tracing.TraceSender.Conditional_F2(10143, 3618, 3636)) || DynAbs.Tracing.TraceSender.Conditional_F3(10143, 3639, 3640))) ? f_10143_3618_3636(info) : 0;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 3508, 3656);
+
+                    Microsoft.CodeAnalysis.MarshalPseudoCustomAttributeData
+                    f_10143_3555_3577()
+                    {
+                        var return_v = MarshallingInformation;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 3555, 3577);
+                        return return_v;
+                    }
+
+
+                    System.Runtime.InteropServices.UnmanagedType
+                    f_10143_3618_3636(Microsoft.CodeAnalysis.MarshalPseudoCustomAttributeData
+                    this_param)
+                    {
+                        var return_v = this_param.UnmanagedType;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 3618, 3636);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 3437, 3667);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 3437, 3667);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -102,287 +188,614 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         {
             get
             {
-                switch (this.MarshallingType)
+                try
                 {
-                    case UnmanagedType.Interface:
-                    case UnmanagedType.IUnknown:
-                    case Cci.Constants.UnmanagedType_IDispatch:
-                        return true;
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 3735, 4090);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 3771, 4042);
 
-                return false;
+                    switch (f_10143_3779_3799(this))
+                    {
+
+                        case UnmanagedType.Interface:
+                        case UnmanagedType.IUnknown:
+                        case Cci.Constants.UnmanagedType_IDispatch:
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10143, 3771, 4042);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 4011, 4023);
+
+                            return true;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10143, 3771, 4042);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 4062, 4075);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 3735, 4090);
+
+                    System.Runtime.InteropServices.UnmanagedType
+                    f_10143_3779_3799(Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                    this_param)
+                    {
+                        var return_v = this_param.MarshallingType;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 3779, 3799);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 3679, 4101);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 3679, 4101);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Gets the ordinal position of the parameter. The first parameter has ordinal zero.
-        /// The "'this' parameter has ordinal -1.
-        /// </summary>
         public abstract int Ordinal { get; }
 
-        /// <summary>
-        /// Returns true if the parameter was declared as a parameter array.
-        /// Note: it is possible for any parameter to have the [ParamArray] attribute (for instance, in IL),
-        ///     even if it is not the last parameter. So check for that.
-        /// </summary>
         public abstract bool IsParams { get; }
 
-        /// <summary>
-        /// Returns true if the parameter is semantically optional.
-        /// </summary>
-        /// <remarks>
-        /// True iff the parameter has a default argument syntax, 
-        /// or the parameter is not a params-array and Optional metadata flag is set.
-        /// </remarks>
         public bool IsOptional
         {
             get
             {
-                // DEV10 COMPATIBILITY: Special handling for ParameterArray params
-                //
-                // Ideally we should not need the additional "isParams" check below
-                // as a ParameterArray param cannot have a default value.
-                // However, for certain cases of overriding this is not true.
-                // See test "CodeGenTests.NoDefaultForParams_Dev10781558" for an example.
-                // See Roslyn bug 10753 and Dev10 bug 781558 for details.
-                //
-                // To maintain compatibility with Dev10, we allow such code to compile but explicitly
-                // classify a ParameterArray param as a required parameter.
-                //
-                // Also when we call f() where signature of f is void([Optional]params int[] args) 
-                // an empty array is created and passed to f.
-                //
-                // We also do not consider ref/out parameters as optional, unless in COM interop scenarios 
-                // and only for ref.
-                RefKind refKind;
-                return !IsParams && IsMetadataOptional &&
-                       ((refKind = RefKind) == RefKind.None ||
-                        (refKind == RefKind.In) ||
-                        (refKind == RefKind.Ref && ContainingSymbol.ContainingType.IsComImport));
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 5078, 6479);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 6174, 6190);
+
+                    RefKind
+                    refKind
+                    = default(RefKind);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 6208, 6464);
+
+                    return f_10143_6215_6224_M(!IsParams) && (DynAbs.Tracing.TraceSender.Expression_True(10143, 6215, 6246) && f_10143_6228_6246()) && (DynAbs.Tracing.TraceSender.Expression_True(10143, 6215, 6463) && ((refKind = f_10143_6286_6293()) == RefKind.None || (DynAbs.Tracing.TraceSender.Expression_False(10143, 6275, 6362) || (refKind == RefKind.In)) || (DynAbs.Tracing.TraceSender.Expression_False(10143, 6275, 6462) || (refKind == RefKind.Ref && (DynAbs.Tracing.TraceSender.Expression_True(10143, 6392, 6461) && f_10143_6418_6461(f_10143_6418_6449(f_10143_6418_6434())))))));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 5078, 6479);
+
+                    bool
+                    f_10143_6215_6224_M(bool
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 6215, 6224);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_10143_6228_6246()
+                    {
+                        var return_v = IsMetadataOptional;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 6228, 6246);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.RefKind
+                    f_10143_6286_6293()
+                    {
+                        var return_v = RefKind;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 6286, 6293);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.CSharp.Symbol
+                    f_10143_6418_6434()
+                    {
+                        var return_v = ContainingSymbol;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 6418, 6434);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                    f_10143_6418_6449(Microsoft.CodeAnalysis.CSharp.Symbol
+                    this_param)
+                    {
+                        var return_v = this_param.ContainingType;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 6418, 6449);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_10143_6418_6461(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                    this_param)
+                    {
+                        var return_v = this_param.IsComImport;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 6418, 6461);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 5031, 6490);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 5031, 6490);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// True if Optional flag is set in metadata.
-        /// </summary>
         internal abstract bool IsMetadataOptional { get; }
 
-        /// <summary>
-        /// True if In flag is set in metadata.
-        /// </summary>
         internal abstract bool IsMetadataIn { get; }
 
-        /// <summary>
-        /// True if Out flag is set in metadata.
-        /// </summary>
         internal abstract bool IsMetadataOut { get; }
 
-        /// <summary>
-        /// Returns true if the parameter explicitly specifies a default value to be passed
-        /// when no value is provided as an argument to a call. 
-        /// </summary>
-        /// <remarks>
-        /// True if the parameter has a default argument syntax, 
-        /// or the parameter is from source and <see cref="DefaultParameterValueAttribute"/> is applied, 
-        /// or the parameter is from metadata and HasDefault metadata flag is set. See
-        /// <see cref="IsOptional"/> to determine if the parameter will be considered optional by
-        /// overload resolution.
-        /// 
-        /// The default value can be obtained with <see cref="ExplicitDefaultValue"/> property.
-        /// </remarks>
         public bool HasExplicitDefaultValue
         {
             get
             {
-                // In the symbol model, only optional parameters have default values.
-                // Internally, however, non-optional parameters may also have default
-                // values (accessible via DefaultConstantValue).  For example, if the
-                // DefaultParameterValue attribute is applied to a non-optional parameter
-                // we still want to emit a default parameter value, even if it isn't
-                // recognized by the language.
-                // Special Case: params parameters are never optional, but can have
-                // default values (e.g. if the params-ness is inherited from an
-                // overridden method, but the current method declares the parameter
-                // as optional).  In such cases, dev11 emits the default value.
-                return IsOptional && ExplicitDefaultConstantValue != null;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 7791, 8718);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 8645, 8703);
+
+                    return f_10143_8652_8662() && (DynAbs.Tracing.TraceSender.Expression_True(10143, 8652, 8702) && f_10143_8666_8694() != null);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 7791, 8718);
+
+                    bool
+                    f_10143_8652_8662()
+                    {
+                        var return_v = IsOptional;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 8652, 8662);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.ConstantValue?
+                    f_10143_8666_8694()
+                    {
+                        var return_v = ExplicitDefaultConstantValue;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 8666, 8694);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 7731, 8729);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 7731, 8729);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns the default value of the parameter. If <see cref="HasExplicitDefaultValue"/>
-        /// returns false then DefaultValue throws an InvalidOperationException.
-        /// </summary>
-        /// <remarks>
-        /// If the parameter type is a struct and the default value of the parameter
-        /// is the default value of the struct type or of type parameter type which is 
-        /// not known to be a referenced type, then this property will return null.
-        /// </remarks>
-        /// <exception cref="InvalidOperationException">The parameter has no default value.</exception>
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         public object ExplicitDefaultValue
         {
             get
             {
-                if (HasExplicitDefaultValue)
+                try
                 {
-                    return ExplicitDefaultConstantValue.Value;
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 9498, 9737);
 
-                throw new InvalidOperationException();
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 9534, 9664) || true) && (f_10143_9538_9561())
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10143, 9534, 9664);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 9603, 9645);
+
+                        return f_10143_9610_9644(f_10143_9610_9638());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10143, 9534, 9664);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 9684, 9722);
+
+                    throw f_10143_9690_9721();
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 9498, 9737);
+
+                    bool
+                    f_10143_9538_9561()
+                    {
+                        var return_v = HasExplicitDefaultValue;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 9538, 9561);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.ConstantValue?
+                    f_10143_9610_9638()
+                    {
+                        var return_v = ExplicitDefaultConstantValue;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 9610, 9638);
+                        return return_v;
+                    }
+
+
+                    object?
+                    f_10143_9610_9644(Microsoft.CodeAnalysis.ConstantValue?
+                    this_param)
+                    {
+                        var return_v = this_param.Value;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 9610, 9644);
+                        return return_v;
+                    }
+
+
+                    System.InvalidOperationException
+                    f_10143_9690_9721()
+                    {
+                        var return_v = new System.InvalidOperationException();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10143, 9690, 9721);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 9380, 9748);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 9380, 9748);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-#nullable enable
-        /// <summary>
-        /// Returns the default value constant of the parameter, 
-        /// or null if the parameter doesn't have a default value or 
-        /// the parameter type is a struct and the default value of the parameter
-        /// is the default value of the struct type or of type parameter type which is 
-        /// not known to be a referenced type.
-        /// </summary>
-        /// <remarks>
-        /// This is used for emitting.  It does not reflect the language semantics
-        /// (i.e. even non-optional parameters can have default values).
-        /// </remarks>
         internal abstract ConstantValue? ExplicitDefaultConstantValue { get; }
-#nullable disable
 
-        /// <summary>
-        /// Gets the kind of this symbol.
-        /// </summary>
         public sealed override SymbolKind Kind
         {
             get
             {
-                return SymbolKind.Parameter;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 10642, 10721);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 10678, 10706);
+
+                    return SymbolKind.Parameter;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 10642, 10721);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 10579, 10732);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 10579, 10732);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Implements visitor pattern. 
-        /// </summary>
         internal override TResult Accept<TArgument, TResult>(CSharpSymbolVisitor<TArgument, TResult> visitor, TArgument argument)
         {
-            return visitor.VisitParameter(this, argument);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 10833, 11036);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 10979, 11025);
+
+                return f_10143_10986_11024<TResult, TArgument>(visitor, this, argument);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 10833, 11036);
+
+                TResult
+                f_10143_10986_11024<TResult, TArgument>(Microsoft.CodeAnalysis.CSharp.CSharpSymbolVisitor<TArgument, TResult>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                symbol, TArgument
+                argument)
+                {
+                    var return_v = this_param.VisitParameter(symbol, argument);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10143, 10986, 11024);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 10833, 11036);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 10833, 11036);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public override void Accept(CSharpSymbolVisitor visitor)
         {
-            visitor.VisitParameter(this);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 11048, 11169);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 11129, 11158);
+
+                f_10143_11129_11157(visitor, this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 11048, 11169);
+
+                int
+                f_10143_11129_11157(Microsoft.CodeAnalysis.CSharp.CSharpSymbolVisitor
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                symbol)
+                {
+                    this_param.VisitParameter(symbol);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10143, 11129, 11157);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 11048, 11169);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 11048, 11169);
+            }
         }
 
         public override TResult Accept<TResult>(CSharpSymbolVisitor<TResult> visitor)
         {
-            return visitor.VisitParameter(this);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 11181, 11330);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 11283, 11319);
+
+                return f_10143_11290_11318<TResult>(visitor, this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 11181, 11330);
+
+                TResult
+                f_10143_11290_11318<TResult>(Microsoft.CodeAnalysis.CSharp.CSharpSymbolVisitor<TResult>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                symbol)
+                {
+                    var return_v = this_param.VisitParameter(symbol);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10143, 11290, 11318);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 11181, 11330);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 11181, 11330);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Get this accessibility that was declared on this symbol. For symbols that do not have
-        /// accessibility declared on them, returns NotApplicable.
-        /// </summary>
         public override Accessibility DeclaredAccessibility
         {
             get
             {
-                return Accessibility.NotApplicable;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 11632, 11718);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 11668, 11703);
+
+                    return Accessibility.NotApplicable;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 11632, 11718);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 11556, 11729);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 11556, 11729);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if this symbol was declared as requiring an override; i.e., declared with
-        /// the "abstract" modifier. Also returns true on a type declared as "abstract", all
-        /// interface types, and members of interface types.
-        /// </summary>
         public override bool IsAbstract
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 12100, 12164);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 12136, 12149);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 12100, 12164);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 12044, 12175);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 12044, 12175);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if this symbol was declared to override a base class member and was also
-        /// sealed from further overriding; i.e., declared with the "sealed" modifier.  Also set for
-        /// types that do not allow a derived class (declared with "sealed" or "static" or "struct"
-        /// or "enum" or "delegate").
-        /// </summary>
         public override bool IsSealed
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 12629, 12693);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 12665, 12678);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 12629, 12693);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 12575, 12704);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 12575, 12704);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if this symbol is "virtual", has an implementation, and does not override a
-        /// base class member; i.e., declared with the "virtual" modifier. Does not return true for
-        /// members declared as abstract or override.
-        /// </summary>
         public override bool IsVirtual
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 13076, 13140);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 13112, 13125);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 13076, 13140);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 13021, 13151);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 13021, 13151);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if this symbol was declared to override a base class member; i.e., declared
-        /// with the "override" modifier. Still returns true if member was declared to override
-        /// something, but (erroneously) no member to override exists.
-        /// </summary>
         public override bool IsOverride
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 13537, 13601);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 13573, 13586);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 13537, 13601);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 13481, 13612);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 13481, 13612);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if this symbol is "static"; i.e., declared with the "static" modifier or
-        /// implicitly static.
-        /// </summary>
         public override bool IsStatic
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 13856, 13920);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 13892, 13905);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 13856, 13920);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 13802, 13931);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 13802, 13931);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if this symbol has external implementation; i.e., declared with the 
-        /// "extern" modifier. 
-        /// </summary>
         public override bool IsExtern
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 14172, 14236);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 14208, 14221);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 14172, 14236);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 14118, 14247);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 14118, 14247);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns true if the parameter is the hidden 'this' parameter.
-        /// </summary>
         public virtual bool IsThis
         {
             get
             {
-                return false;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 14432, 14496);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 14468, 14481);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 14432, 14496);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 14381, 14507);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 14381, 14507);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Returns data decoded from Obsolete attribute or null if there is no Obsolete attribute.
-        /// This property returns ObsoleteAttributeData.Uninitialized if attribute arguments haven't been decoded yet.
-        /// </summary>
         internal sealed override ObsoleteAttributeData ObsoleteAttributeData
         {
-            get { return null; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 14880, 14900);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 14886, 14898);
+
+                    return null;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 14880, 14900);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 14787, 14911);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 14787, 14911);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
         internal abstract bool IsIDispatchConstant { get; }
@@ -403,7 +816,24 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         {
             get
             {
-                return (int)ErrorCode.ERR_BogusType;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 15489, 15576);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 15525, 15561);
+
+                    return (int)ErrorCode.ERR_BogusType;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 15489, 15576);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 15407, 15587);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 15407, 15587);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -411,15 +841,96 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         {
             get
             {
-                DiagnosticInfo info = null;
-                DeriveUseSiteDiagnosticFromParameter(ref info, this);
-                return (object)info != null && info.Code == (int)ErrorCode.ERR_BogusType;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 15674, 15914);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 15710, 15737);
+
+                    DiagnosticInfo
+                    info = null
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 15755, 15808);
+
+                    f_10143_15755_15807(this, ref info, this);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 15826, 15899);
+
+                    return (object)info != null && (DynAbs.Tracing.TraceSender.Expression_True(10143, 15833, 15898) && f_10143_15857_15866(info) == (int)ErrorCode.ERR_BogusType);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 15674, 15914);
+
+                    bool
+                    f_10143_15755_15807(Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                    this_param, ref Microsoft.CodeAnalysis.DiagnosticInfo?
+                    result, Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                    param)
+                    {
+                        var return_v = this_param.DeriveUseSiteDiagnosticFromParameter(ref result, param);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10143, 15755, 15807);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_10143_15857_15866(Microsoft.CodeAnalysis.DiagnosticInfo
+                    this_param)
+                    {
+                        var return_v = this_param.Code;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 15857, 15866);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 15599, 15925);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 15599, 15925);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
         protected override ISymbol CreateISymbol()
         {
-            return new PublicModel.ParameterSymbol(this);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10143, 15937, 16060);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10143, 16004, 16049);
+
+                return f_10143_16011_16048(this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10143, 15937, 16060);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.ParameterSymbol
+                f_10143_16011_16048(Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                underlying)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.Symbols.PublicModel.ParameterSymbol(underlying);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10143, 16011, 16048);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10143, 15937, 16060);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10143, 15937, 16060);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        Microsoft.CodeAnalysis.CSharp.Symbols.TypeWithAnnotations
+        f_10143_1899_1918()
+        {
+            var return_v = TypeWithAnnotations;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10143, 1899, 1918);
+            return return_v;
+        }
+
     }
 }

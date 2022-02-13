@@ -20,69 +20,674 @@ using Microsoft.CodeAnalysis.Text;
 using Roslyn.Test.PdbUtilities;
 using Roslyn.Test.Utilities;
 using Xunit;
+using Microsoft.DiaSymReader;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests.PDB
 {
     public class PDBTests : CSharpPDBTestBase
     {
-        private static readonly MetadataReference[] s_valueTupleRefs = new[] { SystemRuntimeFacadeRef, ValueTupleRef };
-
-        #region General
+        private static readonly MetadataReference[] s_valueTupleRefs;
 
         [Fact]
         public void EmitDebugInfoForSourceTextWithoutEncoding1()
         {
-            var tree1 = SyntaxFactory.ParseSyntaxTree("class A { }", encoding: null, path: "Foo.cs");
-            var tree2 = SyntaxFactory.ParseSyntaxTree("class B { }", encoding: null, path: "");
-            var tree3 = SyntaxFactory.ParseSyntaxTree(SourceText.From("class C { }", encoding: null), path: "Bar.cs");
-            var tree4 = SyntaxFactory.ParseSyntaxTree("class D { }", encoding: Encoding.UTF8, path: "Baz.cs");
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 1030, 2327);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1127, 1216);
 
-            var comp = CSharpCompilation.Create("Compilation", new[] { tree1, tree2, tree3, tree4 }, new[] { MscorlibRef }, options: TestOptions.ReleaseDll);
+                var
+                tree1 = f_23129_1139_1215("class A { }", encoding: null, path: "Foo.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1230, 1313);
 
-            var result = comp.Emit(new MemoryStream(), pdbStream: new MemoryStream());
-            result.Diagnostics.Verify(
-                // Foo.cs(1,1): error CS8055: Cannot emit debug information for a source text without encoding.
-                Diagnostic(ErrorCode.ERR_EncodinglessSyntaxTree, "class A { }").WithLocation(1, 1),
-                // Bar.cs(1,1): error CS8055: Cannot emit debug information for a source text without encoding.
-                Diagnostic(ErrorCode.ERR_EncodinglessSyntaxTree, "class C { }").WithLocation(1, 1));
+                var
+                tree2 = f_23129_1242_1312("class B { }", encoding: null, path: "")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1327, 1433);
 
-            Assert.False(result.Success);
+                var
+                tree3 = f_23129_1339_1432(f_23129_1369_1415("class C { }", encoding: null), path: "Bar.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1447, 1545);
+
+                var
+                tree4 = f_23129_1459_1544("class D { }", encoding: f_23129_1514_1527(), path: "Baz.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1561, 1706);
+
+                var
+                comp = f_23129_1572_1705("Compilation", new[] { tree1, tree2, tree3, tree4 }, new[] { f_23129_1658_1669() }, options: TestOptions.ReleaseDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1722, 1796);
+
+                var
+                result = f_23129_1735_1795(comp, f_23129_1745_1763(), pdbStream: f_23129_1776_1794())
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 1810, 2265);
+
+                result.Diagnostics.Verify(f_23129_1967_2049(f_23129_1967_2030(ErrorCode.ERR_EncodinglessSyntaxTree, "class A { }"), 1, 1), f_23129_2181_2263(f_23129_2181_2244(ErrorCode.ERR_EncodinglessSyntaxTree, "class C { }"), 1, 1));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 2281, 2316);
+
+                f_23129_2281_2315(f_23129_2300_2314(result));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 1030, 2327);
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_1139_1215(string
+                text, System.Text.Encoding?
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1139, 1215);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_1242_1312(string
+                text, System.Text.Encoding?
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1242, 1312);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_23129_1369_1415(string
+                text, System.Text.Encoding?
+                encoding)
+                {
+                    var return_v = SourceText.From(text, encoding: encoding);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1369, 1415);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_1339_1432(Microsoft.CodeAnalysis.Text.SourceText
+                text, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1339, 1432);
+                    return return_v;
+                }
+
+
+                System.Text.Encoding
+                f_23129_1514_1527()
+                {
+                    var return_v = Encoding.UTF8;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 1514, 1527);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_1459_1544(string
+                text, System.Text.Encoding
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1459, 1544);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_1658_1669()
+                {
+                    var return_v = MscorlibRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 1658, 1669);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_1572_1705(string
+                assemblyName, Microsoft.CodeAnalysis.SyntaxTree[]
+                syntaxTrees, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CSharpCompilation.Create(assemblyName, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>)syntaxTrees, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1572, 1705);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_1745_1763()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1745, 1763);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_1776_1794()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1776, 1794);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_1735_1795(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.MemoryStream
+                pdbStream)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, pdbStream: (System.IO.Stream)pdbStream);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1735, 1795);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_1967_2030(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1967, 2030);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_1967_2049(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 1967, 2049);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_2181_2244(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2181, 2244);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_2181_2263(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2181, 2263);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_2300_2314(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 2300, 2314);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_2281_2315(bool
+                condition)
+                {
+                    var return_v = CustomAssert.False(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2281, 2315);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 1030, 2327);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 1030, 2327);
+            }
         }
 
         [Fact]
         public void EmitDebugInfoForSourceTextWithoutEncoding2()
         {
-            var tree1 = SyntaxFactory.ParseSyntaxTree("class A { public void F() { } }", encoding: Encoding.Unicode, path: "Foo.cs");
-            var tree2 = SyntaxFactory.ParseSyntaxTree("class B { public void F() { } }", encoding: null, path: "");
-            var tree3 = SyntaxFactory.ParseSyntaxTree("class C { public void F() { } }", encoding: new UTF8Encoding(true, false), path: "Bar.cs");
-            var tree4 = SyntaxFactory.ParseSyntaxTree(SourceText.From("class D { public void F() { } }", new UTF8Encoding(false, false)), path: "Baz.cs");
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 2339, 4328);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 2436, 2557);
 
-            var comp = CSharpCompilation.Create("Compilation", new[] { tree1, tree2, tree3, tree4 }, new[] { MscorlibRef }, options: TestOptions.ReleaseDll);
+                var
+                tree1 = f_23129_2448_2556("class A { public void F() { } }", encoding: f_23129_2523_2539(), path: "Foo.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 2571, 2674);
 
-            var result = comp.Emit(new MemoryStream(), pdbStream: new MemoryStream());
-            result.Diagnostics.Verify();
-            Assert.True(result.Success);
+                var
+                tree2 = f_23129_2583_2673("class B { public void F() { } }", encoding: null, path: "")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 2688, 2822);
 
-            var hash1 = CryptographicHashProvider.ComputeSha1(Encoding.Unicode.GetBytesWithPreamble(tree1.ToString())).ToArray();
-            var hash3 = CryptographicHashProvider.ComputeSha1(new UTF8Encoding(true, false).GetBytesWithPreamble(tree3.ToString())).ToArray();
-            var hash4 = CryptographicHashProvider.ComputeSha1(new UTF8Encoding(false, false).GetBytesWithPreamble(tree4.ToString())).ToArray();
+                var
+                tree3 = f_23129_2700_2821("class C { public void F() { } }", encoding: f_23129_2775_2804(true, false), path: "Bar.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 2836, 2978);
 
-            comp.VerifyPdb(@"
+                var
+                tree4 = f_23129_2848_2977(f_23129_2878_2960("class D { public void F() { } }", f_23129_2929_2959(false, false)), path: "Baz.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 2994, 3139);
+
+                var
+                comp = f_23129_3005_3138("Compilation", new[] { tree1, tree2, tree3, tree4 }, new[] { f_23129_3091_3102() }, options: TestOptions.ReleaseDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3155, 3229);
+
+                var
+                result = f_23129_3168_3228(comp, f_23129_3178_3196(), pdbStream: f_23129_3209_3227())
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3243, 3271);
+
+                result.Diagnostics.Verify();
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3285, 3319);
+
+                f_23129_3285_3318(f_23129_3303_3317(result));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3335, 3452);
+
+                var
+                hash1 = f_23129_3347_3441(f_23129_3385_3440(f_23129_3385_3401(), f_23129_3423_3439(tree1))).ToArray()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3466, 3596);
+
+                var
+                hash3 = f_23129_3478_3585(f_23129_3516_3584(f_23129_3516_3545(true, false), f_23129_3567_3583(tree3))).ToArray()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3610, 3741);
+
+                var
+                hash4 = f_23129_3622_3730(f_23129_3660_3729(f_23129_3660_3690(false, false), f_23129_3712_3728(tree4))).ToArray()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 3757, 4317);
+
+                f_23129_3757_4316(
+                            comp, @"
 <symbols>
   <files>
-    <file id=""1"" name=""Foo.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""" + BitConverter.ToString(hash1) + @""" />
+    <file id=""1"" name=""Foo.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""" + f_23129_3891_3919(hash1) + @""" />
     <file id=""2"" name="""" language=""C#"" />
-    <file id=""3"" name=""Bar.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""" + BitConverter.ToString(hash3) + @""" />
-    <file id=""4"" name=""Baz.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""" + BitConverter.ToString(hash4) + @""" />
+    <file id=""3"" name=""Bar.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""" + f_23129_4073_4101(hash3) + @""" />
+    <file id=""4"" name=""Baz.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""" + f_23129_4206_4234(hash4) + @""" />
   </files>
 </symbols>", options: PdbValidationOptions.ExcludeMethods);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 2339, 4328);
+
+                System.Text.Encoding
+                f_23129_2523_2539()
+                {
+                    var return_v = Encoding.Unicode;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 2523, 2539);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_2448_2556(string
+                text, System.Text.Encoding
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2448, 2556);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_2583_2673(string
+                text, System.Text.Encoding?
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2583, 2673);
+                    return return_v;
+                }
+
+
+                System.Text.UTF8Encoding
+                f_23129_2775_2804(bool
+                encoderShouldEmitUTF8Identifier, bool
+                throwOnInvalidBytes)
+                {
+                    var return_v = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier, throwOnInvalidBytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2775, 2804);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_2700_2821(string
+                text, System.Text.UTF8Encoding
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: (System.Text.Encoding)encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2700, 2821);
+                    return return_v;
+                }
+
+
+                System.Text.UTF8Encoding
+                f_23129_2929_2959(bool
+                encoderShouldEmitUTF8Identifier, bool
+                throwOnInvalidBytes)
+                {
+                    var return_v = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier, throwOnInvalidBytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2929, 2959);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_23129_2878_2960(string
+                text, System.Text.UTF8Encoding
+                encoding)
+                {
+                    var return_v = SourceText.From(text, (System.Text.Encoding)encoding);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2878, 2960);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_2848_2977(Microsoft.CodeAnalysis.Text.SourceText
+                text, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 2848, 2977);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_3091_3102()
+                {
+                    var return_v = MscorlibRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 3091, 3102);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_3005_3138(string
+                assemblyName, Microsoft.CodeAnalysis.SyntaxTree[]
+                syntaxTrees, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CSharpCompilation.Create(assemblyName, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>)syntaxTrees, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3005, 3138);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_3178_3196()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3178, 3196);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_3209_3227()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3209, 3227);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_3168_3228(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.MemoryStream
+                pdbStream)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, pdbStream: (System.IO.Stream)pdbStream);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3168, 3228);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_3303_3317(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 3303, 3317);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_3285_3318(bool
+                condition)
+                {
+                    var return_v = CustomAssert.True(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3285, 3318);
+                    return return_v;
+                }
+
+
+                System.Text.Encoding
+                f_23129_3385_3401()
+                {
+                    var return_v = Encoding.Unicode;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 3385, 3401);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_3423_3439(Microsoft.CodeAnalysis.SyntaxTree
+                this_param)
+                {
+                    var return_v = this_param.ToString();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3423, 3439);
+                    return return_v;
+                }
+
+
+                byte[]
+                f_23129_3385_3440(System.Text.Encoding
+                encoding, string
+                text)
+                {
+                    var return_v = encoding.GetBytesWithPreamble(text);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3385, 3440);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<byte>
+                f_23129_3347_3441(byte[]
+                bytes)
+                {
+                    var return_v = CryptographicHashProvider.ComputeSha1(bytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3347, 3441);
+                    return return_v;
+                }
+
+
+                System.Text.UTF8Encoding
+                f_23129_3516_3545(bool
+                encoderShouldEmitUTF8Identifier, bool
+                throwOnInvalidBytes)
+                {
+                    var return_v = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier, throwOnInvalidBytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3516, 3545);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_3567_3583(Microsoft.CodeAnalysis.SyntaxTree
+                this_param)
+                {
+                    var return_v = this_param.ToString();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3567, 3583);
+                    return return_v;
+                }
+
+
+                byte[]
+                f_23129_3516_3584(System.Text.UTF8Encoding
+                encoding, string
+                text)
+                {
+                    var return_v = encoding.GetBytesWithPreamble(text);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3516, 3584);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<byte>
+                f_23129_3478_3585(byte[]
+                bytes)
+                {
+                    var return_v = CryptographicHashProvider.ComputeSha1(bytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3478, 3585);
+                    return return_v;
+                }
+
+
+                System.Text.UTF8Encoding
+                f_23129_3660_3690(bool
+                encoderShouldEmitUTF8Identifier, bool
+                throwOnInvalidBytes)
+                {
+                    var return_v = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier, throwOnInvalidBytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3660, 3690);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_3712_3728(Microsoft.CodeAnalysis.SyntaxTree
+                this_param)
+                {
+                    var return_v = this_param.ToString();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3712, 3728);
+                    return return_v;
+                }
+
+
+                byte[]
+                f_23129_3660_3729(System.Text.UTF8Encoding
+                encoding, string
+                text)
+                {
+                    var return_v = encoding.GetBytesWithPreamble(text);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3660, 3729);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<byte>
+                f_23129_3622_3730(byte[]
+                bytes)
+                {
+                    var return_v = CryptographicHashProvider.ComputeSha1(bytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3622, 3730);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_3891_3919(byte[]
+                value)
+                {
+                    var return_v = BitConverter.ToString(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3891, 3919);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_4073_4101(byte[]
+                value)
+                {
+                    var return_v = BitConverter.ToString(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 4073, 4101);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_4206_4234(byte[]
+                value)
+                {
+                    var return_v = BitConverter.ToString(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 4206, 4234);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_3757_4316(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 3757, 4316);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 2339, 4328);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 2339, 4328);
+            }
         }
 
         [WorkItem(846584, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/846584")]
         [ConditionalFact(typeof(WindowsOnly))]
         public void RelativePathForExternalSource_Sha1_Windows()
         {
-            var text1 = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 4340, 6197);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 4561, 4876);
+
+                var
+                text1 = f_23129_4573_4875(@"
 #pragma checksum ""..\Test2.cs"" ""{406ea660-64cf-4c82-b6f0-42d48172a799}"" ""BA8CBEA9C2EFABD90D53B616FB80A081""
 
 public class C
@@ -93,13 +698,17 @@ public class C
         #line default
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 4892, 5106);
 
-            var compilation = CreateCompilation(
-                new[] { Parse(text1, @"C:\Folder1\Folder2\Test1.cs") },
-                options: TestOptions.DebugDll.WithSourceReferenceResolver(SourceFileResolver.Default));
+                var
+                compilation = f_23129_4910_5105(new[] { f_23129_4954_4998(text1, @"C:\Folder1\Folder2\Test1.cs") }, options: f_23129_5028_5104(TestOptions.DebugDll, f_23129_5077_5103()))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 5122, 6186);
 
-            compilation.VerifyPdb(@"
+                f_23129_5122_6185(
+                            compilation, @"
 <symbols>
   <files>
     <file id=""1"" name=""C:\Folder1\Folder2\Test1.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""40-A6-20-02-2E-60-7D-4F-2D-A8-F4-A6-ED-2E-0E-49-8D-9F-D7-EB"" />
@@ -120,13 +729,93 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 4340, 6197);
+
+                string
+                f_23129_4573_4875(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 4573, 4875);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_4954_4998(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 4954, 4998);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SourceFileResolver
+                f_23129_5077_5103()
+                {
+                    var return_v = SourceFileResolver.Default;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 5077, 5103);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                f_23129_5028_5104(Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                this_param, Microsoft.CodeAnalysis.SourceFileResolver
+                resolver)
+                {
+                    var return_v = this_param.WithSourceReferenceResolver((Microsoft.CodeAnalysis.SourceReferenceResolver)resolver);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 5028, 5104);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_4910_5105(Microsoft.CodeAnalysis.SyntaxTree[]
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 4910, 5105);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_5122_6185(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 5122, 6185);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 4340, 6197);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 4340, 6197);
+            }
         }
 
         [WorkItem(846584, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/846584")]
         [ConditionalFact(typeof(UnixLikeOnly))]
         public void RelativePathForExternalSource_Sha1_Unix()
         {
-            var text1 = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 6209, 8058);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 6428, 6743);
+
+                var
+                text1 = f_23129_6440_6742(@"
 #pragma checksum ""../Test2.cs"" ""{406ea660-64cf-4c82-b6f0-42d48172a799}"" ""BA8CBEA9C2EFABD90D53B616FB80A081""
 
 public class C
@@ -137,13 +826,17 @@ public class C
         #line default
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 6759, 6971);
 
-            var compilation = CreateCompilation(
-                new[] { Parse(text1, @"/Folder1/Folder2/Test1.cs") },
-                options: TestOptions.DebugDll.WithSourceReferenceResolver(SourceFileResolver.Default));
+                var
+                compilation = f_23129_6777_6970(new[] { f_23129_6821_6863(text1, @"/Folder1/Folder2/Test1.cs") }, options: f_23129_6893_6969(TestOptions.DebugDll, f_23129_6942_6968()))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 6987, 8047);
 
-            compilation.VerifyPdb(@"
+                f_23129_6987_8046(
+                            compilation, @"
 <symbols>
   <files>
     <file id=""1"" name=""/Folder1/Folder2/Test1.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""82-08-07-BA-BA-52-02-D8-1D-1F-7C-E7-95-8A-6C-04-64-FF-50-31"" />
@@ -164,137 +857,694 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 6209, 8058);
+
+                string
+                f_23129_6440_6742(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 6440, 6742);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_6821_6863(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 6821, 6863);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SourceFileResolver
+                f_23129_6942_6968()
+                {
+                    var return_v = SourceFileResolver.Default;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 6942, 6968);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                f_23129_6893_6969(Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                this_param, Microsoft.CodeAnalysis.SourceFileResolver
+                resolver)
+                {
+                    var return_v = this_param.WithSourceReferenceResolver((Microsoft.CodeAnalysis.SourceReferenceResolver)resolver);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 6893, 6969);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_6777_6970(Microsoft.CodeAnalysis.SyntaxTree[]
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 6777, 6970);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_6987_8046(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 6987, 8046);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 6209, 8058);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 6209, 8058);
+            }
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SymWriterErrors()
         {
-            var source0 =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 8070, 9369);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 8229, 8261);
+
+                var
+                source0 =
+                @"class C
 {
-}";
-            var compilation = CreateCompilation(source0, options: TestOptions.DebugDll);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 8275, 8351);
 
-            // Verify full metadata contains expected rows.
-            var result = compilation.Emit(
-                peStream: new MemoryStream(),
-                metadataPEStream: null,
-                pdbStream: new MemoryStream(),
-                xmlDocumentationStream: null,
-                cancellationToken: default,
-                win32Resources: null,
-                manifestResources: null,
-                options: null,
-                debugEntryPoint: null,
-                sourceLinkStream: null,
-                embeddedTexts: null,
-                testData: new CompilationTestData() { SymWriterFactory = _ => new MockSymUnmanagedWriter() });
+                var
+                compilation = f_23129_8293_8350(source0, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 8428, 9030);
 
-            result.Diagnostics.Verify(
-                // error CS0041: Unexpected error writing debug information -- 'MockSymUnmanagedWriter error message'
-                Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments("MockSymUnmanagedWriter error message"));
+                // LAFHIS: we're going to send the end invocation trace before end invocation of the object creation expression in the stmt
+                //var
+                //result = f_23129_8441_9029(compilation, peStream: f_23129_8486_8504(), metadataPEStream: null, pdbStream: f_23129_8575_8593(), xmlDocumentationStream: null, cancellationToken: default, win32Resources: null, manifestResources: null, options: null, debugEntryPoint: null, sourceLinkStream: null, embeddedTexts: null, testData: new CompilationTestData() { SymWriterFactory = DynAbs.Tracing.TraceSender.TraceInitializationWrapper(() => (_ => new MockSymUnmanagedWriter()), 23129, 8946, 9028) })
+                //;
+                var
+                result = f_23129_8441_9029(compilation, peStream: f_23129_8486_8504(), metadataPEStream: null, pdbStream: f_23129_8575_8593(), xmlDocumentationStream: null, cancellationToken: default, win32Resources: null, manifestResources: null, options: null, debugEntryPoint: null, sourceLinkStream: null, embeddedTexts: null, testData: new CompilationTestData() { SymWriterFactory = (_ => new MockSymUnmanagedWriter()) })
+                ;
+                
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 9046, 9307);
 
-            Assert.False(result.Success);
+                result.Diagnostics.Verify(f_23129_9209_9305(f_23129_9209_9251(ErrorCode.FTL_DebugEmitFailure), "MockSymUnmanagedWriter error message"));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 9323, 9358);
+
+                f_23129_9323_9357(f_23129_9342_9356(result));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 8070, 9369);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_8293_8350(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 8293, 8350);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_8486_8504()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 8486, 8504);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_8575_8593()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 8575, 8593);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_8441_9029(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.Stream?
+                metadataPEStream, System.IO.MemoryStream
+                pdbStream, System.IO.Stream?
+                xmlDocumentationStream, System.Threading.CancellationToken
+                cancellationToken, System.IO.Stream?
+                win32Resources, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>?
+                manifestResources, Microsoft.CodeAnalysis.Emit.EmitOptions?
+                options, Microsoft.CodeAnalysis.IMethodSymbol?
+                debugEntryPoint, System.IO.Stream?
+                sourceLinkStream, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.EmbeddedText>?
+                embeddedTexts, Microsoft.CodeAnalysis.CodeGen.CompilationTestData
+                testData)
+                {
+                    var return_v = this_param.Emit(peStream: (System.IO.Stream)peStream, metadataPEStream: metadataPEStream, pdbStream: (System.IO.Stream)pdbStream, xmlDocumentationStream: xmlDocumentationStream, cancellationToken: cancellationToken, win32Resources: win32Resources, manifestResources: manifestResources, options: options, debugEntryPoint: debugEntryPoint, sourceLinkStream: sourceLinkStream, embeddedTexts: embeddedTexts, testData: testData);
+                    // LAFHIS
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 8946, 9028);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 8441, 9029);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_9209_9251(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9209, 9251);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_9209_9305(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9209, 9305);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_9342_9356(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 9342, 9356);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_9323_9357(bool
+                condition)
+                {
+                    var return_v = CustomAssert.False(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9323, 9357);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 8070, 9369);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 8070, 9369);
+            }
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SymWriterErrors2()
         {
-            var source0 =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 9381, 10766);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 9541, 9573);
+
+                var
+                source0 =
+                @"class C
 {
-}";
-            var compilation = CreateCompilation(source0, options: TestOptions.DebugDll);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 9587, 9663);
 
-            // Verify full metadata contains expected rows.
-            var result = compilation.Emit(
-                peStream: new MemoryStream(),
-                metadataPEStream: null,
-                pdbStream: new MemoryStream(),
-                xmlDocumentationStream: null,
-                cancellationToken: default,
-                win32Resources: null,
-                manifestResources: null,
-                options: null,
-                debugEntryPoint: null,
-                sourceLinkStream: null,
-                embeddedTexts: null,
-                testData: new CompilationTestData() { SymWriterFactory = SymWriterTestUtilities.ThrowingFactory });
+                var
+                compilation = f_23129_9605_9662(source0, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 9740, 10347);
 
-            result.Diagnostics.Verify(
-                // error CS0041: Unexpected error writing debug information -- 'The version of Windows PDB writer is older than required: '<lib name>''
-                Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments(string.Format(CodeAnalysisResources.SymWriterOlderVersionThanRequired, "<lib name>")));
+                var
+                result = f_23129_9753_10346(compilation, peStream: f_23129_9798_9816(), metadataPEStream: null, pdbStream: f_23129_9887_9905(), xmlDocumentationStream: null, cancellationToken: default, win32Resources: null, manifestResources: null, options: null, debugEntryPoint: null, sourceLinkStream: null, embeddedTexts: null, testData: new CompilationTestData() { SymWriterFactory = DynAbs.Tracing.TraceSender.TraceInitializationWrapper(() => SymWriterTestUtilities.ThrowingFactory, 23129, 10258, 10345) })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 10363, 10704);
 
-            Assert.False(result.Success);
+                result.Diagnostics.Verify(f_23129_10560_10702(f_23129_10560_10602(ErrorCode.FTL_DebugEmitFailure), f_23129_10617_10701(f_23129_10631_10686(), "<lib name>")));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 10720, 10755);
+
+                f_23129_10720_10754(f_23129_10739_10753(result));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 9381, 10766);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_9605_9662(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9605, 9662);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_9798_9816()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9798, 9816);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_9887_9905()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9887, 9905);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_9753_10346(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.Stream?
+                metadataPEStream, System.IO.MemoryStream
+                pdbStream, System.IO.Stream?
+                xmlDocumentationStream, System.Threading.CancellationToken
+                cancellationToken, System.IO.Stream?
+                win32Resources, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>?
+                manifestResources, Microsoft.CodeAnalysis.Emit.EmitOptions?
+                options, Microsoft.CodeAnalysis.IMethodSymbol?
+                debugEntryPoint, System.IO.Stream?
+                sourceLinkStream, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.EmbeddedText>?
+                embeddedTexts, Microsoft.CodeAnalysis.CodeGen.CompilationTestData
+                testData)
+                {
+                    var return_v = this_param.Emit(peStream: (System.IO.Stream)peStream, metadataPEStream: metadataPEStream, pdbStream: (System.IO.Stream)pdbStream, xmlDocumentationStream: xmlDocumentationStream, cancellationToken: cancellationToken, win32Resources: win32Resources, manifestResources: manifestResources, options: options, debugEntryPoint: debugEntryPoint, sourceLinkStream: sourceLinkStream, embeddedTexts: embeddedTexts, testData: testData);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 9753, 10346);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_10560_10602(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 10560, 10602);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_10631_10686()
+                {
+                    var return_v = CodeAnalysisResources.SymWriterOlderVersionThanRequired;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 10631, 10686);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_10617_10701(string
+                format, string
+                arg0)
+                {
+                    var return_v = string.Format(format, (object)arg0);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 10617, 10701);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_10560_10702(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 10560, 10702);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_10739_10753(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 10739, 10753);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_10720_10754(bool
+                condition)
+                {
+                    var return_v = CustomAssert.False(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 10720, 10754);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 9381, 10766);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 9381, 10766);
+            }
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SymWriterErrors3()
         {
-            var source0 =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 10778, 12183);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 10938, 10970);
+
+                var
+                source0 =
+                @"class C
 {
-}";
-            var compilation = CreateCompilation(source0, options: TestOptions.DebugDll.WithDeterministic(true));
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 10984, 11084);
 
-            // Verify full metadata contains expected rows.
-            var result = compilation.Emit(
-                peStream: new MemoryStream(),
-                metadataPEStream: null,
-                pdbStream: new MemoryStream(),
-                xmlDocumentationStream: null,
-                cancellationToken: default,
-                win32Resources: null,
-                manifestResources: null,
-                options: null,
-                debugEntryPoint: null,
-                sourceLinkStream: null,
-                embeddedTexts: null,
-                testData: new CompilationTestData() { SymWriterFactory = SymWriterTestUtilities.ThrowingFactory });
+                var
+                compilation = f_23129_11002_11083(source0, options: f_23129_11038_11082(TestOptions.DebugDll, true))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 11161, 11768);
 
-            result.Diagnostics.Verify(
-                // error CS0041: Unexpected error writing debug information -- 'Windows PDB writer doesn't support deterministic compilation: '<lib name>''
-                Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments(string.Format(CodeAnalysisResources.SymWriterNotDeterministic, "<lib name>")));
+                var
+                result = f_23129_11174_11767(compilation, peStream: f_23129_11219_11237(), metadataPEStream: null, pdbStream: f_23129_11308_11326(), xmlDocumentationStream: null, cancellationToken: default, win32Resources: null, manifestResources: null, options: null, debugEntryPoint: null, sourceLinkStream: null, embeddedTexts: null, testData: new CompilationTestData() { SymWriterFactory = DynAbs.Tracing.TraceSender.TraceInitializationWrapper(() => SymWriterTestUtilities.ThrowingFactory, 23129, 11679, 11766) })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 11784, 12121);
 
-            Assert.False(result.Success);
+                result.Diagnostics.Verify(f_23129_11985_12119(f_23129_11985_12027(ErrorCode.FTL_DebugEmitFailure), f_23129_12042_12118(f_23129_12056_12103(), "<lib name>")));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 12137, 12172);
+
+                f_23129_12137_12171(f_23129_12156_12170(result));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 10778, 12183);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                f_23129_11038_11082(Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                this_param, bool
+                deterministic)
+                {
+                    var return_v = this_param.WithDeterministic(deterministic);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11038, 11082);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_11002_11083(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11002, 11083);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_11219_11237()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11219, 11237);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_11308_11326()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11308, 11326);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_11174_11767(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.Stream?
+                metadataPEStream, System.IO.MemoryStream
+                pdbStream, System.IO.Stream?
+                xmlDocumentationStream, System.Threading.CancellationToken
+                cancellationToken, System.IO.Stream?
+                win32Resources, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>?
+                manifestResources, Microsoft.CodeAnalysis.Emit.EmitOptions?
+                options, Microsoft.CodeAnalysis.IMethodSymbol?
+                debugEntryPoint, System.IO.Stream?
+                sourceLinkStream, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.EmbeddedText>?
+                embeddedTexts, Microsoft.CodeAnalysis.CodeGen.CompilationTestData
+                testData)
+                {
+                    var return_v = this_param.Emit(peStream: (System.IO.Stream)peStream, metadataPEStream: metadataPEStream, pdbStream: (System.IO.Stream)pdbStream, xmlDocumentationStream: xmlDocumentationStream, cancellationToken: cancellationToken, win32Resources: win32Resources, manifestResources: manifestResources, options: options, debugEntryPoint: debugEntryPoint, sourceLinkStream: sourceLinkStream, embeddedTexts: embeddedTexts, testData: testData);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11174, 11767);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_11985_12027(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11985, 12027);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_12056_12103()
+                {
+                    var return_v = CodeAnalysisResources.SymWriterNotDeterministic;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 12056, 12103);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_12042_12118(string
+                format, string
+                arg0)
+                {
+                    var return_v = string.Format(format, (object)arg0);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 12042, 12118);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_11985_12119(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 11985, 12119);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_12156_12170(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 12156, 12170);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_12137_12171(bool
+                condition)
+                {
+                    var return_v = CustomAssert.False(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 12137, 12171);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 10778, 12183);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 10778, 12183);
+            }
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SymWriterErrors4()
         {
-            var source0 =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 12195, 13407);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 12355, 12387);
+
+                var
+                source0 =
+                @"class C
 {
-}";
-            var compilation = CreateCompilation(source0);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 12401, 12446);
 
-            // Verify full metadata contains expected rows.
-            var result = compilation.Emit(
-                peStream: new MemoryStream(),
-                metadataPEStream: null,
-                pdbStream: new MemoryStream(),
-                xmlDocumentationStream: null,
-                cancellationToken: default,
-                win32Resources: null,
-                manifestResources: null,
-                options: null,
-                debugEntryPoint: null,
-                sourceLinkStream: null,
-                embeddedTexts: null,
-                testData: new CompilationTestData() { SymWriterFactory = _ => throw new DllNotFoundException("xxx") });
+                var
+                compilation = f_23129_12419_12445(source0)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 12523, 13134);
 
-            result.Diagnostics.Verify(
-                // error CS0041: Unexpected error writing debug information -- 'xxx'
-                Diagnostic(ErrorCode.FTL_DebugEmitFailure).WithArguments("xxx"));
+                // LAFHIS : The same as another previous case
+                var
+                result = f_23129_12536_13133(compilation, peStream: f_23129_12581_12599(), metadataPEStream: null, pdbStream: f_23129_12670_12688(), xmlDocumentationStream: null, cancellationToken: default, win32Resources: null, manifestResources: null, options: null, debugEntryPoint: null, sourceLinkStream: null, embeddedTexts: null, testData: new CompilationTestData() { SymWriterFactory = (_ => throw new DllNotFoundException("xxx")) })
+                ;
+                
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 13150, 13345);
 
-            Assert.False(result.Success);
+                result.Diagnostics.Verify(f_23129_13280_13343(f_23129_13280_13322(ErrorCode.FTL_DebugEmitFailure), "xxx"));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 13361, 13396);
+
+                f_23129_13361_13395(f_23129_13380_13394(result));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 12195, 13407);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_12419_12445(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 12419, 12445);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_12581_12599()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 12581, 12599);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_12670_12688()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 12670, 12688);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_12536_13133(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.Stream?
+                metadataPEStream, System.IO.MemoryStream
+                pdbStream, System.IO.Stream?
+                xmlDocumentationStream, System.Threading.CancellationToken
+                cancellationToken, System.IO.Stream?
+                win32Resources, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>?
+                manifestResources, Microsoft.CodeAnalysis.Emit.EmitOptions?
+                options, Microsoft.CodeAnalysis.IMethodSymbol?
+                debugEntryPoint, System.IO.Stream?
+                sourceLinkStream, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.EmbeddedText>?
+                embeddedTexts, Microsoft.CodeAnalysis.CodeGen.CompilationTestData
+                testData)
+                {
+                    var return_v = this_param.Emit(peStream: (System.IO.Stream)peStream, metadataPEStream: metadataPEStream, pdbStream: (System.IO.Stream)pdbStream, xmlDocumentationStream: xmlDocumentationStream, cancellationToken: cancellationToken, win32Resources: win32Resources, manifestResources: manifestResources, options: options, debugEntryPoint: debugEntryPoint, sourceLinkStream: sourceLinkStream, embeddedTexts: embeddedTexts, testData: testData);
+                    // Lafhis
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 13041, 13132);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 12536, 13133);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_13280_13322(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 13280, 13322);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_13280_13343(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 13280, 13343);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_13380_13394(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 13380, 13394);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_13361_13395(bool
+                condition)
+                {
+                    var return_v = CustomAssert.False(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 13361, 13395);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 12195, 13407);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 12195, 13407);
+            }
         }
 
         [WorkItem(1067635, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1067635")]
         [Fact]
         public void SuppressDynamicAndEncCDIForWinRT()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 13419, 18088);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 13600, 13839);
+
+                var
+                source = @"
 public class C
 {
     public static void F()
@@ -307,10 +1557,16 @@ public class C
         }
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 13855, 13947);
 
-            var debug = CreateCompilation(source, new[] { CSharpRef }, options: TestOptions.DebugWinMD);
-            debug.VerifyPdb(@"
+                var
+                debug = f_23129_13867_13946(source, new[] { f_23129_13901_13910() }, options: TestOptions.DebugWinMD)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 13961, 16275);
+
+                f_23129_13961_16274(debug, @"
 <symbols>
     <files>
       <file id=""1"" name="""" language=""C#"" />
@@ -347,9 +1603,14 @@ public class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.Pdb, options: PdbValidationOptions.SkipConversionValidation);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 16291, 16387);
 
-            var release = CreateCompilation(source, new[] { CSharpRef }, options: TestOptions.ReleaseWinMD);
-            release.VerifyPdb(@"
+                var
+                release = f_23129_16305_16386(source, new[] { f_23129_16339_16348() }, options: TestOptions.ReleaseWinMD)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 16401, 18077);
+
+                f_23129_16401_18076(release, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -379,24 +1640,114 @@ public class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.Pdb, options: PdbValidationOptions.SkipConversionValidation);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 13419, 18088);
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_13901_13910()
+                {
+                    var return_v = CSharpRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 13901, 13910);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_13867_13946(string
+                source, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 13867, 13946);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_13961_16274(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 13961, 16274);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_16339_16348()
+                {
+                    var return_v = CSharpRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 16339, 16348);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_16305_16386(string
+                source, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 16305, 16386);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_16401_18076(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 16401, 18076);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 13419, 18088);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 13419, 18088);
+            }
         }
 
         [WorkItem(1067635, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/1067635")]
         [Fact]
         public void SuppressTupleElementNamesCDIForWinRT()
         {
-            var source =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 18100, 20168);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 18285, 18387);
+
+                var
+                source =
+                @"class C
 {
     static void F()
     {
         (int A, int B) o = (1, 2);
     }
-}";
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 18403, 18474);
 
-            var debug = CreateCompilation(source, options: TestOptions.DebugWinMD);
-            debug.VerifyPdb(
-@"<symbols>
+                var
+                debug = f_23129_18415_18473(source, options: TestOptions.DebugWinMD)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 18488, 19464);
+
+                f_23129_18488_19463(debug, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -418,10 +1769,14 @@ public class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.Pdb, options: PdbValidationOptions.SkipConversionValidation);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 19480, 19555);
 
-            var release = CreateCompilation(source, options: TestOptions.ReleaseWinMD);
-            release.VerifyPdb(
-@"<symbols>
+                var
+                release = f_23129_19494_19554(source, options: TestOptions.ReleaseWinMD)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 19569, 20157);
+
+                f_23129_19569_20156(release, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -438,21 +1793,103 @@ public class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.Pdb, options: PdbValidationOptions.SkipConversionValidation);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 18100, 20168);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_18415_18473(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 18415, 18473);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_18488_19463(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 18488, 19463);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_19494_19554(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 19494, 19554);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_19569_20156(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 19569, 20156);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 18100, 20168);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 18100, 20168);
+            }
         }
 
         [Fact]
         public void DuplicateDocuments()
         {
-            var source1 = @"class C { static void F() { } }";
-            var source2 = @"class D { static void F() { } }";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 20180, 21561);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 20253, 20302);
 
-            var tree1 = Parse(source1, @"foo.cs");
-            var tree2 = Parse(source2, @"foo.cs");
+                var
+                source1 = @"class C { static void F() { } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 20316, 20365);
 
-            var comp = CreateCompilation(new[] { tree1, tree2 });
+                var
+                source2 = @"class D { static void F() { } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 20381, 20419);
 
-            // the first file wins (checksum CB 22 ...)
-            comp.VerifyPdb(@"
+                var
+                tree1 = f_23129_20393_20418(source1, @"foo.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 20433, 20471);
+
+                var
+                tree2 = f_23129_20445_20470(source2, @"foo.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 20487, 20540);
+
+                var
+                comp = f_23129_20498_20539(new[] { tree1, tree2 })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 20613, 21550);
+
+                f_23129_20613_21549(
+                            // the first file wins (checksum CB 22 ...)
+                            comp, @"
 <symbols>
   <files>
     <file id=""1"" name=""foo.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""CB-22-D8-03-D3-27-32-64-2C-BC-7D-67-5D-E3-CB-AC-D1-64-25-83"" />
@@ -479,112 +1916,978 @@ public class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 20180, 21561);
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_20393_20418(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 20393, 20418);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_20445_20470(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 20445, 20470);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_20498_20539(Microsoft.CodeAnalysis.SyntaxTree[]
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 20498, 20539);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_20613_21549(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 20613, 21549);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 20180, 21561);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 20180, 21561);
+            }
         }
 
         [Fact]
         public void CustomDebugEntryPoint_DLL()
         {
-            var source = @"class C { static void F() { } }";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 21573, 22487);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 21653, 21701);
 
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var f = c.GetMember<MethodSymbol>("C.F");
+                var
+                source = @"class C { static void F() { } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 21717, 21782);
 
-            c.VerifyPdb(@"
+                var
+                c = f_23129_21725_21781(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 21796, 21837);
+
+                var
+                f = f_23129_21804_21836(c, "C.F")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 21853, 22215);
+
+                f_23129_21853_22214(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
   <entryPoint declaringType=""C"" methodName=""F"" />
   <methods/>
-</symbols>", debugEntryPoint: f.GetPublicSymbol(), options: PdbValidationOptions.ExcludeScopes | PdbValidationOptions.ExcludeSequencePoints | PdbValidationOptions.ExcludeCustomDebugInformation);
+</symbols>", debugEntryPoint: f_23129_22051_22070(f), options: PdbValidationOptions.ExcludeScopes | PdbValidationOptions.ExcludeSequencePoints | PdbValidationOptions.ExcludeCustomDebugInformation);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22231, 22312);
 
-            var peReader = new PEReader(c.EmitToArray(debugEntryPoint: f.GetPublicSymbol()));
-            int peEntryPointToken = peReader.PEHeaders.CorHeader.EntryPointTokenOrRelativeVirtualAddress;
+                var
+                peReader = f_23129_22246_22311(f_23129_22259_22310(c, debugEntryPoint: f_23129_22290_22309(f)))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22326, 22419);
 
-            Assert.Equal(0, peEntryPointToken);
+                int
+                peEntryPointToken = f_23129_22350_22418(f_23129_22350_22378(f_23129_22350_22368(peReader)))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22435, 22476);
+
+                f_23129_22435_22475(0, peEntryPointToken);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 21573, 22487);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_21725_21781(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 21725, 21781);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_21804_21836(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedName)
+                {
+                    var return_v = compilation.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 21804, 21836);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_22051_22070(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22051, 22070);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_21853_22214(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, debugEntryPoint: debugEntryPoint, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 21853, 22214);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_22290_22309(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22290, 22309);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<byte>
+                f_23129_22259_22310(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint)
+                {
+                    var return_v = compilation.EmitToArray(debugEntryPoint: debugEntryPoint);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22259, 22310);
+                    return return_v;
+                }
+
+
+                System.Reflection.PortableExecutable.PEReader
+                f_23129_22246_22311(System.Collections.Immutable.ImmutableArray<byte>
+                peImage)
+                {
+                    var return_v = new System.Reflection.PortableExecutable.PEReader(peImage);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22246, 22311);
+                    return return_v;
+                }
+
+
+                System.Reflection.PortableExecutable.PEHeaders
+                f_23129_22350_22368(System.Reflection.PortableExecutable.PEReader
+                this_param)
+                {
+                    var return_v = this_param.PEHeaders;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 22350, 22368);
+                    return return_v;
+                }
+
+
+                System.Reflection.PortableExecutable.CorHeader?
+                f_23129_22350_22378(System.Reflection.PortableExecutable.PEHeaders
+                this_param)
+                {
+                    var return_v = this_param.CorHeader;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 22350, 22378);
+                    return return_v;
+                }
+
+
+                int
+                f_23129_22350_22418(System.Reflection.PortableExecutable.CorHeader?
+                this_param)
+                {
+                    var return_v = this_param.EntryPointTokenOrRelativeVirtualAddress;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 22350, 22418);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_22435_22475(int
+                expected, int
+                actual)
+                {
+                    var return_v = CustomAssert.Equal(expected, actual);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22435, 22475);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 21573, 22487);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 21573, 22487);
+            }
         }
 
         [Fact]
         public void CustomDebugEntryPoint_EXE()
         {
-            var source = @"class M { static void Main() { } } class C { static void F<S>() { } }";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 22499, 23656);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22579, 22665);
 
-            var c = CreateCompilation(source, options: TestOptions.DebugExe);
-            var f = c.GetMember<MethodSymbol>("C.F");
+                var
+                source = @"class M { static void Main() { } } class C { static void F<S>() { } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22681, 22746);
 
-            c.VerifyPdb(@"
+                var
+                c = f_23129_22689_22745(source, options: TestOptions.DebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22760, 22801);
+
+                var
+                f = f_23129_22768_22800(c, "C.F")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 22817, 23179);
+
+                f_23129_22817_23178(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
   <entryPoint declaringType=""C"" methodName=""F"" />
   <methods/>
-</symbols>", debugEntryPoint: f.GetPublicSymbol(), options: PdbValidationOptions.ExcludeScopes | PdbValidationOptions.ExcludeSequencePoints | PdbValidationOptions.ExcludeCustomDebugInformation);
+</symbols>", debugEntryPoint: f_23129_23015_23034(f), options: PdbValidationOptions.ExcludeScopes | PdbValidationOptions.ExcludeSequencePoints | PdbValidationOptions.ExcludeCustomDebugInformation);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23195, 23276);
 
-            var peReader = new PEReader(c.EmitToArray(debugEntryPoint: f.GetPublicSymbol()));
-            int peEntryPointToken = peReader.PEHeaders.CorHeader.EntryPointTokenOrRelativeVirtualAddress;
+                var
+                peReader = f_23129_23210_23275(f_23129_23223_23274(c, debugEntryPoint: f_23129_23254_23273(f)))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23290, 23383);
 
-            var mdReader = peReader.GetMetadataReader();
-            var methodDef = mdReader.GetMethodDefinition((MethodDefinitionHandle)MetadataTokens.Handle(peEntryPointToken));
-            Assert.Equal("Main", mdReader.GetString(methodDef.Name));
+                int
+                peEntryPointToken = f_23129_23314_23382(f_23129_23314_23342(f_23129_23314_23332(peReader)))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23399, 23443);
+
+                var
+                mdReader = f_23129_23414_23442(peReader)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23457, 23568);
+
+                var
+                methodDef = f_23129_23473_23567(mdReader, f_23129_23526_23566(peEntryPointToken))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23582, 23645);
+
+                f_23129_23582_23644("Main", f_23129_23609_23643(mdReader, methodDef.Name));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 22499, 23656);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_22689_22745(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22689, 22745);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_22768_22800(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedName)
+                {
+                    var return_v = compilation.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22768, 22800);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_23015_23034(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23015, 23034);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_22817_23178(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, debugEntryPoint: debugEntryPoint, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 22817, 23178);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_23254_23273(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23254, 23273);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<byte>
+                f_23129_23223_23274(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint)
+                {
+                    var return_v = compilation.EmitToArray(debugEntryPoint: debugEntryPoint);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23223, 23274);
+                    return return_v;
+                }
+
+
+                System.Reflection.PortableExecutable.PEReader
+                f_23129_23210_23275(System.Collections.Immutable.ImmutableArray<byte>
+                peImage)
+                {
+                    var return_v = new System.Reflection.PortableExecutable.PEReader(peImage);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23210, 23275);
+                    return return_v;
+                }
+
+
+                System.Reflection.PortableExecutable.PEHeaders
+                f_23129_23314_23332(System.Reflection.PortableExecutable.PEReader
+                this_param)
+                {
+                    var return_v = this_param.PEHeaders;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 23314, 23332);
+                    return return_v;
+                }
+
+
+                System.Reflection.PortableExecutable.CorHeader?
+                f_23129_23314_23342(System.Reflection.PortableExecutable.PEHeaders
+                this_param)
+                {
+                    var return_v = this_param.CorHeader;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 23314, 23342);
+                    return return_v;
+                }
+
+
+                int
+                f_23129_23314_23382(System.Reflection.PortableExecutable.CorHeader?
+                this_param)
+                {
+                    var return_v = this_param.EntryPointTokenOrRelativeVirtualAddress;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 23314, 23382);
+                    return return_v;
+                }
+
+
+                System.Reflection.Metadata.MetadataReader
+                f_23129_23414_23442(System.Reflection.PortableExecutable.PEReader
+                peReader)
+                {
+                    var return_v = peReader.GetMetadataReader();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23414, 23442);
+                    return return_v;
+                }
+
+
+                System.Reflection.Metadata.Handle
+                f_23129_23526_23566(int
+                token)
+                {
+                    var return_v = MetadataTokens.Handle(token);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23526, 23566);
+                    return return_v;
+                }
+
+
+                System.Reflection.Metadata.MethodDefinition
+                f_23129_23473_23567(System.Reflection.Metadata.MetadataReader
+                this_param, System.Reflection.Metadata.Handle
+                handle)
+                {
+                    var return_v = this_param.GetMethodDefinition((System.Reflection.Metadata.MethodDefinitionHandle)handle);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23473, 23567);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_23609_23643(System.Reflection.Metadata.MetadataReader
+                this_param, System.Reflection.Metadata.StringHandle
+                handle)
+                {
+                    var return_v = this_param.GetString(handle);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23609, 23643);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_23582_23644(string
+                expected, string
+                actual)
+                {
+                    var return_v = CustomAssert.Equal(expected, actual);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23582, 23644);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 22499, 23656);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 22499, 23656);
+            }
         }
 
         [Fact]
         public void CustomDebugEntryPoint_Errors()
         {
-            var source1 = @"class C { static void F() { } } class D<T> { static void G<S>() {} }";
-            var source2 = @"class C { static void F() { } }";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 23668, 26201);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23751, 23837);
 
-            var c1 = CreateCompilation(source1, options: TestOptions.DebugDll);
-            var c2 = CreateCompilation(source2, options: TestOptions.DebugDll);
+                var
+                source1 = @"class C { static void F() { } } class D<T> { static void G<S>() {} }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23851, 23900);
 
-            var f1 = c1.GetMember<MethodSymbol>("C.F");
-            var f2 = c2.GetMember<MethodSymbol>("C.F");
-            var g = c1.GetMember<MethodSymbol>("D.G");
-            var d = c1.GetMember<NamedTypeSymbol>("D");
-            Assert.NotNull(f1);
-            Assert.NotNull(f2);
-            Assert.NotNull(g);
-            Assert.NotNull(d);
+                var
+                source2 = @"class C { static void F() { } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23916, 23983);
 
-            var stInt = c1.GetSpecialType(SpecialType.System_Int32);
-            var d_t_g_int = g.Construct(stInt);
-            var d_int = d.Construct(stInt);
-            var d_int_g = d_int.GetMember<MethodSymbol>("G");
-            var d_int_g_int = d_int_g.Construct(stInt);
+                var
+                c1 = f_23129_23925_23982(source1, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 23997, 24064);
 
-            var result = c1.Emit(new MemoryStream(), new MemoryStream(), debugEntryPoint: f2.GetPublicSymbol());
-            result.Diagnostics.Verify(
-                // error CS8096: Debug entry point must be a definition of a source method in the current compilation.
-                Diagnostic(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                var
+                c2 = f_23129_24006_24063(source2, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24080, 24123);
 
-            result = c1.Emit(new MemoryStream(), new MemoryStream(), debugEntryPoint: d_t_g_int.GetPublicSymbol());
-            result.Diagnostics.Verify(
-                // error CS8096: Debug entry point must be a definition of a source method in the current compilation.
-                Diagnostic(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                var
+                f1 = f_23129_24089_24122(c1, "C.F")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24137, 24180);
 
-            result = c1.Emit(new MemoryStream(), new MemoryStream(), debugEntryPoint: d_int_g.GetPublicSymbol());
-            result.Diagnostics.Verify(
-                // error CS8096: Debug entry point must be a definition of a source method in the current compilation.
-                Diagnostic(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                var
+                f2 = f_23129_24146_24179(c2, "C.F")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24194, 24236);
 
-            result = c1.Emit(new MemoryStream(), new MemoryStream(), debugEntryPoint: d_int_g_int.GetPublicSymbol());
-            result.Diagnostics.Verify(
-                // error CS8096: Debug entry point must be a definition of a source method in the current compilation.
-                Diagnostic(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                var
+                g = f_23129_24202_24235(c1, "D.G")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24250, 24293);
+
+                var
+                d = f_23129_24258_24292(c1, "D")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24307, 24332);
+
+                f_23129_24307_24331(f1);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24346, 24371);
+
+                f_23129_24346_24370(f2);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24385, 24409);
+
+                f_23129_24385_24408(g);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24423, 24447);
+
+                f_23129_24423_24446(d);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24463, 24519);
+
+                var
+                stInt = f_23129_24475_24518(c1, SpecialType.System_Int32)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24533, 24568);
+
+                var
+                d_t_g_int = f_23129_24549_24567(g, stInt)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24582, 24613);
+
+                var
+                d_int = f_23129_24594_24612(d, stInt)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24627, 24676);
+
+                var
+                d_int_g = f_23129_24641_24675(d_int, "G")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24690, 24733);
+
+                var
+                d_int_g_int = f_23129_24708_24732(d_int_g, stInt)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24749, 24849);
+
+                var
+                result = f_23129_24762_24848(c1, f_23129_24770_24788(), f_23129_24790_24808(), debugEntryPoint: f_23129_24827_24847(f2))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 24863, 25095);
+
+                result.Diagnostics.Verify(f_23129_25027_25093(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 25111, 25214);
+
+                result = f_23129_25120_25213(c1, f_23129_25128_25146(), f_23129_25148_25166(), debugEntryPoint: f_23129_25185_25212(d_t_g_int));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 25228, 25460);
+
+                result.Diagnostics.Verify(f_23129_25392_25458(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 25476, 25577);
+
+                result = f_23129_25485_25576(c1, f_23129_25493_25511(), f_23129_25513_25531(), debugEntryPoint: f_23129_25550_25575(d_int_g));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 25591, 25823);
+
+                result.Diagnostics.Verify(f_23129_25755_25821(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 25839, 25944);
+
+                result = f_23129_25848_25943(c1, f_23129_25856_25874(), f_23129_25876_25894(), debugEntryPoint: f_23129_25913_25942(d_int_g_int));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 25958, 26190);
+
+                result.Diagnostics.Verify(f_23129_26122_26188(ErrorCode.ERR_DebugEntryPointNotSourceMethodDefinition));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 23668, 26201);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_23925_23982(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 23925, 23982);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_24006_24063(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24006, 24063);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_24089_24122(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedName)
+                {
+                    var return_v = compilation.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24089, 24122);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_24146_24179(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedName)
+                {
+                    var return_v = compilation.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24146, 24179);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_24202_24235(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedName)
+                {
+                    var return_v = compilation.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24202, 24235);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_23129_24258_24292(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedName)
+                {
+                    var return_v = compilation.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24258, 24292);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_24307_24331(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                @object)
+                {
+                    var return_v = CustomAssert.NotNull((object)@object);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24307, 24331);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_24346_24370(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                @object)
+                {
+                    var return_v = CustomAssert.NotNull((object)@object);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24346, 24370);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_24385_24408(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                @object)
+                {
+                    var return_v = CustomAssert.NotNull((object)@object);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24385, 24408);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_24423_24446(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                @object)
+                {
+                    var return_v = CustomAssert.NotNull((object)@object);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24423, 24446);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_23129_24475_24518(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType)
+                {
+                    var return_v = this_param.GetSpecialType(specialType);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24475, 24518);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_24549_24567(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param, params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+                typeArguments)
+                {
+                    var return_v = this_param.Construct(typeArguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24549, 24567);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                f_23129_24594_24612(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                this_param, params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+                typeArguments)
+                {
+                    var return_v = this_param.Construct(typeArguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24594, 24612);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_24641_24675(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                symbol, string
+                qualifiedName)
+                {
+                    var return_v = symbol.GetMember<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>(qualifiedName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24641, 24675);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_23129_24708_24732(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param, params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+                typeArguments)
+                {
+                    var return_v = this_param.Construct(typeArguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24708, 24732);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_24770_24788()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24770, 24788);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_24790_24808()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24790, 24808);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_24827_24847(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24827, 24847);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_24762_24848(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.MemoryStream
+                pdbStream, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, (System.IO.Stream)pdbStream, debugEntryPoint: debugEntryPoint);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 24762, 24848);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_25027_25093(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25027, 25093);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_25128_25146()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25128, 25146);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_25148_25166()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25148, 25166);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_25185_25212(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25185, 25212);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_25120_25213(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.MemoryStream
+                pdbStream, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, (System.IO.Stream)pdbStream, debugEntryPoint: debugEntryPoint);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25120, 25213);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_25392_25458(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25392, 25458);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_25493_25511()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25493, 25511);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_25513_25531()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25513, 25531);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_25550_25575(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25550, 25575);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_25485_25576(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.MemoryStream
+                pdbStream, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, (System.IO.Stream)pdbStream, debugEntryPoint: debugEntryPoint);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25485, 25576);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_25755_25821(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25755, 25821);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_25856_25874()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25856, 25874);
+                    return return_v;
+                }
+
+
+                System.IO.MemoryStream
+                f_23129_25876_25894()
+                {
+                    var return_v = new System.IO.MemoryStream();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25876, 25894);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.IMethodSymbol?
+                f_23129_25913_25942(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                symbol)
+                {
+                    var return_v = symbol.GetPublicSymbol();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25913, 25942);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_25848_25943(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.MemoryStream
+                peStream, System.IO.MemoryStream
+                pdbStream, Microsoft.CodeAnalysis.IMethodSymbol
+                debugEntryPoint)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, (System.IO.Stream)pdbStream, debugEntryPoint: debugEntryPoint);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 25848, 25943);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_26122_26188(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 26122, 26188);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 23668, 26201);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 23668, 26201);
+            }
         }
 
         [Fact]
         [WorkItem(768862, "https://devdiv.visualstudio.com/DevDiv/_workitems/edit/768862")]
         public void TestLargeLineDelta()
         {
-            var verbatim = string.Join("\r\n", Enumerable.Repeat("x", 1000));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 26213, 27983);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 26379, 26444);
 
-            var source = $@"
+                var
+                verbatim = f_23129_26394_26443("\r\n", f_23129_26414_26442("x", 1000))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 26460, 26567);
+
+                var
+                source = $@"
 class C {{ public static void Main() => System.Console.WriteLine(@""{verbatim}""); }}
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Main", @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 26581, 26673);
+
+                var
+                c = f_23129_26589_26672(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 26687, 27240);
+
+                f_23129_26687_27239(c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -603,10 +2906,12 @@ class C {{ public static void Main() => System.Console.WriteLine(@""{verbatim}""
   </methods>
 </symbols>
 ", format: DebugInformationFormat.PortablePdb);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 27428, 27972);
 
-            // Native PDBs only support spans with line delta <= 127 (7 bit)
-            // https://github.com/Microsoft/microsoft-pdb/blob/master/include/cvinfo.h#L4621
-            c.VerifyPdb("C.Main", @"
+                f_23129_27428_27971(
+                            // Native PDBs only support spans with line delta <= 127 (7 bit)
+                            // https://github.com/Microsoft/microsoft-pdb/blob/master/include/cvinfo.h#L4621
+                            c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -625,23 +2930,109 @@ class C {{ public static void Main() => System.Console.WriteLine(@""{verbatim}""
   </methods>
 </symbols>
 ", format: DebugInformationFormat.Pdb);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 26213, 27983);
+
+                System.Collections.Generic.IEnumerable<string>
+                f_23129_26414_26442(string
+                element, int
+                count)
+                {
+                    var return_v = Enumerable.Repeat(element, count);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 26414, 26442);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_26394_26443(string
+                separator, System.Collections.Generic.IEnumerable<string>
+                values)
+                {
+                    var return_v = string.Join(separator, values);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 26394, 26443);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_26589_26672(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 26589, 26672);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_26687_27239(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 26687, 27239);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_27428_27971(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 27428, 27971);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 26213, 27983);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 26213, 27983);
+            }
         }
 
         [Fact]
         [WorkItem(20118, "https://github.com/dotnet/roslyn/issues/20118")]
         public void TestLargeStartAndEndColumn_SameLine()
         {
-            var spaces = new string(' ', 0x10000);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 27995, 28991);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 28161, 28199);
 
-            var source = $@"
+                var
+                spaces = f_23129_28174_28198(' ', 0x10000)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 28215, 28347);
+
+                var
+                source = $@"
 class C 
 {{ 
     public static void Main() => 
         {spaces}System.Console.WriteLine(""{spaces}""); 
 }}
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Main", @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 28361, 28453);
+
+                var
+                c = f_23129_28369_28452(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 28467, 28980);
+
+                f_23129_28467_28979(c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -660,24 +3051,85 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 27995, 28991);
+
+                string
+                f_23129_28174_28198(char
+                c, int
+                count)
+                {
+                    var return_v = new string(c, count);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 28174, 28198);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_28369_28452(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 28369, 28452);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_28467_28979(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 28467, 28979);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 27995, 28991);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 27995, 28991);
+            }
         }
 
         [Fact]
         [WorkItem(20118, "https://github.com/dotnet/roslyn/issues/20118")]
         public void TestLargeStartAndEndColumn_DifferentLine()
         {
-            var spaces = new string(' ', 0x10000);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 29003, 30014);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 29174, 29212);
 
-            var source = $@"
+                var
+                spaces = f_23129_29187_29211(' ', 0x10000)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 29228, 29370);
+
+                var
+                source = $@"
 class C 
 {{ 
     public static void Main() => 
         {spaces}System.Console.WriteLine(
         ""{spaces}""); 
 }}
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Main", @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 29384, 29476);
+
+                var
+                c = f_23129_29392_29475(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 29490, 30003);
+
+                f_23129_29490_30002(c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -696,16 +3148,63 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 29003, 30014);
+
+                string
+                f_23129_29187_29211(char
+                c, int
+                count)
+                {
+                    var return_v = new string(c, count);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 29187, 29211);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_29392_29475(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 29392, 29475);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_29490_30002(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 29490, 30002);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 29003, 30014);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 29003, 30014);
+            }
         }
-
-        #endregion
-
-        #region Method Bodies
 
         [Fact]
         public void TestBasic()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 30081, 31469);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 30145, 30316);
+
+                var
+                source = f_23129_30158_30315(@"
 class Program
 {
     Program() { }
@@ -715,10 +3214,16 @@ class Program
         Program p = new Program();
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 30332, 30424);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("Program.Main", @"
+                var
+                c = f_23129_30340_30423(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 30438, 31458);
+
+                f_23129_30438_31457(c, "Program.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -742,12 +3247,62 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 30081, 31469);
+
+                string
+                f_23129_30158_30315(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 30158, 30315);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_30340_30423(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 30340, 30423);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_30438_31457(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 30438, 31457);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 30081, 31469);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 30081, 31469);
+            }
         }
 
         [Fact]
         public void TestSimpleLocals()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 31481, 35190);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 31552, 32198);
+
+                var
+                source = f_23129_31565_32197(@"
 class C 
 { 
     void Method()
@@ -770,9 +3325,16 @@ class C
         }
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Method", @"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 32212, 32304);
+
+                var
+                c = f_23129_32220_32303(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 32318, 35179);
+
+                f_23129_32318_35178(c, "C.Method", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -818,14 +3380,63 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 31481, 35190);
+
+                string
+                f_23129_31565_32197(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 31565, 32197);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_32220_32303(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 32220, 32303);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_32318_35178(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 32318, 35178);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 31481, 35190);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 31481, 35190);
+            }
         }
 
         [Fact]
         [WorkItem(7244, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/7244")]
         public void ConstructorsWithoutInitializers()
         {
-            var source = WithWindowsLineBreaks(
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 35202, 37768);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 35376, 35527);
+
+                var
+                source = f_23129_35389_35526(@"class C
 {
     C()
     {
@@ -835,10 +3446,16 @@ class C
     {
         object y = x;
     }
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor",
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 35541, 35633);
+
+                var
+                c = f_23129_35549_35632(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 35647, 37757);
+
+                f_23129_35647_37756(c, "C..ctor", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -884,14 +3501,63 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 35202, 37768);
+
+                string
+                f_23129_35389_35526(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 35389, 35526);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_35549_35632(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 35549, 35632);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_35647_37756(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 35647, 37756);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 35202, 37768);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 35202, 37768);
+            }
         }
 
         [WorkItem(7244, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/7244")]
         [Fact]
         public void ConstructorsWithInitializers()
         {
-            var source = WithWindowsLineBreaks(
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 37780, 40635);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 37951, 38147);
+
+                var
+                source = f_23129_37964_38146(@"class C
 {
     static object G = 1;
     object F = G;
@@ -903,10 +3569,16 @@ class C
     {
         object y = x;
     }
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor",
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 38161, 38253);
+
+                var
+                c = f_23129_38169_38252(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 38267, 40624);
+
+                f_23129_38267_40623(c, "C..ctor", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -954,22 +3626,62 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 37780, 40635);
+
+                string
+                f_23129_37964_38146(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 37964, 38146);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_38169_38252(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 38169, 38252);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_38267_40623(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 38267, 40623);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 37780, 40635);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 37780, 40635);
+            }
         }
 
-        /// <summary>
-        /// Although the debugging info attached to DebuggerHidden method is not used by the debugger 
-        /// (the debugger doesn't ever stop in the method) Dev11 emits the info and so do we.
-        /// 
-        /// StepThrough method needs the information if JustMyCode is disabled and a breakpoint is set within the method.
-        /// NonUserCode method needs the information if JustMyCode is disabled.
-        /// 
-        /// It's up to the tool that consumes the debugging information, not the compiler to decide whether to ignore the info or not.
-        /// BTW, the information can actually be retrieved at runtime from the PDB file via Reflection StackTrace.
-        /// </summary>
         [Fact]
         public void MethodsWithDebuggerAttributes()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 41377, 45207);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 41461, 41931);
+
+                var
+                source = f_23129_41474_41930(@"
 using System;
 using System.Diagnostics;
 
@@ -996,9 +3708,16 @@ class Program
         Console.WriteLine(z);
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 41945, 42037);
+
+                var
+                c = f_23129_41953_42036(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 42051, 45196);
+
+                f_23129_42051_45195(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1062,19 +3781,62 @@ class Program
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 41377, 45207);
+
+                string
+                f_23129_41474_41930(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 41474, 41930);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_41953_42036(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 41953, 42036);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_42051_45195(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 42051, 45195);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 41377, 45207);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 41377, 45207);
+            }
         }
 
-        /// <summary>
-        /// If a synthesized method contains any user code,
-        /// the method must have a sequence point at
-        /// offset 0 for correct stepping behavior.
-        /// </summary>
         [WorkItem(804681, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/804681")]
         [Fact]
         public void SequencePointAtOffset0()
         {
-            string source = WithWindowsLineBreaks(
-@"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 45434, 49734);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 45603, 45869);
+
+                string
+                source = f_23129_45619_45868(@"using System;
 class C
 {
     static Func<object, int> F = x =>
@@ -1083,9 +3845,16 @@ class C
         Func<Func<object, int>, Func<object, int>> g = h => y => h(y);
         return g(f)(null);
     };
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 45883, 45975);
+
+                var
+                c = f_23129_45891_45974(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 45989, 49723);
+
+                f_23129_45989_49722(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1166,24 +3935,77 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 45434, 49734);
+
+                string
+                f_23129_45619_45868(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 45619, 45868);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_45891_45974(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 45891, 45974);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_45989_49722(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 45989, 49722);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 45434, 49734);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 45434, 49734);
+            }
         }
 
-        /// <summary>
-        /// Leading trivia is not included in the syntax offset.
-        /// </summary>
         [Fact]
         public void SyntaxOffsetInPresenceOfTrivia_Methods()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 49859, 52179);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 49952, 50161);
+
+                string
+                source = @"
 class C
 {
     public static void Main1() /*Comment1*/{/*Comment2*/int a = 1;/*Comment3*/}/*Comment4*/
     public static void Main2() {/*Comment2*/int a = 2;/*Comment3*/}/*Comment4*/
-}";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 50175, 50267);
 
-            // verify that both syntax offsets are the same
-            c.VerifyPdb(@"
+                var
+                c = f_23129_50183_50266(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 50344, 52168);
+
+                f_23129_50344_52167(
+                            // verify that both syntax offsets are the same
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1225,15 +4047,51 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 49859, 52179);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_50183_50266(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 50183, 50266);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_50344_52167(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 50344, 52167);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 49859, 52179);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 49859, 52179);
+            }
         }
 
-        /// <summary>
-        /// Leading and trailing trivia are not included in the syntax offset.
-        /// </summary>
         [Fact]
         public void SyntaxOffsetInPresenceOfTrivia_Initializers()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 52318, 54981);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 52416, 52773);
+
+                string
+                source = @"
 using System;
 class C1
 {
@@ -1247,11 +4105,18 @@ class C2
     public static Func<int> f=/*Comment1*/() => 1;
     public static Func<int> g=() => 2;
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 52787, 52879);
 
-            // verify that syntax offsets of both .cctor's are the same
-            c.VerifyPdb("C1..cctor", @"
+                var
+                c = f_23129_52795_52878(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 52968, 54019);
+
+                f_23129_52968_54018(
+                            // verify that syntax offsets of both .cctor's are the same
+                            c, "C1..cctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1280,8 +4145,10 @@ class C2
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 54035, 54970);
 
-            c.VerifyPdb("C2..cctor", @"
+                f_23129_54035_54969(
+                            c, "C2..cctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1305,16 +4172,64 @@ class C2
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 52318, 54981);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_52795_52878(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 52795, 52878);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_52968_54018(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 52968, 54018);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_54035_54969(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 54035, 54969);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 52318, 54981);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 52318, 54981);
+            }
         }
-
-        #endregion
-
-        #region ReturnStatement
 
         [Fact]
         public void Return_Method1()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 55050, 56730);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 55119, 55238);
+
+                var
+                source = f_23129_55132_55237(@"
 class Program
 {
     static int Main()
@@ -1322,13 +4237,19 @@ class Program
         return 1;
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 55254, 55318);
 
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+                var
+                v = f_23129_55262_55317(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 55588, 55861);
 
-            // In order to place a breakpoint on the closing brace we need to save the return expression value to 
-            // a local and then load it again (since sequence point needs an empty stack). This variable has to be marked as long-lived.
-            v.VerifyIL("Program.Main", @"
+                f_23129_55588_55860(
+                            // In order to place a breakpoint on the closing brace we need to save the return expression value to 
+                            // a local and then load it again (since sequence point needs an empty stack). This variable has to be marked as long-lived.
+                            v, "Program.Main", @"
 {
   // Code size        7 (0x7)
   .maxstack  1
@@ -1340,8 +4261,10 @@ class Program
  -IL_0005:  ldloc.0
   IL_0006:  ret
 }", sequencePoints: "Program.Main");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 55877, 56719);
 
-            v.VerifyPdb("Program.Main", @"
+                f_23129_55877_56718(
+                            v, "Program.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1364,12 +4287,76 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 55050, 56730);
+
+                string
+                f_23129_55132_55237(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 55132, 55237);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_55262_55317(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 55262, 55317);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_55588_55860(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 55588, 55860);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_55877_56718(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 55877, 56718);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 55050, 56730);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 55050, 56730);
+            }
         }
 
         [Fact]
         public void Return_Property1()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 56742, 58406);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 56813, 56929);
+
+                var
+                source = f_23129_56826_56928(@"
 class C
 {
     static int P
@@ -1377,13 +4364,19 @@ class C
         get { return 1; }
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 56945, 57009);
 
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+                var
+                v = f_23129_56953_57008(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 57279, 57542);
 
-            // In order to place a breakpoint on the closing brace we need to save the return expression value to 
-            // a local and then load it again (since sequence point needs an empty stack). This variable has to be marked as long-lived.
-            v.VerifyIL("C.P.get", @"
+                f_23129_57279_57541(
+                            // In order to place a breakpoint on the closing brace we need to save the return expression value to 
+                            // a local and then load it again (since sequence point needs an empty stack). This variable has to be marked as long-lived.
+                            v, "C.P.get", @"
 {
   // Code size        7 (0x7)
   .maxstack  1
@@ -1395,8 +4388,10 @@ class C
  -IL_0005:  ldloc.0
   IL_0006:  ret
 }", sequencePoints: "C.get_P");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 57558, 58395);
 
-            v.VerifyPdb("C.get_P", @"
+                f_23129_57558_58394(
+                            v, "C.get_P", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1419,12 +4414,76 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 56742, 58406);
+
+                string
+                f_23129_56826_56928(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 56826, 56928);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_56953_57008(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 56953, 57008);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_57279_57541(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 57279, 57541);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_57558_58394(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 57558, 58394);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 56742, 58406);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 56742, 58406);
+            }
         }
 
         [Fact]
         public void Return_Void1()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 58418, 58870);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 58485, 58580);
+
+                var
+                source = @"
 class Program
 {
     static void Main()
@@ -1432,11 +4491,17 @@ class Program
         return;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 58596, 58660);
 
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+                var
+                v = f_23129_58604_58659(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 58676, 58859);
 
-            v.VerifyIL("Program.Main", @"
+                f_23129_58676_58858(
+                            v, "Program.Main", @"
 {
   // Code size        4 (0x4)
   .maxstack  0
@@ -1444,33 +4509,123 @@ class Program
  -IL_0001:  br.s       IL_0003
  -IL_0003:  ret
 }", sequencePoints: "Program.Main");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 58418, 58870);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_58604_58659(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 58604, 58659);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_58676_58858(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 58676, 58858);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 58418, 58870);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 58418, 58870);
+            }
         }
 
         [Fact]
         public void Return_ExpressionBodied1()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 58882, 59293);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 58961, 59030);
+
+                var
+                source = @"
 class Program
 {
     static int Main() => 1;
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 59046, 59110);
 
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+                var
+                v = f_23129_59054_59109(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 59126, 59282);
 
-            v.VerifyIL("Program.Main", @"
+                f_23129_59126_59281(
+                            v, "Program.Main", @"
 {
   // Code size        2 (0x2)
   .maxstack  1
  -IL_0000:  ldc.i4.1
   IL_0001:  ret
 }", sequencePoints: "Program.Main");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 58882, 59293);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_59054_59109(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 59054, 59109);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_59126_59281(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 59126, 59281);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 58882, 59293);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 58882, 59293);
+            }
         }
 
         [Fact]
         public void Return_FromExceptionHandler1()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 59305, 61881);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 59388, 59670);
+
+                var
+                source = f_23129_59401_59669(@"
 using System;
 
 class Program
@@ -1488,10 +4643,17 @@ class Program
         }
     }
 }
-");
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 59684, 59748);
 
-            v.VerifyIL("Program.Main", @"
+                var
+                v = f_23129_59692_59747(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 59764, 60317);
+
+                f_23129_59764_60316(
+                            v, "Program.Main", @"
 {
   // Code size       20 (0x14)
   .maxstack  1
@@ -1517,8 +4679,10 @@ class Program
  -IL_0012:  ldloc.0
   IL_0013:  ret
 }", sequencePoints: "Program.Main");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 60333, 61870);
 
-            v.VerifyPdb("Program.Main", @"
+                f_23129_60333_61869(
+                            v, "Program.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1549,16 +4713,76 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 59305, 61881);
+
+                string
+                f_23129_59401_59669(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 59401, 59669);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_59692_59747(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 59692, 59747);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_59764_60316(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 59764, 60316);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_60333_61869(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 60333, 61869);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 59305, 61881);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 59305, 61881);
+            }
         }
-
-        #endregion
-
-        #region IfStatement
 
         [Fact]
         public void IfStatement()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 61946, 67005);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 62012, 62577);
+
+                var
+                source = f_23129_62025_62576(@"
 class C 
 { 
     void Method()
@@ -1585,9 +4809,16 @@ class C
         }
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Method", @"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 62591, 62683);
+
+                var
+                c = f_23129_62599_62682(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 62697, 66994);
+
+                f_23129_62697_66993(c, "C.Method", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1652,17 +4883,63 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 61946, 67005);
+
+                string
+                f_23129_62025_62576(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 62025, 62576);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_62599_62682(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 62599, 62682);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_62697_66993(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 62697, 66993);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 61946, 67005);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 61946, 67005);
+            }
         }
-
-        #endregion
-
-        #region WhileStatement
 
         [WorkItem(538299, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/538299")]
         [Fact]
         public void WhileStatement()
         {
-            var source = @"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 67073, 71324);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 67234, 67978);
+
+                var
+                source = @"using System;
 
 public class SeqPointForWhile
 {
@@ -1698,17 +4975,23 @@ public class SeqPointForWhile
         field = -1;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 67994, 68088);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.ReleaseExe);
+                var
+                c = f_23129_68002_68087(source, options: TestOptions.ReleaseExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 68453, 71313);
 
-            // Offset 0x01 should be:
-            //  <entry offset=""0x1"" hidden=""true"" document=""1"" />
-            // Move original offset 0x01 to 0x33
-            //  <entry offset=""0x33"" startLine=""14"" startColumn=""9"" endLine=""14"" endColumn=""22"" document=""1"" />
-            // 
-            // Note: 16707566 == 0x00FEEFEE
-            c.VerifyPdb(@"
+                f_23129_68453_71312(
+                            // Offset 0x01 should be:
+                            //  <entry offset=""0x1"" hidden=""true"" document=""1"" />
+                            // Move original offset 0x01 to 0x33
+                            //  <entry offset=""0x33"" startLine=""14"" startColumn=""9"" endLine=""14"" endColumn=""22"" document=""1"" />
+                            // 
+                            // Note: 16707566 == 0x00FEEFEE
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1757,16 +5040,51 @@ public class SeqPointForWhile
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 67073, 71324);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_68002_68087(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 68002, 68087);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_68453_71312(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 68453, 71312);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 67073, 71324);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 67073, 71324);
+            }
         }
-
-        #endregion
-
-        #region ForStatement
 
         [Fact]
         public void ForStatement1()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 71390, 73686);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 71458, 71728);
+
+                var
+                source = f_23129_71471_71727(@"
 class C
 {
     static bool F(int i) { return true; }
@@ -1779,9 +5097,16 @@ class C
             System.Console.WriteLine(1);
         }
     }
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.M", @"
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 71742, 71834);
+
+                var
+                c = f_23129_71750_71833(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 71848, 73675);
+
+                f_23129_71848_73674(c, "C.M", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1815,12 +5140,62 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 71390, 73686);
+
+                string
+                f_23129_71471_71727(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 71471, 71727);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_71750_71833(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 71750, 71833);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_71848_73674(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 71848, 73674);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 71390, 73686);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 71390, 73686);
+            }
         }
 
         [Fact]
         public void ForStatement2()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 73698, 75018);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 73766, 73915);
+
+                var
+                source = @"
 class C
 {
     static void M()
@@ -1830,9 +5205,16 @@ class C
             System.Console.WriteLine(1);
         }
     }
-}";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.M", @"
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 73929, 74021);
+
+                var
+                c = f_23129_73937_74020(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 74035, 75007);
+
+                f_23129_74035_75006(c, "C.M", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1856,12 +5238,52 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 73698, 75018);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_73937_74020(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 73937, 74020);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_74035_75006(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 74035, 75006);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 73698, 75018);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 73698, 75018);
+            }
         }
 
         [Fact]
         public void ForStatement3()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 75030, 76889);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 75098, 75293);
+
+                var
+                source = f_23129_75111_75292(@"
 class C
 {
     static void M()
@@ -1872,9 +5294,16 @@ class C
             System.Console.WriteLine(i);
         }
     }
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.M", @"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 75307, 75399);
+
+                var
+                c = f_23129_75315_75398(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 75413, 76878);
+
+                f_23129_75413_76877(c, "C.M", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -1904,16 +5333,62 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 75030, 76889);
+
+                string
+                f_23129_75111_75292(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 75111, 75292);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_75315_75398(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 75315, 75398);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_75413_76877(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 75413, 76877);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 75030, 76889);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 75030, 76889);
+            }
         }
-
-        #endregion
-
-        #region ForEachStatement
 
         [Fact]
         public void ForEachStatement_String()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 76959, 78952);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 77037, 77225);
+
+                var
+                source = @"
 public class C
 {
     public static void Main()
@@ -1924,23 +5399,30 @@ public class C
         }
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.ReleaseExe);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 77239, 77333);
 
-            // Sequence points:
-            // 1) Open brace at start of method
-            // 2) 'foreach'
-            // 3) '"hello"'
-            // 4) Hidden initial jump (of for loop)
-            // 5) 'var c'
-            // 6) Open brace of loop
-            // 7) Loop body
-            // 8) Close brace of loop
-            // 9) Hidden index increment.
-            // 10) 'in'
-            // 11) Close brace at end of method
+                var
+                c = f_23129_77247_77332(source, options: TestOptions.ReleaseExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 77794, 78941);
 
-            c.VerifyPdb(@"
+                f_23129_77794_78940(
+                            // Sequence points:
+                            // 1) Open brace at start of method
+                            // 2) 'foreach'
+                            // 3) '"hello"'
+                            // 4) Hidden initial jump (of for loop)
+                            // 5) 'var c'
+                            // 6) Open brace of loop
+                            // 7) Loop body
+                            // 8) Close brace of loop
+                            // 9) Hidden index increment.
+                            // 10) 'in'
+                            // 11) Close brace at end of method
+
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -1965,12 +5447,51 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 76959, 78952);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_77247_77332(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 77247, 77332);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_77794_78940(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 77794, 78940);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 76959, 78952);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 76959, 78952);
+            }
         }
 
         [Fact]
         public void ForEachStatement_Array()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 78964, 81813);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 79041, 79253);
+
+                var
+                source = f_23129_79054_79252(@"
 public class C
 {
     public static void Main()
@@ -1981,24 +5502,30 @@ public class C
         }
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 79269, 79361);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_79277_79360(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 79825, 81802);
 
-            // Sequence points:
-            // 1) Open brace at start of method
-            // 2) 'foreach'
-            // 3) 'new int[2]'
-            // 4) Hidden initial jump (of for loop)
-            // 5) 'var c'
-            // 6) Open brace of loop
-            // 7) Loop body
-            // 8) Close brace of loop
-            // 9) Hidden index increment.
-            // 10) 'in'
-            // 11) Close brace at end of method
+                f_23129_79825_81801(
+                            // Sequence points:
+                            // 1) Open brace at start of method
+                            // 2) 'foreach'
+                            // 3) 'new int[2]'
+                            // 4) Hidden initial jump (of for loop)
+                            // 5) 'var c'
+                            // 6) Open brace of loop
+                            // 7) Loop body
+                            // 8) Close brace of loop
+                            // 9) Hidden index increment.
+                            // 10) 'in'
+                            // 11) Close brace at end of method
 
-            c.VerifyPdb(@"
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -2036,13 +5563,62 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 78964, 81813);
+
+                string
+                f_23129_79054_79252(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 79054, 79252);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_79277_79360(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 79277, 79360);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_79825_81801(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 79825, 81801);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 78964, 81813);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 78964, 81813);
+            }
         }
 
         [WorkItem(544937, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/544937")]
         [Fact]
         public void ForEachStatement_MultiDimensionalArray()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 81825, 84339);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 82010, 82202);
+
+                var
+                source = @"
 public class C
 {
     public static void Main()
@@ -2053,22 +5629,29 @@ public class C
         }
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 82216, 82280);
 
-            // Sequence points:
-            // 1) Open brace at start of method
-            // 2) 'foreach'
-            // 3) 'new int[2, 3]'
-            // 4) Hidden initial jump (of for loop)
-            // 5) 'var c'
-            // 6) Open brace of loop
-            // 7) Loop body
-            // 8) Close brace of loop
-            // 9) 'in'
-            // 10) Close brace at end of method
+                var
+                v = f_23129_82224_82279(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 82703, 84328);
 
-            v.VerifyIL("C.Main", @"
+                f_23129_82703_84327(
+                            // Sequence points:
+                            // 1) Open brace at start of method
+                            // 2) 'foreach'
+                            // 3) 'new int[2, 3]'
+                            // 4) Hidden initial jump (of for loop)
+                            // 5) 'var c'
+                            // 6) Open brace of loop
+                            // 7) Loop body
+                            // 8) Close brace of loop
+                            // 9) 'in'
+                            // 10) Close brace at end of method
+
+                            v, "C.Main", @"
 {
   // Code size       88 (0x58)
   .maxstack  3
@@ -2129,13 +5712,55 @@ public class C
  -IL_0057:  ret
 }
 ", sequencePoints: "C.Main");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 81825, 84339);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_82224_82279(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 82224, 82279);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_82703_84327(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 82703, 84327);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 81825, 84339);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 81825, 84339);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ConditionalInAsyncMethod()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 84351, 89132);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 84506, 84732);
+
+                var
+                source = f_23129_84519_84731(@"
 using System;
 
 class Program
@@ -2149,10 +5774,17 @@ class Program
                 .WriteLine();
     }
 }
-");
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 84746, 84810);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_84754_84809(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 84826, 86956);
+
+                f_23129_84826_86955(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size       81 (0x51)
   .maxstack  2
@@ -2212,8 +5844,10 @@ class Program
   IL_0050:  ret
 }
 ", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 86972, 89121);
 
-            v.VerifyPdb(@"<symbols>
+                f_23129_86972_89120(
+                            v, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -2262,13 +5896,77 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 84351, 89132);
+
+                string
+                f_23129_84519_84731(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 84519, 84731);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_84754_84809(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 84754, 84809);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_84826_86955(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 84826, 86955);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_86972_89120(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 86972, 89120);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 84351, 89132);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 84351, 89132);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ConditionalBeforeLocalFunction()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 89144, 90496);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 89305, 89560);
+
+                var
+                source = @"
 class C
 {
     void M()
@@ -2287,10 +5985,17 @@ class C
         System.Console.Write(1);
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 89574, 89638);
 
-            v.VerifyIL("C.M", @"
+                var
+                v = f_23129_89582_89637(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 89654, 90485);
+
+                f_23129_89654_90484(
+                            v, "C.M", @"
 {
   // Code size       23 (0x17)
   .maxstack  2
@@ -2323,13 +6028,56 @@ class C
   IL_0016:  ret
 }
 ", sequencePoints: "C.M", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 89144, 90496);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_89582_89637(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 89582, 89637);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_89654_90484(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 89654, 90484);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 89144, 90496);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 89144, 90496);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ConditionalInAsyncMethodWithExplicitReturn()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 90508, 93137);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 90681, 90903);
+
+                var
+                source = @"
 using System;
 
 class Program
@@ -2345,10 +6093,17 @@ class Program
         return;
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 90917, 90981);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_90925_90980(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 90997, 93126);
+
+                f_23129_90997_93125(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size       81 (0x51)
   .maxstack  2
@@ -2408,13 +6163,56 @@ class Program
   IL_0050:  ret
 }
 ", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 90508, 93137);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_90925_90980(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 90925, 90980);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_90997_93125(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 90997, 93125);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 90508, 93137);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 90508, 93137);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ConditionalInSimpleMethod()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 93149, 94264);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 93305, 93484);
+
+                var
+                source = @"
 using System;
 
 class Program
@@ -2427,10 +6225,17 @@ class Program
             Console.WriteLine();
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 93498, 93562);
 
-            v.VerifyIL("Program.Test()", @"
+                var
+                v = f_23129_93506_93561(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 93578, 94253);
+
+                f_23129_93578_94252(
+                            v, "Program.Test()", @"
 {
   // Code size       18 (0x12)
   .maxstack  2
@@ -2456,13 +6261,56 @@ class Program
   IL_0011:  ret
 }
 ", sequencePoints: "Program.Test", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 93149, 94264);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_93506_93561(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 93506, 93561);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_93578_94252(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 93578, 94252);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 93149, 94264);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 93149, 94264);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ElseConditionalInAsyncMethod()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 94276, 99578);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 94435, 94707);
+
+                var
+                source = f_23129_94448_94706(@"
 using System;
 
 class Program
@@ -2477,10 +6325,17 @@ class Program
             Console.WriteLine(""other"");
     }
 }
-");
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 94721, 94785);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_94729_94784(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 94801, 97218);
+
+                f_23129_94801_97217(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size       99 (0x63)
   .maxstack  2
@@ -2547,8 +6402,10 @@ class Program
   IL_0062:  ret
 }
 ", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 97234, 99567);
 
-            v.VerifyPdb(@"<symbols>
+                f_23129_97234_99566(
+                            v, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -2599,13 +6456,77 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 94276, 99578);
+
+                string
+                f_23129_94448_94706(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 94448, 94706);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_94729_94784(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 94729, 94784);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_94801_97217(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 94801, 97217);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_97234_99566(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 97234, 99566);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 94276, 99578);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 94276, 99578);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ConditionalInTry()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 99590, 103206);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 99737, 100005);
+
+                var
+                source = f_23129_99750_100004(@"
 using System;
 
 class Program
@@ -2622,10 +6543,17 @@ class Program
         catch { }
     }
 }
-");
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 100019, 100083);
 
-            v.VerifyIL("Program.Test", @"
+                var
+                v = f_23129_100027_100082(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 100099, 101141);
+
+                f_23129_100099_101140(
+                            v, "Program.Test", @"
 {
   // Code size       27 (0x1b)
   .maxstack  2
@@ -2669,8 +6597,10 @@ class Program
   IL_001a:  ret
 }
 ", sequencePoints: "Program.Test", source: source);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 101157, 103195);
 
-            v.VerifyPdb(@"<symbols>
+                f_23129_101157_103194(
+                            v, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -2707,13 +6637,77 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 99590, 103206);
+
+                string
+                f_23129_99750_100004(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 99750, 100004);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_100027_100082(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 100027, 100082);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_100099_101140(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 100099, 101140);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_101157_103194(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 101157, 103194);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 99590, 103206);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 99590, 103206);
+            }
         }
 
         [WorkItem(544937, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/544937")]
         [Fact]
         public void ForEachStatement_MultiDimensionalArrayBreakAndContinue()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 103218, 107258);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 103419, 103794);
+
+                var
+                source = @"
 using System;
 
 class C
@@ -2734,13 +6728,20 @@ class C
         }
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll.WithModuleName("MODULE"));
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 103808, 103897);
 
-            // Stepping:
-            //   After "continue", step to "in".
-            //   After "break", step to first sequence point following loop body (in this case, method close brace).
-            v.VerifyIL("C.Main", @"
+                var
+                v = f_23129_103816_103896(this, source, options: f_23129_103850_103895(TestOptions.DebugDll, "MODULE"))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 104107, 107247);
+
+                f_23129_104107_107246(
+                            // Stepping:
+                            //   After "continue", step to "in".
+                            //   After "break", step to first sequence point following loop body (in this case, method close brace).
+                            v, "C.Main", @"
 {
   // Code size      169 (0xa9)
   .maxstack  4
@@ -2845,12 +6846,65 @@ class C
  -IL_00a8:  ret
 }
 ", sequencePoints: "C.Main");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 103218, 107258);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                f_23129_103850_103895(Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                this_param, string
+                moduleName)
+                {
+                    var return_v = this_param.WithModuleName(moduleName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 103850, 103895);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_103816_103896(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 103816, 103896);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_104107_107246(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 104107, 107246);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 103218, 107258);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 103218, 107258);
+            }
         }
 
         [Fact]
         public void ForEachStatement_Enumerator()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 107270, 109420);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 107352, 107573);
+
+                var
+                source = @"
 public class C
 {
     public static void Main()
@@ -2861,24 +6915,30 @@ public class C
         }
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 107589, 107653);
 
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+                var
+                v = f_23129_107597_107652(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 108151, 109409);
 
-            // Sequence points:
-            // 1) Open brace at start of method
-            // 2) 'foreach'
-            // 3) 'new System.Collections.Generic.List<int>()'
-            // 4) Hidden initial jump (of while loop)
-            // 5) 'var c'
-            // 6) Open brace of loop
-            // 7) Loop body
-            // 8) Close brace of loop
-            // 9) 'in'
-            // 10) hidden point in Finally
-            // 11) Close brace at end of method
+                f_23129_108151_109408(
+                            // Sequence points:
+                            // 1) Open brace at start of method
+                            // 2) 'foreach'
+                            // 3) 'new System.Collections.Generic.List<int>()'
+                            // 4) Hidden initial jump (of while loop)
+                            // 5) 'var c'
+                            // 6) Open brace of loop
+                            // 7) Loop body
+                            // 8) Close brace of loop
+                            // 9) 'in'
+                            // 10) hidden point in Finally
+                            // 11) Close brace at end of method
 
-            v.VerifyIL("C.Main", @"
+                            v, "C.Main", @"
 {
   // Code size       59 (0x3b)
   .maxstack  1
@@ -2916,13 +6976,55 @@ public class C
  -IL_003a:  ret
 }
 ", sequencePoints: "C.Main");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 107270, 109420);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_107597_107652(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 107597, 107652);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_108151_109408(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 108151, 109408);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 107270, 109420);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 107270, 109420);
+            }
         }
 
         [WorkItem(718501, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/718501")]
         [Fact]
         public void ForEachNops()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 109432, 113566);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 109590, 110227);
+
+                string
+                source = f_23129_109606_110226(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -2950,10 +7052,16 @@ class Program
             }
         }
 }
-");
-            // we just want this to compile without crashing/asserting
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("Program.Main", @"<symbols>
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 110313, 110405);
+
+                var
+                c = f_23129_110321_110404(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 110419, 113555);
+
+                f_23129_110419_113554(c, "Program.Main", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -3003,14 +7111,63 @@ class Program
       </scope>
     </method>
   </methods>
-</symbols>"
-);
+</symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 109432, 113566);
+
+                string
+                f_23129_109606_110226(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 109606, 110226);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_110321_110404(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 110321, 110404);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_110419_113554(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 110419, 113554);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 109432, 113566);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 109432, 113566);
+            }
         }
 
         [Fact]
         public void ForEachStatement_Deconstruction()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 113578, 118688);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 113664, 113959);
+
+                var
+                source = f_23129_113677_113958(@"
 public class C
 {
     public static (int, (bool, double))[] F() => new[] { (1, (true, 2.0)) };
@@ -3023,11 +7180,22 @@ public class C
         }
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 113973, 114038);
 
-            v.VerifyIL("C.Main", @"
+                var
+                c = f_23129_113981_114037(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 114052, 114080);
+
+                var
+                v = f_23129_114060_114079(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 114096, 116028);
+
+                f_23129_114096_116027(
+                            v, "C.Main", @"
 {
   // Code size       70 (0x46)
   .maxstack  2
@@ -3086,8 +7254,10 @@ public class C
   IL_0045:  ret
 }
 ", sequencePoints: "C.Main", source: source);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 116044, 118677);
 
-            v.VerifyPdb(@"
+                f_23129_116044_118676(
+                            v, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -3138,16 +7308,86 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 113578, 118688);
+
+                string
+                f_23129_113677_113958(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 113677, 113958);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_113981_114037(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 113981, 114037);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_114060_114079(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 114060, 114079);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_114096_116027(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 114096, 116027);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_116044_118676(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 116044, 118676);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 113578, 118688);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 113578, 118688);
+            }
         }
-
-        #endregion
-
-        #region Switch
 
         [Fact]
         public void SwitchWithPattern_01()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 118748, 122600);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 118823, 119773);
+
+                string
+                source = f_23129_118839_119772(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -3183,11 +7423,16 @@ class Program
 class Person { public string Name; }
 class Teacher : Person { public string Subject; }
 class Student : Person { public double GPA; }
-");
-            // we just want this to compile without crashing/asserting
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("Program.Operate",
-@"<symbols>
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 119859, 119951);
+
+                var
+                c = f_23129_119867_119950(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 119965, 122589);
+
+                f_23129_119965_122588(c, "Program.Operate", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -3233,12 +7478,62 @@ class Student : Person { public double GPA; }
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 118748, 122600);
+
+                string
+                f_23129_118839_119772(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 118839, 119772);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_119867_119950(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 119867, 119950);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_119965_122588(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 119965, 122588);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 118748, 122600);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 118748, 122600);
+            }
         }
 
         [Fact]
         public void SwitchWithPattern_02()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 122612, 126628);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 122687, 123674);
+
+                string
+                source = f_23129_122703_123673(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -3274,11 +7569,16 @@ class Program
 class Person { public string Name; }
 class Teacher : Person { public string Subject; }
 class Student : Person { public double GPA; }
-");
-            // we just want this to compile without crashing/asserting
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("Program.Operate",
-@"<symbols>
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 123760, 123852);
+
+                var
+                c = f_23129_123768_123851(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 123866, 126617);
+
+                f_23129_123866_126616(c, "Program.Operate", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -3328,12 +7628,62 @@ class Student : Person { public double GPA; }
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 122612, 126628);
+
+                string
+                f_23129_122703_123673(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 122703, 123673);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_123768_123851(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 123768, 123851);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_123866_126616(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 123866, 126616);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 122612, 126628);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 122612, 126628);
+            }
         }
 
         [Fact]
         public void SwitchWithPatternAndLocalFunctions()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 126640, 130857);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 126729, 127836);
+
+                string
+                source = f_23129_126745_127835(@"
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -3373,10 +7723,16 @@ class Program
 class Person { public string Name; }
 class Teacher : Person { public string Subject; }
 class Student : Person { public double GPA; }
-");
-            // we just want this to compile without crashing/asserting
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("Program.Operate", @"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 127922, 128014);
+
+                var
+                c = f_23129_127930_128013(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 128028, 130846);
+
+                f_23129_128028_130845(c, "Program.Operate", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -3428,13 +7784,63 @@ class Student : Person { public double GPA; }
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 126640, 130857);
+
+                string
+                f_23129_126745_127835(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 126745, 127835);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_127930_128013(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 127930, 128013);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_128028_130845(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 128028, 130845);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 126640, 130857);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 126640, 130857);
+            }
         }
 
         [WorkItem(17090, "https://github.com/dotnet/roslyn/issues/17090"), WorkItem(19731, "https://github.com/dotnet/roslyn/issues/19731")]
         [Fact]
         public void SwitchWithConstantPattern()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 130869, 134180);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 131091, 131805);
+
+                string
+                source = @"
 using System;
 
 class Program
@@ -3475,13 +7881,25 @@ class Program
         }
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugExe);
-            c.VerifyDiagnostics();
-            var verifier = CompileAndVerify(c, expectedOutput: "1M2");
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 131819, 131911);
 
-            verifier.VerifyIL(qualifiedMethodName: "Program.M1", sequencePoints: "Program.M1", source: source,
-expectedIL: @"{
+                var
+                c = f_23129_131827_131910(source, options: TestOptions.DebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 131925, 131947);
+
+                f_23129_131925_131946(c);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 131961, 132019);
+
+                var
+                verifier = f_23129_131976_132018(this, c, expectedOutput: "1M2")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 132035, 132732);
+
+                f_23129_132035_132731(
+                            verifier, qualifiedMethodName: "Program.M1", sequencePoints: "Program.M1", source: source, expectedIL: @"{
   // Code size       17 (0x11)
   .maxstack  1
   .locals init (int V_0,
@@ -3504,8 +7922,9 @@ expectedIL: @"{
   // sequence point: }
   IL_0010:  ret
 }");
-            verifier.VerifyIL(qualifiedMethodName: "Program.M2", sequencePoints: "Program.M2", source: source,
-expectedIL: @"{
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 132746, 133488);
+
+                f_23129_132746_133487(verifier, qualifiedMethodName: "Program.M2", sequencePoints: "Program.M2", source: source, expectedIL: @"{
   // Code size       29 (0x1d)
   .maxstack  1
   .locals init (string V_0,
@@ -3528,35 +7947,178 @@ expectedIL: @"{
   // sequence point: }
   IL_001c:  ret
 }");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 133559, 133649);
 
-            // Check the release code generation too.
-            c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.ReleaseExe);
-            c.VerifyDiagnostics();
-            verifier = CompileAndVerify(c, expectedOutput: "1M2");
+                c = f_23129_133563_133648(source, options: TestOptions.ReleaseExe);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 133663, 133685);
 
-            verifier.VerifyIL("Program.M1",
-@"{
+                f_23129_133663_133684(c);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 133699, 133753);
+
+                verifier = f_23129_133710_133752(this, c, expectedOutput: "1M2");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 133769, 133956);
+
+                f_23129_133769_133955(
+                            verifier, "Program.M1", @"{
   // Code size        7 (0x7)
   .maxstack  1
   IL_0000:  ldc.i4.1
   IL_0001:  call       ""void System.Console.Write(int)""
   IL_0006:  ret
 }");
-            verifier.VerifyIL("Program.M2",
-@"{
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 133970, 134169);
+
+                f_23129_133970_134168(verifier, "Program.M2", @"{
   // Code size       11 (0xb)
   .maxstack  1
   IL_0000:  ldstr      ""M2""
   IL_0005:  call       ""void System.Console.Write(string)""
   IL_000a:  ret
 }");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 130869, 134180);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_131827_131910(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 131827, 131910);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_131925_131946(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 131925, 131946);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_131976_132018(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedOutput)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, expectedOutput: expectedOutput);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 131976, 132018);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_132035_132731(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName: qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 132035, 132731);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_132746_133487(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName: qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 132746, 133487);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_133563_133648(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 133563, 133648);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_133663_133684(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 133663, 133684);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_133710_133752(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedOutput)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, expectedOutput: expectedOutput);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 133710, 133752);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_133769_133955(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 133769, 133955);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_133970_134168(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 133970, 134168);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 130869, 134180);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 130869, 134180);
+            }
         }
 
         [WorkItem(19734, "https://github.com/dotnet/roslyn/issues/19734")]
         [Fact]
         public void SwitchWithConstantGenericPattern_01()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 134192, 139313);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 134358, 135134);
+
+                string
+                source = @"
 using System;
 
 class Program
@@ -3597,13 +8159,25 @@ class Program
         }
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugExe, parseOptions: TestOptions.Regular7_1);
-            c.VerifyDiagnostics();
-            var verifier = CompileAndVerify(c, expectedOutput: "1234");
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 135148, 135278);
 
-            verifier.VerifyIL(qualifiedMethodName: "Program.M1<T>", sequencePoints: "Program.M1", source: source,
-expectedIL: @"{
+                var
+                c = f_23129_135156_135277(source, options: TestOptions.DebugExe, parseOptions: TestOptions.Regular7_1)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 135292, 135314);
+
+                f_23129_135292_135313(c);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 135328, 135387);
+
+                var
+                verifier = f_23129_135343_135386(this, c, expectedOutput: "1234")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 135403, 136727);
+
+                f_23129_135403_136726(
+                            verifier, qualifiedMethodName: "Program.M1<T>", sequencePoints: "Program.M1", source: source, expectedIL: @"{
   // Code size       60 (0x3c)
   .maxstack  1
   .locals init (T V_0, //t
@@ -3647,8 +8221,9 @@ expectedIL: @"{
   // sequence point: }
   IL_003b:  ret
 }");
-            verifier.VerifyIL(qualifiedMethodName: "Program.M2<T>", sequencePoints: "Program.M2", source: source,
-expectedIL: @"{
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 136741, 138034);
+
+                f_23129_136741_138033(verifier, qualifiedMethodName: "Program.M2<T>", sequencePoints: "Program.M2", source: source, expectedIL: @"{
   // Code size       58 (0x3a)
   .maxstack  1
   .locals init (T V_0, //t
@@ -3690,14 +8265,19 @@ expectedIL: @"{
   // sequence point: }
   IL_0039:  ret
 }");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 138105, 138233);
 
-            // Check the release code generation too.
-            c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.ReleaseExe, parseOptions: TestOptions.Regular7_1);
-            c.VerifyDiagnostics();
-            verifier = CompileAndVerify(c, expectedOutput: "1234");
+                c = f_23129_138109_138232(source, options: TestOptions.ReleaseExe, parseOptions: TestOptions.Regular7_1);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 138247, 138269);
 
-            verifier.VerifyIL("Program.M1<T>",
-@"{
+                f_23129_138247_138268(c);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 138283, 138338);
+
+                verifier = f_23129_138294_138337(this, c, expectedOutput: "1234");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 138354, 138831);
+
+                f_23129_138354_138830(
+                            verifier, "Program.M1<T>", @"{
   // Code size       29 (0x1d)
   .maxstack  1
   .locals init (int V_0) //i
@@ -3714,8 +8294,9 @@ expectedIL: @"{
   IL_0017:  call       ""void System.Console.Write(int)""
   IL_001c:  ret
 }");
-            verifier.VerifyIL("Program.M2<T>",
-@"{
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 138845, 139302);
+
+                f_23129_138845_139301(verifier, "Program.M2<T>", @"{
   // Code size       28 (0x1c)
   .maxstack  1
   .locals init (string V_0) //s
@@ -3731,13 +8312,152 @@ expectedIL: @"{
   IL_0016:  call       ""void System.Console.Write(int)""
   IL_001b:  ret
 }");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 134192, 139313);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_135156_135277(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, parseOptions: parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 135156, 135277);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_135292_135313(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 135292, 135313);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_135343_135386(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedOutput)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, expectedOutput: expectedOutput);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 135343, 135386);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_135403_136726(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName: qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 135403, 136726);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_136741_138033(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName: qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 136741, 138033);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_138109_138232(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, parseOptions: parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 138109, 138232);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_138247_138268(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 138247, 138268);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_138294_138337(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedOutput)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, expectedOutput: expectedOutput);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 138294, 138337);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_138354_138830(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 138354, 138830);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_138845_139301(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 138845, 139301);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 134192, 139313);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 134192, 139313);
+            }
         }
 
         [WorkItem(19734, "https://github.com/dotnet/roslyn/issues/19734")]
         [Fact]
         public void SwitchWithConstantGenericPattern_02()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 139325, 141481);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 139491, 139945);
+
+                string
+                source = @"
 using System;
 
 class Program
@@ -3763,13 +8483,25 @@ class Program
         }
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugExe, parseOptions: TestOptions.Regular7_1);
-            c.VerifyDiagnostics();
-            var verifier = CompileAndVerify(c, expectedOutput: "66");
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 139959, 140089);
 
-            verifier.VerifyIL(qualifiedMethodName: "Program.M2<T>", sequencePoints: "Program.M2", source: source,
-expectedIL: @"{
+                var
+                c = f_23129_139967_140088(source, options: TestOptions.DebugExe, parseOptions: TestOptions.Regular7_1)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 140103, 140125);
+
+                f_23129_140103_140124(c);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 140139, 140196);
+
+                var
+                verifier = f_23129_140154_140195(this, c, expectedOutput: "66")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 140212, 140962);
+
+                f_23129_140212_140961(
+                            verifier, qualifiedMethodName: "Program.M2<T>", sequencePoints: "Program.M2", source: source, expectedIL: @"{
   // Code size       17 (0x11)
   .maxstack  1
   .locals init (T V_0, //t
@@ -3794,27 +8526,145 @@ expectedIL: @"{
   // sequence point: }
   IL_0010:  ret
 }");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 141033, 141161);
 
-            // Check the release code generation too.
-            c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.ReleaseExe, parseOptions: TestOptions.Regular7_1);
-            c.VerifyDiagnostics();
-            verifier = CompileAndVerify(c, expectedOutput: "66");
+                c = f_23129_141037_141160(source, options: TestOptions.ReleaseExe, parseOptions: TestOptions.Regular7_1);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 141175, 141197);
 
-            verifier.VerifyIL("Program.M2<T>",
-@"{
+                f_23129_141175_141196(c);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 141211, 141264);
+
+                verifier = f_23129_141222_141263(this, c, expectedOutput: "66");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 141280, 141470);
+
+                f_23129_141280_141469(
+                            verifier, "Program.M2<T>", @"{
   // Code size        7 (0x7)
   .maxstack  1
   IL_0000:  ldc.i4.6
   IL_0001:  call       ""void System.Console.Write(int)""
   IL_0006:  ret
 }");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 139325, 141481);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_139967_140088(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, parseOptions: parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 139967, 140088);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_140103_140124(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 140103, 140124);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_140154_140195(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedOutput)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, expectedOutput: expectedOutput);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 140154, 140195);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_140212_140961(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName: qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 140212, 140961);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_141037_141160(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, parseOptions: parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 141037, 141160);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_141175_141196(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 141175, 141196);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_141222_141263(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedOutput)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, expectedOutput: expectedOutput);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 141222, 141263);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_141280_141469(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 141280, 141469);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 139325, 141481);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 139325, 141481);
+            }
         }
 
         [Fact]
         [WorkItem(31665, "https://github.com/dotnet/roslyn/issues/31665")]
         public void TestSequencePoints_31665()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 141493, 143860);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 141648, 142145);
+
+                var
+                source = @"
 using System;
 
 internal class Program
@@ -3835,10 +8685,17 @@ internal class Program
             Console.Out.WriteLine(""Too many inputs"");
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 142159, 142223);
 
-            v.VerifyIL("Program.Main(string[])", @"
+                var
+                v = f_23129_142167_142222(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 142239, 143849);
+
+                f_23129_142239_143848(
+                            v, "Program.Main(string[])", @"
     {
       // Code size       60 (0x3c)
       .maxstack  2
@@ -3883,13 +8740,56 @@ internal class Program
       IL_003b:  ret
     }
 ", sequencePoints: "Program.Main", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 141493, 143860);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_142167_142222(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 142167, 142222);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_142239_143848(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 142239, 143848);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 141493, 143860);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 141493, 143860);
+            }
         }
 
         [Fact]
         [WorkItem(17076, "https://github.com/dotnet/roslyn/issues/17076")]
         public void TestSequencePoints_17076()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 143872, 154336);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 144027, 144697);
+
+                var
+                source = @"
 using System.Threading.Tasks;
 
 internal class Program
@@ -3925,10 +8825,17 @@ class Node
 }
 class A : Node { }
 class B : Node { }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 144711, 144775);
 
-            v.VerifyIL("Program.<M>d__1.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_144719_144774(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 144791, 154325);
+
+                f_23129_144791_154324(
+                            v, "Program.<M>d__1.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
     {
       // Code size      403 (0x193)
       .maxstack  3
@@ -4137,13 +9044,56 @@ class B : Node { }
       IL_0192:  ret
     }
 ", sequencePoints: "Program+<M>d__1.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 143872, 154336);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_144719_144774(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 144719, 144774);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_144791_154324(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 144791, 154324);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 143872, 154336);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 143872, 154336);
+            }
         }
 
         [Fact]
         [WorkItem(28288, "https://github.com/dotnet/roslyn/issues/28288")]
         public void TestSequencePoints_28288()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 154348, 158923);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 154503, 154955);
+
+                var
+                source = @"
 using System.Threading.Tasks;
 
 public class C
@@ -4169,10 +9119,17 @@ public class C
     {
         return new C();
     }
-}";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 154969, 155033);
 
-            v.VerifyIL("C.<Main>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_154977_155032(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 155049, 158912);
+
+                f_23129_155049_158911(
+                            v, "C.<Main>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
     {
       // Code size      162 (0xa2)
       .maxstack  2
@@ -4274,17 +9231,55 @@ public class C
       IL_00a1:  ret
     }
 ", sequencePoints: "C+<Main>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 154348, 158923);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_154977_155032(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 154977, 155032);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_155049_158911(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 155049, 158911);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 154348, 158923);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 154348, 158923);
+            }
         }
-
-        #endregion
-
-        #region DoStatement
 
         [Fact]
         public void DoStatement()
         {
-            var source = WithWindowsLineBreaks(
-@"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 158988, 163635);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 159054, 159736);
+
+                var
+                source = f_23129_159067_159735(@"using System;
 
 public class SeqPointForWhile
 {
@@ -4318,11 +9313,17 @@ public class SeqPointForWhile
         field = -1;
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 159752, 159844);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_159760_159843(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 159860, 163624);
 
-            c.VerifyPdb(@"
+                f_23129_159860_163623(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -4382,18 +9383,62 @@ public class SeqPointForWhile
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 158988, 163635);
+
+                string
+                f_23129_159067_159735(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 159067, 159735);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_159760_159843(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 159760, 159843);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_159860_163623(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 159860, 163623);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 158988, 163635);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 158988, 163635);
+            }
         }
-
-        #endregion
-
-        #region Constructor
 
         [WorkItem(538317, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/538317")]
         [Fact]
         public void ConstructorSequencePoints1()
         {
-            var source = WithWindowsLineBreaks(
-@"namespace NS
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 163700, 169762);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 163873, 164529);
+
+                var
+                source = f_23129_163886_164528(@"namespace NS
 {
     public class MyClass
     {
@@ -4423,31 +9468,37 @@ public class SeqPointForWhile
         }
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 164545, 164637);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_164553_164636(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 166203, 169751);
 
-            // Dev10 vs. Roslyn
-            // 
-            // Default Ctor (no param)
-            //    Dev10                                                 Roslyn
-            // ======================================================================================
-            //  Code size       18 (0x12)                               // Code size       16 (0x10)
-            //  .maxstack  8                                            .maxstack  8
-            //* IL_0000:  ldarg.0                                      *IL_0000:  ldarg.0
-            //  IL_0001:  call                                          IL_0001:  callvirt
-            //      instance void [mscorlib]System.Object::.ctor()         instance void [mscorlib]System.Object::.ctor()
-            //  IL_0006:  nop                                          *IL_0006:  nop
-            //* IL_0007:  nop
-            //* IL_0008:  ldarg.0                                      *IL_0007:  ldarg.0
-            //  IL_0009:  ldc.i4.s   123                                IL_0008:  ldc.i4.s   123
-            //  IL_000b:  stfld      int32 NS.MyClass::intTest          IL_000a:  stfld      int32 NS.MyClass::intTest
-            //  IL_0010:  nop                                           
-            //* IL_0011:  ret                                          *IL_000f:  ret
-            //  -----------------------------------------------------------------------------------------
-            //  SeqPoint: 0, 7 ,8, 0x10                                 0, 6, 7, 0xf
+                f_23129_166203_169750(
+                            // Dev10 vs. Roslyn
+                            // 
+                            // Default Ctor (no param)
+                            //    Dev10                                                 Roslyn
+                            // ======================================================================================
+                            //  Code size       18 (0x12)                               // Code size       16 (0x10)
+                            //  .maxstack  8                                            .maxstack  8
+                            //* IL_0000:  ldarg.0                                      *IL_0000:  ldarg.0
+                            //  IL_0001:  call                                          IL_0001:  callvirt
+                            //      instance void [mscorlib]System.Object::.ctor()         instance void [mscorlib]System.Object::.ctor()
+                            //  IL_0006:  nop                                          *IL_0006:  nop
+                            //* IL_0007:  nop
+                            //* IL_0008:  ldarg.0                                      *IL_0007:  ldarg.0
+                            //  IL_0009:  ldc.i4.s   123                                IL_0008:  ldc.i4.s   123
+                            //  IL_000b:  stfld      int32 NS.MyClass::intTest          IL_000a:  stfld      int32 NS.MyClass::intTest
+                            //  IL_0010:  nop                                           
+                            //* IL_0011:  ret                                          *IL_000f:  ret
+                            //  -----------------------------------------------------------------------------------------
+                            //  SeqPoint: 0, 7 ,8, 0x10                                 0, 6, 7, 0xf
 
-            c.VerifyPdb(@"
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -4508,13 +9559,60 @@ public class SeqPointForWhile
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 163700, 169762);
+
+                string
+                f_23129_163886_164528(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 163886, 164528);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_164553_164636(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 164553, 164636);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_166203_169750(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 166203, 169750);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 163700, 169762);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 163700, 169762);
+            }
         }
 
         [Fact]
         public void ConstructorSequencePoints2()
         {
-            TestSequencePoints(
-@"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 169774, 170635);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 169855, 169976);
+
+                f_23129_169855_169975(@"using System;
 
 class D
 {
@@ -4522,9 +9620,9 @@ class D
     {
     }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 169992, 170104);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_169992_170103(@"using System;
 
 class D
 {
@@ -4532,9 +9630,9 @@ class D
     [|{|]
     }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 170120, 170272);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_170120_170271(@"using System;
 class A : Attribute {}
 class D
 {
@@ -4543,9 +9641,9 @@ class D
     {
     }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 170288, 170450);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_170288_170449(@"using System;
 class A : Attribute {}
 class D
 {
@@ -4555,9 +9653,9 @@ class D
     {
     }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 170466, 170624);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_170466_170623(@"using System;
 
 class A : Attribute {}
 class C { }
@@ -4568,16 +9666,84 @@ class D
     {
     }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 169774, 170635);
+
+                int
+                f_23129_169855_169975(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 169855, 169975);
+                    return 0;
+                }
+
+
+                int
+                f_23129_169992_170103(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 169992, 170103);
+                    return 0;
+                }
+
+
+                int
+                f_23129_170120_170271(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 170120, 170271);
+                    return 0;
+                }
+
+
+                int
+                f_23129_170288_170449(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 170288, 170449);
+                    return 0;
+                }
+
+
+                int
+                f_23129_170466_170623(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 170466, 170623);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 169774, 170635);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 169774, 170635);
+            }
         }
-
-        #endregion
-
-        #region Destructor
 
         [Fact]
         public void Destructors()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 170699, 172993);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 170765, 170980);
+
+                var
+                source = @"
 using System;
 
 public class Base
@@ -4595,9 +9761,16 @@ public class Derived : Base
         Console.WriteLine();
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 170994, 171086);
+
+                var
+                c = f_23129_171002_171085(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 171100, 172982);
+
+                f_23129_171100_172981(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -4634,24 +9807,62 @@ public class Derived : Base
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 170699, 172993);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_171002_171085(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 171002, 171085);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_171100_172981(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 171100, 172981);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 170699, 172993);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 170699, 172993);
+            }
         }
-
-        #endregion
-
-        #region Field and Property Initializers
 
         [Fact]
         [WorkItem(50611, "https://github.com/dotnet/roslyn/issues/50611")]
         public void TestPartialClassFieldInitializers()
         {
-            var text1 = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 173078, 175631);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 173242, 173329);
+
+                var
+                text1 = f_23129_173254_173328(@"
 public partial class C
 {
     int x = 1;
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 173345, 173496);
 
-            var text2 = WithWindowsLineBreaks(@"
+                var
+                text2 = f_23129_173357_173495(@"
 public partial class C
 {
     int y = 1;
@@ -4661,13 +9872,17 @@ public partial class C
         C c = new C();
     }
 }
-");
-            // Having a unique name here may be important. The infrastructure of the pdb to xml conversion
-            // loads the assembly into the ReflectionOnlyLoadFrom context.
-            // So it's probably a good idea to have a new name for each assembly.
-            var compilation = CreateCompilation(new SyntaxTree[] { Parse(text1, "a.cs"), Parse(text2, "b.cs") });
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 173777, 173878);
 
-            compilation.VerifyPdb("C..ctor", @"
+                var
+                compilation = f_23129_173795_173877(new SyntaxTree[] { f_23129_173832_173852(text1, "a.cs"), f_23129_173854_173874(text2, "b.cs") })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 173894, 174801);
+
+                f_23129_173894_174800(
+                            compilation, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name=""b.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""BB-7A-A6-D2-B2-32-59-43-8C-98-7F-E1-98-8D-F0-94-68-E9-EB-80"" />
@@ -4685,8 +9900,10 @@ public partial class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.Pdb);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 174817, 175620);
 
-            compilation.VerifyPdb("C..ctor", @"
+                f_23129_174817_175619(
+                            compilation, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name=""a.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""B4-EA-18-73-D2-0E-7F-15-51-4C-68-86-40-DF-E3-C3-97-9D-F6-B7"" />
@@ -4701,13 +9918,108 @@ public partial class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.PortablePdb);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 173078, 175631);
+
+                string
+                f_23129_173254_173328(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 173254, 173328);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_173357_173495(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 173357, 173495);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_173832_173852(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 173832, 173852);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_173854_173874(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 173854, 173874);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_173795_173877(Microsoft.CodeAnalysis.SyntaxTree[]
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 173795, 173877);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_173894_174800(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 173894, 174800);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_174817_175619(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 174817, 175619);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 173078, 175631);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 173078, 175631);
+            }
         }
 
         [Fact]
         [WorkItem(50611, "https://github.com/dotnet/roslyn/issues/50611")]
         public void TestPartialClassFieldInitializersWithLineDirectives()
         {
-            var text1 = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 175643, 180058);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 175825, 176146);
+
+                var
+                text1 = f_23129_175837_176145(@"
 using System;
 public partial class C
 {
@@ -4721,9 +10033,12 @@ public partial class C
 
 #pragma checksum ""mah.cs"" ""{406EA660-64CF-4C82-B6F0-42D48172A799}"" ""ab007f1d23d9""
 
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 176162, 176358);
 
-            var text2 = WithWindowsLineBreaks(@"
+                var
+                text2 = f_23129_176174_176357(@"
 using System;
 public partial class C
 {
@@ -4733,9 +10048,12 @@ public partial class C
     int z2 = Math.Abs(-3);
     int w2 = Math.Abs(4);
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 176374, 176739);
 
-            var text3 = WithWindowsLineBreaks(@"
+                var
+                text3 = f_23129_176386_176738(@"
 using System;
 public partial class C
 {
@@ -4756,13 +10074,16 @@ public partial class C
         C c = new C();
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 177019, 177162);
 
-            //Having a unique name here may be important. The infrastructure of the pdb to xml conversion
-            //loads the assembly into the ReflectionOnlyLoadFrom context.
-            //So it's probably a good idea to have a new name for each assembly.
-            var compilation = CreateCompilation(new[] { Parse(text1, "a.cs"), Parse(text2, "b.cs"), Parse(text3, "a.cs") }, options: TestOptions.DebugDll);
-            compilation.VerifyPdb("C..ctor", @"
+                var
+                compilation = f_23129_177037_177161(new[] { f_23129_177063_177083(text1, "a.cs"), f_23129_177085_177105(text2, "b.cs"), f_23129_177107_177127(text3, "a.cs") }, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 177176, 180047);
+
+                f_23129_177176_180046(compilation, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name=""a.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""E2-3B-47-02-DC-E4-8D-B4-FF-00-67-90-31-68-74-C0-06-D7-39-0E"" />
@@ -4796,20 +10117,131 @@ public partial class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.PortablePdb);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 175643, 180058);
+
+                string
+                f_23129_175837_176145(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 175837, 176145);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_176174_176357(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 176174, 176357);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_176386_176738(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 176386, 176738);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_177063_177083(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 177063, 177083);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_177085_177105(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 177085, 177105);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_177107_177127(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 177107, 177127);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_177037_177161(Microsoft.CodeAnalysis.SyntaxTree[]
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 177037, 177161);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_177176_180046(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 177176, 180046);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 175643, 180058);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 175643, 180058);
+            }
         }
 
         [WorkItem(543313, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/543313")]
         [Fact]
         public void TestFieldInitializerExpressionLambda()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 180070, 181478);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 180253, 180338);
+
+                var
+                source = @"
 class C
 {
     int x = ((System.Func<int, int>)(z => z))(1);
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"<symbols>
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 180352, 180444);
+
+                var
+                c = f_23129_180360_180443(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 180458, 181467);
+
+                f_23129_180458_181466(c, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -4838,19 +10270,65 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 180070, 181478);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_180360_180443(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 180360, 180443);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_180458_181466(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 180458, 181466);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 180070, 181478);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 180070, 181478);
+            }
         }
 
         [Fact]
         public void FieldInitializerSequencePointSpans()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 181490, 182377);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 181579, 181636);
+
+                var
+                source = @"
 class C
 {
     int x = 1, y = 2;
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 181650, 181742);
+
+                var
+                c = f_23129_181658_181741(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 181756, 182366);
+
+                f_23129_181756_182365(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -4869,28 +10347,69 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 181490, 182377);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_181658_181741(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 181658, 181741);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_181756_182365(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 181756, 182365);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 181490, 182377);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 181490, 182377);
+            }
         }
-
-        #endregion
-
-        #region Auto-Property
 
         [WorkItem(820806, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/820806")]
         [Fact]
         public void BreakpointForAutoImplementedProperty()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 182444, 184578);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 182627, 182828);
+
+                var
+                source = @"
 public class C
 {
     public static int AutoProp1 { get; private set; }
     internal string AutoProp2 { get; set; }
     internal protected C AutoProp3 { internal get; set;  }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 182844, 182912);
 
-            var comp = CreateCompilation(source, options: TestOptions.DebugDll);
+                var
+                comp = f_23129_182855_182911(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 182928, 184567);
 
-            comp.VerifyPdb(@"
+                f_23129_182928_184566(
+                            comp, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -4928,61 +10447,162 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 182444, 184578);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_182855_182911(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 182855, 182911);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_182928_184566(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 182928, 184566);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 182444, 184578);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 182444, 184578);
+            }
         }
 
         [Fact]
         public void PropertyDeclaration()
         {
-            TestSequencePoints(
-@"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 184590, 185224);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 184664, 184778);
+
+                f_23129_184664_184777(@"using System;
 
 public class C
 {
     int P { [|get;|] set; }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 184794, 184908);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_184794_184907(@"using System;
 
 public class C
 {
     int P { get; [|set;|] }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 184924, 185046);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_184924_185045(@"using System;
 
 public class C
 {
     int P { get [|{|] return 0; } }
 }", TestOptions.DebugDll);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 185062, 185213);
 
-            TestSequencePoints(
-@"using System;
+                f_23129_185062_185212(@"using System;
 
 public class C
 {
     int P { get; } = [|int.Parse(""42"")|];
 }", TestOptions.DebugDll, TestOptions.Regular);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 184590, 185224);
+
+                int
+                f_23129_184664_184777(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 184664, 184777);
+                    return 0;
+                }
+
+
+                int
+                f_23129_184794_184907(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 184794, 184907);
+                    return 0;
+                }
+
+
+                int
+                f_23129_184924_185045(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 184924, 185045);
+                    return 0;
+                }
+
+
+                int
+                f_23129_185062_185212(string
+                markup, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                compilationOptions, Microsoft.CodeAnalysis.CSharp.CSharpParseOptions
+                parseOptions)
+                {
+                    TestSequencePoints(markup, compilationOptions, parseOptions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 185062, 185212);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 184590, 185224);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 184590, 185224);
+            }
         }
-
-        #endregion
-
-        #region ReturnStatement
 
         [Fact]
         public void Return_Implicit()
         {
-            var source = @"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 185293, 186182);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 185363, 185433);
+
+                var
+                source = @"class C
 {
     static void Main()
     {
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 185449, 185541);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Main", @"
+                var
+                c = f_23129_185457_185540(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 185555, 186171);
+
+                f_23129_185555_186170(c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5001,22 +10621,68 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 185293, 186182);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_185457_185540(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 185457, 185540);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_185555_186170(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 185555, 186170);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 185293, 186182);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 185293, 186182);
+            }
         }
 
         [Fact]
         public void Return_Explicit()
         {
-            var source = @"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 186194, 187214);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 186264, 186351);
+
+                var
+                source = @"class C
 {
     static void Main()
     {
         return;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 186367, 186459);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.Main", @"
+                var
+                c = f_23129_186375_186458(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 186473, 187203);
+
+                f_23129_186473_187202(c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5036,14 +10702,53 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 186194, 187214);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_186375_186458(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 186375, 186458);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_186473_187202(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 186473, 187202);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 186194, 187214);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 186194, 187214);
+            }
         }
 
         [WorkItem(538298, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/538298")]
         [Fact]
         public void RegressSeqPtEndOfMethodAfterReturn()
         {
-            var source = WithWindowsLineBreaks(
-@"using System;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 187226, 195774);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 187407, 188442);
+
+                var
+                source = f_23129_187420_188441(@"using System;
 
 public class SeqPointAfterReturn
 {
@@ -5096,16 +10801,22 @@ public class SeqPointAfterReturn
         }
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 188458, 188550);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_188466_188549(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 189027, 195763);
 
-            // Expected are current actual output plus Two extra expected SeqPt:
-            //  <entry offset=""0x73"" startLine=""25"" startColumn=""5"" endLine=""25"" endColumn=""6"" document=""1"" />
-            //  <entry offset=""0x22"" startLine=""52"" startColumn=""5"" endLine=""52"" endColumn=""6"" document=""1"" />
-            // 
-            // Note: NOT include other differences between Roslyn and Dev10, as they are filed in separated bugs
-            c.VerifyPdb(@"
+                f_23129_189027_195762(
+                            // Expected are current actual output plus Two extra expected SeqPt:
+                            //  <entry offset=""0x73"" startLine=""25"" startColumn=""5"" endLine=""25"" endColumn=""6"" document=""1"" />
+                            //  <entry offset=""0x22"" startLine=""52"" startColumn=""5"" endLine=""52"" endColumn=""6"" document=""1"" />
+                            // 
+                            // Note: NOT include other differences between Roslyn and Dev10, as they are filed in separated bugs
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5206,17 +10917,62 @@ public class SeqPointAfterReturn
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 187226, 195774);
+
+                string
+                f_23129_187420_188441(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 187420, 188441);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_188466_188549(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 188466, 188549);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_189027_195762(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 189027, 195762);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 187226, 195774);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 187226, 195774);
+            }
         }
-
-        #endregion
-
-        #region Exception Handling
 
         [WorkItem(542064, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/542064")]
         [Fact]
         public void ExceptionHandling()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 195846, 199552);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 196010, 196543);
+
+                var
+                source = f_23129_196023_196542(@"
 class Test
 {
     static int Main()
@@ -5242,13 +10998,16 @@ class Test
 
     }
 }
-");
-            // Dev12 inserts an additional sequence point on catch clause, just before 
-            // the exception object is assigned to the variable. We don't place that sequence point.
-            // Also the scope of he exception variable is different.
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 196820, 196912);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("Test.Main", @"
+                var
+                c = f_23129_196828_196911(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 196926, 199541);
+
+                f_23129_196926_199540(c, "Test.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5291,13 +11050,63 @@ class Test
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 195846, 199552);
+
+                string
+                f_23129_196023_196542(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 196023, 196542);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_196828_196911(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 196828, 196911);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_196926_199540(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 196926, 199540);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 195846, 199552);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 195846, 199552);
+            }
         }
 
         [WorkItem(2911, "https://github.com/dotnet/roslyn/issues/2911")]
         [Fact]
         public void ExceptionHandling_Filter_Debug1()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 199564, 205055);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 199724, 200243);
+
+                var
+                source = f_23129_199737_200242(@"
 using System;
 using System.IO;
 
@@ -5324,10 +11133,17 @@ class Test
         }
     }
 }
-");
-            var v = CompileAndVerify(CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll));
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 200257, 200367);
 
-            v.VerifyIL("Test.Main", @"
+                var
+                v = f_23129_200265_200366(this, f_23129_200282_200365(source, options: TestOptions.DebugDll))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 200383, 202170);
+
+                f_23129_200383_202169(
+                            v, "Test.Main", @"
 {
   // Code size       89 (0x59)
   .maxstack  2
@@ -5399,8 +11215,10 @@ class Test
  -IL_0058:  ret
 }
 ", sequencePoints: "Test.Main");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 202186, 205044);
 
-            v.VerifyPdb("Test.Main", @"
+                f_23129_202186_205043(
+                            v, "Test.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5447,13 +11265,87 @@ class Test
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 199564, 205055);
+
+                string
+                f_23129_199737_200242(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 199737, 200242);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_200282_200365(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 200282, 200365);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_200265_200366(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 200265, 200366);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_200383_202169(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 200383, 202169);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_202186_205043(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 202186, 205043);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 199564, 205055);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 199564, 205055);
+            }
         }
 
         [WorkItem(2911, "https://github.com/dotnet/roslyn/issues/2911")]
         [Fact]
         public void ExceptionHandling_Filter_Debug2()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 205067, 208039);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 205227, 205560);
+
+                var
+                source = f_23129_205240_205559(@"
 class Test
 {
     static void Main()
@@ -5473,9 +11365,16 @@ class Test
         return true;
     }
 }
-");
-            var v = CompileAndVerify(CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll));
-            v.VerifyIL("Test.Main", @"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 205574, 205684);
+
+                var
+                v = f_23129_205582_205683(this, f_23129_205599_205682(source, options: TestOptions.DebugDll))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 205698, 206395);
+
+                f_23129_205698_206394(v, "Test.Main", @"
 {
   // Code size       33 (0x21)
   .maxstack  2
@@ -5508,8 +11407,10 @@ class Test
  -IL_0020:  ret
 }
 ", sequencePoints: "Test.Main");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 206411, 208028);
 
-            v.VerifyPdb("Test.Main", @"<symbols>
+                f_23129_206411_208027(
+                            v, "Test.Main", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -5539,13 +11440,87 @@ class Test
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 205067, 208039);
+
+                string
+                f_23129_205240_205559(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 205240, 205559);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_205599_205682(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 205599, 205682);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_205582_205683(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 205582, 205683);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_205698_206394(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 205698, 206394);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_206411_208027(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 206411, 208027);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 205067, 208039);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 205067, 208039);
+            }
         }
 
         [WorkItem(2911, "https://github.com/dotnet/roslyn/issues/2911")]
         [Fact]
         public void ExceptionHandling_Filter_Debug3()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 208051, 210983);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 208211, 208504);
+
+                var
+                source = f_23129_208224_208503(@"
 class Test
 {
     static bool a = true;
@@ -5562,9 +11537,16 @@ class Test
         }
     }
 }
-");
-            var v = CompileAndVerify(CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll));
-            v.VerifyIL("Test.Main", @"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 208518, 208628);
+
+                var
+                v = f_23129_208526_208627(this, f_23129_208543_208626(source, options: TestOptions.DebugDll))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 208642, 209337);
+
+                f_23129_208642_209336(v, "Test.Main", @"
 {
   // Code size       33 (0x21)
   .maxstack  2
@@ -5597,8 +11579,10 @@ class Test
  -IL_0020:  ret
 }
 ", sequencePoints: "Test.Main");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 209353, 210972);
 
-            v.VerifyPdb("Test.Main", @"<symbols>
+                f_23129_209353_210971(
+                            v, "Test.Main", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -5628,13 +11612,87 @@ class Test
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 208051, 210983);
+
+                string
+                f_23129_208224_208503(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 208224, 208503);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_208543_208626(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 208543, 208626);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_208526_208627(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 208526, 208627);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_208642_209336(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 208642, 209336);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_209353_210971(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 209353, 210971);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 208051, 210983);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 208051, 210983);
+            }
         }
 
         [WorkItem(2911, "https://github.com/dotnet/roslyn/issues/2911")]
         [Fact]
         public void ExceptionHandling_Filter_Release3()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 210995, 213233);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 211157, 211427);
+
+                var
+                source = @"
 class Test
 {
     static bool a = true;
@@ -5651,9 +11709,16 @@ class Test
         }
     }
 }
-";
-            var v = CompileAndVerify(CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.ReleaseDll));
-            v.VerifyIL("Test.Main", @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 211441, 211553);
+
+                var
+                v = f_23129_211449_211552(this, f_23129_211466_211551(source, options: TestOptions.ReleaseDll))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 211567, 212096);
+
+                f_23129_211567_212095(v, "Test.Main", @"
 {
   // Code size       26 (0x1a)
   .maxstack  2
@@ -5678,8 +11743,10 @@ class Test
  -IL_0019:  ret
 }
 ", sequencePoints: "Test.Main");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 212112, 213222);
 
-            v.VerifyPdb("Test.Main", @"<symbols>
+                f_23129_212112_213221(
+                            v, "Test.Main", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -5702,13 +11769,77 @@ class Test
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 210995, 213233);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_211466_211551(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 211466, 211551);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_211449_211552(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 211449, 211552);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_211567_212095(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 211567, 212095);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_212112_213221(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 212112, 213221);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 210995, 213233);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 210995, 213233);
+            }
         }
 
         [WorkItem(778655, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/778655")]
         [Fact]
         public void BranchToStartOfTry()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 213245, 216731);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 213410, 213932);
+
+                string
+                source = f_23129_213426_213931(@"
 using System;
 using System.Collections.Generic;
 
@@ -5732,10 +11863,16 @@ class Program
         }
     }
 }
-");
-            // Note the hidden sequence point @IL_0019.
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 214003, 214095);
+
+                var
+                c = f_23129_214011_214094(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 214109, 216720);
+
+                f_23129_214109_216719(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5778,16 +11915,61 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 213245, 216731);
+
+                string
+                f_23129_213426_213931(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 213426, 213931);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_214011_214094(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 214011, 214094);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_214109_216719(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 214109, 216719);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 213245, 216731);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 213245, 216731);
+            }
         }
-
-        #endregion
-
-        #region UsingStatement
 
         [Fact]
         public void UsingStatement_EmbeddedStatement()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 216799, 220801);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 216886, 217248);
+
+                var
+                source = f_23129_216899_217247(@"
 public class DisposableClass : System.IDisposable
 {
     public DisposableClass(int a) { }
@@ -5802,11 +11984,22 @@ class C
             System.Console.WriteLine(""First"");
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 217262, 217327);
 
-            v.VerifyIL("C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
+                var
+                c = f_23129_217270_217326(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 217341, 217369);
+
+                var
+                v = f_23129_217349_217368(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 217385, 218969);
+
+                f_23129_217385_218968(
+                            v, "C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
  {
    // Code size       53 (0x35)
    .maxstack  1
@@ -5861,8 +12054,10 @@ class C
    IL_0034:  ret
  }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 218985, 220790);
 
-            c.VerifyPdb("C.Main", @"
+                f_23129_218985_220789(
+                            c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -5897,12 +12092,87 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 216799, 220801);
+
+                string
+                f_23129_216899_217247(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 216899, 217247);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_217270_217326(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 217270, 217326);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_217349_217368(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 217349, 217368);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_217385_218968(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 217385, 218968);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_218985_220789(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 218985, 220789);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 216799, 220801);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 216799, 220801);
+            }
         }
 
         [Fact]
         public void UsingStatement_Block()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 220813, 225107);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 220888, 221273);
+
+                var
+                source = f_23129_220901_221272(@"
 public class DisposableClass : System.IDisposable
 {
     public DisposableClass(int a) { }
@@ -5919,11 +12189,22 @@ class C
         }
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 221287, 221352);
 
-            v.VerifyIL("C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
+                var
+                c = f_23129_221295_221351(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 221366, 221394);
+
+                var
+                v = f_23129_221374_221393(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 221410, 223043);
+
+                f_23129_221410_223042(
+                            v, "C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
 {
   // Code size       55 (0x37)
   .maxstack  1
@@ -5981,9 +12262,10 @@ class C
   // sequence point: }
   IL_0036:  ret
 }
-"
-);
-            c.VerifyPdb("C.Main", @"
+");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 223057, 225096);
+
+                f_23129_223057_225095(c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6020,13 +12302,88 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 220813, 225107);
+
+                string
+                f_23129_220901_221272(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 220901, 221272);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_221295_221351(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 221295, 221351);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_221374_221393(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 221374, 221393);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_221410_223042(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 221410, 223042);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_223057_225095(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 223057, 225095);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 220813, 225107);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 220813, 225107);
+            }
         }
 
         [WorkItem(18844, "https://github.com/dotnet/roslyn/issues/18844")]
         [Fact]
         public void UsingStatement_EmbeddedConditional()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 225119, 227473);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 225284, 225614);
+
+                var
+                source = @"
 class C
 {
     bool F()
@@ -6044,11 +12401,21 @@ class C
         return value;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 225630, 225722);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
-            v.VerifyIL("C.F", @"
+                var
+                c = f_23129_225638_225721(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 225736, 225764);
+
+                var
+                v = f_23129_225744_225763(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 225778, 227462);
+
+                f_23129_225778_227461(v, "C.F", @"
 {
   // Code size       45 (0x2d)
   .maxstack  1
@@ -6111,13 +12478,66 @@ class C
   IL_002c:  ret
 }
 ", sequencePoints: "C.F", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 225119, 227473);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_225638_225721(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 225638, 225721);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_225744_225763(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 225744, 225763);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_225778_227461(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 225778, 227461);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 225119, 227473);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 225119, 227473);
+            }
         }
 
         [WorkItem(18844, "https://github.com/dotnet/roslyn/issues/18844")]
         [Fact]
         public void UsingStatement_EmbeddedConditional2()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 227485, 229960);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 227651, 228011);
+
+                var
+                source = @"
 class C
 {
     bool F()
@@ -6137,11 +12557,21 @@ class C
         return value;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 228027, 228119);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
-            v.VerifyIL("C.F", @"
+                var
+                c = f_23129_228035_228118(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 228133, 228161);
+
+                var
+                v = f_23129_228141_228160(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 228175, 229949);
+
+                f_23129_228175_229948(v, "C.F", @"
 {
   // Code size       47 (0x2f)
   .maxstack  1
@@ -6208,13 +12638,66 @@ class C
   IL_002e:  ret
 }
 ", sequencePoints: "C.F", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 227485, 229960);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_228035_228118(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 228035, 228118);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_228141_228160(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 228141, 228160);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_228175_229948(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 228175, 229948);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 227485, 229960);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 227485, 229960);
+            }
         }
 
         [WorkItem(18844, "https://github.com/dotnet/roslyn/issues/18844")]
         [Fact]
         public void UsingStatement_EmbeddedWhile()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 229972, 231563);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 230131, 230309);
+
+                var
+                source = @"
 class C
 {
     void F(bool x)
@@ -6224,11 +12707,21 @@ class C
                 x = false;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 230325, 230417);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
-            v.VerifyIL("C.F", @"
+                var
+                c = f_23129_230333_230416(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 230431, 230459);
+
+                var
+                v = f_23129_230439_230458(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 230473, 231552);
+
+                f_23129_230473_231551(v, "C.F", @"
 {
   // Code size       31 (0x1f)
   .maxstack  1
@@ -6269,13 +12762,66 @@ class C
   IL_001e:  ret
 }
 ", sequencePoints: "C.F", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 229972, 231563);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_230333_230416(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 230333, 230416);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_230439_230458(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 230439, 230458);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_230473_231551(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 230473, 231551);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 229972, 231563);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 229972, 231563);
+            }
         }
 
         [WorkItem(18844, "https://github.com/dotnet/roslyn/issues/18844")]
         [Fact]
         public void UsingStatement_EmbeddedFor()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 231575, 233175);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 231732, 231921);
+
+                var
+                source = @"
 class C
 {
     void F(bool x)
@@ -6285,11 +12831,21 @@ class C
                 x = false;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 231937, 232029);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
-            v.VerifyIL("C.F", @"
+                var
+                c = f_23129_231945_232028(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 232043, 232071);
+
+                var
+                v = f_23129_232051_232070(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 232085, 233164);
+
+                f_23129_232085_233163(v, "C.F", @"
 {
   // Code size       31 (0x1f)
   .maxstack  1
@@ -6330,13 +12886,66 @@ class C
   IL_001e:  ret
 }
 ", sequencePoints: "C.F", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 231575, 233175);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_231945_232028(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 231945, 232028);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_232051_232070(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 232051, 232070);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_232085_233163(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 232085, 233163);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 231575, 233175);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 231575, 233175);
+            }
         }
 
         [WorkItem(18844, "https://github.com/dotnet/roslyn/issues/18844")]
         [Fact]
         public void LockStatement_EmbeddedIf()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 233187, 235383);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 233342, 233577);
+
+                var
+                source = @"
 class C
 {
     void F(bool x)
@@ -6349,11 +12958,21 @@ class C
                 System.Console.Write(2);
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 233593, 233685);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
-            v.VerifyIL("C.F", @"
+                var
+                c = f_23129_233601_233684(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 233699, 233727);
+
+                var
+                v = f_23129_233707_233726(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 233741, 235372);
+
+                f_23129_233741_235371(v, "C.F", @"
 {
   // Code size       58 (0x3a)
   .maxstack  2
@@ -6413,17 +13032,66 @@ class C
   IL_0039:  ret
 }
 ", sequencePoints: "C.F", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 233187, 235383);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_233601_233684(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 233601, 233684);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_233707_233726(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 233707, 233726);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_233741_235371(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 233741, 235371);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 233187, 235383);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 233187, 235383);
+            }
         }
-
-        #endregion
-
-        #region Using Declaration
 
         [WorkItem(37417, "https://github.com/dotnet/roslyn/issues/37417")]
         [Fact]
         public void UsingDeclaration_BodyBlockScope()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 235454, 239395);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 235616, 235851);
+
+                var
+                source = f_23129_235629_235850(@"
 using System;
 using System.IO;
 class C
@@ -6434,14 +13102,25 @@ class C
         Console.WriteLine(1);
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 235865, 235930);
 
-            // TODO: https://github.com/dotnet/roslyn/issues/37417
-            // Duplicate sequence point at `}`
+                var
+                c = f_23129_235873_235929(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 235944, 235972);
 
-            v.VerifyIL("C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
+                var
+                v = f_23129_235952_235971(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 236106, 237539);
+
+                f_23129_236106_237538(
+                            // TODO: https://github.com/dotnet/roslyn/issues/37417
+                            // Duplicate sequence point at `}`
+
+                            v, "C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
 {
   // Code size       45 (0x2d)
   .maxstack  1
@@ -6493,8 +13172,10 @@ class C
   IL_002c:  ret
 }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 237555, 239384);
 
-            c.VerifyPdb("C.Main", @"
+                f_23129_237555_239383(
+                            c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6531,13 +13212,88 @@ class C
     </method>
   </methods>
  </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 235454, 239395);
+
+                string
+                f_23129_235629_235850(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 235629, 235850);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_235873_235929(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 235873, 235929);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_235952_235971(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 235952, 235971);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_236106_237538(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 236106, 237538);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_237555_239383(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 237555, 239383);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 235454, 239395);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 235454, 239395);
+            }
         }
 
         [WorkItem(37417, "https://github.com/dotnet/roslyn/issues/37417")]
         [Fact]
         public void UsingDeclaration_BodyBlockScopeWithReturn()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 239407, 242598);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 239579, 239808);
+
+                var
+                source = f_23129_239592_239807(@"
 using System;
 using System.IO;
 class C
@@ -6549,14 +13305,25 @@ class C
         return 1;
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 239822, 239887);
 
-            // TODO: https://github.com/dotnet/roslyn/issues/37417
-            // Duplicate sequence point at `}`
+                var
+                c = f_23129_239830_239886(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 239901, 239929);
 
-            v.VerifyIL("C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
+                var
+                v = f_23129_239909_239928(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 240063, 241085);
+
+                f_23129_240063_241084(
+                            // TODO: https://github.com/dotnet/roslyn/issues/37417
+                            // Duplicate sequence point at `}`
+
+                            v, "C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
 {
   // Code size       31 (0x1f)
   .maxstack  1
@@ -6594,8 +13361,10 @@ class C
   IL_001e:  ret
 }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 241101, 242587);
 
-            c.VerifyPdb("C.Main", @"
+                f_23129_241101_242586(
+                            c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6628,13 +13397,88 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 239407, 242598);
+
+                string
+                f_23129_239592_239807(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 239592, 239807);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_239830_239886(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 239830, 239886);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_239909_239928(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 239909, 239928);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_240063_241084(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 240063, 241084);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_241101_242586(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 241101, 242586);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 239407, 242598);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 239407, 242598);
+            }
         }
 
         [WorkItem(37417, "https://github.com/dotnet/roslyn/issues/37417")]
         [Fact]
         public void UsingDeclaration_IfBodyScope()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 242610, 246682);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 242769, 243090);
+
+                var
+                source = f_23129_242782_243089(@"
 using System;
 using System.IO;
 class C
@@ -6651,15 +13495,26 @@ class C
         Console.WriteLine(2);
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 243104, 243169);
 
-            // TODO: https://github.com/dotnet/roslyn/issues/37417
-            // In this case the sequence point `}` is not emitted on the leave instruction,
-            // but to a nop instruction following the disposal.
+                var
+                c = f_23129_243112_243168(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 243183, 243211);
 
-            v.VerifyIL("C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
+                var
+                v = f_23129_243191_243210(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 243455, 244770);
+
+                f_23129_243455_244769(
+                            // TODO: https://github.com/dotnet/roslyn/issues/37417
+                            // In this case the sequence point `}` is not emitted on the leave instruction,
+                            // but to a nop instruction following the disposal.
+
+                            v, "C.Main", sequencePoints: "C.Main", source: source, expectedIL: @"
 {
   // Code size       46 (0x2e)
   .maxstack  1
@@ -6707,8 +13562,10 @@ class C
   IL_002d:  ret
 }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 244786, 246671);
 
-            c.VerifyPdb("C.Main", @"
+                f_23129_244786_246670(
+                            c, "C.Main", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6743,18 +13600,87 @@ class C
     </method>
   </methods>
  </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 242610, 246682);
+
+                string
+                f_23129_242782_243089(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 242782, 243089);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_243112_243168(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 243112, 243168);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_243191_243210(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 243191, 243210);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_243455_244769(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 243455, 244769);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_244786_246670(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 244786, 246670);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 242610, 246682);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 242610, 246682);
+            }
         }
-
-        #endregion
-
-        // LockStatement tested in CodeGenLock
-
-        #region Anonymous Type
 
         [Fact]
         public void AnonymousType_Empty()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 246800, 248157);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 246874, 247013);
+
+                var
+                source = f_23129_246887_247012(@"
 class Program
 {
     static void Main(string[] args)
@@ -6762,9 +13688,16 @@ class Program
         var o = new {};
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 247027, 247119);
+
+                var
+                c = f_23129_247035_247118(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 247133, 248146);
+
+                f_23129_247133_248145(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6790,12 +13723,61 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 246800, 248157);
+
+                string
+                f_23129_246887_247012(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 246887, 247012);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_247035_247118(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 247035, 247118);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_247133_248145(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 247133, 248145);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 246800, 248157);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 246800, 248157);
+            }
         }
 
         [Fact]
         public void AnonymousType_NonEmpty()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 248169, 249536);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 248246, 248392);
+
+                var
+                source = f_23129_248259_248391(@"
 class Program
 {
     static void Main(string[] args)
@@ -6803,9 +13785,16 @@ class Program
         var o = new { a = 1 };
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 248406, 248498);
+
+                var
+                c = f_23129_248414_248497(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 248512, 249525);
+
+                f_23129_248512_249524(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6831,16 +13820,61 @@ class Program
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 248169, 249536);
+
+                string
+                f_23129_248259_248391(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 248259, 248391);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_248414_248497(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 248414, 248497);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_248512_249524(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 248512, 249524);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 248169, 249536);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 248169, 249536);
+            }
         }
-
-        #endregion
-
-        #region FixedStatement
 
         [Fact]
         public void FixedStatementSingleAddress()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 249604, 252091);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 249686, 249954);
+
+                var
+                source = f_23129_249699_249953(@"
 using System;
 
 unsafe class C
@@ -6857,9 +13891,16 @@ unsafe class C
         Console.WriteLine(c.x);
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugExe);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 249968, 250066);
+
+                var
+                c = f_23129_249976_250065(source, options: TestOptions.UnsafeDebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 250080, 252080);
+
+                f_23129_250080_252079(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6898,12 +13939,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 249604, 252091);
+
+                string
+                f_23129_249699_249953(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 249699, 249953);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_249976_250065(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 249976, 250065);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_250080_252079(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 250080, 252079);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 249604, 252091);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 249604, 252091);
+            }
         }
 
         [Fact]
         public void FixedStatementSingleString()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 252103, 254100);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 252184, 252398);
+
+                var
+                source = f_23129_252197_252397(@"
 using System;
 
 unsafe class C
@@ -6916,9 +14006,16 @@ unsafe class C
         }
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugDll);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 252412, 252510);
+
+                var
+                c = f_23129_252420_252509(source, options: TestOptions.UnsafeDebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 252524, 254089);
+
+                f_23129_252524_254088(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -6952,12 +14049,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 252103, 254100);
+
+                string
+                f_23129_252197_252397(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 252197, 252397);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_252420_252509(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 252420, 252509);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_252524_254088(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 252524, 254088);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 252103, 254100);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 252103, 254100);
+            }
         }
 
         [Fact]
         public void FixedStatementSingleArray()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 254112, 257086);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 254192, 254501);
+
+                var
+                source = f_23129_254205_254500(@"
 using System;
 
 unsafe class C
@@ -6975,9 +14121,16 @@ unsafe class C
         Console.Write(c.a[0]);
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugExe);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 254515, 254613);
+
+                var
+                c = f_23129_254523_254612(source, options: TestOptions.UnsafeDebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 254627, 257075);
+
+                f_23129_254627_257074(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7025,12 +14178,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 254112, 257086);
+
+                string
+                f_23129_254205_254500(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 254205, 254500);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_254523_254612(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 254523, 254612);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_254627_257074(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 254627, 257074);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 254112, 257086);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 254112, 257086);
+            }
         }
 
         [Fact]
         public void FixedStatementMultipleAddresses()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 257098, 260110);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 257184, 257501);
+
+                var
+                source = f_23129_257197_257500(@"
 using System;
 
 unsafe class C
@@ -7049,10 +14251,16 @@ unsafe class C
         Console.WriteLine(c.x + c.y);
     }
 }
-");
-            // NOTE: stop on each declarator.
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugExe);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 257562, 257660);
+
+                var
+                c = f_23129_257570_257659(source, options: TestOptions.UnsafeDebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 257674, 260099);
+
+                f_23129_257674_260098(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7096,12 +14304,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 257098, 260110);
+
+                string
+                f_23129_257197_257500(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 257197, 257500);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_257570_257659(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 257570, 257659);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_257674_260098(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 257674, 260098);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 257098, 260110);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 257098, 260110);
+            }
         }
 
         [Fact]
         public void FixedStatementMultipleStrings()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 260122, 262635);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 260206, 260465);
+
+                var
+                source = f_23129_260219_260464(@"
 using System;
 
 unsafe class C
@@ -7115,10 +14372,16 @@ unsafe class C
         }
     }
 }
-");
-            // NOTE: stop on each declarator.
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugDll);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 260526, 260624);
+
+                var
+                c = f_23129_260534_260623(source, options: TestOptions.UnsafeDebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 260638, 262624);
+
+                f_23129_260638_262623(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7157,12 +14420,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 260122, 262635);
+
+                string
+                f_23129_260219_260464(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 260219, 260464);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_260534_260623(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 260534, 260623);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_260638_262623(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 260638, 262623);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 260122, 262635);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 260122, 262635);
+            }
         }
 
         [Fact]
         public void FixedStatementMultipleArrays()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 262647, 266510);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 262730, 263160);
+
+                var
+                source = f_23129_262743_263159(@"
 using System;
 
 unsafe class C
@@ -7184,9 +14496,16 @@ unsafe class C
         Console.Write(c.b[0]);
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugExe);
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 263174, 263272);
+
+                var
+                c = f_23129_263182_263271(source, options: TestOptions.UnsafeDebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 263286, 266499);
+
+                f_23129_263286_266498(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7242,12 +14561,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 262647, 266510);
+
+                string
+                f_23129_262743_263159(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 262743, 263159);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_263182_263271(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 263182, 263271);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_263286_266498(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 263286, 266498);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 262647, 266510);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 262647, 266510);
+            }
         }
 
         [Fact]
         public void FixedStatementMultipleMixed()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 266522, 270237);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 266604, 266986);
+
+                var
+                source = f_23129_266617_266985(@"
 using System;
 
 unsafe class C
@@ -7266,9 +14634,16 @@ unsafe class C
         }
     }
 }
-");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugDll);
-            c.VerifyPdb(@"<symbols>
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 267000, 267098);
+
+                var
+                c = f_23129_267008_267097(source, options: TestOptions.UnsafeDebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 267112, 270226);
+
+                f_23129_267112_270225(c, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -7323,16 +14698,61 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 266522, 270237);
+
+                string
+                f_23129_266617_266985(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 266617, 266985);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_267008_267097(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 267008, 267097);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_267112_270225(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 267112, 270225);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 266522, 270237);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 266522, 270237);
+            }
         }
-
-        #endregion
-
-        #region Line Directives
 
         [Fact]
         public void LineDirective()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 270306, 271555);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 270374, 270520);
+
+                var
+                source = @"
 #line 50 ""foo.cs""
 
 using System;
@@ -7344,9 +14764,16 @@ unsafe class C
         Console.Write(1);
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugExe);
-            c.VerifyPdb(@"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 270534, 270632);
+
+                var
+                c = f_23129_270542_270631(source, options: TestOptions.UnsafeDebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 270646, 271544);
+
+                f_23129_270646_271543(c, @"
 <symbols>
   <files>
     <file id=""1"" name=""foo.cs"" language=""C#"" />
@@ -7370,13 +14797,52 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 270306, 271555);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_270542_270631(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 270542, 270631);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_270646_271543(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 270646, 271543);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 270306, 271555);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 270306, 271555);
+            }
         }
 
         [WorkItem(544917, "http://vstfdevdiv:8080/DevDiv2/DevDiv/_workitems/edit/544917")]
         [Fact]
         public void DisabledLineDirective()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 271567, 272929);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 271735, 271900);
+
+                var
+                source = @"
 #if false
 #line 50 ""foo.cs""
 #endif
@@ -7390,9 +14856,16 @@ unsafe class C
         Console.Write(1);
     }
 }
-";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.UnsafeDebugExe);
-            c.VerifyPdb(@"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 271914, 272012);
+
+                var
+                c = f_23129_271922_272011(source, options: TestOptions.UnsafeDebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 272026, 272918);
+
+                f_23129_272026_272917(c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7416,12 +14889,51 @@ unsafe class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 271567, 272929);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_271922_272011(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 271922, 272011);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_272026_272917(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 272026, 272917);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 271567, 272929);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 271567, 272929);
+            }
         }
 
         [Fact]
         public void TestLineDirectivesHidden()
         {
-            var text1 = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 272941, 277815);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 273020, 273498);
+
+                var
+                text1 = f_23129_273032_273497(@"
 using System;
 public class C
 {
@@ -7445,10 +14957,16 @@ public class C
         }
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 273514, 273588);
 
-            var compilation = CreateCompilation(text1, options: TestOptions.DebugDll);
-            compilation.VerifyPdb(@"
+                var
+                compilation = f_23129_273532_273587(text1, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 273602, 277804);
+
+                f_23129_273602_277803(compilation, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7517,12 +15035,61 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 272941, 277815);
+
+                string
+                f_23129_273032_273497(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 273032, 273497);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_273532_273587(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 273532, 273587);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_273602_277803(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 273602, 277803);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 272941, 277815);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 272941, 277815);
+            }
         }
 
         [Fact]
         public void HiddenMethods()
         {
-            var src = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 277827, 279384);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 277895, 278351);
+
+                var
+                src = @"
 using System;
 
 class C
@@ -7552,10 +15119,17 @@ class C
             Console.WriteLine(x);
         }
     }
-}";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(src, references: new[] { CSharpRef, ValueTupleRef, SystemRuntimeFacadeRef }, options: TestOptions.DebugDll);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 278365, 278526);
 
-            c.VerifyPdb(@"
+                var
+                c = f_23129_278373_278525(src, references: new[] { f_23129_278443_278452(), f_23129_278454_278467(), f_23129_278469_278491() }, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 278542, 279373);
+
+                f_23129_278542_279372(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7578,26 +15152,100 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 277827, 279384);
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_278443_278452()
+                {
+                    var return_v = CSharpRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 278443, 278452);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_278454_278467()
+                {
+                    var return_v = ValueTupleRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 278454, 278467);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_278469_278491()
+                {
+                    var return_v = SystemRuntimeFacadeRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 278469, 278491);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_278373_278525(string
+                source, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 278373, 278525);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_278542_279372(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 278542, 279372);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 277827, 279384);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 277827, 279384);
+            }
         }
 
         [Fact]
         public void HiddenEntryPoint()
         {
-            var src = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 279396, 280723);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 279467, 279555);
+
+                var
+                src = @"
 class C
 {
 #line hidden
     public static void Main()
     {
     }
-}";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(src, references: new[] { CSharpRef, ValueTupleRef, SystemRuntimeFacadeRef }, options: TestOptions.DebugExe);
+}"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 279569, 279730);
 
-            // Note: Dev10 emitted a hidden sequence point to #line hidden method, 
-            // which enabled the debugger to locate the first user visible sequence point starting from the entry point.
-            // Roslyn does not emit such sequence point. We could potentially synthesize one but that would defeat the purpose of 
-            // #line hidden directive. 
-            c.VerifyPdb(@"
+                var
+                c = f_23129_279577_279729(src, references: new[] { f_23129_279647_279656(), f_23129_279658_279671(), f_23129_279673_279695() }, options: TestOptions.DebugExe)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 280126, 280712);
+
+                f_23129_280126_280711(
+                            // Note: Dev10 emitted a hidden sequence point to #line hidden method, 
+                            // which enabled the debugger to locate the first user visible sequence point starting from the entry point.
+                            // Roslyn does not emit such sequence point. We could potentially synthesize one but that would defeat the purpose of 
+                            // #line hidden directive. 
+                            c, @"
 <symbols>
   <entryPoint declaringType=""C"" methodName=""Main"" />
   <methods>
@@ -7609,16 +15257,81 @@ class C
       </customDebugInfo>
     </method>
   </methods>
-</symbols>",
-            // When converting from Portable to Windows the PDB writer doesn't create an entry for the Main method 
-            // and thus there is no entry point record either.
-            options: PdbValidationOptions.SkipConversionValidation);
+</symbols>", options: PdbValidationOptions.SkipConversionValidation);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 279396, 280723);
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_279647_279656()
+                {
+                    var return_v = CSharpRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 279647, 279656);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_279658_279671()
+                {
+                    var return_v = ValueTupleRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 279658, 279671);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_279673_279695()
+                {
+                    var return_v = SystemRuntimeFacadeRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 279673, 279695);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_279577_279729(string
+                source, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 279577, 279729);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_280126_280711(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Test.Utilities.PdbValidationOptions
+                options)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 280126, 280711);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 279396, 280723);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 279396, 280723);
+            }
         }
 
         [Fact]
         public void HiddenIterator()
         {
-            var src = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 280735, 282930);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 280804, 281273);
+
+                var
+                src = f_23129_280814_281272(@"
 using System;
 using System.Collections.Generic;
 
@@ -7644,12 +15357,19 @@ class C
 
         yield return 1;
     }
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(src, references: new[] { CSharpRef, ValueTupleRef, SystemRuntimeFacadeRef }, options: TestOptions.DebugDll);
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 281287, 281448);
 
-            // We don't really need the debug info for kickoff method when the entire iterator method is hidden, 
-            // but it doesn't hurt and removing it would need extra effort that's unnecessary.
-            c.VerifyPdb(@"
+                var
+                c = f_23129_281295_281447(src, references: new[] { f_23129_281365_281374(), f_23129_281376_281389(), f_23129_281391_281413() }, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 281675, 282919);
+
+                f_23129_281675_282918(
+                            // We don't really need the debug info for kickoff method when the entire iterator method is hidden, 
+                            // but it doesn't hurt and removing it would need extra effort that's unnecessary.
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7683,16 +15403,89 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 280735, 282930);
+
+                string
+                f_23129_280814_281272(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 280814, 281272);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_281365_281374()
+                {
+                    var return_v = CSharpRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 281365, 281374);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_281376_281389()
+                {
+                    var return_v = ValueTupleRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 281376, 281389);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_281391_281413()
+                {
+                    var return_v = SystemRuntimeFacadeRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 281391, 281413);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_281295_281447(string
+                source, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 281295, 281447);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_281675_282918(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 281675, 282918);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 280735, 282930);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 280735, 282930);
+            }
         }
-
-        #endregion
-
-        #region Nested Types
 
         [Fact]
         public void NestedTypes()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 282996, 284301);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 283062, 283306);
+
+                string
+                source = f_23129_283078_283305(@"
 using System;
 
 namespace N
@@ -7711,9 +15504,16 @@ namespace N
 		}
 	}
 }
-");
-            var c = CreateCompilation(Parse(source, filename: "file.cs"));
-            c.VerifyPdb(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 283320, 283382);
+
+                var
+                c = f_23129_283328_283381(f_23129_283346_283380(source, filename: "file.cs"))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 283396, 284290);
+
+                f_23129_283396_284289(c, @"
 <symbols>
   <files>
     <file id=""1"" name=""file.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""F7-03-46-2C-11-16-DE-85-F9-DD-5C-76-F6-55-D9-13-E0-95-DE-14"" />
@@ -7736,16 +15536,71 @@ namespace N
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 282996, 284301);
+
+                string
+                f_23129_283078_283305(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 283078, 283305);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_283346_283380(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename: filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 283346, 283380);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_283328_283381(Microsoft.CodeAnalysis.SyntaxTree
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 283328, 283381);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_283396_284289(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 283396, 284289);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 282996, 284301);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 282996, 284301);
+            }
         }
-
-        #endregion
-
-        #region Expression Bodied Members
 
         [Fact]
         public void ExpressionBodiedProperty()
         {
-            var source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 284380, 285558);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 284459, 284593);
+
+                var
+                source = f_23129_284472_284592(@"
 class C
 {
     public int P => M();
@@ -7753,10 +15608,19 @@ class C
     {
         return 2;
     }
-}");
-            var comp = CreateCompilationWithMscorlib45(source);
-            comp.VerifyDiagnostics();
-            comp.VerifyPdb(@"
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 284607, 284658);
+
+                var
+                comp = f_23129_284618_284657(source)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 284672, 284697);
+
+                f_23129_284672_284696(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 284711, 285547);
+
+                f_23129_284711_285546(comp, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7782,12 +15646,71 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 284380, 285558);
+
+                string
+                f_23129_284472_284592(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 284472, 284592);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_284618_284657(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 284618, 284657);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_284672_284696(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 284672, 284696);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_284711_285546(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 284711, 285546);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 284380, 285558);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 284380, 285558);
+            }
         }
 
         [Fact]
         public void ExpressionBodiedIndexer()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 285570, 286877);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 285648, 285819);
+
+                var
+                comp = f_23129_285659_285818(@"
 using System;
 
 class C
@@ -7797,10 +15720,15 @@ class C
     {
         return 2;
     }
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 285833, 285858);
 
-            comp.VerifyPdb(@"
+                f_23129_285833_285857(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 285874, 286866);
+
+                f_23129_285874_286865(
+                            comp, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7829,21 +15757,75 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 285570, 286877);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_285659_285818(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 285659, 285818);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_285833_285857(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 285833, 285857);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_285874_286865(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 285874, 286865);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 285570, 286877);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 285570, 286877);
+            }
         }
 
         [Fact]
         public void ExpressionBodiedMethod()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 286889, 287745);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 286966, 287072);
+
+                var
+                comp = f_23129_286977_287071(@"
 using System;
 
 class C
 {
     public Int32 P => 2;
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 287086, 287111);
 
-            comp.VerifyPdb(@"
+                f_23129_287086_287110(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 287127, 287734);
+
+                f_23129_287127_287733(
+                            comp, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7864,19 +15846,73 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 286889, 287745);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_286977_287071(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 286977, 287071);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_287086_287110(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 287086, 287110);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_287127_287733(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 287127, 287733);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 286889, 287745);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 286889, 287745);
+            }
         }
 
         [Fact]
         public void ExpressionBodiedOperator()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 287757, 288536);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 287836, 287943);
+
+                var
+                comp = f_23129_287847_287942(@"
 class C
 {
     public static C operator ++(C c) => c;
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 287957, 287982);
 
-            comp.VerifyPdb(@"
+                f_23129_287957_287981(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 287998, 288525);
+
+                f_23129_287998_288524(
+                            comp, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7894,21 +15930,75 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 287757, 288536);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_287847_287942(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 287847, 287942);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_287957_287981(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 287957, 287981);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_287998_288524(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 287998, 288524);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 287757, 288536);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 287757, 288536);
+            }
         }
 
         [Fact]
         public void ExpressionBodiedConversion()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 288548, 289469);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 288629, 288769);
+
+                var
+                comp = f_23129_288640_288768(@"
 using System;
 
 class C
 {
     public static explicit operator C(Int32 i) => new C();
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 288783, 288808);
 
-            comp.VerifyPdb(@"
+                f_23129_288783_288807(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 288824, 289458);
+
+                f_23129_288824_289457(
+                            comp, @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -7929,23 +16019,77 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 288548, 289469);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_288640_288768(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 288640, 288768);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_288783_288807(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 288783, 288807);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_288824_289457(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 288824, 289457);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 288548, 289469);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 288548, 289469);
+            }
         }
 
         [WorkItem(14438, "https://github.com/dotnet/roslyn/issues/14438")]
         [Fact]
         public void ExpressionBodiedConstructor()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 289481, 290577);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 289639, 289771);
+
+                var
+                comp = f_23129_289650_289770(@"
 using System;
 
 class C
 {
     public int X;
     public C(Int32 x) => X = x;
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 289785, 289810);
 
-            comp.VerifyPdb(@"<symbols>
+                f_23129_289785_289809(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 289826, 290566);
+
+                f_23129_289826_290565(
+                            comp, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -7966,21 +16110,75 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 289481, 290577);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_289650_289770(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 289650, 289770);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_289785_289809(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 289785, 289809);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_289826_290565(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 289826, 290565);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 289481, 290577);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 289481, 290577);
+            }
         }
 
         [WorkItem(14438, "https://github.com/dotnet/roslyn/issues/14438")]
         [Fact]
         public void ExpressionBodiedDestructor()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 290589, 291545);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 290746, 290848);
+
+                var
+                comp = f_23129_290757_290847(@"
 class C
 {
     public int X;
     ~C() => X = 0;
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 290862, 290887);
 
-            comp.VerifyPdb(@"<symbols>
+                f_23129_290862_290886(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 290903, 291534);
+
+                f_23129_290903_291533(
+                            comp, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -7999,13 +16197,62 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 290589, 291545);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_290757_290847(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 290757, 290847);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_290862_290886(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 290862, 290886);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_290903_291533(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 290903, 291533);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 290589, 291545);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 290589, 291545);
+            }
         }
 
         [WorkItem(14438, "https://github.com/dotnet/roslyn/issues/14438")]
         [Fact]
         public void ExpressionBodiedAccessor()
         {
-            var comp = CreateCompilationWithMscorlib45(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 291557, 293640);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 291712, 291969);
+
+                var
+                comp = f_23129_291723_291968(@"
 class C
 {
     public int x;
@@ -8019,10 +16266,15 @@ class C
         add => x = 1;
         remove => x = 0;
     }
-}");
-            comp.VerifyDiagnostics();
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 291983, 292008);
 
-            comp.VerifyPdb(@"<symbols>
+                f_23129_291983_292007(comp);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 292024, 293629);
+
+                f_23129_292024_293628(
+                            comp, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8063,17 +16315,61 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 291557, 293640);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_291723_291968(string
+                source)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 291723, 291968);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_291983_292007(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 291983, 292007);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_292024_293628(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 292024, 293628);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 291557, 293640);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 291557, 293640);
+            }
         }
-
-        #endregion
-
-        #region Synthesized Methods
 
         [Fact]
         public void ImportsInLambda()
         {
-            var source = WithWindowsLineBreaks(
-@"using System.Collections.Generic;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 293713, 295353);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 293783, 294069);
+
+                var
+                source = f_23129_293796_294068(@"using System.Collections.Generic;
 using System.Linq;
 class C
 {
@@ -8086,10 +16382,16 @@ class C
         };
         f();
     }
-}");
-            var c = CreateCompilationWithMscorlib45(source, options: TestOptions.DebugDll, references: new[] { SystemCoreRef });
-            c.VerifyPdb("C+<>c.<M>b__0_0",
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 294083, 294199);
+
+                var
+                c = f_23129_294091_294198(source, options: TestOptions.DebugDll, references: new[] { f_23129_294182_294195() })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 294213, 295342);
+
+                f_23129_294213_295341(c, "C+<>c.<M>b__0_0", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8113,13 +16415,72 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 293713, 295353);
+
+                string
+                f_23129_293796_294068(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 293796, 294068);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_294182_294195()
+                {
+                    var return_v = SystemCoreRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 294182, 294195);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_294091_294198(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 294091, 294198);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_294213_295341(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 294213, 295341);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 293713, 295353);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 293713, 295353);
+            }
         }
 
         [Fact]
         public void ImportsInIterator()
         {
-            var source = WithWindowsLineBreaks(
-@"using System.Collections.Generic;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 295365, 298085);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 295437, 295729);
+
+                var
+                source = f_23129_295450_295728(@"using System.Collections.Generic;
 using System.Linq;
 class C
 {
@@ -8131,10 +16492,16 @@ class C
             yield return i;
         }
     }
-}");
-            var c = CreateCompilationWithMscorlib45(source, options: TestOptions.DebugDll, references: new[] { SystemCoreRef });
-            c.VerifyPdb("C+<F>d__0.MoveNext",
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 295743, 295859);
+
+                var
+                c = f_23129_295751_295858(source, options: TestOptions.DebugDll, references: new[] { f_23129_295842_295855() })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 295873, 298074);
+
+                f_23129_295873_298073(c, "C+<F>d__0.MoveNext", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8171,13 +16538,72 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 295365, 298085);
+
+                string
+                f_23129_295450_295728(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 295450, 295728);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_295842_295855()
+                {
+                    var return_v = SystemCoreRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 295842, 295855);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_295751_295858(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 295751, 295858);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_295873_298073(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 295873, 298073);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 295365, 298085);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 295365, 298085);
+            }
         }
 
         [Fact]
         public void ImportsInAsync()
         {
-            var source = WithWindowsLineBreaks(
-@"using System.Linq;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 298097, 299986);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 298166, 298376);
+
+                var
+                source = f_23129_298179_298375(@"using System.Linq;
 using System.Threading.Tasks;
 class C
 {
@@ -8186,10 +16612,16 @@ class C
         var c = new[] { 1, 2, 3 };
         c.Select(i => i);
     }
-}");
-            var c = CreateCompilationWithMscorlib45(source, options: TestOptions.DebugDll, references: new[] { SystemCoreRef });
-            c.VerifyPdb("C+<F>d__0.MoveNext",
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 298390, 298506);
+
+                var
+                c = f_23129_298398_298505(source, options: TestOptions.DebugDll, references: new[] { f_23129_298489_298502() })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 298520, 299975);
+
+                f_23129_298520_299974(c, "C+<F>d__0.MoveNext", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8220,14 +16652,73 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 298097, 299986);
+
+                string
+                f_23129_298179_298375(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 298179, 298375);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_298489_298502()
+                {
+                    var return_v = SystemCoreRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 298489, 298502);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_298398_298505(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 298398, 298505);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_298520_299974(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 298520, 299974);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 298097, 299986);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 298097, 299986);
+            }
         }
 
         [WorkItem(2501, "https://github.com/dotnet/roslyn/issues/2501")]
         [Fact]
         public void ImportsInAsyncLambda()
         {
-            var source = WithWindowsLineBreaks(
-@"using System.Linq;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 299998, 302528);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 300147, 300390);
+
+                var
+                source = f_23129_300160_300389(@"using System.Linq;
 class C
 {
     static void M()
@@ -8238,10 +16729,16 @@ class C
             c.Select(i => i);
         };
     }
-}");
-            var c = CreateCompilationWithMscorlib45(source, options: TestOptions.DebugDll, references: new[] { SystemCoreRef });
-            c.VerifyPdb("C+<>c.<M>b__0_0",
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 300404, 300520);
+
+                var
+                c = f_23129_300412_300519(source, options: TestOptions.DebugDll, references: new[] { f_23129_300503_300516() })
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 300534, 300990);
+
+                f_23129_300534_300989(c, "C+<>c.<M>b__0_0", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8256,8 +16753,9 @@ class C
     </method>
   </methods>
 </symbols>");
-            c.VerifyPdb("C+<>c+<<M>b__0_0>d.MoveNext",
-@"<symbols>
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 301004, 302517);
+
+                f_23129_301004_302516(c, "C+<>c+<<M>b__0_0>d.MoveNext", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8289,19 +16787,94 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 299998, 302528);
+
+                string
+                f_23129_300160_300389(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 300160, 300389);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_300503_300516()
+                {
+                    var return_v = SystemCoreRef;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 300503, 300516);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_300412_300519(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib45((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 300412, 300519);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_300534_300989(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 300534, 300989);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_301004_302516(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 301004, 302516);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 299998, 302528);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 299998, 302528);
+            }
         }
-
-        #endregion
-
-        #region Patterns
 
         [Fact]
         public void SyntaxOffset_IsPattern()
         {
-            var source = @"class C { bool F(object o) => o is int i && o is 3 && o is bool; }";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 302590, 303666);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 302667, 302750);
 
-            c.VerifyPdb("C.F", @"<symbols>
+                var
+                source = @"class C { bool F(object o) => o is int i && o is 3 && o is bool; }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 302764, 302856);
+
+                var
+                c = f_23129_302772_302855(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 302872, 303655);
+
+                f_23129_302872_303654(
+                            c, "C.F", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -8324,13 +16897,53 @@ class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 302590, 303666);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_302772_302855(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 302772, 302855);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_302872_303654(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 302872, 303654);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 302590, 303666);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 302590, 303666);
+            }
         }
 
         [WorkItem(37172, "https://github.com/dotnet/roslyn/issues/37172")]
         [Fact]
         public void Patterns_SwitchStatement()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 303678, 319728);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 303833, 305002);
+
+                string
+                source = f_23129_303849_305001(@"
 class C
 {
     public void Deconstruct() { }
@@ -8380,11 +16993,22 @@ class Program
         };
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll, targetFramework: TargetFramework.NetCoreApp);
-            var verifier = CompileAndVerify(c, verify: Verification.Skipped);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 305016, 305126);
 
-            verifier.VerifyIL("Program.Main", sequencePoints: "Program.Main", expectedIL: @"
+                var
+                c = f_23129_305024_305125(source, options: TestOptions.DebugDll, targetFramework: TargetFramework.NetCoreApp)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 305140, 305205);
+
+                var
+                verifier = f_23129_305155_305204(this, c, verify: Verification.Skipped)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 305221, 313163);
+
+                f_23129_305221_313162(
+                            verifier, "Program.Main", sequencePoints: "Program.Main", expectedIL: @"
     {
       // Code size      432 (0x1b0)
       .maxstack  3
@@ -8611,8 +17235,10 @@ class Program
       IL_01af:  ret
     }
 ", source: source);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 313179, 319717);
 
-            verifier.VerifyPdb("Program.Main", @"   
+                f_23129_313179_319716(
+                            verifier, "Program.Main", @"   
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -8709,13 +17335,90 @@ class Program
       </methods>
     </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 303678, 319728);
+
+                string
+                f_23129_303849_305001(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 303849, 305001);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_305024_305125(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Roslyn.Test.Utilities.TargetFramework
+                targetFramework)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, targetFramework: targetFramework);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 305024, 305125);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_305155_305204(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, Microsoft.CodeAnalysis.Test.Utilities.Verification
+                verify)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, verify: verify);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 305155, 305204);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_305221_313162(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                expectedIL, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, expectedIL: expectedIL, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 305221, 313162);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_313179_319716(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 313179, 319716);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 303678, 319728);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 303678, 319728);
+            }
         }
 
         [WorkItem(37172, "https://github.com/dotnet/roslyn/issues/37172")]
         [Fact]
         public void Patterns_SwitchExpression()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 319740, 335746);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 319896, 320972);
+
+                string
+                source = f_23129_319912_320971(@"
 class C
 {
     public void Deconstruct() { }
@@ -8765,13 +17468,24 @@ class Program
         };
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll, targetFramework: TargetFramework.NetCoreApp);
-            var verifier = CompileAndVerify(c, verify: Verification.Skipped);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 320986, 321096);
 
-            // note no sequence points emitted within the switch expression
+                var
+                c = f_23129_320994_321095(source, options: TestOptions.DebugDll, targetFramework: TargetFramework.NetCoreApp)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 321110, 321175);
 
-            verifier.VerifyIL("Program.Main", sequencePoints: "Program.Main", expectedIL: @"
+                var
+                verifier = f_23129_321125_321174(this, c, verify: Verification.Skipped)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 321270, 327948);
+
+                f_23129_321270_327947(
+                            // note no sequence points emitted within the switch expression
+
+                            verifier, "Program.Main", sequencePoints: "Program.Main", expectedIL: @"
     {
       // Code size      437 (0x1b5)
       .maxstack  3
@@ -8964,8 +17678,10 @@ class Program
      -IL_01b4:  ret
     }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 327964, 335735);
 
-            verifier.VerifyPdb("Program.Main", @"
+                f_23129_327964_335734(
+                            verifier, "Program.Main", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -9075,13 +17791,89 @@ class Program
       </methods>
     </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 319740, 335746);
+
+                string
+                f_23129_319912_320971(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 319912, 320971);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_320994_321095(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Roslyn.Test.Utilities.TargetFramework
+                targetFramework)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, targetFramework: targetFramework);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 320994, 321095);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_321125_321174(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, Microsoft.CodeAnalysis.Test.Utilities.Verification
+                verify)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, verify: verify);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 321125, 321174);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_321270_327947(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 321270, 327947);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_327964_335734(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 327964, 335734);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 319740, 335746);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 319740, 335746);
+            }
         }
 
         [WorkItem(37172, "https://github.com/dotnet/roslyn/issues/37172")]
         [Fact]
         public void Patterns_IsPattern()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 335758, 343840);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 335907, 336962);
+
+                string
+                source = f_23129_335923_336961(@"
 class C
 {
     public void Deconstruct() { }
@@ -9128,11 +17920,22 @@ class Program
             obj is D { P: 1, Q: D { P: 2 }, R: C(int z2) };
     }
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll, targetFramework: TargetFramework.NetCoreApp);
-            var verifier = CompileAndVerify(c, verify: Verification.Skipped);
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 336976, 337086);
 
-            verifier.VerifyIL("Program.M", sequencePoints: "Program.M", expectedIL: @"
+                var
+                c = f_23129_336984_337085(source, options: TestOptions.DebugDll, targetFramework: TargetFramework.NetCoreApp)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 337100, 337165);
+
+                var
+                verifier = f_23129_337115_337164(this, c, verify: Verification.Skipped)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 337181, 341434);
+
+                f_23129_337181_341433(
+                            verifier, "Program.M", sequencePoints: "Program.M", expectedIL: @"
 {
   // Code size      301 (0x12d)
   .maxstack  3
@@ -9268,8 +18071,10 @@ class Program
   IL_012c:  ret
 }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 341450, 343829);
 
-            verifier.VerifyPdb("Program.M", @"   
+                f_23129_341450_343828(
+                            verifier, "Program.M", @"   
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -9316,6 +18121,76 @@ class Program
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 335758, 343840);
+
+                string
+                f_23129_335923_336961(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 335923, 336961);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_336984_337085(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Roslyn.Test.Utilities.TargetFramework
+                targetFramework)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, targetFramework: targetFramework);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 336984, 337085);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_337115_337164(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, Microsoft.CodeAnalysis.Test.Utilities.Verification
+                verify)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation, verify: verify);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 337115, 337164);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_337181_341433(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 337181, 341433);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_341450_343828(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 341450, 343828);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 335758, 343840);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 335758, 343840);
+            }
         }
 
         [WorkItem(37172, "https://github.com/dotnet/roslyn/issues/37172")]
@@ -9324,7 +18199,13 @@ class Program
         [Fact]
         public void Patterns_SwitchExpression_Closures()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 343852, 362176);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 344169, 344958);
+
+                string
+                source = f_23129_344185_344957(@"
 using System;
 public class C
 {
@@ -9357,10 +18238,21 @@ public class C
     static object F() => null;
     static int G(Func<int> f) => 0;
 }
-");
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var verifier = CompileAndVerify(c);
-            verifier.VerifyIL("C.M", sequencePoints: "C.M", source: source, expectedIL: @"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 344972, 345037);
+
+                var
+                c = f_23129_344980_345036(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 345051, 345086);
+
+                var
+                verifier = f_23129_345066_345085(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 345100, 354439);
+
+                f_23129_345100_354438(verifier, "C.M", sequencePoints: "C.M", source: source, expectedIL: @"
     {
       // Code size      472 (0x1d8)
       .maxstack  2
@@ -9614,7 +18506,9 @@ public class C
       IL_01d7:  ret
     }
 ");
-            verifier.VerifyPdb("C.M", @"
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 354453, 362165);
+
+                f_23129_354453_362164(verifier, "C.M", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -9730,13 +18624,88 @@ public class C
       </methods>
     </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 343852, 362176);
+
+                string
+                f_23129_344185_344957(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 344185, 344957);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_344980_345036(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 344980, 345036);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_345066_345085(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 345066, 345085);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_345100_354438(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 345100, 354438);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_354453_362164(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 354453, 362164);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 343852, 362176);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 343852, 362176);
+            }
         }
 
         [WorkItem(37261, "https://github.com/dotnet/roslyn/issues/37261")]
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SwitchExpression_MethodBody()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 362188, 369214);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 362435, 362765);
+
+                string
+                source = @"
 using System;
 public class C
 {
@@ -9752,11 +18721,22 @@ public class C
     static object F() => null;
     static int G(Func<int> f) => 0;
 }
-";
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var verifier = CompileAndVerify(c);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 362779, 362844);
 
-            verifier.VerifyIL("C.M", sequencePoints: "C.M", source: source, expectedIL: @"
+                var
+                c = f_23129_362787_362843(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 362858, 362893);
+
+                var
+                verifier = f_23129_362873_362892(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 362909, 366348);
+
+                f_23129_362909_366347(
+                            verifier, "C.M", sequencePoints: "C.M", source: source, expectedIL: @"
     {
       // Code size      171 (0xab)
       .maxstack  2
@@ -9856,7 +18836,9 @@ public class C
       IL_00aa:  ret
     }
 ");
-            verifier.VerifyPdb("C.M", @"
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 366362, 369203);
+
+                f_23129_366362_369202(verifier, "C.M", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -9910,24 +18892,100 @@ public class C
       </methods>
     </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 362188, 369214);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_362787_362843(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 362787, 362843);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_362873_362892(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 362873, 362892);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_362909_366347(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 362909, 366347);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_366362_369202(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 366362, 369202);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 362188, 369214);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 362188, 369214);
+            }
         }
 
         [WorkItem(37261, "https://github.com/dotnet/roslyn/issues/37261")]
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SwitchExpression_MethodBody_02()
         {
-            string source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 369226, 374843);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 369476, 369653);
+
+                string
+                source = @"
 using System;
 public class C
 {
     static Action M1(int x) => () => { _ = x; };
     static Action M2(int x) => x switch { _ => () => { _ = x; } };
 }
-";
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var verifier = CompileAndVerify(c);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 369667, 369732);
 
-            verifier.VerifyIL("C.M1", sequencePoints: "C.M1", source: source, expectedIL: @"
+                var
+                c = f_23129_369675_369731(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 369746, 369781);
+
+                var
+                verifier = f_23129_369761_369780(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 369797, 370488);
+
+                f_23129_369797_370487(
+                            verifier, "C.M1", sequencePoints: "C.M1", source: source, expectedIL: @"
     {
       // Code size       26 (0x1a)
       .maxstack  2
@@ -9945,7 +19003,9 @@ public class C
       IL_0019:  ret
     }
 ");
-            verifier.VerifyIL("C.M2", sequencePoints: "C.M2", source: source, expectedIL: @"
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 370502, 371807);
+
+                f_23129_370502_371806(verifier, "C.M2", sequencePoints: "C.M2", source: source, expectedIL: @"
     {
       // Code size       40 (0x28)
       .maxstack  2
@@ -9980,7 +19040,9 @@ public class C
       IL_0027:  ret
     }
 ");
-            verifier.VerifyPdb("C.M1", @"
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 371821, 373039);
+
+                f_23129_371821_373038(verifier, "C.M1", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -10012,7 +19074,9 @@ public class C
       </methods>
     </symbols>
 ");
-            verifier.VerifyPdb("C.M2", @"
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 373053, 374832);
+
+                f_23129_373053_374831(verifier, "C.M2", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -10048,13 +19112,104 @@ public class C
       </methods>
     </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 369226, 374843);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_369675_369731(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 369675, 369731);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_369761_369780(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 369761, 369780);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_369797_370487(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 369797, 370487);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_370502_371806(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 370502, 371806);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_371821_373038(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 371821, 373038);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_373053_374831(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                verifier, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = verifier.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 373053, 374831);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 369226, 374843);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 369226, 374843);
+            }
         }
 
         [ConditionalFact(typeof(WindowsOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         public void SyntaxOffset_OutVarInInitializers_SwitchExpression()
         {
-            var source =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 374855, 377645);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 375049, 375260);
+
+                var
+                source =
+                @"class C
 { 
     static int G(out int x) => throw null;
     static int F(System.Func<int> x) => throw null;
@@ -10062,11 +19217,17 @@ public class C
 
     int y1 = G(out var z) switch { _ => F(() => z) }; // line 7
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 375276, 375368);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_375284_375367(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 375384, 377634);
 
-            c.VerifyPdb("C..ctor", @"
+                f_23129_375384_377633(
+                            c, "C..ctor", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -10108,14 +19269,54 @@ public class C
       </methods>
     </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 374855, 377645);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_375284_375367(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 375284, 375367);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_375384_377633(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 375384, 377633);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 374855, 377645);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 374855, 377645);
+            }
         }
 
         [WorkItem(43468, "https://github.com/dotnet/roslyn/issues/43468")]
         [Fact]
         public void HiddenSequencePointAtSwitchExpressionFinalMergePoint()
         {
-            var source =
-@"class C
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 377657, 379496);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 377840, 378022);
+
+                var
+                source =
+                @"class C
 {
     static int M(int x)
     {
@@ -10127,10 +19328,21 @@ public class C
         return y;
     }
 }
-";
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var verifier = CompileAndVerify(c);
-            verifier.VerifyIL("C.M", sequencePoints: "C.M", source: source, expectedIL: @"
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 378036, 378101);
+
+                var
+                c = f_23129_378044_378100(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 378115, 378150);
+
+                var
+                verifier = f_23129_378130_378149(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 378164, 379485);
+
+                f_23129_378164_379484(verifier, "C.M", sequencePoints: "C.M", source: source, expectedIL: @"
     {
       // Code size       31 (0x1f)
       .maxstack  2
@@ -10174,6 +19386,53 @@ public class C
       IL_001e:  ret
     }
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 377657, 379496);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_378044_378100(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 378044, 378100);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_378130_378149(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 378130, 378149);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_378164_379484(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 378164, 379484);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 377657, 379496);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 377657, 379496);
+            }
         }
 
         [WorkItem(12378, "https://github.com/dotnet/roslyn/issues/12378")]
@@ -10181,8 +19440,13 @@ public class C
         [Fact]
         public void Patterns_SwitchStatement_Constant()
         {
-            string source = WithWindowsLineBreaks(
-@"class Program
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 379508, 386943);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 379748, 380443);
+
+                string
+                source = f_23129_379764_380442(@"class Program
 {
     static void M(object o)
     {
@@ -10214,10 +19478,16 @@ public class C
                 break;
         }
     }
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            CompileAndVerify(c).VerifyIL(qualifiedMethodName: "Program.M", sequencePoints: "Program.M", source: source,
-expectedIL: @"{
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 380457, 380549);
+
+                var
+                c = f_23129_380465_380548(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 380563, 383400);
+
+                f_23129_380563_383399(f_23129_380563_380582(this, c), qualifiedMethodName: "Program.M", sequencePoints: "Program.M", source: source, expectedIL: @"{
   // Code size      123 (0x7b)
   .maxstack  2
   .locals init (object V_0,
@@ -10317,8 +19587,9 @@ expectedIL: @"{
   // sequence point: }
   IL_007a:  ret
 }");
-            c.VerifyPdb(
-@"<symbols>
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 383414, 386932);
+
+                f_23129_383414_386931(c, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -10372,13 +19643,87 @@ expectedIL: @"{
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 379508, 386943);
+
+                string
+                f_23129_379764_380442(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 379764, 380442);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_380465_380548(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 380465, 380548);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_380563_380582(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 380563, 380582);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_380563_383399(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                source, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName: qualifiedMethodName, sequencePoints: sequencePoints, source: source, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 380563, 383399);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_383414_386931(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 383414, 386931);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 379508, 386943);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 379508, 386943);
+            }
         }
 
         [WorkItem(37172, "https://github.com/dotnet/roslyn/issues/37172")]
         [Fact]
         public void Patterns_SwitchStatement_Tuple()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 386955, 390853);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 387116, 387379);
+
+                string
+                source = f_23129_387132_387378(@"
 public class C
 {
     static int F(int i)
@@ -10391,11 +19736,22 @@ public class C
     }
 
     static (object, object) G() => (2, 3);
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll, references: s_valueTupleRefs);
-            var cv = CompileAndVerify(c);
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 387393, 387515);
 
-            cv.VerifyIL("C.F", @"
+                var
+                c = f_23129_387401_387514(source, options: TestOptions.DebugDll, references: s_valueTupleRefs)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 387529, 387558);
+
+                var
+                cv = f_23129_387538_387557(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 387574, 389021);
+
+                f_23129_387574_389020(
+                            cv, "C.F", @"
 {
   // Code size       80 (0x50)
   .maxstack  2
@@ -10446,8 +19802,10 @@ public class C
   IL_004f:  ret
 }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 389037, 390842);
 
-            c.VerifyPdb("C.F", @"
+                f_23129_389037_390841(
+                            c, "C.F", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -10484,19 +19842,96 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 386955, 390853);
+
+                string
+                f_23129_387132_387378(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 387132, 387378);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_387401_387514(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 387401, 387514);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_387538_387557(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 387538, 387557);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_387574_389020(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 387574, 389020);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_389037_390841(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 389037, 390841);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 386955, 390853);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 386955, 390853);
+            }
         }
-
-        #endregion
-
-        #region Tuples
 
         [Fact]
         public void SyntaxOffset_TupleDeconstruction()
         {
-            var source = @"class C { int F() { (int a, (_, int c)) = (1, (2, 3)); return a + c; } }";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll, references: s_valueTupleRefs);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 390913, 392540);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 391000, 391089);
 
-            c.VerifyPdb("C.F", @"<symbols>
+                var
+                source = @"class C { int F() { (int a, (_, int c)) = (1, (2, 3)); return a + c; } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 391103, 391225);
+
+                var
+                c = f_23129_391111_391224(source, options: TestOptions.DebugDll, references: s_valueTupleRefs)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 391241, 392529);
+
+                f_23129_391241_392528(
+                            c, "C.F", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -10525,12 +19960,53 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 390913, 392540);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_391111_391224(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 391111, 391224);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_391241_392528(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 391241, 392528);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 390913, 392540);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 390913, 392540);
+            }
         }
 
         [Fact]
         public void TestDeconstruction()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 392552, 393739);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 392625, 392842);
+
+                var
+                source = @"
 public class C
 {
     public static (int, int) F() => (1, 2);
@@ -10542,11 +20018,22 @@ public class C
         System.Console.WriteLine(x + y);
     }
 }
-";
-            var c = CreateCompilation(source, options: TestOptions.DebugDll);
-            var v = CompileAndVerify(c);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 392856, 392921);
 
-            v.VerifyIL("C.Main", @"
+                var
+                c = f_23129_392864_392920(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 392935, 392963);
+
+                var
+                v = f_23129_392943_392962(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 392979, 393728);
+
+                f_23129_392979_393727(
+                            v, "C.Main", @"
 {
   // Code size       29 (0x1d)
   .maxstack  2
@@ -10571,15 +20058,75 @@ public class C
   IL_001c:  ret
 }
 ", sequencePoints: "C.Main", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 392552, 393739);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_392864_392920(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 392864, 392920);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_392943_392962(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 392943, 392962);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_392979_393727(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 392979, 393727);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 392552, 393739);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 392552, 393739);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_TupleParenthesized()
         {
-            var source = @"class C { int F() { (int, (int, int)) x = (1, (2, 3)); return x.Item1 + x.Item2.Item1 + x.Item2.Item2; } }";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll, references: s_valueTupleRefs);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 393751, 395282);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 393837, 393960);
 
-            c.VerifyPdb("C.F", @"<symbols>
+                var
+                source = @"class C { int F() { (int, (int, int)) x = (1, (2, 3)); return x.Item1 + x.Item2.Item1 + x.Item2.Item2; } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 393974, 394096);
+
+                var
+                c = f_23129_393982_394095(source, options: TestOptions.DebugDll, references: s_valueTupleRefs)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 394112, 395271);
+
+                f_23129_394112_395270(
+                            c, "C.F", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -10605,17 +20152,64 @@ public class C
       </scope>
     </method>
   </methods>
-</symbols>"
-);
+</symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 393751, 395282);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_393982_394095(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 393982, 394095);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_394112_395270(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 394112, 395270);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 393751, 395282);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 393751, 395282);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_TupleVarDefined()
         {
-            var source = @"class C { int F() { var x = (1, 2); return x.Item1 + x.Item2; } }";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll, references: s_valueTupleRefs);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 395294, 396774);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 395377, 395459);
 
-            c.VerifyPdb("C.F", @"<symbols>
+                var
+                source = @"class C { int F() { var x = (1, 2); return x.Item1 + x.Item2; } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 395473, 395595);
+
+                var
+                c = f_23129_395481_395594(source, options: TestOptions.DebugDll, references: s_valueTupleRefs)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 395611, 396763);
+
+                f_23129_395611_396762(
+                            c, "C.F", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -10642,15 +20236,63 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 395294, 396774);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_395481_395594(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 395481, 395594);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_395611_396762(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 395611, 396762);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 395294, 396774);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 395294, 396774);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_TupleIgnoreDeconstructionIfVariableDeclared()
         {
-            var source = @"class C { int F() { (int x, int y) a = (1, 2); return a.Item1 + a.Item2; } }";
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll, references: s_valueTupleRefs);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 396786, 398476);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 396897, 396990);
 
-            c.VerifyPdb("C.F", @"<symbols>
+                var
+                source = @"class C { int F() { (int x, int y) a = (1, 2); return a.Item1 + a.Item2; } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 397004, 397126);
+
+                var
+                c = f_23129_397012_397125(source, options: TestOptions.DebugDll, references: s_valueTupleRefs)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 397142, 398465);
+
+                f_23129_397142_398464(
+                            c, "C.F", @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -10680,16 +20322,53 @@ public class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 396786, 398476);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_397012_397125(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options, Microsoft.CodeAnalysis.MetadataReference[]
+                references)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options, references: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 397012, 397125);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_397142_398464(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 397142, 398464);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 396786, 398476);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 396786, 398476);
+            }
         }
-
-        #endregion
-
-        #region OutVar
 
         [Fact]
         public void SyntaxOffset_OutVarInConstructor()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 398536, 399645);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 398623, 398918);
+
+                var
+                source = @"
 class B
 {
     B(out int z) { z = 2; } 
@@ -10712,25 +20391,138 @@ class C
         return 2;
     }
 }
-";
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 398934, 399026);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyDiagnostics(
-                // (9,13): error CS0236: A field initializer cannot reference the non-static field, method, or property 'C.G(out int)'
-                //     int F = G(out var v1);    
-                Diagnostic(ErrorCode.ERR_FieldInitRefNonstatic, "G").WithArguments("C.G(out int)").WithLocation(9, 13),
-                // (13,7): error CS1729: 'object' does not contain a constructor that takes 1 arguments
-                //     : base(out var v3)
-                Diagnostic(ErrorCode.ERR_BadCtorArgCount, "base").WithArguments("object", "1").WithLocation(13, 7));
+                var
+                c = f_23129_398942_399025(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 399040, 399634);
+
+                f_23129_399040_399633(c, f_23129_399265_399367(f_23129_399265_399347(f_23129_399265_399317(ErrorCode.ERR_FieldInitRefNonstatic, "G"), "C.G(out int)"), 9, 13), f_23129_399534_399632(f_23129_399534_399612(f_23129_399534_399583(ErrorCode.ERR_BadCtorArgCount, "base"), "object", "1"), 13, 7));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 398536, 399645);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_398942_399025(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 398942, 399025);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_399265_399317(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399265, 399317);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_399265_399347(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399265, 399347);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_399265_399367(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399265, 399367);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_399534_399583(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, string
+                squiggledText)
+                {
+                    var return_v = Diagnostic((object)code, squiggledText);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399534, 399583);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_399534_399612(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399534, 399612);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_399534_399632(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399534, 399632);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_399040_399633(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                c, params Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+                expected)
+                {
+                    var return_v = c.VerifyDiagnostics<Microsoft.CodeAnalysis.CSharp.CSharpCompilation>(expected);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399040, 399633);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 398536, 399645);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 398536, 399645);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInMethod()
         {
-            var source = @"class C { int G(out int x) { int z = 1; G(out var y); G(out var w); return x = y; } }";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 399657, 401696);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 399739, 399841);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.G", @"
+                var
+                source = @"class C { int G(out int x) { int z = 1; G(out var y); G(out var w); return x = y; } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 399857, 399949);
+
+                var
+                c = f_23129_399865_399948(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 399963, 401685);
+
+                f_23129_399963_401684(c, "C.G", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -10766,13 +20558,52 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 399657, 401696);
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_399865_399948(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399865, 399948);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_399963_401684(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 399963, 401684);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 399657, 401696);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 399657, 401696);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_01()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 401708, 403955);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 401799, 402080);
+
+                var
+                source = f_23129_401812_402079(@"
 class C : A
 { 
     int x = G(out var x);
@@ -10792,10 +20623,16 @@ class A
 {
     public A(int x) {}
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 402096, 402188);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor", @"
+                var
+                c = f_23129_402104_402187(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 402202, 403944);
+
+                f_23129_402202_403943(c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -10834,13 +20671,62 @@ class A
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 401708, 403955);
+
+                string
+                f_23129_401812_402079(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 401812, 402079);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_402104_402187(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 402104, 402187);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_402202_403943(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 402202, 403943);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 401708, 403955);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 401708, 403955);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_02()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 403967, 405889);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 404058, 404310);
+
+                var
+                source = f_23129_404071_404309(@"
 class C : A
 { 
     C() : base(G(out var x))
@@ -10859,10 +20745,16 @@ class A
 {
     public A(int x) {}
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 404326, 404418);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor", @"
+                var
+                c = f_23129_404334_404417(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 404432, 405878);
+
+                f_23129_404432_405877(c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -10895,13 +20787,62 @@ class A
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 403967, 405889);
+
+                string
+                f_23129_404071_404309(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 404071, 404309);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_404334_404417(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 404334, 404417);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_404432_405877(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 404432, 405877);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 403967, 405889);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 403967, 405889);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_03()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 405901, 407453);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 405992, 406216);
+
+                var
+                source = f_23129_406005_406215(@"
 class C : A
 { 
     C() : base(G(out var x))
@@ -10917,10 +20858,16 @@ class A
 {
     public A(int x) {}
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 406232, 406324);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor", @"
+                var
+                c = f_23129_406240_406323(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 406338, 407442);
+
+                f_23129_406338_407441(c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -10950,13 +20897,62 @@ class A
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 405901, 407453);
+
+                string
+                f_23129_406005_406215(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 406005, 406215);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_406240_406323(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 406240, 406323);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_406338_407441(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 406338, 407441);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 405901, 407453);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 405901, 407453);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_04()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 407465, 410043);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 407556, 407836);
+
+                var
+                source = f_23129_407569_407835(@"
 class C
 { 
     static int G(out int x) 
@@ -10975,11 +20971,17 @@ class C
 #line 2000
     int y1 = G(out var z) + F(() => z);
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 407852, 407944);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_407860_407943(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 407960, 409433);
 
-            c.VerifyPdb("C..ctor", @"
+                f_23129_407960_409432(
+                            c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11013,8 +21015,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 409449, 410032);
 
-            c.VerifyPdb("C+<>c__DisplayClass2_0.<.ctor>b__0", @"
+                f_23129_409449_410031(
+                            c, "C+<>c__DisplayClass2_0.<.ctor>b__0", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11031,13 +21035,74 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 407465, 410043);
+
+                string
+                f_23129_407569_407835(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 407569, 407835);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_407860_407943(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 407860, 407943);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_407960_409432(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 407960, 409432);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_409449_410031(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 409449, 410031);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 407465, 410043);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 407465, 410043);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_05()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 410055, 412269);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 410146, 410409);
+
+                var
+                source = f_23129_410159_410408(@"
 class C
 { 
     static int G(out int x) 
@@ -11052,11 +21117,17 @@ class C
 #line 2000
     int y1 { get; } = G(out var z) + F(() => z);
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 410425, 410517);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_410433_410516(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 410533, 411659);
 
-            c.VerifyPdb("C..ctor", @"
+                f_23129_410533_411658(
+                            c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11087,8 +21158,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 411675, 412258);
 
-            c.VerifyPdb("C+<>c__DisplayClass5_0.<.ctor>b__0", @"
+                f_23129_411675_412257(
+                            c, "C+<>c__DisplayClass5_0.<.ctor>b__0", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11105,13 +21178,74 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 410055, 412269);
+
+                string
+                f_23129_410159_410408(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 410159, 410408);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_410433_410516(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 410433, 410516);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_410533_411658(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 410533, 411658);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_411675_412257(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 411675, 412257);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 410055, 412269);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 410055, 412269);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_06()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 412281, 417029);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 412372, 412658);
+
+                var
+                source = f_23129_412385_412657(@"
 class C
 { 
     static int G(out int x) 
@@ -11126,12 +21260,21 @@ class C
 #line 2000
     int y1 = G(out var z) + F(() => z), y2 = G(out var u) + F(() => u);
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 412674, 412766);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
+                var
+                c = f_23129_412682_412765(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 412782, 412810);
 
-            var v = CompileAndVerify(c);
-            v.VerifyIL("C..ctor", sequencePoints: "C..ctor", expectedIL: @"
+                var
+                v = f_23129_412790_412809(this, c)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 412824, 414162);
+
+                f_23129_412824_414161(v, "C..ctor", sequencePoints: "C..ctor", expectedIL: @"
 {
   // Code size       90 (0x5a)
   .maxstack  4
@@ -11167,8 +21310,10 @@ class C
   IL_0059:  ret
 }
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 414178, 415820);
 
-            c.VerifyPdb("C..ctor", @"
+                f_23129_414178_415819(
+                            c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11207,8 +21352,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 415836, 416419);
 
-            c.VerifyPdb("C+<>c__DisplayClass4_0.<.ctor>b__0", @"
+                f_23129_415836_416418(
+                            c, "C+<>c__DisplayClass4_0.<.ctor>b__0", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11225,8 +21372,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 416435, 417018);
 
-            c.VerifyPdb("C+<>c__DisplayClass4_1.<.ctor>b__1", @"
+                f_23129_416435_417017(
+                            c, "C+<>c__DisplayClass4_1.<.ctor>b__1", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11243,13 +21392,110 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 412281, 417029);
+
+                string
+                f_23129_412385_412657(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 412385, 412657);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_412682_412765(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 412682, 412765);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_412790_412809(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.Compilation)compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 412790, 412809);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_412824_414161(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                sequencePoints, string
+                expectedIL)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, sequencePoints: sequencePoints, expectedIL: expectedIL);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 412824, 414161);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_414178_415819(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 414178, 415819);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_415836_416418(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 415836, 416418);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_416435_417017(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 416435, 417017);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 412281, 417029);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 412281, 417029);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInInitializers_07()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 417041, 419449);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 417132, 417448);
+
+                var
+                source = f_23129_417145_417447(@"
 class C : A
 { 
 #line 2000
@@ -11271,10 +21517,16 @@ class A
 {
     public A(int x) {}
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 417464, 417556);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor", @"
+                var
+                c = f_23129_417472_417555(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 417570, 418856);
+
+                f_23129_417570_418855(c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11307,8 +21559,10 @@ class A
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 418872, 419438);
 
-            c.VerifyPdb("C+<>c__DisplayClass0_0.<.ctor>b__0", @"
+                f_23129_418872_419437(
+                            c, "C+<>c__DisplayClass0_0.<.ctor>b__0", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11325,13 +21579,74 @@ class A
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 417041, 419449);
+
+                string
+                f_23129_417145_417447(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 417145, 417447);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_417472_417555(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 417472, 417555);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_417570_418855(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 417570, 418855);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_418872_419437(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 418872, 419437);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 417041, 419449);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 417041, 419449);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInQuery_01()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 419461, 422181);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 419545, 419850);
+
+                var
+                source = f_23129_419558_419849(@"
 using System.Linq;
 
 class C
@@ -11349,10 +21664,16 @@ class C
         throw null;
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 419866, 419958);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor", @"
+                var
+                c = f_23129_419874_419957(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 419972, 421337);
+
+                f_23129_419972_421336(c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11387,8 +21708,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 421353, 422170);
 
-            c.VerifyPdb("C+<>c.<.ctor>b__0_0", @"
+                f_23129_421353_422169(
+                            c, "C+<>c.<.ctor>b__0_0", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11411,13 +21734,74 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 419461, 422181);
+
+                string
+                f_23129_419558_419849(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 419558, 419849);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_419874_419957(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 419874, 419957);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_419972_421336(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 419972, 421336);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_421353_422169(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 421353, 422169);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 419461, 422181);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 419461, 422181);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInQuery_02()
         {
-            var source = WithWindowsLineBreaks(
-@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 422193, 425785);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 422277, 422678);
+
+                var
+                source = f_23129_422290_422677(@"
 using System.Linq;
 
 class C
@@ -11440,10 +21824,16 @@ class C
         throw null;
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 422694, 422786);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C..ctor", @"
+                var
+                c = f_23129_422702_422785(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 422800, 424268);
+
+                f_23129_422800_424267(c, "C..ctor", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11480,8 +21870,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 424284, 425192);
 
-            c.VerifyPdb("C+<>c.<.ctor>b__0_0", @"
+                f_23129_424284_425191(
+                            c, "C+<>c.<.ctor>b__0_0", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11505,8 +21897,10 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 425208, 425774);
 
-            c.VerifyPdb("C+<>c__DisplayClass0_0.<.ctor>b__1", @"
+                f_23129_425208_425773(
+                            c, "C+<>c__DisplayClass0_0.<.ctor>b__1", @"
 <symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
@@ -11523,15 +21917,95 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 422193, 425785);
+
+                string
+                f_23129_422290_422677(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 422290, 422677);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_422702_422785(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 422702, 422785);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_422800_424267(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 422800, 424267);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_424284_425191(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 424284, 425191);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_425208_425773(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 425208, 425773);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 422193, 425785);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 422193, 425785);
+            }
         }
 
         [Fact]
         public void SyntaxOffset_OutVarInSwitchExpression()
         {
-            var source = @"class C { static object G() => N(out var x) switch { null => x switch {1 =>  1, _ => 2 }, _ => 1 }; static object N(out int x) { x = 1; return null; } }";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 425797, 428553);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 425889, 426058);
 
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb("C.G", @"
+                var
+                source = @"class C { static object G() => N(out var x) switch { null => x switch {1 =>  1, _ => 2 }, _ => 1 }; static object N(out int x) { x = 1; return null; } }"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 426074, 426166);
+
+                var
+                c = f_23129_426082_426165(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 426180, 428542);
+
+                f_23129_426180_428541(c, "C.G", @"
     <symbols>
       <files>
         <file id=""1"" name="""" language=""C#"" />
@@ -11573,16 +22047,53 @@ class C
       </methods>
     </symbols>
 ");
-        }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 425797, 428553);
 
-        #endregion
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_426082_426165(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 426082, 426165);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_426180_428541(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                qualifiedMethodName, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(qualifiedMethodName, expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 426180, 428541);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 425797, 428553);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 425797, 428553);
+            }
+        }
 
         [WorkItem(4370, "https://github.com/dotnet/roslyn/issues/4370")]
         [Fact]
         public void HeadingHiddenSequencePointsPickUpDocumentFromVisibleSequencePoint()
         {
-            var source = WithWindowsLineBreaks(
-@"#line 1 ""C:\Async.cs""
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 428587, 432417);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 428781, 429069);
+
+                var
+                source = f_23129_428794_429068(@"#line 1 ""C:\Async.cs""
 #pragma checksum ""C:\Async.cs"" ""{ff1816ec-aa5e-4d10-87f7-6f4963833460}"" ""DBEB2A067B2F0E0D678A002C587A2806056C3DCE""
 
 using System.Threading.Tasks;
@@ -11593,13 +22104,22 @@ public class C
     {
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 429085, 429178);
 
-            var tree = SyntaxFactory.ParseSyntaxTree(source, encoding: Encoding.UTF8, path: "HIDDEN.cs");
-            var c = CSharpCompilation.Create("Compilation", new[] { tree }, new[] { MscorlibRef_v46 }, options: TestOptions.DebugDll.WithDebugPlusMode(true));
+                var
+                tree = f_23129_429096_429177(source, encoding: f_23129_429144_429157(), path: "HIDDEN.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 429192, 429338);
 
-            c.VerifyPdb(
-@"<symbols>
+                var
+                c = f_23129_429200_429337("Compilation", new[] { tree }, new[] { f_23129_429264_429279() }, options: f_23129_429292_429336(TestOptions.DebugDll, true))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 429354, 431053);
+
+                f_23129_429354_431052(
+                            c, @"<symbols>
   <files>
     <file id=""1"" name=""C:\Async.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""DB-EB-2A-06-7B-2F-0E-0D-67-8A-00-2C-58-7A-28-06-05-6C-3D-CE"" />
     <file id=""2"" name=""HIDDEN.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""8A-92-EE-2F-D6-6F-C0-69-F4-A8-54-CB-11-BE-A3-06-76-2C-9C-98"" />
@@ -11638,8 +22158,10 @@ public class C
   </methods>
 </symbols>
 ", format: DebugInformationFormat.Pdb);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 431069, 432406);
 
-            c.VerifyPdb(@"
+                f_23129_431069_432405(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name=""HIDDEN.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""8A-92-EE-2F-D6-6F-C0-69-F4-A8-54-CB-11-BE-A3-06-76-2C-9C-98"" />
@@ -11667,34 +22189,146 @@ public class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.PortablePdb);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 428587, 432417);
+
+                string
+                f_23129_428794_429068(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 428794, 429068);
+                    return return_v;
+                }
+
+
+                System.Text.Encoding
+                f_23129_429144_429157()
+                {
+                    var return_v = Encoding.UTF8;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 429144, 429157);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_429096_429177(string
+                text, System.Text.Encoding
+                encoding, string
+                path)
+                {
+                    var return_v = SyntaxFactory.ParseSyntaxTree(text, encoding: encoding, path: path);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 429096, 429177);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.MetadataReference
+                f_23129_429264_429279()
+                {
+                    var return_v = MscorlibRef_v46;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 429264, 429279);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                f_23129_429292_429336(Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                this_param, bool
+                debugPlusMode)
+                {
+                    var return_v = this_param.WithDebugPlusMode(debugPlusMode);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 429292, 429336);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_429200_429337(string
+                assemblyName, Microsoft.CodeAnalysis.SyntaxTree[]
+                syntaxTrees, Microsoft.CodeAnalysis.MetadataReference[]
+                references, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CSharpCompilation.Create(assemblyName, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>)syntaxTrees, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.MetadataReference>)references, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 429200, 429337);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_429354_431052(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 429354, 431052);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_431069_432405(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 431069, 432405);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 428587, 432417);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 428587, 432417);
+            }
         }
 
         [WorkItem(12923, "https://github.com/dotnet/roslyn/issues/12923")]
         [Fact]
         public void SequencePointsForConstructorWithHiddenInitializer()
         {
-            string initializerSource = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 432429, 435166);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 432609, 432719);
+
+                string
+                initializerSource = f_23129_432636_432718(@"
 #line hidden
 partial class C
 {
     int i = 42;
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 432735, 432837);
 
-            string constructorSource = WithWindowsLineBreaks(@"
+                string
+                constructorSource = f_23129_432762_432836(@"
 partial class C
 {
     C()
     {
     }
 }
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 432853, 433043);
 
-            var c = CreateCompilation(
-                new[] { Parse(initializerSource, "initializer.cs"), Parse(constructorSource, "constructor.cs") },
-                options: TestOptions.DebugDll);
+                var
+                c = f_23129_432861_433042(new[] { f_23129_432905_432947(initializerSource, "initializer.cs"), f_23129_432949_432991(constructorSource, "constructor.cs") }, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 433059, 434160);
 
-            c.VerifyPdb(@"
+                f_23129_433059_434159(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name=""constructor.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""EA-D6-0A-16-6C-6A-BC-C1-5D-98-0F-B7-4B-78-13-93-FB-C7-C2-5A"" />
@@ -11717,8 +22351,10 @@ partial class C
   </methods>
 </symbols>
 ", format: DebugInformationFormat.Pdb);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 434176, 435155);
 
-            c.VerifyPdb(@"
+                f_23129_434176_435154(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name=""initializer.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""84-32-24-D7-FE-32-63-BA-41-D5-17-A2-D5-90-23-B8-12-3C-AF-D5"" />
@@ -11735,14 +22371,107 @@ partial class C
     </method>
   </methods>
 </symbols>", format: DebugInformationFormat.PortablePdb);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 432429, 435166);
+
+                string
+                f_23129_432636_432718(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 432636, 432718);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_432762_432836(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 432762, 432836);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_432905_432947(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 432905, 432947);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_432949_432991(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 432949, 432991);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_432861_433042(Microsoft.CodeAnalysis.SyntaxTree[]
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 432861, 433042);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_433059_434159(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 433059, 434159);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_434176_435154(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                format)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb, format: format);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 434176, 435154);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 432429, 435166);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 432429, 435166);
+            }
         }
 
         [WorkItem(14437, "https://github.com/dotnet/roslyn/issues/14437")]
         [Fact]
         public void LocalFunctionSequencePoints()
         {
-            string source = WithWindowsLineBreaks(
-@"class Program
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 435178, 438256);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 435336, 435933);
+
+                string
+                source = f_23129_435352_435932(@"class Program
 {
     static int Main(string[] args)
     {                                                // 4
@@ -11755,10 +22484,16 @@ partial class C
         }                                            // 11
         return Local1(args) + Local2(args);          // 12
     }                                                // 13
-}");
-            var c = CreateCompilationWithMscorlib40AndSystemCore(source, options: TestOptions.DebugDll);
-            c.VerifyPdb(
-@"<symbols>
+}")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 435947, 436039);
+
+                var
+                c = f_23129_435955_436038(source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 436053, 438245);
+
+                f_23129_436053_438244(c, @"<symbols>
   <files>
     <file id=""1"" name="""" language=""C#"" />
   </files>
@@ -11806,13 +22541,62 @@ partial class C
     </method>
   </methods>
 </symbols>");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 435178, 438256);
+
+                string
+                f_23129_435352_435932(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 435352, 435932);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_435955_436038(string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilationWithMscorlib40AndSystemCore((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 435955, 436038);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_436053_438244(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 436053, 438244);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 435178, 438256);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 435178, 438256);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void SwitchInAsyncMethod()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 438268, 441012);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 438418, 438635);
+
+                var
+                source = @"
 using System;
 
 class Program
@@ -11828,10 +22612,17 @@ class Program
         }
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 438649, 438713);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_438657_438712(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 438729, 441001);
+
+                f_23129_438729_441000(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size       89 (0x59)
   .maxstack  2
@@ -11894,13 +22685,56 @@ class Program
   IL_0057:  nop
   IL_0058:  ret
 }", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 438268, 441012);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_438657_438712(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 438657, 438712);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_438729_441000(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 438729, 441000);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 438268, 441012);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 438268, 441012);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void WhileInAsyncMethod()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 441024, 443624);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 441173, 441359);
+
+                var
+                source = @"
 using System;
 
 class Program
@@ -11912,10 +22746,17 @@ class Program
             Console.WriteLine();
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 441373, 441437);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_441381_441436(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 441453, 443613);
+
+                f_23129_441453_443612(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size       83 (0x53)
   .maxstack  2
@@ -11976,13 +22817,56 @@ class Program
   IL_0052:  ret
 }
 ", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 441024, 443624);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_441381_441436(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 441381, 441436);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_441453_443612(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 441453, 443612);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 441024, 443624);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 441024, 443624);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ForInAsyncMethod()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 443636, 446528);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 443783, 443962);
+
+                var
+                source = @"
 using System;
 
 class Program
@@ -11993,10 +22877,17 @@ class Program
             Console.WriteLine();
     }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 443976, 444040);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_443984_444039(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 444056, 446517);
+
+                f_23129_444056_446516(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size       99 (0x63)
   .maxstack  3
@@ -12067,13 +22958,56 @@ class Program
   IL_0062:  ret
 }
 ", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 443636, 446528);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_443984_444039(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 443984, 444039);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_444056_446516(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 444056, 446516);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 443636, 446528);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 443636, 446528);
+            }
         }
 
         [Fact]
         [WorkItem(12564, "https://github.com/dotnet/roslyn/issues/12564")]
         public void ForWithInnerLocalsInAsyncMethod()
         {
-            var source = @"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 446540, 449639);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 446702, 446949);
+
+                var
+                source = @"
 using System;
 
 class Program
@@ -12085,10 +23019,17 @@ class Program
     }
     public static int M(out int x) { x = 0; return 0; }
 }
-";
-            var v = CompileAndVerify(source, options: TestOptions.DebugDll);
+"
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 446963, 447027);
 
-            v.VerifyIL("Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
+                var
+                v = f_23129_446971_447026(this, source, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 447043, 449628);
+
+                f_23129_447043_449627(
+                            v, "Program.<Test>d__0.System.Runtime.CompilerServices.IAsyncStateMachine.MoveNext()", @"
 {
   // Code size      109 (0x6d)
   .maxstack  3
@@ -12161,21 +23102,200 @@ class Program
   IL_006c:  ret
 }
 ", sequencePoints: "Program+<Test>d__0.MoveNext", source: source);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 446540, 449639);
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_446971_447026(Microsoft.CodeAnalysis.CSharp.UnitTests.PDB.PDBTests
+                this_param, string
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = this_param.CompileAndVerify((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 446971, 447026);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                f_23129_447043_449627(Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+                this_param, string
+                qualifiedMethodName, string
+                expectedIL, string
+                sequencePoints, string
+                source)
+                {
+                    var return_v = this_param.VerifyIL(qualifiedMethodName, expectedIL, sequencePoints: sequencePoints, source: source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 447043, 449627);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 446540, 449639);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 446540, 449639);
+            }
         }
 
         [ConditionalFact(typeof(WindowsDesktopOnly), Reason = ConditionalSkipReason.NativePdbRequiresDesktop)]
         [WorkItem(23525, "https://github.com/dotnet/roslyn/issues/23525")]
         public void InvalidCharacterInPdbPath()
         {
-            using (var outStream = Temp.CreateFile().Open())
+            try
             {
-                var compilation = CreateCompilation("");
-                var result = compilation.Emit(outStream, options: new EmitOptions(pdbFilePath: "test\\?.pdb", debugInformationFormat: DebugInformationFormat.Embedded));
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 449651, 450604);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 449903, 450593);
+                using (var
+                outStream = f_23129_449926_449950(f_23129_449926_449943(f_23129_449926_449930()))
+                )
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 449984, 450024);
 
-                Assert.False(result.Success);
-                result.Diagnostics.Verify(
-                    // error CS2021: File name 'test\?.pdb' is empty, contains invalid characters, has a drive specification without an absolute path, or is too long
-                    Diagnostic(ErrorCode.FTL_InvalidInputFileName).WithArguments("test\\?.pdb").WithLocation(1, 1));
+                    var
+                    compilation = f_23129_450002_450023("")
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 450042, 450194);
+
+                    var
+                    result = f_23129_450055_450193(compilation, outStream, options: f_23129_450092_450192(pdbFilePath: "test\\?.pdb", debugInformationFormat: DebugInformationFormat.Embedded))
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 450214, 450249);
+
+                    f_23129_450214_450248(f_23129_450233_450247(result));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 450267, 450578);
+
+                    result.Diagnostics.Verify(f_23129_450482_450576(f_23129_450482_450557(f_23129_450482_450528(ErrorCode.FTL_InvalidInputFileName), "test\\?.pdb"), 1, 1));
+                    DynAbs.Tracing.TraceSender.TraceExitUsing(23129, 449903, 450593);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 449651, 450604);
+
+                Microsoft.CodeAnalysis.Test.Utilities.TempRoot
+                f_23129_449926_449930()
+                {
+                    var return_v = Temp;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 449926, 449930);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.TempFile
+                f_23129_449926_449943(Microsoft.CodeAnalysis.Test.Utilities.TempRoot
+                this_param)
+                {
+                    var return_v = this_param.CreateFile();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 449926, 449943);
+                    return return_v;
+                }
+
+
+                System.IO.FileStream
+                f_23129_449926_449950(Microsoft.CodeAnalysis.Test.Utilities.TempFile
+                this_param)
+                {
+                    var return_v = this_param.Open();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 449926, 449950);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_450002_450023(string
+                source)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450002, 450023);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_23129_450092_450192(string
+                pdbFilePath, Microsoft.CodeAnalysis.Emit.DebugInformationFormat
+                debugInformationFormat)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Emit.EmitOptions(pdbFilePath: pdbFilePath, debugInformationFormat: debugInformationFormat);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450092, 450192);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.EmitResult
+                f_23129_450055_450193(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                this_param, System.IO.FileStream
+                peStream, Microsoft.CodeAnalysis.Emit.EmitOptions
+                options)
+                {
+                    var return_v = this_param.Emit((System.IO.Stream)peStream, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450055, 450193);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_450233_450247(Microsoft.CodeAnalysis.Emit.EmitResult
+                this_param)
+                {
+                    var return_v = this_param.Success;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 450233, 450247);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_450214_450248(bool
+                condition)
+                {
+                    var return_v = CustomAssert.False(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450214, 450248);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_450482_450528(Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code)
+                {
+                    var return_v = Diagnostic((object)code);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450482, 450528);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_450482_450557(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, params object[]
+                arguments)
+                {
+                    var return_v = this_param.WithArguments(arguments);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450482, 450557);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                f_23129_450482_450576(Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription
+                this_param, int
+                line, int
+                column)
+                {
+                    var return_v = this_param.WithLocation(line, column);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450482, 450576);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 449651, 450604);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 449651, 450604);
             }
         }
 
@@ -12183,7 +23303,13 @@ class Program
         [WorkItem(38954, "https://github.com/dotnet/roslyn/issues/38954")]
         public void FilesOneWithNoMethodBody()
         {
-            string source1 = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 450616, 452355);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 450771, 450924);
+
+                string
+                source1 = f_23129_450788_450923(@"
 using System;
 
 class C
@@ -12193,16 +23319,34 @@ class C
         Console.WriteLine();
     }
 }
-");
-            string source2 = WithWindowsLineBreaks(@"
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 450938, 450996);
+
+                string
+                source2 = f_23129_450955_450995(@"
 // no code
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 451012, 451058);
 
-            var tree1 = Parse(source1, "f:/build/goo.cs");
-            var tree2 = Parse(source2, "f:/build/nocode.cs");
-            var c = CreateCompilation(new[] { tree1, tree2 }, options: TestOptions.DebugDll);
+                var
+                tree1 = f_23129_451024_451057(source1, "f:/build/goo.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 451072, 451121);
 
-            c.VerifyPdb(@"
+                var
+                tree2 = f_23129_451084_451120(source2, "f:/build/nocode.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 451135, 451216);
+
+                var
+                c = f_23129_451143_451215(new[] { tree1, tree2 }, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 451232, 452344);
+
+                f_23129_451232_452343(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name=""f:/build/goo.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""5D-7D-CF-1B-79-12-0E-0A-80-13-E0-98-7E-5C-AA-3B-63-D8-7E-4F"" />
@@ -12227,20 +23371,111 @@ class C
   </methods>
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 450616, 452355);
+
+                string
+                f_23129_450788_450923(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450788, 450923);
+                    return return_v;
+                }
+
+
+                string
+                f_23129_450955_450995(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 450955, 450995);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_451024_451057(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 451024, 451057);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_451084_451120(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 451084, 451120);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_451143_451215(Microsoft.CodeAnalysis.SyntaxTree[]
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 451143, 451215);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_451232_452343(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 451232, 452343);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 450616, 452355);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 450616, 452355);
+            }
         }
 
         [Fact]
         [WorkItem(38954, "https://github.com/dotnet/roslyn/issues/38954")]
         public void SingleFileWithNoMethodBody()
         {
-            string source = WithWindowsLineBreaks(@"
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(23129, 452367, 453005);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 452524, 452581);
+
+                string
+                source = f_23129_452540_452580(@"
 // no code
-");
+")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 452597, 452644);
 
-            var tree = Parse(source, "f:/build/nocode.cs");
-            var c = CreateCompilation(new[] { tree }, options: TestOptions.DebugDll);
+                var
+                tree = f_23129_452608_452643(source, "f:/build/nocode.cs")
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 452658, 452731);
 
-            c.VerifyPdb(@"
+                var
+                c = f_23129_452666_452730(new[] { tree }, options: TestOptions.DebugDll)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 452747, 452994);
+
+                f_23129_452747_452993(
+                            c, @"
 <symbols>
   <files>
     <file id=""1"" name=""f:/build/nocode.cs"" language=""C#"" checksumAlgorithm=""SHA1"" checksum=""8B-1D-3F-75-E0-A8-8F-90-B2-D3-52-CF-71-9B-17-29-3C-70-7A-42"" />
@@ -12248,6 +23483,98 @@ class C
   <methods />
 </symbols>
 ");
+                DynAbs.Tracing.TraceSender.TraceExitMethod(23129, 452367, 453005);
+
+                string
+                f_23129_452540_452580(string
+                source)
+                {
+                    var return_v = WithWindowsLineBreaks(source);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 452540, 452580);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_23129_452608_452643(string
+                text, string
+                filename)
+                {
+                    var return_v = Parse(text, filename);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 452608, 452643);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                f_23129_452666_452730(Microsoft.CodeAnalysis.SyntaxTree[]
+                source, Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+                options)
+                {
+                    var return_v = CreateCompilation((Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options: options);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 452666, 452730);
+                    return return_v;
+                }
+
+
+                bool
+                f_23129_452747_452993(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+                compilation, string
+                expectedPdb)
+                {
+                    var return_v = compilation.VerifyPdb(expectedPdb);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(23129, 452747, 452993);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(23129, 452367, 453005);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 452367, 453005);
+            }
         }
+
+        public PDBTests()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(23129, 822, 453012);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(23129, 822, 453012);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 822, 453012);
+        }
+
+
+        static PDBTests()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(23129, 822, 453012);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(23129, 924, 990);
+            s_valueTupleRefs = new[] { f_23129_951_973(), f_23129_975_988() }; DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(23129, 822, 453012);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(23129, 822, 453012);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(23129, 822, 453012);
+
+        static Microsoft.CodeAnalysis.MetadataReference
+        f_23129_951_973()
+        {
+            var return_v = SystemRuntimeFacadeRef;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 951, 973);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.MetadataReference
+        f_23129_975_988()
+        {
+            var return_v = ValueTupleRef;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(23129, 975, 988);
+            return return_v;
+        }
+
     }
 }

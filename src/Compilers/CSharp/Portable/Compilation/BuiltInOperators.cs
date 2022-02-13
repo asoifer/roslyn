@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -14,43 +14,140 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// Internal cache of built-in operators.
-    /// Cache is compilation-specific because it uses compilation-specific SpecialTypes.
-    /// </summary>
-    internal class BuiltInOperators
-    {
-        private readonly CSharpCompilation _compilation;
+internal class BuiltInOperators
+{
+private readonly CSharpCompilation _compilation;
 
-        //actual lazily-constructed caches of built-in operators.
-        private ImmutableArray<UnaryOperatorSignature>[] _builtInUnaryOperators;
-        private ImmutableArray<BinaryOperatorSignature>[][] _builtInOperators;
+private ImmutableArray<UnaryOperatorSignature>[] _builtInUnaryOperators;
 
-        internal BuiltInOperators(CSharpCompilation compilation)
+private ImmutableArray<BinaryOperatorSignature>[][] _builtInOperators;
+
+internal BuiltInOperators(CSharpCompilation compilation)
+		{
+			try
+{DynAbs.Tracing.TraceSender.TraceEnterConstructor(10913,1034,1153);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,778,790);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,919,941);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1004,1021);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1115,1142);
+
+_compilation = compilation;
+DynAbs.Tracing.TraceSender.TraceExitConstructor(10913,1034,1153);
+}catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,1034,1153);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,1034,1153);
+}
+		}
+
+private ImmutableArray<UnaryOperatorSignature> GetSignaturesFromUnaryOperatorKinds(int[] operatorKinds)
+		{
+			try
         {
-            _compilation = compilation;
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,1378,1782);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1506,1571);
+
+var 
+builder = f_10913_1520_1570()
+;
+try {DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1585,1719);
+foreach(var kind in f_10913_1606_1619_I(operatorKinds) )
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,1585,1719);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1653,1704);
+
+f_10913_1653_1703(                builder, f_10913_1665_1702(this, kind));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,1585,1719);
+}
+}catch(System.Exception) { DynAbs.Tracing.TraceSender.TraceExitLoopByException(10913,1,135);
+ throw; }finally{DynAbs.Tracing.TraceSender.TraceExitLoop(10913,1,135);
+}DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1735,1771);
+
+return f_10913_1742_1770(builder);
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,1378,1782);
+
+Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_1520_1570()
+{
+var return_v = ArrayBuilder<UnaryOperatorSignature>.GetInstance();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 1520, 1570);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature
+f_10913_1665_1702(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int
+kind)
+{
+var return_v = this_param.GetSignature( (Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind)kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 1665, 1702);
+return return_v;
+}
+
+
+int
+f_10913_1653_1703(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+this_param,Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature
+item)
+{
+this_param.Add( item);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 1653, 1703);
+return 0;
+}
+
+
+int[]
+f_10913_1606_1619_I(int[]
+i)
+{
+var return_v = i;
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 1606, 1619);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_1742_1770(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+this_param)
+{
+var return_v = this_param.ToImmutableAndFree();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 1742, 1770);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,1378,1782);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,1378,1782);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-        // PERF: Use int instead of UnaryOperatorKind so the compiler can use array literal initialization.
-        //       The most natural type choice, Enum arrays, are not blittable due to a CLR limitation.
-        private ImmutableArray<UnaryOperatorSignature> GetSignaturesFromUnaryOperatorKinds(int[] operatorKinds)
+internal void GetSimpleBuiltInOperators(UnaryOperatorKind kind, ArrayBuilder<UnaryOperatorSignature> operators, bool skipNativeIntegerOperators)
+		{
+			try
         {
-            var builder = ArrayBuilder<UnaryOperatorSignature>.GetInstance();
-            foreach (var kind in operatorKinds)
-            {
-                builder.Add(GetSignature((UnaryOperatorKind)kind));
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,1794,15091);
 
-            return builder.ToImmutableAndFree();
-        }
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,1963,14600) || true) && (_builtInUnaryOperators == null)
+)
 
-        internal void GetSimpleBuiltInOperators(UnaryOperatorKind kind, ArrayBuilder<UnaryOperatorSignature> operators, bool skipNativeIntegerOperators)
-        {
-            if (_builtInUnaryOperators == null)
-            {
-                var allOperators = new ImmutableArray<UnaryOperatorSignature>[]
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,1963,14600);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,2031,14489);
+
+var 
+allOperators = new ImmutableArray<UnaryOperatorSignature>[]
                 {
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_2135_4290(this, new []
                     {
                         (int)UnaryOperatorKind.SBytePostfixIncrement,
                         (int)UnaryOperatorKind.BytePostfixIncrement,
@@ -81,7 +178,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)UnaryOperatorKind.LiftedDoublePostfixIncrement,
                         (int)UnaryOperatorKind.LiftedDecimalPostfixIncrement,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_4313_6468(this, new []
                     {
                         (int)UnaryOperatorKind.SBytePostfixDecrement,
                         (int)UnaryOperatorKind.BytePostfixDecrement,
@@ -112,7 +209,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)UnaryOperatorKind.LiftedDoublePostfixDecrement,
                         (int)UnaryOperatorKind.LiftedDecimalPostfixDecrement,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_6491_8618(this, new []
                     {
                         (int)UnaryOperatorKind.SBytePrefixIncrement,
                         (int)UnaryOperatorKind.BytePrefixIncrement,
@@ -143,7 +240,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)UnaryOperatorKind.LiftedDoublePrefixIncrement,
                         (int)UnaryOperatorKind.LiftedDecimalPrefixIncrement,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_8641_10768(this, new []
                     {
                         (int)UnaryOperatorKind.SBytePrefixDecrement,
                         (int)UnaryOperatorKind.BytePrefixDecrement,
@@ -174,7 +271,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)UnaryOperatorKind.LiftedDoublePrefixDecrement,
                         (int)UnaryOperatorKind.LiftedDecimalPrefixDecrement,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_10791_12082(this, new []
                     {
                         (int)UnaryOperatorKind.IntUnaryPlus,
                         (int)UnaryOperatorKind.UIntUnaryPlus,
@@ -195,7 +292,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)UnaryOperatorKind.LiftedDoubleUnaryPlus,
                         (int)UnaryOperatorKind.LiftedDecimalUnaryPlus,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_12105_13008(this, new []
                     {
                         (int)UnaryOperatorKind.IntUnaryMinus,
                         (int)UnaryOperatorKind.LongUnaryMinus,
@@ -210,12 +307,12 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)UnaryOperatorKind.LiftedDoubleUnaryMinus,
                         (int)UnaryOperatorKind.LiftedDecimalUnaryMinus,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_13031_13264(this, new []
                     {
                         (int)UnaryOperatorKind.BoolLogicalNegation,
                         (int)UnaryOperatorKind.LiftedBoolLogicalNegation,
                     }),
-                    GetSignaturesFromUnaryOperatorKinds(new []
+f_10913_13287_14266(this, new []
                     {
                         (int)UnaryOperatorKind.IntBitwiseComplement,
                         (int)UnaryOperatorKind.UIntBitwiseComplement,
@@ -233,75 +330,721 @@ namespace Microsoft.CodeAnalysis.CSharp
                     // No built-in operator true or operator false
                     ImmutableArray<UnaryOperatorSignature>.Empty,
                     ImmutableArray<UnaryOperatorSignature>.Empty,
-                };
-
-                Interlocked.CompareExchange(ref _builtInUnaryOperators, allOperators, null);
-            }
-
-            foreach (var op in _builtInUnaryOperators[kind.OperatorIndex()])
-            {
-                if (skipNativeIntegerOperators)
-                {
-                    switch (op.Kind.OperandTypes())
-                    {
-                        case UnaryOperatorKind.NInt:
-                        case UnaryOperatorKind.NUInt:
-                            continue;
-                    }
                 }
-                operators.Add(op);
-            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,14509,14585);
+
+f_10913_14509_14584(ref _builtInUnaryOperators, allOperators, null);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,1963,14600);
+}
+try {DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,14616,15080);
+foreach(var op in f_10913_14635_14679_I(_builtInUnaryOperators[f_10913_14658_14678(kind)]) )
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,14616,15080);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,14713,15029) || true) && (skipNativeIntegerOperators)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,14713,15029);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,14785,15010);
+
+switch (f_10913_14793_14815(op.Kind))
+                    {
+
+case UnaryOperatorKind.NInt:
+                        case UnaryOperatorKind.NUInt:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,14785,15010);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,14978,14987);
+
+continue;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,14785,15010);
+                    }
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,14713,15029);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15047,15065);
+
+f_10913_15047_15064(                operators, op);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,14616,15080);
+}
+}catch(System.Exception) { DynAbs.Tracing.TraceSender.TraceExitLoopByException(10913,1,465);
+ throw; }finally{DynAbs.Tracing.TraceSender.TraceExitLoop(10913,1,465);
+}DynAbs.Tracing.TraceSender.TraceExitMethod(10913,1794,15091);
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_2135_4290(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 2135, 4290);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_4313_6468(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 4313, 6468);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_6491_8618(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 6491, 8618);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_8641_10768(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 8641, 10768);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_10791_12082(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 10791, 12082);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_12105_13008(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 12105, 13008);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_13031_13264(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 13031, 13264);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_13287_14266(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromUnaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 13287, 14266);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>[]?
+f_10913_14509_14584(ref System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>[]?
+location1,System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>[]
+value,System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>[]?
+comparand)
+{
+var return_v = Interlocked.CompareExchange( ref location1, value, comparand);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 14509, 14584);
+return return_v;
+}
+
+
+int
+f_10913_14658_14678(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+kind)
+{
+var return_v = kind.OperatorIndex();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 14658, 14678);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+f_10913_14793_14815(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 14793, 14815);
+return return_v;
+}
+
+
+int
+f_10913_15047_15064(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+this_param,Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature
+item)
+{
+this_param.Add( item);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15047, 15064);
+return 0;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+f_10913_14635_14679_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature>
+i)
+{
+var return_v = i;
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 14635, 14679);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,1794,15091);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,1794,15091);
+}
+		}
 
-        internal UnaryOperatorSignature GetSignature(UnaryOperatorKind kind)
+internal UnaryOperatorSignature GetSignature(UnaryOperatorKind kind)
+		{
+			try
         {
-            TypeSymbol opType;
-            switch (kind.OperandTypes())
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,15103,17408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15196,15214);
+
+TypeSymbol 
+opType
+=default(TypeSymbol);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15228,17155);
+
+switch (f_10913_15236_15255(kind))
             {
-                case UnaryOperatorKind.SByte: opType = _compilation.GetSpecialType(SpecialType.System_SByte); break;
-                case UnaryOperatorKind.Byte: opType = _compilation.GetSpecialType(SpecialType.System_Byte); break;
-                case UnaryOperatorKind.Short: opType = _compilation.GetSpecialType(SpecialType.System_Int16); break;
-                case UnaryOperatorKind.UShort: opType = _compilation.GetSpecialType(SpecialType.System_UInt16); break;
-                case UnaryOperatorKind.Int: opType = _compilation.GetSpecialType(SpecialType.System_Int32); break;
-                case UnaryOperatorKind.UInt: opType = _compilation.GetSpecialType(SpecialType.System_UInt32); break;
-                case UnaryOperatorKind.Long: opType = _compilation.GetSpecialType(SpecialType.System_Int64); break;
-                case UnaryOperatorKind.ULong: opType = _compilation.GetSpecialType(SpecialType.System_UInt64); break;
-                case UnaryOperatorKind.NInt: opType = _compilation.CreateNativeIntegerTypeSymbol(signed: true); break;
-                case UnaryOperatorKind.NUInt: opType = _compilation.CreateNativeIntegerTypeSymbol(signed: false); break;
-                case UnaryOperatorKind.Char: opType = _compilation.GetSpecialType(SpecialType.System_Char); break;
-                case UnaryOperatorKind.Float: opType = _compilation.GetSpecialType(SpecialType.System_Single); break;
-                case UnaryOperatorKind.Double: opType = _compilation.GetSpecialType(SpecialType.System_Double); break;
-                case UnaryOperatorKind.Decimal: opType = _compilation.GetSpecialType(SpecialType.System_Decimal); break;
-                case UnaryOperatorKind.Bool: opType = _compilation.GetSpecialType(SpecialType.System_Boolean); break;
-                default: throw ExceptionUtilities.UnexpectedValue(kind.OperandTypes());
+
+case UnaryOperatorKind.SByte: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15319,15382);
+
+opType = f_10913_15328_15381(_compilation, SpecialType.System_SByte);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,15383,15389);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Byte: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15436,15498);
+
+opType = f_10913_15445_15497(_compilation, SpecialType.System_Byte);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,15499,15505);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Short: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15553,15616);
+
+opType = f_10913_15562_15615(_compilation, SpecialType.System_Int16);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,15617,15623);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.UShort: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15672,15736);
+
+opType = f_10913_15681_15735(_compilation, SpecialType.System_UInt16);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,15737,15743);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Int: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15789,15852);
+
+opType = f_10913_15798_15851(_compilation, SpecialType.System_Int32);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,15853,15859);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.UInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,15906,15970);
+
+opType = f_10913_15915_15969(_compilation, SpecialType.System_UInt32);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,15971,15977);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Long: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16024,16087);
+
+opType = f_10913_16033_16086(_compilation, SpecialType.System_Int64);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16088,16094);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.ULong: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16142,16206);
+
+opType = f_10913_16151_16205(_compilation, SpecialType.System_UInt64);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16207,16213);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.NInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16260,16326);
+
+opType = f_10913_16269_16325(_compilation, signed: true);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16327,16333);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.NUInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16381,16448);
+
+opType = f_10913_16390_16447(_compilation, signed: false);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16449,16455);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Char: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16502,16564);
+
+opType = f_10913_16511_16563(_compilation, SpecialType.System_Char);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16565,16571);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Float: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16619,16683);
+
+opType = f_10913_16628_16682(_compilation, SpecialType.System_Single);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16684,16690);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Double: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16739,16803);
+
+opType = f_10913_16748_16802(_compilation, SpecialType.System_Double);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16804,16810);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Decimal: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16860,16925);
+
+opType = f_10913_16869_16924(_compilation, SpecialType.System_Decimal);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,16926,16932);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+case UnaryOperatorKind.Bool: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,16979,17044);
+
+opType = f_10913_16988_17043(_compilation, SpecialType.System_Boolean);
+DynAbs.Tracing.TraceSender.TraceBreak(10913,17045,17051);
+
+break;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
+
+default: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,15228,17155);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17078,17140);
+
+throw f_10913_17084_17139(f_10913_17119_17138(kind));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,15228,17155);
             }
 
-            if (kind.IsLifted())
-            {
-                opType = _compilation.GetSpecialType(SpecialType.System_Nullable_T).Construct(opType);
-            }
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17171,17325) || true) && (f_10913_17175_17190(kind))
+)
 
-            return new UnaryOperatorSignature(kind, opType, opType);
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,17171,17325);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17224,17310);
+
+opType = f_10913_17233_17309(f_10913_17233_17291(_compilation, SpecialType.System_Nullable_T), opType);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,17171,17325);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17341,17397);
+
+return f_10913_17348_17396(kind, opType, opType);
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,15103,17408);
+
+Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+f_10913_15236_15255(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15236, 15255);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_15328_15381(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15328, 15381);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_15445_15497(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15445, 15497);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_15562_15615(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15562, 15615);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_15681_15735(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15681, 15735);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_15798_15851(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15798, 15851);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_15915_15969(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 15915, 15969);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16033_16086(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16033, 16086);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16151_16205(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16151, 16205);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16269_16325(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16269, 16325);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16390_16447(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16390, 16447);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16511_16563(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16511, 16563);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16628_16682(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16628, 16682);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16748_16802(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16748, 16802);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16869_16924(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16869, 16924);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_16988_17043(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 16988, 17043);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+f_10913_17119_17138(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17119, 17138);
+return return_v;
+}
+
+
+System.Exception
+f_10913_17084_17139(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+o)
+{
+var return_v = ExceptionUtilities.UnexpectedValue( (object)o);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17084, 17139);
+return return_v;
+}
+
+
+bool
+f_10913_17175_17190(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+kind)
+{
+var return_v = kind.IsLifted();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17175, 17190);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_17233_17291(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17233, 17291);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_17233_17309(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17233, 17309);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature
+f_10913_17348_17396(Microsoft.CodeAnalysis.CSharp.UnaryOperatorKind
+kind,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+operandType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+returnType)
+{
+var return_v = new Microsoft.CodeAnalysis.CSharp.UnaryOperatorSignature( kind, operandType, returnType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17348, 17396);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,15103,17408);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,15103,17408);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-        // PERF: Use int instead of BinaryOperatorKind so the compiler can use array literal initialization.
-        //       The most natural type choice, Enum arrays, are not blittable due to a CLR limitation.
-        private ImmutableArray<BinaryOperatorSignature> GetSignaturesFromBinaryOperatorKinds(int[] operatorKinds)
+private ImmutableArray<BinaryOperatorSignature> GetSignaturesFromBinaryOperatorKinds(int[] operatorKinds)
+		{
+			try
         {
-            var builder = ArrayBuilder<BinaryOperatorSignature>.GetInstance();
-            foreach (var kind in operatorKinds)
-            {
-                builder.Add(GetSignature((BinaryOperatorKind)kind));
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,17634,18042);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17764,17830);
 
-            return builder.ToImmutableAndFree();
+var 
+builder = f_10913_17778_17829()
+;
+try {DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17844,17979);
+foreach(var kind in f_10913_17865_17878_I(operatorKinds) )
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,17844,17979);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17912,17964);
+
+f_10913_17912_17963(                builder, f_10913_17924_17962(this, kind));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,17844,17979);
+}
+}catch(System.Exception) { DynAbs.Tracing.TraceSender.TraceExitLoopByException(10913,1,136);
+ throw; }finally{DynAbs.Tracing.TraceSender.TraceExitLoop(10913,1,136);
+}DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,17995,18031);
+
+return f_10913_18002_18030(builder);
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,17634,18042);
+
+Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_17778_17829()
+{
+var return_v = ArrayBuilder<BinaryOperatorSignature>.GetInstance();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17778, 17829);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_17924_17962(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int
+kind)
+{
+var return_v = this_param.GetSignature( (Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind)kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17924, 17962);
+return return_v;
+}
+
+
+int
+f_10913_17912_17963(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+item)
+{
+this_param.Add( item);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17912, 17963);
+return 0;
+}
+
+
+int[]
+f_10913_17865_17878_I(int[]
+i)
+{
+var return_v = i;
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 17865, 17878);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_18002_18030(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+this_param)
+{
+var return_v = this_param.ToImmutableAndFree();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 18002, 18030);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,17634,18042);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,17634,18042);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-        internal void GetSimpleBuiltInOperators(BinaryOperatorKind kind, ArrayBuilder<BinaryOperatorSignature> operators, bool skipNativeIntegerOperators)
+internal void GetSimpleBuiltInOperators(BinaryOperatorKind kind, ArrayBuilder<BinaryOperatorSignature> operators, bool skipNativeIntegerOperators)
+		{
+			try
         {
-            if (_builtInOperators == null)
-            {
-                var logicalOperators = new ImmutableArray<BinaryOperatorSignature>[]
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,18054,41054);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,18225,40540) || true) && (_builtInOperators == null)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,18225,40540);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,18288,19783);
+
+var 
+logicalOperators = new ImmutableArray<BinaryOperatorSignature>[]
                 {
                     ImmutableArray<BinaryOperatorSignature>.Empty, //multiplication
                     ImmutableArray<BinaryOperatorSignature>.Empty, //addition
@@ -316,14 +1059,17 @@ namespace Microsoft.CodeAnalysis.CSharp
                     ImmutableArray<BinaryOperatorSignature>.Empty, //less than
                     ImmutableArray<BinaryOperatorSignature>.Empty, //greater than or equal
                     ImmutableArray<BinaryOperatorSignature>.Empty, //less than or equal
-                    ImmutableArray.Create<BinaryOperatorSignature>(GetSignature(BinaryOperatorKind.LogicalBoolAnd)), //and
+f_10913_19465_19560(f_10913_19512_19559(this, BinaryOperatorKind.LogicalBoolAnd)), //and
                     ImmutableArray<BinaryOperatorSignature>.Empty, //xor
-                    ImmutableArray.Create<BinaryOperatorSignature>(GetSignature(BinaryOperatorKind.LogicalBoolOr)), //or
-                };
+f_10913_19663_19757(f_10913_19710_19756(this, BinaryOperatorKind.LogicalBoolOr)), //or
+                }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,19803,40347);
 
-                var nonLogicalOperators = new ImmutableArray<BinaryOperatorSignature>[]
+var 
+nonLogicalOperators = new ImmutableArray<BinaryOperatorSignature>[]
                 {
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_19915_21315(this, new []
                     {
                         (int)BinaryOperatorKind.IntMultiplication,
                         (int)BinaryOperatorKind.UIntMultiplication,
@@ -344,7 +1090,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleMultiplication,
                         (int)BinaryOperatorKind.LiftedDecimalMultiplication,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_21338_22858(this, new []
                     {
                         (int)BinaryOperatorKind.IntAddition,
                         (int)BinaryOperatorKind.UIntAddition,
@@ -368,7 +1114,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.StringAndObjectConcatenation,
                         (int)BinaryOperatorKind.ObjectAndStringConcatenation,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_22881_24227(this, new []
                     {
                         (int)BinaryOperatorKind.IntSubtraction,
                         (int)BinaryOperatorKind.UIntSubtraction,
@@ -389,7 +1135,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleSubtraction,
                         (int)BinaryOperatorKind.LiftedDecimalSubtraction,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_24250_25542(this, new []
                     {
                         (int)BinaryOperatorKind.IntDivision,
                         (int)BinaryOperatorKind.UIntDivision,
@@ -410,7 +1156,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleDivision,
                         (int)BinaryOperatorKind.LiftedDecimalDivision,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_25565_26875(this, new []
                     {
                         (int)BinaryOperatorKind.IntRemainder,
                         (int)BinaryOperatorKind.UIntRemainder,
@@ -431,7 +1177,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleRemainder,
                         (int)BinaryOperatorKind.LiftedDecimalRemainder,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_26898_27794(this, new []
                     {
                         (int)BinaryOperatorKind.IntLeftShift,
                         (int)BinaryOperatorKind.UIntLeftShift,
@@ -446,7 +1192,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedNIntLeftShift,
                         (int)BinaryOperatorKind.LiftedNUIntLeftShift,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_27817_28725(this, new []
                     {
                         (int)BinaryOperatorKind.IntRightShift,
                         (int)BinaryOperatorKind.UIntRightShift,
@@ -461,7 +1207,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedNIntRightShift,
                         (int)BinaryOperatorKind.LiftedNUIntRightShift,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_28748_30236(this, new []
                     {
                         (int)BinaryOperatorKind.IntEqual,
                         (int)BinaryOperatorKind.UIntEqual,
@@ -486,7 +1232,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.ObjectEqual,
                         (int)BinaryOperatorKind.StringEqual,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_30259_31813(this, new []
                     {
                         (int)BinaryOperatorKind.IntNotEqual,
                         (int)BinaryOperatorKind.UIntNotEqual,
@@ -511,7 +1257,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.ObjectNotEqual,
                         (int)BinaryOperatorKind.StringNotEqual,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_31836_33182(this, new []
                     {
                         (int)BinaryOperatorKind.IntGreaterThan,
                         (int)BinaryOperatorKind.UIntGreaterThan,
@@ -532,7 +1278,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleGreaterThan,
                         (int)BinaryOperatorKind.LiftedDecimalGreaterThan,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_33205_34497(this, new []
                     {
                         (int)BinaryOperatorKind.IntLessThan,
                         (int)BinaryOperatorKind.UIntLessThan,
@@ -553,7 +1299,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleLessThan,
                         (int)BinaryOperatorKind.LiftedDecimalLessThan,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_34520_35992(this, new []
                     {
                         (int)BinaryOperatorKind.IntGreaterThanOrEqual,
                         (int)BinaryOperatorKind.UIntGreaterThanOrEqual,
@@ -574,7 +1320,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleGreaterThanOrEqual,
                         (int)BinaryOperatorKind.LiftedDecimalGreaterThanOrEqual,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_36015_37433(this, new []
                     {
                         (int)BinaryOperatorKind.IntLessThanOrEqual,
                         (int)BinaryOperatorKind.UIntLessThanOrEqual,
@@ -595,7 +1341,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedDoubleLessThanOrEqual,
                         (int)BinaryOperatorKind.LiftedDecimalLessThanOrEqual,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_37456_38402(this, new []
                     {
                         (int)BinaryOperatorKind.IntAnd,
                         (int)BinaryOperatorKind.UIntAnd,
@@ -612,7 +1358,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedNUIntAnd,
                         (int)BinaryOperatorKind.LiftedBoolAnd,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_38425_39371(this, new []
                     {
                         (int)BinaryOperatorKind.IntXor,
                         (int)BinaryOperatorKind.UIntXor,
@@ -629,7 +1375,7 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedNUIntXor,
                         (int)BinaryOperatorKind.LiftedBoolXor,
                     }),
-                    GetSignaturesFromBinaryOperatorKinds(new []
+f_10913_39394_40326(this, new []
                     {
                         (int)BinaryOperatorKind.IntOr,
                         (int)BinaryOperatorKind.UIntOr,
@@ -646,272 +1392,2194 @@ namespace Microsoft.CodeAnalysis.CSharp
                         (int)BinaryOperatorKind.LiftedNUIntOr,
                         (int)BinaryOperatorKind.LiftedBoolOr,
                     }),
-                };
-
-                var allOperators = new[] { nonLogicalOperators, logicalOperators };
-
-                Interlocked.CompareExchange(ref _builtInOperators, allOperators, null);
-            }
-
-            foreach (var op in _builtInOperators[kind.IsLogical() ? 1 : 0][kind.OperatorIndex()])
-            {
-                if (skipNativeIntegerOperators)
-                {
-                    switch (op.Kind.OperandTypes())
-                    {
-                        case BinaryOperatorKind.NInt:
-                        case BinaryOperatorKind.NUInt:
-                            continue;
-                    }
                 }
-                operators.Add(op);
-            }
-        }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,40367,40434);
 
-        internal BinaryOperatorSignature GetSignature(BinaryOperatorKind kind)
+var 
+allOperators = new[] { nonLogicalOperators, logicalOperators }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,40454,40525);
+
+f_10913_40454_40524(ref _builtInOperators, allOperators, null);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,18225,40540);
+}
+try {DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,40556,41043);
+foreach(var op in f_10913_40575_40640_I(_builtInOperators[(DynAbs.Tracing.TraceSender.Conditional_F1(10913, 40593, 40609)||((f_10913_40593_40609(kind)&&DynAbs.Tracing.TraceSender.Conditional_F2(10913, 40612, 40613))||DynAbs.Tracing.TraceSender.Conditional_F3(10913, 40616, 40617)))?1 :0][f_10913_40619_40639(kind)]) )
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,40556,41043);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,40674,40992) || true) && (skipNativeIntegerOperators)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,40674,40992);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,40746,40973);
+
+switch (f_10913_40754_40776(op.Kind))
+                    {
+
+case BinaryOperatorKind.NInt:
+                        case BinaryOperatorKind.NUInt:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,40746,40973);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,40941,40950);
+
+continue;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,40746,40973);
+                    }
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,40674,40992);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,41010,41028);
+
+f_10913_41010_41027(                operators, op);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,40556,41043);
+}
+}catch(System.Exception) { DynAbs.Tracing.TraceSender.TraceExitLoopByException(10913,1,488);
+ throw; }finally{DynAbs.Tracing.TraceSender.TraceExitLoop(10913,1,488);
+}DynAbs.Tracing.TraceSender.TraceExitMethod(10913,18054,41054);
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_19512_19559(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.GetSignature( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 19512, 19559);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_19465_19560(Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+item)
+{
+var return_v = ImmutableArray.Create<BinaryOperatorSignature>( item);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 19465, 19560);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_19710_19756(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.GetSignature( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 19710, 19756);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_19663_19757(Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+item)
+{
+var return_v = ImmutableArray.Create<BinaryOperatorSignature>( item);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 19663, 19757);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_19915_21315(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 19915, 21315);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_21338_22858(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 21338, 22858);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_22881_24227(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 22881, 24227);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_24250_25542(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 24250, 25542);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_25565_26875(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 25565, 26875);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_26898_27794(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 26898, 27794);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_27817_28725(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 27817, 28725);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_28748_30236(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 28748, 30236);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_30259_31813(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 30259, 31813);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_31836_33182(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 31836, 33182);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_33205_34497(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 33205, 34497);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_34520_35992(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 34520, 35992);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_36015_37433(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 36015, 37433);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_37456_38402(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 37456, 38402);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_38425_39371(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 38425, 39371);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_39394_40326(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,int[]
+operatorKinds)
+{
+var return_v = this_param.GetSignaturesFromBinaryOperatorKinds( operatorKinds);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 39394, 40326);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>[][]?
+f_10913_40454_40524(ref System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>[][]?
+location1,System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>[][]
+value,System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>[][]?
+comparand)
+{
+var return_v = Interlocked.CompareExchange( ref location1, value, comparand);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 40454, 40524);
+return return_v;
+}
+
+
+bool
+f_10913_40593_40609(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.IsLogical();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 40593, 40609);
+return return_v;
+}
+
+
+int
+f_10913_40619_40639(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.OperatorIndex();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 40619, 40639);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+f_10913_40754_40776(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 40754, 40776);
+return return_v;
+}
+
+
+int
+f_10913_41010_41027(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+item)
+{
+this_param.Add( item);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41010, 41027);
+return 0;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+f_10913_40575_40640_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature>
+i)
+{
+var return_v = i;
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 40575, 40640);
+return return_v;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,18054,41054);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,18054,41054);
+}
+		}
+
+internal BinaryOperatorSignature GetSignature(BinaryOperatorKind kind)
+		{
+			try
         {
-            var left = LeftType(kind);
-            switch (kind.Operator())
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,41066,42902);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,41161,41187);
+
+var 
+left = f_10913_41172_41186(this, kind)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,41201,42795);
+
+switch (f_10913_41209_41224(kind))
             {
-                case BinaryOperatorKind.Multiplication:
+
+case BinaryOperatorKind.Multiplication:
                 case BinaryOperatorKind.Division:
                 case BinaryOperatorKind.Subtraction:
                 case BinaryOperatorKind.Remainder:
                 case BinaryOperatorKind.And:
                 case BinaryOperatorKind.Or:
                 case BinaryOperatorKind.Xor:
-                    return new BinaryOperatorSignature(kind, left, left, left);
-                case BinaryOperatorKind.Addition:
-                    return new BinaryOperatorSignature(kind, left, RightType(kind), ReturnType(kind));
-                case BinaryOperatorKind.LeftShift:
-                case BinaryOperatorKind.RightShift:
-                    TypeSymbol rightType = _compilation.GetSpecialType(SpecialType.System_Int32);
-                    if (kind.IsLifted())
-                    {
-                        rightType = _compilation.GetSpecialType(SpecialType.System_Nullable_T).Construct(rightType);
-                    }
-                    return new BinaryOperatorSignature(kind, left, rightType, left);
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,41201,42795);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,41613,41672);
 
-                case BinaryOperatorKind.Equal:
+return f_10913_41620_41671(kind, left, left, left);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,41201,42795);
+
+case BinaryOperatorKind.Addition:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,41201,42795);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,41745,41827);
+
+return f_10913_41752_41826(kind, left, f_10913_41792_41807(this, kind), f_10913_41809_41825(this, kind));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,41201,42795);
+
+case BinaryOperatorKind.LeftShift:
+                case BinaryOperatorKind.RightShift:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,41201,42795);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,41954,42031);
+
+TypeSymbol 
+rightType = f_10913_41977_42030(_compilation, SpecialType.System_Int32)
+;
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,42053,42237) || true) && (f_10913_42057_42072(kind))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,42053,42237);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,42122,42214);
+
+rightType = f_10913_42134_42213(f_10913_42134_42192(_compilation, SpecialType.System_Nullable_T), rightType);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,42053,42237);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,42259,42323);
+
+return f_10913_42266_42322(kind, left, rightType, left);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,41201,42795);
+
+case BinaryOperatorKind.Equal:
                 case BinaryOperatorKind.NotEqual:
                 case BinaryOperatorKind.GreaterThan:
                 case BinaryOperatorKind.LessThan:
                 case BinaryOperatorKind.GreaterThanOrEqual:
                 case BinaryOperatorKind.LessThanOrEqual:
-                    return new BinaryOperatorSignature(kind, left, left, _compilation.GetSpecialType(SpecialType.System_Boolean));
-            }
-            return new BinaryOperatorSignature(kind, left, RightType(kind), ReturnType(kind));
-        }
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,41201,42795);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,42670,42780);
 
-        private TypeSymbol LeftType(BinaryOperatorKind kind)
-        {
-            if (kind.IsLifted())
-            {
-                return LiftedType(kind);
+return f_10913_42677_42779(kind, left, left, f_10913_42723_42778(_compilation, SpecialType.System_Boolean));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,41201,42795);
             }
-            else
-            {
-                switch (kind.OperandTypes())
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,42809,42891);
+
+return f_10913_42816_42890(kind, left, f_10913_42856_42871(this, kind), f_10913_42873_42889(this, kind));
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,41066,42902);
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_41172_41186(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.LeftType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41172, 41186);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+f_10913_41209_41224(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.Operator();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41209, 41224);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_41620_41671(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+leftType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+rightType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+returnType)
+{
+var return_v = new Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature( kind, leftType, rightType, returnType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41620, 41671);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_41792_41807(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.RightType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41792, 41807);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_41809_41825(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.ReturnType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41809, 41825);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_41752_41826(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+leftType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+rightType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+returnType)
+{
+var return_v = new Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature( kind, leftType, rightType, returnType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41752, 41826);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_41977_42030(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 41977, 42030);
+return return_v;
+}
+
+
+bool
+f_10913_42057_42072(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.IsLifted();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42057, 42072);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_42134_42192(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42134, 42192);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_42134_42213(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42134, 42213);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_42266_42322(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+leftType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+rightType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+returnType)
+{
+var return_v = new Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature( kind, leftType, rightType, returnType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42266, 42322);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_42723_42778(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42723, 42778);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_42677_42779(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+leftType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+rightType,Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+returnType)
+{
+var return_v = new Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature( kind, leftType, rightType, (Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol)returnType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42677, 42779);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_42856_42871(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.RightType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42856, 42871);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_42873_42889(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.ReturnType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42873, 42889);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature
+f_10913_42816_42890(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+leftType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+rightType,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+returnType)
+{
+var return_v = new Microsoft.CodeAnalysis.CSharp.BinaryOperatorSignature( kind, leftType, rightType, returnType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42816, 42890);
+return return_v;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,41066,42902);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,41066,42902);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+private TypeSymbol LeftType(BinaryOperatorKind kind)
+		{
+			try
+        {
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,42914,44878);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,42991,44773) || true) && (f_10913_42995_43010(kind))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,42991,44773);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43044,43068);
+
+return f_10913_43051_43067(this, kind);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,42991,44773);
+}
+
+else
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,42991,44773);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43134,44758);
+
+switch (f_10913_43142_43161(kind))
                 {
-                    case BinaryOperatorKind.Int: return _compilation.GetSpecialType(SpecialType.System_Int32);
-                    case BinaryOperatorKind.UInt: return _compilation.GetSpecialType(SpecialType.System_UInt32);
-                    case BinaryOperatorKind.Long: return _compilation.GetSpecialType(SpecialType.System_Int64);
-                    case BinaryOperatorKind.ULong: return _compilation.GetSpecialType(SpecialType.System_UInt64);
-                    case BinaryOperatorKind.NInt: return _compilation.CreateNativeIntegerTypeSymbol(signed: true);
-                    case BinaryOperatorKind.NUInt: return _compilation.CreateNativeIntegerTypeSymbol(signed: false);
-                    case BinaryOperatorKind.Float: return _compilation.GetSpecialType(SpecialType.System_Single);
-                    case BinaryOperatorKind.Double: return _compilation.GetSpecialType(SpecialType.System_Double);
-                    case BinaryOperatorKind.Decimal: return _compilation.GetSpecialType(SpecialType.System_Decimal);
-                    case BinaryOperatorKind.Bool: return _compilation.GetSpecialType(SpecialType.System_Boolean);
-                    case BinaryOperatorKind.ObjectAndString:
+
+case BinaryOperatorKind.Int: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43232,43293);
+
+return f_10913_43239_43292(_compilation, SpecialType.System_Int32);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.UInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43345,43407);
+
+return f_10913_43352_43406(_compilation, SpecialType.System_UInt32);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.Long: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43459,43520);
+
+return f_10913_43466_43519(_compilation, SpecialType.System_Int64);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.ULong: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43573,43635);
+
+return f_10913_43580_43634(_compilation, SpecialType.System_UInt64);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.NInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43687,43751);
+
+return f_10913_43694_43750(_compilation, signed: true);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.NUInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43804,43869);
+
+return f_10913_43811_43868(_compilation, signed: false);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.Float: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,43922,43984);
+
+return f_10913_43929_43983(_compilation, SpecialType.System_Single);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.Double: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44038,44100);
+
+return f_10913_44045_44099(_compilation, SpecialType.System_Double);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.Decimal: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44155,44218);
+
+return f_10913_44162_44217(_compilation, SpecialType.System_Decimal);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.Bool: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44270,44333);
+
+return f_10913_44277_44332(_compilation, SpecialType.System_Boolean);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.ObjectAndString:
                     case BinaryOperatorKind.Object:
-                        return _compilation.GetSpecialType(SpecialType.System_Object);
-                    case BinaryOperatorKind.String:
-                    case BinaryOperatorKind.StringAndObject:
-                        return _compilation.GetSpecialType(SpecialType.System_String);
-                }
-            }
-            Debug.Assert(false, "Bad operator kind in left type");
-            return null;
-        }
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44474,44536);
 
-        private TypeSymbol RightType(BinaryOperatorKind kind)
-        {
-            if (kind.IsLifted())
-            {
-                return LiftedType(kind);
-            }
-            else
-            {
-                switch (kind.OperandTypes())
-                {
-                    case BinaryOperatorKind.Int: return _compilation.GetSpecialType(SpecialType.System_Int32);
-                    case BinaryOperatorKind.UInt: return _compilation.GetSpecialType(SpecialType.System_UInt32);
-                    case BinaryOperatorKind.Long: return _compilation.GetSpecialType(SpecialType.System_Int64);
-                    case BinaryOperatorKind.ULong: return _compilation.GetSpecialType(SpecialType.System_UInt64);
-                    case BinaryOperatorKind.NInt: return _compilation.CreateNativeIntegerTypeSymbol(signed: true);
-                    case BinaryOperatorKind.NUInt: return _compilation.CreateNativeIntegerTypeSymbol(signed: false);
-                    case BinaryOperatorKind.Float: return _compilation.GetSpecialType(SpecialType.System_Single);
-                    case BinaryOperatorKind.Double: return _compilation.GetSpecialType(SpecialType.System_Double);
-                    case BinaryOperatorKind.Decimal: return _compilation.GetSpecialType(SpecialType.System_Decimal);
-                    case BinaryOperatorKind.Bool: return _compilation.GetSpecialType(SpecialType.System_Boolean);
-                    case BinaryOperatorKind.ObjectAndString:
-                    case BinaryOperatorKind.String:
-                        return _compilation.GetSpecialType(SpecialType.System_String);
+return f_10913_44481_44535(_compilation, SpecialType.System_Object);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+
+case BinaryOperatorKind.String:
                     case BinaryOperatorKind.StringAndObject:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,43134,44758);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44677,44739);
+
+return f_10913_44684_44738(_compilation, SpecialType.System_String);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,43134,44758);
+                }
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,42991,44773);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44787,44841);
+
+f_10913_44787_44840(false, "Bad operator kind in left type");
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44855,44867);
+
+return null;
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,42914,44878);
+
+bool
+f_10913_42995_43010(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.IsLifted();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 42995, 43010);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_43051_43067(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.LiftedType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43051, 43067);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+f_10913_43142_43161(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43142, 43161);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43239_43292(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43239, 43292);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43352_43406(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43352, 43406);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43466_43519(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43466, 43519);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43580_43634(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43580, 43634);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43694_43750(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43694, 43750);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43811_43868(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43811, 43868);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_43929_43983(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 43929, 43983);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_44045_44099(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44045, 44099);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_44162_44217(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44162, 44217);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_44277_44332(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44277, 44332);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_44481_44535(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44481, 44535);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_44684_44738(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44684, 44738);
+return return_v;
+}
+
+
+int
+f_10913_44787_44840(bool
+condition,string
+message)
+{
+Debug.Assert( condition, message);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44787, 44840);
+return 0;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,42914,44878);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,42914,44878);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+private TypeSymbol RightType(BinaryOperatorKind kind)
+		{
+			try
+        {
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,44890,46856);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,44968,46750) || true) && (f_10913_44972_44987(kind))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,44968,46750);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45021,45045);
+
+return f_10913_45028_45044(this, kind);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,44968,46750);
+}
+
+else
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,44968,46750);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45111,46735);
+
+switch (f_10913_45119_45138(kind))
+                {
+
+case BinaryOperatorKind.Int: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45209,45270);
+
+return f_10913_45216_45269(_compilation, SpecialType.System_Int32);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.UInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45322,45384);
+
+return f_10913_45329_45383(_compilation, SpecialType.System_UInt32);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.Long: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45436,45497);
+
+return f_10913_45443_45496(_compilation, SpecialType.System_Int64);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.ULong: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45550,45612);
+
+return f_10913_45557_45611(_compilation, SpecialType.System_UInt64);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.NInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45664,45728);
+
+return f_10913_45671_45727(_compilation, signed: true);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.NUInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45781,45846);
+
+return f_10913_45788_45845(_compilation, signed: false);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.Float: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,45899,45961);
+
+return f_10913_45906_45960(_compilation, SpecialType.System_Single);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.Double: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46015,46077);
+
+return f_10913_46022_46076(_compilation, SpecialType.System_Double);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.Decimal: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46132,46195);
+
+return f_10913_46139_46194(_compilation, SpecialType.System_Decimal);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.Bool: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46247,46310);
+
+return f_10913_46254_46309(_compilation, SpecialType.System_Boolean);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.ObjectAndString:
+                    case BinaryOperatorKind.String:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46451,46513);
+
+return f_10913_46458_46512(_compilation, SpecialType.System_String);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+
+case BinaryOperatorKind.StringAndObject:
                     case BinaryOperatorKind.Object:
-                        return _compilation.GetSpecialType(SpecialType.System_Object);
-                }
-            }
-            Debug.Assert(false, "Bad operator kind in right type");
-            return null;
-        }
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,45111,46735);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46654,46716);
 
-        private TypeSymbol ReturnType(BinaryOperatorKind kind)
+return f_10913_46661_46715(_compilation, SpecialType.System_Object);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,45111,46735);
+                }
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,44968,46750);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46764,46819);
+
+f_10913_46764_46818(false, "Bad operator kind in right type");
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46833,46845);
+
+return null;
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,44890,46856);
+
+bool
+f_10913_44972_44987(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.IsLifted();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 44972, 44987);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_45028_45044(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.LiftedType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45028, 45044);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+f_10913_45119_45138(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45119, 45138);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45216_45269(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45216, 45269);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45329_45383(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45329, 45383);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45443_45496(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45443, 45496);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45557_45611(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45557, 45611);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45671_45727(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45671, 45727);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45788_45845(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45788, 45845);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_45906_45960(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 45906, 45960);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_46022_46076(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46022, 46076);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_46139_46194(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46139, 46194);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_46254_46309(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46254, 46309);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_46458_46512(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46458, 46512);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_46661_46715(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46661, 46715);
+return return_v;
+}
+
+
+int
+f_10913_46764_46818(bool
+condition,string
+message)
+{
+Debug.Assert( condition, message);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46764, 46818);
+return 0;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,44890,46856);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,44890,46856);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+private TypeSymbol ReturnType(BinaryOperatorKind kind)
+		{
+			try
         {
-            if (kind.IsLifted())
-            {
-                return LiftedType(kind);
-            }
-            else
-            {
-                switch (kind.OperandTypes())
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,46868,48811);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,46947,48704) || true) && (f_10913_46951_46966(kind))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,46947,48704);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47000,47024);
+
+return f_10913_47007_47023(this, kind);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,46947,48704);
+}
+
+else
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,46947,48704);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47090,48689);
+
+switch (f_10913_47098_47117(kind))
                 {
-                    case BinaryOperatorKind.Int: return _compilation.GetSpecialType(SpecialType.System_Int32);
-                    case BinaryOperatorKind.UInt: return _compilation.GetSpecialType(SpecialType.System_UInt32);
-                    case BinaryOperatorKind.Long: return _compilation.GetSpecialType(SpecialType.System_Int64);
-                    case BinaryOperatorKind.ULong: return _compilation.GetSpecialType(SpecialType.System_UInt64);
-                    case BinaryOperatorKind.NInt: return _compilation.CreateNativeIntegerTypeSymbol(signed: true);
-                    case BinaryOperatorKind.NUInt: return _compilation.CreateNativeIntegerTypeSymbol(signed: false);
-                    case BinaryOperatorKind.Float: return _compilation.GetSpecialType(SpecialType.System_Single);
-                    case BinaryOperatorKind.Double: return _compilation.GetSpecialType(SpecialType.System_Double);
-                    case BinaryOperatorKind.Decimal: return _compilation.GetSpecialType(SpecialType.System_Decimal);
-                    case BinaryOperatorKind.Bool: return _compilation.GetSpecialType(SpecialType.System_Boolean);
-                    case BinaryOperatorKind.Object: return _compilation.GetSpecialType(SpecialType.System_Object);
-                    case BinaryOperatorKind.ObjectAndString:
+
+case BinaryOperatorKind.Int: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47188,47249);
+
+return f_10913_47195_47248(_compilation, SpecialType.System_Int32);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.UInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47301,47363);
+
+return f_10913_47308_47362(_compilation, SpecialType.System_UInt32);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.Long: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47415,47476);
+
+return f_10913_47422_47475(_compilation, SpecialType.System_Int64);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.ULong: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47529,47591);
+
+return f_10913_47536_47590(_compilation, SpecialType.System_UInt64);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.NInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47643,47707);
+
+return f_10913_47650_47706(_compilation, signed: true);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.NUInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47760,47825);
+
+return f_10913_47767_47824(_compilation, signed: false);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.Float: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47878,47940);
+
+return f_10913_47885_47939(_compilation, SpecialType.System_Single);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.Double: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,47994,48056);
+
+return f_10913_48001_48055(_compilation, SpecialType.System_Double);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.Decimal: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48111,48174);
+
+return f_10913_48118_48173(_compilation, SpecialType.System_Decimal);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.Bool: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48226,48289);
+
+return f_10913_48233_48288(_compilation, SpecialType.System_Boolean);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.Object: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48343,48405);
+
+return f_10913_48350_48404(_compilation, SpecialType.System_Object);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+
+case BinaryOperatorKind.ObjectAndString:
                     case BinaryOperatorKind.StringAndObject:
                     case BinaryOperatorKind.String:
-                        return _compilation.GetSpecialType(SpecialType.System_String);
-                }
-            }
-            Debug.Assert(false, "Bad operator kind in return type");
-            return null;
-        }
+DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,47090,48689);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48608,48670);
 
-        private TypeSymbol LiftedType(BinaryOperatorKind kind)
+return f_10913_48615_48669(_compilation, SpecialType.System_String);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,47090,48689);
+                }
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,46947,48704);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48718,48774);
+
+f_10913_48718_48773(false, "Bad operator kind in return type");
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48788,48800);
+
+return null;
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,46868,48811);
+
+bool
+f_10913_46951_46966(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.IsLifted();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 46951, 46966);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+f_10913_47007_47023(Microsoft.CodeAnalysis.CSharp.BuiltInOperators
+this_param,Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = this_param.LiftedType( kind);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47007, 47023);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+f_10913_47098_47117(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47098, 47117);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47195_47248(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47195, 47248);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47308_47362(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47308, 47362);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47422_47475(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47422, 47475);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47536_47590(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47536, 47590);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47650_47706(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47650, 47706);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47767_47824(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47767, 47824);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_47885_47939(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 47885, 47939);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_48001_48055(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48001, 48055);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_48118_48173(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48118, 48173);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_48233_48288(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48233, 48288);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_48350_48404(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48350, 48404);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_48615_48669(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48615, 48669);
+return return_v;
+}
+
+
+int
+f_10913_48718_48773(bool
+condition,string
+message)
+{
+Debug.Assert( condition, message);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48718, 48773);
+return 0;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,46868,48811);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,46868,48811);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+private TypeSymbol LiftedType(BinaryOperatorKind kind)
+		{
+			try
         {
-            Debug.Assert(kind.IsLifted());
+DynAbs.Tracing.TraceSender.TraceEnterMethod(10913,48823,50515);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48902,48932);
 
-            var nullable = _compilation.GetSpecialType(SpecialType.System_Nullable_T);
+f_10913_48902_48931(f_10913_48915_48930(kind));
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,48948,49022);
 
-            switch (kind.OperandTypes())
+var 
+nullable = f_10913_48963_49021(_compilation, SpecialType.System_Nullable_T)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49038,50408);
+
+switch (f_10913_49046_49065(kind))
             {
-                case BinaryOperatorKind.Int: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_Int32));
-                case BinaryOperatorKind.UInt: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_UInt32));
-                case BinaryOperatorKind.Long: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_Int64));
-                case BinaryOperatorKind.ULong: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_UInt64));
-                case BinaryOperatorKind.NInt: return nullable.Construct(_compilation.CreateNativeIntegerTypeSymbol(signed: true));
-                case BinaryOperatorKind.NUInt: return nullable.Construct(_compilation.CreateNativeIntegerTypeSymbol(signed: false));
-                case BinaryOperatorKind.Float: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_Single));
-                case BinaryOperatorKind.Double: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_Double));
-                case BinaryOperatorKind.Decimal: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_Decimal));
-                case BinaryOperatorKind.Bool: return nullable.Construct(_compilation.GetSpecialType(SpecialType.System_Boolean));
-            }
-            Debug.Assert(false, "Bad operator kind in lifted type");
-            return null;
-        }
 
-        internal static bool IsValidObjectEquality(Conversions Conversions, TypeSymbol leftType, bool leftIsNull, bool leftIsDefault, TypeSymbol rightType, bool rightIsNull, bool rightIsDefault, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+case BinaryOperatorKind.Int: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49128,49209);
+
+return f_10913_49135_49208(nullable, f_10913_49154_49207(_compilation, SpecialType.System_Int32));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.UInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49257,49339);
+
+return f_10913_49264_49338(nullable, f_10913_49283_49337(_compilation, SpecialType.System_UInt32));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.Long: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49387,49468);
+
+return f_10913_49394_49467(nullable, f_10913_49413_49466(_compilation, SpecialType.System_Int64));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.ULong: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49517,49599);
+
+return f_10913_49524_49598(nullable, f_10913_49543_49597(_compilation, SpecialType.System_UInt64));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.NInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49647,49731);
+
+return f_10913_49654_49730(nullable, f_10913_49673_49729(_compilation, signed: true));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.NUInt: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49780,49865);
+
+return f_10913_49787_49864(nullable, f_10913_49806_49863(_compilation, signed: false));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.Float: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,49914,49996);
+
+return f_10913_49921_49995(nullable, f_10913_49940_49994(_compilation, SpecialType.System_Single));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.Double: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,50046,50128);
+
+return f_10913_50053_50127(nullable, f_10913_50072_50126(_compilation, SpecialType.System_Double));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.Decimal: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,50179,50262);
+
+return f_10913_50186_50261(nullable, f_10913_50205_50260(_compilation, SpecialType.System_Decimal));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+
+case BinaryOperatorKind.Bool: DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,49038,50408);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,50310,50393);
+
+return f_10913_50317_50392(nullable, f_10913_50336_50391(_compilation, SpecialType.System_Boolean));
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,49038,50408);
+            }
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,50422,50478);
+
+f_10913_50422_50477(false, "Bad operator kind in lifted type");
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,50492,50504);
+
+return null;
+DynAbs.Tracing.TraceSender.TraceExitMethod(10913,48823,50515);
+
+bool
+f_10913_48915_48930(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.IsLifted();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48915, 48930);
+return return_v;
+}
+
+
+int
+f_10913_48902_48931(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48902, 48931);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_48963_49021(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 48963, 49021);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+f_10913_49046_49065(Microsoft.CodeAnalysis.CSharp.BinaryOperatorKind
+kind)
+{
+var return_v = kind.OperandTypes();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49046, 49065);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49154_49207(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49154, 49207);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49135_49208(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49135, 49208);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49283_49337(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49283, 49337);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49264_49338(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49264, 49338);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49413_49466(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49413, 49466);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49394_49467(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49394, 49467);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49543_49597(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49543, 49597);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49524_49598(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49524, 49598);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49673_49729(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49673, 49729);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49654_49730(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49654, 49730);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49806_49863(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,bool
+signed)
+{
+var return_v = this_param.CreateNativeIntegerTypeSymbol( signed: signed);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49806, 49863);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49787_49864(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49787, 49864);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49940_49994(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49940, 49994);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_49921_49995(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 49921, 49995);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_50072_50126(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50072, 50126);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_50053_50127(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50053, 50127);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_50205_50260(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50205, 50260);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_50186_50261(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50186, 50261);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_50336_50391(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+this_param,Microsoft.CodeAnalysis.SpecialType
+specialType)
+{
+var return_v = this_param.GetSpecialType( specialType);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50336, 50391);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_50317_50392(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+this_param,params Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol[]
+typeArguments)
+{
+var return_v = this_param.Construct( typeArguments);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50317, 50392);
+return return_v;
+}
+
+
+int
+f_10913_50422_50477(bool
+condition,string
+message)
+{
+Debug.Assert( condition, message);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 50422, 50477);
+return 0;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,48823,50515);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,48823,50515);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+internal static bool IsValidObjectEquality(Conversions Conversions, TypeSymbol leftType, bool leftIsNull, bool leftIsDefault, TypeSymbol rightType, bool rightIsNull, bool rightIsDefault, ref HashSet<DiagnosticInfo> useSiteDiagnostics)
+		{
+			try
         {
-            // SPEC: The predefined reference type equality operators require one of the following:
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10913,50527,54944);
 
-            // SPEC: (1) Both operands are a value of a type known to be a reference-type or the literal null.
-            // SPEC:     Furthermore, an explicit reference conversion exists from the type of either
-            // SPEC:     operand to the type of the other operand. Or:
-            // SPEC: (2) One operand is a value of type T where T is a type-parameter and the other operand is 
-            // SPEC:     the literal null. Furthermore T does not have the value type constraint.
-            // SPEC: (3) One operand is the literal default and the other operand is a reference-type.
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,52505,52922) || true) && (((object)leftType != null) &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 52509, 52565)&&f_10913_52539_52565(leftType)))
+)
 
-            // SPEC ERROR: Notice that the spec calls out that an explicit reference conversion must exist;
-            // SPEC ERROR: in fact it should say that an explicit reference conversion, implicit reference
-            // SPEC ERROR: conversion or identity conversion must exist. The conversion from object to object
-            // SPEC ERROR: is not classified as a reference conversion at all; it is an identity conversion.
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,52505,52922);
 
-            // Dev10 does not follow the spec exactly for type parameters. Specifically, in Dev10,
-            // if a type parameter argument is known to be a value type, or if a type parameter
-            // argument is not known to be either a value type or reference type and the other
-            // argument is not null, reference type equality cannot be applied. Otherwise, the
-            // effective base class of the type parameter is used to determine the conversion
-            // to the other argument type. (See ExpressionBinder::GetRefEqualSigs.)
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,52599,52744) || true) && (f_10913_52603_52623(leftType)||(DynAbs.Tracing.TraceSender.Expression_False(10913, 52603, 52670)||(f_10913_52628_52653_M(!leftType.IsReferenceType)&&(DynAbs.Tracing.TraceSender.Expression_True(10913, 52628, 52669)&&!rightIsNull))))
+)
 
-            if (((object)leftType != null) && leftType.IsTypeParameter())
-            {
-                if (leftType.IsValueType || (!leftType.IsReferenceType && !rightIsNull))
-                {
-                    return false;
-                }
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,52599,52744);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,52712,52725);
 
-                leftType = ((TypeParameterSymbol)leftType).EffectiveBaseClass(ref useSiteDiagnostics);
-                Debug.Assert((object)leftType != null);
-            }
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,52599,52744);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,52764,52850);
 
-            if (((object)rightType != null) && rightType.IsTypeParameter())
-            {
-                if (rightType.IsValueType || (!rightType.IsReferenceType && !leftIsNull))
-                {
-                    return false;
-                }
+leftType = f_10913_52775_52849(((TypeParameterSymbol)leftType), ref useSiteDiagnostics);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,52868,52907);
 
-                rightType = ((TypeParameterSymbol)rightType).EffectiveBaseClass(ref useSiteDiagnostics);
-                Debug.Assert((object)rightType != null);
-            }
+f_10913_52868_52906((object)leftType != null);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,52505,52922);
+}
 
-            var leftIsReferenceType = ((object)leftType != null) && leftType.IsReferenceType;
-            if (!leftIsReferenceType && !leftIsNull && !leftIsDefault)
-            {
-                return false;
-            }
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,52938,53361) || true) && (((object)rightType != null) &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 52942, 53000)&&f_10913_52973_53000(rightType)))
+)
 
-            var rightIsReferenceType = ((object)rightType != null) && rightType.IsReferenceType;
-            if (!rightIsReferenceType && !rightIsNull && !rightIsDefault)
-            {
-                return false;
-            }
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,52938,53361);
 
-            if (leftIsDefault && rightIsDefault)
-            {
-                return false;
-            }
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53034,53180) || true) && (f_10913_53038_53059(rightType)||(DynAbs.Tracing.TraceSender.Expression_False(10913, 53038, 53106)||(f_10913_53064_53090_M(!rightType.IsReferenceType)&&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53064, 53105)&&!leftIsNull))))
+)
 
-            if (leftIsDefault && rightIsNull)
-            {
-                return false;
-            }
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,53034,53180);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53148,53161);
 
-            if (leftIsNull && rightIsDefault)
-            {
-                return false;
-            }
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,53034,53180);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53200,53288);
 
-            // If at least one side is null or default then clearly a conversion exists.
-            if (leftIsNull || rightIsNull || leftIsDefault || rightIsDefault)
-            {
-                return true;
-            }
+rightType = f_10913_53212_53287(((TypeParameterSymbol)rightType), ref useSiteDiagnostics);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53306,53346);
 
-            var leftConversion = Conversions.ClassifyConversionFromType(leftType, rightType, ref useSiteDiagnostics);
-            if (leftConversion.IsIdentity || leftConversion.IsReference)
-            {
-                return true;
-            }
+f_10913_53306_53345((object)rightType != null);
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,52938,53361);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53377,53458);
 
-            var rightConversion = Conversions.ClassifyConversionFromType(rightType, leftType, ref useSiteDiagnostics);
-            if (rightConversion.IsIdentity || rightConversion.IsReference)
-            {
-                return true;
-            }
+var 
+leftIsReferenceType = ((object)leftType != null) &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53403, 53457)&&f_10913_53433_53457(leftType))
+;
 
-            return false;
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53472,53591) || true) && (!leftIsReferenceType &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53476, 53511)&&!leftIsNull )&&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53476, 53529)&&!leftIsDefault))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,53472,53591);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53563,53576);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,53472,53591);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53607,53691);
+
+var 
+rightIsReferenceType = ((object)rightType != null) &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53634, 53690)&&f_10913_53665_53690(rightType))
+;
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53705,53827) || true) && (!rightIsReferenceType &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53709, 53746)&&!rightIsNull )&&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53709, 53765)&&!rightIsDefault))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,53705,53827);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53799,53812);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,53705,53827);
+}
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53843,53940) || true) && (leftIsDefault &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53847, 53878)&&rightIsDefault))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,53843,53940);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53912,53925);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,53843,53940);
+}
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,53956,54050) || true) && (leftIsDefault &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 53960, 53988)&&rightIsNull))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,53956,54050);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54022,54035);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,53956,54050);
+}
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54066,54160) || true) && (leftIsNull &&(DynAbs.Tracing.TraceSender.Expression_True(10913, 54070, 54098)&&rightIsDefault))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,54066,54160);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54132,54145);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,54066,54160);
+}
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54266,54391) || true) && (leftIsNull ||(DynAbs.Tracing.TraceSender.Expression_False(10913, 54270, 54295)||rightIsNull )||(DynAbs.Tracing.TraceSender.Expression_False(10913, 54270, 54312)||leftIsDefault )||(DynAbs.Tracing.TraceSender.Expression_False(10913, 54270, 54330)||rightIsDefault))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,54266,54391);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54364,54376);
+
+return true;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,54266,54391);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54407,54512);
+
+var 
+leftConversion = f_10913_54428_54511(Conversions, leftType, rightType, ref useSiteDiagnostics)
+;
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54526,54646) || true) && (leftConversion.IsIdentity ||(DynAbs.Tracing.TraceSender.Expression_False(10913, 54530, 54585)||leftConversion.IsReference))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,54526,54646);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54619,54631);
+
+return true;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,54526,54646);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54662,54768);
+
+var 
+rightConversion = f_10913_54684_54767(Conversions, rightType, leftType, ref useSiteDiagnostics)
+;
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54782,54904) || true) && (rightConversion.IsIdentity ||(DynAbs.Tracing.TraceSender.Expression_False(10913, 54786, 54843)||rightConversion.IsReference))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(10913,54782,54904);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54877,54889);
+
+return true;
+DynAbs.Tracing.TraceSender.TraceExitCondition(10913,54782,54904);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(10913,54920,54933);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10913,50527,54944);
+
+bool
+f_10913_52539_52565(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+type)
+{
+var return_v = type.IsTypeParameter();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 52539, 52565);
+return return_v;
+}
+
+
+bool
+f_10913_52603_52623(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+this_param)
+{
+var return_v = this_param.IsValueType ;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10913, 52603, 52623);
+return return_v;
+}
+
+
+bool
+f_10913_52628_52653_M(bool
+i)
+{
+var return_v = i;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10913, 52628, 52653);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_52775_52849(Microsoft.CodeAnalysis.CSharp.Symbols.TypeParameterSymbol
+this_param,ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+useSiteDiagnostics)
+{
+var return_v = this_param.EffectiveBaseClass( ref useSiteDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 52775, 52849);
+return return_v;
+}
+
+
+int
+f_10913_52868_52906(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 52868, 52906);
+return 0;
+}
+
+
+bool
+f_10913_52973_53000(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+type)
+{
+var return_v = type.IsTypeParameter();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 52973, 53000);
+return return_v;
+}
+
+
+bool
+f_10913_53038_53059(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+this_param)
+{
+var return_v = this_param.IsValueType ;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10913, 53038, 53059);
+return return_v;
+}
+
+
+bool
+f_10913_53064_53090_M(bool
+i)
+{
+var return_v = i;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10913, 53064, 53090);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+f_10913_53212_53287(Microsoft.CodeAnalysis.CSharp.Symbols.TypeParameterSymbol
+this_param,ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+useSiteDiagnostics)
+{
+var return_v = this_param.EffectiveBaseClass( ref useSiteDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 53212, 53287);
+return return_v;
+}
+
+
+int
+f_10913_53306_53345(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 53306, 53345);
+return 0;
+}
+
+
+bool
+f_10913_53433_53457(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+this_param)
+{
+var return_v = this_param.IsReferenceType;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10913, 53433, 53457);
+return return_v;
+}
+
+
+bool
+f_10913_53665_53690(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+this_param)
+{
+var return_v = this_param.IsReferenceType;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10913, 53665, 53690);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Conversion
+f_10913_54428_54511(Microsoft.CodeAnalysis.CSharp.Conversions
+this_param,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+source,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+destination,ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+useSiteDiagnostics)
+{
+var return_v = this_param.ClassifyConversionFromType( source, destination, ref useSiteDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 54428, 54511);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.Conversion
+f_10913_54684_54767(Microsoft.CodeAnalysis.CSharp.Conversions
+this_param,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+source,Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+destination,ref System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.DiagnosticInfo>
+useSiteDiagnostics)
+{
+var return_v = this_param.ClassifyConversionFromType( source, destination, ref useSiteDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(10913, 54684, 54767);
+return return_v;
+}
+
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10913,50527,54944);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,50527,54944);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+static BuiltInOperators()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10913,695,54951);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10913,695,54951);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10913,695,54951);
+}
+
+		int ___ignore_me___=DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10913,695,54951);
+}
 }

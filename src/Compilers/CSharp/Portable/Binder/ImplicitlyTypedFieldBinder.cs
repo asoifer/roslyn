@@ -9,30 +9,76 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// Tracks fields that are being bound while binding their initializers.
-    /// </summary>
-    /// <remarks>
-    /// Used to detect circular references like:
-    /// var x = y;
-    /// var y = x;
-    /// </remarks>
     internal sealed class ImplicitlyTypedFieldBinder : Binder
     {
         private readonly ConsList<FieldSymbol> _fieldsBeingBound;
 
         public ImplicitlyTypedFieldBinder(Binder next, ConsList<FieldSymbol> fieldsBeingBound)
-            : base(next, next.Flags)
+        : base(f_10343_846_850_C(next), next.Flags)
         {
-            _fieldsBeingBound = fieldsBeingBound;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10343, 739, 936);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10343, 709, 726);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10343, 888, 925);
+
+                _fieldsBeingBound = fieldsBeingBound;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10343, 739, 936);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10343, 739, 936);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10343, 739, 936);
+            }
         }
 
         internal override ConsList<FieldSymbol> FieldsBeingBound
         {
             get
             {
-                return _fieldsBeingBound;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10343, 1029, 1105);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10343, 1065, 1090);
+
+                    return _fieldsBeingBound;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10343, 1029, 1105);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10343, 948, 1116);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10343, 948, 1116);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
+
+        static ImplicitlyTypedFieldBinder()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10343, 596, 1123);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10343, 596, 1123);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10343, 596, 1123);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10343, 596, 1123);
+
+        static Microsoft.CodeAnalysis.CSharp.Binder
+        f_10343_846_850_C(Microsoft.CodeAnalysis.CSharp.Binder
+        i)
+        {
+            var return_v = i;
+            DynAbs.Tracing.TraceSender.TraceBaseCall(10343, 739, 936);
+            return return_v;
+        }
+
     }
 }

@@ -20,6 +20,9 @@
       Do not install this package manually, it will be added as a prerequisite by other packages that require it.
     </PackageDescription>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS0162;CS1591</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="Operations\OperationInterfaces.xml" />
   </ItemGroup>
@@ -101,6 +104,7 @@
     <None Include="RuleSet\RuleSetSchema.xsd">
       <SubType>Designer</SubType>
     </None>
+    <ProjectReference Include="..\..\..\..\..\tracer\DynAbs.Tracing.FileTraceClient\DynAbs.Tracing.FileTraceClient.csproj" />
     <PublicAPI Include="PublicAPI.Shipped.txt" />
     <PublicAPI Include="PublicAPI.Unshipped.txt" />
   </ItemGroup>

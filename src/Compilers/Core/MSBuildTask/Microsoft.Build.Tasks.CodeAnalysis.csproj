@@ -8,7 +8,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
     <AutoGenerateAssemblyVersion>true</AutoGenerateAssemblyVersion>
-    <AssemblyVersion/>
+    <AssemblyVersion />
     <!-- CA1819 (Properties should not return arrays) disabled as it is very common across this project. -->
     <NoWarn>$(NoWarn);CA1819</NoWarn>
     
@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="Microsoft.Build.Tasks.CodeAnalysis.UnitTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tracer\DynAbs.Tracing.FileTraceClient\DynAbs.Tracing.FileTraceClient.csproj" />
   </ItemGroup>
   <Import Project="..\CommandLine\CommandLine.projitems" Label="Shared" />
 </Project>

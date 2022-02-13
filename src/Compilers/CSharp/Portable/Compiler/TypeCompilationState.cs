@@ -12,232 +12,758 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CSharp
 {
-    /// <summary>
-    /// Represents the state of compilation of one particular type.
-    /// This includes, for example, a collection of synthesized methods created during lowering. 
-    /// </summary>
-    /// <remarks>
-    /// WARNING: Note that the collection class is not thread-safe and will 
-    /// need to be revised if emit phase is changed to support multithreading when
-    /// translating a particular type.
-    /// </remarks>
     internal sealed class TypeCompilationState
     {
-        /// <summary> Synthesized method info </summary>
         internal struct MethodWithBody
         {
+
             public readonly MethodSymbol Method;
+
             public readonly BoundStatement Body;
+
             public readonly ImportChain? ImportChain;
 
             internal MethodWithBody(MethodSymbol method, BoundStatement body, ImportChain? importChain)
             {
-                RoslynDebug.Assert(method != null);
-                RoslynDebug.Assert(body != null);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(10629, 1296, 1646);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 1420, 1455);
 
-                this.Method = method;
-                this.Body = body;
-                this.ImportChain = importChain;
+                    f_10629_1420_1454(method != null);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 1473, 1506);
+
+                    f_10629_1473_1505(body != null);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 1526, 1547);
+
+                    this.Method = method;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 1565, 1582);
+
+                    this.Body = body;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 1600, 1631);
+
+                    this.ImportChain = importChain;
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(10629, 1296, 1646);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 1296, 1646);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 1296, 1646);
+                }
             }
+            static MethodWithBody()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10629, 1084, 1657);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10629, 1084, 1657);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 1084, 1657);
+            }
+
+            static int
+            f_10629_1420_1454(bool
+            b)
+            {
+                RoslynDebug.Assert(b);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 1420, 1454);
+                return 0;
+            }
+
+
+            static int
+            f_10629_1473_1505(bool
+            b)
+            {
+                RoslynDebug.Assert(b);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 1473, 1505);
+                return 0;
+            }
+
         }
 
-        /// <summary> Flat array of created methods, non-empty if not-null </summary>
         private ArrayBuilder<MethodWithBody>? _synthesizedMethods;
 
-        /// <summary> 
-        /// Map of wrapper methods created for base access of base type virtual methods from 
-        /// other classes (like those created for lambdas...); actually each method symbol will 
-        /// only need one wrapper to call it non-virtually.
-        /// </summary>
         private Dictionary<MethodSymbol, MethodSymbol>? _wrappers;
 
-        /// <summary>
-        /// Type symbol being compiled, or null if we compile a synthesized type that doesn't have a symbol (e.g. PrivateImplementationDetails).
-        /// </summary>
         private readonly NamedTypeSymbol? _typeOpt;
 
-        /// <summary>
-        /// The builder for generating code, or null if not in emit phase.
-        /// </summary>
         public readonly PEModuleBuilder? ModuleBuilderOpt;
 
-        /// <summary>
-        /// Any generated methods that don't suppress debug info will use this
-        /// list of debug imports.
-        /// </summary>
         public ImportChain? CurrentImportChain;
 
         public readonly CSharpCompilation Compilation;
 
         public SynthesizedClosureEnvironment? StaticLambdaFrame;
 
-        /// <summary>
-        /// A graph of method->method references for this(...) constructor initializers.
-        /// Used to detect and report initializer cycles.
-        /// </summary>
         private SmallDictionary<MethodSymbol, MethodSymbol>? _constructorInitializers;
 
         public TypeCompilationState(NamedTypeSymbol? typeOpt, CSharpCompilation compilation, PEModuleBuilder? moduleBuilderOpt)
         {
-            this.Compilation = compilation;
-            _typeOpt = typeOpt;
-            this.ModuleBuilderOpt = moduleBuilderOpt;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(10629, 3257, 3531);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 1794, 1813);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 2176, 2185);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 2425, 2433);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 2602, 2618);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 2814, 2832);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 2879, 2890);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 2941, 2958);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 3220, 3244);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 3401, 3432);
+
+                this.Compilation = compilation;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 3446, 3465);
+
+                _typeOpt = typeOpt;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 3479, 3520);
+
+                this.ModuleBuilderOpt = moduleBuilderOpt;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(10629, 3257, 3531);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 3257, 3531);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 3257, 3531);
+            }
         }
 
-        /// <summary>
-        /// The type for which this compilation state is being used.
-        /// </summary>
         public NamedTypeSymbol Type
         {
             get
             {
-                // NOTE: currently it can be null if only private implementation type methods are compiled.
-                // There should be no caller of this method in that case.
-                Debug.Assert(_typeOpt is { });
-                return _typeOpt;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 3712, 4011);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 3932, 3962);
+
+                    f_10629_3932_3961(_typeOpt is { });
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 3980, 3996);
+
+                    return _typeOpt;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 3712, 4011);
+
+                    int
+                    f_10629_3932_3961(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 3932, 3961);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 3660, 4022);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 3660, 4022);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// The type passed to the runtime binder as context.
-        /// </summary>
         public NamedTypeSymbol? DynamicOperationContextType
         {
             get
             {
-                return this.ModuleBuilderOpt?.GetDynamicOperationContextType(this.Type);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 4220, 4343);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 4256, 4328);
+
+                    return f_10629_4263_4327_I(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(this.ModuleBuilderOpt, 10629, 4263, 4327).GetDynamicOperationContextType(f_10629_4317_4326(this)));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 4220, 4343);
+
+                    Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol
+                    f_10629_4317_4326(Microsoft.CodeAnalysis.CSharp.TypeCompilationState
+                    this_param)
+                    {
+                        var return_v = this_param.Type;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10629, 4317, 4326);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol?
+                    f_10629_4263_4327_I(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol?
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 4263, 4327);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 4144, 4354);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 4144, 4354);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
         [MemberNotNullWhen(true, nameof(ModuleBuilderOpt))]
         public bool Emitting
         {
-            get { return ModuleBuilderOpt != null; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 4472, 4512);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 4478, 4510);
+
+                    return ModuleBuilderOpt != null;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 4472, 4512);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 4366, 4523);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 4366, 4523);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
         public ArrayBuilder<MethodWithBody>? SynthesizedMethods
         {
-            get { return _synthesizedMethods; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 4615, 4650);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 4621, 4648);
+
+                    return _synthesizedMethods;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 4615, 4650);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 4535, 4814);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 4535, 4814);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
             set
             {
-                Debug.Assert(_synthesizedMethods == null);
-                _synthesizedMethods = value;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 4664, 4803);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 4700, 4742);
+
+                    f_10629_4700_4741(_synthesizedMethods == null);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 4760, 4788);
+
+                    _synthesizedMethods = value;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 4664, 4803);
+
+                    int
+                    f_10629_4700_4741(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 4700, 4741);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 4535, 4814);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 4535, 4814);
+                }
             }
         }
 
-        /// <summary> 
-        /// Add a 'regular' synthesized method.
-        /// </summary>
         public void AddSynthesizedMethod(MethodSymbol method, BoundStatement body)
         {
-            if (_synthesizedMethods == null)
+            try
             {
-                _synthesizedMethods = ArrayBuilder<MethodWithBody>.GetInstance();
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 4923, 5272);
 
-            _synthesizedMethods.Add(new MethodWithBody(method, body, CurrentImportChain));
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5022, 5167) || true) && (_synthesizedMethods == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 5022, 5167);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5087, 5152);
+
+                    _synthesizedMethods = f_10629_5109_5151();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 5022, 5167);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5183, 5261);
+
+                f_10629_5183_5260(
+                            _synthesizedMethods, f_10629_5207_5259(method, body, CurrentImportChain));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 4923, 5272);
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.TypeCompilationState.MethodWithBody>
+                f_10629_5109_5151()
+                {
+                    var return_v = ArrayBuilder<MethodWithBody>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 5109, 5151);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.TypeCompilationState.MethodWithBody
+                f_10629_5207_5259(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                method, Microsoft.CodeAnalysis.CSharp.BoundStatement
+                body, Microsoft.CodeAnalysis.CSharp.ImportChain?
+                importChain)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CSharp.TypeCompilationState.MethodWithBody(method, body, importChain);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 5207, 5259);
+                    return return_v;
+                }
+
+
+                int
+                f_10629_5183_5260(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.TypeCompilationState.MethodWithBody>
+                this_param, Microsoft.CodeAnalysis.CSharp.TypeCompilationState.MethodWithBody
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 5183, 5260);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 4923, 5272);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 4923, 5272);
+            }
         }
 
-        /// <summary> 
-        /// Add a 'wrapper' synthesized method and map it to the original one so it can be reused. 
-        /// </summary>
-        /// <remarks>
-        /// Wrapper methods are created for base access of base type virtual methods from 
-        /// other classes (like those created for lambdas...).
-        /// </remarks>
         public void AddMethodWrapper(MethodSymbol method, MethodSymbol wrapper, BoundStatement body)
         {
-            this.AddSynthesizedMethod(wrapper, body);
-
-            if (_wrappers == null)
+            try
             {
-                _wrappers = new Dictionary<MethodSymbol, MethodSymbol>();
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 5636, 5995);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5753, 5794);
 
-            _wrappers.Add(method, wrapper);
+                f_10629_5753_5793(this, wrapper, body);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5810, 5937) || true) && (_wrappers == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 5810, 5937);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5865, 5922);
+
+                    _wrappers = f_10629_5877_5921();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 5810, 5937);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 5953, 5984);
+
+                f_10629_5953_5983(
+                            _wrappers, method, wrapper);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 5636, 5995);
+
+                int
+                f_10629_5753_5793(Microsoft.CodeAnalysis.CSharp.TypeCompilationState
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                method, Microsoft.CodeAnalysis.CSharp.BoundStatement
+                body)
+                {
+                    this_param.AddSynthesizedMethod(method, body);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 5753, 5793);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                f_10629_5877_5921()
+                {
+                    var return_v = new System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 5877, 5921);
+                    return return_v;
+                }
+
+
+                int
+                f_10629_5953_5983(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                key, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 5953, 5983);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 5636, 5995);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 5636, 5995);
+            }
         }
 
-        /// <summary> The index of the next wrapped method to be used </summary>
         public int NextWrapperMethodIndex
         {
-            get { return _wrappers == null ? 0 : _wrappers.Count; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 6147, 6202);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 6153, 6200);
+
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(10629, 6160, 6177) || ((_wrappers == null && DynAbs.Tracing.TraceSender.Conditional_F2(10629, 6180, 6181)) || DynAbs.Tracing.TraceSender.Conditional_F3(10629, 6184, 6199))) ? 0 : f_10629_6184_6199(_wrappers);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 6147, 6202);
+
+                    int
+                    f_10629_6184_6199(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10629, 6184, 6199);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 6089, 6213);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 6089, 6213);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
-        /// <summary> 
-        /// Get a 'wrapper' method for the original one. 
-        /// </summary>
-        /// <remarks>
-        /// Wrapper methods are created for base access of base type virtual methods from 
-        /// other classes (like those created for lambdas...).
-        /// </remarks>
         public MethodSymbol? GetMethodWrapper(MethodSymbol method)
         {
-            MethodSymbol? wrapper = null;
-            return _wrappers != null && _wrappers.TryGetValue(method, out wrapper) ? wrapper : null;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 6535, 6760);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 6618, 6647);
+
+                MethodSymbol?
+                wrapper = null
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 6661, 6749);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10629, 6668, 6731) || ((_wrappers != null && (DynAbs.Tracing.TraceSender.Expression_True(10629, 6668, 6731) && f_10629_6689_6731(_wrappers, method, out wrapper)) && DynAbs.Tracing.TraceSender.Conditional_F2(10629, 6734, 6741)) || DynAbs.Tracing.TraceSender.Conditional_F3(10629, 6744, 6748))) ? wrapper : null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 6535, 6760);
+
+                bool
+                f_10629_6689_6731(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                key, out Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol?
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 6689, 6731);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 6535, 6760);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 6535, 6760);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary> Free resources allocated for this method collection </summary>
         public void Free()
         {
-            if (_synthesizedMethods != null)
+            try
             {
-                _synthesizedMethods.Free();
-                _synthesizedMethods = null;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 6858, 7143);
 
-            _wrappers = null;
-            _constructorInitializers = null;
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 6901, 7053) || true) && (_synthesizedMethods != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 6901, 7053);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 6966, 6993);
+
+                    f_10629_6966_6992(_synthesizedMethods);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 7011, 7038);
+
+                    _synthesizedMethods = null;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 6901, 7053);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 7069, 7086);
+
+                _wrappers = null;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 7100, 7132);
+
+                _constructorInitializers = null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 6858, 7143);
+
+                int
+                f_10629_6966_6992(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.CSharp.TypeCompilationState.MethodWithBody>
+                this_param)
+                {
+                    this_param.Free();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 6966, 6992);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 6858, 7143);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 6858, 7143);
+            }
         }
 
-        /// <summary>
-        /// Report an error if adding the edge (method1, method2) to the ctor-initializer
-        /// graph would add a new cycle to that graph.
-        /// </summary>
-        /// <param name="method1">a calling ctor</param>
-        /// <param name="method2">the chained-to ctor</param>
-        /// <param name="syntax">where to report a cyclic error if needed</param>
-        /// <param name="diagnostics">a diagnostic bag for receiving the diagnostic</param>
         internal void ReportCtorInitializerCycles(MethodSymbol method1, MethodSymbol method2, SyntaxNode syntax, DiagnosticBag diagnostics)
         {
-            // precondition and postcondition: the graph _constructorInitializers is acyclic.
-            // If adding the edge (method1, method2) would induce a cycle, we report an error
-            // and do not add it to the set of edges. If it would not induce a cycle we add
-            // it to the set of edges and return.
-
-            if (method1 == method2)
+            try
             {
-                // direct recursion is diagnosed elsewhere
-                throw ExceptionUtilities.Unreachable;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(10629, 7646, 9518);
 
-            if (_constructorInitializers == null)
-            {
-                _constructorInitializers = new SmallDictionary<MethodSymbol, MethodSymbol>();
-                _constructorInitializers.Add(method1, method2);
-                return;
-            }
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8138, 8306) || true) && (method1 == method2)
+                )
 
-            MethodSymbol? next = method2;
-            while (true)
-            {
-                if (_constructorInitializers.TryGetValue(next, out next))
                 {
-                    RoslynDebug.Assert((object)next != null);
-                    if (method1 == next)
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 8138, 8306);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8254, 8291);
+
+                    throw f_10629_8260_8290();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 8138, 8306);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8322, 8574) || true) && (_constructorInitializers == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 8322, 8574);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8392, 8469);
+
+                    _constructorInitializers = f_10629_8419_8468();
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8487, 8534);
+
+                    f_10629_8487_8533(_constructorInitializers, method1, method2);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8552, 8559);
+
+                    return;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 8322, 8574);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8590, 8619);
+
+                MethodSymbol?
+                next = method2
+                ;
+                try
+                {
+                    while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8633, 9507) || true) && (true)
+                    )
+
                     {
-                        // We found a (new) cycle containing the edge (method1, method2). Report an
-                        // error and do not add the edge.
-                        diagnostics.Add(ErrorCode.ERR_IndirectRecursiveConstructorCall, syntax.Location, method1);
-                        return;
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 8633, 9507);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8678, 9492) || true) && (f_10629_8682_8734(_constructorInitializers, next, out next))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 8678, 9492);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8776, 8817);
+
+                            f_10629_8776_8816((object)next != null);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 8839, 9214) || true) && (method1 == next)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 8839, 9214);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 9068, 9158);
+
+                                f_10629_9068_9157(                        // We found a (new) cycle containing the edge (method1, method2). Report an
+                                                                          // error and do not add the edge.
+                                                        diagnostics, ErrorCode.ERR_IndirectRecursiveConstructorCall, f_10629_9132_9147(syntax), method1);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 9184, 9191);
+
+                                return;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 8839, 9214);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 8678, 9492);
+                        }
+
+                        else
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10629, 8678, 9492);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 9397, 9444);
+
+                            f_10629_9397_9443(                    // we've reached the end of the path without finding a cycle. Add the new edge.
+                                                _constructorInitializers, method1, method2);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10629, 9466, 9473);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 8678, 9492);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10629, 8633, 9507);
                     }
                 }
-                else
+                catch (System.Exception)
                 {
-                    // we've reached the end of the path without finding a cycle. Add the new edge.
-                    _constructorInitializers.Add(method1, method2);
-                    return;
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10629, 8633, 9507);
+                    throw;
                 }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10629, 8633, 9507);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(10629, 7646, 9518);
+
+                System.Exception
+                f_10629_8260_8290()
+                {
+                    var return_v = ExceptionUtilities.Unreachable;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10629, 8260, 8290);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SmallDictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                f_10629_8419_8468()
+                {
+                    var return_v = new Microsoft.CodeAnalysis.SmallDictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 8419, 8468);
+                    return return_v;
+                }
+
+
+                int
+                f_10629_8487_8533(Microsoft.CodeAnalysis.SmallDictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                key, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 8487, 8533);
+                    return 0;
+                }
+
+
+                bool
+                f_10629_8682_8734(Microsoft.CodeAnalysis.SmallDictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                key, out Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol?
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 8682, 8734);
+                    return return_v;
+                }
+
+
+                int
+                f_10629_8776_8816(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 8776, 8816);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Location
+                f_10629_9132_9147(Microsoft.CodeAnalysis.SyntaxNode
+                this_param)
+                {
+                    var return_v = this_param.Location;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10629, 9132, 9147);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.CSDiagnosticInfo
+                f_10629_9068_9157(Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics, Microsoft.CodeAnalysis.CSharp.ErrorCode
+                code, Microsoft.CodeAnalysis.Location
+                location, params object[]
+                args)
+                {
+                    var return_v = diagnostics.Add(code, location, args);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 9068, 9157);
+                    return return_v;
+                }
+
+
+                int
+                f_10629_9397_9443(Microsoft.CodeAnalysis.SmallDictionary<Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol>
+                this_param, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                key, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10629, 9397, 9443);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10629, 7646, 9518);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 7646, 9518);
             }
         }
+
+        static TypeCompilationState()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10629, 967, 9525);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10629, 967, 9525);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10629, 967, 9525);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10629, 967, 9525);
     }
 }

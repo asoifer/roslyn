@@ -22,21 +22,49 @@ namespace Microsoft.CodeAnalysis.Test.Utilities
         ExcludeAsyncInfo = PdbToXmlOptions.ExcludeAsyncInfo,
         ExcludeCustomDebugInformation = PdbToXmlOptions.ExcludeCustomDebugInformation
     }
-
     public static class PdbValidationOptionsExtensions
     {
         public static PdbToXmlOptions ToPdbToXmlOptions(this PdbValidationOptions options)
         {
-            const PdbValidationOptions mask =
-                PdbValidationOptions.ExcludeDocuments |
-                PdbValidationOptions.ExcludeMethods |
-                PdbValidationOptions.ExcludeSequencePoints |
-                PdbValidationOptions.ExcludeScopes |
-                PdbValidationOptions.ExcludeNamespaces |
-                PdbValidationOptions.ExcludeAsyncInfo |
-                PdbValidationOptions.ExcludeCustomDebugInformation;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(24007, 995, 1719);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(24007, 1102, 1547);
 
-            return PdbToXmlOptions.ResolveTokens | PdbToXmlOptions.ThrowOnError | PdbToXmlOptions.IncludeEmbeddedSources | (PdbToXmlOptions)(options & mask);
+                const PdbValidationOptions
+                mask =
+                                PdbValidationOptions.ExcludeDocuments |
+                                PdbValidationOptions.ExcludeMethods |
+                                PdbValidationOptions.ExcludeSequencePoints |
+                                PdbValidationOptions.ExcludeScopes |
+                                PdbValidationOptions.ExcludeNamespaces |
+                                PdbValidationOptions.ExcludeAsyncInfo |
+                                PdbValidationOptions.ExcludeCustomDebugInformation
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(24007, 1563, 1708);
+
+                return PdbToXmlOptions.ResolveTokens | PdbToXmlOptions.ThrowOnError | PdbToXmlOptions.IncludeEmbeddedSources | (PdbToXmlOptions)(options & mask);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(24007, 995, 1719);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(24007, 995, 1719);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(24007, 995, 1719);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static PdbValidationOptionsExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(24007, 928, 1726);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(24007, 928, 1726);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(24007, 928, 1726);
+        }
+
     }
 }

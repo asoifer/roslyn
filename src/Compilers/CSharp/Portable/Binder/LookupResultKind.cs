@@ -65,51 +65,237 @@ namespace Microsoft.CodeAnalysis.CSharp
         // Indicates a single symbol is totally fine.
         Viable,
     }
-
     internal static class LookupResultKindExtensions
     {
-        /// <summary>
-        /// Maps a LookupResultKind to a CandidateReason. Should not be called on LookupResultKind.Viable!
-        /// </summary>
         public static CandidateReason ToCandidateReason(this LookupResultKind resultKind)
         {
-            switch (resultKind)
+            try
             {
-                case LookupResultKind.Empty: return CandidateReason.None;
-                case LookupResultKind.NotATypeOrNamespace: return CandidateReason.NotATypeOrNamespace;
-                case LookupResultKind.NotAnAttributeType: return CandidateReason.NotAnAttributeType;
-                case LookupResultKind.WrongArity: return CandidateReason.WrongArity;
-                case LookupResultKind.Inaccessible: return CandidateReason.Inaccessible;
-                case LookupResultKind.NotCreatable: return CandidateReason.NotCreatable;
-                case LookupResultKind.NotReferencable: return CandidateReason.NotReferencable;
-                case LookupResultKind.NotAValue: return CandidateReason.NotAValue;
-                case LookupResultKind.NotAVariable: return CandidateReason.NotAVariable;
-                case LookupResultKind.NotInvocable: return CandidateReason.NotInvocable;
-                case LookupResultKind.StaticInstanceMismatch: return CandidateReason.StaticInstanceMismatch;
-                case LookupResultKind.OverloadResolutionFailure: return CandidateReason.OverloadResolutionFailure;
-                case LookupResultKind.Ambiguous: return CandidateReason.Ambiguous;
-                case LookupResultKind.MemberGroup: return CandidateReason.MemberGroup;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10355, 3406, 5172);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 3512, 5161);
 
-                case LookupResultKind.Viable:
-                    Debug.Assert(false, "Should not call this on LookupResultKind.Viable");
-                    return CandidateReason.None;
+                switch (resultKind)
+                {
 
-                default:
-                    throw ExceptionUtilities.UnexpectedValue(resultKind);
+                    case LookupResultKind.Empty:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 3593, 3621);
+
+                        return CandidateReason.None;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotATypeOrNamespace:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 3682, 3725);
+
+                        return CandidateReason.NotATypeOrNamespace;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotAnAttributeType:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 3785, 3827);
+
+                        return CandidateReason.NotAnAttributeType;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.WrongArity:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 3879, 3913);
+
+                        return CandidateReason.WrongArity;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.Inaccessible:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 3967, 4003);
+
+                        return CandidateReason.Inaccessible;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotCreatable:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4057, 4093);
+
+                        return CandidateReason.NotCreatable;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotReferencable:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4150, 4189);
+
+                        return CandidateReason.NotReferencable;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotAValue:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4240, 4273);
+
+                        return CandidateReason.NotAValue;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotAVariable:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4327, 4363);
+
+                        return CandidateReason.NotAVariable;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.NotInvocable:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4417, 4453);
+
+                        return CandidateReason.NotInvocable;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.StaticInstanceMismatch:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4517, 4563);
+
+                        return CandidateReason.StaticInstanceMismatch;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.OverloadResolutionFailure:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4630, 4679);
+
+                        return CandidateReason.OverloadResolutionFailure;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.Ambiguous:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4730, 4763);
+
+                        return CandidateReason.Ambiguous;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.MemberGroup:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4816, 4851);
+
+                        return CandidateReason.MemberGroup;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    case LookupResultKind.Viable:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 4922, 4993);
+
+                        f_10355_4922_4992(false, "Should not call this on LookupResultKind.Viable");
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5015, 5043);
+
+                        return CandidateReason.None;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 3512, 5161);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5093, 5146);
+
+                        throw f_10355_5099_5145(resultKind);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 3512, 5161);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10355, 3406, 5172);
+
+                int
+                f_10355_4922_4992(bool
+                condition, string
+                message)
+                {
+                    Debug.Assert(condition, message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10355, 4922, 4992);
+                    return 0;
+                }
+
+
+                System.Exception
+                f_10355_5099_5145(Microsoft.CodeAnalysis.CSharp.LookupResultKind
+                o)
+                {
+                    var return_v = ExceptionUtilities.UnexpectedValue((object)o);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10355, 5099, 5145);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10355, 3406, 5172);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10355, 3406, 5172);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // Return the lowest non-empty result kind
         public static LookupResultKind WorseResultKind(this LookupResultKind resultKind1, LookupResultKind resultKind2)
         {
-            if (resultKind1 == LookupResultKind.Empty)
-                return resultKind2;
-            if (resultKind2 == LookupResultKind.Empty)
-                return resultKind1;
-            if (resultKind1 < resultKind2)
-                return resultKind1;
-            else
-                return resultKind2;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10355, 5236, 5691);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5372, 5451) || true) && (resultKind1 == LookupResultKind.Empty)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 5372, 5451);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5432, 5451);
+
+                    return resultKind2;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 5372, 5451);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5465, 5544) || true) && (resultKind2 == LookupResultKind.Empty)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 5465, 5544);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5525, 5544);
+
+                    return resultKind1;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 5465, 5544);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5558, 5680) || true) && (resultKind1 < resultKind2)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 5558, 5680);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5606, 5625);
+
+                    return resultKind1;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 5558, 5680);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10355, 5558, 5680);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10355, 5661, 5680);
+
+                    return resultKind2;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10355, 5558, 5680);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10355, 5236, 5691);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10355, 5236, 5691);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10355, 5236, 5691);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static LookupResultKindExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10355, 3186, 5698);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10355, 3186, 5698);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10355, 3186, 5698);
+        }
+
     }
 }

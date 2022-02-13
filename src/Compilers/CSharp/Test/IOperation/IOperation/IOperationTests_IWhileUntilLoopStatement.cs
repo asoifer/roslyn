@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,13 +12,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests : SemanticModelTestBase
-    {
-        [CompilerTrait(CompilerFeature.IOperation)]
+public partial class IOperationTests : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_DoWhileLoopsTest()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,503,3420);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,718,1047);
+
+string 
+source = @"
 class Program
 {
     static void Main()
@@ -35,8 +41,12 @@ class Program
         System.Console.WriteLine(sum);
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,1061,3318);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: False, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'do ... le (i < 4);')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i < 4')
@@ -66,15 +76,35 @@ IWhileLoopOperation (ConditionIsTop: False, ConditionIsUntil: False) (LoopKind.W
               ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<DoStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,3332,3409);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_3332_3408(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,503,3420);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,503,3420);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,503,3420);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileLoopsTest()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,3432,6006);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,3645,3954);
+
+string 
+source = @"
 class Program
 {
     static int SumWhile()
@@ -92,8 +122,12 @@ class Program
         return sum;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,3968,5901);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (i <  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i < 5')
@@ -119,15 +153,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
               ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,5915,5995);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_5915_5994(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,3432,6006);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,3432,6006);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,3432,6006);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileConditionTrue()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,6018,9428);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,6235,6588);
+
+string 
+source = @"
 using System;
 
 class Program
@@ -146,8 +200,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,6602,9323);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (cond ... }')
   Condition: 
     ILocalReferenceOperation: condition (OperationKind.LocalReference, Type: System.Boolean) (Syntax: 'condition')
@@ -185,15 +243,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
           null
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,9337,9417);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_9337_9416(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,6018,9428);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,6018,9428);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,6018,9428);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithBreak()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,9440,14565);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,9653,10072);
+
+string 
+source = @"
 using System;
 
 class Program
@@ -213,8 +291,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,10086,14460);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (true ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -266,15 +348,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,14474,14554);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_14474_14553(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,9440,14565);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,9440,14565);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,9440,14565);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithThrow()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,14577,19489);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,14790,15182);
+
+string 
+source = @"
 using System;
 
 class Program
@@ -293,8 +395,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,15196,19384);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (true ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -344,15 +450,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,19398,19478);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_19398_19477(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,14577,19489);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,14577,19489);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,14577,19489);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithAssignment()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,19501,24445);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,19719,20018);
+
+string 
+source = @"
 using System;
 
 class Program
@@ -368,8 +494,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,20032,24340);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while ((i = ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.GreaterThanOrEqual) (OperationKind.Binary, Type: System.Boolean) (Syntax: '(i = value) >= 0')
@@ -414,15 +544,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
               ILocalReferenceOperation: value (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'value')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,24354,24434);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_24354_24433(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,19501,24445);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,19501,24445);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,19501,24445);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileInvalidCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,24457,25791);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,24677,24851);
+
+string 
+source = @"
 class Program
 {
     static void Main()
@@ -433,8 +583,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,24865,25686);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null, IsInvalid) (Syntax: 'while (numb ... }')
   Condition: 
     IConversionOperation (TryCast: False, Unchecked) (OperationKind.Conversion, Type: System.Boolean, IsInvalid, IsImplicit) (Syntax: 'number')
@@ -445,15 +599,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,25700,25780);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_25700_25779(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,24457,25791);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,24457,25791);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,24457,25791);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithReturn()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,25803,28621);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,26017,26413);
+
+string 
+source = @"
 class Program
 {
     static void Main()
@@ -473,9 +647,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,26429,28516);
 
-            string expectedOperationTree = @"
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (true ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -506,15 +683,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
               IParameterReferenceOperation: number (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'number')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,28530,28610);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_28530_28609(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,25803,28621);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,25803,28621);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,25803,28621);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithGoto()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,28633,31727);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,28845,29278);
+
+string 
+source = @"
 class Program
 {
     static void Main()
@@ -535,8 +732,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,29292,31622);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (true ... }')
   Condition: 
     ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: True) (Syntax: 'true')
@@ -570,15 +771,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
               IParameterReferenceOperation: number (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'number')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,31636,31716);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_31636_31715(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,28633,31727);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,28633,31727);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,28633,31727);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileMissingCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,31739,35124);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,31959,32287);
+
+string 
+source = @"
 class Program
 {
     static void Main()
@@ -595,8 +816,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,32301,35019);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null, IsInvalid) (Syntax: 'while () ... }')
   Condition: 
     IInvalidOperation (OperationKind.Invalid, Type: null, IsInvalid) (Syntax: '')
@@ -635,15 +860,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
           null
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,35033,35113);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_35033_35112(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,31739,35124);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,31739,35124);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,31739,35124);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileMissingStatement()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,35136,36378);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,35356,35531);
+
+string 
+source = @"
 class ContinueTest
 {
     static void Main()
@@ -655,8 +900,12 @@ class ContinueTest
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,35545,36273);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while(i <=  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThanOrEqual) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i <= 10')
@@ -668,15 +917,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
     IBlockOperation (0 statements) (OperationKind.Block, Type: null) (Syntax: '{ ... }')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,36287,36367);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_36287_36366(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,35136,36378);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,35136,36378);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,35136,36378);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithContinue()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,36390,39879);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,36606,36920);
+
+string 
+source = @"
 class ContinueTest
 {
     static void Main()
@@ -693,8 +962,12 @@ class ContinueTest
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,36934,39774);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while(i <=  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThanOrEqual) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i <= 10')
@@ -733,15 +1006,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,39788,39868);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_39788_39867(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,36390,39879);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,36390,39879);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,36390,39879);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileNested()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,39891,45601);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,40101,40473);
+
+string 
+source = @"
 class Test
 {
     static void Main()
@@ -760,8 +1053,12 @@ class Test
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,40487,45496);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while(i<10) ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i<10')
@@ -824,15 +1121,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,45510,45590);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_45510_45589(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,39891,45601);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,39891,45601);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,39891,45601);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileChangeOuterInnerValue()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,45613,52215);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,45838,46238);
+
+string 
+source = @"
 class Test
 {
     static void Main()
@@ -852,8 +1169,12 @@ class Test
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,46252,52110);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while(i<10) ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i<10')
@@ -927,15 +1248,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,52124,52204);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_52124_52203(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,45613,52215);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,45613,52215);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,45613,52215);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithDynamic()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,52227,54806);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,52442,53153);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -973,8 +1314,12 @@ public class MyWhile
         System.Console.WriteLine(""Next"");
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,53167,54701);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (d.Do ... }')
   Condition: 
     IUnaryOperation (UnaryOperatorKind.True) (OperationKind.Unary, Type: System.Boolean, IsImplicit) (Syntax: 'd.Done')
@@ -998,15 +1343,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
             ArgumentRefKinds(0)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,54715,54795);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_54715_54794(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,52227,54806);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,52227,54806);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,52227,54806);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileIncrementInCondition()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,54818,57218);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,55042,55269);
+
+string 
+source = @"
 class Program
 {
     static void Main(string[] args)
@@ -1019,8 +1384,12 @@ class Program
     }
 }
 
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,55283,57113);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while ( ++i ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.LessThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: '++i < 5')
@@ -1044,15 +1413,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,57127,57207);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_57127_57206(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,54818,57218);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,54818,57218);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,54818,57218);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileInfiniteLoop()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,57230,58843);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,57446,57636);
+
+string 
+source = @"
 class C
 {
     static void Main(string[] args)
@@ -1063,8 +1452,12 @@ class C
             i++;
         }/*</bind>*/
     }
-}";
-            string expectedOperationTree = @"
+}"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,57650,58738);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (i >  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.GreaterThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'i > 0')
@@ -1081,15 +1474,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
               ILocalReferenceOperation: i (OperationKind.LocalReference, Type: System.Int32) (Syntax: 'i')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,58752,58832);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_58752_58831(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,57230,58843);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,57230,58843);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,57230,58843);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileConstantCheck()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,58855,60384);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,59072,59265);
+
+string 
+source = @"
 class Program
 {
     bool foo()
@@ -1101,8 +1514,12 @@ class Program
         }/*</bind>*/
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,59279,60279);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (b == ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.Equals) (OperationKind.Binary, Type: System.Boolean, Constant: True) (Syntax: 'b == b')
@@ -1117,15 +1534,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
           ILocalReferenceOperation: b (OperationKind.LocalReference, Type: System.Boolean, Constant: True) (Syntax: 'b')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,60293,60373);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_60293_60372(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,58855,60384);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,58855,60384);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,58855,60384);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithTryCatch()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,60396,64582);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,60612,61000);
+
+string 
+source = @"
 public class TryCatchFinally
 {
     public void TryMethod()
@@ -1145,8 +1582,12 @@ public class TryCatchFinally
        
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,61014,64477);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (x--  ... }')
   Condition: 
     IBinaryOperation (BinaryOperatorKind.GreaterThan) (OperationKind.Binary, Type: System.Boolean) (Syntax: 'x-- > 0')
@@ -1191,15 +1632,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
                   null
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,64491,64571);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_64491_64570(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,60396,64582);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,60396,64582);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,60396,64582);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_WhileWithOutVar()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,64594,72016);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,64808,65327);
+
+string 
+source = @"
 public class X
 {
     public static void Main()
@@ -1225,8 +1686,12 @@ public class X
         return true;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,65341,71911);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'while (Dumm ... }')
   Locals: Local_1: System.Int32 x1
   Condition: 
@@ -1291,15 +1756,35 @@ IWhileLoopOperation (ConditionIsTop: True, ConditionIsUntil: False) (LoopKind.Wh
               ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: False) (Syntax: 'false')
   IgnoredCondition: 
     null
-";
-            VerifyOperationTreeForTest<WhileStatementSyntax>(source, expectedOperationTree);
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,71925,72005);
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+f_22076_71925_72004(source, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,64594,72016);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,64594,72016);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,64594,72016);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact, WorkItem(17602, "https://github.com/dotnet/roslyn/issues/17602")]
         public void IWhileUntilLoopStatement_DoWithOutVar()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,72028,78525);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,72239,72712);
+
+string 
+source = @"
 class X
 {
     public static void Main()
@@ -1324,8 +1809,12 @@ class X
         return true;
     }
 }
-";
-            string expectedOperationTree = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,72726,78319);
+
+string 
+expectedOperationTree = @"
 IWhileLoopOperation (ConditionIsTop: False, ConditionIsUntil: False) (LoopKind.While, Continue Label Id: 0, Exit Label Id: 1) (OperationKind.Loop, Type: null) (Syntax: 'do ...  x1), x1));')
   Locals: Local_1: System.Int32 x1
   Condition: 
@@ -1380,17 +1869,40 @@ IWhileLoopOperation (ConditionIsTop: False, ConditionIsUntil: False) (LoopKind.W
               ILiteralOperation (OperationKind.Literal, Type: System.Boolean, Constant: False) (Syntax: 'false')
   IgnoredCondition: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,78333,78386);
 
-            VerifyOperationTreeAndDiagnosticsForTest<DoStatementSyntax>(source, expectedOperationTree, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,78402,78514);
+
+f_22076_78402_78513(source, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,72028,78525);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,72028,78525);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,72028,78525);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void WhileFlow_01()
+		{
+			try
         {
-            string source1 = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,78537,80782);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,78683,78897);
+
+string 
+source1 = @"
 class P
 {
     void M(bool condition1, bool condition2)
@@ -1401,8 +1913,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string source2 = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,78911,79103);
+
+string 
+source2 = @"
 class P
 {
     void M(bool condition1, bool condition2)
@@ -1411,8 +1927,12 @@ class P
             if (condition2) condition1 = false;
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,79117,80484);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1445,18 +1965,43 @@ Block[B3] - Block
 Block[B4] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,80498,80551);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source1, expectedGraph, expectedDiagnostics);
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source2, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,80567,80662);
+
+f_22076_80567_80661(source1, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,80676,80771);
+
+f_22076_80676_80770(source2, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,78537,80782);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,78537,80782);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,78537,80782);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DoFlow_01()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,80794,82324);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,80937,81127);
+
+string 
+source = @"
 class P
 {
     void M(bool condition)
@@ -1468,8 +2013,12 @@ class P
         while (condition);
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,81141,82136);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1491,17 +2040,40 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,82150,82203);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,82219,82313);
+
+f_22076_82219_82312(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,80794,82324);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,80794,82324);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,80794,82324);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DoFlow_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,82336,83268);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,82479,82637);
+
+string 
+source = @"
 class P
 {
     void M(bool condition)
@@ -1512,8 +2084,12 @@ class P
         while (condition);
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,82651,83080);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1527,17 +2103,40 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,83094,83147);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,83163,83257);
+
+f_22076_83163_83256(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,82336,83268);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,82336,83268);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,82336,83268);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void WhileFlow_02()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,83280,85057);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,83426,83677);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1551,8 +2150,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,83691,84869);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1586,17 +2189,40 @@ Block[B1] - Block
 Block[B3] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,84883,84936);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,84952,85046);
+
+f_22076_84952_85045(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,83280,85057);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,83280,85057);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,83280,85057);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void WhileFlow_03()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,85069,86080);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,85215,85446);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1609,8 +2235,12 @@ class P
         }
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,85460,85892);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1624,17 +2254,40 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,85906,85959);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,85975,86069);
+
+f_22076_85975_86068(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,85069,86080);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,85069,86080);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,85069,86080);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void WhileFlow_04()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,86092,89190);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,86238,86524);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1649,8 +2302,12 @@ class P
     }/*</bind>*/
     bool filter(out int i) => throw null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,86538,89002);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1703,17 +2360,40 @@ Block[B1] - Block
 Block[B4] - Exit
     Predecessors: [B2]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,89016,89069);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,89085,89179);
+
+f_22076_89085_89178(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,86092,89190);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,86092,89190);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,86092,89190);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void WhileFlow_05()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,89202,91490);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,89348,89614);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1727,8 +2407,12 @@ class P
     }/*</bind>*/
     bool filter(out int i) => throw null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,89628,91302);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1763,17 +2447,40 @@ Block[B1] - Block
 Block[B3] - Exit
     Predecessors: [B2]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,91316,91369);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,91385,91479);
+
+f_22076_91385_91478(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,89202,91490);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,89202,91490);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,89202,91490);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DoFlow_03()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,91502,93308);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,91645,91907);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1788,8 +2495,12 @@ class P
         while (condition);
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,91921,93120);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1824,17 +2535,40 @@ Block[B2] - Block
 Block[B3] - Exit
     Predecessors: [B2]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,93134,93187);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,93203,93297);
+
+f_22076_93203_93296(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,91502,93308);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,91502,93308);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,91502,93308);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DoFlow_04()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,93320,94336);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,93463,93705);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1848,8 +2582,12 @@ class P
         while (condition);
     }/*</bind>*/
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,93719,94148);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1863,17 +2601,40 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,94162,94215);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,94231,94325);
+
+f_22076_94231_94324(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,93320,94336);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,93320,94336);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,93320,94336);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DoFlow_05()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,94348,97454);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,94491,94790);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1889,8 +2650,12 @@ class P
     }/*</bind>*/
     bool filter(out int i) => throw null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,94804,97266);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -1943,17 +2708,40 @@ Block[B1] - Block
 Block[B4] - Exit
     Predecessors: [B3]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,97280,97333);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,97349,97443);
+
+f_22076_97349_97442(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,94348,97454);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,94348,97454);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,94348,97454);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void DoFlow_06()
+		{
+			try
         {
-            string source = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22076,97466,99763);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,97609,97888);
+
+string 
+source = @"
 #pragma warning disable CS0168
 #pragma warning disable CS0219
 class P
@@ -1968,8 +2756,12 @@ class P
     }/*</bind>*/
     bool filter(out int i) => throw null;
 }
-";
-            string expectedGraph = @"
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,97902,99575);
+
+string 
+expectedGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -2004,10 +2796,403 @@ Block[B1] - Block
 Block[B3] - Exit
     Predecessors: [B2]
     Statements (0)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,99589,99642);
 
-            VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>(source, expectedGraph, expectedDiagnostics);
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22076,99658,99752);
+
+f_22076_99658_99751(source, expectedGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceExitMethod(22076,97466,99763);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22076,97466,99763);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22076,97466,99763);
+}
+		}
+
+int
+f_22076_3332_3408(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<DoStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 3332, 3408);
+return 0;
+}
+
+
+int
+f_22076_5915_5994(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 5915, 5994);
+return 0;
+}
+
+
+int
+f_22076_9337_9416(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 9337, 9416);
+return 0;
+}
+
+
+int
+f_22076_14474_14553(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 14474, 14553);
+return 0;
+}
+
+
+int
+f_22076_19398_19477(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 19398, 19477);
+return 0;
+}
+
+
+int
+f_22076_24354_24433(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 24354, 24433);
+return 0;
+}
+
+
+int
+f_22076_25700_25779(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 25700, 25779);
+return 0;
+}
+
+
+int
+f_22076_28530_28609(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 28530, 28609);
+return 0;
+}
+
+
+int
+f_22076_31636_31715(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 31636, 31715);
+return 0;
+}
+
+
+int
+f_22076_35033_35112(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 35033, 35112);
+return 0;
+}
+
+
+int
+f_22076_36287_36366(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 36287, 36366);
+return 0;
+}
+
+
+int
+f_22076_39788_39867(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 39788, 39867);
+return 0;
+}
+
+
+int
+f_22076_45510_45589(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 45510, 45589);
+return 0;
+}
+
+
+int
+f_22076_52124_52203(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 52124, 52203);
+return 0;
+}
+
+
+int
+f_22076_54715_54794(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 54715, 54794);
+return 0;
+}
+
+
+int
+f_22076_57127_57206(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 57127, 57206);
+return 0;
+}
+
+
+int
+f_22076_58752_58831(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 58752, 58831);
+return 0;
+}
+
+
+int
+f_22076_60293_60372(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 60293, 60372);
+return 0;
+}
+
+
+int
+f_22076_64491_64570(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 64491, 64570);
+return 0;
+}
+
+
+int
+f_22076_71925_72004(string
+testSrc,string
+expectedOperationTree)
+{
+VerifyOperationTreeForTest<WhileStatementSyntax>( testSrc, expectedOperationTree);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 71925, 72004);
+return 0;
+}
+
+
+int
+f_22076_78402_78513(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyOperationTreeAndDiagnosticsForTest<DoStatementSyntax>( testSrc, expectedOperationTree, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 78402, 78513);
+return 0;
+}
+
+
+int
+f_22076_80567_80661(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 80567, 80661);
+return 0;
+}
+
+
+int
+f_22076_80676_80770(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 80676, 80770);
+return 0;
+}
+
+
+int
+f_22076_82219_82312(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 82219, 82312);
+return 0;
+}
+
+
+int
+f_22076_83163_83256(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 83163, 83256);
+return 0;
+}
+
+
+int
+f_22076_84952_85045(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 84952, 85045);
+return 0;
+}
+
+
+int
+f_22076_85975_86068(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 85975, 86068);
+return 0;
+}
+
+
+int
+f_22076_89085_89178(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 89085, 89178);
+return 0;
+}
+
+
+int
+f_22076_91385_91478(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 91385, 91478);
+return 0;
+}
+
+
+int
+f_22076_93203_93296(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 93203, 93296);
+return 0;
+}
+
+
+int
+f_22076_94231_94324(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 94231, 94324);
+return 0;
+}
+
+
+int
+f_22076_97349_97442(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 97349, 97442);
+return 0;
+}
+
+
+int
+f_22076_99658_99751(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics)
+{
+VerifyFlowGraphAndDiagnosticsForTest<BlockSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22076, 99658, 99751);
+return 0;
+}
+
+}
 }

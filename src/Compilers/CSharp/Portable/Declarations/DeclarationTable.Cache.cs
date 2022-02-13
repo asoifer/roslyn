@@ -13,37 +13,118 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     internal partial class DeclarationTable
     {
-        // The structure of the DeclarationTable provides us with a set of 'old' declarations that
-        // stay relatively unchanged and a 'new' declaration that is repeatedly added and removed.
-        // This mimics the expected usage pattern of a user repeatedly typing in a single file.
-        // Because of this usage pattern, we can cache information about these 'old' declarations
-        // and keep that around as long as they do not change.  For example, we keep a single 'merged
-        // declaration' for all those root declarations as well as sets of interesting information
-        // (like the type names in those decls). 
         private class Cache
         {
-            // The merged root declaration for all the 'old' declarations.
             internal readonly Lazy<MergedNamespaceDeclaration> MergedRoot;
 
-            // All the simple type names for all the types in the 'old' declarations.
             internal readonly Lazy<ISet<string>> TypeNames;
+
             internal readonly Lazy<ISet<string>> NamespaceNames;
+
             internal readonly Lazy<ImmutableArray<ReferenceDirective>> ReferenceDirectives;
 
             public Cache(DeclarationTable table)
             {
-                this.MergedRoot = new Lazy<MergedNamespaceDeclaration>(
-                    () => MergedNamespaceDeclaration.Create(table._allOlderRootDeclarations.InInsertionOrder.AsImmutable<SingleNamespaceDeclaration>()));
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(10070, 1599, 2398);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 1263, 1273);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 1414, 1423);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 1475, 1489);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 1563, 1582);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 1668, 1878);
 
-                this.TypeNames = new Lazy<ISet<string>>(
-                    () => GetTypeNames(this.MergedRoot.Value));
+                    this.MergedRoot = f_10070_1686_1877(() => MergedNamespaceDeclaration.Create(table._allOlderRootDeclarations.InInsertionOrder.AsImmutable<SingleNamespaceDeclaration>()));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 1898, 2003);
 
-                this.NamespaceNames = new Lazy<ISet<string>>(
-                    () => GetNamespaceNames(this.MergedRoot.Value));
+                    this.TypeNames = f_10070_1915_2002(() => GetTypeNames(this.MergedRoot.Value));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 2023, 2138);
 
-                this.ReferenceDirectives = new Lazy<ImmutableArray<ReferenceDirective>>(
-                    () => MergedRoot.Value.Declarations.OfType<RootSingleNamespaceDeclaration>().SelectMany(r => r.ReferenceDirectives).AsImmutable());
+                    this.NamespaceNames = f_10070_2045_2137(() => GetNamespaceNames(this.MergedRoot.Value));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10070, 2158, 2383);
+
+                    this.ReferenceDirectives = f_10070_2185_2382(() => MergedRoot.Value.Declarations.OfType<RootSingleNamespaceDeclaration>().SelectMany(r => r.ReferenceDirectives).AsImmutable());
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(10070, 1599, 2398);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10070, 1599, 2398);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10070, 1599, 2398);
+                }
             }
+
+            static Cache()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10070, 1092, 2409);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10070, 1092, 2409);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10070, 1092, 2409);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10070, 1092, 2409);
+
+            System.Lazy<Microsoft.CodeAnalysis.CSharp.MergedNamespaceDeclaration>
+            f_10070_1686_1877(System.Func<Microsoft.CodeAnalysis.CSharp.MergedNamespaceDeclaration>
+            valueFactory)
+            {
+                var return_v = new System.Lazy<Microsoft.CodeAnalysis.CSharp.MergedNamespaceDeclaration>(valueFactory);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10070, 1686, 1877);
+                return return_v;
+            }
+
+
+            System.Lazy<System.Collections.Generic.ISet<string>>
+            f_10070_1915_2002(System.Func<System.Collections.Generic.ISet<string>>
+            valueFactory)
+            {
+                var return_v = new System.Lazy<System.Collections.Generic.ISet<string>>(valueFactory);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10070, 1915, 2002);
+                return return_v;
+            }
+
+
+            System.Lazy<System.Collections.Generic.ISet<string>>
+            f_10070_2045_2137(System.Func<System.Collections.Generic.ISet<string>>
+            valueFactory)
+            {
+                var return_v = new System.Lazy<System.Collections.Generic.ISet<string>>(valueFactory);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10070, 2045, 2137);
+                return return_v;
+            }
+
+
+            System.Lazy<System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ReferenceDirective>>
+            f_10070_2185_2382(System.Func<System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ReferenceDirective>>
+            valueFactory)
+            {
+                var return_v = new System.Lazy<System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ReferenceDirective>>(valueFactory);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10070, 2185, 2382);
+                return return_v;
+            }
+
         }
+
+        static DeclarationTable()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10070, 386, 2416);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10045, 1172, 1382);
+
+            // Lafhis
+            //Empty = f_10045_1180_1382(allOlderRootDeclarations: ImmutableSetWithInsertionOrder<RootSingleNamespaceDeclaration>.Empty, latestLazyRootDeclaration: null, cache: null);
+            Empty = new DeclarationTable(allOlderRootDeclarations: Roslyn.Utilities.ImmutableSetWithInsertionOrder<RootSingleNamespaceDeclaration>.Empty, latestLazyRootDeclaration: null, cache: null);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(10045, 1180, 1382);
+
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10045, 9695, 9760);
+            s_isNamespacePredicate = d => d.Kind == DeclarationKind.Namespace; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10045, 9818, 9878);
+            s_isTypePredicate = d => d.Kind != DeclarationKind.Namespace; DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10070, 386, 2416);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10070, 386, 2416);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10070, 386, 2416);
     }
 }

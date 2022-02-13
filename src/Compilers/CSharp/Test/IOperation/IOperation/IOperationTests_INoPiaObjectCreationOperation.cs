@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,14 +11,19 @@ using Xunit;
 
 namespace Microsoft.CodeAnalysis.CSharp.UnitTests
 {
-    public partial class IOperationTests : SemanticModelTestBase
-    {
-
-        [CompilerTrait(CompilerFeature.IOperation)]
+public partial class IOperationTests : SemanticModelTestBase
+{
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void NoPiaObjectCreation_01()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,526,3049);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,656,1162);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -38,13 +43,20 @@ public interface ITest33 : System.Collections.IEnumerable
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,1178,1255);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_1199_1254(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,1271,1304);
 
-            CompileAndVerify(piaCompilation);
+f_22053_1271_1303(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,1320,1468);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     public void M1(ITest33 x, int y)
@@ -52,9 +64,12 @@ class UsePia
 	    x = /*<bind>*/new ITest33  { y }/*</bind>*/;
     }
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,1484,2744);
 
-            string expectedOperationTree = @"
+string 
+expectedOperationTree = @"
 INoPiaObjectCreationOperation (OperationKind.None, Type: ITest33) (Syntax: 'new ITest33  { y }')
   Initializer: 
     IObjectOrCollectionInitializerOperation (OperationKind.ObjectOrCollectionInitializer, Type: ITest33) (Syntax: '{ y }')
@@ -67,17 +82,40 @@ INoPiaObjectCreationOperation (OperationKind.None, Type: ITest33) (Syntax: 'new 
                   IParameterReferenceOperation: y (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'y')
                   InConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
                   OutConversion: CommonConversion (Exists: True, IsIdentity: True, IsNumeric: False, IsReference: False, IsUserDefined: False) (MethodSymbol: null)
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,2758,2811);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(consumer, expectedOperationTree, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,2827,3038);
+
+f_22053_2827_3037(consumer, expectedOperationTree, expectedDiagnostics, references: new[] { f_22053_2974_3034(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,526,3049);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,526,3049);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,526,3049);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void NoPiaObjectCreation_02()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,3061,5212);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,3191,3665);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -97,13 +135,20 @@ public interface ITest33
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,3681,3758);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_3702_3757(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,3774,3807);
 
-            CompileAndVerify(piaCompilation);
+f_22053_3774_3806(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,3823,3975);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     public void M1(ITest33 x, int y)
@@ -111,9 +156,12 @@ class UsePia
 	    x = /*<bind>*/new ITest33  { P = y }/*</bind>*/;
     }
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,3991,4907);
 
-            string expectedOperationTree = @"
+string 
+expectedOperationTree = @"
 INoPiaObjectCreationOperation (OperationKind.None, Type: ITest33) (Syntax: 'new ITest33  { P = y }')
   Initializer: 
     IObjectOrCollectionInitializerOperation (OperationKind.ObjectOrCollectionInitializer, Type: ITest33) (Syntax: '{ P = y }')
@@ -125,17 +173,40 @@ INoPiaObjectCreationOperation (OperationKind.None, Type: ITest33) (Syntax: 'new 
                   IInstanceReferenceOperation (ReferenceKind: ImplicitReceiver) (OperationKind.InstanceReference, Type: ITest33, IsImplicit) (Syntax: 'P')
             Right: 
               IParameterReferenceOperation: y (OperationKind.ParameterReference, Type: System.Int32) (Syntax: 'y')
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,4921,4974);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(consumer, expectedOperationTree, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,4990,5201);
+
+f_22053_4990_5200(consumer, expectedOperationTree, expectedDiagnostics, references: new[] { f_22053_5137_5197(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,3061,5212);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,3061,5212);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,3061,5212);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation)]
+[CompilerTrait(CompilerFeature.IOperation)]
         [Fact]
         public void NoPiaObjectCreation_03()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,5224,6584);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,5354,5805);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -154,13 +225,20 @@ public interface ITest33
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,5821,5898);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_5842_5897(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,5914,5947);
 
-            CompileAndVerify(piaCompilation);
+f_22053_5914_5946(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,5963,6106);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     public void M1(ITest33 x, int y)
@@ -168,23 +246,49 @@ class UsePia
 	    x = /*<bind>*/new ITest33()/*</bind>*/;
     }
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,6122,6279);
 
-            string expectedOperationTree = @"
+string 
+expectedOperationTree = @"
 INoPiaObjectCreationOperation (OperationKind.None, Type: ITest33) (Syntax: 'new ITest33()')
   Initializer: 
     null
-";
-            var expectedDiagnostics = DiagnosticDescription.None;
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,6293,6346);
 
-            VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>(consumer, expectedOperationTree, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,6362,6573);
+
+f_22053_6362_6572(consumer, expectedOperationTree, expectedDiagnostics, references: new[] { f_22053_6509_6569(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,5224,6584);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,5224,6584);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,5224,6584);
+}
+		}
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void NoPiaObjectCreationFlow_01()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,6596,10392);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,6756,7262);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -204,13 +308,20 @@ public interface ITest33 : System.Collections.IEnumerable
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,7278,7355);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_7299_7354(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,7371,7404);
 
-            CompileAndVerify(piaCompilation);
+f_22053_7371_7403(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,7420,7568);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     /*<bind>*/public void M1(ITest33 x, int y)
@@ -218,11 +329,17 @@ class UsePia
 	    x = new ITest33  { y };
     }/*</bind>*/
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,7584,7637);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,7653,10171);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -268,15 +385,35 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,10185,10381);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22053_10185_10380(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { f_22053_10317_10377(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,6596,10392);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,6596,10392);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,6596,10392);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void NoPiaObjectCreationFlow_02()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,10404,13849);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,10564,11038);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -296,13 +433,20 @@ public interface ITest33
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,11054,11131);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_11075_11130(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,11147,11180);
 
-            CompileAndVerify(piaCompilation);
+f_22053_11147_11179(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,11196,11348);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     /*<bind>*/public void M1(ITest33 x, int y)
@@ -310,11 +454,17 @@ class UsePia
 	    x = new ITest33  { P = y };
     }/*</bind>*/
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,11364,11417);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,11433,13628);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -359,15 +509,35 @@ Block[B0] - Entry
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,13642,13838);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22053_13642_13837(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { f_22053_13774_13834(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,10404,13849);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,10404,13849);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,10404,13849);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void NoPiaObjectCreationFlow_03()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,13861,15924);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,14021,14472);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -386,13 +556,20 @@ public interface ITest33
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,14488,14565);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_14509_14564(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,14581,14614);
 
-            CompileAndVerify(piaCompilation);
+f_22053_14581_14613(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,14630,14773);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     /*<bind>*/public void M1(ITest33 x, int y)
@@ -400,11 +577,17 @@ class UsePia
 	    x = new ITest33();
     }/*</bind>*/
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,14789,14842);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,14858,15703);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -425,15 +608,35 @@ Block[B1] - Block
 Block[B2] - Exit
     Predecessors: [B1]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
-        }
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,15717,15913);
 
-        [CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
+f_22053_15717_15912(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { f_22053_15849_15909(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,13861,15924);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,13861,15924);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,13861,15924);
+}
+		}
+
+[CompilerTrait(CompilerFeature.IOperation, CompilerFeature.Dataflow)]
         [Fact]
         public void NoPiaObjectCreationFlow_04()
+		{
+			try
         {
-            string pia = @"
+DynAbs.Tracing.TraceSender.TraceEnterMethod(22053,15936,21959);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,16096,16605);
+
+string 
+pia = @"
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
@@ -453,13 +656,20 @@ public interface ITest33 : System.Collections.IEnumerable
 public abstract class ClassITest33
 {
 }
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,16621,16698);
 
-            var piaCompilation = CreateCompilation(pia, options: TestOptions.ReleaseDll);
+var 
+piaCompilation = f_22053_16642_16697(pia, options: TestOptions.ReleaseDll)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,16714,16747);
 
-            CompileAndVerify(piaCompilation);
+f_22053_16714_16746(this, piaCompilation);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,16763,16933);
 
-            string consumer = @"
+string 
+consumer = @"
 class UsePia
 {
     /*<bind>*/public void M1(ITest33 x, object y1, object y2)
@@ -467,11 +677,17 @@ class UsePia
 	    x = new ITest33  { y1 ?? y2 };
     }/*</bind>*/
 } 
-";
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,16949,17002);
 
-            var expectedDiagnostics = DiagnosticDescription.None;
+var 
+expectedDiagnostics = DiagnosticDescription.None
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,17018,21738);
 
-            string expectedFlowGraph = @"
+string 
+expectedFlowGraph = @"
 Block[B0] - Entry
     Statements (0)
     Next (Regular) Block[B1]
@@ -569,8 +785,344 @@ Block[B0] - Entry
 Block[B7] - Exit
     Predecessors: [B6]
     Statements (0)
-";
-            VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { piaCompilation.EmitToImageReference(embedInteropTypes: true) });
+"
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(22053,21752,21948);
+
+f_22053_21752_21947(consumer, expectedFlowGraph, expectedDiagnostics, references: new[] { f_22053_21884_21944(piaCompilation, embedInteropTypes: true)});
+DynAbs.Tracing.TraceSender.TraceExitMethod(22053,15936,21959);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(22053,15936,21959);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(22053,15936,21959);
+}
+		}
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_1199_1254(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 1199, 1254);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_1271_1303(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 1271, 1303);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_2974_3034(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 2974, 3034);
+return return_v;
+}
+
+
+int
+f_22053_2827_3037(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 2827, 3037);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_3702_3757(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 3702, 3757);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_3774_3806(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 3774, 3806);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_5137_5197(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 5137, 5197);
+return return_v;
+}
+
+
+int
+f_22053_4990_5200(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 4990, 5200);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_5842_5897(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 5842, 5897);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_5914_5946(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 5914, 5946);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_6509_6569(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 6509, 6569);
+return return_v;
+}
+
+
+int
+f_22053_6362_6572(string
+testSrc,string
+expectedOperationTree,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyOperationTreeAndDiagnosticsForTest<ObjectCreationExpressionSyntax>( testSrc, expectedOperationTree, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 6362, 6572);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_7299_7354(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 7299, 7354);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_7371_7403(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 7371, 7403);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_10317_10377(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 10317, 10377);
+return return_v;
+}
+
+
+int
+f_22053_10185_10380(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 10185, 10380);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_11075_11130(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 11075, 11130);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_11147_11179(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 11147, 11179);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_13774_13834(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 13774, 13834);
+return return_v;
+}
+
+
+int
+f_22053_13642_13837(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 13642, 13837);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_14509_14564(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 14509, 14564);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_14581_14613(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 14581, 14613);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_15849_15909(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 15849, 15909);
+return return_v;
+}
+
+
+int
+f_22053_15717_15912(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 15717, 15912);
+return 0;
+}
+
+
+Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+f_22053_16642_16697(string
+source,Microsoft.CodeAnalysis.CSharp.CSharpCompilationOptions
+options)
+{
+var return_v = CreateCompilation( (Microsoft.CodeAnalysis.CSharp.Test.Utilities.CSharpTestSource)source, options:options);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 16642, 16697);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.Test.Utilities.CompilationVerifier
+f_22053_16714_16746(Microsoft.CodeAnalysis.CSharp.UnitTests.IOperationTests
+this_param,Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+compilation)
+{
+var return_v = this_param.CompileAndVerify( (Microsoft.CodeAnalysis.Compilation)compilation);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 16714, 16746);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.MetadataReference
+f_22053_21884_21944(Microsoft.CodeAnalysis.CSharp.CSharpCompilation
+comp,bool
+embedInteropTypes)
+{
+var return_v = comp.EmitToImageReference( embedInteropTypes:embedInteropTypes);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 21884, 21944);
+return return_v;
+}
+
+
+int
+f_22053_21752_21947(string
+testSrc,string
+expectedFlowGraph,Microsoft.CodeAnalysis.Test.Utilities.DiagnosticDescription[]
+expectedDiagnostics,Microsoft.CodeAnalysis.MetadataReference[]
+references)
+{
+VerifyFlowGraphAndDiagnosticsForTest<MethodDeclarationSyntax>( testSrc, expectedFlowGraph, expectedDiagnostics, references:references);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(22053, 21752, 21947);
+return 0;
+}
+
+}
 }

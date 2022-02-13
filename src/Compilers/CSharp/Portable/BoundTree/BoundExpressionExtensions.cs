@@ -11,110 +11,565 @@ namespace Microsoft.CodeAnalysis.CSharp
 {
     internal static partial class BoundExpressionExtensions
     {
-        /// <summary>
-        /// Returns the RefKind if the expression represents a symbol
-        /// that has a RefKind, or RefKind.None otherwise.
-        /// </summary>
         public static RefKind GetRefKind(this BoundExpression node)
         {
-            switch (node.Kind)
+            try
             {
-                case BoundKind.Local:
-                    return ((BoundLocal)node).LocalSymbol.RefKind;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 659, 1332);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 743, 1321);
 
-                case BoundKind.Parameter:
-                    return ((BoundParameter)node).ParameterSymbol.RefKind;
+                switch (f_10555_751_760(node))
+                {
 
-                case BoundKind.Call:
-                    return ((BoundCall)node).Method.RefKind;
+                    case BoundKind.Local:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 743, 1321);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 837, 883);
 
-                case BoundKind.PropertyAccess:
-                    return ((BoundPropertyAccess)node).PropertySymbol.RefKind;
+                        return f_10555_844_882(f_10555_844_874(((BoundLocal)node)));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 743, 1321);
 
-                default:
-                    return RefKind.None;
+                    case BoundKind.Parameter:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 743, 1321);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 950, 1004);
+
+                        return f_10555_957_1003(f_10555_957_995(((BoundParameter)node)));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 743, 1321);
+
+                    case BoundKind.Call:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 743, 1321);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 1066, 1106);
+
+                        return f_10555_1073_1105(f_10555_1073_1097(((BoundCall)node)));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 743, 1321);
+
+                    case BoundKind.PropertyAccess:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 743, 1321);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 1178, 1236);
+
+                        return f_10555_1185_1235(f_10555_1185_1227(((BoundPropertyAccess)node)));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 743, 1321);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 743, 1321);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 1286, 1306);
+
+                        return RefKind.None;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 743, 1321);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 659, 1332);
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_751_760(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 751, 760);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.LocalSymbol
+                f_10555_844_874(Microsoft.CodeAnalysis.CSharp.BoundLocal
+                this_param)
+                {
+                    var return_v = this_param.LocalSymbol;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 844, 874);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.RefKind
+                f_10555_844_882(Microsoft.CodeAnalysis.CSharp.Symbols.LocalSymbol
+                this_param)
+                {
+                    var return_v = this_param.RefKind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 844, 882);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                f_10555_957_995(Microsoft.CodeAnalysis.CSharp.BoundParameter
+                this_param)
+                {
+                    var return_v = this_param.ParameterSymbol;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 957, 995);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.RefKind
+                f_10555_957_1003(Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol
+                this_param)
+                {
+                    var return_v = this_param.RefKind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 957, 1003);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                f_10555_1073_1097(Microsoft.CodeAnalysis.CSharp.BoundCall
+                this_param)
+                {
+                    var return_v = this_param.Method;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 1073, 1097);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.RefKind
+                f_10555_1073_1105(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol
+                this_param)
+                {
+                    var return_v = this_param.RefKind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 1073, 1105);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.PropertySymbol
+                f_10555_1185_1227(Microsoft.CodeAnalysis.CSharp.BoundPropertyAccess
+                this_param)
+                {
+                    var return_v = this_param.PropertySymbol;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 1185, 1227);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.RefKind
+                f_10555_1185_1235(Microsoft.CodeAnalysis.CSharp.Symbols.PropertySymbol
+                this_param)
+                {
+                    var return_v = this_param.RefKind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 1185, 1235);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 659, 1332);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 659, 1332);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsLiteralNull(this BoundExpression node)
         {
-            return node is { Kind: BoundKind.Literal, ConstantValue: { Discriminator: ConstantValueTypeDiscriminator.Null } };
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 1344, 1553);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 1428, 1542);
+
+                return node is { Kind: BoundKind.Literal, ConstantValue: { Discriminator: ConstantValueTypeDiscriminator.Null } };
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 1344, 1553);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 1344, 1553);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 1344, 1553);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsLiteralDefault(this BoundExpression node)
         {
-            return node.Kind == BoundKind.DefaultLiteral;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 1565, 1708);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 1652, 1697);
+
+                return f_10555_1659_1668(node) == BoundKind.DefaultLiteral;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 1565, 1708);
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_1659_1668(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 1659, 1668);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 1565, 1708);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 1565, 1708);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsImplicitObjectCreation(this BoundExpression node)
         {
-            return node.Kind == BoundKind.UnconvertedObjectCreationExpression;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 1720, 1892);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 1815, 1881);
+
+                return f_10555_1822_1831(node) == BoundKind.UnconvertedObjectCreationExpression;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 1720, 1892);
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_1822_1831(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 1822, 1831);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 1720, 1892);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 1720, 1892);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsLiteralDefaultOrImplicitObjectCreation(this BoundExpression node)
         {
-            return node.IsLiteralDefault() || node.IsImplicitObjectCreation();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 1904, 2092);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2015, 2081);
+
+                return f_10555_2022_2045(node) || (DynAbs.Tracing.TraceSender.Expression_False(10555, 2022, 2080) || f_10555_2049_2080(node));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 1904, 2092);
+
+                bool
+                f_10555_2022_2045(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                node)
+                {
+                    var return_v = node.IsLiteralDefault();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10555, 2022, 2045);
+                    return return_v;
+                }
+
+
+                bool
+                f_10555_2049_2080(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                node)
+                {
+                    var return_v = node.IsImplicitObjectCreation();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10555, 2049, 2080);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 1904, 2092);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 1904, 2092);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // returns true when expression has no side-effects and produces
-        // default value (null, zero, false, default(T) ...)
-        //
-        // NOTE: This method is a very shallow check.
-        //       It does not make any assumptions about what this node could become 
-        //       after some folding/propagation/algebraic transformations.
         public static bool IsDefaultValue(this BoundExpression node)
         {
-            if (node.Kind == BoundKind.DefaultExpression || node.Kind == BoundKind.DefaultLiteral)
+            try
             {
-                return true;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 2469, 2910);
 
-            var constValue = node.ConstantValue;
-            if (constValue != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2554, 2700) || true) && (f_10555_2558_2567(node) == BoundKind.DefaultExpression || (DynAbs.Tracing.TraceSender.Expression_False(10555, 2558, 2639) || f_10555_2602_2611(node) == BoundKind.DefaultLiteral))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 2554, 2700);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2673, 2685);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 2554, 2700);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2716, 2752);
+
+                var
+                constValue = f_10555_2733_2751(node)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2766, 2870) || true) && (constValue != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 2766, 2870);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2822, 2855);
+
+                    return f_10555_2829_2854(constValue);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 2766, 2870);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 2886, 2899);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 2469, 2910);
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_2558_2567(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 2558, 2567);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_2602_2611(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 2602, 2611);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue?
+                f_10555_2733_2751(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.ConstantValue;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 2733, 2751);
+                    return return_v;
+                }
+
+
+                bool
+                f_10555_2829_2854(Microsoft.CodeAnalysis.ConstantValue
+                this_param)
+                {
+                    var return_v = this_param.IsDefaultValue;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 2829, 2854);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return constValue.IsDefaultValue;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 2469, 2910);
+                throw;
             }
-
-            return false;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 2469, 2910);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool HasExpressionType(this BoundExpression node)
         {
-            // null literal, method group, and anonymous function expressions have no type.
-            return node.Type is { };
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 2922, 3138);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 3103, 3127);
+
+                return f_10555_3110_3119(node) is { };
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 2922, 3138);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                f_10555_3110_3119(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Type;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 3110, 3119);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 2922, 3138);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 2922, 3138);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool HasDynamicType(this BoundExpression node)
         {
-            var type = node.Type;
-            return type is { } && type.IsDynamic();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 3150, 3320);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 3235, 3256);
+
+                var
+                type = f_10555_3246_3255(node)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 3270, 3309);
+
+                return type is { } && (DynAbs.Tracing.TraceSender.Expression_True(10555, 3277, 3308) && f_10555_3292_3308(type));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 3150, 3320);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                f_10555_3246_3255(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Type;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 3246, 3255);
+                    return return_v;
+                }
+
+
+                bool
+                f_10555_3292_3308(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol
+                type)
+                {
+                    var return_v = type.IsDynamic();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10555, 3292, 3308);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 3150, 3320);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 3150, 3320);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool MethodGroupReceiverIsDynamic(this BoundMethodGroup node)
         {
-            return node.InstanceOpt != null && node.InstanceOpt.HasDynamicType();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 3332, 3512);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 3432, 3501);
+
+                return f_10555_3439_3455(node) != null && (DynAbs.Tracing.TraceSender.Expression_True(10555, 3439, 3500) && f_10555_3467_3500(f_10555_3467_3483(node)));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 3332, 3512);
+
+                Microsoft.CodeAnalysis.CSharp.BoundExpression?
+                f_10555_3439_3455(Microsoft.CodeAnalysis.CSharp.BoundMethodGroup
+                this_param)
+                {
+                    var return_v = this_param.InstanceOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 3439, 3455);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.BoundExpression
+                f_10555_3467_3483(Microsoft.CodeAnalysis.CSharp.BoundMethodGroup
+                this_param)
+                {
+                    var return_v = this_param.InstanceOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 3467, 3483);
+                    return return_v;
+                }
+
+
+                bool
+                f_10555_3467_3500(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                node)
+                {
+                    var return_v = node.HasDynamicType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10555, 3467, 3500);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 3332, 3512);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 3332, 3512);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool HasExpressionSymbols(this BoundExpression node)
         {
-            switch (node.Kind)
+            try
             {
-                case BoundKind.Call:
-                case BoundKind.Local:
-                case BoundKind.FieldAccess:
-                case BoundKind.PropertyAccess:
-                case BoundKind.IndexerAccess:
-                case BoundKind.EventAccess:
-                case BoundKind.MethodGroup:
-                case BoundKind.ObjectCreationExpression:
-                case BoundKind.TypeExpression:
-                case BoundKind.NamespaceExpression:
-                    return true;
-                case BoundKind.BadExpression:
-                    return ((BoundBadExpression)node).Symbols.Length > 0;
-                default:
-                    return false;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 3524, 4357);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 3615, 4346);
+
+                switch (f_10555_3623_3632(node))
+                {
+
+                    case BoundKind.Call:
+                    case BoundKind.Local:
+                    case BoundKind.FieldAccess:
+                    case BoundKind.PropertyAccess:
+                    case BoundKind.IndexerAccess:
+                    case BoundKind.EventAccess:
+                    case BoundKind.MethodGroup:
+                    case BoundKind.ObjectCreationExpression:
+                    case BoundKind.TypeExpression:
+                    case BoundKind.NamespaceExpression:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 3615, 4346);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 4136, 4148);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 3615, 4346);
+
+                    case BoundKind.BadExpression:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 3615, 4346);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 4217, 4270);
+
+                        return ((BoundBadExpression)node).Symbols.Length > 0;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 3615, 4346);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 3615, 4346);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 4318, 4331);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 3615, 4346);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 3524, 4357);
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_3623_3632(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 3623, 3632);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 3524, 4357);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 3524, 4357);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static void GetExpressionSymbols(this BoundExpression node, ArrayBuilder<Symbol> symbols, BoundNode parent, Binder binder)
@@ -188,33 +643,124 @@ namespace Microsoft.CodeAnalysis.CSharp
             }
         }
 
-        // Get the conversion associated with a bound node, or else Identity.
         public static Conversion GetConversion(this BoundExpression boundNode)
         {
-            switch (boundNode.Kind)
+            try
             {
-                case BoundKind.Conversion:
-                    BoundConversion conversionNode = (BoundConversion)boundNode;
-                    return conversionNode.Conversion;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 7716, 8133);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 7811, 8122);
 
-                default:
-                    return Conversion.Identity;
+                switch (f_10555_7819_7833(boundNode))
+                {
+
+                    case BoundKind.Conversion:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 7811, 8122);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 7915, 7975);
+
+                        BoundConversion
+                        conversionNode = (BoundConversion)boundNode
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 7997, 8030);
+
+                        return f_10555_8004_8029(conversionNode);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 7811, 8122);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 7811, 8122);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 8080, 8107);
+
+                        return Conversion.Identity;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 7811, 8122);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 7716, 8133);
+
+                Microsoft.CodeAnalysis.CSharp.BoundKind
+                f_10555_7819_7833(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Kind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 7819, 7833);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CSharp.Conversion
+                f_10555_8004_8029(Microsoft.CodeAnalysis.CSharp.BoundConversion
+                this_param)
+                {
+                    var return_v = this_param.Conversion;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 8004, 8029);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 7716, 8133);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 7716, 8133);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsExpressionOfComImportType([NotNullWhen(true)] this BoundExpression? expressionOpt)
         {
-            // NOTE: Dev11 also returns false if expressionOpt is a TypeExpression.  Unfortunately,
-            // that makes it impossible to handle TypeOrValueExpression in a consistent way, since
-            // we don't know whether it's a type until after overload resolution and we can't do
-            // overload resolution without knowing whether 'ref' can be omitted (which is what this
-            // method is used to determine).  Since there is no intuitive reason to disallow
-            // omitting 'ref' for static methods, we'll drop the restriction on TypeExpression.
-            if (expressionOpt == null)
-                return false;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10555, 8145, 9099);
 
-            TypeSymbol? receiverType = expressionOpt.Type;
-            return receiverType is NamedTypeSymbol { Kind: SymbolKind.NamedType, IsComImport: true };
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 8866, 8923) || true) && (expressionOpt == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10555, 8866, 8923);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 8910, 8923);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(10555, 8866, 8923);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 8939, 8985);
+
+                TypeSymbol?
+                receiverType = f_10555_8966_8984(expressionOpt)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10555, 8999, 9088);
+
+                return receiverType is NamedTypeSymbol { Kind: SymbolKind.NamedType, IsComImport: true };
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10555, 8145, 9099);
+
+                Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
+                f_10555_8966_8984(Microsoft.CodeAnalysis.CSharp.BoundExpression
+                this_param)
+                {
+                    var return_v = this_param.Type;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10555, 8966, 8984);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10555, 8145, 9099);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 8145, 9099);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static BoundExpressionExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10555, 409, 9106);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(10555, 409, 9106);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10555, 409, 9106);
+        }
+
     }
 }
