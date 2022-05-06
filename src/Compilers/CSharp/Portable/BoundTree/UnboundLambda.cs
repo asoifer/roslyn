@@ -1762,7 +1762,7 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 DynAbs.Tracing.TraceSender.TraceEnterConstructor(10591, 15139, 15873);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10591, 15112, 15126);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10732, 353767, 353806);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10593, 353767, 353806);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10591, 15632, 15661);
 
                 f_10591_15632_15660(binder != null);
@@ -1791,7 +1791,7 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 DynAbs.Tracing.TraceSender.TraceEnterConstructor(10591, 15885, 16185);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10591, 15112, 15126);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10732, 353767, 353806);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10593, 353767, 353806);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10591, 16106, 16142);
 
                 this._nullableState = nullableState;

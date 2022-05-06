@@ -5855,8 +5855,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                                 result = f_10077_41588_41676(container: null, next: result, imports: f_10077_41650_41675(f_10077_41650_41661()));
                                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10077, 42021, 42452);
 
-                                result = (DynAbs.Tracing.TraceSender.Conditional_F1(10077, 42030, 42089) || ((f_10077_42030_42060(f_10077_42030_42041()) == null || (DynAbs.Tracing.TraceSender.Expression_False(10077, 42030, 42089) || !isSubmissionTree
-                                ) && DynAbs.Tracing.TraceSender.Conditional_F2(10077, 42125, 42226)) || DynAbs.Tracing.TraceSender.Conditional_F3(10077, 42262, 42451))) ? f_10077_42125_42226(result, basesBeingResolved => scriptClassBinder.GetImports(basesBeingResolved)) : f_10077_42262_42451(result, basesBeingResolved =>
+                                // LAFHIS
+                                result = (DynAbs.Tracing.TraceSender.Conditional_F1(10077, 42030, 42089) || 
+                                    ((f_10077_42030_42060(f_10077_42030_42041()) == null || 
+                                    (DynAbs.Tracing.TraceSender.Expression_False(10077, 42030, 42089) || 
+                                    !isSubmissionTree
+                                )) && DynAbs.Tracing.TraceSender.Conditional_F2(10077, 42125, 42226)) || 
+                                DynAbs.Tracing.TraceSender.Conditional_F3(10077, 42262, 42451)) ? 
+                                    f_10077_42125_42226(result, basesBeingResolved => scriptClassBinder.GetImports(basesBeingResolved)) : 
+                                    f_10077_42262_42451(result, basesBeingResolved =>
                                                                             compilation.GetPreviousSubmissionImports().Concat(scriptClassBinder.GetImports(basesBeingResolved)));
                                 DynAbs.Tracing.TraceSender.TraceExitCondition(10077, 41333, 42479);
                             }

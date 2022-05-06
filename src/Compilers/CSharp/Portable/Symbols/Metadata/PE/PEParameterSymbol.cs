@@ -137,6 +137,19 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                 try
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10712, 3016, 3447);
+
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 1851, 1883);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 1916, 1958);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 1991, 2009);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2042, 2076);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2111, 2128);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2161, 2194);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2227, 2292);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2325, 2359);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2394, 2426);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2459, 2507);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2542, 2659);
+
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 3129, 3228);
 
                     f_10712_3129_3227(f_10712_3142_3226(WellKnownAttributeDataMask));
@@ -157,17 +170,6 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10712, 3016, 3447);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 1851, 1883);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 1916, 1958);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 1991, 2009);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2042, 2076);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2111, 2128);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2161, 2194);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2227, 2292);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2325, 2359);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2394, 2426);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2459, 2507);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10712, 2542, 2659);
             }
 
             public PackedFlags(RefKind refKind, bool attributesAreComplete, bool hasNameInMetadata)

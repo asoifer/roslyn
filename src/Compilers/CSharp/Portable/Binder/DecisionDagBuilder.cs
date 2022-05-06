@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -5438,24 +5438,47 @@ namespace Microsoft.CodeAnalysis.CSharp
                             var
                             newRemainingValues = f_10330_35121_35181()
                             ;
-                            foreach (var (dagTemp, valuesForTemp) in remainingValues)
+
+                            try
                             {
-
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35495, 35827) || true) && (f_10330_35499_35580(f_10330_35499_35528(existingState), dagTemp, out existingValuesForTemp))
-                                )
-
+                                // LAFHIS
+                                ImmutableDictionary<BoundDagTemp, IValueSet> f_10330_35245_35260_I(ImmutableDictionary<BoundDagTemp, IValueSet> i)
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10330, 35495, 35827);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35638, 35712);
-
-                                    var
-                                    newExistingValuesForTemp = f_10330_35669_35711(existingValuesForTemp, valuesForTemp)
-                                    ;
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35742, 35800);
-
-                                    f_10330_35742_35799(newRemainingValues, dagTemp, newExistingValuesForTemp);
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10330, 35495, 35827);
+                                    var return_v = i;
+                                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10330, 35245, 35260);
+                                    return return_v;
                                 }
+
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35204, 35850);
+                                foreach (var (dagTemp, valuesForTemp) in f_10330_35245_35260_I(remainingValues))
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10330, 35204, 35850);
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35495, 35827) || true) && (f_10330_35499_35580(f_10330_35499_35528(existingState), dagTemp, out existingValuesForTemp))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10330, 35495, 35827);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35638, 35712);
+
+                                        var
+                                        newExistingValuesForTemp = f_10330_35669_35711(existingValuesForTemp, valuesForTemp)
+                                        ;
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35742, 35800);
+
+                                        f_10330_35742_35799(newRemainingValues, dagTemp, newExistingValuesForTemp);
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10330, 35495, 35827);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10330, 35204, 35850);
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(10330, 35204, 35850);
+                                throw;
+                            }
+                            finally
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(10330, 35204, 35850);
                             }
 
                             if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10330, 35874, 36366) || true) && (f_10330_35878_35913(f_10330_35878_35907(existingState)) != f_10330_35917_35941(newRemainingValues) || (DynAbs.Tracing.TraceSender.Expression_False(10330, 35878, 36100) || !f_10330_35971_36100(f_10330_35971_36000(existingState), kv => newRemainingValues.TryGetValue(kv.Key, out IValueSet? values) && kv.Value.Equals(values))))

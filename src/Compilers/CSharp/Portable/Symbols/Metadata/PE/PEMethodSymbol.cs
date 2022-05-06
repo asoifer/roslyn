@@ -665,6 +665,30 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                 try
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(10707, 7017, 7325);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3066, 3086);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3119, 3140);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3175, 3210);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3243, 3274);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3307, 3349);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3382, 3423);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3456, 3493);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3526, 3570);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3603, 3646);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3679, 3721);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3754, 3797);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3830, 3867);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3900, 3951);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3984, 4009);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4042, 4076);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4109, 4135);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4168, 4193);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4226, 4254);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4287, 4326);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4359, 4398);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4431, 4456);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4489, 4523);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4556, 4611);
+
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 7130, 7204);
 
                     f_10707_7130_7203(f_10707_7143_7202(MethodKindMask));
@@ -682,29 +706,6 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10707, 7017, 7325);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3066, 3086);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3119, 3140);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3175, 3210);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3243, 3274);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3307, 3349);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3382, 3423);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3456, 3493);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3526, 3570);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3603, 3646);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3679, 3721);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3754, 3797);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3830, 3867);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3900, 3951);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 3984, 4009);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4042, 4076);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4109, 4135);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4168, 4193);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4226, 4254);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4287, 4326);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4359, 4398);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4431, 4456);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4489, 4523);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10707, 4556, 4611);
             }
 
             private static bool BitsAreUnsetOrSame(int bits, int mask)

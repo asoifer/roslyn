@@ -15910,7 +15910,7 @@ moreArguments:
                 f_10292_167816_167833(Microsoft.CodeAnalysis.CSharp.Symbols.TypeSymbol?
                 this_param)
                 {
-                    var return_v = this_param.IsValueType;
+                    var return_v = this_param?.IsValueType;
                     DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10292, 167816, 167833);
                     return return_v;
                 }

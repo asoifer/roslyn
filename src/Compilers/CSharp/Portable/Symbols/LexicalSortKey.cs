@@ -171,8 +171,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
         }
 
+        // LAFHIS
         public LexicalSortKey(Location location, CSharpCompilation compilation)
-        : this(f_10113_3724_3755_C((SyntaxTree)f_10113_3736_3755(location)), location.SourceSpan.Start, compilation)
+        //: this(f_10113_3724_3755_C((SyntaxTree)f_10113_3736_3755(location)), location.SourceSpan.Start, compilation)
+        : this(f_10113_3736_3755(location), location.SourceSpan.Start, compilation)
         {
             try
             {
@@ -190,8 +192,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             }
         }
 
+        // LAFHIS
         public LexicalSortKey(CSharpSyntaxNode node, CSharpCompilation compilation)
-        : this(f_10113_4214_4229_C(f_10113_4214_4229(node)), f_10113_4231_4245(node), compilation)
+        //: this(f_10113_4214_4229_C(f_10113_4214_4229(node)), f_10113_4231_4245(node), compilation)
+        : this(f_10113_4214_4229(node), f_10113_4231_4245(node), compilation)
         {
             try
             {
@@ -496,6 +500,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         f_10113_3736_3755(Microsoft.CodeAnalysis.Location
         this_param)
         {
+            // LAFHIS
+            DynAbs.Tracing.TraceSender.TraceBaseCall(10113, 3632, 3818);
+
             var return_v = this_param.SourceTree;
             DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10113, 3736, 3755);
             return return_v;
@@ -516,6 +523,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         f_10113_4214_4229(Microsoft.CodeAnalysis.CSharp.CSharpSyntaxNode
         this_param)
         {
+            // LAFHIS
+            DynAbs.Tracing.TraceSender.TraceBaseCall(10113, 4118, 4281);
+
             var return_v = this_param.SyntaxTree;
             DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10113, 4214, 4229);
             return return_v;

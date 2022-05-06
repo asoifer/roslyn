@@ -915,72 +915,91 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                     // if a function captures a scope, which captures its parent, then the closure also captures the parents scope.
                     // we update closuresCapturingScopeVariables to reflect this.
-                    foreach (var (scope, capturingClosures) in closuresCapturingScopeVariables)
-                    {
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18566, 18639) || true) && (scope.DeclaredEnvironment is null)
-                        )
 
+                    // LAFHIS
+                    try
+                    {                       
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18450, 19449);
+                        foreach (var (scope, capturingClosures) in f_10451_16923_16991_M(closuresCapturingScopeVariables))
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18566, 18639);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18630, 18639);
-
-                            continue;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18566, 18639);
-                        }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18663, 18688);
-
-                        var
-                        currentScope = scope
-                        ;
-                        try
-                        {
-                            while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18710, 19430) || true) && (currentScope.DeclaredEnvironment is null || (DynAbs.Tracing.TraceSender.Expression_False(10451, 18717, 18808) || currentScope.DeclaredEnvironment.CapturesParent))
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18450, 19449);
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18566, 18639) || true) && (scope.DeclaredEnvironment is null)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18710, 19430);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18858, 18893);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18566, 18639);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18630, 18639);
 
-                                currentScope = currentScope.Parent;
-
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18921, 19067) || true) && (currentScope == null)
-                                )
-
-                                {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18921, 19067);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19003, 19040);
-
-                                    throw f_10451_19009_19039();
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18921, 19067);
-                                }
-
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19095, 19307) || true) && (currentScope.DeclaredEnvironment is null || (DynAbs.Tracing.TraceSender.Expression_False(10451, 19099, 19213) || currentScope.DeclaredEnvironment.IsStruct))
-                                )
-
-                                {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 19095, 19307);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19271, 19280);
-
-                                    continue;
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 19095, 19307);
-                                }
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19335, 19407);
-
-                                f_10451_19335_19406(f_10451_19335_19380(closuresCapturingScopeVariables, currentScope), capturingClosures);
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18710, 19430);
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18566, 18639);
                             }
-                        }
-                        catch (System.Exception)
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 18710, 19430);
-                            throw;
-                        }
-                        finally
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 18710, 19430);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18663, 18688);
+
+                            var
+                            currentScope = scope
+                            ;
+                            try
+                            {
+                                while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18710, 19430) || true) && (currentScope.DeclaredEnvironment is null || (DynAbs.Tracing.TraceSender.Expression_False(10451, 18717, 18808) || currentScope.DeclaredEnvironment.CapturesParent))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18710, 19430);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18858, 18893);
+
+                                    currentScope = currentScope.Parent;
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 18921, 19067) || true) && (currentScope == null)
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 18921, 19067);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19003, 19040);
+
+                                        throw f_10451_19009_19039();
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18921, 19067);
+                                    }
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19095, 19307) || true) && (currentScope.DeclaredEnvironment is null || (DynAbs.Tracing.TraceSender.Expression_False(10451, 19099, 19213) || currentScope.DeclaredEnvironment.IsStruct))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 19095, 19307);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19271, 19280);
+
+                                        continue;
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 19095, 19307);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19335, 19407);
+
+                                    f_10451_19335_19406(f_10451_19335_19380(closuresCapturingScopeVariables, currentScope), capturingClosures);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18710, 19430);
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 18710, 19430);
+                                throw;
+                            }
+                            finally
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 18710, 19430);
+                            }
+
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 18450, 19449);
                         }
                     }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 18450, 19449);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 18450, 19449);
+                    }
+
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 19469, 19508);
 
                     return closuresCapturingScopeVariables;
@@ -991,6 +1010,14 @@ namespace Microsoft.CodeAnalysis.CSharp
                     {
                         var return_v = PooledDictionary<Scope, PooledHashSet<NestedFunction>>.GetInstance();
                         DynAbs.Tracing.TraceSender.TraceEndInvocation(10451, 16923, 16991);
+                        return return_v;
+                    }
+
+                    Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.Scope, Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.NestedFunction>>
+                    f_10451_16923_16991_M(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.Scope, Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.NestedFunction>> i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(10451, 18493, 18524);
                         return return_v;
                     }
 
@@ -1079,205 +1106,231 @@ namespace Microsoft.CodeAnalysis.CSharp
                     closuresCapturingScopeVariables = f_10451_20301_20344(this)
                     ;
 
-                    // now we merge environments into their parent environments if it is safe to do so
-                    foreach (var (scope, closuresCapturingScope) in closuresCapturingScopeVariables)
+                    // Desde acá
+                    try
                     {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20465, 24004);
+                        // now we merge environments into their parent environments if it is safe to do so
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20586, 20659) || true) && (f_10451_20590_20618(closuresCapturingScope) == 0)
-                        )
-
+                        Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.Scope, Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.NestedFunction>>
+                        f_10451_20513_20544_I(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.Scope, Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<Microsoft.CodeAnalysis.CSharp.ClosureConversion.Analysis.NestedFunction>> i)
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 20586, 20659);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20650, 20659);
-
-                            continue;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 20586, 20659);
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(10451, 20513, 20544);
+                            return return_v;
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20683, 20724);
 
-                        var
-                        scopeEnv = scope.DeclaredEnvironment
-                        ;
-
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20821, 20878) || true) && (scopeEnv.IsStruct)
-                        )
-
+                        foreach (var (scope, closuresCapturingScope) in f_10451_20513_20544_I(closuresCapturingScopeVariables))
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 20821, 20878);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20869, 20878);
-
-                            continue;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 20821, 20878);
-                        }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20902, 20924);
-
-                        var
-                        bestScope = scope
-                        ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20946, 20971);
-
-                        var
-                        currentScope = scope
-                        ;
-                        try
-                        {
-                            while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21404, 22856) || true) && (currentScope.Parent != null)
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 20465, 24004);
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20586, 20659) || true) && (f_10451_20590_20618(closuresCapturingScope) == 0)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 21404, 22856);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 20586, 20659);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20650, 20659);
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21488, 21561) || true) && (f_10451_21492_21524_M(!currentScope.CanMergeWithParent))
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 20586, 20659);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20683, 20724);
+
+                            var
+                            scopeEnv = scope.DeclaredEnvironment
+                            ;
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20821, 20878) || true) && (scopeEnv.IsStruct)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 20821, 20878);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20869, 20878);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 20821, 20878);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20902, 20924);
+
+                            var
+                            bestScope = scope
+                            ;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 20946, 20971);
+
+                            var
+                            currentScope = scope
+                            ;
+                            try
+                            {
+                                while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21404, 22856) || true) && (currentScope.Parent != null)
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 21488, 21561);
-                                    DynAbs.Tracing.TraceSender.TraceBreak(10451, 21555, 21561);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 21404, 22856);
 
-                                    break;
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 21488, 21561);
-                                }
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21589, 21627);
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21488, 21561) || true) && (f_10451_21492_21524_M(!currentScope.CanMergeWithParent))
+                                    )
 
-                                var
-                                parentScope = currentScope.Parent
-                                ;
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21906, 21948);
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 21488, 21561);
+                                        DynAbs.Tracing.TraceSender.TraceBreak(10451, 21555, 21561);
 
-                                var
-                                env = parentScope.DeclaredEnvironment
-                                ;
+                                        break;
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 21488, 21561);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21589, 21627);
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21974, 22156) || true) && (env is null || (DynAbs.Tracing.TraceSender.Expression_False(10451, 21978, 22005) || env.IsStruct))
-                                )
+                                    var
+                                    parentScope = currentScope.Parent
+                                    ;
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21906, 21948);
 
-                                {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 21974, 22156);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22063, 22090);
+                                    var
+                                    env = parentScope.DeclaredEnvironment
+                                    ;
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 21974, 22156) || true) && (env is null || (DynAbs.Tracing.TraceSender.Expression_False(10451, 21978, 22005) || env.IsStruct))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 21974, 22156);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22063, 22090);
+
+                                        currentScope = parentScope;
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22120, 22129);
+
+                                        continue;
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 21974, 22156);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22184, 22264);
+
+                                    var
+                                    closuresCapturingParentScope = f_10451_22219_22263(closuresCapturingScopeVariables, parentScope)
+                                    ;
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22622, 22726) || true) && (!f_10451_22627_22689(closuresCapturingParentScope, closuresCapturingScope))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 22622, 22726);
+                                        DynAbs.Tracing.TraceSender.TraceBreak(10451, 22720, 22726);
+
+                                        break;
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 22622, 22726);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22754, 22778);
+
+                                    bestScope = parentScope;
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22806, 22833);
 
                                     currentScope = parentScope;
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22120, 22129);
-
-                                    continue;
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 21974, 22156);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 21404, 22856);
                                 }
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22184, 22264);
-
-                                var
-                                closuresCapturingParentScope = f_10451_22219_22263(closuresCapturingScopeVariables, parentScope)
-                                ;
-
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22622, 22726) || true) && (!f_10451_22627_22689(closuresCapturingParentScope, closuresCapturingScope))
-                                )
-
-                                {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 22622, 22726);
-                                    DynAbs.Tracing.TraceSender.TraceBreak(10451, 22720, 22726);
-
-                                    break;
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 22622, 22726);
-                                }
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22754, 22778);
-
-                                bestScope = parentScope;
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22806, 22833);
-
-                                currentScope = parentScope;
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 21404, 22856);
                             }
-                        }
-                        catch (System.Exception)
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 21404, 22856);
-                            throw;
-                        }
-                        finally
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 21404, 22856);
-                        }
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22882, 22982) || true) && (bestScope == scope)
-                        ) // no better scope was found, so continue
-
-                        {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 22882, 22982);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22973, 22982);
-
-                            continue;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 22882, 22982);
-                        }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23087, 23133);
-
-                        var
-                        targetEnv = bestScope.DeclaredEnvironment
-                        ;
-                        try
-                        {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23157, 23323);
-                            foreach (var variable in f_10451_23182_23208_I(scopeEnv.CapturedVariables))
+                            catch (System.Exception)
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23157, 23323);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23258, 23300);
-
-                                f_10451_23258_23299(targetEnv.CapturedVariables, variable);
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23157, 23323);
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 21404, 22856);
+                                throw;
                             }
-                        }
-                        catch (System.Exception)
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 1, 167);
-                            throw;
-                        }
-                        finally
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 1, 167);
-                        }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23347, 23380);
-
-                        scope.DeclaredEnvironment = null;
-                        try
-                        {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23404, 23985);
-                            foreach (var closure in f_10451_23428_23450_I(closuresCapturingScope))
+                            finally
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23404, 23985);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23500, 23546);
-
-                                f_10451_23500_23545(closure.CapturedEnvironments, scopeEnv);
-
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23574, 23756) || true) && (!f_10451_23579_23627(closure.CapturedEnvironments, targetEnv))
-                                )
-
-                                {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23574, 23756);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23685, 23729);
-
-                                    f_10451_23685_23728(closure.CapturedEnvironments, targetEnv);
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23574, 23756);
-                                }
-
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23784, 23962) || true) && (closure.ContainingEnvironmentOpt == scopeEnv)
-                                )
-
-                                {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23784, 23962);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23890, 23935);
-
-                                    closure.ContainingEnvironmentOpt = targetEnv;
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23784, 23962);
-                                }
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23404, 23985);
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 21404, 22856);
                             }
-                        }
-                        catch (System.Exception)
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 1, 582);
-                            throw;
-                        }
-                        finally
-                        {
-                            DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 1, 582);
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22882, 22982) || true) && (bestScope == scope)
+                            ) // no better scope was found, so continue
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 22882, 22982);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 22973, 22982);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 22882, 22982);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23087, 23133);
+
+                            var
+                            targetEnv = bestScope.DeclaredEnvironment
+                            ;
+                            try
+                            {
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23157, 23323);
+                                foreach (var variable in f_10451_23182_23208_I(scopeEnv.CapturedVariables))
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23157, 23323);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23258, 23300);
+
+                                    f_10451_23258_23299(targetEnv.CapturedVariables, variable);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23157, 23323);
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 1, 167);
+                                throw;
+                            }
+                            finally
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 1, 167);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23347, 23380);
+
+                            scope.DeclaredEnvironment = null;
+                            try
+                            {
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23404, 23985);
+                                foreach (var closure in f_10451_23428_23450_I(closuresCapturingScope))
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23404, 23985);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23500, 23546);
+
+                                    f_10451_23500_23545(closure.CapturedEnvironments, scopeEnv);
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23574, 23756) || true) && (!f_10451_23579_23627(closure.CapturedEnvironments, targetEnv))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23574, 23756);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23685, 23729);
+
+                                        f_10451_23685_23728(closure.CapturedEnvironments, targetEnv);
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23574, 23756);
+                                    }
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23784, 23962) || true) && (closure.ContainingEnvironmentOpt == scopeEnv)
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 23784, 23962);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 23890, 23935);
+
+                                        closure.ContainingEnvironmentOpt = targetEnv;
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23784, 23962);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(10451, 23404, 23985);
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 1, 582);
+                                throw;
+                            }
+                            finally
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 1, 582);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(10451, 20465, 24004);
                         }
                     }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(10451, 20465, 24004);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(10451, 20465, 24004);
+                    }
+                    // Hasta acá
+
                     try
                     {
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(10451, 24052, 24182);

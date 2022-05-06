@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -15953,9 +15953,12 @@ namespace Microsoft.CodeAnalysis.CSharp
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10318, 128941, 129037);
 
-                var
-                expressionSyntax = f_10318_128982_129036(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_10318_128964_128981(syntax), 10318, 128964, 129036), diagnostics, out refKind)
-                ;
+                // LAFHIS
+                //var expressionSyntax = f_10318_128982_129036(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_10318_128964_128981(syntax), 10318, 128964, 129036), diagnostics, out refKind);
+                
+                var expressionSyntax = DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_10318_128964_128981(syntax), 10318, 128964, 129036)?.CheckAndUnwrapRefExpression(diagnostics, out refKind);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10318, 128982, 129036);
+
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10318, 129051, 129078);
 
                 BoundExpression
