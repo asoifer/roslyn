@@ -81,7 +81,7 @@ namespace Roslyn.Utilities
                 valueFactory, TArg?
                 factoryArgument)
                 {
-                    var return_v = this_param.GetOrAdd<TArg>(key, valueFactory, factoryArgument);
+                    var return_v = this_param.GetOrAdd(key, valueFactory, factoryArgument);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(314, 1329, 1384);
                     return return_v;
                 }

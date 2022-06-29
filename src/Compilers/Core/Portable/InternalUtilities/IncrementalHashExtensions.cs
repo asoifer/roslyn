@@ -44,7 +44,7 @@ namespace Roslyn.Utilities
                 this_param, System.ArraySegment<byte>
                 data)
                 {
-                    this_param.AppendData((System.ReadOnlySpan<byte>)data);
+                    this_param.AppendData(data);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(336, 599, 631);
                     return 0;
                 }
@@ -104,7 +104,7 @@ namespace Roslyn.Utilities
                 this_param, System.ArraySegment<byte>
                 data)
                 {
-                    this_param.AppendData((System.ReadOnlySpan<byte>)data);
+                    this_param.AppendData(data);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(336, 852, 873);
                     return 0;
                 }
