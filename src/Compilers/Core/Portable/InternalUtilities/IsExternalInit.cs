@@ -9,12 +9,16 @@ using System.ComponentModel;
 
 namespace System.Runtime.CompilerServices
 {
-    /// <summary>
-    /// Reserved to be used by the compiler for tracking metadata.
-    /// This class should not be used by developers in source code.
-    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal static class IsExternalInit
     {
+        static IsExternalInit()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(342, 660, 761);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(342, 660, 761);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(342, 660, 761);
+        }
+
     }
 }

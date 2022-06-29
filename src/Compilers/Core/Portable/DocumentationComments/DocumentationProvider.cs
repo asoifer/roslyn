@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,47 +7,56 @@ using System.Threading;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// A class used to provide XML documentation to the compiler for members from metadata. A
-    /// custom implementation of this class should be returned from a DocumentationResolver to provide XML
-    /// documentation comments from custom caches or locations.
-    /// </summary>
     public abstract partial class DocumentationProvider
     {
-        public static DocumentationProvider Default { get; } = new NullDocumentationProvider();
+        public static DocumentationProvider Default { get; }
 
         protected DocumentationProvider()
         {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(279, 780, 835);
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(279, 780, 835);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(279, 780, 835);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(279, 780, 835);
+            }
         }
 
-        /// <summary>
-        /// Fetches a documentation comment for the given member ID.
-        /// </summary>
-        /// <param name="documentationMemberID">The documentation member ID of the item to fetch.</param>
-        /// <param name="preferredCulture">The preferred culture to receive a comment in. Null if
-        /// there is no preference. This is a preference only, and providers may choose to provide
-        /// results from another culture if the preferred culture was unavailable.</param>
-        /// <param name="cancellationToken">A cancellation token for the search.</param>
-        /// <returns>A DocumentationComment.</returns>
         protected internal abstract string? GetDocumentationForSymbol(
-            string documentationMemberID,
-            CultureInfo preferredCulture,
-            CancellationToken cancellationToken = default);
+                    string documentationMemberID,
+                    CultureInfo preferredCulture,
+                    CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// DocumentationProviders are compared when determining whether an AssemblySymbol can be reused.
-        /// Hence, if multiple instances can represent the same documentation, it is imperative that
-        /// Equals (and GetHashCode) be overridden to capture this fact.  Otherwise, it is possible to end
-        /// up with multiple AssemblySymbols for the same assembly, which plays havoc with the type hierarchy.
-        /// </summary>
         public abstract override bool Equals(object? obj);
 
-        /// <summary>
-        /// DocumentationProviders are compared when determining whether an AssemblySymbol can be reused.
-        /// Hence, if multiple instances can represent the same documentation, it is imperative that
-        /// GetHashCode (and Equals) be overridden to capture this fact.  Otherwise, it is possible to end
-        /// up with multiple AssemblySymbols for the same assembly, which plays havoc with the type hierarchy.
-        /// </summary>
         public abstract override int GetHashCode();
+
+        static DocumentationProvider()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(279, 613, 2793);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(279, 681, 768);
+            Default = f_279_736_767(); 
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(279, 613, 2793);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(279, 613, 2793);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(279, 613, 2793);
+
+        static Microsoft.CodeAnalysis.DocumentationProvider.NullDocumentationProvider
+        f_279_736_767()
+        {
+            var return_v = new Microsoft.CodeAnalysis.DocumentationProvider.NullDocumentationProvider();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(279, 736, 767);
+            return return_v;
+        }
+
     }
 }

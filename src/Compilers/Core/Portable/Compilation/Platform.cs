@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -41,22 +41,72 @@ namespace Microsoft.CodeAnalysis
         /// </summary>
         Arm64 = 6,
     };
-
     internal static partial class EnumBounds
     {
         internal static bool IsValid(this Platform value)
         {
-            return value >= Platform.AnyCpu && value <= Platform.Arm64;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(159, 1688, 1832);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(159, 1762, 1821);
+
+                return value >= Platform.AnyCpu && (DynAbs.Tracing.TraceSender.Expression_True(159, 1769, 1820) && value <= Platform.Arm64);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(159, 1688, 1832);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(159, 1688, 1832);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(159, 1688, 1832);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool Requires64Bit(this Platform value)
         {
-            return value == Platform.X64 || value == Platform.Itanium || value == Platform.Arm64;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(159, 1844, 2020);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(159, 1924, 2009);
+
+                return value == Platform.X64 || (DynAbs.Tracing.TraceSender.Expression_False(159, 1931, 1981) || value == Platform.Itanium) || (DynAbs.Tracing.TraceSender.Expression_False(159, 1931, 2008) || value == Platform.Arm64);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(159, 1844, 2020);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(159, 1844, 2020);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(159, 1844, 2020);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool Requires32Bit(this Platform value)
         {
-            return value == Platform.X86;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(159, 2032, 2152);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(159, 2112, 2141);
+
+                return value == Platform.X86;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(159, 2032, 2152);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(159, 2032, 2152);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(159, 2032, 2152);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
     }
 }

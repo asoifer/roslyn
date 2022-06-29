@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,43 +12,65 @@ namespace Microsoft.CodeAnalysis.Diagnostics
         internal sealed class DeclarationAnalysisData
         {
             public DeclarationAnalysisData(
-                SyntaxNode declaringReferenceSyntax,
-                SyntaxNode topmostNodeForAnalysis,
-                ImmutableArray<DeclarationInfo> declarationsInNodeBuilder,
-                ImmutableArray<SyntaxNode> descendantNodesToAnalyze,
-                bool isPartialAnalysis)
+                            SyntaxNode declaringReferenceSyntax,
+                            SyntaxNode topmostNodeForAnalysis,
+                            ImmutableArray<DeclarationInfo> declarationsInNodeBuilder,
+                            ImmutableArray<SyntaxNode> descendantNodesToAnalyze,
+                            bool isPartialAnalysis)
             {
-                DeclaringReferenceSyntax = declaringReferenceSyntax;
-                TopmostNodeForAnalysis = topmostNodeForAnalysis;
-                DeclarationsInNode = declarationsInNodeBuilder;
-                DescendantNodesToAnalyze = descendantNodesToAnalyze;
-                IsPartialAnalysis = isPartialAnalysis;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(223, 448, 1129);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 1260, 1311);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 1438, 1487);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 2025, 2063);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 805, 857);
+
+                    DeclaringReferenceSyntax = declaringReferenceSyntax;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 875, 923);
+
+                    TopmostNodeForAnalysis = topmostNodeForAnalysis;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 941, 988);
+
+                    DeclarationsInNode = declarationsInNodeBuilder;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 1006, 1058);
+
+                    DescendantNodesToAnalyze = descendantNodesToAnalyze;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(223, 1076, 1114);
+
+                    IsPartialAnalysis = isPartialAnalysis;
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(223, 448, 1129);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(223, 448, 1129);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(223, 448, 1129);
+                }
             }
 
-            /// <summary>
-            /// GetSyntax() for the given SyntaxReference.
-            /// </summary>
             public SyntaxNode DeclaringReferenceSyntax { get; }
 
-            /// <summary>
-            /// Topmost declaration node for analysis.
-            /// </summary>
             public SyntaxNode TopmostNodeForAnalysis { get; }
 
-            /// <summary>
-            /// All member declarations within the declaration.
-            /// </summary>
             public ImmutableArray<DeclarationInfo> DeclarationsInNode { get; }
 
-            /// <summary>
-            /// All descendant nodes for syntax node actions.
-            /// </summary>
             public ImmutableArray<SyntaxNode> DescendantNodesToAnalyze { get; }
 
-            /// <summary>
-            /// Flag indicating if this is a partial analysis.
-            /// </summary>
             public bool IsPartialAnalysis { get; }
+
+            static DeclarationAnalysisData()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(223, 378, 2074);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(223, 378, 2074);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(223, 378, 2074);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(223, 378, 2074);
         }
     }
 }

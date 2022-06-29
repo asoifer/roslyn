@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -14,8 +14,14 @@ namespace Microsoft.CodeAnalysis
 
         static SpecialMembers()
         {
-            byte[] initializationBytes = new byte[]
+            try
             {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(35, 505, 113416);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(35, 553, 100916);
+
+                byte[]
+                initializationBytes = new byte[]
+                            {
                 // System_String__CtorSZArrayChar
                 (byte)MemberFlags.Constructor,                                                                              // Flags
                 (byte)SpecialType.System_String,                                                                            // DeclaringTypeId
@@ -1026,10 +1032,13 @@ namespace Microsoft.CodeAnalysis
                 0,                                                                                                          // Arity
                     0,                                                                                                      // Method Signature
                     (byte)SignatureTypeCode.TypeHandle, (byte)SpecialType.System_Void, // Return Type
-            };
+                            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(35, 100932, 113259);
 
-            string[] allNames = new string[(int)SpecialMember.Count]
-            {
+                string[]
+                allNames = new string[(int)SpecialMember.Count]
+                            {
                 ".ctor",                                    // System_String__CtorSZArrayChar
                 "Concat",                                   // System_String__ConcatStringString
                 "Concat",                                   // System_String__ConcatStringStringString
@@ -1154,14 +1163,55 @@ namespace Microsoft.CodeAnalysis
                 "UnmanagedSignatureCallingConvention",      // System_Runtime_CompilerServices_RuntimeFeature__UnmanagedSignatureCallingConvention
                 "CovariantReturnsOfClasses",                // System_Runtime_CompilerServices_RuntimeFeature__CovariantReturnsOfClasses
                 ".ctor",                                    // System_Runtime_CompilerServices_PreserveBaseOverridesAttribute__ctor
-            };
+                            }
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(35, 113275, 113405);
 
-            s_descriptors = MemberDescriptor.InitializeFromStream(new System.IO.MemoryStream(initializationBytes, writable: false), allNames);
+                s_descriptors = MemberDescriptor.InitializeFromStream(f_35_113329_113393(initializationBytes, writable: false), allNames);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(35, 505, 113416);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(35, 505, 113416);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(35, 505, 113416);
+            }
         }
 
         public static MemberDescriptor GetDescriptor(SpecialMember member)
         {
-            return s_descriptors[(int)member];
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(35, 113428, 113564);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(35, 113519, 113553);
+
+                return s_descriptors[(int)member];
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(35, 113428, 113564);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(35, 113428, 113564);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(35, 113428, 113564);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static System.IO.MemoryStream
+        f_35_113329_113393(byte[]
+        buffer, bool
+        writable)
+        {
+            var return_v = new System.IO.MemoryStream(buffer, writable: writable);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(35, 113329, 113393);
+            return return_v;
+        }
+
     }
 }

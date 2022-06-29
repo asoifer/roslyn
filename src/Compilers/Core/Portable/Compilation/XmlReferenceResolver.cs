@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,45 +7,120 @@ using System.IO;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// Resolves references to XML documents specified in source code.
-    /// </summary>
     public abstract class XmlReferenceResolver
     {
         protected XmlReferenceResolver()
         {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(171, 454, 508);
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(171, 454, 508);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(171, 454, 508);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(171, 454, 508);
+            }
         }
 
         public abstract override bool Equals(object? other);
+
         public abstract override int GetHashCode();
 
-        /// <summary>
-        /// Resolves specified XML reference with respect to base file path.
-        /// </summary>
-        /// <param name="path">The reference path to resolve. May be absolute or relative path.</param>
-        /// <param name="baseFilePath">Path of the source file that contains the <paramref name="path"/> (may also be relative), or null if not available.</param>
-        /// <returns>Path to the XML artifact, or null if the file can't be resolved.</returns>
         public abstract string? ResolveReference(string path, string? baseFilePath);
 
-        /// <summary>
-        /// Opens a <see cref="Stream"/> that allows reading the content of the specified file.
-        /// </summary>
-        /// <param name="resolvedPath">Path returned by <see cref="ResolveReference(string, string)"/>.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="resolvedPath"/> is null.</exception>
-        /// <exception cref="ArgumentException"><paramref name="resolvedPath"/> is not a valid absolute path.</exception>
-        /// <exception cref="IOException">Error reading file <paramref name="resolvedPath"/>. See <see cref="Exception.InnerException"/> for details.</exception>
         public abstract Stream OpenRead(string resolvedPath);
 
         internal Stream OpenReadChecked(string fullPath)
         {
-            var stream = OpenRead(fullPath);
-
-            if (stream == null || !stream.CanRead)
+            try
             {
-                throw new InvalidOperationException(CodeAnalysisResources.ReferenceResolverShouldReturnReadableNonNullStream);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(171, 1930, 2288);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(171, 2003, 2035);
 
-            return stream;
+                var
+                stream = f_171_2016_2034(this, fullPath)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(171, 2051, 2247) || true) && (stream == null || (DynAbs.Tracing.TraceSender.Expression_False(171, 2055, 2088) || f_171_2073_2088_M(!stream.CanRead)))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(171, 2051, 2247);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(171, 2122, 2232);
+
+                    throw f_171_2128_2231(f_171_2158_2230());
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(171, 2051, 2247);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(171, 2263, 2277);
+
+                return stream;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(171, 1930, 2288);
+
+                System.IO.Stream
+                f_171_2016_2034(Microsoft.CodeAnalysis.XmlReferenceResolver
+                this_param, string
+                resolvedPath)
+                {
+                    var return_v = this_param.OpenRead(resolvedPath);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(171, 2016, 2034);
+                    return return_v;
+                }
+
+
+                bool
+                f_171_2073_2088_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(171, 2073, 2088);
+                    return return_v;
+                }
+
+
+                string
+                f_171_2158_2230()
+                {
+                    var return_v = CodeAnalysisResources.ReferenceResolverShouldReturnReadableNonNullStream;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(171, 2158, 2230);
+                    return return_v;
+                }
+
+
+                System.InvalidOperationException
+                f_171_2128_2231(string
+                message)
+                {
+                    var return_v = new System.InvalidOperationException(message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(171, 2128, 2231);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(171, 1930, 2288);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(171, 1930, 2288);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static XmlReferenceResolver()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(171, 395, 2295);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(171, 395, 2295);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(171, 395, 2295);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(171, 395, 2295);
     }
 }

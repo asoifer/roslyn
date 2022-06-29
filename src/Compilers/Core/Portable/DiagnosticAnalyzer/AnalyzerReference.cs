@@ -7,72 +7,128 @@ using System.Collections.Immutable;
 
 namespace Microsoft.CodeAnalysis.Diagnostics
 {
-    /// <summary>
-    /// Represents an analyzer assembly reference that contains diagnostic analyzers.
-    /// </summary>
-    /// <remarks>
-    /// Represents a logical location of the analyzer reference, not the content of the reference. 
-    /// The content might change in time. A snapshot is taken when the compiler queries the reference for its analyzers.
-    /// </remarks>
     public abstract class AnalyzerReference
     {
         protected AnalyzerReference()
         {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(239, 759, 810);
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(239, 759, 810);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(239, 759, 810);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(239, 759, 810);
+            }
         }
 
-        /// <summary>
-        /// Full path describing the location of the analyzer reference, or null if the reference has no location.
-        /// </summary>
         public abstract string? FullPath { get; }
 
-        /// <summary>
-        /// Path or name used in error messages to identity the reference.
-        /// </summary>
-        /// <remarks>
-        /// Should not be null.
-        /// </remarks>
         public virtual string Display
         {
-            get { return string.Empty; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(239, 1295, 1323);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(239, 1301, 1321);
+
+                    return string.Empty;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(239, 1295, 1323);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(239, 1241, 1334);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(239, 1241, 1334);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
-        /// <summary>
-        /// A unique identifier for this analyzer reference.
-        /// </summary>
-        /// <remarks>
-        /// Should not be null.
-        /// Note that this and <see cref="FullPath"/> serve different purposes. An analyzer reference may not
-        /// have a path, but it always has an ID. Further, two analyzer references with different paths may
-        /// represent two copies of the same analyzer, in which case the IDs should also be the same.
-        /// </remarks>
         public abstract object Id { get; }
 
-        /// <summary>
-        /// Gets all the diagnostic analyzers defined in this assembly reference, irrespective of the language supported by the analyzer.
-        /// Use this method only if you need all the analyzers defined in the assembly, without a language context.
-        /// In most instances, either the analyzer reference is associated with a project or is being queried for analyzers in a particular language context.
-        /// If so, use <see cref="GetAnalyzers(string)"/> method.
-        /// </summary>
         public abstract ImmutableArray<DiagnosticAnalyzer> GetAnalyzersForAllLanguages();
 
-        /// <summary>
-        /// Gets all the diagnostic analyzers defined in this assembly reference for the given <paramref name="language"/>.
-        /// </summary>
-        /// <param name="language">Language name.</param>
         public abstract ImmutableArray<DiagnosticAnalyzer> GetAnalyzers(string language);
 
-        /// <summary>
-        /// Gets all the source generators defined in this assembly reference.
-        /// </summary>
-        public virtual ImmutableArray<ISourceGenerator> GetGeneratorsForAllLanguages() => ImmutableArray<ISourceGenerator>.Empty;
+        public virtual ImmutableArray<ISourceGenerator> GetGeneratorsForAllLanguages()
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(239, 3056, 3097);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(239, 3059, 3097);
+                return ImmutableArray<ISourceGenerator>.Empty; DynAbs.Tracing.TraceSender.TraceExitMethod(239, 3056, 3097);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(239, 3056, 3097);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(239, 3056, 3097);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
         [Obsolete("Use GetGenerators(string language) or GetGeneratorsForAllLanguages()")]
-        public virtual ImmutableArray<ISourceGenerator> GetGenerators() => ImmutableArray<ISourceGenerator>.Empty;
+        public virtual ImmutableArray<ISourceGenerator> GetGenerators()
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(239, 3266, 3307);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(239, 3269, 3307);
+                return ImmutableArray<ISourceGenerator>.Empty; DynAbs.Tracing.TraceSender.TraceExitMethod(239, 3266, 3307);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(239, 3266, 3307);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(239, 3266, 3307);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
-        /// <summary>
-        /// Gets all the diagnostic generators defined in this assembly reference for the given <paramref name="language"/>.
-        /// </summary>
-        /// <param name="language">Language name.</param>
-        public virtual ImmutableArray<ISourceGenerator> GetGenerators(string language) => ImmutableArray<ISourceGenerator>.Empty;
+        public virtual ImmutableArray<ISourceGenerator> GetGenerators(string language)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(239, 3631, 3672);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(239, 3634, 3672);
+                return ImmutableArray<ISourceGenerator>.Empty; DynAbs.Tracing.TraceSender.TraceExitMethod(239, 3631, 3672);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(239, 3631, 3672);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(239, 3631, 3672);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        static AnalyzerReference()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(239, 703, 3680);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(239, 703, 3680);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(239, 703, 3680);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(239, 703, 3680);
     }
 }

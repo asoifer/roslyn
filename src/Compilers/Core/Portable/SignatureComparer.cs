@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,21 +10,16 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.RuntimeMembers
 {
-    /// <summary>
-    /// Helper class to match signatures in format of 
-    /// MemberDescriptor.Signature to members.
-    /// </summary>
     internal abstract class SignatureComparer<MethodSymbol, FieldSymbol, PropertySymbol, TypeSymbol, ParameterSymbol>
-        where MethodSymbol : class
-        where FieldSymbol : class
-        where PropertySymbol : class
-        where TypeSymbol : class
-        where ParameterSymbol : class
-    {
-        /// <summary>
-        /// Returns true if signature matches signature of the field.
-        /// Signature should be in format described in MemberDescriptor.
-        /// </summary>
+            where MethodSymbol : class
+            where FieldSymbol : class
+            where PropertySymbol : class
+            where TypeSymbol : class
+            where ParameterSymbol : class
+    {        /// <summary>
+             /// Returns true if signature matches signature of the field.
+             /// Signature should be in format described in MemberDescriptor.
+             /// </summary>
         public bool MatchFieldSignature(FieldSymbol field, ImmutableArray<byte> signature)
         {
             int position = 0;
@@ -139,17 +134,50 @@ namespace Microsoft.CodeAnalysis.RuntimeMembers
 
         private static bool IsByRef(ImmutableArray<byte> signature, ref int position)
         {
-            SignatureTypeCode typeCode = (SignatureTypeCode)signature[position];
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(30, 4611, 5022);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 4713, 4781);
 
-            if (typeCode == SignatureTypeCode.ByReference)
-            {
-                position++;
-                return true;
+                SignatureTypeCode
+                typeCode = (SignatureTypeCode)signature[position]
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 4797, 5011) || true) && (typeCode == SignatureTypeCode.ByReference)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(30, 4797, 5011);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 4876, 4887);
+
+                    position++;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 4905, 4917);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(30, 4797, 5011);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(30, 4797, 5011);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 4983, 4996);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(30, 4797, 5011);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(30, 4611, 5022);
             }
-            else
+            catch
             {
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(30, 4611, 5022);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(30, 4611, 5022);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
 
@@ -230,73 +258,104 @@ namespace Microsoft.CodeAnalysis.RuntimeMembers
             }
         }
 
-        /// <summary>
-        /// Read a type Id from the signature.
-        /// This may consume one or two bytes, and therefore increment the position correspondingly.
-        /// </summary>
         private static short ReadTypeId(ImmutableArray<byte> signature, ref int position)
         {
-            var firstByte = signature[position++];
-            if (firstByte == (byte)WellKnownType.ExtSentinel)
+            try
             {
-                return (short)(signature[position++] + WellKnownType.ExtSentinel);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(30, 8347, 8762);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 8453, 8491);
+
+                var
+                firstByte = signature[position++]
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 8505, 8751) || true) && (firstByte == (byte)WellKnownType.ExtSentinel)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(30, 8505, 8751);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 8587, 8653);
+
+                    return (short)(signature[position++] + WellKnownType.ExtSentinel);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(30, 8505, 8751);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(30, 8505, 8751);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(30, 8719, 8736);
+
+                    return firstByte;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(30, 8505, 8751);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(30, 8347, 8762);
             }
-            else
+            catch
             {
-                return firstByte;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(30, 8347, 8762);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(30, 8347, 8762);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Should return null in case of error.
-        /// </summary>
         protected abstract TypeSymbol? GetGenericTypeArgument(TypeSymbol type, int argumentIndex);
 
-        /// <summary>
-        /// Should return null in case of error.
-        /// </summary>
         protected abstract TypeSymbol? GetGenericTypeDefinition(TypeSymbol type);
 
         protected abstract bool IsGenericMethodTypeParam(TypeSymbol type, int paramPosition);
 
         protected abstract bool IsGenericTypeParam(TypeSymbol type, int paramPosition);
 
-        /// <summary>
-        /// Should only accept Pointer types.
-        /// Should return null in case of error.
-        /// </summary>
         protected abstract TypeSymbol? GetPointedToType(TypeSymbol type);
 
-        /// <summary>
-        /// Should return null in case of error.
-        /// </summary>
         protected abstract TypeSymbol? GetSZArrayElementType(TypeSymbol type);
 
-        /// <summary>
-        /// Should only accept multi-dimensional arrays.
-        /// </summary>
         protected abstract bool MatchArrayRank(TypeSymbol type, int countOfDimensions);
 
-        /// <summary>
-        /// Should only accept multi-dimensional arrays.
-        /// Should return null in case of error.
-        /// </summary>
         protected abstract TypeSymbol? GetMDArrayElementType(TypeSymbol type);
 
         protected abstract bool MatchTypeToTypeId(TypeSymbol type, int typeId);
 
         protected abstract TypeSymbol GetReturnType(MethodSymbol method);
+
         protected abstract ImmutableArray<ParameterSymbol> GetParameters(MethodSymbol method);
 
         protected abstract TypeSymbol GetPropertyType(PropertySymbol property);
+
         protected abstract ImmutableArray<ParameterSymbol> GetParameters(PropertySymbol property);
 
         protected abstract TypeSymbol GetParamType(ParameterSymbol parameter);
 
         protected abstract bool IsByRefParam(ParameterSymbol parameter);
+
         protected abstract bool IsByRefMethod(MethodSymbol method);
+
         protected abstract bool IsByRefProperty(PropertySymbol property);
 
         protected abstract TypeSymbol GetFieldType(FieldSymbol field);
+
+        public SignatureComparer()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(30, 548, 10986);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(30, 548, 10986);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(30, 548, 10986);
+        }
+
+
+        static SignatureComparer()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(30, 548, 10986);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(30, 548, 10986);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(30, 548, 10986);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(30, 548, 10986);
     }
 }

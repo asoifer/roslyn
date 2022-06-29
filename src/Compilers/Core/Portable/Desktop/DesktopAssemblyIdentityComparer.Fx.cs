@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,541 +13,866 @@ using System.Reflection.Metadata;
 
 namespace Microsoft.CodeAnalysis
 {
-    // TODO: Consider reducing the table memory footprint.
-
     public partial class DesktopAssemblyIdentityComparer
     {
         private sealed class FrameworkAssemblyDictionary : Dictionary<string, FrameworkAssemblyDictionary.Value>
         {
             public FrameworkAssemblyDictionary()
-                : base(SimpleNameComparer)
+            : base(f_176_782_800_C(f_176_782_800()))
             {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(176, 721, 831);
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(176, 721, 831);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 721, 831);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 721, 831);
+                }
             }
 
             public struct Value
             {
+
                 public readonly ImmutableArray<byte> PublicKeyToken;
+
                 public readonly AssemblyVersion Version;
 
                 public Value(ImmutableArray<byte> publicKeyToken, AssemblyVersion version)
                 {
-                    this.PublicKeyToken = publicKeyToken;
-                    this.Version = version;
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterConstructor(176, 1029, 1245);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 1144, 1181);
+
+                        this.PublicKeyToken = publicKeyToken;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 1203, 1226);
+
+                        this.Version = version;
+                        DynAbs.Tracing.TraceSender.TraceExitConstructor(176, 1029, 1245);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 1029, 1245);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 1029, 1245);
+                    }
+                }
+                static Value()
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(176, 847, 1260);
+                    DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(176, 847, 1260);
+
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 847, 1260);
                 }
             }
 
             public void Add(
-                string name,
-                ImmutableArray<byte> publicKeyToken,
-                AssemblyVersion version)
+                            string name,
+                            ImmutableArray<byte> publicKeyToken,
+                            AssemblyVersion version)
             {
-                Add(name, new Value(publicKeyToken, version));
-            }
-        }
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 1276, 1512);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 1451, 1497);
 
+                    f_176_1451_1496(this, name, f_176_1461_1495(publicKeyToken, version));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(176, 1276, 1512);
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkAssemblyDictionary.Value
+                    f_176_1461_1495(System.Collections.Immutable.ImmutableArray<byte>
+                    publicKeyToken, Microsoft.CodeAnalysis.AssemblyVersion
+                    version)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkAssemblyDictionary.Value(publicKeyToken, version);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 1461, 1495);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_1451_1496(Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkAssemblyDictionary
+                    this_param, string
+                    key, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkAssemblyDictionary.Value
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 1451, 1496);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 1276, 1512);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 1276, 1512);
+                }
+            }
+
+            static FrameworkAssemblyDictionary()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(176, 592, 1523);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(176, 592, 1523);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 592, 1523);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(176, 592, 1523);
+
+            static System.StringComparer
+            f_176_782_800()
+            {
+                var return_v = SimpleNameComparer;
+                DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 782, 800);
+                return return_v;
+            }
+
+
+            static System.Collections.Generic.IEqualityComparer<string>
+            f_176_782_800_C(System.Collections.Generic.IEqualityComparer<string>
+            i)
+            {
+                var return_v = i;
+                DynAbs.Tracing.TraceSender.TraceBaseCall(176, 721, 831);
+                return return_v;
+            }
+
+        }
         private sealed class FrameworkRetargetingDictionary : Dictionary<FrameworkRetargetingDictionary.Key, List<FrameworkRetargetingDictionary.Value>>
         {
             public FrameworkRetargetingDictionary()
             {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(176, 1704, 1773);
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(176, 1704, 1773);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 1704, 1773);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 1704, 1773);
+                }
             }
 
             public struct Key : IEquatable<Key>
             {
+
                 public readonly string Name;
+
                 public readonly ImmutableArray<byte> PublicKeyToken;
 
                 public Key(string name, ImmutableArray<byte> publicKeyToken)
                 {
-                    this.Name = name;
-                    this.PublicKeyToken = publicKeyToken;
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterConstructor(176, 1975, 2171);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 2076, 2093);
+
+                        this.Name = name;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 2115, 2152);
+
+                        this.PublicKeyToken = publicKeyToken;
+                        DynAbs.Tracing.TraceSender.TraceExitConstructor(176, 1975, 2171);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 1975, 2171);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 1975, 2171);
+                    }
                 }
 
                 public bool Equals(Key other)
                 {
-                    return SimpleNameComparer.Equals(this.Name, other.Name)
-                        && this.PublicKeyToken.SequenceEqual(other.PublicKeyToken);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 2191, 2420);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 2261, 2401);
+
+                        return f_176_2268_2316(f_176_2268_2286(), this.Name, other.Name) && (DynAbs.Tracing.TraceSender.Expression_True(176, 2268, 2400) && this.PublicKeyToken.SequenceEqual(other.PublicKeyToken));
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(176, 2191, 2420);
+
+                        System.StringComparer
+                        f_176_2268_2286()
+                        {
+                            var return_v = SimpleNameComparer;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 2268, 2286);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_176_2268_2316(System.StringComparer
+                        this_param, string
+                        x, string
+                        y)
+                        {
+                            var return_v = this_param.Equals(x, y);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 2268, 2316);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 2191, 2420);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 2191, 2420);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public override bool Equals(object? obj)
                 {
-                    return obj is Key && Equals((Key)obj);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 2440, 2578);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 2521, 2559);
+
+                        return obj is Key && (DynAbs.Tracing.TraceSender.Expression_True(176, 2528, 2558) && Equals(obj));
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(176, 2440, 2578);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 2440, 2578);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 2440, 2578);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public override int GetHashCode()
                 {
-                    return SimpleNameComparer.GetHashCode(Name) ^ PublicKeyToken[0];
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 2598, 2755);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 2672, 2736);
+
+                        return f_176_2679_2715(f_176_2679_2697(), Name) ^ PublicKeyToken[0];
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(176, 2598, 2755);
+
+                        System.StringComparer
+                        f_176_2679_2697()
+                        {
+                            var return_v = SimpleNameComparer;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 2679, 2697);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_176_2679_2715(System.StringComparer
+                        this_param, string
+                        obj)
+                        {
+                            var return_v = this_param.GetHashCode(obj);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 2679, 2715);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 2598, 2755);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 2598, 2755);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+                static Key()
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(176, 1789, 2770);
+                    DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(176, 1789, 2770);
+
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 1789, 2770);
                 }
             }
 
             public struct Value
             {
+
                 public readonly AssemblyVersion VersionLow;
+
                 public readonly AssemblyVersion VersionHigh;
+
                 public readonly string NewName;
+
                 public readonly ImmutableArray<byte> NewPublicKeyToken;
+
                 public readonly AssemblyVersion NewVersion;
+
                 public readonly bool IsPortable;
 
                 public Value(
-                    AssemblyVersion versionLow,
-                    AssemblyVersion versionHigh,
-                    string newName,
-                    ImmutableArray<byte> newPublicKeyToken,
-                    AssemblyVersion newVersion,
-                    bool isPortable)
+                                    AssemblyVersion versionLow,
+                                    AssemblyVersion versionHigh,
+                                    string newName,
+                                    ImmutableArray<byte> newPublicKeyToken,
+                                    AssemblyVersion newVersion,
+                                    bool isPortable)
                 {
-                    VersionLow = versionLow;
-                    VersionHigh = versionHigh;
-                    NewName = newName;
-                    NewPublicKeyToken = newPublicKeyToken;
-                    NewVersion = newVersion;
-                    IsPortable = isPortable;
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterConstructor(176, 3196, 3817);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 3534, 3558);
+
+                        VersionLow = versionLow;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 3580, 3606);
+
+                        VersionHigh = versionHigh;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 3628, 3646);
+
+                        NewName = newName;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 3668, 3706);
+
+                        NewPublicKeyToken = newPublicKeyToken;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 3728, 3752);
+
+                        NewVersion = newVersion;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 3774, 3798);
+
+                        IsPortable = isPortable;
+                        DynAbs.Tracing.TraceSender.TraceExitConstructor(176, 3196, 3817);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 3196, 3817);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 3196, 3817);
+                    }
                 }
             }
 
             public void Add(
-                string name,
-                ImmutableArray<byte> publicKeyToken,
-                AssemblyVersion versionLow,
-                object versionHighNull,
-                string newName,
-                ImmutableArray<byte> newPublicKeyToken,
-                AssemblyVersion newVersion)
+                            string name,
+                            ImmutableArray<byte> publicKeyToken,
+                            AssemblyVersion versionLow,
+                            object versionHighNull,
+                            string newName,
+                            ImmutableArray<byte> newPublicKeyToken,
+                            AssemblyVersion newVersion)
             {
-                List<Value>? values;
-                var key = new Key(name, publicKeyToken);
-                if (!TryGetValue(key, out values))
+                try
                 {
-                    Add(key, values = new List<Value>());
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 3848, 4579);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 4202, 4222);
 
-                values.Add(new Value(versionLow, versionHigh: default, newName, newPublicKeyToken, newVersion, isPortable: false));
+                    List<Value>?
+                    values
+                    = default(List<Value>?);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 4240, 4280);
+
+                    var
+                    key = f_176_4250_4279(name, publicKeyToken)
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 4298, 4429) || true) && (!f_176_4303_4331(this, key, out values))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 4298, 4429);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 4373, 4410);
+
+                        f_176_4373_4409(this, key, values = f_176_4391_4408());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(176, 4298, 4429);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 4449, 4564);
+
+                    f_176_4449_4563(
+                                    values, f_176_4460_4562(versionLow, versionHigh: default, newName, newPublicKeyToken, newVersion, isPortable: false));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(176, 3848, 4579);
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    f_176_4250_4279(string
+                    name, System.Collections.Immutable.ImmutableArray<byte>
+                    publicKeyToken)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key(name, publicKeyToken);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 4250, 4279);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_176_4303_4331(Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    key, out System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>?
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 4303, 4331);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    f_176_4391_4408()
+                    {
+                        var return_v = new System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 4391, 4408);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_4373_4409(Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    key, System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 4373, 4409);
+                        return 0;
+                    }
+
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value
+                    f_176_4460_4562(Microsoft.CodeAnalysis.AssemblyVersion
+                    versionLow, Microsoft.CodeAnalysis.AssemblyVersion
+                    versionHigh, string
+                    newName, System.Collections.Immutable.ImmutableArray<byte>
+                    newPublicKeyToken, Microsoft.CodeAnalysis.AssemblyVersion
+                    newVersion, bool
+                    isPortable)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value(versionLow, versionHigh: versionHigh, newName, newPublicKeyToken, newVersion, isPortable: isPortable);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 4460, 4562);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_4449_4563(System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 4449, 4563);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 3848, 4579);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 3848, 4579);
+                }
             }
 
             public void Add(
-                string name,
-                ImmutableArray<byte> publicKeyToken,
-                AssemblyVersion versionLow,
-                AssemblyVersion versionHigh,
-                string newName,
-                ImmutableArray<byte> newPublicKeyToken,
-                AssemblyVersion newVersion,
-                bool isPortable)
+                            string name,
+                            ImmutableArray<byte> publicKeyToken,
+                            AssemblyVersion versionLow,
+                            AssemblyVersion versionHigh,
+                            string newName,
+                            ImmutableArray<byte> newPublicKeyToken,
+                            AssemblyVersion newVersion,
+                            bool isPortable)
             {
-                List<Value>? values;
-                var key = new Key(name, publicKeyToken);
-                if (!TryGetValue(key, out values))
+                try
                 {
-                    Add(key, values = new List<Value>());
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 4595, 5349);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 4988, 5008);
 
-                values.Add(new Value(versionLow, versionHigh, newName, newPublicKeyToken, newVersion, isPortable));
+                    List<Value>?
+                    values
+                    = default(List<Value>?);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5026, 5066);
+
+                    var
+                    key = f_176_5036_5065(name, publicKeyToken)
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5084, 5215) || true) && (!f_176_5089_5117(this, key, out values))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 5084, 5215);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5159, 5196);
+
+                        f_176_5159_5195(this, key, values = f_176_5177_5194());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(176, 5084, 5215);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5235, 5334);
+
+                    f_176_5235_5333(
+                                    values, f_176_5246_5332(versionLow, versionHigh, newName, newPublicKeyToken, newVersion, isPortable));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(176, 4595, 5349);
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    f_176_5036_5065(string
+                    name, System.Collections.Immutable.ImmutableArray<byte>
+                    publicKeyToken)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key(name, publicKeyToken);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5036, 5065);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_176_5089_5117(Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    key, out System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>?
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5089, 5117);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    f_176_5177_5194()
+                    {
+                        var return_v = new System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5177, 5194);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_5159_5195(Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    key, System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5159, 5195);
+                        return 0;
+                    }
+
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value
+                    f_176_5246_5332(Microsoft.CodeAnalysis.AssemblyVersion
+                    versionLow, Microsoft.CodeAnalysis.AssemblyVersion
+                    versionHigh, string
+                    newName, System.Collections.Immutable.ImmutableArray<byte>
+                    newPublicKeyToken, Microsoft.CodeAnalysis.AssemblyVersion
+                    newVersion, bool
+                    isPortable)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value(versionLow, versionHigh, newName, newPublicKeyToken, newVersion, isPortable);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5246, 5332);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_5235_5333(System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5235, 5333);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 4595, 5349);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 4595, 5349);
+                }
             }
 
             public bool TryGetValue(AssemblyIdentity identity, out Value value)
             {
-                List<Value>? values;
-                if (!TryGetValue(new Key(identity.Name, identity.PublicKeyToken), out values))
+                try
                 {
-                    value = default;
-                    return false;
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(176, 5365, 6496);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5465, 5485);
 
-                for (int i = 0; i < values.Count; i++)
-                {
-                    value = values[i];
-                    var version = (AssemblyVersion)identity.Version;
-                    if (value.VersionHigh.Major == 0)
+                    List<Value>?
+                    values
+                    = default(List<Value>?);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5503, 5692) || true) && (!f_176_5508_5580(this, f_176_5520_5567(f_176_5528_5541(identity), f_176_5543_5566(identity)), out values))
+                    )
+
                     {
-                        Debug.Assert(value.VersionHigh == default(AssemblyVersion));
-                        if (version == value.VersionLow)
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 5503, 5692);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5622, 5638);
+
+                        value = default;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5660, 5673);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(176, 5503, 5692);
+                    }
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5721, 5726);
+
+                        for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5712, 6414) || true) && (i < f_176_5732_5744(values))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5746, 5749)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(176, 5712, 6414))
+
                         {
-                            return true;
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 5712, 6414);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5791, 5809);
+
+                            value = f_176_5799_5808(values, i);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5831, 5879);
+
+                            var
+                            version = (AssemblyVersion)f_176_5862_5878(identity)
+                            ;
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5901, 6395) || true) && (value.VersionHigh.Major == 0)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 5901, 6395);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 5983, 6043);
+
+                                f_176_5983_6042(value.VersionHigh == default(AssemblyVersion));
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 6069, 6197) || true) && (version == value.VersionLow)
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 6069, 6197);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 6158, 6170);
+
+                                    return true;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(176, 6069, 6197);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(176, 5901, 6395);
+                            }
+
+                            else
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 5901, 6395);
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 6247, 6395) || true) && (version >= value.VersionLow && (DynAbs.Tracing.TraceSender.Expression_True(176, 6251, 6310) && version <= value.VersionHigh))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(176, 6247, 6395);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 6360, 6372);
+
+                                    return true;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(176, 6247, 6395);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(176, 5901, 6395);
+                            }
                         }
                     }
-                    else if (version >= value.VersionLow && version <= value.VersionHigh)
+                    catch (System.Exception)
                     {
-                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(176, 1, 703);
+                        throw;
                     }
-                }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(176, 1, 703);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 6434, 6450);
 
-                value = default;
-                return false;
+                    value = default;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(176, 6468, 6481);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(176, 5365, 6496);
+
+                    string
+                    f_176_5528_5541(Microsoft.CodeAnalysis.AssemblyIdentity
+                    this_param)
+                    {
+                        var return_v = this_param.Name;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 5528, 5541);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<byte>
+                    f_176_5543_5566(Microsoft.CodeAnalysis.AssemblyIdentity
+                    this_param)
+                    {
+                        var return_v = this_param.PublicKeyToken;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 5543, 5566);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    f_176_5520_5567(string
+                    name, System.Collections.Immutable.ImmutableArray<byte>
+                    publicKeyToken)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key(name, publicKeyToken);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5520, 5567);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_176_5508_5580(Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary
+                    this_param, Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Key
+                    key, out System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>?
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5508, 5580);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_5732_5744(System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 5732, 5744);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value
+                    f_176_5799_5808(System.Collections.Generic.List<Microsoft.CodeAnalysis.DesktopAssemblyIdentityComparer.FrameworkRetargetingDictionary.Value>
+                    this_param, int
+                    i0)
+                    {
+                        var return_v = this_param[i0];
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 5799, 5808);
+                        return return_v;
+                    }
+
+
+                    System.Version
+                    f_176_5862_5878(Microsoft.CodeAnalysis.AssemblyIdentity
+                    this_param)
+                    {
+                        var return_v = this_param.Version;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(176, 5862, 5878);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_176_5983_6042(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(176, 5983, 6042);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(176, 5365, 6496);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 5365, 6496);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
+
+            static FrameworkRetargetingDictionary()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(176, 1535, 6507);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(176, 1535, 6507);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(176, 1535, 6507);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(176, 1535, 6507);
         }
 
-        private static readonly ImmutableArray<byte> s_NETCF_PUBLIC_KEY_TOKEN_1 = ImmutableArray.Create(new byte[] { 0x1c, 0x9e, 0x25, 0x96, 0x86, 0xf9, 0x21, 0xe0 });
-        private static readonly ImmutableArray<byte> s_NETCF_PUBLIC_KEY_TOKEN_2 = ImmutableArray.Create(new byte[] { 0x5f, 0xd5, 0x7c, 0x54, 0x3a, 0x9c, 0x02, 0x47 });
-        private static readonly ImmutableArray<byte> s_NETCF_PUBLIC_KEY_TOKEN_3 = ImmutableArray.Create(new byte[] { 0x96, 0x9d, 0xb8, 0x05, 0x3d, 0x33, 0x22, 0xac });
-        private static readonly ImmutableArray<byte> s_SQL_PUBLIC_KEY_TOKEN = ImmutableArray.Create(new byte[] { 0x89, 0x84, 0x5d, 0xcd, 0x80, 0x80, 0xcc, 0x91 });
-        private static readonly ImmutableArray<byte> s_SQL_MOBILE_PUBLIC_KEY_TOKEN = ImmutableArray.Create(new byte[] { 0x3b, 0xe2, 0x35, 0xdf, 0x1c, 0x8d, 0x2a, 0xd3 });
-        private static readonly ImmutableArray<byte> s_ECMA_PUBLICKEY_STR_L = ImmutableArray.Create(new byte[] { 0xb7, 0x7a, 0x5c, 0x56, 0x19, 0x34, 0xe0, 0x89 });
-        private static readonly ImmutableArray<byte> s_SHAREDLIB_PUBLICKEY_STR_L = ImmutableArray.Create(new byte[] { 0x31, 0xbf, 0x38, 0x56, 0xad, 0x36, 0x4e, 0x35 });
-        private static readonly ImmutableArray<byte> s_MICROSOFT_PUBLICKEY_STR_L = ImmutableArray.Create(new byte[] { 0xb0, 0x3f, 0x5f, 0x7f, 0x11, 0xd5, 0x0a, 0x3a });
-        private static readonly ImmutableArray<byte> s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L = ImmutableArray.Create(new byte[] { 0x7c, 0xec, 0x85, 0xd7, 0xbe, 0xa7, 0x79, 0x8e });
-        private static readonly ImmutableArray<byte> s_SILVERLIGHT_PUBLICKEY_STR_L = ImmutableArray.Create(new byte[] { 0x31, 0xbf, 0x38, 0x56, 0xad, 0x36, 0x4e, 0x35 });
-        private static readonly ImmutableArray<byte> s_RIA_SERVICES_KEY_TOKEN = ImmutableArray.Create(new byte[] { 0xdd, 0xd0, 0xda, 0x4d, 0x3e, 0x67, 0x82, 0x17 });
+        private static readonly ImmutableArray<byte> s_NETCF_PUBLIC_KEY_TOKEN_1;
 
-        private static readonly AssemblyVersion s_VER_VS_COMPATIBILITY_ASSEMBLYVERSION_STR_L = new AssemblyVersion(8, 0, 0, 0);
-        private static readonly AssemblyVersion s_VER_VS_ASSEMBLYVERSION_STR_L = new AssemblyVersion(10, 0, 0, 0);
-        private static readonly AssemblyVersion s_VER_SQL_ASSEMBLYVERSION_STR_L = new AssemblyVersion(9, 0, 242, 0);
-        private static readonly AssemblyVersion s_VER_LINQ_ASSEMBLYVERSION_STR_L = new AssemblyVersion(3, 0, 0, 0);
-        private static readonly AssemblyVersion s_VER_LINQ_ASSEMBLYVERSION_STR_2_L = new AssemblyVersion(3, 5, 0, 0);
-        private static readonly AssemblyVersion s_VER_SQL_ORCAS_ASSEMBLYVERSION_STR_L = new AssemblyVersion(3, 5, 0, 0);
-        private static readonly AssemblyVersion s_VER_ASSEMBLYVERSION_STR_L = new AssemblyVersion(4, 0, 0, 0);
-        private static readonly AssemblyVersion s_VER_VC_STLCLR_ASSEMBLYVERSION_STR_L = new AssemblyVersion(2, 0, 0, 0);
-        private const string NULL = null;
-        private const bool TRUE = true;
+        private static readonly ImmutableArray<byte> s_NETCF_PUBLIC_KEY_TOKEN_2;
 
-        // Replace:
-        // "([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)"  ->   new AssemblyVersion($1, $2, $3, $4)
-        // ,[ ]+FxPolicyHelper::AppXBinder_[A-Z]+    -> 
-        // " -> "   (whole word, case sensitive)
-        // :: -> .
+        private static readonly ImmutableArray<byte> s_NETCF_PUBLIC_KEY_TOKEN_3;
 
-        // copied from ndp\clr\src\fusion\binder\fxretarget.cpp
-        private static readonly FrameworkRetargetingDictionary s_arRetargetPolicy = new FrameworkRetargetingDictionary()
-        {
-            // ECMA v1.0 redirect    
-            {"System", s_ECMA_PUBLICKEY_STR_L, new AssemblyVersion(1, 0, 0, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_ECMA_PUBLICKEY_STR_L, new AssemblyVersion(1, 0, 0, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_SQL_PUBLIC_KEY_TOKEN;
 
-            // Compat framework redirect
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_1, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(7, 0, 5000, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_1, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(7, 0, 5500, 0), NULL, NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.WindowsCE.Forms", s_NETCF_PUBLIC_KEY_TOKEN_1, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_NETCF_PUBLIC_KEY_TOKEN_3, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.WindowsCE.Forms", s_NETCF_PUBLIC_KEY_TOKEN_1, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_NETCF_PUBLIC_KEY_TOKEN_3, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.WindowsCE.Forms", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_NETCF_PUBLIC_KEY_TOKEN_3, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.WindowsCE.Forms", s_NETCF_PUBLIC_KEY_TOKEN_2, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_NETCF_PUBLIC_KEY_TOKEN_3, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.WindowsCE.Forms", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, NULL, s_NETCF_PUBLIC_KEY_TOKEN_3, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.WindowsCE.Forms", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, NULL, s_NETCF_PUBLIC_KEY_TOKEN_3, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_SQL_MOBILE_PUBLIC_KEY_TOKEN;
 
-            // Compat framework name redirect
-            {"System.Data.SqlClient", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlClient", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Common", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Common", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms.DataGrid", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5000, 0), NULL, "System.Windows.Forms", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms.DataGrid", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(1, 0, 5500, 0), NULL, "System.Windows.Forms", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_ECMA_PUBLICKEY_STR_L;
 
-            // v2.0 Compact framework redirect
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Messaging", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlClient", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Common", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms.DataGrid", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(2, 0, 0, 0), new AssemblyVersion(2, 0, 10, 0), "System.Windows.Forms", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(8, 0, 0, 0), new AssemblyVersion(8, 0, 10, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_SHAREDLIB_PUBLICKEY_STR_L;
 
-            // v3.5 Compact framework redirect
-            {"System", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Messaging", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlClient", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms.DataGrid", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), "System.Windows.Forms", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(8, 1, 0, 0), new AssemblyVersion(8, 1, 5, 0), "Microsoft.VisualBasic", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_MICROSOFT_PUBLICKEY_STR_L;
 
-            // SQL Everywhere redirect for Orcas
-            {"System.Data.SqlClient", s_SQL_MOBILE_PUBLIC_KEY_TOKEN, new AssemblyVersion(3, 5, 0, 0), NULL, "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlServerCe", s_SQL_MOBILE_PUBLIC_KEY_TOKEN, new AssemblyVersion(3, 5, 0, 0), NULL, NULL, s_SQL_PUBLIC_KEY_TOKEN, s_VER_SQL_ORCAS_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlServerCe", s_SQL_MOBILE_PUBLIC_KEY_TOKEN, new AssemblyVersion(3, 5, 1, 0), new AssemblyVersion(3, 5, 200, 999), NULL, s_SQL_PUBLIC_KEY_TOKEN, s_VER_SQL_ORCAS_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L;
 
-            // SQL CE redirect
-            {"System.Data.SqlClient", s_SQL_MOBILE_PUBLIC_KEY_TOKEN, new AssemblyVersion(3, 0, 3600, 0), NULL, "System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlServerCe", s_SQL_MOBILE_PUBLIC_KEY_TOKEN, new AssemblyVersion(3, 0, 3600, 0), NULL, NULL, s_SQL_PUBLIC_KEY_TOKEN, s_VER_SQL_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_SILVERLIGHT_PUBLICKEY_STR_L;
 
-            // Linq and friends redirect
-            {"system.xml.linq", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_LINQ_ASSEMBLYVERSION_STR_2_L},
-            {"system.data.DataSetExtensions", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_LINQ_ASSEMBLYVERSION_STR_2_L},
-            {"System.Core", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_LINQ_ASSEMBLYVERSION_STR_2_L},
-            {"System.ServiceModel", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_LINQ_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Serialization", s_NETCF_PUBLIC_KEY_TOKEN_3, new AssemblyVersion(3, 5, 0, 0), new AssemblyVersion(3, 9, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L, s_VER_LINQ_ASSEMBLYVERSION_STR_L},
+        private static readonly ImmutableArray<byte> s_RIA_SERVICES_KEY_TOKEN;
 
-            // Portable Library redirects
-            {"mscorlib",                           s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System",                             s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.ComponentModel.Composition",  s_SILVERLIGHT_PUBLICKEY_STR_L,            new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.ComponentModel.DataAnnotations",s_RIA_SERVICES_KEY_TOKEN,               new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Core",                        s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Net",                         s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Numerics",                    s_SILVERLIGHT_PUBLICKEY_STR_L,            new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"Microsoft.CSharp",                   s_SILVERLIGHT_PUBLICKEY_STR_L,            new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Runtime.Serialization",       s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.ServiceModel",                s_SILVERLIGHT_PUBLICKEY_STR_L,            new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.ServiceModel.Web",            s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Xml",                         s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Xml.Linq",                    s_SILVERLIGHT_PUBLICKEY_STR_L,            new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Xml.Serialization",           s_SILVERLIGHT_PUBLICKEY_STR_L,            new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_ECMA_PUBLICKEY_STR_L,      s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-            {"System.Windows",                     s_SILVERLIGHT_PLATFORM_PUBLICKEY_STR_L,   new AssemblyVersion(2, 0, 5, 0), new AssemblyVersion(99, 0, 0, 0), NULL, s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L, TRUE},
-        };
+        private static readonly AssemblyVersion s_VER_VS_COMPATIBILITY_ASSEMBLYVERSION_STR_L;
 
-        // Copied from ndp\clr\src\inc\fxretarget.h
-        private static readonly FrameworkAssemblyDictionary s_arFxPolicy = new FrameworkAssemblyDictionary()
-        {
-            {"Accessibility", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"CustomMarshalers", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"ISymWrapper", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.JScript", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic.Compatibility", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic.Compatibility.Data", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualC", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"mscorlib", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Configuration", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Configuration.Install", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.OracleClient", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.SqlXml", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Deployment", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Design", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.DirectoryServices", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.DirectoryServices.Protocols", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Drawing.Design", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.EnterpriseServices", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Management", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Messaging", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Remoting", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Serialization.Formatters.Soap", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Security", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceProcess", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Transactions", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Mobile", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.RegularExpressions", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Services", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L}, // Has to be supported in AppX, because it is in transitive closure of supported assemblies
-            {"System.Windows.Forms", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly AssemblyVersion s_VER_VS_ASSEMBLYVERSION_STR_L;
 
-#if NDP4_AUTO_VERSION_ROLLFORWARD
+        private static readonly AssemblyVersion s_VER_SQL_ASSEMBLYVERSION_STR_L;
 
-            // Post-Everett FX 2.0 assemblies:
-            {"AspNetMMCExt", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"sysglobl", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Build.Engine", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Build.Framework", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly AssemblyVersion s_VER_LINQ_ASSEMBLYVERSION_STR_L;
 
-            // FX 3.0 assemblies:
-            // Note: we shipped .NET 4.0 with entries in this list for PresentationCFFRasterizer and System.ServiceModel.Install
-            // even though these assemblies did not ship with .NET 4.0. To maintain 100% compatibility with 4.0 we will keep
-            // these in .NET 4.5, but we should remove them in a future SxS version of the Framework.
-            {"PresentationCFFRasterizer", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L}, // See note above
-            {"PresentationCore", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework.Aero", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework.Classic", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework.Luna", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework.Royale", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationUI", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"ReachFramework", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Printing", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Speech", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"UIAutomationClient", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"UIAutomationClientsideProviders", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"UIAutomationProvider", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"UIAutomationTypes", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"WindowsBase", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"WindowsFormsIntegration", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"SMDiagnostics", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IdentityModel", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IdentityModel.Selectors", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IO.Log", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Serialization", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Install", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L}, // See note above
-            {"System.ServiceModel.WasHosting", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Workflow.Activities", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Workflow.ComponentModel", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Workflow.Runtime", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Transactions.Bridge", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Transactions.Bridge.Dtc", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly AssemblyVersion s_VER_LINQ_ASSEMBLYVERSION_STR_2_L;
 
-            // FX 3.5 assemblies:
-            {"System.AddIn", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.AddIn.Contract", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ComponentModel.Composition", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L}, // Shipping out-of-band
-            {"System.Core", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.DataSetExtensions", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Linq", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml.Linq", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.DirectoryServices.AccountManagement", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Management.Instrumentation", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Web", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L}, // Needed for portable libraries
-            {"System.Web.Extensions", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Extensions.Design", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Presentation", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.WorkflowServices", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            // Microsoft.Data.Entity.Build.Tasks.dll should not be unified on purpose - it is supported SxS, i.e. both 3.5 and 4.0 versions can be loaded into CLR 4.0+.
-            // {"Microsoft.Data.Entity.Build.Tasks", MICROSOFT_PUBLICKEY_STR_L, VER_ASSEMBLYVERSION_STR_L},
+        private static readonly AssemblyVersion s_VER_SQL_ORCAS_ASSEMBLYVERSION_STR_L;
 
-            // FX 3.5 SP1 assemblies:
-            {"System.ComponentModel.DataAnnotations", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Entity", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Entity.Design", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Services", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Services.Client", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Data.Services.Design", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Abstractions", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.DynamicData", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.DynamicData.Design", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Entity", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Entity.Design", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.Routing", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly AssemblyVersion s_VER_ASSEMBLYVERSION_STR_L;
 
-            // FX 4.0 assemblies:
-            {"Microsoft.Build", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.CSharp", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Dynamic", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Numerics", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xaml", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            // Microsoft.Workflow.Compiler.exe:
-            // System.Workflow.ComponentModel.dll started to depend on Microsoft.Workflow.Compiler.exe in 4.0 RTM
-            {"Microsoft.Workflow.Compiler", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private static readonly AssemblyVersion s_VER_VC_STLCLR_ASSEMBLYVERSION_STR_L;
 
-            // FX 4.5 assemblies:
-            {"Microsoft.Activities.Build", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Build.Conversion.v4.0", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Build.Tasks.v4.0", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Build.Utilities.v4.0", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Internal.Tasks.Dataflow", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualBasic.Activities.Compiler", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VS_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.VisualC.STLCLR", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_VC_STLCLR_ASSEMBLYVERSION_STR_L},
-            {"Microsoft.Windows.ApplicationServer.Applications", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationBuildTasks", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework.Aero2", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework.AeroLite", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework-SystemCore", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework-SystemData", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework-SystemDrawing", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework-SystemXml", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"PresentationFramework-SystemXmlLinq", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Activities", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Activities.Core.Presentation", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Activities.DurableInstancing", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Activities.Presentation", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ComponentModel.Composition.Registration", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Device", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IdentityModel.Services", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IO.Compression", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IO.Compression.FileSystem", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net.Http", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net.Http.WebRequest", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection.Context", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Caching", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.DurableInstancing", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.WindowsRuntime", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.WindowsRuntime.UI.Xaml", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Activation", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Activities", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Channels", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Discovery", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Internals", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Routing", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.ServiceMoniker40", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.ApplicationServices", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L}, // Has to be supported in AppX, because it is in transitive closure of supported assemblies
-            {"System.Web.DataVisualization", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Web.DataVisualization.Design", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Controls.Ribbon", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms.DataVisualization", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Forms.DataVisualization.Design", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Windows.Input.Manipulations", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xaml.Hosting", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"XamlBuildTask", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"XsdBuildTask", s_SHAREDLIB_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Numerics.Vectors", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
+        private const string
+        NULL = null
+        ;
 
-            // FX 4.5 facade assemblies:
-            {"System.Collections", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Collections.Concurrent", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ComponentModel", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ComponentModel.Annotations", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ComponentModel.EventBasedAsync", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Diagnostics.Contracts", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Diagnostics.Debug", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Diagnostics.Tools", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Diagnostics.Tracing", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Dynamic.Runtime", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Globalization", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.IO", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Linq", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Linq.Expressions", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Linq.Parallel", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Linq.Queryable", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net.Http.Rtc", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net.NetworkInformation", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net.Primitives", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Net.Requests", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ObjectModel", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection.Emit", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection.Emit.ILGeneration", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection.Emit.Lightweight", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection.Extensions", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Reflection.Primitives", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Resources.ResourceManager", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Extensions", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Handles", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.InteropServices", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.InteropServices.WindowsRuntime", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Numerics", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Serialization.Json", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Serialization.Primitives", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Runtime.Serialization.Xml", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Security.Principal", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Duplex", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Http", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.NetTcp", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Primitives", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.ServiceModel.Security", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Text.Encoding", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Text.Encoding.Extensions", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Text.RegularExpressions", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Threading", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Threading.Tasks", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Threading.Tasks.Parallel", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Threading.Timer", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml.ReaderWriter", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml.XDocument", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml.XmlSerializer", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            // Manually added facades
-            {"System.Windows", s_MICROSOFT_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-            {"System.Xml.Serialization", s_ECMA_PUBLICKEY_STR_L, s_VER_ASSEMBLYVERSION_STR_L},
-#endif // NDP4_AUTO_VERSION_ROLLFORWARD
-        };
+        private const bool
+        TRUE = true
+        ;
+
+        private static readonly FrameworkRetargetingDictionary s_arRetargetPolicy;
+
+        private static readonly FrameworkAssemblyDictionary s_arFxPolicy;
     }
 }

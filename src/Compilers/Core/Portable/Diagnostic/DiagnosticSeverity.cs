@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -31,37 +31,46 @@ namespace Microsoft.CodeAnalysis
         /// </summary>
         Error = 3,
     }
-
-    /// <summary>
-    /// Values for severity that are used internally by the compiler but are not exposed.
-    /// </summary>
     internal static class InternalDiagnosticSeverity
     {
-        /// <summary>
-        /// An unknown severity diagnostic is something whose severity has not yet been determined.
-        /// </summary>
-        public const DiagnosticSeverity Unknown = (DiagnosticSeverity)InternalErrorCode.Unknown;
+        public const DiagnosticSeverity
+        Unknown = (DiagnosticSeverity)InternalErrorCode.Unknown
+        ;
 
-        /// <summary>
-        /// If an unknown diagnostic is resolved and found to be unnecessary then it is 
-        /// treated as a "Void" diagnostic
-        /// </summary>
-        public const DiagnosticSeverity Void = (DiagnosticSeverity)InternalErrorCode.Void;
+        public const DiagnosticSeverity
+        Void = (DiagnosticSeverity)InternalErrorCode.Void
+        ;
+
+        static InternalDiagnosticSeverity()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(186, 1209, 1792);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(186, 1454, 1509);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(186, 1735, 1784);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(186, 1209, 1792);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(186, 1209, 1792);
+        }
+
     }
-
-    /// <summary>
-    /// Values for ErrorCode/ERRID that are used internally by the compiler but are not exposed.
-    /// </summary>
     internal static class InternalErrorCode
     {
-        /// <summary>
-        /// The code has yet to be determined.
-        /// </summary>
-        public const int Unknown = -1;
+        public const int
+        Unknown = -1
+        ;
 
-        /// <summary>
-        /// The code was lazily determined and does not need to be reported.
-        /// </summary>
-        public const int Void = -2;
+        public const int
+        Void = -2
+        ;
+
+        static InternalErrorCode()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(186, 1937, 2289);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(186, 2105, 2117);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(186, 2272, 2281);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(186, 1937, 2289);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(186, 1937, 2289);
+        }
+
     }
 }

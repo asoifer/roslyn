@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,20 +9,37 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Microsoft.CodeAnalysis.Diagnostics
 {
-    /// <summary>
-    /// Wrapper over the core <see cref="AnalysisValueProvider{TKey, TValue}"/> which holds a strong reference to key-value pairs for the lifetime of a compilation that this provider is associated with.
-    /// This ensures that values are never re-computed for equivalent keys while analyzing each compilation, improving overall analyzer performance.
-    /// </summary>
     internal sealed class CompilationAnalysisValueProvider<TKey, TValue>
-        where TKey : class
+            where TKey : class
     {
         private readonly AnalysisValueProvider<TKey, TValue> _analysisValueProvider;
+
         private readonly Dictionary<TKey, TValue> _valueMap;
 
         public CompilationAnalysisValueProvider(AnalysisValueProvider<TKey, TValue> analysisValueProvider)
         {
-            _analysisValueProvider = analysisValueProvider;
-            _valueMap = new Dictionary<TKey, TValue>(analysisValueProvider.KeyComparer);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(243, 1015, 1286);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(243, 918, 940);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(243, 993, 1002);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(243, 1138, 1185);
+
+                _analysisValueProvider = analysisValueProvider;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(243, 1199, 1275);
+
+                _valueMap = f_243_1211_1274<TKey, TValue>(f_243_1240_1273<TKey, TValue>(analysisValueProvider));
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(243, 1015, 1286);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(243, 1015, 1286);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(243, 1015, 1286);
+            }
         }
 
         internal bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
@@ -63,5 +80,37 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
             return true;
         }
+
+        static CompilationAnalysisValueProvider()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(243, 752, 2687);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(243, 752, 2687);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(243, 752, 2687);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(243, 752, 2687);
+
+        static System.Collections.Generic.IEqualityComparer<TKey>
+        f_243_1240_1273<TKey, TValue>(Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>
+        this_param) where TKey : class
+
+        {
+            var return_v = this_param.KeyComparer;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(243, 1240, 1273);
+            return return_v;
+        }
+
+
+        static System.Collections.Generic.Dictionary<TKey, TValue>
+        f_243_1211_1274<TKey, TValue>(System.Collections.Generic.IEqualityComparer<TKey>
+        comparer) where TKey : class
+
+        {
+            var return_v = new System.Collections.Generic.Dictionary<TKey, TValue>(comparer);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(243, 1211, 1274);
+            return return_v;
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,227 +11,840 @@ namespace Microsoft.CodeAnalysis.Text
 {
     internal static class EncodedStringText
     {
-        private const int LargeObjectHeapLimitInChars = 40 * 1024; // 40KB
+        private const int
+        LargeObjectHeapLimitInChars = 40 * 1024
+        ;
 
-        /// <summary>
-        /// Encoding to use when there is no byte order mark (BOM) on the stream. This encoder may throw a <see cref="DecoderFallbackException"/>
-        /// if the stream contains invalid UTF-8 bytes.
-        /// </summary>
-        private static readonly Encoding s_utf8Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
+        private static readonly Encoding s_utf8Encoding;
 
-        private static readonly Lazy<Encoding> s_fallbackEncoding = new(CreateFallbackEncoding);
+        private static readonly Lazy<Encoding> s_fallbackEncoding;
 
-        /// <summary>
-        /// Encoding to use when UTF-8 fails. We try to find the following, in order, if available:
-        ///     1. The default ANSI codepage
-        ///     2. CodePage 1252.
-        ///     3. Latin1.
-        /// </summary>
         internal static Encoding CreateFallbackEncoding()
         {
             try
             {
-                if (CodePagesEncodingProvider.Instance != null)
-                {
-                    // If we're running on CoreCLR we have to register the CodePagesEncodingProvider
-                    // first
-                    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-                }
-
-                // Try to get the default ANSI code page in the operating system's
-                // regional and language settings, and fall back to 1252 otherwise
-                return Encoding.GetEncoding(0)
-                    ?? Encoding.GetEncoding(1252);
-            }
-            catch (NotSupportedException)
-            {
-                return Encoding.GetEncoding(name: "Latin1");
-            }
-        }
-
-        /// <summary>
-        /// Initializes an instance of <see cref="SourceText"/> from the provided stream. This version differs
-        /// from <see cref="SourceText.From(Stream, Encoding, SourceHashAlgorithm, bool)"/> in two ways:
-        /// 1. It attempts to minimize allocations by trying to read the stream into a byte array.
-        /// 2. If <paramref name="defaultEncoding"/> is null, it will first try UTF8 and, if that fails, it will
-        ///    try CodePage 1252. If CodePage 1252 is not available on the system, then it will try Latin1.
-        /// </summary>
-        /// <param name="stream">The stream containing encoded text.</param>
-        /// <param name="defaultEncoding">
-        /// Specifies an encoding to be used if the actual encoding can't be determined from the stream content (the stream doesn't start with Byte Order Mark).
-        /// If not specified auto-detect heuristics are used to determine the encoding. If these heuristics fail the decoding is assumed to be Encoding.Default.
-        /// Note that if the stream starts with Byte Order Mark the value of <paramref name="defaultEncoding"/> is ignored.
-        /// </param>
-        /// <param name="canBeEmbedded">Indicates if the file can be embedded in the PDB.</param>
-        /// <param name="checksumAlgorithm">Hash algorithm used to calculate document checksum.</param>
-        /// <exception cref="InvalidDataException">
-        /// The stream content can't be decoded using the specified <paramref name="defaultEncoding"/>, or
-        /// <paramref name="defaultEncoding"/> is null and the stream appears to be a binary file.
-        /// </exception>
-        /// <exception cref="IOException">An IO error occurred while reading from the stream.</exception>
-        internal static SourceText Create(Stream stream,
-            Encoding? defaultEncoding = null,
-            SourceHashAlgorithm checksumAlgorithm = SourceHashAlgorithm.Sha1,
-            bool canBeEmbedded = false)
-        {
-            return Create(stream,
-                s_fallbackEncoding,
-                defaultEncoding: defaultEncoding,
-                checksumAlgorithm: checksumAlgorithm,
-                canBeEmbedded: canBeEmbedded);
-        }
-
-        internal static SourceText Create(Stream stream,
-            Lazy<Encoding> getEncoding,
-            Encoding? defaultEncoding = null,
-            SourceHashAlgorithm checksumAlgorithm = SourceHashAlgorithm.Sha1,
-            bool canBeEmbedded = false)
-        {
-            RoslynDebug.Assert(stream != null);
-            RoslynDebug.Assert(stream.CanRead);
-
-            bool detectEncoding = defaultEncoding == null;
-            if (detectEncoding)
-            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(15, 1222, 2064);
                 try
                 {
-                    return Decode(stream, s_utf8Encoding, checksumAlgorithm, throwIfBinaryDetected: false, canBeEmbedded: canBeEmbedded);
-                }
-                catch (DecoderFallbackException)
-                {
-                    // Fall back to Encoding.ASCII
-                }
-            }
 
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 1332, 1633) || true) && (f_15_1336_1370() != null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 1332, 1633);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 1552, 1614);
+
+                        f_15_1552_1613(f_15_1578_1612());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(15, 1332, 1633);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 1821, 1903);
+
+                    return f_15_1828_1851(0) ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Text.Encoding>(15, 1828, 1902) ?? f_15_1876_1902(1252));
+                }
+                catch (NotSupportedException)
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(15, 1932, 2053);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 1994, 2038);
+
+                    return f_15_2001_2037(name: "Latin1");
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(15, 1932, 2053);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(15, 1222, 2064);
+
+                System.Text.EncodingProvider
+                f_15_1336_1370()
+                {
+                    var return_v = CodePagesEncodingProvider.Instance;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 1336, 1370);
+                    return return_v;
+                }
+
+
+                System.Text.EncodingProvider
+                f_15_1578_1612()
+                {
+                    var return_v = CodePagesEncodingProvider.Instance;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 1578, 1612);
+                    return return_v;
+                }
+
+
+                int
+                f_15_1552_1613(System.Text.EncodingProvider
+                provider)
+                {
+                    Encoding.RegisterProvider(provider);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 1552, 1613);
+                    return 0;
+                }
+
+
+                System.Text.Encoding
+                f_15_1828_1851(int
+                codepage)
+                {
+                    var return_v = Encoding.GetEncoding(codepage);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 1828, 1851);
+                    return return_v;
+                }
+
+
+                System.Text.Encoding
+                f_15_1876_1902(int
+                codepage)
+                {
+                    var return_v = Encoding.GetEncoding(codepage);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 1876, 1902);
+                    return return_v;
+                }
+
+
+                System.Text.Encoding
+                f_15_2001_2037(string
+                name)
+                {
+                    var return_v = Encoding.GetEncoding(name: name);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 2001, 2037);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 1222, 2064);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 1222, 2064);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static SourceText Create(Stream stream,
+                    Encoding? defaultEncoding = null,
+                    SourceHashAlgorithm checksumAlgorithm = SourceHashAlgorithm.Sha1,
+                    bool canBeEmbedded = false)
+        {
             try
             {
-                return Decode(stream, defaultEncoding ?? getEncoding.Value, checksumAlgorithm, throwIfBinaryDetected: detectEncoding, canBeEmbedded: canBeEmbedded);
-            }
-            catch (DecoderFallbackException e)
-            {
-                throw new InvalidDataException(e.Message);
-            }
-        }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(15, 3855, 4318);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 4095, 4307);
 
-        /// <summary>
-        /// Try to create a <see cref="SourceText"/> from the given stream using the given encoding.
-        /// </summary>
-        /// <param name="data">The input stream containing the encoded text. The stream will not be closed.</param>
-        /// <param name="encoding">The expected encoding of the stream. The actual encoding used may be different if byte order marks are detected.</param>
-        /// <param name="checksumAlgorithm">The checksum algorithm to use.</param>
-        /// <param name="throwIfBinaryDetected">Throw <see cref="InvalidDataException"/> if binary (non-text) data is detected.</param>
-        /// <param name="canBeEmbedded">Indicates if the text can be embedded in the PDB.</param>
-        /// <returns>The <see cref="SourceText"/> decoded from the stream.</returns>
-        /// <exception cref="DecoderFallbackException">The decoder was unable to decode the stream with the given encoding.</exception>
-        /// <exception cref="IOException">Error reading from stream.</exception> 
-        private static SourceText Decode(
-            Stream data,
-            Encoding encoding,
-            SourceHashAlgorithm checksumAlgorithm,
-            bool throwIfBinaryDetected = false,
-            bool canBeEmbedded = false)
-        {
-            RoslynDebug.Assert(data != null);
-            RoslynDebug.Assert(encoding != null);
+                return f_15_4102_4306(stream, s_fallbackEncoding, defaultEncoding: defaultEncoding, checksumAlgorithm: checksumAlgorithm, canBeEmbedded: canBeEmbedded);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(15, 3855, 4318);
 
-            if (data.CanSeek)
-            {
-                data.Seek(0, SeekOrigin.Begin);
-
-                // For small streams, see if we can read the byte buffer directly.
-                if (encoding.GetMaxCharCountOrThrowIfHuge(data) < LargeObjectHeapLimitInChars)
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_4102_4306(System.IO.Stream
+                stream, System.Lazy<System.Text.Encoding>
+                getEncoding, System.Text.Encoding?
+                defaultEncoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                canBeEmbedded)
                 {
-                    if (TryGetBytesFromStream(data, out ArraySegment<byte> bytes) && bytes.Offset == 0 && bytes.Array is object)
-                    {
-                        return SourceText.From(bytes.Array,
-                                               (int)data.Length,
-                                               encoding,
-                                               checksumAlgorithm,
-                                               throwIfBinaryDetected,
-                                               canBeEmbedded);
-                    }
+                    var return_v = Create(stream, getEncoding, defaultEncoding: defaultEncoding, checksumAlgorithm: checksumAlgorithm, canBeEmbedded: canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 4102, 4306);
+                    return return_v;
                 }
-            }
 
-            return SourceText.From(data, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 3855, 4318);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 3855, 4318);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Some streams are easily represented as bytes.
-        /// </summary>
-        /// <param name="data">The stream</param>
-        /// <param name="bytes">The bytes, if available.</param>
-        /// <returns>
-        /// True if the stream's bytes could easily be read, false otherwise.
-        /// </returns>
+        internal static SourceText Create(Stream stream,
+                    Lazy<Encoding> getEncoding,
+                    Encoding? defaultEncoding = null,
+                    SourceHashAlgorithm checksumAlgorithm = SourceHashAlgorithm.Sha1,
+                    bool canBeEmbedded = false)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(15, 4330, 5522);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 4611, 4646);
+
+                f_15_4611_4645(stream != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 4660, 4695);
+
+                f_15_4660_4694(f_15_4679_4693(stream));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 4711, 4757);
+
+                bool
+                detectEncoding = defaultEncoding == null
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 4771, 5158) || true) && (detectEncoding)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 4771, 5158);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 4867, 4984);
+
+                        return f_15_4874_4983(stream, s_utf8Encoding, checksumAlgorithm, throwIfBinaryDetected: false, canBeEmbedded: canBeEmbedded);
+                    }
+                    catch (DecoderFallbackException)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCatch(15, 5021, 5143);
+                        DynAbs.Tracing.TraceSender.TraceExitCatch(15, 5021, 5143);
+                        // Fall back to Encoding.ASCII
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(15, 4771, 5158);
+                }
+
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 5210, 5358);
+
+                    return f_15_5217_5357(stream, defaultEncoding ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Text.Encoding?>(15, 5232, 5268) ?? f_15_5251_5268(getEncoding)), checksumAlgorithm, throwIfBinaryDetected: detectEncoding, canBeEmbedded: canBeEmbedded);
+                }
+                catch (DecoderFallbackException e)
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(15, 5387, 5511);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 5454, 5496);
+
+                    throw f_15_5460_5495(f_15_5485_5494(e));
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(15, 5387, 5511);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(15, 4330, 5522);
+
+                int
+                f_15_4611_4645(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 4611, 4645);
+                    return 0;
+                }
+
+
+                bool
+                f_15_4679_4693(System.IO.Stream
+                this_param)
+                {
+                    var return_v = this_param.CanRead;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 4679, 4693);
+                    return return_v;
+                }
+
+
+                int
+                f_15_4660_4694(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 4660, 4694);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_4874_4983(System.IO.Stream
+                data, System.Text.Encoding
+                encoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                throwIfBinaryDetected, bool
+                canBeEmbedded)
+                {
+                    var return_v = Decode(data, encoding, checksumAlgorithm, throwIfBinaryDetected: throwIfBinaryDetected, canBeEmbedded: canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 4874, 4983);
+                    return return_v;
+                }
+
+
+                System.Text.Encoding
+                f_15_5251_5268(System.Lazy<System.Text.Encoding>
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 5251, 5268);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_5217_5357(System.IO.Stream
+                data, System.Text.Encoding
+                encoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                throwIfBinaryDetected, bool
+                canBeEmbedded)
+                {
+                    var return_v = Decode(data, encoding, checksumAlgorithm, throwIfBinaryDetected: throwIfBinaryDetected, canBeEmbedded: canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 5217, 5357);
+                    return return_v;
+                }
+
+
+                string
+                f_15_5485_5494(System.Text.DecoderFallbackException
+                this_param)
+                {
+                    var return_v = this_param.Message;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 5485, 5494);
+                    return return_v;
+                }
+
+
+                System.IO.InvalidDataException
+                f_15_5460_5495(string
+                message)
+                {
+                    var return_v = new System.IO.InvalidDataException(message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 5460, 5495);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 4330, 5522);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 4330, 5522);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        private static SourceText Decode(
+                    Stream data,
+                    Encoding encoding,
+                    SourceHashAlgorithm checksumAlgorithm,
+                    bool throwIfBinaryDetected = false,
+                    bool canBeEmbedded = false)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(15, 6583, 7943);
+                System.ArraySegment<byte> bytes = default(System.ArraySegment<byte>);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 6841, 6874);
+
+                f_15_6841_6873(data != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 6888, 6925);
+
+                f_15_6888_6924(encoding != null);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 6941, 7820) || true) && (f_15_6945_6957(data))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 6941, 7820);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 6991, 7022);
+
+                    f_15_6991_7021(data, 0, SeekOrigin.Begin);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 7126, 7805) || true) && (f_15_7130_7173(encoding, data) < LargeObjectHeapLimitInChars)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 7126, 7805);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 7245, 7786) || true) && (f_15_7249_7306(data, out bytes) && (DynAbs.Tracing.TraceSender.Expression_True(15, 7249, 7327) && bytes.Offset == 0) && (DynAbs.Tracing.TraceSender.Expression_True(15, 7249, 7352) && bytes.Array is object))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 7245, 7786);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 7402, 7763);
+
+                            return f_15_7409_7762(bytes.Array, f_15_7491_7502(data), encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(15, 7245, 7786);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(15, 7126, 7805);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(15, 6941, 7820);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 7836, 7932);
+
+                return f_15_7843_7931(data, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(15, 6583, 7943);
+
+                int
+                f_15_6841_6873(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 6841, 6873);
+                    return 0;
+                }
+
+
+                int
+                f_15_6888_6924(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 6888, 6924);
+                    return 0;
+                }
+
+
+                bool
+                f_15_6945_6957(System.IO.Stream
+                this_param)
+                {
+                    var return_v = this_param.CanSeek;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 6945, 6957);
+                    return return_v;
+                }
+
+
+                long
+                f_15_6991_7021(System.IO.Stream
+                this_param, int
+                offset, System.IO.SeekOrigin
+                origin)
+                {
+                    var return_v = this_param.Seek((long)offset, origin);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 6991, 7021);
+                    return return_v;
+                }
+
+
+                int
+                f_15_7130_7173(System.Text.Encoding
+                encoding, System.IO.Stream
+                stream)
+                {
+                    var return_v = encoding.GetMaxCharCountOrThrowIfHuge(stream);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 7130, 7173);
+                    return return_v;
+                }
+
+
+                bool
+                f_15_7249_7306(System.IO.Stream
+                data, out System.ArraySegment<byte>
+                bytes)
+                {
+                    var return_v = TryGetBytesFromStream(data, out bytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 7249, 7306);
+                    return return_v;
+                }
+
+
+                long
+                f_15_7491_7502(System.IO.Stream
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 7491, 7502);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_7409_7762(byte[]
+                buffer, long
+                length, System.Text.Encoding
+                encoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                throwIfBinaryDetected, bool
+                canBeEmbedded)
+                {
+                    var return_v = SourceText.From(buffer, (int)length, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 7409, 7762);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_7843_7931(System.IO.Stream
+                stream, System.Text.Encoding
+                encoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                throwIfBinaryDetected, bool
+                canBeEmbedded)
+                {
+                    var return_v = SourceText.From(stream, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 7843, 7931);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 6583, 7943);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 6583, 7943);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
         internal static bool TryGetBytesFromStream(Stream data, out ArraySegment<byte> bytes)
         {
-            // PERF: If the input is a MemoryStream, we may be able to get at the buffer directly
-            var memoryStream = data as MemoryStream;
-            if (memoryStream != null)
+            try
             {
-                return memoryStream.TryGetBuffer(out bytes);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(15, 8304, 9074);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8513, 8553);
 
-            // PERF: If the input is a FileStream, we may be able to minimize allocations
-            var fileStream = data as FileStream;
-            if (fileStream != null)
+                var
+                memoryStream = data as MemoryStream
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8567, 8684) || true) && (memoryStream != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 8567, 8684);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8625, 8669);
+
+                    return f_15_8632_8668(memoryStream, out bytes);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(15, 8567, 8684);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8791, 8827);
+
+                var
+                fileStream = data as FileStream
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8841, 8968) || true) && (fileStream != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 8841, 8968);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8897, 8953);
+
+                    return f_15_8904_8952(fileStream, out bytes);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(15, 8841, 8968);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 8984, 9036);
+
+                bytes = f_15_8992_9035(f_15_9015_9034());
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9050, 9063);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(15, 8304, 9074);
+
+                bool
+                f_15_8632_8668(System.IO.MemoryStream
+                this_param, out System.ArraySegment<byte>
+                buffer)
+                {
+                    var return_v = this_param.TryGetBuffer(out buffer);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 8632, 8668);
+                    return return_v;
+                }
+
+
+                bool
+                f_15_8904_8952(System.IO.FileStream
+                stream, out System.ArraySegment<byte>
+                bytes)
+                {
+                    var return_v = TryGetBytesFromFileStream(stream, out bytes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 8904, 8952);
+                    return return_v;
+                }
+
+
+                byte[]
+                f_15_9015_9034()
+                {
+                    var return_v = Array.Empty<byte>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 9015, 9034);
+                    return return_v;
+                }
+
+
+                System.ArraySegment<byte>
+                f_15_8992_9035(byte[]
+                array)
+                {
+                    var return_v = new System.ArraySegment<byte>(array);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 8992, 9035);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return TryGetBytesFromFileStream(fileStream, out bytes);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 8304, 9074);
+                throw;
             }
-
-            bytes = new ArraySegment<byte>(Array.Empty<byte>());
-            return false;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 8304, 9074);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Read the contents of a FileStream into a byte array.
-        /// </summary>
-        /// <param name="stream">The FileStream with encoded text.</param>
-        /// <param name="bytes">A byte array filled with the contents of the file.</param>
-        /// <returns>True if a byte array could be created.</returns>
         private static bool TryGetBytesFromFileStream(FileStream stream,
-                                                      out ArraySegment<byte> bytes)
+                                                              out ArraySegment<byte> bytes)
         {
-            RoslynDebug.Assert(stream != null);
-            RoslynDebug.Assert(stream.Position == 0);
-
-            int length = (int)stream.Length;
-            if (length == 0)
+            try
             {
-                bytes = new ArraySegment<byte>(Array.Empty<byte>());
-                return true;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(15, 9438, 11062);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9612, 9647);
+
+                f_15_9612_9646(stream != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9661, 9702);
+
+                f_15_9661_9701(f_15_9680_9695(stream) == 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9718, 9750);
+
+                int
+                length = (int)f_15_9736_9749(stream)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9764, 9910) || true) && (length == 0)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(15, 9764, 9910);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9813, 9865);
+
+                    bytes = f_15_9821_9864(f_15_9844_9863());
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 9883, 9895);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(15, 9764, 9910);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 10410, 10440);
+
+                var
+                buffer = new byte[length]
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 10814, 10875);
+
+                var
+                success = f_15_10828_10864(stream, buffer, 0, length) == length
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 10891, 11020);
+
+                bytes = (DynAbs.Tracing.TraceSender.Conditional_F1(15, 10899, 10906) || ((success
+                && DynAbs.Tracing.TraceSender.Conditional_F2(15, 10926, 10956)) || DynAbs.Tracing.TraceSender.Conditional_F3(15, 10976, 11019))) ? f_15_10926_10956(buffer) : f_15_10976_11019(f_15_10999_11018());
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 11036, 11051);
+
+                return success;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(15, 9438, 11062);
+
+                int
+                f_15_9612_9646(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 9612, 9646);
+                    return 0;
+                }
+
+
+                long
+                f_15_9680_9695(System.IO.FileStream
+                this_param)
+                {
+                    var return_v = this_param.Position;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 9680, 9695);
+                    return return_v;
+                }
+
+
+                int
+                f_15_9661_9701(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 9661, 9701);
+                    return 0;
+                }
+
+
+                long
+                f_15_9736_9749(System.IO.FileStream
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(15, 9736, 9749);
+                    return return_v;
+                }
+
+
+                byte[]
+                f_15_9844_9863()
+                {
+                    var return_v = Array.Empty<byte>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 9844, 9863);
+                    return return_v;
+                }
+
+
+                System.ArraySegment<byte>
+                f_15_9821_9864(byte[]
+                array)
+                {
+                    var return_v = new System.ArraySegment<byte>(array);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 9821, 9864);
+                    return return_v;
+                }
+
+
+                int
+                f_15_10828_10864(System.IO.FileStream
+                stream, byte[]
+                buffer, int
+                offset, int
+                count)
+                {
+                    var return_v = stream.TryReadAll(buffer, offset, count);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 10828, 10864);
+                    return return_v;
+                }
+
+
+                System.ArraySegment<byte>
+                f_15_10926_10956(byte[]
+                array)
+                {
+                    var return_v = new System.ArraySegment<byte>(array);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 10926, 10956);
+                    return return_v;
+                }
+
+
+                byte[]
+                f_15_10999_11018()
+                {
+                    var return_v = Array.Empty<byte>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 10999, 11018);
+                    return return_v;
+                }
+
+
+                System.ArraySegment<byte>
+                f_15_10976_11019(byte[]
+                array)
+                {
+                    var return_v = new System.ArraySegment<byte>(array);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 10976, 11019);
+                    return return_v;
+                }
+
             }
-
-            // PERF: While this is an obvious byte array allocation, it is still cheaper than
-            // using StreamReader.ReadToEnd. The alternative allocates:
-            // 1. A 1KB byte array in the StreamReader for buffered reads
-            // 2. A 4KB byte array in the FileStream for buffered reads
-            // 3. A StringBuilder and its associated char arrays (enough to represent the final decoded string)
-
-            // TODO: Can this allocation be pooled?
-            var buffer = new byte[length];
-
-            // Note: FileStream.Read may still allocate its internal buffer if length is less
-            // than the buffer size. The default buffer size is 4KB, so this will incur a 4KB
-            // allocation for any files less than 4KB. That's why, for example, the command
-            // line compiler actually specifies a very small buffer size.
-            var success = stream.TryReadAll(buffer, 0, length) == length;
-
-            bytes = success
-                ? new ArraySegment<byte>(buffer)
-                : new ArraySegment<byte>(Array.Empty<byte>());
-
-            return success;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 9438, 11062);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 9438, 11062);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
-
         internal static class TestAccessor
         {
             internal static SourceText Create(Stream stream, Lazy<Encoding> getEncoding, Encoding defaultEncoding, SourceHashAlgorithm checksumAlgorithm, bool canBeEmbedded)
-                => EncodedStringText.Create(stream, getEncoding, defaultEncoding, checksumAlgorithm, canBeEmbedded);
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(15, 11312, 11411);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 11315, 11411);
+                    return f_15_11315_11411(stream, getEncoding, defaultEncoding, checksumAlgorithm, canBeEmbedded); DynAbs.Tracing.TraceSender.TraceExitMethod(15, 11312, 11411);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 11312, 11411);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 11312, 11411);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_11315_11411(System.IO.Stream
+                stream, System.Lazy<System.Text.Encoding>
+                getEncoding, System.Text.Encoding
+                defaultEncoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                canBeEmbedded)
+                {
+                    var return_v = EncodedStringText.Create(stream, getEncoding, defaultEncoding, checksumAlgorithm, canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 11315, 11411);
+                    return return_v;
+                }
+
+            }
 
             internal static SourceText Decode(Stream data, Encoding encoding, SourceHashAlgorithm checksumAlgorithm, bool throwIfBinaryDetected, bool canBeEmbedded)
-                => EncodedStringText.Decode(data, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(15, 11598, 11698);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 11601, 11698);
+                    return f_15_11601_11698(data, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded); DynAbs.Tracing.TraceSender.TraceExitMethod(15, 11598, 11698);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(15, 11598, 11698);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 11598, 11698);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_15_11601_11698(System.IO.Stream
+                data, System.Text.Encoding
+                encoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm, bool
+                throwIfBinaryDetected, bool
+                canBeEmbedded)
+                {
+                    var return_v = EncodedStringText.Decode(data, encoding, checksumAlgorithm, throwIfBinaryDetected, canBeEmbedded);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 11601, 11698);
+                    return return_v;
+                }
+
+            }
+
+            static TestAccessor()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(15, 11074, 11710);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(15, 11074, 11710);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 11074, 11710);
+            }
+
         }
+
+        static EncodedStringText()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(15, 334, 11717);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 408, 447);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 752, 852);
+            s_utf8Encoding = f_15_769_852(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true); DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 904, 952);
+            s_fallbackEncoding = new(CreateFallbackEncoding); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(15, 334, 11717);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 334, 11717);
+        }
+
+
+        static System.Text.UTF8Encoding
+        f_15_769_852(bool
+        encoderShouldEmitUTF8Identifier, bool
+        throwOnInvalidBytes)
+        {
+            var return_v = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: encoderShouldEmitUTF8Identifier, throwOnInvalidBytes: throwOnInvalidBytes);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 769, 852);
+            return return_v;
+        }
+
     }
 }

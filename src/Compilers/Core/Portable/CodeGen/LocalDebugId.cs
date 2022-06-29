@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,80 +8,241 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.CodeGen
 {
-    /// <summary>
-    /// Id that associates an emitted user-defined or long-lived synthesized local variable 
-    /// with a syntax node that defined it. If a syntax node defines multiple variables it 
-    /// provides information necessary to identify which one of these variables is it.
-    /// </summary>
+
     internal struct LocalDebugId : IEquatable<LocalDebugId>
     {
-        /// <summary>
-        /// We calculate a "syntax offset" for each user-defined and long-lived synthesized variable. 
-        /// Every such variable symbol has to be associated with a syntax node (its declarator). 
-        /// In usual cases this is the textual distance of the declarator from the start of the method body. 
-        /// It gets a bit complicated when the containing method body is not contiguous (constructors). 
-        /// If the variable is in the body of the constructor the definition of syntax offset is the same. 
-        /// If the variable is defined in a constructor  initializer or in a member initializer 
-        /// (this is only possible when declaration expressions or closures in primary constructors are involved) 
-        /// then the distance is a negative sum of the widths of all the initializers that succeed the declarator 
-        /// of the variable in the emitted constructor body plus the relative offset of the declarator from 
-        /// the start of the containing initializer.
-        /// </summary>
+
         public readonly int SyntaxOffset;
 
-        /// <summary>
-        /// If a single node is a declarator for multiple variables of the same synthesized kind (it can only happen for synthesized variables) 
-        /// we calculate additional number "ordinal" for such variable. We assign the ordinals to the synthesized variables with the same kind
-        /// and syntax offset in the order as they appear in the lowered bound tree. It is important that a valid EnC edit can't change 
-        /// the ordinal of a synthesized variable. If it could it would need to be assigned a different kind or associated with a different declarator node.
-        /// </summary>
         public readonly int Ordinal;
 
-        public static readonly LocalDebugId None = new LocalDebugId(isNone: true);
+        public static readonly LocalDebugId None;
 
         private LocalDebugId(bool isNone)
         {
-            Debug.Assert(isNone);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(66, 2586, 2747);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2644, 2665);
 
-            this.SyntaxOffset = -1;
-            this.Ordinal = -1;
+                f_66_2644_2664(isNone);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2681, 2704);
+
+                this.SyntaxOffset = -1;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2718, 2736);
+
+                this.Ordinal = -1;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(66, 2586, 2747);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 2586, 2747);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 2586, 2747);
+            }
         }
 
         public LocalDebugId(int syntaxOffset, int ordinal = 0)
         {
-            Debug.Assert(ordinal >= 0);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(66, 2759, 2962);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2838, 2865);
 
-            this.SyntaxOffset = syntaxOffset;
-            this.Ordinal = ordinal;
+                f_66_2838_2864(ordinal >= 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2881, 2914);
+
+                this.SyntaxOffset = syntaxOffset;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2928, 2951);
+
+                this.Ordinal = ordinal;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(66, 2759, 2962);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 2759, 2962);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 2759, 2962);
+            }
         }
 
         public bool IsNone
         {
             get
             {
-                return Ordinal == -1;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(66, 3017, 3089);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 3053, 3074);
+
+                    return Ordinal == -1;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(66, 3017, 3089);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 2974, 3100);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 2974, 3100);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
         public bool Equals(LocalDebugId other)
         {
-            return SyntaxOffset == other.SyntaxOffset
-                && Ordinal == other.Ordinal;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(66, 3112, 3273);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 3175, 3262);
+
+                return SyntaxOffset == other.SyntaxOffset
+                && (DynAbs.Tracing.TraceSender.Expression_True(66, 3182, 3261) && Ordinal == other.Ordinal);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(66, 3112, 3273);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 3112, 3273);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 3112, 3273);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public override int GetHashCode()
         {
-            return Hash.Combine(SyntaxOffset, Ordinal);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(66, 3285, 3397);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 3343, 3386);
+
+                return f_66_3350_3385(SyntaxOffset, Ordinal);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(66, 3285, 3397);
+
+                int
+                f_66_3350_3385(int
+                newKey, int
+                currentKey)
+                {
+                    var return_v = Hash.Combine(newKey, currentKey);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(66, 3350, 3385);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 3285, 3397);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 3285, 3397);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is LocalDebugId && Equals((LocalDebugId)obj);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(66, 3409, 3541);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 3474, 3530);
+
+                return obj is LocalDebugId && (DynAbs.Tracing.TraceSender.Expression_True(66, 3481, 3529) && Equals(obj));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(66, 3409, 3541);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 3409, 3541);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 3409, 3541);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public override string ToString()
         {
-            return SyntaxOffset + ":" + Ordinal;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(66, 3553, 3658);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 3611, 3647);
+
+                // LAFHIS
+                // return DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => (SyntaxOffset).ToString(), 66, 3618, 3630) + ":" + DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => (Ordinal).ToString(), 66, 3639, 3646);
+
+                var temp1 = (SyntaxOffset).ToString();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(66, 3618, 3630);
+
+                var temp2 = (Ordinal).ToString();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(66, 3639, 3646);
+
+                return temp1 + ":" + temp2;
+
+                DynAbs.Tracing.TraceSender.TraceExitMethod(66, 3553, 3658);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(66, 3553, 3658);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 3553, 3658);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+        static LocalDebugId()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(66, 640, 3665);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(66, 2536, 2573);
+            None = f_66_2543_2573(isNone: true); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(66, 640, 3665);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(66, 640, 3665);
+        }
+
+        static Microsoft.CodeAnalysis.CodeGen.LocalDebugId
+        f_66_2543_2573(bool
+        isNone)
+        {
+            var return_v = new Microsoft.CodeAnalysis.CodeGen.LocalDebugId(isNone: isNone);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(66, 2543, 2573);
+            return return_v;
+        }
+
+
+        static int
+        f_66_2644_2664(bool
+        condition)
+        {
+            Debug.Assert(condition);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(66, 2644, 2664);
+            return 0;
+        }
+
+
+        static int
+        f_66_2838_2864(bool
+        condition)
+        {
+            Debug.Assert(condition);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(66, 2838, 2864);
+            return 0;
+        }
+
     }
 }

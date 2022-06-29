@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,16 +9,46 @@ namespace Roslyn.Utilities
 {
     internal static class YieldAwaitableExtensions
     {
-        /// <summary>
-        /// Implements <c>ConfigureAwait(bool)</c> for <see cref="Task.Yield"/>. The resulting behavior in asynchronous code
-        /// is the same as one would expect for <see cref="Task.ConfigureAwait(bool)"/>.
-        /// </summary>
-        /// <param name="awaitable">The awaitable provided by <see cref="Task.Yield"/>.</param>
-        /// <param name="continueOnCapturedContext"><inheritdoc cref="Task.ConfigureAwait(bool)"/></param>
-        /// <returns>An object used to await this yield.</returns>
         public static ConfiguredYieldAwaitable ConfigureAwait(this YieldAwaitable awaitable, bool continueOnCapturedContext)
         {
-            return new ConfiguredYieldAwaitable(awaitable, continueOnCapturedContext);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(399, 915, 1141);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(399, 1056, 1130);
+
+                return f_399_1063_1129(awaitable, continueOnCapturedContext);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(399, 915, 1141);
+
+                Roslyn.Utilities.ConfiguredYieldAwaitable
+                f_399_1063_1129(System.Runtime.CompilerServices.YieldAwaitable
+                awaitable, bool
+                continueOnCapturedContext)
+                {
+                    var return_v = new Roslyn.Utilities.ConfiguredYieldAwaitable(awaitable, continueOnCapturedContext);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(399, 1063, 1129);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(399, 915, 1141);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(399, 915, 1141);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static YieldAwaitableExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(399, 316, 1148);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(399, 316, 1148);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(399, 316, 1148);
+        }
+
     }
 }

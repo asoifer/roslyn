@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -68,34 +68,159 @@ namespace Microsoft.CodeAnalysis
         /// </remarks>
         ContextInherited = WarningsContextInherited | AnnotationsContextInherited
     }
-
     public static class NullableContextExtensions
     {
-        private static bool IsFlagSet(NullableContext context, NullableContext flag) =>
-            (context & flag) == flag;
+        private static bool IsFlagSet(NullableContext context, NullableContext flag)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(155, 2887, 2927);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(155, 2903, 2927);
+                return (context & flag) == flag; DynAbs.Tracing.TraceSender.TraceExitMethod(155, 2887, 2927);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(155, 2887, 2927);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(155, 2887, 2927);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
-        /// <summary>
-        /// Returns whether nullable warnings are enabled for this context.
-        /// </summary>
-        public static bool WarningsEnabled(this NullableContext context) =>
-            IsFlagSet(context, NullableContext.WarningsEnabled);
+        public static bool WarningsEnabled(this NullableContext context)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(155, 3129, 3196);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(155, 3145, 3196);
+                return f_155_3145_3196(context, NullableContext.WarningsEnabled); DynAbs.Tracing.TraceSender.TraceExitMethod(155, 3129, 3196);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(155, 3129, 3196);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(155, 3129, 3196);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
 
-        /// <summary>
-        /// Returns whether nullable annotations are enabled for this context.
-        /// </summary>
-        public static bool AnnotationsEnabled(this NullableContext context) =>
-            IsFlagSet(context, NullableContext.AnnotationsEnabled);
+            bool
+            f_155_3145_3196(Microsoft.CodeAnalysis.NullableContext
+            context, Microsoft.CodeAnalysis.NullableContext
+            flag)
+            {
+                var return_v = IsFlagSet(context, flag);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(155, 3145, 3196);
+                return return_v;
+            }
 
-        /// <summary>
-        /// Returns whether the nullable warning state was inherited from the project default for this file type.
-        /// </summary>
-        public static bool WarningsInherited(this NullableContext context) =>
-            IsFlagSet(context, NullableContext.WarningsContextInherited);
+        }
 
-        /// <summary>
-        /// Returns whether the nullable annotation state was inherited from the project default for this file type.
-        /// </summary>
-        public static bool AnnotationsInherited(this NullableContext context) =>
-            IsFlagSet(context, NullableContext.AnnotationsContextInherited);
+        public static bool AnnotationsEnabled(this NullableContext context)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(155, 3404, 3474);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(155, 3420, 3474);
+                return f_155_3420_3474(context, NullableContext.AnnotationsEnabled); DynAbs.Tracing.TraceSender.TraceExitMethod(155, 3404, 3474);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(155, 3404, 3474);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(155, 3404, 3474);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_155_3420_3474(Microsoft.CodeAnalysis.NullableContext
+            context, Microsoft.CodeAnalysis.NullableContext
+            flag)
+            {
+                var return_v = IsFlagSet(context, flag);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(155, 3420, 3474);
+                return return_v;
+            }
+
+        }
+
+        public static bool WarningsInherited(this NullableContext context)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(155, 3716, 3792);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(155, 3732, 3792);
+                return f_155_3732_3792(context, NullableContext.WarningsContextInherited); DynAbs.Tracing.TraceSender.TraceExitMethod(155, 3716, 3792);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(155, 3716, 3792);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(155, 3716, 3792);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_155_3732_3792(Microsoft.CodeAnalysis.NullableContext
+            context, Microsoft.CodeAnalysis.NullableContext
+            flag)
+            {
+                var return_v = IsFlagSet(context, flag);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(155, 3732, 3792);
+                return return_v;
+            }
+
+        }
+
+        public static bool AnnotationsInherited(this NullableContext context)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(155, 4040, 4119);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(155, 4056, 4119);
+                return f_155_4056_4119(context, NullableContext.AnnotationsContextInherited); DynAbs.Tracing.TraceSender.TraceExitMethod(155, 4040, 4119);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(155, 4040, 4119);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(155, 4040, 4119);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_155_4056_4119(Microsoft.CodeAnalysis.NullableContext
+            context, Microsoft.CodeAnalysis.NullableContext
+            flag)
+            {
+                var return_v = IsFlagSet(context, flag);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(155, 4056, 4119);
+                return return_v;
+            }
+
+        }
+
+        static NullableContextExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(155, 2748, 4127);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(155, 2748, 4127);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(155, 2748, 4127);
+        }
+
     }
 }

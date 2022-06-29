@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 // < auto-generated />
@@ -10,7 +10,6 @@ using Microsoft.CodeAnalysis.PooledObjects;
 
 namespace Microsoft.CodeAnalysis.FlowAnalysis
 {
-    #region Interfaces
     /// <summary>
     /// Represents that an intermediate result is being captured.
     /// This node is produced only as part of a <see cref="ControlFlowGraph" />.
@@ -25,13 +24,9 @@ namespace Microsoft.CodeAnalysis.FlowAnalysis
     /// </remarks>
     public interface IFlowCaptureOperation : IOperation
     {
-        /// <summary>
-        /// An id used to match references to the same intermediate result.
-        /// </summary>
+
         CaptureId Id { get; }
-        /// <summary>
-        /// Value to be captured.
-        /// </summary>
+
         IOperation Value { get; }
     }
     /// <summary>
@@ -49,9 +44,7 @@ namespace Microsoft.CodeAnalysis.FlowAnalysis
     /// </remarks>
     public interface IFlowCaptureReferenceOperation : IOperation
     {
-        /// <summary>
-        /// An id used to match references to the same intermediate result.
-        /// </summary>
+
         CaptureId Id { get; }
     }
     /// <summary>
@@ -71,9 +64,7 @@ namespace Microsoft.CodeAnalysis.FlowAnalysis
     /// </remarks>
     public interface IIsNullOperation : IOperation
     {
-        /// <summary>
-        /// Value to check.
-        /// </summary>
+
         IOperation Operand { get; }
     }
     /// <summary>
@@ -107,9 +98,7 @@ namespace Microsoft.CodeAnalysis.FlowAnalysis
     /// </remarks>
     public interface IStaticLocalInitializationSemaphoreOperation : IOperation
     {
-        /// <summary>
-        /// The static local variable that is possibly initialized.
-        /// </summary>
+
         ILocalSymbol Local { get; }
     }
     /// <summary>
@@ -132,10 +121,7 @@ namespace Microsoft.CodeAnalysis.FlowAnalysis
     /// </remarks>
     public interface IFlowAnonymousFunctionOperation : IOperation
     {
-        /// <summary>
-        /// Symbol of the anonymous function.
-        /// </summary>
+
         IMethodSymbol Symbol { get; }
     }
-    #endregion
 }

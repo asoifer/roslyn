@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,18 +8,34 @@ using System.Diagnostics;
 
 namespace Roslyn.Utilities
 {
-    /// <summary>
-    /// Represents an ordered sequence of weak references.
-    /// </summary>
     internal sealed class WeakList<T> : IEnumerable<T>
-        where T : class
+            where T : class
     {
         private WeakReference<T>[] _items;
+
         private int _size;
 
         public WeakList()
         {
-            _items = Array.Empty<WeakReference<T>>();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(396, 587, 681);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 540, 546);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 569, 574);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 629, 670);
+
+                _items = f_396_638_669();
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(396, 587, 681);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(396, 587, 681);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(396, 587, 681);
+            }
         }
 
         private void Resize()
@@ -84,11 +100,41 @@ namespace Roslyn.Utilities
             _items = newItems;
         }
 
-        private const int MinimalNonEmptySize = 4;
+        private const int
+        MinimalNonEmptySize = 4
+        ;
 
         private static int GetExpandedSize(int baseSize)
         {
-            return Math.Max((baseSize * 2) + 1, MinimalNonEmptySize);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(396, 3071, 3212);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 3144, 3201);
+
+                return f_396_3151_3200((baseSize * 2) + 1, MinimalNonEmptySize);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(396, 3071, 3212);
+
+                int
+                f_396_3151_3200(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Max(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(396, 3151, 3200);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(396, 3071, 3212);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(396, 3071, 3212);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -128,23 +174,72 @@ namespace Roslyn.Utilities
             }
         }
 
-        /// <summary>
-        /// Returns the number of weak references in this list. 
-        /// Note that some of them might not point to live objects anymore.
-        /// </summary>
         public int WeakCount
         {
-            get { return _size; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(396, 4570, 4591);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 4576, 4589);
+
+                    return _size;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(396, 4570, 4591);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(396, 4525, 4602);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(396, 4525, 4602);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
         public WeakReference<T> GetWeakReference(int index)
         {
-            if (index < 0 || index >= _size)
+            try
             {
-                throw new ArgumentOutOfRangeException(nameof(index));
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(396, 4614, 4871);
 
-            return _items[index];
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 4690, 4823) || true) && (index < 0 || (DynAbs.Tracing.TraceSender.Expression_False(396, 4694, 4721) || index >= _size))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(396, 4690, 4823);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 4755, 4808);
+
+                    throw f_396_4761_4807(nameof(index));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(396, 4690, 4823);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 4839, 4860);
+
+                return _items[index];
+                DynAbs.Tracing.TraceSender.TraceExitMethod(396, 4614, 4871);
+
+                System.ArgumentOutOfRangeException
+                f_396_4761_4807(string
+                paramName)
+                {
+                    var return_v = new System.ArgumentOutOfRangeException(paramName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(396, 4761, 4807);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(396, 4614, 4871);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(396, 4614, 4871);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public void Add(T item)
@@ -201,6 +296,49 @@ namespace Roslyn.Utilities
             return GetEnumerator();
         }
 
-        internal WeakReference<T>[] TestOnly_UnderlyingArray { get { return _items; } }
+        internal WeakReference<T>[] TestOnly_UnderlyingArray
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(396, 6371, 6393);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 6377, 6391);
+
+                    return _items;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(396, 6371, 6393);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(396, 6316, 6395);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(396, 6316, 6395);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
+
+        static WeakList()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(396, 421, 6402);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(396, 3035, 3058);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(396, 421, 6402);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(396, 421, 6402);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(396, 421, 6402);
+
+        static System.WeakReference<T>[]
+        f_396_638_669()
+        {
+            var return_v = Array.Empty<WeakReference<T>>();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(396, 638, 669);
+            return return_v;
+        }
+
     }
 }

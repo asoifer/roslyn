@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -48,64 +48,191 @@ namespace Microsoft.CodeAnalysis
         /// </remarks>
         WindowsRuntimeApplication = 5,
     }
-
     internal static partial class EnumBounds
     {
         internal static bool IsValid(this OutputKind value)
         {
-            return value >= OutputKind.ConsoleApplication && value <= OutputKind.WindowsRuntimeApplication;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25, 1564, 1746);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 1640, 1735);
+
+                return value >= OutputKind.ConsoleApplication && (DynAbs.Tracing.TraceSender.Expression_True(25, 1647, 1734) && value <= OutputKind.WindowsRuntimeApplication);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25, 1564, 1746);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25, 1564, 1746);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25, 1564, 1746);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static string GetDefaultExtension(this OutputKind kind)
         {
-            switch (kind)
+            try
             {
-                case OutputKind.ConsoleApplication:
-                case OutputKind.WindowsApplication:
-                case OutputKind.WindowsRuntimeApplication:
-                    return ".exe";
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25, 1758, 2452);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 1847, 2441);
 
-                case OutputKind.DynamicallyLinkedLibrary:
-                    return ".dll";
+                switch (kind)
+                {
 
-                case OutputKind.NetModule:
-                    return ".netmodule";
+                    case OutputKind.ConsoleApplication:
+                    case OutputKind.WindowsApplication:
+                    case OutputKind.WindowsRuntimeApplication:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 1847, 2441);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2063, 2077);
 
-                case OutputKind.WindowsRuntimeMetadata:
-                    return ".winmdobj";
+                        return ".exe";
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 1847, 2441);
 
-                default:
-                    return ".dll";
+                    case OutputKind.DynamicallyLinkedLibrary:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 1847, 2441);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2160, 2174);
+
+                        return ".dll";
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 1847, 2441);
+
+                    case OutputKind.NetModule:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 1847, 2441);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2242, 2262);
+
+                        return ".netmodule";
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 1847, 2441);
+
+                    case OutputKind.WindowsRuntimeMetadata:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 1847, 2441);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2343, 2362);
+
+                        return ".winmdobj";
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 1847, 2441);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 1847, 2441);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2412, 2426);
+
+                        return ".dll";
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 1847, 2441);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25, 1758, 2452);
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25, 1758, 2452);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25, 1758, 2452);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsApplication(this OutputKind kind)
         {
-            switch (kind)
+            try
             {
-                case OutputKind.ConsoleApplication:
-                case OutputKind.WindowsApplication:
-                case OutputKind.WindowsRuntimeApplication:
-                    return true;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25, 2464, 3059);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2545, 3048);
 
-                case OutputKind.DynamicallyLinkedLibrary:
-                case OutputKind.NetModule:
-                case OutputKind.WindowsRuntimeMetadata:
-                    return false;
+                switch (kind)
+                {
 
-                default:
-                    return false;
+                    case OutputKind.ConsoleApplication:
+                    case OutputKind.WindowsApplication:
+                    case OutputKind.WindowsRuntimeApplication:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 2545, 3048);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2761, 2773);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 2545, 3048);
+
+                    case OutputKind.DynamicallyLinkedLibrary:
+                    case OutputKind.NetModule:
+                    case OutputKind.WindowsRuntimeMetadata:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 2545, 3048);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 2957, 2970);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 2545, 3048);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(25, 2545, 3048);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 3020, 3033);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(25, 2545, 3048);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25, 2464, 3059);
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25, 2464, 3059);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25, 2464, 3059);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsNetModule(this OutputKind kind)
         {
-            return kind == OutputKind.NetModule;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25, 3071, 3197);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 3150, 3186);
+
+                return kind == OutputKind.NetModule;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25, 3071, 3197);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25, 3071, 3197);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25, 3071, 3197);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsWindowsRuntime(this OutputKind kind)
         {
-            return kind == OutputKind.WindowsRuntimeMetadata;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25, 3209, 3353);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(25, 3293, 3342);
+
+                return kind == OutputKind.WindowsRuntimeMetadata;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25, 3209, 3353);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25, 3209, 3353);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25, 3209, 3353);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static EnumBounds()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(25, 1507, 3360);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(25, 1507, 3360);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25, 1507, 3360);
+        }
+
     }
 }

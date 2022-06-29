@@ -13,61 +13,73 @@ using Microsoft.CodeAnalysis.PooledObjects;
 
 namespace Microsoft.CodeAnalysis.Collections
 {
-    /// <summary>
-    /// The CachingLookup class provides a convenient representation of an ILookup that is based
-    /// upon a potentially slow lookup, and caches lookup results so that subsequent lookups are
-    /// fast. Internally a ConcurrentDictionary is used to cache lookup results. The client provides
-    /// two delegates to perform lookups: One that maps a key to a IEnumerable of values, and one
-    /// that provides all keys.
-    /// 
-    /// The client must provide an IEqualityComparer used for comparing keys. Failed lookups are
-    /// cached, but that has the disadvantage that every different failed lookup will consume a
-    /// small amount of extra memory. However, that memory can be reclaimed by forcing a full
-    /// population of the cache.
-    /// 
-    /// Thread safe.
-    /// </summary>
     internal class CachingDictionary<TKey, TElement>
-        where TKey : notnull
+            where TKey : notnull
     {
         private readonly Func<TKey, ImmutableArray<TElement>> _getElementsOfKey;
+
         private readonly Func<IEqualityComparer<TKey>, HashSet<TKey>> _getKeys;
+
         private readonly IEqualityComparer<TKey> _comparer;
 
-        // The underlying dictionary. It may be null (indicating that nothing is cached), a ConcurrentDictionary
-        // or something frozen (usually a regular Dictionary). The frozen Dictionary is used only once the collection
-        // is fully populated. This is a memory optimization so that we don't hold onto relatively ConcurrentDictionary
-        // instances once the cache is fully populated.
         private IDictionary<TKey, ImmutableArray<TElement>>? _map;
 
-        // This is a special sentinel value that is placed inside the map to indicate that a key was looked
-        // up, but not found.
-        private static readonly ImmutableArray<TElement> s_emptySentinel = ImmutableArray<TElement>.Empty;
+        private static readonly ImmutableArray<TElement> s_emptySentinel;
 
-        /// <summary>
-        /// Create a CachingLookup.
-        /// </summary>
-        /// <param name="getElementsOfKey">A function that takes a key, and returns an IEnumerable of values that
-        /// correspond to that key. If no values correspond, the function may either return null or an empty
-        /// IEnumerable.</param>
-        /// <param name="getKeys">A function that returns an IEnumerable of all keys that have associated values.</param>
-        /// <param name="comparer">A IEqualityComparer used to compare keys.</param>
         public CachingDictionary(
-            Func<TKey, ImmutableArray<TElement>> getElementsOfKey,
-            Func<IEqualityComparer<TKey>, HashSet<TKey>> getKeys,
-            IEqualityComparer<TKey> comparer)
+                    Func<TKey, ImmutableArray<TElement>> getElementsOfKey,
+                    Func<IEqualityComparer<TKey>, HashSet<TKey>> getKeys,
+                    IEqualityComparer<TKey> comparer)
         {
-            _getElementsOfKey = getElementsOfKey;
-            _getKeys = getKeys;
-            _comparer = comparer;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(96, 2964, 3312);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 1509, 1526);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 1599, 1607);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 1659, 1668);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 2145, 2149);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 3196, 3233);
+
+                _getElementsOfKey = getElementsOfKey;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 3247, 3266);
+
+                _getKeys = getKeys;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 3280, 3301);
+
+                _comparer = comparer;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(96, 2964, 3312);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 2964, 3312);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 2964, 3312);
+            }
         }
 
-        /// <summary>
-        /// Does this key have one or more associated values?
-        /// </summary>
         public bool Contains(TKey key)
         {
-            return this[key].Length != 0;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 3434, 3529);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 3489, 3518);
+
+                return this[key].Length != 0;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 3434, 3529);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 3434, 3529);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 3434, 3529);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -78,33 +90,128 @@ namespace Microsoft.CodeAnalysis.Collections
         /// no values are associated. Never returns null.</returns>
         public ImmutableArray<TElement> this[TKey key]
         {
+
             get
             {
-                return this.GetOrCreateValue(key);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 3921, 4006);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 3957, 3991);
+
+                    return f_96_3964_3990(this, key);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(96, 3921, 4006);
+
+                    System.Collections.Immutable.ImmutableArray<TElement>
+                    f_96_3964_3990(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                    this_param, TKey
+                    key)
+                    {
+                        var return_v = this_param.GetOrCreateValue(key);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 3964, 3990);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 3921, 4006);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 3921, 4006);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Get the number of distinct keys.
-        /// Forces a full population of the cache.
-        /// </summary>
         public int Count
         {
             get
             {
-                return this.EnsureFullyPopulated().Count;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 4215, 4307);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 4251, 4292);
+
+                    return f_96_4258_4291(f_96_4258_4285(this));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(96, 4215, 4307);
+
+                    System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                    f_96_4258_4285(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                    this_param)
+                    {
+                        var return_v = this_param.EnsureFullyPopulated();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 4258, 4285);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_96_4258_4291(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(96, 4258, 4291);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 4174, 4318);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 4174, 4318);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// Enumerate all the keys.
-        /// Forces a full population of the cache.
-        /// </summary>
         public IEnumerable<TKey> Keys
         {
             get
             {
-                return this.EnsureFullyPopulated().Keys;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 4520, 4611);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 4556, 4596);
+
+                    return f_96_4563_4595(f_96_4563_4590(this));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(96, 4520, 4611);
+
+                    System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                    f_96_4563_4590(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                    this_param)
+                    {
+                        var return_v = this_param.EnsureFullyPopulated();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 4563, 4590);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Generic.ICollection<TKey>
+                    f_96_4563_4595(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                    this_param)
+                    {
+                        var return_v = this_param.Keys;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(96, 4563, 4595);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 4466, 4622);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 4466, 4622);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -196,14 +303,26 @@ namespace Microsoft.CodeAnalysis.Collections
             return map.GetOrAdd(key, elements);
         }
 
-        /// <summary>
-        /// Determines if the given map is fully populated.
-        /// </summary>
-        /// <param name="existingMap">The map to test.</param>
-        /// <returns>true if the map is fully populated.</returns>
         private static bool IsNotFullyPopulatedMap([NotNullWhen(returnValue: false)] IDictionary<TKey, ImmutableArray<TElement>>? existingMap)
         {
-            return existingMap == null || existingMap is ConcurrentDictionary<TKey, ImmutableArray<TElement>>;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(96, 8802, 9070);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 8961, 9059);
+
+                return existingMap == null || (DynAbs.Tracing.TraceSender.Expression_False(96, 8968, 9058) || existingMap is ConcurrentDictionary<TKey, ImmutableArray<TElement>>);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(96, 8802, 9070);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 8802, 9070);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 8802, 9070);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -278,5 +397,16 @@ namespace Microsoft.CodeAnalysis.Collections
             // The map is already fully populated
             return currentMap;
         }
+
+        static CachingDictionary()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(96, 1360, 11946);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 2351, 2399);
+            s_emptySentinel = ImmutableArray<TElement>.Empty; DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(96, 1360, 11946);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 1360, 11946);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(96, 1360, 11946);
     }
 }

@@ -13,39 +13,88 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.Diagnostics
 {
-    /// <summary>
-    /// A queue whose enqueue and dequeue operations can be performed in parallel.
-    /// </summary>
-    /// <typeparam name="TElement">The type of values kept by the queue.</typeparam>
     internal sealed class AsyncQueue<TElement>
     {
-        // Continuations run asynchronously to ensure user code does not execute within protected regions and lead to
-        // delays, deadlocks, and/or state corruption.
-        private readonly TaskCompletionSource<bool> _whenCompleted = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+        private readonly TaskCompletionSource<bool> _whenCompleted;
 
-        // Note: All of the below fields are accessed in parallel and may only be accessed
-        // when protected by lock (SyncObject)
-        private readonly Queue<TElement> _data = new Queue<TElement>();
+        private readonly Queue<TElement> _data;
+
         private Queue<TaskCompletionSource<Optional<TElement>>> _waiters;
+
         private bool _completed;
+
         private bool _disallowEnqueue;
 
         private object SyncObject
         {
-            get { return _data; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(241, 1455, 1476);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1461, 1474);
+
+                    return _data;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(241, 1455, 1476);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 1405, 1487);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 1405, 1487);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
-        /// <summary>
-        /// The number of unconsumed elements in the queue.
-        /// </summary>
         public int Count
         {
             get
             {
-                lock (SyncObject)
+                try
                 {
-                    return _data.Count;
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(241, 1648, 1795);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1690, 1700);
+                    lock (f_241_1690_1700())
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1742, 1761);
+
+                        return f_241_1749_1760(_data);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(241, 1648, 1795);
+
+                    object
+                    f_241_1690_1700()
+                    {
+                        var return_v = SyncObject;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 1690, 1700);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_241_1749_1760(System.Collections.Generic.Queue<TElement>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 1749, 1760);
+                        return return_v;
+                    }
+
                 }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 1607, 1806);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 1607, 1806);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -127,17 +176,41 @@ retry:
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether the queue has completed.
-        /// </summary>
         public bool IsCompleted
         {
             get
             {
-                lock (SyncObject)
+                try
                 {
-                    return _completed;
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(241, 4550, 4696);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 4592, 4602);
+                    lock (f_241_4592_4602())
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 4644, 4662);
+
+                        return _completed;
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(241, 4550, 4696);
+
+                    object
+                    f_241_4592_4602()
+                    {
+                        var return_v = SyncObject;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 4592, 4602);
+                        return return_v;
+                    }
+
                 }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 4502, 4707);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 4502, 4707);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -156,7 +229,23 @@ retry:
 
         public void PromiseNotToEnqueue()
         {
-            _disallowEnqueue = true;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(241, 5250, 5343);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 5308, 5332);
+
+                _disallowEnqueue = true;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(241, 5250, 5343);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 5250, 5343);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 5250, 5343);
+            }
         }
 
         /// <summary>
@@ -208,18 +297,38 @@ retry:
             return true;
         }
 
-        /// <summary>
-        /// Gets a task that transitions to a completed state when <see cref="Complete"/> or
-        /// <see cref="TryComplete"/> is called.  This transition will not happen synchronously.
-        /// 
-        /// This Task will not complete until it has completed all existing values returned
-        /// from <see cref="DequeueAsync"/>.
-        /// </summary>
         public Task WhenCompletedTask
         {
             get
             {
-                return _whenCompleted.Task;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(241, 7765, 7843);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 7801, 7828);
+
+                    return f_241_7808_7827(_whenCompleted);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(241, 7765, 7843);
+
+                    System.Threading.Tasks.Task<bool>
+                    f_241_7808_7827(System.Threading.Tasks.TaskCompletionSource<bool>
+                    this_param)
+                    {
+                        var return_v = this_param.Task;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 7808, 7827);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 7711, 7854);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 7711, 7854);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
@@ -285,83 +394,282 @@ retry:
             }
         }
 
-        /// <summary>
-        /// Cancels a <see cref="TaskCompletionSource{TResult}.Task"/> if a given <see cref="CancellationToken"/> is canceled.
-        /// </summary>
-        /// <typeparam name="T">The type of value returned by a successfully completed <see cref="Task{TResult}"/>.</typeparam>
-        /// <param name="taskCompletionSource">The <see cref="TaskCompletionSource{TResult}"/> to cancel.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/>.</param>
-        /// <seealso href="https://github.com/microsoft/vs-threading/blob/558f24c576cc620a00b20ed1fa90a5e2d13b0440/src/Microsoft.VisualStudio.Threading/ThreadingTools.cs#L181-L255"/>
         private static void AttachCancellation<T>(TaskCompletionSource<T> taskCompletionSource, CancellationToken cancellationToken)
         {
-            if (!cancellationToken.CanBeCanceled || taskCompletionSource.Task.IsCompleted)
-                return;
-
-            if (cancellationToken.IsCancellationRequested)
+            try
             {
-                taskCompletionSource.TrySetCanceled(cancellationToken);
-                return;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(241, 11717, 13308);
 
-            var cancelableTaskCompletionSource = new CancelableTaskCompletionSource<T>(taskCompletionSource, cancellationToken);
-            cancelableTaskCompletionSource.CancellationTokenRegistration = cancellationToken.Register(
-                static s =>
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 11866, 11969) || true) && (f_241_11870_11902_M(!cancellationToken.CanBeCanceled) || (DynAbs.Tracing.TraceSender.Expression_False(241, 11870, 11943) || f_241_11906_11943(f_241_11906_11931(taskCompletionSource))))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(241, 11866, 11969);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 11962, 11969);
+
+                    return;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(241, 11866, 11969);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 11985, 12159) || true) && (cancellationToken.IsCancellationRequested)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(241, 11985, 12159);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 12064, 12119);
+
+                    f_241_12064_12118(taskCompletionSource, cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 12137, 12144);
+
+                    return;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(241, 11985, 12159);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 12175, 12291);
+
+                var
+                cancelableTaskCompletionSource = f_241_12212_12290(taskCompletionSource, cancellationToken)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 12305, 12713);
+
+                cancelableTaskCompletionSource.CancellationTokenRegistration = cancellationToken.Register(static s =>
                 {
                     var t = (CancelableTaskCompletionSource<T>)s!;
                     t.TaskCompletionSource.TrySetCanceled(t.CancellationToken);
-                },
-                cancelableTaskCompletionSource,
-                useSynchronizationContext: false);
+                }, cancelableTaskCompletionSource, useSynchronizationContext: false);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 12729, 12845);
 
-            Debug.Assert(taskCompletionSource.Task.CreationOptions.HasFlag(TaskCreationOptions.RunContinuationsAsynchronously));
-            taskCompletionSource.Task.ContinueWith(
-                static (_, s) =>
+                f_241_12729_12844(f_241_12742_12843(f_241_12742_12783(f_241_12742_12767(taskCompletionSource)), TaskCreationOptions.RunContinuationsAsynchronously));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 12859, 13297);
+
+                f_241_12859_13296(f_241_12859_12884(taskCompletionSource), static (_, s) =>
+                                {
+                                    var t = (CancelableTaskCompletionSource<T>)s!;
+                                    t.CancellationTokenRegistration.Dispose();
+                                }, cancelableTaskCompletionSource, CancellationToken.None, TaskContinuationOptions.ExecuteSynchronously, f_241_13274_13295());
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(241, 11717, 13308);
+
+                bool
+                f_241_11870_11902_M(bool
+                i)
                 {
-                    var t = (CancelableTaskCompletionSource<T>)s!;
-                    t.CancellationTokenRegistration.Dispose();
-                },
-                cancelableTaskCompletionSource,
-                CancellationToken.None,
-                TaskContinuationOptions.ExecuteSynchronously,
-                TaskScheduler.Default);
-        }
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 11870, 11902);
+                    return return_v;
+                }
 
-        /// <summary>
-        /// A state object for tracking cancellation and a TaskCompletionSource.
-        /// </summary>
-        /// <typeparam name="T">The type of value returned from a task.</typeparam>
-        /// <remarks>
-        /// We use this class so that we only allocate one object to support all continuations
-        /// required for cancellation handling, rather than a special closure and delegate for each one.
-        /// </remarks>
-        /// <seealso href="https://github.com/microsoft/vs-threading/blob/558f24c576cc620a00b20ed1fa90a5e2d13b0440/src/Microsoft.VisualStudio.Threading/ThreadingTools.cs#L318-L372"/>
+
+                System.Threading.Tasks.Task<T>
+                f_241_11906_11931(System.Threading.Tasks.TaskCompletionSource<T>
+                this_param)
+                {
+                    var return_v = this_param.Task;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 11906, 11931);
+                    return return_v;
+                }
+
+
+                bool
+                f_241_11906_11943(System.Threading.Tasks.Task<T>
+                this_param)
+                {
+                    var return_v = this_param.IsCompleted;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 11906, 11943);
+                    return return_v;
+                }
+
+
+                bool
+                f_241_12064_12118(System.Threading.Tasks.TaskCompletionSource<T>
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.TrySetCanceled(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 12064, 12118);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AsyncQueue<TElement>.CancelableTaskCompletionSource<T>
+                f_241_12212_12290(System.Threading.Tasks.TaskCompletionSource<T>
+                taskCompletionSource, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Diagnostics.AsyncQueue<TElement>.CancelableTaskCompletionSource<T>(taskCompletionSource, cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 12212, 12290);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.Task<T>
+                f_241_12742_12767(System.Threading.Tasks.TaskCompletionSource<T>
+                this_param)
+                {
+                    var return_v = this_param.Task;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 12742, 12767);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.TaskCreationOptions
+                f_241_12742_12783(System.Threading.Tasks.Task<T>
+                this_param)
+                {
+                    var return_v = this_param.CreationOptions;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 12742, 12783);
+                    return return_v;
+                }
+
+
+                bool
+                f_241_12742_12843(System.Threading.Tasks.TaskCreationOptions
+                this_param, System.Threading.Tasks.TaskCreationOptions
+                flag)
+                {
+                    var return_v = this_param.HasFlag((System.Enum)flag);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 12742, 12843);
+                    return return_v;
+                }
+
+
+                int
+                f_241_12729_12844(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 12729, 12844);
+                    return 0;
+                }
+
+
+                System.Threading.Tasks.Task<T>
+                f_241_12859_12884(System.Threading.Tasks.TaskCompletionSource<T>
+                this_param)
+                {
+                    var return_v = this_param.Task;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 12859, 12884);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.TaskScheduler
+                f_241_13274_13295()
+                {
+                    var return_v = TaskScheduler.Default;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 13274, 13295);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.Task
+                f_241_12859_13296(System.Threading.Tasks.Task<T>
+                this_param, System.Action<System.Threading.Tasks.Task<T>, object?>
+                continuationAction, Microsoft.CodeAnalysis.Diagnostics.AsyncQueue<TElement>.CancelableTaskCompletionSource<T>
+                state, System.Threading.CancellationToken
+                cancellationToken, System.Threading.Tasks.TaskContinuationOptions
+                continuationOptions, System.Threading.Tasks.TaskScheduler
+                scheduler)
+                {
+                    var return_v = this_param.ContinueWith(continuationAction, (object)state, cancellationToken, continuationOptions, scheduler);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 12859, 13296);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 11717, 13308);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 11717, 13308);
+            }
+        }
         private sealed class CancelableTaskCompletionSource<T>
         {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="CancelableTaskCompletionSource{T}"/> class.
-            /// </summary>
-            /// <param name="taskCompletionSource">The task completion source.</param>
-            /// <param name="cancellationToken">The cancellation token.</param>
             internal CancelableTaskCompletionSource(TaskCompletionSource<T> taskCompletionSource, CancellationToken cancellationToken)
             {
-                TaskCompletionSource = taskCompletionSource;
-                CancellationToken = cancellationToken;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(241, 14376, 14646);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 14937, 14999);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 14531, 14575);
+
+                    TaskCompletionSource = taskCompletionSource;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 14593, 14631);
+
+                    CancellationToken = cancellationToken;
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(241, 14376, 14646);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 14376, 14646);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 14376, 14646);
+                }
             }
 
-            /// <summary>
-            /// Gets the cancellation token.
-            /// </summary>
             internal CancellationToken CancellationToken { get; }
 
-            /// <summary>
-            /// Gets the Task completion source.
-            /// </summary>
             internal TaskCompletionSource<T> TaskCompletionSource { get; }
 
-            /// <summary>
-            /// Gets or sets the cancellation token registration.
-            /// </summary>
             internal CancellationTokenRegistration CancellationTokenRegistration { get; set; }
+
+            static CancelableTaskCompletionSource()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(241, 13967, 15230);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(241, 13967, 15230);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 13967, 15230);
+            }
+
+            int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(241, 13967, 15230);
         }
+
+        public AsyncQueue()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(241, 651, 15237);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 929, 1028);
+            this._whenCompleted = f_241_946_1028(TaskCreationOptions.RunContinuationsAsynchronously); DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1214, 1243);
+            this._data = f_241_1222_1243(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1310, 1318);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1342, 1352);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 1376, 1392);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(241, 651, 15237);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 651, 15237);
+        }
+
+
+        static AsyncQueue()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(241, 651, 15237);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(241, 651, 15237);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 651, 15237);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(241, 651, 15237);
+
+        System.Threading.Tasks.TaskCompletionSource<bool>
+        f_241_946_1028(System.Threading.Tasks.TaskCreationOptions
+        creationOptions)
+        {
+            var return_v = new System.Threading.Tasks.TaskCompletionSource<bool>(creationOptions);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 946, 1028);
+            return return_v;
+        }
+
+
+        System.Collections.Generic.Queue<TElement>
+        f_241_1222_1243()
+        {
+            var return_v = new System.Collections.Generic.Queue<TElement>();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 1222, 1243);
+            return return_v;
+        }
+
     }
 }

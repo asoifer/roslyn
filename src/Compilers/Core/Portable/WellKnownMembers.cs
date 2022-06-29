@@ -8,13 +8,18 @@ using Microsoft.CodeAnalysis.RuntimeMembers;
 
 namespace Microsoft.CodeAnalysis
 {
-    internal static class WellKnownMembers
-    {
-        private static readonly ImmutableArray<MemberDescriptor> s_descriptors;
+internal static class WellKnownMembers
+{
+private static readonly ImmutableArray<MemberDescriptor> s_descriptors;
 
-        static WellKnownMembers()
-        {
-            byte[] initializationBytes = new byte[]
+static WellKnownMembers()
+		{
+			try
+{DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(44,507,420563);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,557,370731);
+
+byte[] 
+initializationBytes = new byte[]
             {
                 // System_Math__RoundDouble
                 (byte)(MemberFlags.Method | MemberFlags.Static),                                                            // Flags
@@ -3504,9 +3509,12 @@ namespace Microsoft.CodeAnalysis
                 0,                                                                                                          // Arity
                     0,                                                                                                      // Method Signature
                     (byte)SignatureTypeCode.TypeHandle, (byte)SpecialType.System_Void, // Return Type
-            };
+            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,370747,420406);
 
-            string[] allNames = new string[(int)WellKnownMember.Count]
+string[] 
+allNames = new string[(int)WellKnownMember.Count]
             {
                 "Round",                                    // System_Math__RoundDouble
                 "Pow",                                      // System_Math__PowDoubleDouble
@@ -3944,25 +3952,56 @@ namespace Microsoft.CodeAnalysis
                 "Append",                                   // System_Text_StringBuilder__AppendString
                 "Append",                                   // System_Text_StringBuilder__AppendObject
                 ".ctor",                                    // System_Text_StringBuilder__ctor
-            };
+            }
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,420422,420552);
 
-            s_descriptors = MemberDescriptor.InitializeFromStream(new System.IO.MemoryStream(initializationBytes, writable: false), allNames);
-        }
+s_descriptors = MemberDescriptor.InitializeFromStream(f_44_420476_420540(initializationBytes, writable: false),allNames);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(44,507,420563);
+}catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(44,507,420563);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(44,507,420563);
+}
+		}
 
-        public static MemberDescriptor GetDescriptor(WellKnownMember member)
+public static MemberDescriptor GetDescriptor(WellKnownMember member)
+		{
+			try
         {
-            return s_descriptors[(int)member];
-        }
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(44,420575,420713);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,420668,420702);
 
-        /// <summary>
-        /// This function defines whether an attribute is optional or not.
-        /// </summary>
-        /// <param name="attributeMember">The attribute member.</param>
-        internal static bool IsSynthesizedAttributeOptional(WellKnownMember attributeMember)
+return s_descriptors[(int)member];
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(44,420575,420713);
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(44,420575,420713);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(44,420575,420713);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+internal static bool IsSynthesizedAttributeOptional(WellKnownMember attributeMember)
+		{
+			try
         {
-            switch (attributeMember)
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(44,420921,422242);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,421030,422231);
+
+switch (attributeMember)
             {
-                case WellKnownMember.System_Runtime_CompilerServices_CompilerGeneratedAttribute__ctor:
+
+case WellKnownMember.System_Runtime_CompilerServices_CompilerGeneratedAttribute__ctor:
                 case WellKnownMember.System_Diagnostics_DebuggableAttribute__ctorDebuggingModes:
                 case WellKnownMember.System_Diagnostics_DebuggerBrowsableAttribute__ctor:
                 case WellKnownMember.System_Diagnostics_DebuggerHiddenAttribute__ctor:
@@ -3973,11 +4012,42 @@ namespace Microsoft.CodeAnalysis
                 case WellKnownMember.System_Runtime_CompilerServices_AsyncStateMachineAttribute__ctor:
                 case WellKnownMember.System_Runtime_CompilerServices_IteratorStateMachineAttribute__ctor:
                 case WellKnownMember.System_Runtime_CompilerServices_AsyncIteratorStateMachineAttribute__ctor:
-                    return true;
+DynAbs.Tracing.TraceSender.TraceEnterCondition(44,421030,422231);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,422141,422153);
 
-                default:
-                    return false;
+return true;
+DynAbs.Tracing.TraceSender.TraceExitCondition(44,421030,422231);
+
+default:
+DynAbs.Tracing.TraceSender.TraceEnterCondition(44,421030,422231);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(44,422203,422216);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitCondition(44,421030,422231);
             }
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(44,420921,422242);
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(44,420921,422242);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(44,420921,422242);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+static System.IO.MemoryStream
+f_44_420476_420540(byte[]
+buffer,bool
+writable)
+{
+var return_v = new System.IO.MemoryStream( buffer, writable: writable);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(44, 420476, 420540);
+return return_v;
+}
+
+}
 }

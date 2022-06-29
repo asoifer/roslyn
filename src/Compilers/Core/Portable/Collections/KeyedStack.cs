@@ -13,9 +13,9 @@ using Microsoft.CodeAnalysis.Text;
 namespace Microsoft.CodeAnalysis.Collections
 {
     internal class KeyedStack<T, R>
-        where T : notnull
+            where T : notnull
     {
-        private readonly Dictionary<T, Stack<R>> _dict = new Dictionary<T, Stack<R>>();
+        private readonly Dictionary<T, Stack<R>> _dict;
 
         public void Push(T key, R value)
         {
@@ -41,5 +41,34 @@ namespace Microsoft.CodeAnalysis.Collections
             value = default(R)!;
             return false;
         }
+
+        public KeyedStack()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(108, 460, 1285);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 576, 613);
+            this._dict = f_108_584_613(); DynAbs.Tracing.TraceSender.TraceExitConstructor(108, 460, 1285);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(108, 460, 1285);
+        }
+
+
+        static KeyedStack()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(108, 460, 1285);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(108, 460, 1285);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(108, 460, 1285);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(108, 460, 1285);
+
+        System.Collections.Generic.Dictionary<T, System.Collections.Generic.Stack<R>>
+        f_108_584_613()
+        {
+            var return_v = new System.Collections.Generic.Dictionary<T, System.Collections.Generic.Stack<R>>();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 584, 613);
+            return return_v;
+        }
+
     }
 }

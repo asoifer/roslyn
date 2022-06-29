@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -233,66 +233,187 @@ namespace Microsoft.CodeAnalysis
         /// </summary>
         DelegateRelaxationReceiver = 0x101,
     }
-
     internal static class SynthesizedLocalKindExtensions
     {
         public static bool IsLongLived(this SynthesizedLocalKind kind)
         {
-            return kind >= SynthesizedLocalKind.UserDefined;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(40, 10029, 10175);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 10116, 10164);
+
+                return kind >= SynthesizedLocalKind.UserDefined;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(40, 10029, 10175);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(40, 10029, 10175);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(40, 10029, 10175);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool MustSurviveStateMachineSuspension(this SynthesizedLocalKind kind)
         {
-            // Conditional branch discriminator doesn't need to be hoisted. 
-            // Its lifetime never spans across await expression/yield statement.
-            // This is true even in cases like:
-            // 
-            //   if (F(arg, await G())) { ... }
-            //
-            // Which is emitted as:
-            // 
-            //   $result = taskAwaiter.GetResult();
-            //   $cbd = C.F(sm.spilled_arg, $result);
-            //   if ($cbd) { ... }
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(40, 10187, 10886);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 10787, 10875);
 
-            return IsLongLived(kind) && kind != SynthesizedLocalKind.ConditionalBranchDiscriminator;
+                return f_40_10794_10811(kind) && (DynAbs.Tracing.TraceSender.Expression_True(40, 10794, 10874) && kind != SynthesizedLocalKind.ConditionalBranchDiscriminator);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(40, 10187, 10886);
+
+                bool
+                f_40_10794_10811(Microsoft.CodeAnalysis.SynthesizedLocalKind
+                kind)
+                {
+                    var return_v = kind.IsLongLived();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(40, 10794, 10811);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(40, 10187, 10886);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(40, 10187, 10886);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsSlotReusable(this SynthesizedLocalKind kind, OptimizationLevel optimizations)
         {
-            return kind.IsSlotReusable(optimizations != OptimizationLevel.Release);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(40, 10898, 11103);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 11021, 11092);
+
+                return f_40_11028_11091(kind, optimizations != OptimizationLevel.Release);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(40, 10898, 11103);
+
+                bool
+                f_40_11028_11091(Microsoft.CodeAnalysis.SynthesizedLocalKind
+                kind, bool
+                isDebug)
+                {
+                    var return_v = kind.IsSlotReusable(isDebug);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(40, 11028, 11091);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(40, 10898, 11103);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(40, 10898, 11103);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsSlotReusable(this SynthesizedLocalKind kind, bool isDebug)
         {
-            if (isDebug)
+            try
             {
-                // Don't reuse any long-lived locals in debug builds to provide good debugging experience 
-                // for user-defined locals and to allow EnC.
-                return !IsLongLived(kind);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(40, 11115, 11912);
 
-            switch (kind)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 11219, 11475) || true) && (isDebug)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(40, 11219, 11475);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 11434, 11460);
+
+                    return !f_40_11442_11459(kind);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(40, 11219, 11475);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 11491, 11901);
+
+                switch (kind)
+                {
+
+                    case SynthesizedLocalKind.UserDefined:
+                    case SynthesizedLocalKind.LambdaDisplayClass:
+                    case SynthesizedLocalKind.With:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(40, 11491, 11901);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 11811, 11824);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(40, 11491, 11901);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(40, 11491, 11901);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 11874, 11886);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(40, 11491, 11901);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(40, 11115, 11912);
+
+                bool
+                f_40_11442_11459(Microsoft.CodeAnalysis.SynthesizedLocalKind
+                kind)
+                {
+                    var return_v = kind.IsLongLived();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(40, 11442, 11459);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                // The following variables should always be non-reusable, EE depends on their value.
-                case SynthesizedLocalKind.UserDefined:
-                case SynthesizedLocalKind.LambdaDisplayClass:
-                case SynthesizedLocalKind.With:
-                    return false;
-
-                default:
-                    return true;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(40, 11115, 11912);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(40, 11115, 11912);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static LocalVariableAttributes PdbAttributes(this SynthesizedLocalKind kind)
         {
-            // Marking variables with hidden attribute is only needed for compat with Dev12 EE.
-            // We mark all synthesized locals, other than lambda display class as hidden so that they don't show up in Dev12 EE.
-            // Display class is special - it is used by the EE to access variables lifted into a closure.
-            return (kind != SynthesizedLocalKind.LambdaDisplayClass && kind != SynthesizedLocalKind.UserDefined && kind != SynthesizedLocalKind.With)
-                ? LocalVariableAttributes.DebuggerHidden
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(40, 11924, 12621);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(40, 12366, 12610);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(40, 12373, 12503) || (((kind != SynthesizedLocalKind.LambdaDisplayClass && (DynAbs.Tracing.TraceSender.Expression_True(40, 12374, 12465) && kind != SynthesizedLocalKind.UserDefined) && (DynAbs.Tracing.TraceSender.Expression_True(40, 12374, 12502) && kind != SynthesizedLocalKind.With))
+                && DynAbs.Tracing.TraceSender.Conditional_F2(40, 12523, 12561)) || DynAbs.Tracing.TraceSender.Conditional_F3(40, 12581, 12609))) ? LocalVariableAttributes.DebuggerHidden
                 : LocalVariableAttributes.None;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(40, 11924, 12621);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(40, 11924, 12621);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(40, 11924, 12621);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static SynthesizedLocalKindExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(40, 9960, 12628);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(40, 9960, 12628);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(40, 9960, 12628);
+        }
+
     }
 }

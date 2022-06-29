@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,16 +7,59 @@ using System.Threading.Tasks;
 
 namespace Roslyn.Utilities
 {
-    /// <summary>
-    /// Implements <see cref="ValueTask"/> and <see cref="ValueTask{TResult}"/> static members that are only available in .NET 5.
-    /// </summary>
     internal static class ValueTaskFactory
     {
         [SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods", Justification = "This is a ValueTask wrapper, not an asynchronous method.")]
         public static ValueTask<T> FromResult<T>(T result)
-            => new(result);
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(395, 769, 783);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(395, 772, 783);
+                return new(result); DynAbs.Tracing.TraceSender.TraceExitMethod(395, 769, 783);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(395, 769, 783);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(395, 769, 783);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
         public static ValueTask CompletedTask
-            => new();
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(395, 847, 855);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(395, 850, 855);
+                    return new(); DynAbs.Tracing.TraceSender.TraceExitMethod(395, 847, 855);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(395, 847, 855);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(395, 847, 855);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
+
+        static ValueTaskFactory()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(395, 486, 863);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(395, 486, 863);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(395, 486, 863);
+        }
+
     }
 }

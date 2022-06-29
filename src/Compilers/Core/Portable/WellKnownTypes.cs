@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -317,22 +317,25 @@ namespace Microsoft.CodeAnalysis
 
         // Remember to update the AllWellKnownTypes tests when making changes here
     }
-
     internal static class WellKnownTypes
     {
-        /// <summary>
-        /// Number of well known types in WellKnownType enum
-        /// </summary>
-        internal const int Count = WellKnownType.NextAvailable - WellKnownType.First;
+        internal const int
+        Count = WellKnownType.NextAvailable - WellKnownType.First
+        ;
 
-        /// <summary>
-        /// Array of names for types.
-        /// The names should correspond to ids from WellKnownType enum so
-        /// that we could use ids to index into the array
-        /// </summary>
-        /// <remarks></remarks>
-        private static readonly string[] s_metadataNames = new string[]
+        private static readonly string[] s_metadataNames;
+
+        private static readonly Dictionary<string, WellKnownType> s_nameToTypeIdMap;
+
+        static WellKnownTypes()
         {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(45, 28262, 28616);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 13844, 13901);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 14200, 28109);
+                s_metadataNames = new string[]
+                        {
             "System.Math",
             "System.Array",
             "System.Attribute",
@@ -620,117 +623,595 @@ namespace Microsoft.CodeAnalysis
             "System.Runtime.InteropServices.OutAttribute",
 
             "System.Text.StringBuilder",
-        };
+                        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28180, 28249);
+                s_nameToTypeIdMap = f_45_28200_28249((int)Count); DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28310, 28337);
 
-        private static readonly Dictionary<string, WellKnownType> s_nameToTypeIdMap = new Dictionary<string, WellKnownType>((int)Count);
+                f_45_28310_28336();
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28362, 28367);
 
-        static WellKnownTypes()
-        {
-            AssertEnumAndTableInSync();
+                    for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28353, 28605) || true) && (i < f_45_28373_28395(s_metadataNames))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28397, 28400)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28353, 28605))
 
-            for (int i = 0; i < s_metadataNames.Length; i++)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28353, 28605);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28434, 28464);
+
+                        var
+                        name = s_metadataNames[i]
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28482, 28536);
+
+                        var
+                        typeId = (WellKnownType)(i + WellKnownType.First)
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28554, 28590);
+
+                        f_45_28554_28589(s_nameToTypeIdMap, name, typeId);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(45, 1, 253);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(45, 1, 253);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(45, 28262, 28616);
+            }
+            catch
             {
-                var name = s_metadataNames[i];
-                var typeId = (WellKnownType)(i + WellKnownType.First);
-                s_nameToTypeIdMap.Add(name, typeId);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 28262, 28616);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 28262, 28616);
             }
         }
 
         [Conditional("DEBUG")]
         private static void AssertEnumAndTableInSync()
         {
-            for (int i = 0; i < s_metadataNames.Length; i++)
+            try
             {
-                var name = s_metadataNames[i];
-                var typeId = (WellKnownType)(i + WellKnownType.First);
-
-                string typeIdName;
-                switch (typeId)
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 28628, 30461);
+                try
                 {
-                    case WellKnownType.First:
-                        typeIdName = "System.Math";
-                        break;
-                    case WellKnownType.Microsoft_VisualBasic_CompilerServices_ObjectFlowControl_ForLoopControl:
-                        typeIdName = "Microsoft.VisualBasic.CompilerServices.ObjectFlowControl+ForLoopControl";
-                        break;
-                    case WellKnownType.CSharp7Sentinel:
-                        typeIdName = "System.IFormatProvider";
-                        break;
-                    case WellKnownType.ExtSentinel:
-                        typeIdName = "";
-                        break;
-                    default:
-                        typeIdName = typeId.ToString().Replace("__", "+").Replace('_', '.');
-                        break;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28740, 28745);
+                    for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28731, 30287) || true) && (i < f_45_28751_28773(s_metadataNames))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28775, 28778)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28731, 30287))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28731, 30287);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28812, 28842);
+
+                        var
+                        name = s_metadataNames[i]
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28860, 28914);
+
+                        var
+                        typeId = (WellKnownType)(i + WellKnownType.First)
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28934, 28952);
+
+                        string
+                        typeIdName
+                        = default(string);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 28970, 29849);
+
+                        switch (typeId)
+                        {
+
+                            case WellKnownType.First:
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28970, 29849);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29077, 29104);
+
+                                typeIdName = "System.Math";
+                                DynAbs.Tracing.TraceSender.TraceBreak(45, 29130, 29136);
+
+                                break;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28970, 29849);
+
+                            case WellKnownType.Microsoft_VisualBasic_CompilerServices_ObjectFlowControl_ForLoopControl:
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28970, 29849);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29275, 29362);
+
+                                typeIdName = "Microsoft.VisualBasic.CompilerServices.ObjectFlowControl+ForLoopControl";
+                                DynAbs.Tracing.TraceSender.TraceBreak(45, 29388, 29394);
+
+                                break;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28970, 29849);
+
+                            case WellKnownType.CSharp7Sentinel:
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28970, 29849);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29477, 29515);
+
+                                typeIdName = "System.IFormatProvider";
+                                DynAbs.Tracing.TraceSender.TraceBreak(45, 29541, 29547);
+
+                                break;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28970, 29849);
+
+                            case WellKnownType.ExtSentinel:
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28970, 29849);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29626, 29642);
+
+                                typeIdName = "";
+                                DynAbs.Tracing.TraceSender.TraceBreak(45, 29668, 29674);
+
+                                break;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28970, 29849);
+
+                            default:
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 28970, 29849);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29730, 29798);
+
+                                typeIdName = f_45_29743_29797(f_45_29743_29779(f_45_29743_29760(typeId), "__", "+"), '_', '.');
+                                DynAbs.Tracing.TraceSender.TraceBreak(45, 29824, 29830);
+
+                                break;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(45, 28970, 29849);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29869, 29903);
+
+                        int
+                        separator = f_45_29885_29902(name, '`')
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 29921, 30181) || true) && (separator >= 0)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 29921, 30181);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30056, 30092);
+
+                            name = f_45_30063_30091(name, 0, separator);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30114, 30162);
+
+                            typeIdName = f_45_30127_30161(typeIdName, 0, separator);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(45, 29921, 30181);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30201, 30272);
+
+                        f_45_30201_30271(name == typeIdName, "Enum name and type name must match");
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(45, 1, 1557);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(45, 1, 1557);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30303, 30355);
+
+                f_45_30303_30354((int)WellKnownType.ExtSentinel == 255);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30369, 30450);
+
+                f_45_30369_30449((int)WellKnownType.NextAvailable <= 512, "Time for a new sentinel");
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 28628, 30461);
+
+                int
+                f_45_28751_28773(string[]
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(45, 28751, 28773);
+                    return return_v;
                 }
 
-                int separator = name.IndexOf('`');
-                if (separator >= 0)
+
+                string
+                f_45_29743_29760(Microsoft.CodeAnalysis.WellKnownType
+                this_param)
                 {
-                    // Ignore type parameter qualifier for generic types.
-                    name = name.Substring(0, separator);
-                    typeIdName = typeIdName.Substring(0, separator);
+                    var return_v = this_param.ToString();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 29743, 29760);
+                    return return_v;
                 }
 
-                Debug.Assert(name == typeIdName, "Enum name and type name must match");
+
+                string
+                f_45_29743_29779(string
+                this_param, string
+                oldValue, string
+                newValue)
+                {
+                    var return_v = this_param.Replace(oldValue, newValue);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 29743, 29779);
+                    return return_v;
+                }
+
+
+                string
+                f_45_29743_29797(string
+                this_param, char
+                oldChar, char
+                newChar)
+                {
+                    var return_v = this_param.Replace(oldChar, newChar);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 29743, 29797);
+                    return return_v;
+                }
+
+
+                int
+                f_45_29885_29902(string
+                this_param, char
+                value)
+                {
+                    var return_v = this_param.IndexOf(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 29885, 29902);
+                    return return_v;
+                }
+
+
+                string
+                f_45_30063_30091(string
+                this_param, int
+                startIndex, int
+                length)
+                {
+                    var return_v = this_param.Substring(startIndex, length);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30063, 30091);
+                    return return_v;
+                }
+
+
+                string
+                f_45_30127_30161(string
+                this_param, int
+                startIndex, int
+                length)
+                {
+                    var return_v = this_param.Substring(startIndex, length);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30127, 30161);
+                    return return_v;
+                }
+
+
+                int
+                f_45_30201_30271(bool
+                condition, string
+                message)
+                {
+                    Debug.Assert(condition, message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30201, 30271);
+                    return 0;
+                }
+
+
+                int
+                f_45_30303_30354(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30303, 30354);
+                    return 0;
+                }
+
+
+                int
+                f_45_30369_30449(bool
+                condition, string
+                message)
+                {
+                    Debug.Assert(condition, message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30369, 30449);
+                    return 0;
+                }
+
             }
-
-            Debug.Assert((int)WellKnownType.ExtSentinel == 255);
-            Debug.Assert((int)WellKnownType.NextAvailable <= 512, "Time for a new sentinel");
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 28628, 30461);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 28628, 30461);
+            }
         }
 
         public static bool IsWellKnownType(this WellKnownType typeId)
         {
-            Debug.Assert(typeId != WellKnownType.ExtSentinel);
-            return typeId >= WellKnownType.First && typeId < WellKnownType.NextAvailable;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 30473, 30711);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30559, 30609);
+
+                f_45_30559_30608(typeId != WellKnownType.ExtSentinel);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30623, 30700);
+
+                return typeId >= WellKnownType.First && (DynAbs.Tracing.TraceSender.Expression_True(45, 30630, 30699) && typeId < WellKnownType.NextAvailable);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 30473, 30711);
+
+                int
+                f_45_30559_30608(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30559, 30608);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 30473, 30711);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 30473, 30711);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsValueTupleType(this WellKnownType typeId)
         {
-            Debug.Assert(typeId != WellKnownType.ExtSentinel);
-            return typeId >= WellKnownType.System_ValueTuple && typeId <= WellKnownType.System_ValueTuple_TRest;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 30723, 30985);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30810, 30860);
+
+                f_45_30810_30859(typeId != WellKnownType.ExtSentinel);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 30874, 30974);
+
+                return typeId >= WellKnownType.System_ValueTuple && (DynAbs.Tracing.TraceSender.Expression_True(45, 30881, 30973) && typeId <= WellKnownType.System_ValueTuple_TRest);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 30723, 30985);
+
+                int
+                f_45_30810_30859(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 30810, 30859);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 30723, 30985);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 30723, 30985);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static bool IsValid(this WellKnownType typeId)
         {
-            return typeId >= WellKnownType.First && typeId < WellKnownType.NextAvailable && typeId != WellKnownType.ExtSentinel;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 30997, 31202);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31075, 31191);
+
+                return typeId >= WellKnownType.First && (DynAbs.Tracing.TraceSender.Expression_True(45, 31082, 31151) && typeId < WellKnownType.NextAvailable) && (DynAbs.Tracing.TraceSender.Expression_True(45, 31082, 31190) && typeId != WellKnownType.ExtSentinel);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 30997, 31202);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 30997, 31202);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 30997, 31202);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static string GetMetadataName(this WellKnownType id)
         {
-            return s_metadataNames[(int)(id - WellKnownType.First)];
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 31214, 31365);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31298, 31354);
+
+                return s_metadataNames[(int)(id - WellKnownType.First)];
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 31214, 31365);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 31214, 31365);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 31214, 31365);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public static WellKnownType GetTypeFromMetadataName(string metadataName)
         {
-            WellKnownType id;
-
-            if (s_nameToTypeIdMap.TryGetValue(metadataName, out id))
+            try
             {
-                return id;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 31377, 31730);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31474, 31491);
 
-            Debug.Assert(WellKnownType.First != 0);
-            return WellKnownType.Unknown;
+                WellKnownType
+                id
+                = default(WellKnownType);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31507, 31621) || true) && (f_45_31511_31562(s_nameToTypeIdMap, metadataName, out id))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(45, 31507, 31621);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31596, 31606);
+
+                    return id;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(45, 31507, 31621);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31637, 31676);
+
+                f_45_31637_31675(WellKnownType.First != 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31690, 31719);
+
+                return WellKnownType.Unknown;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 31377, 31730);
+
+                bool
+                f_45_31511_31562(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.WellKnownType>
+                this_param, string
+                key, out Microsoft.CodeAnalysis.WellKnownType
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 31511, 31562);
+                    return return_v;
+                }
+
+
+                int
+                f_45_31637_31675(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 31637, 31675);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 31377, 31730);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 31377, 31730);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // returns WellKnownType.Unknown if given arity isn't available:
         internal static WellKnownType GetWellKnownFunctionDelegate(int invokeArgumentCount)
         {
-            Debug.Assert(invokeArgumentCount >= 0);
-            return (invokeArgumentCount <= WellKnownType.System_Func_TMax - WellKnownType.System_Func_T) ?
-                (WellKnownType)((int)WellKnownType.System_Func_T + invokeArgumentCount) :
-                WellKnownType.Unknown;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 31816, 32213);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31924, 31963);
+
+                f_45_31924_31962(invokeArgumentCount >= 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 31977, 32202);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(45, 31984, 32069) || (((invokeArgumentCount <= WellKnownType.System_Func_TMax - WellKnownType.System_Func_T) && DynAbs.Tracing.TraceSender.Conditional_F2(45, 32089, 32160)) || DynAbs.Tracing.TraceSender.Conditional_F3(45, 32180, 32201))) ? (WellKnownType)((int)WellKnownType.System_Func_T + invokeArgumentCount) : WellKnownType.Unknown;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 31816, 32213);
+
+                int
+                f_45_31924_31962(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 31924, 31962);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 31816, 32213);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 31816, 32213);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // returns WellKnownType.Unknown if given arity isn't available:
         internal static WellKnownType GetWellKnownActionDelegate(int invokeArgumentCount)
         {
-            Debug.Assert(invokeArgumentCount >= 0);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(45, 32299, 32698);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 32405, 32444);
 
-            return (invokeArgumentCount <= WellKnownType.System_Action_TMax - WellKnownType.System_Action) ?
-                (WellKnownType)((int)WellKnownType.System_Action + invokeArgumentCount) :
-                WellKnownType.Unknown;
+                f_45_32405_32443(invokeArgumentCount >= 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(45, 32460, 32687);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(45, 32467, 32554) || (((invokeArgumentCount <= WellKnownType.System_Action_TMax - WellKnownType.System_Action) && DynAbs.Tracing.TraceSender.Conditional_F2(45, 32574, 32645)) || DynAbs.Tracing.TraceSender.Conditional_F3(45, 32665, 32686))) ? (WellKnownType)((int)WellKnownType.System_Action + invokeArgumentCount) : WellKnownType.Unknown;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(45, 32299, 32698);
+
+                int
+                f_45_32405_32443(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 32405, 32443);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(45, 32299, 32698);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(45, 32299, 32698);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.WellKnownType>
+        f_45_28200_28249(int
+        capacity)
+        {
+            var return_v = new System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.WellKnownType>(capacity);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 28200, 28249);
+            return return_v;
+        }
+
+
+        static int
+        f_45_28310_28336()
+        {
+            AssertEnumAndTableInSync();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 28310, 28336);
+            return 0;
+        }
+
+
+        static int
+        f_45_28373_28395(string[]
+        this_param)
+        {
+            var return_v = this_param.Length;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(45, 28373, 28395);
+            return return_v;
+        }
+
+
+        static int
+        f_45_28554_28589(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.WellKnownType>
+        this_param, string
+        key, Microsoft.CodeAnalysis.WellKnownType
+        value)
+        {
+            this_param.Add(key, value);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(45, 28554, 28589);
+            return 0;
+        }
+
     }
 }

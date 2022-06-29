@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -12,80 +12,319 @@ using Roslyn.Utilities;
 namespace Microsoft.CodeAnalysis
 {
     internal abstract class AbstractLookupSymbolsInfo<TSymbol>
-        where TSymbol : class, ISymbolInternal
+            where TSymbol : class, ISymbolInternal
     {
         public struct ArityEnumerator : IEnumerator<int>
         {
+
             private int _current;
+
             private readonly int _low32bits;
+
             private int[]? _arities;
 
-            private const int resetValue = -1;
-            private const int reachedEndValue = int.MaxValue;
+            private const int
+            resetValue = -1
+            ;
+
+            private const int
+            reachedEndValue = int.MaxValue
+            ;
 
             internal ArityEnumerator(int bitVector, HashSet<int>? arities)
             {
-                _current = resetValue;
-                _low32bits = bitVector;
-                if (arities == null)
+                try
                 {
-                    _arities = null;
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(47, 842, 1283);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 937, 959);
+
+                    _current = resetValue;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 977, 1000);
+
+                    _low32bits = bitVector;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1018, 1268) || true) && (arities == null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 1018, 1268);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1079, 1095);
+
+                        _arities = null;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 1018, 1268);
+                    }
+
+                    else
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 1018, 1268);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1177, 1206);
+
+                        _arities = f_47_1188_1205(arities);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1228, 1249);
+
+                        f_47_1228_1248(_arities);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 1018, 1268);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(47, 842, 1283);
                 }
-                else
+                catch
                 {
-                    _arities = arities.ToArray();
-                    Array.Sort(_arities);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 842, 1283);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 842, 1283);
                 }
             }
 
-            public int Current => _current;
+            public int Current
+            {
+                get
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 1318, 1329);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1321, 1329);
+                        return _current; DynAbs.Tracing.TraceSender.TraceExitMethod(47, 1318, 1329);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 1318, 1329);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 1318, 1329);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+            }
 
-            public void Dispose() => _arities = null;
+            public void Dispose()
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 1368, 1386);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1371, 1386);
+                    _arities = null; DynAbs.Tracing.TraceSender.TraceExitMethod(47, 1368, 1386);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 1368, 1386);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 1368, 1386);
+                }
+            }
 
-            object? System.Collections.IEnumerator.Current => _current;
+            object? System.Collections.IEnumerator.Current
+            {
+                get
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 1450, 1461);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1453, 1461);
+                        return _current; DynAbs.Tracing.TraceSender.TraceExitMethod(47, 1450, 1461);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 1450, 1461);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 1450, 1461);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+            }
 
             public bool MoveNext()
             {
-                if (_current == reachedEndValue)
+                try
                 {
-                    // Already reached the end
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 1478, 2696);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1533, 1686) || true) && (_current == reachedEndValue)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 1533, 1686);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1654, 1667);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 1533, 1686);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1748, 1758);
+
+                    int
+                    arity
+                    = default(int);
+                    try
+                    {
+                        // Find the next set bit
+                        for (DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1825, 1843)
+        , arity = ++_current; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1820, 2089) || true) && (arity < 32)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1857, 1864)
+        , arity++, DynAbs.Tracing.TraceSender.TraceExitCondition(47, 1820, 2089))
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 1820, 2089);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1906, 2070) || true) && (((_low32bits >> arity) & 1) != 0)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 1906, 2070);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 1992, 2009);
+
+                                _current = arity;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2035, 2047);
+
+                                return true;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(47, 1906, 2070);
+                            }
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(47, 1, 270);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(47, 1, 270);
+                    }
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2109, 2603) || true) && (_arities != null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 2109, 2603);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2231, 2272);
+
+                        int
+                        index = f_47_2243_2271(_arities, arity)
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2294, 2395) || true) && (index < 0)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 2294, 2395);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2357, 2372);
+
+                            index = ~index;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(47, 2294, 2395);
+                        }
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2419, 2584) || true) && (index < f_47_2431_2446(_arities))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 2419, 2584);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2496, 2523);
+
+                            _current = _arities[index];
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2549, 2561);
+
+                            return true;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(47, 2419, 2584);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 2109, 2603);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2623, 2650);
+
+                    _current = reachedEndValue;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2668, 2681);
+
                     return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(47, 1478, 2696);
+
+                    int
+                    f_47_2243_2271(int[]
+                    array, int
+                    value)
+                    {
+                        var return_v = array.BinarySearch(value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 2243, 2271);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_47_2431_2446(int[]
+                    this_param)
+                    {
+                        var return_v = this_param.Length;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 2431, 2446);
+                        return return_v;
+                    }
+
                 }
-
-                // Find the next set bit
-                int arity;
-
-                // Find the next set bit
-                for (arity = ++_current; arity < 32; arity++)
+                catch
                 {
-                    if (((_low32bits >> arity) & 1) != 0)
-                    {
-                        _current = arity;
-                        return true;
-                    }
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 1478, 2696);
+                    throw;
                 }
-
-                if (_arities != null)
+                finally
                 {
-                    // Binary search for the current value
-                    int index = _arities.BinarySearch(arity);
-                    if (index < 0)
-                    {
-                        index = ~index;
-                    }
-
-                    if (index < _arities.Length)
-                    {
-                        _current = _arities[index];
-                        return true;
-                    }
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 1478, 2696);
                 }
-
-                _current = reachedEndValue;
-                return false;
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
-            public void Reset() => _current = resetValue;
+            public void Reset()
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 2732, 2756);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 2735, 2756);
+                    _current = resetValue; DynAbs.Tracing.TraceSender.TraceExitMethod(47, 2732, 2756);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 2732, 2756);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 2732, 2756);
+                }
+            }
+            static ArityEnumerator()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(47, 535, 2768);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 747, 762);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 795, 825);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(47, 535, 2768);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 535, 2768);
+            }
+
+            static int[]
+            f_47_1188_1205(System.Collections.Generic.HashSet<int>
+            source)
+            {
+                var return_v = source.ToArray<int>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 1188, 1205);
+                return return_v;
+            }
+
+
+            static int
+            f_47_1228_1248(int[]
+            array)
+            {
+                Array.Sort(array);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 1228, 1248);
+                return 0;
+            }
+
         }
 
         // TODO: Is the cost of boxing every instance of UniqueSymbolOrArities that we
@@ -93,151 +332,550 @@ namespace Microsoft.CodeAnalysis
         // APIs incorrectly (without an explicit cast)?
         public interface IArityEnumerable
         {
+
             ArityEnumerator GetEnumerator();
+
             int Count { get; }
         }
 
-        // PERF: This is a very frequent allocation, so the aim is to keep
-        // it as small as possible.
         private struct UniqueSymbolOrArities : IArityEnumerable
         {
-            // For most situations, the set of arities is small and
-            // the values are in the low single digits. However, the
-            // theoretical max for arity is 32,767 (Int16.MaxValue).
-            // The arities field is, therefore, a bitvector of the
-            // arity values from zero to 31.
-            // If an arity greater than 31 is encountered, then
-            // uniqueSymbolOrArities becomes a HashSet for bits
-            // 32 and above.
 
-            // This (object) field may be a TSymbol, null or a HashSet<int>
-            // If it's a TSymbol:
-            //   Then arityBitVectorOrUniqueArity is interpreted as a unique
-            //   arity (which may be any value)
-            // If it's null:
-            //   Then arityBitVectorOrUniqueArity is interpreted as a bitvector
-            //   of arities.
-            // Otherwise it's a HashSet<int>:
-            //   Then arityBitVectorOrUniqueArity is interpreted as a bitvector
-            //   of arities for arities from zero to 31 and the HashSet contains
-            //   arities of 32 or more.
             private object? _uniqueSymbolOrArities;
+
             private int _arityBitVectorOrUniqueArity;
 
             public UniqueSymbolOrArities(int arity, TSymbol uniqueSymbol)
             {
-                _uniqueSymbolOrArities = uniqueSymbol;
-                _arityBitVectorOrUniqueArity = arity;
-                //if there's no unique symbol, how can there be an arity?
-                Debug.Assert((uniqueSymbol != null) || (arity == 0));
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(47, 4574, 4922);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 4668, 4706);
+
+                    _uniqueSymbolOrArities = uniqueSymbol;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 4724, 4761);
+
+                    _arityBitVectorOrUniqueArity = arity;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 4854, 4907);
+
+                    f_47_4854_4906((uniqueSymbol != null) || (DynAbs.Tracing.TraceSender.Expression_False(47, 4867, 4905) || (arity == 0)));
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(47, 4574, 4922);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 4574, 4922);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 4574, 4922);
+                }
             }
 
             public void AddSymbol(TSymbol symbol, int arity)
             {
-                if (symbol != null && symbol == _uniqueSymbolOrArities)
+                try
                 {
-                    Debug.Assert(arity == _arityBitVectorOrUniqueArity);
-                    return;
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 4938, 5840);
 
-                if (this.HasUniqueSymbol)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5019, 5215) || true) && (symbol != null && (DynAbs.Tracing.TraceSender.Expression_True(47, 5023, 5073) && symbol == _uniqueSymbolOrArities))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 5019, 5215);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5115, 5167);
+
+                        f_47_5115_5166(arity == _arityBitVectorOrUniqueArity);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5189, 5196);
+
+                        return;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 5019, 5215);
+                    }
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5235, 5789) || true) && (this.HasUniqueSymbol)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 5235, 5789);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5500, 5548);
+
+                        f_47_5500_5547(_uniqueSymbolOrArities is TSymbol);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5570, 5600);
+
+                        _uniqueSymbolOrArities = null;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5624, 5671);
+
+                        int
+                        uniqueArity = _arityBitVectorOrUniqueArity
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5693, 5726);
+
+                        _arityBitVectorOrUniqueArity = 0;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5748, 5770);
+
+                        AddArity(uniqueArity);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 5235, 5789);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5809, 5825);
+
+                    AddArity(arity);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(47, 4938, 5840);
+
+                    int
+                    f_47_5115_5166(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 5115, 5166);
+                        return 0;
+                    }
+
+
+                    int
+                    f_47_5500_5547(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 5500, 5547);
+                        return 0;
+                    }
+
+                }
+                catch
                 {
-                    // The symbol is no longer unique. So clear the
-                    // UniqueSymbol field and record the unique arity
-                    // before adding the new arity value.
-                    Debug.Assert(_uniqueSymbolOrArities is TSymbol);
-                    _uniqueSymbolOrArities = null;
-
-                    int uniqueArity = _arityBitVectorOrUniqueArity;
-                    _arityBitVectorOrUniqueArity = 0;
-                    AddArity(uniqueArity);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 4938, 5840);
+                    throw;
                 }
-
-                AddArity(arity);
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 4938, 5840);
+                }
             }
 
-            private bool HasUniqueSymbol => _uniqueSymbolOrArities != null && !(_uniqueSymbolOrArities is HashSet<int>);
+            private bool HasUniqueSymbol
+            {
+                get
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 5885, 5963);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 5888, 5963);
+                        return _uniqueSymbolOrArities != null && (DynAbs.Tracing.TraceSender.Expression_True(47, 5888, 5963) && !(_uniqueSymbolOrArities is HashSet<int>)); DynAbs.Tracing.TraceSender.TraceExitMethod(47, 5885, 5963);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 5885, 5963);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 5885, 5963);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+            }
 
             private void AddArity(int arity)
             {
-                Debug.Assert(!this.HasUniqueSymbol);
-
-                // arities between 0 and 31 will fit in the bit vector
-                if (arity < 32)
+                try
                 {
-                    unchecked
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 5980, 6795);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6045, 6081);
+
+                    f_47_6045_6080(f_47_6058_6079_M(!this.HasUniqueSymbol));
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6173, 6441) || true) && (arity < 32)
+                    )
+
                     {
-                        int bit = 1 << arity;
-                        _arityBitVectorOrUniqueArity |= bit;
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 6173, 6441);
+                        unchecked
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6287, 6308);
+
+                            int
+                            bit = 1 << arity
+                            ;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6334, 6370);
+
+                            _arityBitVectorOrUniqueArity |= bit;
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6415, 6422);
+
+                        return;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 6173, 6441);
                     }
-                    return;
-                }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6506, 6559);
 
-                // Otherwise, use a HashSet
-                var hashSet = _uniqueSymbolOrArities as HashSet<int>;
-                if (hashSet == null)
+                    var
+                    hashSet = _uniqueSymbolOrArities as HashSet<int>
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6577, 6741) || true) && (hashSet == null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 6577, 6741);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6638, 6667);
+
+                        hashSet = f_47_6648_6666();
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6689, 6722);
+
+                        _uniqueSymbolOrArities = hashSet;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 6577, 6741);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6761, 6780);
+
+                    f_47_6761_6779(
+                                    hashSet, arity);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(47, 5980, 6795);
+
+                    bool
+                    f_47_6058_6079_M(bool
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 6058, 6079);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_47_6045_6080(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 6045, 6080);
+                        return 0;
+                    }
+
+
+                    System.Collections.Generic.HashSet<int>
+                    f_47_6648_6666()
+                    {
+                        var return_v = new System.Collections.Generic.HashSet<int>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 6648, 6666);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_47_6761_6779(System.Collections.Generic.HashSet<int>
+                    this_param, int
+                    item)
+                    {
+                        var return_v = this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 6761, 6779);
+                        return return_v;
+                    }
+
+                }
+                catch
                 {
-                    hashSet = new HashSet<int>();
-                    _uniqueSymbolOrArities = hashSet;
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 5980, 6795);
+                    throw;
                 }
-
-                hashSet.Add(arity);
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 5980, 6795);
+                }
             }
 
             public void GetUniqueSymbolOrArities(out IArityEnumerable? arities, out TSymbol? uniqueSymbol)
             {
-                if (this.HasUniqueSymbol)
+                try
                 {
-                    arities = null;
-#nullable disable // Can '_uniqueSymbolOrArities' be null? https://github.com/dotnet/roslyn/issues/39166
-                    uniqueSymbol = (TSymbol)_uniqueSymbolOrArities;
-#nullable enable
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 6811, 7482);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 6938, 7467) || true) && (this.HasUniqueSymbol)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 6938, 7467);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7004, 7019);
+
+                        arities = null;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7147, 7194);
+
+                        uniqueSymbol = (TSymbol)_uniqueSymbolOrArities;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 6938, 7467);
+                    }
+
+                    else
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 6938, 7467);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7294, 7406);
+
+                        arities = (DynAbs.Tracing.TraceSender.Conditional_F1(47, 7304, 7373) || (((_uniqueSymbolOrArities == null && (DynAbs.Tracing.TraceSender.Expression_True(47, 7305, 7372) && _arityBitVectorOrUniqueArity == 0)) && DynAbs.Tracing.TraceSender.Conditional_F2(47, 7376, 7380)) || DynAbs.Tracing.TraceSender.Conditional_F3(47, 7383, 7405))) ? null : (IArityEnumerable)this;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7428, 7448);
+
+                        uniqueSymbol = null;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(47, 6938, 7467);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(47, 6811, 7482);
                 }
-                else
+                catch
                 {
-                    arities = (_uniqueSymbolOrArities == null && _arityBitVectorOrUniqueArity == 0) ? null : (IArityEnumerable)this;
-                    uniqueSymbol = null;
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 6811, 7482);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 6811, 7482);
                 }
             }
 
             public ArityEnumerator GetEnumerator()
             {
-                Debug.Assert(!this.HasUniqueSymbol);
-                return new ArityEnumerator(_arityBitVectorOrUniqueArity, (HashSet<int>?)_uniqueSymbolOrArities);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 7498, 7734);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7569, 7605);
+
+                    f_47_7569_7604(f_47_7582_7603_M(!this.HasUniqueSymbol));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7623, 7719);
+
+                    return f_47_7630_7718(_arityBitVectorOrUniqueArity, (HashSet<int>?)_uniqueSymbolOrArities);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(47, 7498, 7734);
+
+                    bool
+                    f_47_7582_7603_M(bool
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 7582, 7603);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_47_7569_7604(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 7569, 7604);
+                        return 0;
+                    }
+
+
+                    Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.ArityEnumerator
+                    f_47_7630_7718(int
+                    bitVector, object?
+                    arities)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.ArityEnumerator(bitVector, (System.Collections.Generic.HashSet<int>?)arities);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 7630, 7718);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 7498, 7734);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 7498, 7734);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             public int Count
             {
                 get
                 {
-                    Debug.Assert(!this.HasUniqueSymbol);
-                    int count = BitArithmeticUtilities.CountBits(_arityBitVectorOrUniqueArity);
-                    var set = (HashSet<int>?)_uniqueSymbolOrArities;
-                    if (set != null)
+                    try
                     {
-                        count += set.Count;
-                    }
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 7799, 8231);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7843, 7879);
 
-                    return count;
+                        f_47_7843_7878(f_47_7856_7877_M(!this.HasUniqueSymbol));
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7901, 7976);
+
+                        int
+                        count = f_47_7913_7975(_arityBitVectorOrUniqueArity)
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 7998, 8046);
+
+                        var
+                        set = (HashSet<int>?)_uniqueSymbolOrArities
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8068, 8175) || true) && (set != null)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 8068, 8175);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8133, 8152);
+
+                            count += f_47_8142_8151(set);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(47, 8068, 8175);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8199, 8212);
+
+                        return count;
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(47, 7799, 8231);
+
+                        bool
+                        f_47_7856_7877_M(bool
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 7856, 7877);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_47_7843_7878(bool
+                        condition)
+                        {
+                            Debug.Assert(condition);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 7843, 7878);
+                            return 0;
+                        }
+
+
+                        int
+                        f_47_7913_7975(int
+                        v)
+                        {
+                            var return_v = BitArithmeticUtilities.CountBits(v);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 7913, 7975);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_47_8142_8151(System.Collections.Generic.HashSet<int>
+                        this_param)
+                        {
+                            var return_v = this_param.Count;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 8142, 8151);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 7750, 8246);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 7750, 8246);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
             }
 
-#if DEBUG
-            internal TSymbol? UniqueSymbol => _uniqueSymbolOrArities as TSymbol;
-#endif
+            internal TSymbol? UniqueSymbol
+            {
+                get
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 8304, 8340);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8307, 8340);
+                        return _uniqueSymbolOrArities as TSymbol; DynAbs.Tracing.TraceSender.TraceExitMethod(47, 8304, 8340);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 8304, 8340);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 8304, 8340);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+            }
+            static UniqueSymbolOrArities()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(47, 3268, 8360);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(47, 3268, 8360);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 3268, 8360);
+            }
+
+            static int
+            f_47_4854_4906(bool
+            condition)
+            {
+                Debug.Assert(condition);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 4854, 4906);
+                return 0;
+            }
+
         }
 
         private readonly IEqualityComparer<string> _comparer;
+
         private readonly Dictionary<string, UniqueSymbolOrArities> _nameMap;
+
         internal string? FilterName { get; set; }
 
         protected AbstractLookupSymbolsInfo(IEqualityComparer<string> comparer)
         {
-            _comparer = comparer;
-            _nameMap = new Dictionary<string, UniqueSymbolOrArities>(comparer);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(47, 8566, 8775);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8415, 8424);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8494, 8502);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8513, 8554);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8662, 8683);
+
+                _comparer = comparer;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8697, 8764);
+
+                _nameMap = f_47_8708_8763(comparer);
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(47, 8566, 8775);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 8566, 8775);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 8566, 8775);
+            }
         }
 
-        public bool CanBeAdded(string name) => FilterName == null || _comparer.Equals(name, FilterName);
+        public bool CanBeAdded(string name)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 8823, 8882);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8826, 8882);
+                return FilterName == null || (DynAbs.Tracing.TraceSender.Expression_False(47, 8826, 8882) || f_47_8848_8882(_comparer, name, FilterName)); DynAbs.Tracing.TraceSender.TraceExitMethod(47, 8823, 8882);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 8823, 8882);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 8823, 8882);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_47_8848_8882(System.Collections.Generic.IEqualityComparer<string>
+            this_param, string
+            x, string
+            y)
+            {
+                var return_v = this_param.Equals(x, y);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 8848, 8882);
+                return return_v;
+            }
+
+        }
 
         public void AddSymbol(TSymbol symbol, string name, int arity)
         {
@@ -266,9 +904,51 @@ namespace Microsoft.CodeAnalysis
 #endif
         }
 
-        public ICollection<String> Names => _nameMap.Keys;
+        public ICollection<String> Names
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 10065, 10081);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10068, 10081);
+                    return f_47_10068_10081(_nameMap); DynAbs.Tracing.TraceSender.TraceExitMethod(47, 10065, 10081);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 10065, 10081);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 10065, 10081);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        public int Count => _nameMap.Count;
+        public int Count
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 10111, 10128);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10114, 10128);
+                    return f_47_10114_10128(_nameMap); DynAbs.Tracing.TraceSender.TraceExitMethod(47, 10111, 10128);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 10111, 10128);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 10111, 10128);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
         /// <summary>
         /// If <paramref name="uniqueSymbol"/> is set, then <paramref name="arities"/> will be null.
@@ -301,8 +981,76 @@ namespace Microsoft.CodeAnalysis
 
         public void Clear()
         {
-            _nameMap.Clear();
-            FilterName = null;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 11226, 11330);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 11270, 11287);
+
+                f_47_11270_11286(_nameMap);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 11301, 11319);
+
+                FilterName = null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(47, 11226, 11330);
+
+                int
+                f_47_11270_11286(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+                this_param)
+                {
+                    this_param.Clear();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 11270, 11286);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 11226, 11330);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 11226, 11330);
+            }
         }
+
+        static AbstractLookupSymbolsInfo()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(47, 412, 11337);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(47, 412, 11337);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 412, 11337);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(47, 412, 11337);
+
+        static System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+        f_47_8708_8763(System.Collections.Generic.IEqualityComparer<string>
+        comparer)
+        {
+            var return_v = new System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>(comparer);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 8708, 8763);
+            return return_v;
+        }
+
+
+        System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>.KeyCollection
+        f_47_10068_10081(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+        this_param)
+        {
+            var return_v = this_param.Keys;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 10068, 10081);
+            return return_v;
+        }
+
+
+        int
+        f_47_10114_10128(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+        this_param)
+        {
+            var return_v = this_param.Count;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(47, 10114, 10128);
+            return return_v;
+        }
+
     }
 }

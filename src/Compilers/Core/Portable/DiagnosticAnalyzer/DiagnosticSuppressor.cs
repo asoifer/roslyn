@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,35 +6,84 @@ using System.Collections.Immutable;
 
 namespace Microsoft.CodeAnalysis.Diagnostics
 {
-    /// <summary>
-    /// The base type for diagnostic suppressors that can programmatically suppress analyzer and/or compiler non-error diagnostics.
-    /// </summary>
     public abstract class DiagnosticSuppressor : DiagnosticAnalyzer
     {
-        // Disallow suppressors from reporting diagnostics or registering analysis actions.
-        public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray<DiagnosticDescriptor>.Empty;
+        public sealed override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(264, 726, 771);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(264, 729, 771);
+                    return ImmutableArray<DiagnosticDescriptor>.Empty; DynAbs.Tracing.TraceSender.TraceExitMethod(264, 726, 771);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(264, 726, 771);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(264, 726, 771);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-#pragma warning disable RS1026
         public sealed override void Initialize(AnalysisContext context)
         {
-            context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
-        }
-#pragma warning restore RS1026
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(264, 816, 987);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(264, 904, 976);
 
-        /// <summary>
-        /// Returns a set of descriptors for the suppressions that this suppressor is capable of producing.
-        /// </summary>
+                f_264_904_975(context, GeneratedCodeAnalysisFlags.None);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(264, 816, 987);
+
+                int
+                f_264_904_975(Microsoft.CodeAnalysis.Diagnostics.AnalysisContext
+                this_param, Microsoft.CodeAnalysis.Diagnostics.GeneratedCodeAnalysisFlags
+                analysisMode)
+                {
+                    this_param.ConfigureGeneratedCodeAnalysis(analysisMode);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(264, 904, 975);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(264, 816, 987);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(264, 816, 987);
+            }
+        }
+
         public abstract ImmutableArray<SuppressionDescriptor> SupportedSuppressions { get; }
 
-        /// <summary>
-        /// Suppress analyzer and/or compiler non-error diagnostics reported for the compilation.
-        /// This may be a subset of the full set of reported diagnostics, as an optimization for
-        /// supporting incremental and partial analysis scenarios.
-        /// A diagnostic is considered suppressible by a DiagnosticSuppressor if *all* of the following conditions are met:
-        ///     1. Diagnostic is not already suppressed in source via pragma/suppress message attribute.
-        ///     2. Diagnostic's <see cref="Diagnostic.DefaultSeverity"/> is not <see cref="DiagnosticSeverity.Error"/>.
-        ///     3. Diagnostic is not tagged with <see cref="WellKnownDiagnosticTags.NotConfigurable"/> custom tag.
-        /// </summary>
         public abstract void ReportSuppressions(SuppressionAnalysisContext context);
+
+        public DiagnosticSuppressor()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(264, 472, 2146);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(264, 472, 2146);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(264, 472, 2146);
+        }
+
+
+        static DiagnosticSuppressor()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(264, 472, 2146);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(264, 472, 2146);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(264, 472, 2146);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(264, 472, 2146);
     }
 }
