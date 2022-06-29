@@ -275,7 +275,9 @@ namespace Microsoft.CodeAnalysis.Collections
                 }
             }
 
-            internal int Count => (_value as ArrayBuilder<V>)?.Count ?? 1;
+            // LAFHIS
+            //internal int Count => (_value as ArrayBuilder<V>)?.Count ?? 1;
+            internal int Count => _value is ArrayBuilder<V> ? ((ArrayBuilder<V>)_value).Count : 1;
 
             IEnumerator IEnumerable.GetEnumerator()
             {

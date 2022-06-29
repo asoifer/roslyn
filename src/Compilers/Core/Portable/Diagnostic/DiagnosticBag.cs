@@ -99,7 +99,10 @@ namespace Microsoft.CodeAnalysis
 
             foreach (Diagnostic diagnostic in Bag)
             {
-                if ((diagnostic as DiagnosticWithInfo)?.HasLazyInfo != true && diagnostic.DefaultSeverity == DiagnosticSeverity.Error)
+                // LAFHIS
+                //if ((diagnostic as DiagnosticWithInfo)?.HasLazyInfo != true && diagnostic.DefaultSeverity == DiagnosticSeverity.Error)
+                if ((((diagnostic is DiagnosticWithInfo) ? ((DiagnosticWithInfo)diagnostic).HasLazyInfo : (bool?)null) != true) && 
+                    diagnostic.DefaultSeverity == DiagnosticSeverity.Error)
                 {
                     return true;
                 }

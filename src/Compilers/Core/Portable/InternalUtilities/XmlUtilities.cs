@@ -75,7 +75,8 @@ namespace Roslyn.Utilities
                 var xpathResult = System.Xml.XPath.Extensions.XPathSelectElements(node, xpath);
 
                 // Throws InvalidOperationException if the result of the XPath is an XDocument:
-                return xpathResult?.ToArray();
+                // LAFHIS
+                return xpathResult != null ? xpathResult.ToArray() : null;
             }
             catch (InvalidOperationException e)
             {

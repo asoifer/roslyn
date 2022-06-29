@@ -171,7 +171,9 @@ namespace Microsoft.CodeAnalysis
         {
             // The attribute stores a SemVer2-formatted string: `A.B.C(-...)?(+...)?`
             // We remove the section after the + (if any is present)
-            return type.Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+')[0];
+            // LAFHIS
+            var temp = type.Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+            return temp != null ? temp.InformationalVersion.Split('+')[0] : null;
         }
 
         private static string? GetShortCommitHash(Type type)

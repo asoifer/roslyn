@@ -2314,7 +2314,15 @@ namespace Microsoft.CodeAnalysis
             }
             else
             {
-                this.ScriptCompilationInfo?.PreviousScriptCompilation?.EnsureAnonymousTypeTemplates(cancellationToken);
+                // LAFHIS
+                //this.ScriptCompilationInfo?.PreviousScriptCompilation?.EnsureAnonymousTypeTemplates(cancellationToken);
+                var temp = this.ScriptCompilationInfo;
+                if (temp != null)
+                {
+                    var temp2 = temp.PreviousScriptCompilation;
+                    if (temp2 != null)
+                        temp2.EnsureAnonymousTypeTemplates(cancellationToken);
+                }
             }
         }
 

@@ -109,7 +109,17 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                 RoslynDebug.Assert(_file.Value.SourceTree != null);
 
                 var text = _file.Value.SourceTree.GetText();
-                var lineSpan = text?.Lines?.GetLinePositionSpan(_node.Span);
+
+                // LAFHIS
+                //var lineSpan = text?.Lines?.GetLinePositionSpan(_node.Span);
+
+                Text.LinePositionSpan? lineSpan = (Text.LinePositionSpan?)null;
+                if (text != null)
+                {
+                    var temp = text.Lines;
+                    if (temp != null)
+                        lineSpan = text.Lines.GetLinePositionSpan(_node.Span);
+                }
 
                 // can't use Kind since that is language specific. instead will output typename.
                 sb.AppendLine($"{nameof(SyntaxNode)}: {GetFlattenedNodeText(_node)} [{_node.GetType().Name}]@{_node.Span} {(lineSpan.HasValue ? lineSpan.Value.ToString() : string.Empty)}");

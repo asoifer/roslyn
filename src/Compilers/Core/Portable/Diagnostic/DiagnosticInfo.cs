@@ -353,7 +353,16 @@ namespace Microsoft.CodeAnalysis
                     continue;
                 }
 
-                var symbol = _arguments[i] as ISymbol ?? (_arguments[i] as ISymbolInternal)?.GetISymbol();
+                // LAFHIS
+                //var symbol = _arguments[i] as ISymbol ?? (_arguments[i] as ISymbolInternal)?.GetISymbol();
+                var symbol = _arguments[i] as ISymbol;
+                if (symbol == null)
+                {
+                    var temp = _arguments[i] as ISymbolInternal;
+                    if (temp != null)
+                        symbol = temp.GetISymbol();
+                }
+                
                 if (symbol != null)
                 {
                     argumentsToUse = InitializeArgumentListIfNeeded(argumentsToUse);

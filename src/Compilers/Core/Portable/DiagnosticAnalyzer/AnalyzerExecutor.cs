@@ -431,7 +431,8 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                         (action: endAction.Action, context),
                         new AnalysisContextInfo(Compilation));
 
-                    analyzerState?.ProcessedActions.Add(endAction);
+                    if (analyzerState != null)
+                        analyzerState.ProcessedActions.Add(endAction);
                 }
             }
         }
@@ -520,7 +521,8 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                             (action, context),
                             new AnalysisContextInfo(Compilation, symbol));
 
-                        analyzerState?.ProcessedActions.Add(symbolAction);
+                        if (analyzerState != null)
+                            analyzerState.ProcessedActions.Add(symbolAction);
                     }
                 }
             }
@@ -652,7 +654,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                         (action, context),
                         new AnalysisContextInfo(Compilation, symbol));
 
-                    analyzerState?.ProcessedActions.Add(symbolAction);
+                    // LAFHIS
+                    if (analyzerState != null)
+                        analyzerState.ProcessedActions.Add(symbolAction);
                 }
             }
         }
@@ -732,7 +736,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                         (action: semanticModelAction.Action, context),
                         new AnalysisContextInfo(semanticModel));
 
-                    analyzerState?.ProcessedActions.Add(semanticModelAction);
+                    // LAFHIS
+                    if (analyzerState != null)
+                        analyzerState.ProcessedActions.Add(semanticModelAction);
                 }
             }
 
@@ -815,7 +821,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                         (action: syntaxTreeAction.Action, context),
                         new AnalysisContextInfo(Compilation, file));
 
-                    analyzerState?.ProcessedActions.Add(syntaxTreeAction);
+                    // LAFHIS
+                    if (analyzerState != null)
+                        analyzerState.ProcessedActions.Add(syntaxTreeAction);
                 }
             }
 
@@ -888,7 +896,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                         (action: additionalFileAction.Action, context),
                         new AnalysisContextInfo(Compilation, file));
 
-                    analyzerState?.ProcessedActions.Add(additionalFileAction);
+                    // LAFHIS
+                    if (analyzerState != null)
+                        analyzerState.ProcessedActions.Add(additionalFileAction);
                 }
             }
 
@@ -919,7 +929,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                     (action: syntaxNodeAction.Action, context: syntaxNodeContext),
                     new AnalysisContextInfo(Compilation, node));
 
-                analyzerState?.ProcessedActions.Add(syntaxNodeAction);
+                // LAFHIS
+                if (analyzerState != null)
+                    analyzerState.ProcessedActions.Add(syntaxNodeAction);
             }
         }
 
@@ -945,7 +957,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                     (action: operationAction.Action, context: operationContext),
                     new AnalysisContextInfo(Compilation, operation));
 
-                analyzerState?.ProcessedActions.Add(operationAction);
+                // LAFHIS
+                if (analyzerState != null)
+                    analyzerState.ProcessedActions.Add(operationAction);
             }
         }
 
@@ -1156,7 +1170,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                             }
                         }
 
-                        analyzerState?.ProcessedActions.Add(startAction);
+                        // LAFHIS
+                        if (analyzerState != null)
+                            analyzerState.ProcessedActions.Add(startAction);
                     }
                 }
             }
@@ -1244,7 +1260,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                         }
                     }
 
-                    analyzerState?.ProcessedActions.Add(blockAction);
+                    // LAFHIS
+                    if (analyzerState != null)
+                        analyzerState.ProcessedActions.Add(blockAction);
                 }
             }
 
@@ -1618,7 +1636,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
         internal bool ExceptionFilter(Exception ex)
         {
-            if ((ex as OperationCanceledException)?.CancellationToken == _cancellationToken)
+            // LAFHIS
+            //if ((ex as OperationCanceledException)?.CancellationToken == _cancellationToken)
+            if (((ex is OperationCanceledException) ? ((OperationCanceledException)ex).CancellationToken : null) == _cancellationToken)
             {
                 return false;
             }
@@ -1650,8 +1670,12 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                 return e.CreateDiagnosticDescription();
             }
 
+            // LAFHIS
+            //return string.Join(Environment.NewLine,
+            //    string.Format(CodeAnalysisResources.ExceptionContext, info?.GetContext()), e.CreateDiagnosticDescription());
+
             return string.Join(Environment.NewLine,
-                string.Format(CodeAnalysisResources.ExceptionContext, info?.GetContext()), e.CreateDiagnosticDescription());
+                string.Format(CodeAnalysisResources.ExceptionContext, info.HasValue ? info.Value.GetContext() : null), e.CreateDiagnosticDescription());
         }
 
         private static string CreateDisablingMessage(DiagnosticAnalyzer analyzer)

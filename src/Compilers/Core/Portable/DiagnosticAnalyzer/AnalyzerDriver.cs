@@ -1928,7 +1928,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
             Diagnostic? applyFurtherFiltering(Diagnostic? diagnostic)
             {
                 // Apply bulk configuration from analyzer options for analyzer diagnostics, if applicable.
-                if (diagnostic?.Location.SourceTree is { } tree &&
+                // LAFHIS
+                //if (diagnostic?.Location.SourceTree is { } tree &&
+                if (diagnostic != null && diagnostic.Location.SourceTree is { } tree &&
                     analyzerOptions.TryGetSeverityFromBulkConfiguration(tree, compilation, diagnostic.Descriptor, cancellationToken, out ReportDiagnostic severity))
                 {
                     diagnostic = diagnostic.WithReportDiagnostic(severity);
@@ -2316,7 +2318,9 @@ namespace Microsoft.CodeAnalysis.Diagnostics
         {
             _lazyCompilationEventQueue?.TryComplete();
             _lazyDiagnosticQueue?.TryComplete();
-            _lazyQueueRegistration?.Dispose();
+            // LAFHIS
+            if (_lazyQueueRegistration.HasValue)
+                _lazyQueueRegistration.Value.Dispose();
         }
     }
 

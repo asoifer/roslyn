@@ -234,7 +234,10 @@ namespace Microsoft.CodeAnalysis
                     ImmutableArray<SectionNameMatcher?> matchers = _analyzerMatchers[analyzerConfigIndex];
                     for (int sectionIndex = 0; sectionIndex < matchers.Length; sectionIndex++)
                     {
-                        if (matchers[sectionIndex]?.IsMatch(relativePath) == true)
+                        // LAFHIS
+                        // if (matchers[sectionIndex]?.IsMatch(relativePath) == true)
+                        var temp = matchers[sectionIndex];
+                        if (temp.HasValue && temp.Value.IsMatch(relativePath))
                         {
                             var section = config.NamedSections[sectionIndex];
                             sectionKey.Add(section);
