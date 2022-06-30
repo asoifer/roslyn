@@ -10,86 +10,151 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// Contains common arguments to Symbol.EarlyDecodeWellKnownAttribute method in both the language compilers.
-    /// </summary>
-    internal struct EarlyDecodeWellKnownAttributeArguments<TEarlyBinder, TNamedTypeSymbol, TAttributeSyntax, TAttributeLocation>
+
+internal struct EarlyDecodeWellKnownAttributeArguments<TEarlyBinder, TNamedTypeSymbol, TAttributeSyntax, TAttributeLocation>
         where TNamedTypeSymbol : INamedTypeSymbolInternal
         where TAttributeSyntax : SyntaxNode
     {
-        /// <summary>
-        /// Object to store the decoded data from early bound well-known attributes.
-        /// Created lazily only when some decoded data needs to be stored, null otherwise.
-        /// </summary>
-        private EarlyWellKnownAttributeData _lazyDecodeData;
 
-        /// <summary>
-        /// Gets or creates the decoded data object.
-        /// </summary>
-        /// <remarks>
-        /// This method must be called only when some decoded data will be stored into it subsequently.
-        /// </remarks>
-        public T GetOrCreateData<T>() where T : EarlyWellKnownAttributeData, new()
+private EarlyWellKnownAttributeData _lazyDecodeData;
+
+public T GetOrCreateData<T>() where T : EarlyWellKnownAttributeData, new()
+		{
+			try
         {
-            if (_lazyDecodeData == null)
-            {
-                _lazyDecodeData = new T();
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(805,1314,1568);
 
-            return (T)_lazyDecodeData;
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,1413,1515) || true) && (_lazyDecodeData == null)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(805,1413,1515);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,1474,1500);
+
+_lazyDecodeData = f_805_1492_1499();
+DynAbs.Tracing.TraceSender.TraceExitCondition(805,1413,1515);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,1531,1557);
+
+return (T)_lazyDecodeData;
+DynAbs.Tracing.TraceSender.TraceExitMethod(805,1314,1568);
+
+T
+f_805_1492_1499()
+{
+var return_v = new T();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(805, 1492, 1499);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(805,1314,1568);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(805,1314,1568);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-        /// <summary>
-        /// Returns true if some decoded data has been stored into <see cref="_lazyDecodeData"/>.
-        /// </summary>
-        public bool HasDecodedData
-        {
-            get
+public bool HasDecodedData
+{
+get
+		{
+			try
             {
-                if (_lazyDecodeData != null)
-                {
-                    _lazyDecodeData.VerifyDataStored(expected: true);
-                    return true;
-                }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(805,1777,2032);
 
-                return false;
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,1813,1984) || true) && (_lazyDecodeData != null)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(805,1813,1984);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,1882,1931);
+
+f_805_1882_1930(                    _lazyDecodeData, expected: true);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,1953,1965);
+
+return true;
+DynAbs.Tracing.TraceSender.TraceExitCondition(805,1813,1984);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,2004,2017);
+
+return false;
+DynAbs.Tracing.TraceSender.TraceExitMethod(805,1777,2032);
+
+int
+f_805_1882_1930(Microsoft.CodeAnalysis.EarlyWellKnownAttributeData
+this_param,bool
+expected)
+{
+this_param.VerifyDataStored( expected: expected);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(805, 1882, 1930);
+return 0;
+}
+
             }
-        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(805,1726,2043);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(805,1726,2043);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}}
 
-        /// <summary>
-        /// Gets the stored decoded data.
-        /// </summary>
-        /// <remarks>
-        /// Assumes <see cref="HasDecodedData"/> is true.
-        /// </remarks>
-        public EarlyWellKnownAttributeData DecodedData
-        {
-            get
+public EarlyWellKnownAttributeData DecodedData
+{
+get
+		{
+			try
             {
-                Debug.Assert(this.HasDecodedData);
-                return _lazyDecodeData;
+DynAbs.Tracing.TraceSender.TraceEnterMethod(805,2322,2448);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,2358,2392);
+
+f_805_2358_2391(this.HasDecodedData);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(805,2410,2433);
+
+return _lazyDecodeData;
+DynAbs.Tracing.TraceSender.TraceExitMethod(805,2322,2448);
+
+int
+f_805_2358_2391(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(805, 2358, 2391);
+return 0;
+}
+
             }
-        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(805,2251,2459);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(805,2251,2459);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}}
 
-        /// <summary>
-        /// Binder to bind early well-known attributes.
-        /// </summary>
-        public TEarlyBinder Binder { get; set; }
+public TEarlyBinder Binder {get; set; }
 
-        /// <summary>
-        /// Bound type of the attribute to decode.
-        /// </summary>
-        public TNamedTypeSymbol AttributeType { get; set; }
+public TNamedTypeSymbol AttributeType {get; set; }
 
-        /// <summary>
-        /// Syntax of the attribute to decode.
-        /// </summary>
-        public TAttributeSyntax AttributeSyntax { get; set; }
+public TAttributeSyntax AttributeSyntax {get; set; }
 
-        /// <summary>
-        /// Specific part of the symbol to which the attributes apply, or AttributeLocation.None if the attributes apply to the symbol itself.
-        /// Used e.g. for return type attributes of a method symbol.
-        /// </summary>
-        public TAttributeLocation SymbolPart { get; set; }
+public TAttributeLocation SymbolPart {get; set; }
+static EarlyDecodeWellKnownAttributeArguments(){DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(805,527,3267);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(805,527,3267);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(805,527,3267);
+}
     }
 }

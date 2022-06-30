@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -19,83 +19,1576 @@ using System.Diagnostics;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// 
-    /// The XmlCharType class is used for quick character type recognition
-    /// which is optimized for the first 127 ascii characters.
-    /// 
     internal static class XmlCharType
     {
-        // Surrogate constants
-        internal const int SurHighStart = 0xd800;    // 1101 10xx
-        internal const int SurHighEnd = 0xdbff;
-        internal const int SurLowStart = 0xdc00;    // 1101 11xx
-        internal const int SurLowEnd = 0xdfff;
-        internal const int SurMask = 0xfc00;    // 1111 11xx
+        internal const int
+        SurHighStart = 0xd800
+        ;
 
-#if XML10_FIFTH_EDITION
-        // Characters defined in the XML 1.0 Fifth Edition
-        // Whitespace chars           -- Section 2.3 [3]
-        // Star NCName characters     -- Section 2.3 [4]  (NameStartChar characters without ':')
-        // NCName characters          -- Section 2.3 [4a] (NameChar characters without ':')
-        // Character data characters  -- Section 2.2 [2]
-        // Public ID characters       -- Section 2.3 [13]
+        internal const int
+        SurHighEnd = 0xdbff
+        ;
 
-        // Characters defined in the XML 1.0 Fourth Edition
-        // NCNameCharacters           -- Appending B: Characters Classes in XML 1.0 4th edition and earlier - minus the ':' char per the Namespaces in XML spec
-        // Letter characters          -- Appending B: Characters Classes in XML 1.0 4th edition and earlier
-        //                               This appendix has been deprecated in XML 1.0 5th edition, but we still need to use
-        //                               the Letter and NCName definitions from the 4th edition in some places because of backwards compatibility
-        internal const int fWhitespace = 1;
-        internal const int fLetter = 2;
-        internal const int fNCStartNameSC = 4;  // SC = Single Char
-        internal const int fNCNameSC = 8;  // SC = Single Char
-        internal const int fCharData = 16;
-        internal const int fNCNameXml4e = 32; // NCName char according to the XML 1.0 4th edition
-        internal const int fText = 64;
-        internal const int fAttrValue = 128;
+        internal const int
+        SurLowStart = 0xdc00
+        ;
 
-        // name surrogate constants
-        private const int s_NCNameSurCombinedStart = 0x10000;
-        private const int s_NCNameSurCombinedEnd = 0xEFFFF;
-        private const int s_NCNameSurHighStart = SurHighStart + ((s_NCNameSurCombinedStart - 0x10000) / 1024);
-        private const int s_NCNameSurHighEnd = SurHighStart + ((s_NCNameSurCombinedEnd - 0x10000) / 1024);
-        private const int s_NCNameSurLowStart = SurLowStart + ((s_NCNameSurCombinedStart - 0x10000) % 1024);
-        private const int s_NCNameSurLowEnd = SurLowStart + ((s_NCNameSurCombinedEnd - 0x10000) % 1024);
-#else
-        // Characters defined in the XML 1.0 Fourth Edition
-        // Whitespace chars -- Section 2.3 [3]
-        // Letters -- Appendix B [84]
-        // Starting NCName characters -- Section 2.3 [5] (Starting Name characters without ':')
-        // NCName characters -- Section 2.3 [4]          (Name characters without ':')
-        // Character data characters -- Section 2.2 [2]
-        // PubidChar ::=  #x20 | #xD | #xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%] Section 2.3 of spec
-        internal const int fWhitespace = 1;
-        internal const int fLetter = 2;
-        internal const int fNCStartNameSC = 4;
-        internal const int fNCNameSC = 8;
-        internal const int fCharData = 16;
-        internal const int fNCNameXml4e = 32;
-        internal const int fText = 64;
-        internal const int fAttrValue = 128;
-#endif
+        internal const int
+        SurLowEnd = 0xdfff
+        ;
 
-        // bitmap for public ID characters - 1 bit per character 0x0 - 0x80; no character > 0x80 is a PUBLIC ID char
-        private const string s_PublicIdBitmap = "\u2400\u0000\uffbb\uafff\uffff\u87ff\ufffe\u07ff";
+        internal const int
+        SurMask = 0xfc00
+        ;
 
-        // size of XmlCharType table
-        private const uint CharPropertiesSize = (uint)char.MaxValue + 1;
+        internal const int
+        fWhitespace = 1
+        ;
 
-        // 8 results in the smaller combined size of the tables.
-        // if anything changes (like we do not care about some of the char flags), try 
-        // generating with other sizes as 8 might no longer be optimal.
-        private const int innerSizeBits = 8;
-        private const int innerSize = 1 << innerSizeBits; //size of the inner tables in byte[][]
-        private const int innerSizeMask = innerSize - 1;
+        internal const int
+        fLetter = 2
+        ;
 
-#if XMLCHARTYPE_USE_LITERAL_TABLE
-        // this tables can be re-generated by the Dump function below.
-        private static readonly byte[] s_charPropertiesIndex =
+        internal const int
+        fNCStartNameSC = 4
+        ;
+
+        internal const int
+        fNCNameSC = 8
+        ;
+
+        internal const int
+        fCharData = 16
+        ;
+
+        internal const int
+        fNCNameXml4e = 32
+        ;
+
+        internal const int
+        fText = 64
+        ;
+
+        internal const int
+        fAttrValue = 128
+        ;
+
+        private const string
+        s_PublicIdBitmap = "\u2400\u0000\uffbb\uafff\uffff\u87ff\ufffe\u07ff"
+        ;
+
+        private const uint
+        CharPropertiesSize = (uint)char.MaxValue + 1
+        ;
+
+        private const int
+        innerSizeBits = 8
+        ;
+
+        private const int
+        innerSize = 1 << innerSizeBits
+        ;
+
+        private const int
+        innerSizeMask = innerSize - 1
+        ;
+
+        private static readonly byte[] s_charPropertiesIndex;
+
+        private static readonly byte[] s_charProperties;
+
+        private static byte charProperties(char i)
         {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 55120, 55470);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 55307, 55362);
+
+                byte
+                table = s_charPropertiesIndex[i >> innerSizeBits]
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 55376, 55459);
+
+                return s_charProperties[unchecked((table << innerSizeBits) + (i & innerSizeMask))];
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 55120, 55470);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 55120, 55470);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 55120, 55470);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsWhiteSpace(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 77933, 78056);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 77998, 78045);
+
+                return (f_736_78006_78024(ch) & fWhitespace) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 77933, 78056);
+
+                byte
+                f_736_78006_78024(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 78006, 78024);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 77933, 78056);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 77933, 78056);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsExtender(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 78068, 78162);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 78131, 78151);
+
+                return (ch == 0xb7);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 78068, 78162);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 78068, 78162);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 78068, 78162);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsNCNameSingleChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 78174, 78301);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 78245, 78290);
+
+                return (f_736_78253_78271(ch) & fNCNameSC) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 78174, 78301);
+
+                byte
+                f_736_78253_78271(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 78253, 78271);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 78174, 78301);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 78174, 78301);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsStartNCNameSingleChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 79460, 79597);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 79536, 79586);
+
+                return (f_736_79544_79562(ch) & fNCStartNameSC) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 79460, 79597);
+
+                byte
+                f_736_79544_79562(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 79544, 79562);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 79460, 79597);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 79460, 79597);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsNameSingleChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 79833, 79956);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 79902, 79945);
+
+                return f_736_79909_79931(ch) || (DynAbs.Tracing.TraceSender.Expression_False(736, 79909, 79944) || ch == ':');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 79833, 79956);
+
+                bool
+                f_736_79909_79931(char
+                ch)
+                {
+                    var return_v = IsNCNameSingleChar(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 79909, 79931);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 79833, 79956);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 79833, 79956);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsStartNameSingleChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 80157, 80290);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 80231, 80279);
+
+                return f_736_80238_80265(ch) || (DynAbs.Tracing.TraceSender.Expression_False(736, 80238, 80278) || ch == ':');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 80157, 80290);
+
+                bool
+                f_736_80238_80265(char
+                ch)
+                {
+                    var return_v = IsStartNCNameSingleChar(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 80238, 80265);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 80157, 80290);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 80157, 80290);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsCharData(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 80302, 80421);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 80365, 80410);
+
+                return (f_736_80373_80391(ch) & fCharData) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 80302, 80421);
+
+                byte
+                f_736_80373_80391(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 80373, 80391);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 80302, 80421);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 80302, 80421);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsPubidChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 80540, 80770);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 80604, 80732) || true) && (ch < (char)0x80)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 80604, 80732);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 80657, 80717);
+
+                    return (f_736_80665_80690(s_PublicIdBitmap, ch >> 4) & (1 << (ch & 0xF))) != 0;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(736, 80604, 80732);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 80746, 80759);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 80540, 80770);
+
+                char
+                f_736_80665_80690(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 80665, 80690);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 80540, 80770);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 80540, 80770);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsTextChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 80844, 80961);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 80909, 80950);
+
+                return (f_736_80917_80935(ch) & fText) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 80844, 80961);
+
+                byte
+                f_736_80917_80935(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 80917, 80935);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 80844, 80961);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 80844, 80961);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsAttributeValueChar(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 81056, 81188);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 81131, 81177);
+
+                return (f_736_81139_81157(ch) & fAttrValue) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 81056, 81188);
+
+                byte
+                f_736_81139_81157(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 81139, 81157);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 81056, 81188);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 81056, 81188);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsLetter(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 81259, 81374);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 81320, 81363);
+
+                return (f_736_81328_81346(ch) & fLetter) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 81259, 81374);
+
+                byte
+                f_736_81328_81346(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 81328, 81346);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 81259, 81374);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 81259, 81374);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsNCNameCharXml4e(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 81457, 81586);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 81527, 81575);
+
+                return (f_736_81535_81553(ch) & fNCNameXml4e) != 0;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 81457, 81586);
+
+                byte
+                f_736_81535_81553(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 81535, 81553);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 81457, 81586);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 81457, 81586);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsStartNCNameCharXml4e(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 81669, 81788);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 81744, 81777);
+
+                return f_736_81751_81763(ch) || (DynAbs.Tracing.TraceSender.Expression_False(736, 81751, 81776) || ch == '_');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 81669, 81788);
+
+                bool
+                f_736_81751_81763(char
+                ch)
+                {
+                    var return_v = IsLetter(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 81751, 81763);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 81669, 81788);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 81669, 81788);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsNameCharXml4e(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 81871, 81992);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 81939, 81981);
+
+                return f_736_81946_81967(ch) || (DynAbs.Tracing.TraceSender.Expression_False(736, 81946, 81980) || ch == ':');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 81871, 81992);
+
+                bool
+                f_736_81946_81967(char
+                ch)
+                {
+                    var return_v = IsNCNameCharXml4e(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 81946, 81967);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 81871, 81992);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 81871, 81992);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsStartNameCharXml4e(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82075, 82206);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 82148, 82195);
+
+                return f_736_82155_82181(ch) || (DynAbs.Tracing.TraceSender.Expression_False(736, 82155, 82194) || ch == ':');
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82075, 82206);
+
+                bool
+                f_736_82155_82181(char
+                ch)
+                {
+                    var return_v = IsStartNCNameCharXml4e(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82155, 82181);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82075, 82206);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82075, 82206);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsDigit(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82244, 82346);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 82304, 82335);
+
+                return f_736_82311_82334(ch, 0x30, 0x39);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82244, 82346);
+
+                bool
+                f_736_82311_82334(char
+                value, int
+                start, int
+                end)
+                {
+                    var return_v = InRange((int)value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82311, 82334);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82244, 82346);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82244, 82346);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public static bool IsHexDigit(char ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82358, 82513);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 82421, 82502);
+
+                return f_736_82428_82451(ch, 0x30, 0x39) || (DynAbs.Tracing.TraceSender.Expression_False(736, 82428, 82476) || f_736_82455_82476(ch, 'a', 'f')) || (DynAbs.Tracing.TraceSender.Expression_False(736, 82428, 82501) || f_736_82480_82501(ch, 'A', 'F'));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82358, 82513);
+
+                bool
+                f_736_82428_82451(char
+                value, int
+                start, int
+                end)
+                {
+                    var return_v = InRange((int)value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82428, 82451);
+                    return return_v;
+                }
+
+
+                bool
+                f_736_82455_82476(char
+                value, char
+                start, char
+                end)
+                {
+                    var return_v = InRange(value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82455, 82476);
+                    return return_v;
+                }
+
+
+                bool
+                f_736_82480_82501(char
+                value, char
+                start, char
+                end)
+                {
+                    var return_v = InRange(value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82480, 82501);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82358, 82513);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82358, 82513);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsHighSurrogate(int ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82555, 82680);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 82624, 82669);
+
+                return f_736_82631_82668(ch, SurHighStart, SurHighEnd);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82555, 82680);
+
+                bool
+                f_736_82631_82668(int
+                value, int
+                start, int
+                end)
+                {
+                    var return_v = InRange(value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82631, 82668);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82555, 82680);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82555, 82680);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsLowSurrogate(int ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82692, 82814);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 82760, 82803);
+
+                return f_736_82767_82802(ch, SurLowStart, SurLowEnd);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82692, 82814);
+
+                bool
+                f_736_82767_82802(int
+                value, int
+                start, int
+                end)
+                {
+                    var return_v = InRange(value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82767, 82802);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82692, 82814);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82692, 82814);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsSurrogate(int ch)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82826, 82946);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 82891, 82935);
+
+                return f_736_82898_82934(ch, SurHighStart, SurLowEnd);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82826, 82946);
+
+                bool
+                f_736_82898_82934(int
+                value, int
+                start, int
+                end)
+                {
+                    var return_v = InRange(value, start, end);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 82898, 82934);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82826, 82946);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82826, 82946);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static int CombineSurrogateChar(int lowChar, int highChar)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 82958, 83138);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83050, 83127);
+
+                return (lowChar - SurLowStart) | ((highChar - SurHighStart) << 10) + 0x10000;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 82958, 83138);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 82958, 83138);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 82958, 83138);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static void SplitSurrogateChar(int combinedChar, out char lowChar, out char highChar)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 83150, 83423);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83269, 83300);
+
+                int
+                v = combinedChar - 0x10000
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83314, 83355);
+
+                lowChar = (char)(SurLowStart + v % 1024);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83369, 83412);
+
+                highChar = (char)(SurHighStart + v / 1024);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 83150, 83423);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 83150, 83423);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 83150, 83423);
+            }
+        }
+
+        internal static bool IsOnlyWhitespace(string str)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 83435, 83562);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83509, 83551);
+
+                return f_736_83516_83544(str) == -1;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 83435, 83562);
+
+                int
+                f_736_83516_83544(string
+                str)
+                {
+                    var return_v = IsOnlyWhitespaceWithPos(str);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 83516, 83544);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 83435, 83562);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 83435, 83562);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static int IsOnlyWhitespaceWithPos(string str)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 83616, 84020);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83696, 83985) || true) && (str != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 83696, 83985);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83754, 83759);
+                        for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83745, 83970) || true) && (i < f_736_83765_83775(str))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83777, 83780)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(736, 83745, 83970))
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 83745, 83970);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83822, 83951) || true) && ((f_736_83827_83849(f_736_83842_83848(str, i)) & fWhitespace) == 0)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 83822, 83951);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83919, 83928);
+
+                                return i;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(736, 83822, 83951);
+                            }
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(736, 1, 226);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(736, 1, 226);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(736, 83696, 83985);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 83999, 84009);
+
+                return -1;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 83616, 84020);
+
+                int
+                f_736_83765_83775(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 83765, 83775);
+                    return return_v;
+                }
+
+
+                char
+                f_736_83842_83848(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 83842, 83848);
+                    return return_v;
+                }
+
+
+                byte
+                f_736_83827_83849(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 83827, 83849);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 83616, 84020);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 83616, 84020);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static int IsOnlyCharData(string str)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 84032, 84735);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84103, 84700) || true) && (str != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 84103, 84700);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84161, 84166);
+                        for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84152, 84685) || true) && (i < f_736_84172_84182(str))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84184, 84187)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(736, 84152, 84685))
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 84152, 84685);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84229, 84666) || true) && ((f_736_84234_84256(f_736_84249_84255(str, i)) & fCharData) == 0)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 84229, 84666);
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84324, 84643) || true) && (i + 1 >= f_736_84337_84347(str) || (DynAbs.Tracing.TraceSender.Expression_False(736, 84328, 84431) || !(f_736_84353_84388(f_736_84381_84387(str, i)) && (DynAbs.Tracing.TraceSender.Expression_True(736, 84353, 84430) && f_736_84392_84430(f_736_84419_84429(str, i + 1))))))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 84324, 84643);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84489, 84498);
+
+                                    return i;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(736, 84324, 84643);
+                                }
+
+                                else
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 84324, 84643);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84612, 84616);
+
+                                    i++;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(736, 84324, 84643);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(736, 84229, 84666);
+                            }
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(736, 1, 534);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(736, 1, 534);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(736, 84103, 84700);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84714, 84724);
+
+                return -1;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 84032, 84735);
+
+                int
+                f_736_84172_84182(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84172, 84182);
+                    return return_v;
+                }
+
+
+                char
+                f_736_84249_84255(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84249, 84255);
+                    return return_v;
+                }
+
+
+                byte
+                f_736_84234_84256(char
+                i)
+                {
+                    var return_v = charProperties(i);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 84234, 84256);
+                    return return_v;
+                }
+
+
+                int
+                f_736_84337_84347(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84337, 84347);
+                    return return_v;
+                }
+
+
+                char
+                f_736_84381_84387(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84381, 84387);
+                    return return_v;
+                }
+
+
+                bool
+                f_736_84353_84388(char
+                ch)
+                {
+                    var return_v = XmlCharType.IsHighSurrogate((int)ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 84353, 84388);
+                    return return_v;
+                }
+
+
+                char
+                f_736_84419_84429(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84419, 84429);
+                    return return_v;
+                }
+
+
+                bool
+                f_736_84392_84430(char
+                ch)
+                {
+                    var return_v = XmlCharType.IsLowSurrogate((int)ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 84392, 84430);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 84032, 84735);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 84032, 84735);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsOnlyDigits(string str, int startPos, int len)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 84747, 85216);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84840, 84866);
+
+                f_736_84840_84865(str != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84880, 84923);
+
+                f_736_84880_84922(startPos + len <= f_736_84911_84921(str));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84937, 84974);
+
+                f_736_84937_84973(startPos <= f_736_84962_84972(str));
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84999, 85011);
+
+                    for (int
+        i = startPos
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 84990, 85179) || true) && (i < startPos + len)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85033, 85036)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(736, 84990, 85179))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 84990, 85179);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85070, 85164) || true) && (!f_736_85075_85090(f_736_85083_85089(str, i)))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 85070, 85164);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85132, 85145);
+
+                            return false;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(736, 85070, 85164);
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(736, 1, 190);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(736, 1, 190);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85193, 85205);
+
+                return true;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 84747, 85216);
+
+                int
+                f_736_84840_84865(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 84840, 84865);
+                    return 0;
+                }
+
+
+                int
+                f_736_84911_84921(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84911, 84921);
+                    return return_v;
+                }
+
+
+                int
+                f_736_84880_84922(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 84880, 84922);
+                    return 0;
+                }
+
+
+                int
+                f_736_84962_84972(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 84962, 84972);
+                    return return_v;
+                }
+
+
+                int
+                f_736_84937_84973(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 84937, 84973);
+                    return 0;
+                }
+
+
+                char
+                f_736_85083_85089(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 85083, 85089);
+                    return return_v;
+                }
+
+
+                bool
+                f_736_85075_85090(char
+                ch)
+                {
+                    var return_v = IsDigit(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 85075, 85090);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 84747, 85216);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 84747, 85216);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool IsOnlyDigits(char[] chars, int startPos, int len)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 85228, 85707);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85323, 85351);
+
+                f_736_85323_85350(chars != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85365, 85410);
+
+                f_736_85365_85409(startPos + len <= f_736_85396_85408(chars));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85424, 85463);
+
+                f_736_85424_85462(startPos <= f_736_85449_85461(chars));
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85488, 85500);
+
+                    for (int
+        i = startPos
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85479, 85670) || true) && (i < startPos + len)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85522, 85525)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(736, 85479, 85670))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 85479, 85670);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85559, 85655) || true) && (!f_736_85564_85581(chars[i]))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 85559, 85655);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85623, 85636);
+
+                            return false;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(736, 85559, 85655);
+                        }
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(736, 1, 192);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(736, 1, 192);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85684, 85696);
+
+                return true;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 85228, 85707);
+
+                int
+                f_736_85323_85350(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 85323, 85350);
+                    return 0;
+                }
+
+
+                int
+                f_736_85396_85408(char[]
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 85396, 85408);
+                    return return_v;
+                }
+
+
+                int
+                f_736_85365_85409(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 85365, 85409);
+                    return 0;
+                }
+
+
+                int
+                f_736_85449_85461(char[]
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 85449, 85461);
+                    return return_v;
+                }
+
+
+                int
+                f_736_85424_85462(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 85424, 85462);
+                    return 0;
+                }
+
+
+                bool
+                f_736_85564_85581(char
+                ch)
+                {
+                    var return_v = IsDigit(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 85564, 85581);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 85228, 85707);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 85228, 85707);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static int IsPublicId(string str)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 85719, 86087);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85786, 86052) || true) && (str != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 85786, 86052);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85844, 85849);
+                        for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85835, 86037) || true) && (i < f_736_85855_85865(str))
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85867, 85870)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(736, 85835, 86037))
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 85835, 86037);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85912, 86018) || true) && (!f_736_85917_85936(f_736_85929_85935(str, i)))
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(736, 85912, 86018);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 85986, 85995);
+
+                                return i;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(736, 85912, 86018);
+                            }
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(736, 1, 203);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(736, 1, 203);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(736, 85786, 86052);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 86066, 86076);
+
+                return -1;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 85719, 86087);
+
+                int
+                f_736_85855_85865(string
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 85855, 85865);
+                    return return_v;
+                }
+
+
+                char
+                f_736_85929_85935(string
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(736, 85929, 85935);
+                    return return_v;
+                }
+
+
+                bool
+                f_736_85917_85936(char
+                ch)
+                {
+                    var return_v = IsPubidChar(ch);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 85917, 85936);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 85719, 86087);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 85719, 86087);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        private static bool InRange(int value, int start, int end)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 86219, 86417);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 86302, 86329);
+
+                f_736_86302_86328(start <= end);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 86343, 86406);
+
+                return unchecked((uint)(value - start) <= (uint)(end - start));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 86219, 86417);
+
+                int
+                f_736_86302_86328(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 86302, 86328);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 86219, 86417);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 86219, 86417);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        internal static bool InRange(char value, char start, char end)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(736, 86517, 86719);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 86604, 86631);
+
+                f_736_86604_86630(start <= end);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 86645, 86708);
+
+                return unchecked((uint)(value - start) <= (uint)(end - start));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(736, 86517, 86719);
+
+                int
+                f_736_86604_86630(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(736, 86604, 86630);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(736, 86517, 86719);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 86517, 86719);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        static XmlCharType()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(736, 979, 86726);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 1080, 1101);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 1147, 1166);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 1196, 1216);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 1262, 1280);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 1310, 1326);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 3976, 3991);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4021, 4032);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4062, 4080);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4110, 4123);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4153, 4167);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4197, 4214);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4244, 4254);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4284, 4300);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4460, 4529);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4599, 4643);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4902, 4919);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 4948, 4978);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 5046, 5075);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 5226, 6989);
+            s_charPropertiesIndex = new byte[]{
              0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x07, 0x07,
              0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x11, 0x12, 0x13, 0x14, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07,
              0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x15, 0x16, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07,
@@ -109,10 +1602,8 @@ namespace Microsoft.CodeAnalysis
              0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x17, 0x19, 0x1a, 0x1a, 0x1a, 0x1a,
              0x1a, 0x1a, 0x1a, 0x1a, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07,
              0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x1b,
-        };
-
-        private static readonly byte[] s_charProperties =
-        {
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(736, 7033, 55107);
+            s_charProperties = new byte[]{
              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x11, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xd1, 0xd0, 0x50, 0xd0, 0xd0, 0xd0, 0x10, 0x50,
              0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xf8, 0xf8, 0xd0, 0xf8, 0xf8, 0xf8, 0xf8, 0xf8, 0xf8, 0xf8, 0xf8, 0xf8, 0xf8, 0xd0, 0xd0,
@@ -472,715 +1963,10 @@ namespace Microsoft.CodeAnalysis
              0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0,
              0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0,
              0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0xd0, 0x00, 0x00,
-        };
+        }; DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(736, 979, 86726);
 
-        private static byte charProperties(char i)
-        {
-            // The index entry, table, identifies the start of the appropriate 256-entry table within s_charProperties
-            byte table = s_charPropertiesIndex[i >> innerSizeBits];
-            return s_charProperties[unchecked((table << innerSizeBits) + (i & innerSizeMask))];
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(736, 979, 86726);
         }
 
-#else
-        private static byte[][] s_charProperties = InitInstance();
-
-        static byte[][] InitInstance()
-        {
-            if (s_charProperties != null)
-            {
-                return s_charProperties;
-            }
-
-            byte[][] chProps = new byte[CharPropertiesSize >> innerSizeBits][];
-
-            for (int i = 0; i < chProps.Length; i++)
-            {
-                chProps[i] = new byte[innerSize];
-            }
-
-
-            SetProperties(chProps, s_Whitespace,  fWhitespace );
-            SetProperties(chProps, s_LetterXml4e, fLetter);
-            SetProperties(chProps, s_NCStartName, fNCStartNameSC);
-            SetProperties(chProps, s_NCName, fNCNameSC);
-            SetProperties(chProps, s_CharData, fCharData);
-            SetProperties(chProps, s_NCNameXml4e, fNCNameXml4e);
-            SetProperties(chProps, s_Text, fText);
-            SetProperties(chProps, s_AttrValue, fAttrValue);
-
-            return chProps;
-        }
-
-        private static void SetProperties(byte[][] chProps, string ranges, byte value ) {
-            for ( int p = 0; p < ranges.Length; p += 2 ) {
-                for ( int i = ranges[p], last = ranges[p + 1]; i <= last; i++ ) {
-                    chProps[i >> innerSizeBits][i & innerSizeMask] |= value;
-                }
-            }
-        }
-
-        // produces tables in a form of array literals.
-        // we use a very simple form of compression here - 
-        // inner tables with duplicated content are reused in the outer table
-        private static string Dump()
-        {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine("        private static readonly byte[] s_charPropertiesIndex = ");
-            sb.Append("        {");
-
-            var outMap = new System.Collections.Generic.List<byte>();
-
-            for (int t = 0; t < s_charProperties.Length; t++)
-            {
-                var inner = s_charProperties[t];
-
-                // check if same as one of previous
-                int t1;
-                for (t1 = 0; t1 < outMap.Count; t1++)
-                {
-                    var other = s_charProperties[outMap[t1]];
-                    if (CanMap(inner, other))
-                    {
-                        break;
-                    }
-                }
-
-                if (t % 20 == 0)
-                {
-                    sb.AppendLine();
-                    sb.Append("            ");
-                }
-
-                sb.Append(' ');
-                sb.Append("0x" + ((byte)t1).ToString("x2"));
-                sb.Append(',');
-
-                if (t1 == outMap.Count)
-                {
-                    outMap.Add((byte)t);
-                }
-            }
-
-            sb.AppendLine();
-            sb.Append("        };");
-            sb.AppendLine();
-            sb.AppendLine();
-
-            sb.Append("        private static readonly byte[] s_charProperties = ");
-            sb.AppendLine();
-            sb.Append("        {");
-
-            int i = 0;
-            foreach (byte t1 in outMap)
-            {
-                var table = s_charProperties[t1];
-                for (int t = 0; t < s_charProperties.Length; t++)
-                {
-                    if (i++ % 20 == 0)
-                    {
-                        sb.AppendLine();
-                        sb.Append("            ");
-                    }
-
-                    sb.Append(' ');
-                    sb.Append("0x" + table[t].ToString("x2"));
-                    sb.Append(',');
-                }
-            }
-
-            sb.AppendLine();
-            sb.Append("        };");
-            sb.AppendLine();
-
-            return sb.ToString();
-        }
-
-        private static bool CanMap(byte[] current, byte[] other)
-        {
-            for (int i = 0; i < current.Length; i++)
-            {
-                if (current[i] != other[i])
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-
-        internal const string s_Whitespace =
-            "\u0009\u000a\u000d\u000d\u0020\u0020";
-        
-#if XML10_FIFTH_EDITION
-        // StartNameChar without ':' -- see Section 2.3 production [4]
-        const string s_NCStartName =
-            "\u0041\u005a\u005f\u005f\u0061\u007a\u00c0\u00d6" +
-            "\u00d8\u00f6\u00f8\u02ff\u0370\u037d\u037f\u1fff" +
-            "\u200c\u200d\u2070\u218f\u2c00\u2fef\u3001\ud7ff" +
-            "\uf900\ufdcf\ufdf0\ufffd";
-        
-        // NameChar without ':' -- see Section 2.3 production [4a] 
-        const string s_NCName =
-            "\u002d\u002e\u0030\u0039\u0041\u005a\u005f\u005f" +
-            "\u0061\u007a\u00b7\u00b7\u00c0\u00d6\u00d8\u00f6" +
-            "\u00f8\u037d\u037f\u1fff\u200c\u200d\u203f\u2040" +
-            "\u2070\u218f\u2c00\u2fef\u3001\ud7ff\uf900\ufdcf" +
-            "\ufdf0\ufffd";
-#else
-        const string s_NCStartName =
-            "\u0041\u005a\u005f\u005f\u0061\u007a" +
-            "\u00c0\u00d6\u00d8\u00f6\u00f8\u0131\u0134\u013e" +
-            "\u0141\u0148\u014a\u017e\u0180\u01c3\u01cd\u01f0" +
-            "\u01f4\u01f5\u01fa\u0217\u0250\u02a8\u02bb\u02c1" +
-            "\u0386\u0386\u0388\u038a\u038c\u038c\u038e\u03a1" +
-            "\u03a3\u03ce\u03d0\u03d6\u03da\u03da\u03dc\u03dc" +
-            "\u03de\u03de\u03e0\u03e0\u03e2\u03f3\u0401\u040c" +
-            "\u040e\u044f\u0451\u045c\u045e\u0481\u0490\u04c4" +
-            "\u04c7\u04c8\u04cb\u04cc\u04d0\u04eb\u04ee\u04f5" +
-            "\u04f8\u04f9\u0531\u0556\u0559\u0559\u0561\u0586" +
-            "\u05d0\u05ea\u05f0\u05f2\u0621\u063a\u0641\u064a" +
-            "\u0671\u06b7\u06ba\u06be\u06c0\u06ce\u06d0\u06d3" +
-            "\u06d5\u06d5\u06e5\u06e6\u0905\u0939\u093d\u093d" +
-            "\u0958\u0961\u0985\u098c\u098f\u0990\u0993\u09a8" +
-            "\u09aa\u09b0\u09b2\u09b2\u09b6\u09b9\u09dc\u09dd" +
-            "\u09df\u09e1\u09f0\u09f1\u0a05\u0a0a\u0a0f\u0a10" +
-            "\u0a13\u0a28\u0a2a\u0a30\u0a32\u0a33\u0a35\u0a36" +
-            "\u0a38\u0a39\u0a59\u0a5c\u0a5e\u0a5e\u0a72\u0a74" +
-            "\u0a85\u0a8b\u0a8d\u0a8d\u0a8f\u0a91\u0a93\u0aa8" +
-            "\u0aaa\u0ab0\u0ab2\u0ab3\u0ab5\u0ab9\u0abd\u0abd" +
-            "\u0ae0\u0ae0\u0b05\u0b0c\u0b0f\u0b10\u0b13\u0b28" +
-            "\u0b2a\u0b30\u0b32\u0b33\u0b36\u0b39\u0b3d\u0b3d" +
-            "\u0b5c\u0b5d\u0b5f\u0b61\u0b85\u0b8a\u0b8e\u0b90" +
-            "\u0b92\u0b95\u0b99\u0b9a\u0b9c\u0b9c\u0b9e\u0b9f" +
-            "\u0ba3\u0ba4\u0ba8\u0baa\u0bae\u0bb5\u0bb7\u0bb9" +
-            "\u0c05\u0c0c\u0c0e\u0c10\u0c12\u0c28\u0c2a\u0c33" +
-            "\u0c35\u0c39\u0c60\u0c61\u0c85\u0c8c\u0c8e\u0c90" +
-            "\u0c92\u0ca8\u0caa\u0cb3\u0cb5\u0cb9\u0cde\u0cde" +
-            "\u0ce0\u0ce1\u0d05\u0d0c\u0d0e\u0d10\u0d12\u0d28" +
-            "\u0d2a\u0d39\u0d60\u0d61\u0e01\u0e2e\u0e30\u0e30" +
-            "\u0e32\u0e33\u0e40\u0e45\u0e81\u0e82\u0e84\u0e84" +
-            "\u0e87\u0e88\u0e8a\u0e8a\u0e8d\u0e8d\u0e94\u0e97" +
-            "\u0e99\u0e9f\u0ea1\u0ea3\u0ea5\u0ea5\u0ea7\u0ea7" +
-            "\u0eaa\u0eab\u0ead\u0eae\u0eb0\u0eb0\u0eb2\u0eb3" +
-            "\u0ebd\u0ebd\u0ec0\u0ec4\u0f40\u0f47\u0f49\u0f69" +
-            "\u10a0\u10c5\u10d0\u10f6\u1100\u1100\u1102\u1103" +
-            "\u1105\u1107\u1109\u1109\u110b\u110c\u110e\u1112" +
-            "\u113c\u113c\u113e\u113e\u1140\u1140\u114c\u114c" +
-            "\u114e\u114e\u1150\u1150\u1154\u1155\u1159\u1159" +
-            "\u115f\u1161\u1163\u1163\u1165\u1165\u1167\u1167" +
-            "\u1169\u1169\u116d\u116e\u1172\u1173\u1175\u1175" +
-            "\u119e\u119e\u11a8\u11a8\u11ab\u11ab\u11ae\u11af" +
-            "\u11b7\u11b8\u11ba\u11ba\u11bc\u11c2\u11eb\u11eb" +
-            "\u11f0\u11f0\u11f9\u11f9\u1e00\u1e9b\u1ea0\u1ef9" +
-            "\u1f00\u1f15\u1f18\u1f1d\u1f20\u1f45\u1f48\u1f4d" +
-            "\u1f50\u1f57\u1f59\u1f59\u1f5b\u1f5b\u1f5d\u1f5d" +
-            "\u1f5f\u1f7d\u1f80\u1fb4\u1fb6\u1fbc\u1fbe\u1fbe" +
-            "\u1fc2\u1fc4\u1fc6\u1fcc\u1fd0\u1fd3\u1fd6\u1fdb" +
-            "\u1fe0\u1fec\u1ff2\u1ff4\u1ff6\u1ffc\u2126\u2126" +
-            "\u212a\u212b\u212e\u212e\u2180\u2182\u3007\u3007" +
-            "\u3021\u3029\u3041\u3094\u30a1\u30fa\u3105\u312c" +
-            "\u4e00\u9fa5\uac00\ud7a3";
-
-        const string s_NCName =
-            "\u002d\u002e\u0030\u0039\u0041\u005a\u005f\u005f" +
-            "\u0061\u007a\u00b7\u00b7\u00c0\u00d6\u00d8\u00f6" +
-            "\u00f8\u0131\u0134\u013e\u0141\u0148\u014a\u017e" +
-            "\u0180\u01c3\u01cd\u01f0\u01f4\u01f5\u01fa\u0217" +
-            "\u0250\u02a8\u02bb\u02c1\u02d0\u02d1\u0300\u0345" +
-            "\u0360\u0361\u0386\u038a\u038c\u038c\u038e\u03a1" +
-            "\u03a3\u03ce\u03d0\u03d6\u03da\u03da\u03dc\u03dc" +
-            "\u03de\u03de\u03e0\u03e0\u03e2\u03f3\u0401\u040c" +
-            "\u040e\u044f\u0451\u045c\u045e\u0481\u0483\u0486" +   
-            "\u0490\u04c4\u04c7\u04c8\u04cb\u04cc\u04d0\u04eb" +  
-            "\u04ee\u04f5\u04f8\u04f9\u0531\u0556\u0559\u0559" +
-            "\u0561\u0586\u0591\u05a1\u05a3\u05b9\u05bb\u05bd" +
-            "\u05bf\u05bf\u05c1\u05c2\u05c4\u05c4\u05d0\u05ea" +
-            "\u05f0\u05f2\u0621\u063a\u0640\u0652\u0660\u0669" +
-            "\u0670\u06b7\u06ba\u06be\u06c0\u06ce\u06d0\u06d3" +
-            "\u06d5\u06e8\u06ea\u06ed\u06f0\u06f9\u0901\u0903" +
-            "\u0905\u0939\u093c\u094d\u0951\u0954\u0958\u0963" +
-            "\u0966\u096f\u0981\u0983\u0985\u098c\u098f\u0990" +
-            "\u0993\u09a8\u09aa\u09b0\u09b2\u09b2\u09b6\u09b9" +
-            "\u09bc\u09bc\u09be\u09c4\u09c7\u09c8\u09cb\u09cd" +
-            "\u09d7\u09d7\u09dc\u09dd\u09df\u09e3\u09e6\u09f1" +
-            "\u0a02\u0a02\u0a05\u0a0a\u0a0f\u0a10\u0a13\u0a28" +
-            "\u0a2a\u0a30\u0a32\u0a33\u0a35\u0a36\u0a38\u0a39" +
-            "\u0a3c\u0a3c\u0a3e\u0a42\u0a47\u0a48\u0a4b\u0a4d" +
-            "\u0a59\u0a5c\u0a5e\u0a5e\u0a66\u0a74\u0a81\u0a83" +
-            "\u0a85\u0a8b\u0a8d\u0a8d\u0a8f\u0a91\u0a93\u0aa8" +
-            "\u0aaa\u0ab0\u0ab2\u0ab3\u0ab5\u0ab9\u0abc\u0ac5" +
-            "\u0ac7\u0ac9\u0acb\u0acd\u0ae0\u0ae0\u0ae6\u0aef" +
-            "\u0b01\u0b03\u0b05\u0b0c\u0b0f\u0b10\u0b13\u0b28" +
-            "\u0b2a\u0b30\u0b32\u0b33\u0b36\u0b39\u0b3c\u0b43" +
-            "\u0b47\u0b48\u0b4b\u0b4d\u0b56\u0b57\u0b5c\u0b5d" +
-            "\u0b5f\u0b61\u0b66\u0b6f\u0b82\u0b83\u0b85\u0b8a" +
-            "\u0b8e\u0b90\u0b92\u0b95\u0b99\u0b9a\u0b9c\u0b9c" +
-            "\u0b9e\u0b9f\u0ba3\u0ba4\u0ba8\u0baa\u0bae\u0bb5" +
-            "\u0bb7\u0bb9\u0bbe\u0bc2\u0bc6\u0bc8\u0bca\u0bcd" +
-            "\u0bd7\u0bd7\u0be7\u0bef\u0c01\u0c03\u0c05\u0c0c" +
-            "\u0c0e\u0c10\u0c12\u0c28\u0c2a\u0c33\u0c35\u0c39" +
-            "\u0c3e\u0c44\u0c46\u0c48\u0c4a\u0c4d\u0c55\u0c56" +
-            "\u0c60\u0c61\u0c66\u0c6f\u0c82\u0c83\u0c85\u0c8c" +
-            "\u0c8e\u0c90\u0c92\u0ca8\u0caa\u0cb3\u0cb5\u0cb9" +
-            "\u0cbe\u0cc4\u0cc6\u0cc8\u0cca\u0ccd\u0cd5\u0cd6" +
-            "\u0cde\u0cde\u0ce0\u0ce1\u0ce6\u0cef\u0d02\u0d03" +
-            "\u0d05\u0d0c\u0d0e\u0d10\u0d12\u0d28\u0d2a\u0d39" +
-            "\u0d3e\u0d43\u0d46\u0d48\u0d4a\u0d4d\u0d57\u0d57" +
-            "\u0d60\u0d61\u0d66\u0d6f\u0e01\u0e2e\u0e30\u0e3a" +
-            "\u0e40\u0e4e\u0e50\u0e59\u0e81\u0e82\u0e84\u0e84" +
-            "\u0e87\u0e88\u0e8a\u0e8a\u0e8d\u0e8d\u0e94\u0e97" +
-            "\u0e99\u0e9f\u0ea1\u0ea3\u0ea5\u0ea5\u0ea7\u0ea7" +
-            "\u0eaa\u0eab\u0ead\u0eae\u0eb0\u0eb9\u0ebb\u0ebd" +
-            "\u0ec0\u0ec4\u0ec6\u0ec6\u0ec8\u0ecd\u0ed0\u0ed9" +
-            "\u0f18\u0f19\u0f20\u0f29\u0f35\u0f35\u0f37\u0f37" +
-            "\u0f39\u0f39\u0f3e\u0f47\u0f49\u0f69\u0f71\u0f84" +
-            "\u0f86\u0f8b\u0f90\u0f95\u0f97\u0f97\u0f99\u0fad" +
-            "\u0fb1\u0fb7\u0fb9\u0fb9\u10a0\u10c5\u10d0\u10f6" +
-            "\u1100\u1100\u1102\u1103\u1105\u1107\u1109\u1109" +
-            "\u110b\u110c\u110e\u1112\u113c\u113c\u113e\u113e" +
-            "\u1140\u1140\u114c\u114c\u114e\u114e\u1150\u1150" +
-            "\u1154\u1155\u1159\u1159\u115f\u1161\u1163\u1163" +
-            "\u1165\u1165\u1167\u1167\u1169\u1169\u116d\u116e" +
-            "\u1172\u1173\u1175\u1175\u119e\u119e\u11a8\u11a8" +
-            "\u11ab\u11ab\u11ae\u11af\u11b7\u11b8\u11ba\u11ba" +
-            "\u11bc\u11c2\u11eb\u11eb\u11f0\u11f0\u11f9\u11f9" +
-            "\u1e00\u1e9b\u1ea0\u1ef9\u1f00\u1f15\u1f18\u1f1d" +
-            "\u1f20\u1f45\u1f48\u1f4d\u1f50\u1f57\u1f59\u1f59" +
-            "\u1f5b\u1f5b\u1f5d\u1f5d\u1f5f\u1f7d\u1f80\u1fb4" +
-            "\u1fb6\u1fbc\u1fbe\u1fbe\u1fc2\u1fc4\u1fc6\u1fcc" +
-            "\u1fd0\u1fd3\u1fd6\u1fdb\u1fe0\u1fec\u1ff2\u1ff4" +
-            "\u1ff6\u1ffc\u20d0\u20dc\u20e1\u20e1\u2126\u2126" +
-            "\u212a\u212b\u212e\u212e\u2180\u2182\u3005\u3005" +
-            "\u3007\u3007\u3021\u302f\u3031\u3035\u3041\u3094" +
-            "\u3099\u309a\u309d\u309e\u30a1\u30fa\u30fc\u30fe" +
-            "\u3105\u312c\u4e00\u9fa5\uac00\ud7a3";
-#endif
-
-        const string s_CharData =
-            "\u0009\u000a\u000d\u000d\u0020\ud7ff\ue000\ufffd";
-
-        const string s_PublicID =
-            "\u000a\u000a\u000d\u000d\u0020\u0021\u0023\u0025" +
-            "\u0027\u003b\u003d\u003d\u003f\u005a\u005f\u005f" +
-            "\u0061\u007a";
-
-        const string s_Text = // TextChar = CharData - { 0xA | 0xD | '<' | '&' | 0x9 | ']' | 0xDC00 - 0xDFFF }
-            "\u0020\u0025\u0027\u003b\u003d\u005c\u005e\ud7ff\ue000\ufffd";
-
-        const string s_AttrValue = // AttrValueChar = CharData - { 0xA | 0xD | 0x9 | '<' | '>' | '&' | '\'' | '"' | 0xDC00 - 0xDFFF }
-            "\u0020\u0021\u0023\u0025\u0028\u003b\u003d\u003d\u003f\ud7ff\ue000\ufffd";
-
-        //
-        // XML 1.0 Fourth Edition definitions for name characters 
-        //
-        const string s_LetterXml4e =
-            "\u0041\u005a\u0061\u007a\u00c0\u00d6\u00d8\u00f6" +
-            "\u00f8\u0131\u0134\u013e\u0141\u0148\u014a\u017e" +
-            "\u0180\u01c3\u01cd\u01f0\u01f4\u01f5\u01fa\u0217" +
-            "\u0250\u02a8\u02bb\u02c1\u0386\u0386\u0388\u038a" +
-            "\u038c\u038c\u038e\u03a1\u03a3\u03ce\u03d0\u03d6" +
-            "\u03da\u03da\u03dc\u03dc\u03de\u03de\u03e0\u03e0" +
-            "\u03e2\u03f3\u0401\u040c\u040e\u044f\u0451\u045c" +
-            "\u045e\u0481\u0490\u04c4\u04c7\u04c8\u04cb\u04cc" +
-            "\u04d0\u04eb\u04ee\u04f5\u04f8\u04f9\u0531\u0556" +
-            "\u0559\u0559\u0561\u0586\u05d0\u05ea\u05f0\u05f2" +
-            "\u0621\u063a\u0641\u064a\u0671\u06b7\u06ba\u06be" +
-            "\u06c0\u06ce\u06d0\u06d3\u06d5\u06d5\u06e5\u06e6" +
-            "\u0905\u0939\u093d\u093d\u0958\u0961\u0985\u098c" +
-            "\u098f\u0990\u0993\u09a8\u09aa\u09b0\u09b2\u09b2" +
-            "\u09b6\u09b9\u09dc\u09dd\u09df\u09e1\u09f0\u09f1" +
-            "\u0a05\u0a0a\u0a0f\u0a10\u0a13\u0a28\u0a2a\u0a30" +
-            "\u0a32\u0a33\u0a35\u0a36\u0a38\u0a39\u0a59\u0a5c" +
-            "\u0a5e\u0a5e\u0a72\u0a74\u0a85\u0a8b\u0a8d\u0a8d" +
-            "\u0a8f\u0a91\u0a93\u0aa8\u0aaa\u0ab0\u0ab2\u0ab3" +
-            "\u0ab5\u0ab9\u0abd\u0abd\u0ae0\u0ae0\u0b05\u0b0c" +
-            "\u0b0f\u0b10\u0b13\u0b28\u0b2a\u0b30\u0b32\u0b33" +
-            "\u0b36\u0b39\u0b3d\u0b3d\u0b5c\u0b5d\u0b5f\u0b61" +
-            "\u0b85\u0b8a\u0b8e\u0b90\u0b92\u0b95\u0b99\u0b9a" +
-            "\u0b9c\u0b9c\u0b9e\u0b9f\u0ba3\u0ba4\u0ba8\u0baa" +
-            "\u0bae\u0bb5\u0bb7\u0bb9\u0c05\u0c0c\u0c0e\u0c10" +
-            "\u0c12\u0c28\u0c2a\u0c33\u0c35\u0c39\u0c60\u0c61" +
-            "\u0c85\u0c8c\u0c8e\u0c90\u0c92\u0ca8\u0caa\u0cb3" +
-            "\u0cb5\u0cb9\u0cde\u0cde\u0ce0\u0ce1\u0d05\u0d0c" +
-            "\u0d0e\u0d10\u0d12\u0d28\u0d2a\u0d39\u0d60\u0d61" +
-            "\u0e01\u0e2e\u0e30\u0e30\u0e32\u0e33\u0e40\u0e45" +
-            "\u0e81\u0e82\u0e84\u0e84\u0e87\u0e88\u0e8a\u0e8a" +
-            "\u0e8d\u0e8d\u0e94\u0e97\u0e99\u0e9f\u0ea1\u0ea3" +
-            "\u0ea5\u0ea5\u0ea7\u0ea7\u0eaa\u0eab\u0ead\u0eae" +
-            "\u0eb0\u0eb0\u0eb2\u0eb3\u0ebd\u0ebd\u0ec0\u0ec4" +
-            "\u0f40\u0f47\u0f49\u0f69\u10a0\u10c5\u10d0\u10f6" +
-            "\u1100\u1100\u1102\u1103\u1105\u1107\u1109\u1109" +
-            "\u110b\u110c\u110e\u1112\u113c\u113c\u113e\u113e" +
-            "\u1140\u1140\u114c\u114c\u114e\u114e\u1150\u1150" +
-            "\u1154\u1155\u1159\u1159\u115f\u1161\u1163\u1163" +
-            "\u1165\u1165\u1167\u1167\u1169\u1169\u116d\u116e" +
-            "\u1172\u1173\u1175\u1175\u119e\u119e\u11a8\u11a8" +
-            "\u11ab\u11ab\u11ae\u11af\u11b7\u11b8\u11ba\u11ba" +
-            "\u11bc\u11c2\u11eb\u11eb\u11f0\u11f0\u11f9\u11f9" +
-            "\u1e00\u1e9b\u1ea0\u1ef9\u1f00\u1f15\u1f18\u1f1d" +
-            "\u1f20\u1f45\u1f48\u1f4d\u1f50\u1f57\u1f59\u1f59" +
-            "\u1f5b\u1f5b\u1f5d\u1f5d\u1f5f\u1f7d\u1f80\u1fb4" +
-            "\u1fb6\u1fbc\u1fbe\u1fbe\u1fc2\u1fc4\u1fc6\u1fcc" +
-            "\u1fd0\u1fd3\u1fd6\u1fdb\u1fe0\u1fec\u1ff2\u1ff4" +
-            "\u1ff6\u1ffc\u2126\u2126\u212a\u212b\u212e\u212e" +
-            "\u2180\u2182\u3007\u3007\u3021\u3029\u3041\u3094" +
-            "\u30a1\u30fa\u3105\u312c\u4e00\u9fa5\uac00\ud7a3";
-
-        const string s_NCNameXml4e =
-            "\u002d\u002e\u0030\u0039\u0041\u005a\u005f\u005f" +
-            "\u0061\u007a\u00b7\u00b7\u00c0\u00d6\u00d8\u00f6" +
-            "\u00f8\u0131\u0134\u013e\u0141\u0148\u014a\u017e" +
-            "\u0180\u01c3\u01cd\u01f0\u01f4\u01f5\u01fa\u0217" +
-            "\u0250\u02a8\u02bb\u02c1\u02d0\u02d1\u0300\u0345" +
-            "\u0360\u0361\u0386\u038a\u038c\u038c\u038e\u03a1" +
-            "\u03a3\u03ce\u03d0\u03d6\u03da\u03da\u03dc\u03dc" +
-            "\u03de\u03de\u03e0\u03e0\u03e2\u03f3\u0401\u040c" +
-            "\u040e\u044f\u0451\u045c\u045e\u0481\u0483\u0486" +   
-            "\u0490\u04c4\u04c7\u04c8\u04cb\u04cc\u04d0\u04eb" +  
-            "\u04ee\u04f5\u04f8\u04f9\u0531\u0556\u0559\u0559" +
-            "\u0561\u0586\u0591\u05a1\u05a3\u05b9\u05bb\u05bd" +
-            "\u05bf\u05bf\u05c1\u05c2\u05c4\u05c4\u05d0\u05ea" +
-            "\u05f0\u05f2\u0621\u063a\u0640\u0652\u0660\u0669" +
-            "\u0670\u06b7\u06ba\u06be\u06c0\u06ce\u06d0\u06d3" +
-            "\u06d5\u06e8\u06ea\u06ed\u06f0\u06f9\u0901\u0903" +
-            "\u0905\u0939\u093c\u094d\u0951\u0954\u0958\u0963" +
-            "\u0966\u096f\u0981\u0983\u0985\u098c\u098f\u0990" +
-            "\u0993\u09a8\u09aa\u09b0\u09b2\u09b2\u09b6\u09b9" +
-            "\u09bc\u09bc\u09be\u09c4\u09c7\u09c8\u09cb\u09cd" +
-            "\u09d7\u09d7\u09dc\u09dd\u09df\u09e3\u09e6\u09f1" +
-            "\u0a02\u0a02\u0a05\u0a0a\u0a0f\u0a10\u0a13\u0a28" +
-            "\u0a2a\u0a30\u0a32\u0a33\u0a35\u0a36\u0a38\u0a39" +
-            "\u0a3c\u0a3c\u0a3e\u0a42\u0a47\u0a48\u0a4b\u0a4d" +
-            "\u0a59\u0a5c\u0a5e\u0a5e\u0a66\u0a74\u0a81\u0a83" +
-            "\u0a85\u0a8b\u0a8d\u0a8d\u0a8f\u0a91\u0a93\u0aa8" +
-            "\u0aaa\u0ab0\u0ab2\u0ab3\u0ab5\u0ab9\u0abc\u0ac5" +
-            "\u0ac7\u0ac9\u0acb\u0acd\u0ae0\u0ae0\u0ae6\u0aef" +
-            "\u0b01\u0b03\u0b05\u0b0c\u0b0f\u0b10\u0b13\u0b28" +
-            "\u0b2a\u0b30\u0b32\u0b33\u0b36\u0b39\u0b3c\u0b43" +
-            "\u0b47\u0b48\u0b4b\u0b4d\u0b56\u0b57\u0b5c\u0b5d" +
-            "\u0b5f\u0b61\u0b66\u0b6f\u0b82\u0b83\u0b85\u0b8a" +
-            "\u0b8e\u0b90\u0b92\u0b95\u0b99\u0b9a\u0b9c\u0b9c" +
-            "\u0b9e\u0b9f\u0ba3\u0ba4\u0ba8\u0baa\u0bae\u0bb5" +
-            "\u0bb7\u0bb9\u0bbe\u0bc2\u0bc6\u0bc8\u0bca\u0bcd" +
-            "\u0bd7\u0bd7\u0be7\u0bef\u0c01\u0c03\u0c05\u0c0c" +
-            "\u0c0e\u0c10\u0c12\u0c28\u0c2a\u0c33\u0c35\u0c39" +
-            "\u0c3e\u0c44\u0c46\u0c48\u0c4a\u0c4d\u0c55\u0c56" +
-            "\u0c60\u0c61\u0c66\u0c6f\u0c82\u0c83\u0c85\u0c8c" +
-            "\u0c8e\u0c90\u0c92\u0ca8\u0caa\u0cb3\u0cb5\u0cb9" +
-            "\u0cbe\u0cc4\u0cc6\u0cc8\u0cca\u0ccd\u0cd5\u0cd6" +
-            "\u0cde\u0cde\u0ce0\u0ce1\u0ce6\u0cef\u0d02\u0d03" +
-            "\u0d05\u0d0c\u0d0e\u0d10\u0d12\u0d28\u0d2a\u0d39" +
-            "\u0d3e\u0d43\u0d46\u0d48\u0d4a\u0d4d\u0d57\u0d57" +
-            "\u0d60\u0d61\u0d66\u0d6f\u0e01\u0e2e\u0e30\u0e3a" +
-            "\u0e40\u0e4e\u0e50\u0e59\u0e81\u0e82\u0e84\u0e84" +
-            "\u0e87\u0e88\u0e8a\u0e8a\u0e8d\u0e8d\u0e94\u0e97" +
-            "\u0e99\u0e9f\u0ea1\u0ea3\u0ea5\u0ea5\u0ea7\u0ea7" +
-            "\u0eaa\u0eab\u0ead\u0eae\u0eb0\u0eb9\u0ebb\u0ebd" +
-            "\u0ec0\u0ec4\u0ec6\u0ec6\u0ec8\u0ecd\u0ed0\u0ed9" +
-            "\u0f18\u0f19\u0f20\u0f29\u0f35\u0f35\u0f37\u0f37" +
-            "\u0f39\u0f39\u0f3e\u0f47\u0f49\u0f69\u0f71\u0f84" +
-            "\u0f86\u0f8b\u0f90\u0f95\u0f97\u0f97\u0f99\u0fad" +
-            "\u0fb1\u0fb7\u0fb9\u0fb9\u10a0\u10c5\u10d0\u10f6" +
-            "\u1100\u1100\u1102\u1103\u1105\u1107\u1109\u1109" +
-            "\u110b\u110c\u110e\u1112\u113c\u113c\u113e\u113e" +
-            "\u1140\u1140\u114c\u114c\u114e\u114e\u1150\u1150" +
-            "\u1154\u1155\u1159\u1159\u115f\u1161\u1163\u1163" +
-            "\u1165\u1165\u1167\u1167\u1169\u1169\u116d\u116e" +
-            "\u1172\u1173\u1175\u1175\u119e\u119e\u11a8\u11a8" +
-            "\u11ab\u11ab\u11ae\u11af\u11b7\u11b8\u11ba\u11ba" +
-            "\u11bc\u11c2\u11eb\u11eb\u11f0\u11f0\u11f9\u11f9" +
-            "\u1e00\u1e9b\u1ea0\u1ef9\u1f00\u1f15\u1f18\u1f1d" +
-            "\u1f20\u1f45\u1f48\u1f4d\u1f50\u1f57\u1f59\u1f59" +
-            "\u1f5b\u1f5b\u1f5d\u1f5d\u1f5f\u1f7d\u1f80\u1fb4" +
-            "\u1fb6\u1fbc\u1fbe\u1fbe\u1fc2\u1fc4\u1fc6\u1fcc" +
-            "\u1fd0\u1fd3\u1fd6\u1fdb\u1fe0\u1fec\u1ff2\u1ff4" +
-            "\u1ff6\u1ffc\u20d0\u20dc\u20e1\u20e1\u2126\u2126" +
-            "\u212a\u212b\u212e\u212e\u2180\u2182\u3005\u3005" +
-            "\u3007\u3007\u3021\u302f\u3031\u3035\u3041\u3094" +
-            "\u3099\u309a\u309d\u309e\u30a1\u30fa\u30fc\u30fe" +
-            "\u3105\u312c\u4e00\u9fa5\uac00\ud7a3";
-
-        private static byte charProperties(char i)
-        {
-            return s_charProperties[i >> innerSizeBits][i & innerSizeMask];
-        }
-
-#endif // XMLCHARTYPE_USE_LITERAL_TABLE
-
-        public static bool IsWhiteSpace(char ch)
-        {
-            return (charProperties(ch) & fWhitespace) != 0;
-        }
-
-        public static bool IsExtender(char ch)
-        {
-            return (ch == 0xb7);
-        }
-
-        public static bool IsNCNameSingleChar(char ch)
-        {
-            return (charProperties(ch) & fNCNameSC) != 0;
-        }
-
-#if XML10_FIFTH_EDITION
-        public static bool IsNCNameSurrogateChar(string str, int index)
-        {
-            if (index + 1 >= str.Length)
-            {
-                return false;
-            }
-            return InRange(str[index], s_NCNameSurHighStart, s_NCNameSurHighEnd) &&
-                   InRange(str[index + 1], s_NCNameSurLowStart, s_NCNameSurLowEnd);
-        }
-
-        // Surrogate characters for names are the same for NameChar and StartNameChar, 
-        // so this method can be used for both
-        public static bool IsNCNameSurrogateChar(char lowChar, char highChar)
-        {
-            return InRange(highChar, s_NCNameSurHighStart, s_NCNameSurHighEnd) &&
-                   InRange(lowChar, s_NCNameSurLowStart, s_NCNameSurLowEnd);
-        }
-
-        public static bool IsNCNameHighSurrogateChar(char highChar)
-        {
-            return InRange(highChar, s_NCNameSurHighStart, s_NCNameSurHighEnd);
-        }
-
-        public static bool IsNCNameLowSurrogateChar(char lowChar)
-        {
-            return InRange(lowChar, s_NCNameSurLowStart, s_NCNameSurLowEnd);
-        }
-#endif
-
-        public static bool IsStartNCNameSingleChar(char ch)
-        {
-            return (charProperties(ch) & fNCStartNameSC) != 0;
-        }
-
-#if XML10_FIFTH_EDITION
-        // !!! NOTE: These is no IsStartNCNameSurrogateChar, use IsNCNameSurrogateChar instead.
-        // Surrogate ranges for start name characters are the same as for name characters.
-#endif
-
-        public static bool IsNameSingleChar(char ch)
-        {
-            return IsNCNameSingleChar(ch) || ch == ':';
-        }
-
-#if XML10_FIFTH_EDITION
-        static bool IsNameSurrogateChar(char lowChar, char highChar)
-        {
-            return IsNCNameSurrogateChar(lowChar, highChar);
-        }
-#endif
-
-        public static bool IsStartNameSingleChar(char ch)
-        {
-            return IsStartNCNameSingleChar(ch) || ch == ':';
-        }
-
-        public static bool IsCharData(char ch)
-        {
-            return (charProperties(ch) & fCharData) != 0;
-        }
-
-        // [13] PubidChar ::=  #x20 | #xD | #xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%] Section 2.3 of spec
-        public static bool IsPubidChar(char ch)
-        {
-            if (ch < (char)0x80)
-            {
-                return (s_PublicIdBitmap[ch >> 4] & (1 << (ch & 0xF))) != 0;
-            }
-            return false;
-        }
-
-        // TextChar = CharData - { 0xA, 0xD, '<', '&', ']' }
-        internal static bool IsTextChar(char ch)
-        {
-            return (charProperties(ch) & fText) != 0;
-        }
-
-        // AttrValueChar = CharData - { 0xA, 0xD, 0x9, '<', '>', '&', '\'', '"' }
-        internal static bool IsAttributeValueChar(char ch)
-        {
-            return (charProperties(ch) & fAttrValue) != 0;
-        }
-
-        // XML 1.0 Fourth Edition definitions
-        //
-        public static bool IsLetter(char ch)
-        {
-            return (charProperties(ch) & fLetter) != 0;
-        }
-
-        // This method uses the XML 4th edition name character ranges
-        public static bool IsNCNameCharXml4e(char ch)
-        {
-            return (charProperties(ch) & fNCNameXml4e) != 0;
-        }
-
-        // This method uses the XML 4th edition name character ranges
-        public static bool IsStartNCNameCharXml4e(char ch)
-        {
-            return IsLetter(ch) || ch == '_';
-        }
-
-        // This method uses the XML 4th edition name character ranges
-        public static bool IsNameCharXml4e(char ch)
-        {
-            return IsNCNameCharXml4e(ch) || ch == ':';
-        }
-
-        // This method uses the XML 4th edition name character ranges
-        public static bool IsStartNameCharXml4e(char ch)
-        {
-            return IsStartNCNameCharXml4e(ch) || ch == ':';
-        }
-
-        // Digit methods
-        public static bool IsDigit(char ch)
-        {
-            return InRange(ch, 0x30, 0x39);
-        }
-
-        public static bool IsHexDigit(char ch)
-        {
-            return InRange(ch, 0x30, 0x39) || InRange(ch, 'a', 'f') || InRange(ch, 'A', 'F');
-        }
-
-        // Surrogate methods
-        internal static bool IsHighSurrogate(int ch)
-        {
-            return InRange(ch, SurHighStart, SurHighEnd);
-        }
-
-        internal static bool IsLowSurrogate(int ch)
-        {
-            return InRange(ch, SurLowStart, SurLowEnd);
-        }
-
-        internal static bool IsSurrogate(int ch)
-        {
-            return InRange(ch, SurHighStart, SurLowEnd);
-        }
-
-        internal static int CombineSurrogateChar(int lowChar, int highChar)
-        {
-            return (lowChar - SurLowStart) | ((highChar - SurHighStart) << 10) + 0x10000;
-        }
-
-        internal static void SplitSurrogateChar(int combinedChar, out char lowChar, out char highChar)
-        {
-            int v = combinedChar - 0x10000;
-            lowChar = (char)(SurLowStart + v % 1024);
-            highChar = (char)(SurHighStart + v / 1024);
-        }
-
-        internal static bool IsOnlyWhitespace(string str)
-        {
-            return IsOnlyWhitespaceWithPos(str) == -1;
-        }
-
-        // Character checking on strings
-        internal static int IsOnlyWhitespaceWithPos(string str)
-        {
-            if (str != null)
-            {
-                for (int i = 0; i < str.Length; i++)
-                {
-                    if ((charProperties(str[i]) & fWhitespace) == 0)
-                    {
-                        return i;
-                    }
-                }
-            }
-            return -1;
-        }
-
-        internal static int IsOnlyCharData(string str)
-        {
-            if (str != null)
-            {
-                for (int i = 0; i < str.Length; i++)
-                {
-                    if ((charProperties(str[i]) & fCharData) == 0)
-                    {
-                        if (i + 1 >= str.Length || !(XmlCharType.IsHighSurrogate(str[i]) && XmlCharType.IsLowSurrogate(str[i + 1])))
-                        {
-                            return i;
-                        }
-                        else
-                        {
-                            i++;
-                        }
-                    }
-                }
-            }
-            return -1;
-        }
-
-        internal static bool IsOnlyDigits(string str, int startPos, int len)
-        {
-            Debug.Assert(str != null);
-            Debug.Assert(startPos + len <= str.Length);
-            Debug.Assert(startPos <= str.Length);
-
-            for (int i = startPos; i < startPos + len; i++)
-            {
-                if (!IsDigit(str[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        internal static bool IsOnlyDigits(char[] chars, int startPos, int len)
-        {
-            Debug.Assert(chars != null);
-            Debug.Assert(startPos + len <= chars.Length);
-            Debug.Assert(startPos <= chars.Length);
-
-            for (int i = startPos; i < startPos + len; i++)
-            {
-                if (!IsDigit(chars[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        internal static int IsPublicId(string str)
-        {
-            if (str != null)
-            {
-                for (int i = 0; i < str.Length; i++)
-                {
-                    if (!IsPubidChar(str[i]))
-                    {
-                        return i;
-                    }
-                }
-            }
-            return -1;
-        }
-
-        // This method tests whether a value is in a given range with just one test; start and end should be constants
-        private static bool InRange(int value, int start, int end)
-        {
-            Debug.Assert(start <= end);
-            return unchecked((uint)(value - start) <= (uint)(end - start));
-        }
-
-        /// <summary>
-        /// start &gt;= value &lt;= end
-        /// </summary>
-        internal static bool InRange(char value, char start, char end)
-        {
-            Debug.Assert(start <= end);
-            return unchecked((uint)(value - start) <= (uint)(end - start));
-        }
     }
 }

@@ -8,255 +8,660 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.Text
 {
-    /// <summary>
-    /// Immutable abstract representation of a span of text.  For example, in an error diagnostic that reports a
-    /// location, it could come from a parsed string, text from a tool editor buffer, etc.
-    /// </summary>
+
     [DataContract]
     public readonly struct TextSpan : IEquatable<TextSpan>, IComparable<TextSpan>
     {
-        /// <summary>
-        /// Creates a TextSpan instance beginning with the position Start and having the Length
-        /// specified with <paramref name="length" />.
-        /// </summary>
+
         public TextSpan(int start, int length)
         {
-            if (start < 0)
+            try
             {
-                throw new ArgumentOutOfRangeException(nameof(start));
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(734, 892, 1286);
 
-            if (start + length < start)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 955, 1070) || true) && (start < 0)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(734, 955, 1070);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1002, 1055);
+
+                    throw f_734_1008_1054(nameof(start));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(734, 955, 1070);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1086, 1215) || true) && (start + length < start)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(734, 1086, 1215);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1146, 1200);
+
+                    throw f_734_1152_1199(nameof(length));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(734, 1086, 1215);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1231, 1245);
+
+                Start = start;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1259, 1275);
+
+                Length = length;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(734, 892, 1286);
+            }
+            catch
             {
-                throw new ArgumentOutOfRangeException(nameof(length));
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 892, 1286);
+                throw;
             }
-
-            Start = start;
-            Length = length;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 892, 1286);
+            }
         }
 
-        /// <summary>
-        /// Start point of the span.
-        /// </summary>
         [DataMember(Order = 0)]
         public int Start { get; }
 
-        /// <summary>
-        /// End of the span.
-        /// </summary>
-        public int End => Start + Length;
+        public int End
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 1545, 1562);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1548, 1562);
+                    return Start + Length; DynAbs.Tracing.TraceSender.TraceExitMethod(734, 1545, 1562);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 1545, 1562);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 1545, 1562);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        /// <summary>
-        /// Length of the span.
-        /// </summary>
         [DataMember(Order = 1)]
         public int Length { get; }
 
-        /// <summary>
-        /// Determines whether or not the span is empty.
-        /// </summary>
-        public bool IsEmpty => this.Length == 0;
+        public bool IsEmpty
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 1851, 1870);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 1854, 1870);
+                    return this.Length == 0; DynAbs.Tracing.TraceSender.TraceExitMethod(734, 1851, 1870);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 1851, 1870);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 1851, 1870);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        /// <summary>
-        /// Determines whether the position lies within the span.
-        /// </summary>
-        /// <param name="position">
-        /// The position to check.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the position is greater than or equal to Start and strictly less 
-        /// than End, otherwise <c>false</c>.
-        /// </returns>
         public bool Contains(int position)
         {
-            return unchecked((uint)(position - Start) < (uint)Length);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 2280, 2408);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 2339, 2397);
+
+                return unchecked((uint)(position - Start) < (uint)Length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 2280, 2408);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 2280, 2408);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 2280, 2408);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Determines whether <paramref name="span"/> falls completely within this span.
-        /// </summary>
-        /// <param name="span">
-        /// The span to check.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the specified span falls completely within this span, otherwise <c>false</c>.
-        /// </returns>
         public bool Contains(TextSpan span)
         {
-            return span.Start >= Start && span.End <= this.End;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 2798, 2920);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 2858, 2909);
+
+                return span.Start >= Start && (DynAbs.Tracing.TraceSender.Expression_True(734, 2865, 2908) && span.End <= this.End);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 2798, 2920);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 2798, 2920);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 2798, 2920);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Determines whether <paramref name="span"/> overlaps this span. Two spans are considered to overlap 
-        /// if they have positions in common and neither is empty. Empty spans do not overlap with any 
-        /// other span.
-        /// </summary>
-        /// <param name="span">
-        /// The span to check.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the spans overlap, otherwise <c>false</c>.
-        /// </returns>
         public bool OverlapsWith(TextSpan span)
         {
-            int overlapStart = Math.Max(Start, span.Start);
-            int overlapEnd = Math.Min(this.End, span.End);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 3427, 3658);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 3491, 3538);
 
-            return overlapStart < overlapEnd;
+                int
+                overlapStart = f_734_3510_3537(Start, span.Start)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 3552, 3598);
+
+                int
+                overlapEnd = f_734_3569_3597(this.End, span.End)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 3614, 3647);
+
+                return overlapStart < overlapEnd;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 3427, 3658);
+
+                int
+                f_734_3510_3537(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Max(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 3510, 3537);
+                    return return_v;
+                }
+
+
+                int
+                f_734_3569_3597(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Min(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 3569, 3597);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 3427, 3658);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 3427, 3658);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns the overlap with the given span, or null if there is no overlap.
-        /// </summary>
-        /// <param name="span">
-        /// The span to check.
-        /// </param>
-        /// <returns>
-        /// The overlap of the spans, or null if the overlap is empty.
-        /// </returns>
         public TextSpan? Overlap(TextSpan span)
         {
-            int overlapStart = Math.Max(Start, span.Start);
-            int overlapEnd = Math.Min(this.End, span.End);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 4009, 4340);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 4073, 4120);
 
-            return overlapStart < overlapEnd
-                ? TextSpan.FromBounds(overlapStart, overlapEnd)
-                : (TextSpan?)null;
+                int
+                overlapStart = f_734_4092_4119(Start, span.Start)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 4134, 4180);
+
+                int
+                overlapEnd = f_734_4151_4179(this.End, span.End)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 4196, 4329);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(734, 4203, 4228) || ((overlapStart < overlapEnd
+                && DynAbs.Tracing.TraceSender.Conditional_F2(734, 4248, 4293)) || DynAbs.Tracing.TraceSender.Conditional_F3(734, 4313, 4328))) ? TextSpan.FromBounds(overlapStart, overlapEnd) : (TextSpan?)null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 4009, 4340);
+
+                int
+                f_734_4092_4119(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Max(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 4092, 4119);
+                    return return_v;
+                }
+
+
+                int
+                f_734_4151_4179(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Min(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 4151, 4179);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 4009, 4340);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 4009, 4340);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Determines whether <paramref name="span"/> intersects this span. Two spans are considered to 
-        /// intersect if they have positions in common or the end of one span 
-        /// coincides with the start of the other span.
-        /// </summary>
-        /// <param name="span">
-        /// The span to check.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the spans intersect, otherwise <c>false</c>.
-        /// </returns>
         public bool IntersectsWith(TextSpan span)
         {
-            return span.Start <= this.End && span.End >= Start;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 4850, 4978);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 4916, 4967);
+
+                return span.Start <= this.End && (DynAbs.Tracing.TraceSender.Expression_True(734, 4923, 4966) && span.End >= Start);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 4850, 4978);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 4850, 4978);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 4850, 4978);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Determines whether <paramref name="position"/> intersects this span. 
-        /// A position is considered to intersect if it is between the start and
-        /// end positions (inclusive) of this span.
-        /// </summary>
-        /// <param name="position">
-        /// The position to check.
-        /// </param>
-        /// <returns>
-        /// <c>true</c> if the position intersects, otherwise <c>false</c>.
-        /// </returns>
         public bool IntersectsWith(int position)
         {
-            return unchecked((uint)(position - Start) <= (uint)Length);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 5474, 5609);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 5539, 5598);
+
+                return unchecked((uint)(position - Start) <= (uint)Length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 5474, 5609);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 5474, 5609);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 5474, 5609);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns the intersection with the given span, or null if there is no intersection.
-        /// </summary>
-        /// <param name="span">
-        /// The span to check.
-        /// </param>
-        /// <returns>
-        /// The intersection of the spans, or null if the intersection is empty.
-        /// </returns>
         public TextSpan? Intersection(TextSpan span)
         {
-            int intersectStart = Math.Max(Start, span.Start);
-            int intersectEnd = Math.Min(this.End, span.End);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 5980, 6329);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 6049, 6098);
 
-            return intersectStart <= intersectEnd
-                ? TextSpan.FromBounds(intersectStart, intersectEnd)
-                : (TextSpan?)null;
+                int
+                intersectStart = f_734_6070_6097(Start, span.Start)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 6112, 6160);
+
+                int
+                intersectEnd = f_734_6131_6159(this.End, span.End)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 6176, 6318);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(734, 6183, 6213) || ((intersectStart <= intersectEnd
+                && DynAbs.Tracing.TraceSender.Conditional_F2(734, 6233, 6282)) || DynAbs.Tracing.TraceSender.Conditional_F3(734, 6302, 6317))) ? TextSpan.FromBounds(intersectStart, intersectEnd) : (TextSpan?)null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 5980, 6329);
+
+                int
+                f_734_6070_6097(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Max(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 6070, 6097);
+                    return return_v;
+                }
+
+
+                int
+                f_734_6131_6159(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Min(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 6131, 6159);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 5980, 6329);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 5980, 6329);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Creates a new <see cref="TextSpan"/> from <paramref name="start" /> and <paramref
-        /// name="end"/> positions as opposed to a position and length.
-        /// 
-        /// The returned TextSpan contains the range with <paramref name="start"/> inclusive, 
-        /// and <paramref name="end"/> exclusive.
-        /// </summary>
         public static TextSpan FromBounds(int start, int end)
         {
-            if (start < 0)
+            try
             {
-                throw new ArgumentOutOfRangeException(nameof(start), CodeAnalysisResources.StartMustNotBeNegative);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(734, 6717, 7203);
 
-            if (end < start)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 6795, 6956) || true) && (start < 0)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(734, 6795, 6956);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 6842, 6941);
+
+                    throw f_734_6848_6940(nameof(start), f_734_6895_6939());
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(734, 6795, 6956);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 6972, 7136) || true) && (end < start)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(734, 6972, 7136);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 7021, 7121);
+
+                    throw f_734_7027_7120(nameof(end), f_734_7072_7119());
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(734, 6972, 7136);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 7152, 7192);
+
+                return f_734_7159_7191(start, end - start);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(734, 6717, 7203);
+
+                string
+                f_734_6895_6939()
+                {
+                    var return_v = CodeAnalysisResources.StartMustNotBeNegative;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(734, 6895, 6939);
+                    return return_v;
+                }
+
+
+                System.ArgumentOutOfRangeException
+                f_734_6848_6940(string
+                paramName, string
+                message)
+                {
+                    var return_v = new System.ArgumentOutOfRangeException(paramName, message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 6848, 6940);
+                    return return_v;
+                }
+
+
+                string
+                f_734_7072_7119()
+                {
+                    var return_v = CodeAnalysisResources.EndMustNotBeLessThanStart;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(734, 7072, 7119);
+                    return return_v;
+                }
+
+
+                System.ArgumentOutOfRangeException
+                f_734_7027_7120(string
+                paramName, string
+                message)
+                {
+                    var return_v = new System.ArgumentOutOfRangeException(paramName, message);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 7027, 7120);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.TextSpan
+                f_734_7159_7191(int
+                start, int
+                length)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Text.TextSpan(start, length);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 7159, 7191);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                throw new ArgumentOutOfRangeException(nameof(end), CodeAnalysisResources.EndMustNotBeLessThanStart);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 6717, 7203);
+                throw;
             }
-
-            return new TextSpan(start, end - start);
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 6717, 7203);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Determines if two instances of <see cref="TextSpan"/> are the same.
-        /// </summary>
         public static bool operator ==(TextSpan left, TextSpan right)
         {
-            return left.Equals(right);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(734, 7343, 7466);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 7429, 7455);
+
+                return left.Equals(right);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(734, 7343, 7466);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 7343, 7466);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 7343, 7466);
+            }
         }
 
-        /// <summary>
-        /// Determines if two instances of <see cref="TextSpan"/> are different.
-        /// </summary>
         public static bool operator !=(TextSpan left, TextSpan right)
         {
-            return !left.Equals(right);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(734, 7607, 7731);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 7693, 7720);
+
+                return !left.Equals(right);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(734, 7607, 7731);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 7607, 7731);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 7607, 7731);
+            }
         }
 
-        /// <summary>
-        /// Determines if current instance of <see cref="TextSpan"/> is equal to another.
-        /// </summary>
         public bool Equals(TextSpan other)
         {
-            return Start == other.Start && Length == other.Length;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 7881, 8005);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 7940, 7994);
+
+                return Start == other.Start && (DynAbs.Tracing.TraceSender.Expression_True(734, 7947, 7993) && Length == other.Length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 7881, 8005);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 7881, 8005);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 7881, 8005);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Determines if current instance of <see cref="TextSpan"/> is equal to another.
-        /// </summary>
         public override bool Equals(object? obj)
         {
-            return obj is TextSpan && Equals((TextSpan)obj);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 8155, 8279);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 8220, 8268);
+
+                return obj is TextSpan && (DynAbs.Tracing.TraceSender.Expression_True(734, 8227, 8267) && Equals(obj));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 8155, 8279);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 8155, 8279);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 8155, 8279);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Produces a hash code for <see cref="TextSpan"/>.
-        /// </summary>
         public override int GetHashCode()
         {
-            return Hash.Combine(Start, Length);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 8400, 8504);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 8458, 8493);
+
+                return f_734_8465_8492(Start, Length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 8400, 8504);
+
+                int
+                f_734_8465_8492(int
+                newKey, int
+                currentKey)
+                {
+                    var return_v = Hash.Combine(newKey, currentKey);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 8465, 8492);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 8400, 8504);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 8400, 8504);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Provides a string representation for <see cref="TextSpan"/>.
-        /// </summary>
         public override string ToString()
         {
-            return $"[{Start}..{End})";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 8637, 8733);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 8695, 8722);
+
+                return $"[{Start}..{End})";
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 8637, 8733);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 8637, 8733);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 8637, 8733);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Compares current instance of <see cref="TextSpan"/> with another.
-        /// </summary>
         public int CompareTo(TextSpan other)
         {
-            var diff = Start - other.Start;
-            if (diff != 0)
+            try
             {
-                return diff;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(734, 8871, 9107);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 8932, 8963);
 
-            return Length - other.Length;
+                var
+                diff = Start - other.Start
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 8977, 9051) || true) && (diff != 0)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(734, 8977, 9051);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 9024, 9036);
+
+                    return diff;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(734, 8977, 9051);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(734, 9067, 9096);
+
+                return Length - other.Length;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(734, 8871, 9107);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(734, 8871, 9107);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 8871, 9107);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+        static TextSpan()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(734, 578, 9114);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(734, 578, 9114);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(734, 578, 9114);
+        }
+
+        static System.ArgumentOutOfRangeException
+        f_734_1008_1054(string
+        paramName)
+        {
+            var return_v = new System.ArgumentOutOfRangeException(paramName);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 1008, 1054);
+            return return_v;
+        }
+
+
+        static System.ArgumentOutOfRangeException
+        f_734_1152_1199(string
+        paramName)
+        {
+            var return_v = new System.ArgumentOutOfRangeException(paramName);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(734, 1152, 1199);
+            return return_v;
+        }
+
     }
 }

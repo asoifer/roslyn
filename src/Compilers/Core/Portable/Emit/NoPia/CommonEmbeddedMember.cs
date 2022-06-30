@@ -11,7 +11,7 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis.Emit.NoPia
 {
-    internal abstract partial class EmbeddedTypesManager<
+internal abstract partial class EmbeddedTypesManager<
         TPEModuleBuilder,
         TModuleCompilationState,
         TEmbeddedTypesManager,
@@ -33,29 +33,79 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
         TEmbeddedProperty,
         TEmbeddedParameter,
         TEmbeddedTypeParameter>
-    {
-        internal abstract class CommonEmbeddedMember
-        {
-            internal abstract TEmbeddedTypesManager TypeManager { get; }
-        }
+{internal abstract class CommonEmbeddedMember
+{
+internal abstract TEmbeddedTypesManager TypeManager {get; }
 
-        internal abstract class CommonEmbeddedMember<TMember> : CommonEmbeddedMember, Cci.IReference
+public CommonEmbeddedMember()
+{
+DynAbs.Tracing.TraceSender.TraceEnterConstructor(772,1050,1190);
+DynAbs.Tracing.TraceSender.TraceExitConstructor(772,1050,1190);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,1050,1190);
+}
+
+
+static CommonEmbeddedMember()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(772,1050,1190);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(772,1050,1190);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,1050,1190);
+}
+
+		int ___ignore_me___=DynAbs.Tracing.TraceSender.TraceBeforeConstructor(772,1050,1190);
+}
+internal abstract class CommonEmbeddedMember<TMember> : CommonEmbeddedMember, Cci.IReference
             where TMember : TSymbol, Cci.ITypeMemberReference
-        {
-            protected readonly TMember UnderlyingSymbol;
-            private ImmutableArray<TAttributeData> _lazyAttributes;
+{
+protected readonly TMember UnderlyingSymbol;
 
-            protected CommonEmbeddedMember(TMember underlyingSymbol)
+private ImmutableArray<TAttributeData> _lazyAttributes;
+
+protected CommonEmbeddedMember(TMember underlyingSymbol)
+		{
+			try
+{DynAbs.Tracing.TraceSender.TraceEnterConstructor(772,1511,1656);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,1409,1425);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,1600,1641);
+
+this.UnderlyingSymbol = underlyingSymbol;
+DynAbs.Tracing.TraceSender.TraceExitConstructor(772,1511,1656);
+}catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,1511,1656);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,1511,1656);
+}
+		}
+
+protected abstract IEnumerable<TAttributeData> GetCustomAttributesToEmit(TPEModuleBuilder moduleBuilder);
+
+protected virtual TAttributeData PortAttributeIfNeedTo(TAttributeData attrData, TSyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics)
+		{
+			try
             {
-                this.UnderlyingSymbol = underlyingSymbol;
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(772,1793,1986);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,1959,1971);
 
-            protected abstract IEnumerable<TAttributeData> GetCustomAttributesToEmit(TPEModuleBuilder moduleBuilder);
-
-            protected virtual TAttributeData PortAttributeIfNeedTo(TAttributeData attrData, TSyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics)
-            {
-                return null;
+return null;
+DynAbs.Tracing.TraceSender.TraceExitMethod(772,1793,1986);
             }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,1793,1986);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,1793,1986);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
             private ImmutableArray<TAttributeData> GetAttributes(TPEModuleBuilder moduleBuilder, TSyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics)
             {
@@ -104,29 +154,145 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
                 return _lazyAttributes;
             }
 
-            void Cci.IReference.Dispatch(Cci.MetadataVisitor visitor)
+void Cci.IReference.Dispatch(Cci.MetadataVisitor visitor)
+		{
+			try
             {
-                throw ExceptionUtilities.Unreachable;
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(772,4237,4379);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,4327,4364);
 
-            Cci.IDefinition Cci.IReference.AsDefinition(EmitContext context)
+throw f_772_4333_4363();
+DynAbs.Tracing.TraceSender.TraceExitMethod(772,4237,4379);
+
+System.Exception
+f_772_4333_4363()
+{
+var return_v = ExceptionUtilities.Unreachable;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(772, 4333, 4363);
+return return_v;
+}
+
+            }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,4237,4379);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,4237,4379);
+}
+		}
+
+Cci.IDefinition Cci.IReference.AsDefinition(EmitContext context)
+		{
+			try
             {
-                throw ExceptionUtilities.Unreachable;
+DynAbs.Tracing.TraceSender.TraceEnterMethod(772,4395,4544);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,4492,4529);
+
+throw f_772_4498_4528();
+DynAbs.Tracing.TraceSender.TraceExitMethod(772,4395,4544);
+
+System.Exception
+f_772_4498_4528()
+{
+var return_v = ExceptionUtilities.Unreachable;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(772, 4498, 4528);
+return return_v;
+}
+
             }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,4395,4544);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,4395,4544);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-            Symbols.ISymbolInternal Cci.IReference.GetInternalSymbol() => null;
+Symbols.ISymbolInternal Cci.IReference.GetInternalSymbol() 		{
+			try
+{DynAbs.Tracing.TraceSender.TraceEnterMethod(772,4619,4626);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,4622,4626);
+return null;DynAbs.Tracing.TraceSender.TraceExitMethod(772,4619,4626);
+}catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,4619,4626);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,4619,4626);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-            public sealed override bool Equals(object obj)
+public sealed override bool Equals(object obj)
+		{
+			try
             {
-                // It is not supported to rely on default equality of these Cci objects, an explicit way to compare and hash them should be used.
-                throw Roslyn.Utilities.ExceptionUtilities.Unreachable;
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(772,4643,4938);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,4869,4923);
 
-            public sealed override int GetHashCode()
-            {
-                // It is not supported to rely on default equality of these Cci objects, an explicit way to compare and hash them should be used.
-                throw Roslyn.Utilities.ExceptionUtilities.Unreachable;
+throw f_772_4875_4922();
+DynAbs.Tracing.TraceSender.TraceExitMethod(772,4643,4938);
+
+System.Exception
+f_772_4875_4922()
+{
+var return_v = Roslyn.Utilities.ExceptionUtilities.Unreachable;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(772, 4875, 4922);
+return return_v;
+}
+
             }
-        }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,4643,4938);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,4643,4938);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+public sealed override int GetHashCode()
+		{
+			try
+            {
+DynAbs.Tracing.TraceSender.TraceEnterMethod(772,4954,5243);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(772,5174,5228);
+
+throw f_772_5180_5227();
+DynAbs.Tracing.TraceSender.TraceExitMethod(772,4954,5243);
+
+System.Exception
+f_772_5180_5227()
+{
+var return_v = Roslyn.Utilities.ExceptionUtilities.Unreachable;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(772, 5180, 5227);
+return return_v;
+}
+
+            }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(772,4954,5243);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(772,4954,5243);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+}
+}
 }

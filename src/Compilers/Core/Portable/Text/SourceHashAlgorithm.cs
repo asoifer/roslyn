@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -24,9 +24,20 @@ namespace Microsoft.CodeAnalysis.Text
         /// </summary>
         Sha256 = 2,
     }
-
     internal static class SourceHashAlgorithmUtils
     {
-        public const SourceHashAlgorithm DefaultContentHashAlgorithm = SourceHashAlgorithm.Sha256;
+        public const SourceHashAlgorithm
+        DefaultContentHashAlgorithm = SourceHashAlgorithm.Sha256
+        ;
+
+        static SourceHashAlgorithmUtils()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(719, 760, 920);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(719, 856, 912);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(719, 760, 920);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(719, 760, 920);
+        }
+
     }
 }

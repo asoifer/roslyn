@@ -9,88 +9,300 @@ using System.Diagnostics;
 
 namespace Microsoft.DiaSymReader
 {
-    internal static class SymUnmanagedWriterFactory
-    {
-        /// <summary>
-        /// Creates a Windows PDB writer.
-        /// </summary>
-        /// <param name="metadataProvider"><see cref="ISymWriterMetadataProvider"/> implementation.</param>
-        /// <param name="options">Options.</param>
-        /// <remarks>
-        /// Tries to load the implementation of the PDB writer from Microsoft.DiaSymReader.Native.{platform}.dll library first.
-        /// It searches for this library in the directory Microsoft.DiaSymReader.dll is loaded from, 
-        /// the application directory, the %WinDir%\System32 directory, and user directories in the DLL search path, in this order.
-        /// If not found in the above locations and <see cref="SymUnmanagedWriterCreationOptions.UseAlternativeLoadPath"/> option is specified
-        /// the directory specified by MICROSOFT_DIASYMREADER_NATIVE_ALT_LOAD_PATH environment variable is also searched.
-        /// If the Microsoft.DiaSymReader.Native.{platform}.dll library can't be found and <see cref="SymUnmanagedWriterCreationOptions.UseComRegistry"/> 
-        /// option is specified checks if the PDB reader is available from a globally registered COM object. This COM object is provided 
-        /// by .NET Framework and has limited functionality (features like determinism and source link are not supported).
-        /// </remarks>
-        /// <exception cref="ArgumentNullException"><paramref name="metadataProvider"/>is null.</exception>
-        /// <exception cref="DllNotFoundException">The SymWriter implementation is not available or failed to load.</exception>
-        /// <exception cref="SymUnmanagedWriterException">Error creating the PDB writer. See inner exception for root cause.</exception>
-        public static SymUnmanagedWriter CreateWriter(
+internal static class SymUnmanagedWriterFactory
+{
+public static SymUnmanagedWriter CreateWriter(
             ISymWriterMetadataProvider metadataProvider,
             SymUnmanagedWriterCreationOptions options = SymUnmanagedWriterCreationOptions.Default)
+		{
+			try
         {
-            if (metadataProvider == null)
-            {
-                throw new ArgumentNullException(nameof(metadataProvider));
-            }
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(754,2103,4726);
+string implModuleName = default(string);
+System.Exception loadException = default(System.Exception);
 
-            var symWriter = SymUnmanagedFactory.CreateObject(
-                createReader: false,
-                useAlternativeLoadPath: (options & SymUnmanagedWriterCreationOptions.UseAlternativeLoadPath) != 0,
-                useComRegistry: (options & SymUnmanagedWriterCreationOptions.UseComRegistry) != 0,
-                moduleName: out var implModuleName,
-                loadException: out var loadException);
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,2332,2467) || true) && (metadataProvider == null)
+)
 
-            if (symWriter == null)
-            {
-                Debug.Assert(loadException != null);
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,2332,2467);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,2394,2452);
 
-                if (loadException is DllNotFoundException)
-                {
-                    throw loadException;
-                }
+throw f_754_2400_2451(nameof(metadataProvider));
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,2332,2467);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,2483,2895);
 
-                throw new DllNotFoundException(loadException.Message, loadException);
-            }
+var 
+symWriter = f_754_2499_2894(createReader: false, useAlternativeLoadPath: (options & SymUnmanagedWriterCreationOptions.UseAlternativeLoadPath) != 0, useComRegistry: (options & SymUnmanagedWriterCreationOptions.UseComRegistry) != 0, moduleName: out implModuleName, loadException: out loadException)
+;
 
-            if (!(symWriter is ISymUnmanagedWriter5 symWriter5))
-            {
-                throw new SymUnmanagedWriterException(new NotSupportedException(), implModuleName);
-            }
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,2911,3248) || true) && (symWriter == null)
+)
 
-            object metadataEmitAndImport = new SymWriterMetadataAdapter(metadataProvider);
-            var pdbStream = new ComMemoryStream();
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,2911,3248);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,2966,3002);
+
+f_754_2966_3001(loadException != null);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3022,3144) || true) && (loadException is DllNotFoundException)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,3022,3144);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3105,3125);
+
+throw loadException;
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,3022,3144);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3164,3233);
+
+throw f_754_3170_3232(f_754_3195_3216(loadException), loadException);
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,2911,3248);
+}
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3264,3447) || true) && (!(symWriter is ISymUnmanagedWriter5 symWriter5))
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,3264,3447);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3349,3432);
+
+throw f_754_3355_3431(f_754_3387_3414(), implModuleName);
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,3264,3447);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3463,3541);
+
+object 
+metadataEmitAndImport = f_754_3494_3540(metadataProvider)
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3555,3593);
+
+var 
+pdbStream = f_754_3571_3592()
+;
 
             try
             {
-                if ((options & SymUnmanagedWriterCreationOptions.Deterministic) != 0)
-                {
-                    if (symWriter is ISymUnmanagedWriter8 symWriter8)
-                    {
-                        symWriter8.InitializeDeterministic(metadataEmitAndImport, pdbStream);
-                    }
-                    else
-                    {
-                        throw new NotSupportedException();
-                    }
-                }
-                else
-                {
-                    // The file name is irrelevant as long as it's specified.
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3645,4473) || true) && ((options & SymUnmanagedWriterCreationOptions.Deterministic) != 0)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,3645,4473);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3755,4077) || true) && (symWriter is ISymUnmanagedWriter8 symWriter8)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,3755,4077);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,3853,3922);
+
+f_754_3853_3921(                        symWriter8, metadataEmitAndImport, pdbStream);
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,3755,4077);
+}
+
+else
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,3755,4077);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,4020,4054);
+
+throw f_754_4026_4053();
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,3755,4077);
+}
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,3645,4473);
+}
+
+else
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(754,3645,4473);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,4365,4454);
+
+f_754_4365_4453(                    // The file name is irrelevant as long as it's specified.
                     // SymWriter only uses it for filling CodeView debug directory data when asked for them, but we never do.
-                    symWriter5.Initialize(metadataEmitAndImport, "filename.pdb", pdbStream, fullBuild: true);
-                }
+                    symWriter5, metadataEmitAndImport, "filename.pdb", pdbStream, fullBuild: true);
+DynAbs.Tracing.TraceSender.TraceExitCondition(754,3645,4473);
+}
             }
             catch (Exception e)
             {
-                throw new SymUnmanagedWriterException(e, implModuleName);
-            }
+DynAbs.Tracing.TraceSender.TraceEnterCatch(754,4502,4626);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,4554,4611);
 
-            return new SymUnmanagedWriterImpl(pdbStream, symWriter5, implModuleName);
+throw f_754_4560_4610(e, implModuleName);
+DynAbs.Tracing.TraceSender.TraceExitCatch(754,4502,4626);
+            }
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(754,4642,4715);
+
+return f_754_4649_4714(pdbStream, symWriter5, implModuleName);
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(754,2103,4726);
+
+System.ArgumentNullException
+f_754_2400_2451(string
+paramName)
+{
+var return_v = new System.ArgumentNullException( paramName);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 2400, 2451);
+return return_v;
+}
+
+
+object
+f_754_2499_2894(bool
+createReader,bool
+useAlternativeLoadPath,bool
+useComRegistry,out string
+moduleName,out System.Exception
+loadException)
+{
+var return_v = SymUnmanagedFactory.CreateObject( createReader: createReader, useAlternativeLoadPath: useAlternativeLoadPath, useComRegistry: useComRegistry, out moduleName, out loadException);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 2499, 2894);
+return return_v;
+}
+
+
+int
+f_754_2966_3001(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 2966, 3001);
+return 0;
+}
+
+
+string
+f_754_3195_3216(System.Exception
+this_param)
+{
+var return_v = this_param.Message;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(754, 3195, 3216);
+return return_v;
+}
+
+
+System.DllNotFoundException
+f_754_3170_3232(string
+message,System.Exception
+inner)
+{
+var return_v = new System.DllNotFoundException( message, inner);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 3170, 3232);
+return return_v;
+}
+
+
+System.NotSupportedException
+f_754_3387_3414()
+{
+var return_v = new System.NotSupportedException();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 3387, 3414);
+return return_v;
+}
+
+
+Microsoft.DiaSymReader.SymUnmanagedWriterException
+f_754_3355_3431(System.NotSupportedException
+innerException,string
+implementationModuleName)
+{
+var return_v = new Microsoft.DiaSymReader.SymUnmanagedWriterException( (System.Exception)innerException, implementationModuleName);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 3355, 3431);
+return return_v;
+}
+
+
+Microsoft.DiaSymReader.SymWriterMetadataAdapter
+f_754_3494_3540(Microsoft.DiaSymReader.ISymWriterMetadataProvider
+metadataProvider)
+{
+var return_v = new Microsoft.DiaSymReader.SymWriterMetadataAdapter( metadataProvider);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 3494, 3540);
+return return_v;
+}
+
+
+Microsoft.DiaSymReader.ComMemoryStream
+f_754_3571_3592()
+{
+var return_v = new Microsoft.DiaSymReader.ComMemoryStream();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 3571, 3592);
+return return_v;
+}
+
+
+int
+f_754_3853_3921(Microsoft.DiaSymReader.ISymUnmanagedWriter8
+this_param,object
+emitter,Microsoft.DiaSymReader.ComMemoryStream
+stream)
+{
+this_param.InitializeDeterministic( emitter, (object)stream);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 3853, 3921);
+return 0;
+}
+
+
+System.NotSupportedException
+f_754_4026_4053()
+{
+var return_v = new System.NotSupportedException();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 4026, 4053);
+return return_v;
+}
+
+
+int
+f_754_4365_4453(Microsoft.DiaSymReader.ISymUnmanagedWriter5
+this_param,object
+emitter,string
+filename,Microsoft.DiaSymReader.ComMemoryStream
+ptrIStream,bool
+fullBuild)
+{
+this_param.Initialize( emitter, filename, (object)ptrIStream, fullBuild: fullBuild);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 4365, 4453);
+return 0;
+}
+
+
+Microsoft.DiaSymReader.SymUnmanagedWriterException
+f_754_4560_4610(System.Exception
+innerException,string
+implementationModuleName)
+{
+var return_v = new Microsoft.DiaSymReader.SymUnmanagedWriterException( innerException, implementationModuleName);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 4560, 4610);
+return return_v;
+}
+
+
+Microsoft.DiaSymReader.SymUnmanagedWriterImpl
+f_754_4649_4714(Microsoft.DiaSymReader.ComMemoryStream
+pdbStream,Microsoft.DiaSymReader.ISymUnmanagedWriter5
+symWriter,string
+symWriterModuleName)
+{
+var return_v = new Microsoft.DiaSymReader.SymUnmanagedWriterImpl( pdbStream, symWriter, symWriterModuleName);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(754, 4649, 4714);
+return return_v;
+}
+
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(754,2103,4726);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(754,2103,4726);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+static SymUnmanagedWriterFactory()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(754,314,4733);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(754,314,4733);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(754,314,4733);
+}
+
+}
 }

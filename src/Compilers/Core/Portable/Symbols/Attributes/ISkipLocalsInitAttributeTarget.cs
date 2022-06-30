@@ -8,6 +8,7 @@ namespace Microsoft.CodeAnalysis
 {
     interface ISkipLocalsInitAttributeTarget
     {
-        bool HasSkipLocalsInitAttribute { get; set; }
+
+bool HasSkipLocalsInitAttribute {get; set; }
     }
 }

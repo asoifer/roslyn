@@ -14,67 +14,139 @@ namespace Microsoft.CodeAnalysis
         Deprecated,
         Experimental,
     }
+internal sealed class ObsoleteAttributeData
+{
+public static readonly ObsoleteAttributeData Uninitialized ;
 
-    /// <summary>
-    /// Information decoded from <see cref="ObsoleteAttribute"/>.
-    /// </summary>
-    internal sealed class ObsoleteAttributeData
-    {
-        public static readonly ObsoleteAttributeData Uninitialized = new ObsoleteAttributeData(ObsoleteAttributeKind.Uninitialized, message: null, isError: false, diagnosticId: null, urlFormat: null);
-        public static readonly ObsoleteAttributeData Experimental = new ObsoleteAttributeData(ObsoleteAttributeKind.Experimental, message: null, isError: false, diagnosticId: null, urlFormat: null);
+public static readonly ObsoleteAttributeData Experimental ;
 
-        public const string DiagnosticIdPropertyName = "DiagnosticId";
-        public const string UrlFormatPropertyName = "UrlFormat";
+public const string 
+DiagnosticIdPropertyName = "DiagnosticId"
+;
 
-        public ObsoleteAttributeData(ObsoleteAttributeKind kind, string? message, bool isError, string? diagnosticId, string? urlFormat)
-        {
-            Kind = kind;
-            Message = message;
-            IsError = isError;
-            DiagnosticId = diagnosticId;
-            UrlFormat = urlFormat;
-        }
+public const string 
+UrlFormatPropertyName = "UrlFormat"
+;
 
-        public readonly ObsoleteAttributeKind Kind;
+public ObsoleteAttributeData(ObsoleteAttributeKind kind, string? message, bool isError, string? diagnosticId, string? urlFormat)
+		{
+			try
+{DynAbs.Tracing.TraceSender.TraceEnterConstructor(813,1135,1453);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1503,1507);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1741,1748);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1946,1953);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,2198,2210);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,3176,3185);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1288,1300);
 
-        /// <summary>
-        /// True if an error should be thrown for the <see cref="ObsoleteAttribute"/>. Default is false in which case
-        /// a warning is thrown.
-        /// </summary>
-        public readonly bool IsError;
+Kind = kind;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1314,1332);
 
-        /// <summary>
-        /// The message that will be shown when an error/warning is created for <see cref="ObsoleteAttribute"/>.
-        /// </summary>
-        public readonly string? Message;
+Message = message;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1346,1364);
 
-        /// <summary>
-        /// The custom diagnostic ID to use for obsolete diagnostics.
-        /// If null, diagnostics are produced using the compiler default diagnostic IDs.
-        /// </summary>
-        public readonly string? DiagnosticId;
+IsError = isError;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1378,1406);
 
-        /// <summary>
-        /// <para>
-        /// The custom help URL format string for obsolete diagnostics.
-        /// Expected to contain zero or one format items.
-        /// </para>
-        /// <para>
-        /// When specified, the obsolete diagnostic's <see cref="DiagnosticDescriptor.HelpLinkUri"/> will be produced
-        /// by formatting this string using the <see cref="DiagnosticId"/> as the single argument.
-        /// </para>
-        /// 
-        /// <example>
-        /// e.g. with a <see cref="DiagnosticId"/> value <c>"TEST1"</c>,
-        /// and a <see cref="UrlFormat"/> value <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/{0}/"/>,<br/>
-        /// the diagnostic will have the HelpLinkUri <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/TEST1/"/>.
-        /// </example>
-        /// </summary>
-        public readonly string? UrlFormat;
+DiagnosticId = diagnosticId;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1420,1442);
 
-        internal bool IsUninitialized
-        {
-            get { return ReferenceEquals(this, Uninitialized); }
-        }
-    }
+UrlFormat = urlFormat;
+DynAbs.Tracing.TraceSender.TraceExitConstructor(813,1135,1453);
+}catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(813,1135,1453);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(813,1135,1453);
+}
+		}
+
+public readonly ObsoleteAttributeKind Kind;
+
+public readonly bool IsError;
+
+public readonly string? Message;
+
+public readonly string? DiagnosticId;
+
+public readonly string? UrlFormat;
+
+internal bool IsUninitialized
+{
+get 		{
+			try
+{ DynAbs.Tracing.TraceSender.TraceEnterMethod(813,3252,3304);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,3258,3302);
+
+return f_813_3265_3301(this, Uninitialized);
+DynAbs.Tracing.TraceSender.TraceExitMethod(813,3252,3304);
+
+bool
+f_813_3265_3301(Microsoft.CodeAnalysis.ObsoleteAttributeData
+objA,Microsoft.CodeAnalysis.ObsoleteAttributeData
+objB)
+{
+var return_v = ReferenceEquals( (object)objA, (object)objB);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(813, 3265, 3301);
+return return_v;
+}
+
+}
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(813,3198,3315);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(813,3198,3315);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}}
+
+static ObsoleteAttributeData()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(813,531,3322);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,636,782);
+Uninitialized = f_813_652_782(ObsoleteAttributeKind.Uninitialized, message: null, isError: false, diagnosticId: null, urlFormat: null);DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,838,982);
+Experimental = f_813_853_982(ObsoleteAttributeKind.Experimental, message: null, isError: false, diagnosticId: null, urlFormat: null);DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1015,1056);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(813,1087,1122);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(813,531,3322);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(813,531,3322);
+}
+
+		int ___ignore_me___=DynAbs.Tracing.TraceSender.TraceBeforeConstructor(813,531,3322);
+
+static Microsoft.CodeAnalysis.ObsoleteAttributeData
+f_813_652_782(Microsoft.CodeAnalysis.ObsoleteAttributeKind
+kind,string?
+message,bool
+isError,string?
+diagnosticId,string?
+urlFormat)
+{
+var return_v = new Microsoft.CodeAnalysis.ObsoleteAttributeData( kind, message: message, isError: isError, diagnosticId: diagnosticId, urlFormat: urlFormat);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(813, 652, 782);
+return return_v;
+}
+
+
+static Microsoft.CodeAnalysis.ObsoleteAttributeData
+f_813_853_982(Microsoft.CodeAnalysis.ObsoleteAttributeKind
+kind,string?
+message,bool
+isError,string?
+diagnosticId,string?
+urlFormat)
+{
+var return_v = new Microsoft.CodeAnalysis.ObsoleteAttributeData( kind, message: message, isError: isError, diagnosticId: diagnosticId, urlFormat: urlFormat);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(813, 853, 982);
+return return_v;
+}
+
+}
 }

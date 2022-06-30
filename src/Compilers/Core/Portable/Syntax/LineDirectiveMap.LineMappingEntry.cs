@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -8,10 +8,9 @@ using Microsoft.CodeAnalysis.Text;
 namespace Microsoft.CodeAnalysis
 {
     internal partial class LineDirectiveMap<TDirective>
-    {
-        /// <summary>
-        /// Enum that describes the state related to the #line or #externalsource directives at a position in source.
-        /// </summary>
+    {        /// <summary>
+             /// Enum that describes the state related to the #line or #externalsource directives at a position in source.
+             /// </summary>
         public enum PositionState : byte
         {
             /// <summary>
@@ -47,45 +46,119 @@ namespace Microsoft.CodeAnalysis
             Hidden
         }
 
-        // Struct that represents an entry in the line mapping table. Entries sort by the unmapped
-        // line.
         protected readonly struct LineMappingEntry : IComparable<LineMappingEntry>
         {
-            // 0-based line in this tree
+
             public readonly int UnmappedLine;
 
-            // 0-based line it maps to.
             public readonly int MappedLine;
 
-            // raw value from #line or #ExternalDirective, may be null
             public readonly string? MappedPathOpt;
 
-            // the state of this line
             public readonly PositionState State;
 
             public LineMappingEntry(int unmappedLine)
             {
-                this.UnmappedLine = unmappedLine;
-                this.MappedLine = unmappedLine;
-                this.MappedPathOpt = null;
-                this.State = PositionState.Unmapped;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(667, 2370, 2639);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2444, 2477);
+
+                    this.UnmappedLine = unmappedLine;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2495, 2526);
+
+                    this.MappedLine = unmappedLine;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2544, 2570);
+
+                    this.MappedPathOpt = null;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2588, 2624);
+
+                    this.State = PositionState.Unmapped;
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(667, 2370, 2639);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(667, 2370, 2639);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(667, 2370, 2639);
+                }
             }
 
             public LineMappingEntry(
-                int unmappedLine,
-                int mappedLine,
-                string? mappedPathOpt,
-                PositionState state)
+                            int unmappedLine,
+                            int mappedLine,
+                            string? mappedPathOpt,
+                            PositionState state)
             {
-                this.UnmappedLine = unmappedLine;
-                this.MappedLine = mappedLine;
-                this.MappedPathOpt = mappedPathOpt;
-                this.State = state;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterConstructor(667, 2655, 3043);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2858, 2891);
+
+                    this.UnmappedLine = unmappedLine;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2909, 2938);
+
+                    this.MappedLine = mappedLine;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 2956, 2991);
+
+                    this.MappedPathOpt = mappedPathOpt;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 3009, 3028);
+
+                    this.State = state;
+                    DynAbs.Tracing.TraceSender.TraceExitConstructor(667, 2655, 3043);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(667, 2655, 3043);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(667, 2655, 3043);
+                }
             }
 
             public int CompareTo(LineMappingEntry other)
             {
-                return this.UnmappedLine.CompareTo(other.UnmappedLine);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(667, 3059, 3206);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(667, 3136, 3191);
+
+                    return f_667_3143_3190(this.UnmappedLine, other.UnmappedLine);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(667, 3059, 3206);
+
+                    int
+                    f_667_3143_3190(int
+                    this_param, int
+                    value)
+                    {
+                        var return_v = this_param.CompareTo(value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(667, 3143, 3190);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(667, 3059, 3206);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(667, 3059, 3206);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+            static LineMappingEntry()
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(667, 1875, 3217);
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(667, 1875, 3217);
+
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(667, 1875, 3217);
             }
         }
     }

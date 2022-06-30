@@ -11,10 +11,7 @@ namespace Microsoft.CodeAnalysis
     /// </summary>
     public interface IStructuredTriviaSyntax
     {
-        /// <summary>
-        /// Returns the parent trivia syntax for this structured trivia syntax.
-        /// </summary>
-        /// <returns>The parent trivia syntax for this structured trivia syntax.</returns>
-        SyntaxTrivia ParentTrivia { get; }
+
+SyntaxTrivia ParentTrivia {get; }
     }
 }

@@ -10,13 +10,25 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// Base class for storing information decoded from early well-known custom attributes.
-    /// </summary>
-    /// <remarks>
-    /// CONSIDER: Should we remove this class and let the sub-classes derived from WellKnownAttributeData?
-    /// </remarks>
-    internal abstract class EarlyWellKnownAttributeData : WellKnownAttributeData
-    {
-    }
+internal abstract class EarlyWellKnownAttributeData : WellKnownAttributeData
+{
+public EarlyWellKnownAttributeData()
+{
+DynAbs.Tracing.TraceSender.TraceEnterConstructor(806,629,719);
+DynAbs.Tracing.TraceSender.TraceExitConstructor(806,629,719);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(806,629,719);
+}
+
+
+static EarlyWellKnownAttributeData()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(806,629,719);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(806,629,719);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(806,629,719);
+}
+
+		int ___ignore_me___=DynAbs.Tracing.TraceSender.TraceBeforeConstructor(806,629,719);
+}
 }

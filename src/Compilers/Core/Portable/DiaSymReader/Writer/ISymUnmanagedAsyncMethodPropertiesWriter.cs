@@ -18,9 +18,11 @@ namespace Microsoft.DiaSymReader
     [SuppressUnmanagedCodeSecurity]
     internal interface ISymUnmanagedAsyncMethodPropertiesWriter
     {
-        void DefineKickoffMethod(int kickoffMethod);
-        void DefineCatchHandlerILOffset(int catchHandlerOffset);
 
-        unsafe void DefineAsyncStepInfo(int count, int* yieldOffsets, int* breakpointOffset, int* breakpointMethod);
+void DefineKickoffMethod(int kickoffMethod);
+
+void DefineCatchHandlerILOffset(int catchHandlerOffset);
+
+unsafe void DefineAsyncStepInfo(int count, int* yieldOffsets, int* breakpointOffset, int* breakpointMethod);
     }
 }

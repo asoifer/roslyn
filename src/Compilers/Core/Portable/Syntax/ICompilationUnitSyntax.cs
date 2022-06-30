@@ -18,10 +18,7 @@ namespace Microsoft.CodeAnalysis
     /// </summary>
     public interface ICompilationUnitSyntax
     {
-        /// <summary>
-        /// Represents the end of the source file. This <see cref="SyntaxToken"/> may have
-        /// <see cref="SyntaxTrivia"/> (whitespace, comments, directives) attached to it.
-        /// </summary>
-        SyntaxToken EndOfFileToken { get; }
+
+SyntaxToken EndOfFileToken {get; }
     }
 }

@@ -10,6 +10,7 @@ namespace Microsoft.CodeAnalysis
 {
     internal interface ISecurityAttributeTarget
     {
-        SecurityWellKnownAttributeData GetOrCreateData();
+
+SecurityWellKnownAttributeData GetOrCreateData();
     }
 }

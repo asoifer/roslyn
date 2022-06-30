@@ -13,6 +13,7 @@ namespace Microsoft.CodeAnalysis
 #pragma warning restore CA1200 // Avoid using cref tags with a prefix
     public interface ISkippedTokensTriviaSyntax
     {
-        SyntaxTokenList Tokens { get; }
+
+SyntaxTokenList Tokens {get; }
     }
 }

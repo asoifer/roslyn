@@ -11,18 +11,19 @@ namespace Microsoft.CodeAnalysis
 {
     interface IMemberNotNullAttributeTarget
     {
-        void AddNotNullMember(string memberName);
 
-        void AddNotNullMember(ArrayBuilder<string> memberNames);
+void AddNotNullMember(string memberName);
 
-        ImmutableArray<string> NotNullMembers { get; }
+void AddNotNullMember(ArrayBuilder<string> memberNames);
 
-        void AddNotNullWhenMember(bool sense, string memberName);
+ImmutableArray<string> NotNullMembers {get; }
 
-        void AddNotNullWhenMember(bool sense, ArrayBuilder<string> memberNames);
+void AddNotNullWhenMember(bool sense, string memberName);
 
-        ImmutableArray<string> NotNullWhenTrueMembers { get; }
+void AddNotNullWhenMember(bool sense, ArrayBuilder<string> memberNames);
 
-        ImmutableArray<string> NotNullWhenFalseMembers { get; }
+ImmutableArray<string> NotNullWhenTrueMembers {get; }
+
+ImmutableArray<string> NotNullWhenFalseMembers {get; }
     }
 }

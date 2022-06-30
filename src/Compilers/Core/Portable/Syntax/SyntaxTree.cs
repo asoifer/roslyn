@@ -15,377 +15,736 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// The parsed representation of a source document.
-    /// </summary>
     public abstract class SyntaxTree
     {
-        /// <summary>
-        /// Cached value for empty <see cref="DiagnosticOptions"/>.
-        /// </summary>
-        protected internal static readonly ImmutableDictionary<string, ReportDiagnostic> EmptyDiagnosticOptions =
-            ImmutableDictionary.Create<string, ReportDiagnostic>(CaseInsensitiveComparison.Comparer);
+        protected internal static readonly ImmutableDictionary<string, ReportDiagnostic> EmptyDiagnosticOptions;
 
         private ImmutableArray<byte> _lazyChecksum;
+
         private SourceHashAlgorithm _lazyHashAlgorithm;
 
-        /// <summary>
-        /// The path of the source document file.
-        /// </summary>
-        /// <remarks>
-        /// If this syntax tree is not associated with a file, this value can be empty.
-        /// The path shall not be null.
-        /// 
-        /// The file doesn't need to exist on disk. The path is opaque to the compiler.
-        /// The only requirement on the path format is that the implementations of 
-        /// <see cref="SourceReferenceResolver"/>, <see cref="XmlReferenceResolver"/> and <see cref="MetadataReferenceResolver"/> 
-        /// passed to the compilation that contains the tree understand it.
-        /// 
-        /// Clients must also not assume that the values of this property are unique
-        /// within a Compilation.
-        /// 
-        /// The path is used as follows:
-        ///    - When debug information is emitted, this path is embedded in the debug information.
-        ///    - When resolving and normalizing relative paths in #r, #load, #line/#ExternalSource, 
-        ///      #pragma checksum, #ExternalChecksum directives, XML doc comment include elements, etc.
-        /// </remarks>
         public abstract string FilePath { get; }
 
-        /// <summary>
-        /// Returns true if this syntax tree has a root with SyntaxKind "CompilationUnit".
-        /// </summary>
         public abstract bool HasCompilationUnitRoot { get; }
 
-        /// <summary>
-        /// The options used by the parser to produce the syntax tree.
-        /// </summary>
         public ParseOptions Options
         {
             get
             {
-                return this.OptionsCore;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 2732, 2807);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 2768, 2792);
+
+                    return f_702_2775_2791(this);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(702, 2732, 2807);
+
+                    Microsoft.CodeAnalysis.ParseOptions
+                    f_702_2775_2791(Microsoft.CodeAnalysis.SyntaxTree
+                    this_param)
+                    {
+                        var return_v = this_param.OptionsCore;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(702, 2775, 2791);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 2680, 2818);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 2680, 2818);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
         }
 
-        /// <summary>
-        /// The options used by the parser to produce the syntax tree.
-        /// </summary>
         protected abstract ParseOptions OptionsCore { get; }
 
-        /// <summary>
-        /// Option to specify custom behavior for each warning in this tree.
-        /// </summary>
-        /// <returns>
-        /// A map from diagnostic ID to diagnostic reporting level. The diagnostic
-        /// ID string may be case insensitive depending on the language.
-        /// </returns>
         [Obsolete("Obsolete due to performance problems, use CompilationOptions.SyntaxTreeOptionsProvider instead", error: false)]
-        public virtual ImmutableDictionary<string, ReportDiagnostic> DiagnosticOptions => EmptyDiagnosticOptions;
+        public virtual ImmutableDictionary<string, ReportDiagnostic> DiagnosticOptions
+        {
+            /// <summary>
+            /// Option to specify custom behavior for each warning in this tree.
+            /// </summary>
+            /// <returns>
+            /// A map from diagnostic ID to diagnostic reporting level. The diagnostic
+            /// ID string may be case insensitive depending on the language.
+            /// </returns>
+            [Obsolete("Obsolete due to performance problems, use CompilationOptions.SyntaxTreeOptionsProvider instead", error: false)]
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 3554, 3579);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 3557, 3579);
+                    return EmptyDiagnosticOptions; DynAbs.Tracing.TraceSender.TraceExitMethod(702, 3554, 3579);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 3554, 3579);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 3554, 3579);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        /// <summary>
-        /// The length of the text of the syntax tree.
-        /// </summary>
         public abstract int Length { get; }
 
-        /// <summary>
-        /// Gets the syntax tree's text if it is available.
-        /// </summary>
         public abstract bool TryGetText([NotNullWhen(true)] out SourceText? text);
 
-        /// <summary>
-        /// Gets the text of the source document.
-        /// </summary>
         public abstract SourceText GetText(CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// The text encoding of the source document.
-        /// </summary>
         public abstract Encoding? Encoding { get; }
 
-        /// <summary>
-        /// Gets the text of the source document asynchronously.
-        /// </summary>
-        /// <remarks>
-        /// By default, the work associated with this method will be executed immediately on the current thread.
-        /// Implementations that wish to schedule this work differently should override <see cref="GetTextAsync(CancellationToken)"/>.
-        /// </remarks>
         public virtual Task<SourceText> GetTextAsync(CancellationToken cancellationToken = default)
         {
-            return Task.FromResult(this.TryGetText(out SourceText? text) ? text : this.GetText(cancellationToken));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 4695, 4925);
+                Microsoft.CodeAnalysis.Text.SourceText? text = default(Microsoft.CodeAnalysis.Text.SourceText?);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 4811, 4914);
+
+                return f_702_4818_4913((DynAbs.Tracing.TraceSender.Conditional_F1(702, 4834, 4871) || ((f_702_4834_4871(this, out text) && DynAbs.Tracing.TraceSender.Conditional_F2(702, 4874, 4878)) || DynAbs.Tracing.TraceSender.Conditional_F3(702, 4881, 4912))) ? text : f_702_4881_4912(this, cancellationToken));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 4695, 4925);
+
+                bool
+                f_702_4834_4871(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, out Microsoft.CodeAnalysis.Text.SourceText?
+                text)
+                {
+                    var return_v = this_param.TryGetText(out text);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 4834, 4871);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_702_4881_4912(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.GetText(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 4881, 4912);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.Task<Microsoft.CodeAnalysis.Text.SourceText>
+                f_702_4818_4913(Microsoft.CodeAnalysis.Text.SourceText
+                result)
+                {
+                    var return_v = Task.FromResult(result);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 4818, 4913);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 4695, 4925);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 4695, 4925);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Gets the root of the syntax tree if it is available.
-        /// </summary>
         public bool TryGetRoot([NotNullWhen(true)] out SyntaxNode? root)
         {
-            return TryGetRootCore(out root);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 5050, 5182);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 5139, 5171);
+
+                return f_702_5146_5170(this, out root);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 5050, 5182);
+
+                bool
+                f_702_5146_5170(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, out Microsoft.CodeAnalysis.SyntaxNode?
+                root)
+                {
+                    var return_v = this_param.TryGetRootCore(out root);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 5146, 5170);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 5050, 5182);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 5050, 5182);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Gets the root of the syntax tree if it is available.
-        /// </summary>
         protected abstract bool TryGetRootCore([NotNullWhen(true)] out SyntaxNode? root);
 
-        /// <summary>
-        /// Gets the root node of the syntax tree, causing computation if necessary.
-        /// </summary>
         public SyntaxNode GetRoot(CancellationToken cancellationToken = default)
         {
-            return GetRootCore(cancellationToken);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 5533, 5679);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 5630, 5668);
+
+                return f_702_5637_5667(this, cancellationToken);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 5533, 5679);
+
+                Microsoft.CodeAnalysis.SyntaxNode
+                f_702_5637_5667(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.GetRootCore(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 5637, 5667);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 5533, 5679);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 5533, 5679);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Gets the root node of the syntax tree, causing computation if necessary.
-        /// </summary>
         protected abstract SyntaxNode GetRootCore(CancellationToken cancellationToken);
 
-        /// <summary>
-        /// Gets the root node of the syntax tree asynchronously.
-        /// </summary>
         public Task<SyntaxNode> GetRootAsync(CancellationToken cancellationToken = default)
         {
-            return GetRootAsyncCore(cancellationToken);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 6029, 6191);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 6137, 6180);
+
+                return f_702_6144_6179(this, cancellationToken);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 6029, 6191);
+
+                System.Threading.Tasks.Task<Microsoft.CodeAnalysis.SyntaxNode>
+                f_702_6144_6179(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.GetRootAsyncCore(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 6144, 6179);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 6029, 6191);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 6029, 6191);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Gets the root node of the syntax tree asynchronously.
-        /// </summary>
         [SuppressMessage("Style", "VSTHRD200:Use \"Async\" suffix for async methods", Justification = "Public API.")]
         protected abstract Task<SyntaxNode> GetRootAsyncCore(CancellationToken cancellationToken);
 
-        /// <summary>
-        /// Create a new syntax tree based off this tree using a new source text.
-        /// 
-        /// If the new source text is a minor change from the current source text an incremental
-        /// parse will occur reusing most of the current syntax tree internal data.  Otherwise, a
-        /// full parse will occur using the new source text.
-        /// </summary>
         public abstract SyntaxTree WithChangedText(SourceText newText);
 
-        /// <summary>
-        /// Gets a list of all the diagnostics in the syntax tree.
-        /// This method does not filter diagnostics based on #pragmas and compiler options
-        /// like nowarn, warnaserror etc.
-        /// </summary>
         public abstract IEnumerable<Diagnostic> GetDiagnostics(CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// Gets a list of all the diagnostics in the sub tree that has the specified node as its root.
-        /// This method does not filter diagnostics based on #pragmas and compiler options
-        /// like nowarn, warnaserror etc.
-        /// </summary>
         public abstract IEnumerable<Diagnostic> GetDiagnostics(SyntaxNode node);
 
-        /// <summary>
-        /// Gets a list of all the diagnostics associated with the token and any related trivia.
-        /// This method does not filter diagnostics based on #pragmas and compiler options
-        /// like nowarn, warnaserror etc.
-        /// </summary>
         public abstract IEnumerable<Diagnostic> GetDiagnostics(SyntaxToken token);
 
-        /// <summary>
-        /// Gets a list of all the diagnostics associated with the trivia.
-        /// This method does not filter diagnostics based on #pragmas and compiler options
-        /// like nowarn, warnaserror etc.
-        /// </summary>
         public abstract IEnumerable<Diagnostic> GetDiagnostics(SyntaxTrivia trivia);
 
-        /// <summary>
-        /// Gets a list of all the diagnostics in either the sub tree that has the specified node as its root or
-        /// associated with the token and its related trivia. 
-        /// This method does not filter diagnostics based on #pragmas and compiler options
-        /// like nowarn, warnaserror etc.
-        /// </summary>
         public abstract IEnumerable<Diagnostic> GetDiagnostics(SyntaxNodeOrToken nodeOrToken);
 
-        /// <summary>
-        /// Gets the location in terms of path, line and column for a given span.
-        /// </summary>
-        /// <param name="span">Span within the tree.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>
-        /// A valid <see cref="FileLinePositionSpan"/> that contains path, line and column information.
-        /// The values are not affected by line mapping directives (<c>#line</c>).
-        /// </returns>
         public abstract FileLinePositionSpan GetLineSpan(TextSpan span, CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// Gets the location in terms of path, line and column after applying source line mapping directives 
-        /// (<c>#line</c> in C# or <c>#ExternalSource</c> in VB). 
-        /// </summary>
-        /// <param name="span">Span within the tree.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>
-        /// A valid <see cref="FileLinePositionSpan"/> that contains path, line and column information.
-        /// 
-        /// If the location path is mapped the resulting path is the path specified in the corresponding <c>#line</c>,
-        /// otherwise it's <see cref="SyntaxTree.FilePath"/>.
-        /// 
-        /// A location path is considered mapped if the first <c>#line</c> directive that precedes it and that 
-        /// either specifies an explicit file path or is <c>#line default</c> exists and specifies an explicit path.
-        /// </returns>
         public abstract FileLinePositionSpan GetMappedLineSpan(TextSpan span, CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// Returns the visibility for the line at the given position.
-        /// </summary>
-        /// <param name="position">The position to check.</param>
-        /// <param name="cancellationToken">The cancellation token.</param> 
         public virtual LineVisibility GetLineVisibility(int position, CancellationToken cancellationToken = default)
         {
-            return LineVisibility.Visible;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 10894, 11068);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 11027, 11057);
+
+                return LineVisibility.Visible;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 10894, 11068);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 10894, 11068);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 10894, 11068);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Gets a FileLinePositionSpan for a TextSpan and the information whether this span is considered to be hidden or not. 
-        /// FileLinePositionSpans are used primarily for diagnostics and source locations.
-        /// This method combines a call to GetLineSpan and IsHiddenPosition.
-        /// </summary>
-        /// <param name="span"></param>
-        /// <param name="isHiddenPosition">Returns a boolean indicating whether this span is considered hidden or not.</param>
-        /// <remarks>This function is being called only in the context of sequence point creation and therefore interprets the 
-        /// LineVisibility accordingly (BeforeFirstRemappingDirective -> Visible).</remarks>
         internal virtual FileLinePositionSpan GetMappedLineSpanAndVisibility(TextSpan span, out bool isHiddenPosition)
         {
-            isHiddenPosition = GetLineVisibility(span.Start) == LineVisibility.Hidden;
-            return GetMappedLineSpan(span);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 11819, 12084);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 11954, 12028);
+
+                isHiddenPosition = f_702_11973_12002(this, span.Start) == LineVisibility.Hidden;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 12042, 12073);
+
+                return f_702_12049_12072(this, span);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 11819, 12084);
+
+                Microsoft.CodeAnalysis.LineVisibility
+                f_702_11973_12002(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, int
+                position)
+                {
+                    var return_v = this_param.GetLineVisibility(position);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 11973, 12002);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.FileLinePositionSpan
+                f_702_12049_12072(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, Microsoft.CodeAnalysis.Text.TextSpan
+                span)
+                {
+                    var return_v = this_param.GetMappedLineSpan(span);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 12049, 12072);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 11819, 12084);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 11819, 12084);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns a path for particular location in source that is presented to the user. 
-        /// </summary>
-        /// <remarks>
-        /// Used for implementation of <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/> 
-        /// or for embedding source paths in error messages.
-        /// 
-        /// Unlike Dev12 we do account for #line and #ExternalSource directives when determining value for 
-        /// <see cref="System.Runtime.CompilerServices.CallerFilePathAttribute"/>.
-        /// </remarks>
         internal string GetDisplayPath(TextSpan span, SourceReferenceResolver? resolver)
         {
-            var mappedSpan = GetMappedLineSpan(span);
-            if (resolver == null || mappedSpan.Path.IsEmpty())
+            try
             {
-                return mappedSpan.Path;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 12664, 13096);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 12769, 12810);
 
-            return resolver.NormalizePath(mappedSpan.Path, baseFilePath: mappedSpan.HasMappedPath ? FilePath : null) ?? mappedSpan.Path;
+                var
+                mappedSpan = f_702_12786_12809(this, span)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 12824, 12945) || true) && (resolver == null || (DynAbs.Tracing.TraceSender.Expression_False(702, 12828, 12873) || f_702_12848_12873(mappedSpan.Path)))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(702, 12824, 12945);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 12907, 12930);
+
+                    return mappedSpan.Path;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(702, 12824, 12945);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 12961, 13085);
+
+                return f_702_12968_13065(resolver, mappedSpan.Path, baseFilePath: (DynAbs.Tracing.TraceSender.Conditional_F1(702, 13022, 13046) || ((mappedSpan.HasMappedPath && DynAbs.Tracing.TraceSender.Conditional_F2(702, 13049, 13057)) || DynAbs.Tracing.TraceSender.Conditional_F3(702, 13060, 13064))) ? f_702_13049_13057() : null) ?? (DynAbs.Tracing.TraceSender.Expression_Null<string?>(702, 12968, 13084) ?? mappedSpan.Path);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 12664, 13096);
+
+                Microsoft.CodeAnalysis.FileLinePositionSpan
+                f_702_12786_12809(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, Microsoft.CodeAnalysis.Text.TextSpan
+                span)
+                {
+                    var return_v = this_param.GetMappedLineSpan(span);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 12786, 12809);
+                    return return_v;
+                }
+
+
+                bool
+                f_702_12848_12873(string
+                source)
+                {
+                    var return_v = source.IsEmpty();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 12848, 12873);
+                    return return_v;
+                }
+
+
+                string
+                f_702_13049_13057()
+                {
+                    var return_v = FilePath;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(702, 13049, 13057);
+                    return return_v;
+                }
+
+
+                string?
+                f_702_12968_13065(Microsoft.CodeAnalysis.SourceReferenceResolver
+                this_param, string
+                path, string?
+                baseFilePath)
+                {
+                    var return_v = this_param.NormalizePath(path, baseFilePath: baseFilePath);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 12968, 13065);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 12664, 13096);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 12664, 13096);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns a line number for particular location in source that is presented to the user. 
-        /// </summary>
-        /// <remarks>
-        /// Used for implementation of <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/> 
-        /// or for embedding source line numbers in error messages.
-        /// 
-        /// Unlike Dev12 we do account for #line and #ExternalSource directives when determining value for 
-        /// <see cref="System.Runtime.CompilerServices.CallerLineNumberAttribute"/>.
-        /// </remarks>
         internal int GetDisplayLineNumber(TextSpan span)
         {
-            // display line numbers are 1-based
-            return GetMappedLineSpan(span).StartLinePosition.Line + 1;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 13694, 13885);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 13816, 13874);
+
+                return f_702_13823_13846(this, span).StartLinePosition.Line + 1;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 13694, 13885);
+
+                Microsoft.CodeAnalysis.FileLinePositionSpan
+                f_702_13823_13846(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, Microsoft.CodeAnalysis.Text.TextSpan
+                span)
+                {
+                    var return_v = this_param.GetMappedLineSpan(span);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 13823, 13846);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 13694, 13885);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 13694, 13885);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Are there any hidden regions in the tree?
-        /// </summary>
-        /// <returns>True if there is at least one hidden region.</returns>
         public abstract bool HasHiddenRegions();
 
-        /// <summary>
-        /// Returns a list of the changed regions between this tree and the specified tree. The list is conservative for
-        /// performance reasons. It may return larger regions than what has actually changed.
-        /// </summary>
         public abstract IList<TextSpan> GetChangedSpans(SyntaxTree syntaxTree);
 
-        /// <summary>
-        /// Gets a location for the specified text span.
-        /// </summary>
         public abstract Location GetLocation(TextSpan span);
 
-        /// <summary>
-        /// Determines if two trees are the same, disregarding trivia differences.
-        /// </summary>
-        /// <param name="tree">The tree to compare against.</param>
-        /// <param name="topLevel"> If true then the trees are equivalent if the contained nodes and tokens declaring
-        /// metadata visible symbolic information are equivalent, ignoring any differences of nodes inside method bodies
-        /// or initializer expressions, otherwise all nodes and tokens must be equivalent. 
-        /// </param>
         public abstract bool IsEquivalentTo(SyntaxTree tree, bool topLevel = false);
 
-        /// <summary>
-        /// Gets a SyntaxReference for a specified syntax node. SyntaxReferences can be used to
-        /// regain access to a syntax node without keeping the entire tree and source text in
-        /// memory.
-        /// </summary>
         public abstract SyntaxReference GetReference(SyntaxNode node);
 
-        /// <summary>
-        /// Gets a list of text changes that when applied to the old tree produce this tree.
-        /// </summary>
-        /// <param name="oldTree">The old tree.</param>
-        /// <remarks>The list of changes may be different than the original changes that produced
-        /// this tree.</remarks>
         public abstract IList<TextChange> GetChanges(SyntaxTree oldTree);
 
-        /// <summary>
-        /// Gets the checksum + algorithm id to use in the PDB.
-        /// </summary>
         internal Cci.DebugSourceInfo GetDebugSourceInfo()
         {
-            if (_lazyChecksum.IsDefault)
+            try
             {
-                var text = this.GetText();
-                _lazyChecksum = text.GetChecksum();
-                _lazyHashAlgorithm = text.ChecksumAlgorithm;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 16142, 16831);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16216, 16433) || true) && (_lazyChecksum.IsDefault)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(702, 16216, 16433);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16277, 16303);
+
+                    var
+                    text = f_702_16288_16302(this)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16321, 16356);
+
+                    _lazyChecksum = f_702_16337_16355(text);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16374, 16418);
+
+                    _lazyHashAlgorithm = f_702_16395_16417(text);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(702, 16216, 16433);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16449, 16488);
+
+                f_702_16449_16487(f_702_16462_16486_M(!_lazyChecksum.IsDefault));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16502, 16567);
+
+                f_702_16502_16566(_lazyHashAlgorithm != default(SourceHashAlgorithm));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 16754, 16820);
+
+                return f_702_16761_16819(_lazyChecksum, _lazyHashAlgorithm);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 16142, 16831);
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_702_16288_16302(Microsoft.CodeAnalysis.SyntaxTree
+                this_param)
+                {
+                    var return_v = this_param.GetText();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 16288, 16302);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<byte>
+                f_702_16337_16355(Microsoft.CodeAnalysis.Text.SourceText
+                this_param)
+                {
+                    var return_v = this_param.GetChecksum();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 16337, 16355);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                f_702_16395_16417(Microsoft.CodeAnalysis.Text.SourceText
+                this_param)
+                {
+                    var return_v = this_param.ChecksumAlgorithm;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(702, 16395, 16417);
+                    return return_v;
+                }
+
+
+                bool
+                f_702_16462_16486_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(702, 16462, 16486);
+                    return return_v;
+                }
+
+
+                int
+                f_702_16449_16487(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 16449, 16487);
+                    return 0;
+                }
+
+
+                int
+                f_702_16502_16566(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 16502, 16566);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.DebugSourceInfo
+                f_702_16761_16819(System.Collections.Immutable.ImmutableArray<byte>
+                checksum, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
+                checksumAlgorithm)
+                {
+                    var return_v = new Microsoft.Cci.DebugSourceInfo(checksum, checksumAlgorithm);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 16761, 16819);
+                    return return_v;
+                }
+
             }
-
-            Debug.Assert(!_lazyChecksum.IsDefault);
-            Debug.Assert(_lazyHashAlgorithm != default(SourceHashAlgorithm));
-
-            // NOTE: If this tree is to be embedded, it's debug source info should have
-            // been obtained via EmbeddedText.GetDebugSourceInfo() and not here.
-            return new Cci.DebugSourceInfo(_lazyChecksum, _lazyHashAlgorithm);
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 16142, 16831);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 16142, 16831);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns a new tree whose root and options are as specified and other properties are copied from the current tree.
-        /// </summary>
         public abstract SyntaxTree WithRootAndOptions(SyntaxNode root, ParseOptions options);
 
-        /// <summary>
-        /// Returns a new tree whose <see cref="FilePath"/> is the specified node and other properties are copied from the current tree.
-        /// </summary>
         public abstract SyntaxTree WithFilePath(string path);
 
-        /// <summary>
-        /// Returns a new tree whose <see cref="DiagnosticOptions" /> are the specified value and other properties are copied
-        /// from the current tree.
-        /// </summary>
-        /// <param name="options">
-        /// A mapping from diagnostic id to diagnostic reporting level. The diagnostic ID may be case-sensitive depending
-        /// on the language.
-        /// </param>
         [Obsolete("Obsolete due to performance problems, use CompilationOptions.SyntaxTreeOptionsProvider instead", error: false)]
         public virtual SyntaxTree WithDiagnosticOptions(ImmutableDictionary<string, ReportDiagnostic> options)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 17785, 18091);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 18044, 18080);
+
+                throw f_702_18050_18079();
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 17785, 18091);
+
+                System.NotImplementedException
+                f_702_18050_18079()
+                {
+                    var return_v = new System.NotImplementedException();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 18050, 18079);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 17785, 18091);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 17785, 18091);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns a <see cref="String" /> that represents the entire source text of this <see cref="SyntaxTree"/>.
-        /// </summary>
         public override string ToString()
         {
-            return this.GetText(CancellationToken.None).ToString();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 18268, 18392);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 18326, 18381);
+
+                return f_702_18333_18380(f_702_18333_18369(this, CancellationToken.None));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(702, 18268, 18392);
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_702_18333_18369(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.GetText(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 18333, 18369);
+                    return return_v;
+                }
+
+
+                string
+                f_702_18333_18380(Microsoft.CodeAnalysis.Text.SourceText
+                this_param)
+                {
+                    var return_v = this_param.ToString();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 18333, 18380);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 18268, 18392);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 18268, 18392);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal virtual bool SupportsLocations
         {
-            get { return this.HasCompilationUnitRoot; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(702, 18468, 18511);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 18474, 18509);
+
+                    return f_702_18481_18508(this);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(702, 18468, 18511);
+
+                    bool
+                    f_702_18481_18508(Microsoft.CodeAnalysis.SyntaxTree
+                    this_param)
+                    {
+                        var return_v = this_param.HasCompilationUnitRoot;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(702, 18481, 18508);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(702, 18404, 18522);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 18404, 18522);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
+
+        public SyntaxTree()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(702, 638, 18529);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 1104, 1122);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(702, 638, 18529);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 638, 18529);
+        }
+
+
+        static SyntaxTree()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(702, 638, 18529);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(702, 884, 1010);
+            EmptyDiagnosticOptions = f_702_922_1010(f_702_975_1009()); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(702, 638, 18529);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(702, 638, 18529);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(702, 638, 18529);
+
+        static System.StringComparer
+        f_702_975_1009()
+        {
+            var return_v = CaseInsensitiveComparison.Comparer;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(702, 975, 1009);
+            return return_v;
+        }
+
+
+        static System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.ReportDiagnostic>
+        f_702_922_1010(System.StringComparer
+        keyComparer)
+        {
+            var return_v = ImmutableDictionary.Create<string, ReportDiagnostic>((System.Collections.Generic.IEqualityComparer<string>)keyComparer);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(702, 922, 1010);
+            return return_v;
+        }
+
     }
 }

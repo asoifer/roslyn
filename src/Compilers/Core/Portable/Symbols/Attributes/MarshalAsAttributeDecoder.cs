@@ -12,12 +12,11 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis
 {
-    internal static class MarshalAsAttributeDecoder<TWellKnownAttributeData, TAttributeSyntax, TAttributeData, TAttributeLocation>
+internal static class MarshalAsAttributeDecoder<TWellKnownAttributeData, TAttributeSyntax, TAttributeData, TAttributeLocation>
         where TWellKnownAttributeData : WellKnownAttributeData, IMarshalAsAttributeTarget, new()
         where TAttributeSyntax : SyntaxNode
         where TAttributeData : AttributeData
-    {
-        internal static void Decode(ref DecodeWellKnownAttributeArguments<TAttributeSyntax, TAttributeData, TAttributeLocation> arguments, AttributeTargets target, CommonMessageProvider messageProvider)
+{        internal static void Decode(ref DecodeWellKnownAttributeArguments<TAttributeSyntax, TAttributeData, TAttributeLocation> arguments, AttributeTargets target, CommonMessageProvider messageProvider)
         {
             Debug.Assert((object)arguments.AttributeSyntaxOpt != null);
 
@@ -96,20 +95,111 @@ namespace Microsoft.CodeAnalysis
             }
         }
 
-        private static UnmanagedType DecodeMarshalAsType(AttributeData attribute)
+private static UnmanagedType DecodeMarshalAsType(AttributeData attribute)
+		{
+			try
         {
-            UnmanagedType unmanagedType;
-            if (attribute.AttributeConstructor.Parameters[0].Type.SpecialType == SpecialType.System_Int16)
-            {
-                unmanagedType = (UnmanagedType)attribute.CommonConstructorArguments[0].DecodeValue<short>(SpecialType.System_Int16);
-            }
-            else
-            {
-                unmanagedType = attribute.CommonConstructorArguments[0].DecodeValue<UnmanagedType>(SpecialType.System_Enum);
-            }
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(811,4434,5054);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(811,4532,4560);
 
-            return unmanagedType;
+UnmanagedType 
+unmanagedType
+=default(UnmanagedType);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(811,4574,5006) || true) && (f_811_4578_4639(f_811_4578_4627(f_811_4578_4619(f_811_4578_4608(attribute))[0]))== SpecialType.System_Int16)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(811,4574,5006);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(811,4701,4817);
+
+unmanagedType = (UnmanagedType)f_811_4732_4768(attribute)[0].DecodeValue<short>(SpecialType.System_Int16);
+DynAbs.Tracing.TraceSender.TraceExitCondition(811,4574,5006);
+}
+
+else
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(811,4574,5006);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(811,4883,4991);
+
+unmanagedType = f_811_4899_4935(attribute)[0].DecodeValue<UnmanagedType>(SpecialType.System_Enum);
+DynAbs.Tracing.TraceSender.TraceExitCondition(811,4574,5006);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(811,5022,5043);
+
+return unmanagedType;
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(811,4434,5054);
+
+Microsoft.CodeAnalysis.IMethodSymbol?
+f_811_4578_4608(Microsoft.CodeAnalysis.AttributeData
+this_param)
+{
+var return_v = this_param.AttributeConstructor;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(811, 4578, 4608);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IParameterSymbol>
+f_811_4578_4619(Microsoft.CodeAnalysis.IMethodSymbol?
+this_param)
+{
+var return_v = this_param.Parameters;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(811, 4578, 4619);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.ITypeSymbol
+f_811_4578_4627(Microsoft.CodeAnalysis.IParameterSymbol
+this_param)
+{
+var return_v = this_param.Type;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(811, 4578, 4627);
+return return_v;
+}
+
+
+Microsoft.CodeAnalysis.SpecialType
+f_811_4578_4639(Microsoft.CodeAnalysis.ITypeSymbol
+this_param)
+{
+var return_v = this_param.SpecialType ;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(811, 4578, 4639);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.TypedConstant>
+f_811_4732_4768(Microsoft.CodeAnalysis.AttributeData
+this_param)
+{
+var return_v = this_param.CommonConstructorArguments;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(811, 4732, 4768);
+return return_v;
+}
+
+
+System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.TypedConstant>
+f_811_4899_4935(Microsoft.CodeAnalysis.AttributeData
+this_param)
+{
+var return_v = this_param.CommonConstructorArguments;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(811, 4899, 4935);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(811,4434,5054);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(811,4434,5054);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
         private static void DecodeMarshalAsCustom(ref DecodeWellKnownAttributeArguments<TAttributeSyntax, TAttributeData, TAttributeLocation> arguments, CommonMessageProvider messageProvider)
         {
@@ -397,5 +487,14 @@ namespace Microsoft.CodeAnalysis
                 arguments.GetOrCreateData<TWellKnownAttributeData>().GetOrCreateData().SetMarshalAsFixedString(elementCount);
             }
         }
-    }
+
+static MarshalAsAttributeDecoder()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(811,428,18142);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(811,428,18142);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(811,428,18142);
+}
+
+}
 }
