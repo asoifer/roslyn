@@ -169,7 +169,10 @@ namespace Microsoft.CodeAnalysis.Operations
                 throw new ArgumentNullException(nameof(declarationOperation));
             }
 
-            return declarationOperation.Initializer ?? (declarationOperation.Parent as IVariableDeclarationOperation)?.Initializer;
+            // LAFHIS
+            //return declarationOperation.Initializer ?? (declarationOperation.Parent as IVariableDeclarationOperation)?.Initializer;
+
+            return declarationOperation.Initializer ?? ((declarationOperation.Parent is IVariableDeclarationOperation temp) ? temp.Initializer : null);
         }
 
         /// <summary>

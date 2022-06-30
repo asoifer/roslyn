@@ -332,7 +332,8 @@ namespace Microsoft.Cci
             }
 
             var nativeResourcesOpt = module.Win32Resources;
-            if (nativeResourcesOpt?.Any() == true)
+            // LAFHIS
+            if (nativeResourcesOpt != null && nativeResourcesOpt.Any() == true)
             {
                 return new ResourceSectionBuilderFromResources(nativeResourcesOpt);
             }

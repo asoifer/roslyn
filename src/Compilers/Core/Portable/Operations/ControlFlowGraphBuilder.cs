@@ -2869,7 +2869,9 @@ oneMoreTime:
             SpillEvalStack();
 
             var conversion = operation.WhenNull as IConversionOperation;
-            bool alternativeThrows = conversion?.Operand.Kind == OperationKind.Throw;
+
+            // LAFHIS
+            bool alternativeThrows = conversion != null && conversion.Operand.Kind == OperationKind.Throw;
 
             RegionBuilder resultCaptureRegion = CurrentRegionRequired;
 
@@ -2953,12 +2955,28 @@ oneMoreTime:
 
             int resultCaptureId = isStatement ? -1 : captureIdForResult ?? GetNextCaptureId(resultCaptureRegion);
 
-            if (operation.Target?.Type?.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T &&
-                ((INamedTypeSymbol)operation.Target.Type!).TypeArguments[0].Equals(operation.Type))
+            // LAFHIS
+            //if (operation.Target?.Type?.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T &&
+            //    ((INamedTypeSymbol)operation.Target.Type!).TypeArguments[0].Equals(operation.Type))
+
+            bool bNullableValueTypeReturn = false;
+
+            var temp = operation.Target;
+            if (temp != null)
             {
-                nullableValueTypeReturn();
+                var temp2 = temp.Type;
+                if (temp2 != null)
+                {
+                    if (temp2.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T &&
+                        ((INamedTypeSymbol)operation.Target.Type!).TypeArguments[0].Equals(operation.Type))
+                    {
+                        bNullableValueTypeReturn = true;
+                        nullableValueTypeReturn();
+                    }
+                }
             }
-            else
+            
+            if (!bNullableValueTypeReturn)
             {
                 standardReturn();
             }
@@ -3139,8 +3157,10 @@ oneMoreTime:
         private static IsNullOperation MakeIsNullOperation(IOperation operand, ITypeSymbol booleanType)
         {
             Debug.Assert(ITypeSymbolHelpers.IsBooleanType(booleanType));
-            ConstantValue? constantValue = operand.GetConstantValue() is { IsNull: var isNull }
-                ? ConstantValue.Create(isNull)
+            // LAFHIS
+            var temp = operand.GetConstantValue();
+            ConstantValue? constantValue = temp != null
+                ? ConstantValue.Create(temp.IsNull)
                 : null;
             return new IsNullOperation(operand.Syntax, operand,
                                        booleanType,
@@ -3564,7 +3584,10 @@ oneMoreTime:
             }
 
             AppendNewBlock(afterTryCatchFinally, linkToPrevious: false);
-            Debug.Assert(tryAndFinallyRegion?.Regions![1].LastBlock!.FallThrough.Destination == null);
+            
+            // LAFHIS
+            //Debug.Assert(tryAndFinallyRegion?.Regions![1].LastBlock!.FallThrough.Destination == null);
+            Debug.Assert(tryAndFinallyRegion == null || tryAndFinallyRegion.Regions[1].LastBlock.FallThrough.Destination == null);
 
             return FinishVisitingStatement(operation);
         }
@@ -4270,7 +4293,8 @@ oneMoreTime:
 
             IOperation applyConversion(IConvertibleConversion? conversionOpt, IOperation operand, ITypeSymbol? targetType)
             {
-                if (conversionOpt?.ToCommonConversion().IsIdentity == false)
+                // LAFHIS
+                if (conversionOpt != null && conversionOpt.ToCommonConversion().IsIdentity == false)
                 {
                     operand = new ConversionOperation(operand, conversionOpt, isTryCast: false, isChecked: false, semanticModel: null,
                                                       operand.Syntax, targetType, constantValue: null, isImplicit: true);
@@ -4370,7 +4394,18 @@ oneMoreTime:
 
                     case OperationKind.Tuple:
                     case OperationKind.DeclarationExpression:
-                        Debug.Assert(info?.ElementConversion?.ToCommonConversion().IsIdentity != false);
+                        // LAFHIS
+                        //Debug.Assert(info?.ElementConversion?.ToCommonConversion().IsIdentity != false);
+
+                        if (info != null)
+                        {
+                            var temp = info.ElementConversion;
+                            if (temp != null)
+                            {
+                                Debug.Assert(temp.ToCommonConversion().IsIdentity != false);
+                            }
+                        }
+                        
 
                         return new DeconstructionAssignmentOperation(VisitPreservingTupleOperations(operation.LoopControlVariable),
                                                                      current, semanticModel: null,

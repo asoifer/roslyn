@@ -1459,7 +1459,8 @@ namespace Microsoft.Cci
             }
             else
             {
-                symbol = (errorEntity as Cci.IReference)?.GetInternalSymbol();
+                // LAFHIS
+                symbol = (errorEntity is Cci.IReference temp) ? temp.GetInternalSymbol() : null;
             }
 
             return GetSymbolLocation(symbol);
