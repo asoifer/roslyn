@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -75,52 +75,185 @@ namespace Microsoft.Cci
         /// </summary>
         ExplicitThis = SignatureAttributes.ExplicitThis,
     }
-
     internal static class CallingConventionUtils
     {
-        private const SignatureCallingConvention SignatureCallingConventionMask =
-            SignatureCallingConvention.Default
-            | SignatureCallingConvention.CDecl
-            | SignatureCallingConvention.StdCall
-            | SignatureCallingConvention.ThisCall
-            | SignatureCallingConvention.FastCall
-            | SignatureCallingConvention.VarArgs
-            | SignatureCallingConvention.Unmanaged;
+        private const SignatureCallingConvention
+        SignatureCallingConventionMask =
+                    SignatureCallingConvention.Default
+                    | SignatureCallingConvention.CDecl
+                    | SignatureCallingConvention.StdCall
+                    | SignatureCallingConvention.ThisCall
+                    | SignatureCallingConvention.FastCall
+                    | SignatureCallingConvention.VarArgs
+                    | SignatureCallingConvention.Unmanaged
+        ;
 
-        private const SignatureAttributes SignatureAttributesMask =
-            SignatureAttributes.Generic
-            | SignatureAttributes.Instance
-            | SignatureAttributes.ExplicitThis;
+        private const SignatureAttributes
+        SignatureAttributesMask =
+                    SignatureAttributes.Generic
+                    | SignatureAttributes.Instance
+                    | SignatureAttributes.ExplicitThis
+        ;
 
         internal static CallingConvention FromSignatureConvention(this SignatureCallingConvention convention)
         {
-            if (!convention.IsValid())
+            try
             {
-                throw new UnsupportedSignatureContent();
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(497, 3956, 4295);
 
-            return (CallingConvention)(convention & SignatureCallingConventionMask);
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 4082, 4196) || true) && (!f_497_4087_4107(convention))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(497, 4082, 4196);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 4141, 4181);
+
+                    throw f_497_4147_4180();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(497, 4082, 4196);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 4212, 4284);
+
+                return (CallingConvention)(convention & SignatureCallingConventionMask);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(497, 3956, 4295);
+
+                bool
+                f_497_4087_4107(System.Reflection.Metadata.SignatureCallingConvention
+                convention)
+                {
+                    var return_v = convention.IsValid();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(497, 4087, 4107);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.UnsupportedSignatureContent
+                f_497_4147_4180()
+                {
+                    var return_v = new Microsoft.CodeAnalysis.UnsupportedSignatureContent();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(497, 4147, 4180);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 3956, 4295);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 3956, 4295);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsValid(this SignatureCallingConvention convention)
-            => convention <= SignatureCallingConvention.VarArgs || convention == SignatureCallingConvention.Unmanaged;
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(497, 4393, 4498);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 4396, 4498);
+                return convention <= SignatureCallingConvention.VarArgs || (DynAbs.Tracing.TraceSender.Expression_False(497, 4396, 4498) || convention == SignatureCallingConvention.Unmanaged); DynAbs.Tracing.TraceSender.TraceExitMethod(497, 4393, 4498);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 4393, 4498);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 4393, 4498);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
         internal static SignatureCallingConvention ToSignatureConvention(this CallingConvention convention)
-            => (SignatureCallingConvention)convention & SignatureCallingConventionMask;
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(497, 4624, 4698);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 4627, 4698);
+                return (SignatureCallingConvention)convention & SignatureCallingConventionMask; DynAbs.Tracing.TraceSender.TraceExitMethod(497, 4624, 4698);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 4624, 4698);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 4624, 4698);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
 
-        /// <summary>
-        /// Compares calling conventions, ignoring calling convention attributes.
-        /// </summary>
         internal static bool IsCallingConvention(this CallingConvention original, CallingConvention compare)
         {
-            Debug.Assert((compare & ~(CallingConvention)SignatureCallingConventionMask) == 0);
-            return ((original & (CallingConvention)SignatureCallingConventionMask)) == compare;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(497, 4841, 5156);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 4966, 5048);
+
+                f_497_4966_5047((compare & ~(CallingConvention)SignatureCallingConventionMask) == 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 5062, 5145);
+
+                return ((original & (CallingConvention)SignatureCallingConventionMask)) == compare;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(497, 4841, 5156);
+
+                int
+                f_497_4966_5047(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(497, 4966, 5047);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 4841, 5156);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 4841, 5156);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool HasUnknownCallingConventionAttributeBits(this CallingConvention convention)
-            => (convention & ~((CallingConvention)SignatureCallingConventionMask
-                               | (CallingConvention)SignatureAttributesMask))
-               != 0;
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(497, 5278, 5446);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 5281, 5446);
+                return (convention & ~((CallingConvention)SignatureCallingConventionMask
+                                               | (CallingConvention)SignatureAttributesMask))
+                               != 0; DynAbs.Tracing.TraceSender.TraceExitMethod(497, 5278, 5446);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 5278, 5446);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 5278, 5446);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        static CallingConventionUtils()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(497, 3254, 5454);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 3356, 3738);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 3785, 3943);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(497, 3254, 5454);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 3254, 5454);
+        }
+
     }
 
     /// <summary>
@@ -129,39 +262,19 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IEventDefinition : ITypeDefinitionMember
     {
-        /// <summary>
-        /// A list of methods that are associated with the event.
-        /// </summary>
+
         IEnumerable<IMethodReference> GetAccessors(EmitContext context);
 
-        /// <summary>
-        /// The method used to add a handler to the event.
-        /// </summary>
         IMethodReference Adder { get; }
 
-        /// <summary>
-        /// The method used to call the event handlers when the event occurs. May be null.
-        /// </summary>
         IMethodReference? Caller { get; }
 
-        /// <summary>
-        /// True if the event gets special treatment from the runtime.
-        /// </summary>
         bool IsRuntimeSpecial { get; }
 
-        /// <summary>
-        /// This event is special in some way, as specified by the name.
-        /// </summary>
         bool IsSpecialName { get; }
 
-        /// <summary>
-        /// The method used to add a handler to the event.
-        /// </summary>
         IMethodReference Remover { get; }
 
-        /// <summary>
-        /// The (delegate) type of the handlers that will handle the event.
-        /// </summary>
         ITypeReference GetType(EmitContext context);
     }
 
@@ -171,80 +284,41 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IFieldDefinition : ITypeDefinitionMember, IFieldReference
     {
-        /// <summary>
-        /// The compile time value of the field. This value should be used directly in IL, rather than a reference to the field.
-        /// If the field does not have a valid compile time value, Dummy.Constant is returned.
-        /// </summary>
+
         MetadataConstant? GetCompileTimeValue(EmitContext context);
 
-        /// <summary>
-        /// Mapped field data, or null if the field is not mapped.
-        /// </summary>
         ImmutableArray<byte> MappedData
         {
             get;
         }
 
-        /// <summary>
-        /// This field is a compile-time constant. The field has no runtime location and cannot be directly addressed from IL.
-        /// </summary>
         bool IsCompileTimeConstant { get; }
 
-        /// <summary>
-        /// This field has associated field marshalling information.
-        /// </summary>
         bool IsMarshalledExplicitly { get; }
 
-        /// <summary>
-        /// The field does not have to be serialized when its containing instance is serialized.
-        /// </summary>
         bool IsNotSerialized { get; }
 
-        /// <summary>
-        /// This field can only be read. Initialization takes place in a constructor.
-        /// </summary>
         bool IsReadOnly { get; }
 
-        /// <summary>
-        /// True if the field gets special treatment from the runtime.
-        /// </summary>
         bool IsRuntimeSpecial { get; }
 
-        /// <summary>
-        /// This field is special in some way, as specified by the name.
-        /// </summary>
         bool IsSpecialName { get; }
 
-        /// <summary>
-        /// This field is static (shared by all instances of its declaring type).
-        /// </summary>
         bool IsStatic { get; }
 
-        /// <summary>
-        /// Specifies how this field is marshalled when it is accessed from unmanaged code.
-        /// </summary>
         IMarshallingInformation? MarshallingInformation
         {
             get;
-            // ^ requires this.IsMarshalledExplicitly;
         }
 
-        /// <summary>
-        /// Checked if IsMarshalledExplicitly == true and MarshallingInformation is null
-        /// </summary>
         ImmutableArray<byte> MarshallingDescriptor
         {
             get;
-            // ^ requires this.IsMarshalledExplicitly;
         }
 
-        /// <summary>
-        /// Offset of the field.
-        /// </summary>
         int Offset
         {
             get;
-            // ^ requires this.ContainingTypeDefinition.Layout == LayoutKind.Explicit;
         }
     }
 
@@ -253,24 +327,13 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IFieldReference : ITypeMemberReference
     { // TODO: add custom modifiers
-        /// <summary>
-        /// The type of value that is stored in this field.
-        /// </summary>
+
         ITypeReference GetType(EmitContext context);
 
-        /// <summary>
-        /// The Field being referred to.
-        /// </summary>
         IFieldDefinition? GetResolvedField(EmitContext context);
-
 
         ISpecializedFieldReference? AsSpecializedFieldReference { get; }
 
-
-        /// <summary>
-        /// True, if field is an IContextualNamedEntity, even if field reference implements the interface,
-        /// doesn't mean it is contextual.
-        /// </summary>
         bool IsContextualNamedEntity
         {
             get;
@@ -282,87 +345,37 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ILocalDefinition : INamedEntity
     {
-        /// <summary>
-        /// The compile time value of the definition, if it is a local constant.
-        /// </summary>
+
         MetadataConstant CompileTimeValue
         {
             get;
         }
 
-        /// <summary>
-        /// Custom modifiers associated with local variable definition.
-        /// </summary>
         ImmutableArray<ICustomModifier> CustomModifiers
         {
             get;
         }
 
-        /// <summary>
-        /// TODO: use <see cref="Constraints"/> instead.
-        /// True if the value referenced by the local must not be moved by the actions of the garbage collector.
-        /// </summary>
         bool IsPinned { get; }
 
-        /// <summary>
-        /// TODO: use <see cref="Constraints"/> instead.
-        /// True if the local contains a managed pointer (for example a reference to a local variable or a reference to a field of an object).
-        /// </summary>
         bool IsReference { get; }
 
         LocalSlotConstraints Constraints { get; }
 
-        /// <summary>
-        /// Each local has an attributes field in the PDB.  To match the native compiler,
-        /// we emit <see cref="LocalVariableAttributes.DebuggerHidden"/> for locals that should 
-        /// definitely not bind in the debugger and <see cref="LocalVariableAttributes.None"/>
-        /// for all other locals.
-        /// </summary>
-        /// <remarks>
-        /// A value of <see cref="LocalVariableAttributes.DebuggerHidden"/> is a sufficient, but not a necessary, condition for hiding the
-        /// local in the debugger.  Locals with value <see cref="LocalVariableAttributes.None"/> may also be hidden.
-        /// 
-        /// Hidden locals must still be emitted because they participate in evaluation.
-        /// </remarks>
         LocalVariableAttributes PdbAttributes { get; }
 
-        /// <summary>
-        /// The synthesized dynamic attributes of the local definition if any, or empty.
-        /// </summary>
         ImmutableArray<bool> DynamicTransformFlags { get; }
 
-        /// <summary>
-        /// The tuple element names of the local definition if any, or empty.
-        /// </summary>
         ImmutableArray<string> TupleElementNames { get; }
 
-        /// <summary>
-        /// The type of the local.
-        /// </summary>
         ITypeReference Type { get; }
 
-        /// <summary>
-        /// Location for reporting diagnostics about the local.
-        /// </summary>
-        /// <remark>
-        /// Use <see cref="Location.None"/> rather than null.
-        /// </remark>
         Location Location { get; }
 
-        /// <summary>
-        /// Slot index or -1 if not applicable.
-        /// </summary>
         int SlotIndex { get; }
 
-        /// <summary>
-        /// Optional serialized local signature.
-        /// </summary>
         byte[]? Signature { get; }
 
-        /// <summary>
-        /// Local id, or <see cref="LocalDebugId.None"/> if this is a local constant, short-lived temp variable, 
-        /// or we are not emitting local variable ids (release builds).
-        /// </summary>
         LocalSlotDebugInfo SlotInfo { get; }
     }
 
@@ -371,109 +384,46 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IMethodBody
     {
-        /// <summary>
-        /// A list exception data within the method body IL.
-        /// </summary>
+
         ImmutableArray<ExceptionHandlerRegion> ExceptionRegions
         {
             get;
-            // ^ requires !this.MethodDefinition.IsAbstract && !this.MethodDefinition.IsExternal && this.MethodDefinition.IsCil;
         }
 
-        /// <summary>
-        /// True if the locals are initialized by zeroing the stack upon method entry.
-        /// </summary>
         bool AreLocalsZeroed { get; }
 
-        /// <summary>
-        /// True if there's a stackalloc somewhere in the method.
-        /// </summary>
         bool HasStackalloc { get; }
 
-        /// <summary>
-        /// The local variables of the method.
-        /// </summary>
         ImmutableArray<ILocalDefinition> LocalVariables { get; }
 
-        /// <summary>
-        /// The definition of the method whose body this is.
-        /// If this is the body of an event or property accessor, this will hold the corresponding adder/remover/setter or getter method.
-        /// </summary>
         IMethodDefinition MethodDefinition { get; }
 
-        /// <summary>
-        /// Debugging information associated with a MoveNext method of a state machine.
-        /// </summary>
         StateMachineMoveNextBodyDebugInfo MoveNextBodyInfo { get; }
 
-        /// <summary>
-        /// The maximum number of elements on the evaluation stack during the execution of the method.
-        /// </summary>
         ushort MaxStack { get; }
 
         ImmutableArray<byte> IL { get; }
+
         ImmutableArray<SequencePoint> SequencePoints { get; }
 
-        /// <summary>
-        /// Returns true if there is at least one dynamic local within the MethodBody
-        /// </summary>
         bool HasDynamicLocalVariables { get; }
 
-        /// <summary>
-        /// Returns zero or more local (block) scopes into which the CLR IL operations in the given method body is organized.
-        /// </summary>
         ImmutableArray<LocalScope> LocalScopes { get; }
 
-        /// <summary>
-        /// Returns an import scope the method is declared within, or null if there is none 
-        /// (e.g. the method doesn't contain user code).
-        /// </summary>
-        /// <remarks>
-        /// The chain is a spine of a tree in a forest of import scopes. A tree of import scopes is created by the language for each source file
-        /// based on namespace declarations. In VB each tree is trivial single-node tree that declares the imports of a file.
-        /// In C# the tree copies the nesting of namespace declarations in the file. There is a separate scope for each dotted component in 
-        /// the namespace type name. For instance namespace type x.y.z will have two namespace scopes, the first is for the x and the second
-        /// is for the y.
-        /// </remarks>
         IImportScope ImportScope { get; }
 
         DebugId MethodId { get; }
 
-        /// <summary>
-        /// Returns debug information for local variables hoisted to state machine fields, 
-        /// or null if this method isn't MoveNext method of a state machine.
-        /// </summary>
-        /// <remarks>
-        /// Returns zero or more local (block) scopes, each defining an IL range in which an iterator local is defined.
-        /// The scopes are returned for the MoveNext method of the object returned by the iterator method.
-        /// The index of the scope corresponds to the index of the local.  Specifically local scope i corresponds
-        /// to the local stored in a field named &lt;localName&gt;5__i of the class used to store the local values in
-        /// between calls to MoveNext, where localName is the original name of the local variable.  For example, if
-        /// the first local to be moved into the class is named "xyzzy", it will be stored in a field named
-        /// "&lt;xyzzy&gt;5__1", and the ILocalScope returned from this method at index 1 (i.e. the second one) will
-        /// have the scope information for where that variable is in scope.
-        /// </remarks>
         ImmutableArray<StateMachineHoistedLocalScope> StateMachineHoistedLocalScopes { get; }
 
-        /// <summary>
-        /// The name of the state machine generated for the method, 
-        /// or null if the method isn't the kickoff method of a state machine.
-        /// </summary>
         string StateMachineTypeName { get; }
 
-        /// <summary>
-        /// Returns information relevant to EnC on slots of local variables hoisted to state machine fields, 
-        /// or null if the method isn't the kickoff method of a state machine.
-        /// </summary>
         ImmutableArray<EncHoistedLocalInfo> StateMachineHoistedLocalSlots { get; }
 
-        /// <summary>
-        /// Returns types of awaiter slots allocated on the state machine,
-        /// or null if the method isn't the kickoff method of a state machine.
-        /// </summary>
         ImmutableArray<ITypeReference> StateMachineAwaiterSlots { get; }
 
         ImmutableArray<ClosureDebugInfo> ClosureDebugInfo { get; }
+
         ImmutableArray<LambdaDebugInfo> LambdaDebugInfo { get; }
 
         DynamicAnalysisMethodBodyData DynamicAnalysisData { get; }
@@ -484,159 +434,70 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IMethodDefinition : ITypeDefinitionMember, IMethodReference
     {
-        /// <summary>
-        /// A container for a list of IL instructions providing the implementation (if any) of this method.
-        /// </summary>
-        /// <remarks>
-        /// When emitting metadata-only assemblies this returns null even if <see cref="Cci.Extensions.HasBody"/> returns true.
-        /// </remarks>
+
         IMethodBody GetBody(EmitContext context);
 
-        /// <summary>
-        /// If the method is generic then this list contains the type parameters.
-        /// </summary>
         IEnumerable<IGenericMethodParameter> GenericParameters
         {
             get;
-            // ^ requires this.IsGeneric;
         }
 
-        /// <summary>
-        /// True if this method has a non empty collection of SecurityAttributes or the System.Security.SuppressUnmanagedCodeSecurityAttribute.
-        /// </summary>
         bool HasDeclarativeSecurity { get; }
 
-        /// <summary>
-        /// True if the method does not provide an implementation.
-        /// </summary>
         bool IsAbstract { get; }
 
-        /// <summary>
-        /// True if the method can only be overridden when it is also accessible. 
-        /// </summary>
         bool IsAccessCheckedOnOverride { get; }
 
-        /// <summary>
-        /// True if the method is a constructor.
-        /// </summary>
         bool IsConstructor { get; }
 
-        /// <summary>
-        /// True if the method has an external implementation (i.e. not supplied by this definition).
-        /// </summary>
-        /// <remarks>
-        /// If the method is not external and not abstract it has to provide an IL body.
-        /// </remarks>
         bool IsExternal { get; }
 
-        /// <summary>
-        /// True if this method is hidden if a derived type declares a method with the same name and signature. 
-        /// If false, any method with the same name hides this method. This flag is ignored by the runtime and is only used by compilers.
-        /// </summary>
         bool IsHiddenBySignature { get; }
 
-        /// <summary>
-        /// The method always gets a new slot in the virtual method table. 
-        /// This means the method will hide (not override) a base type method with the same name and signature.
-        /// </summary>
         bool IsNewSlot { get; }
 
-        /// <summary>
-        /// True if the method is implemented via the invocation of an underlying platform method.
-        /// </summary>
         bool IsPlatformInvoke { get; }
 
-        /// <summary>
-        /// True if the method gets special treatment from the runtime. For example, it might be a constructor.
-        /// </summary>
         bool IsRuntimeSpecial { get; }
 
-        /// <summary>
-        /// True if the method may not be overridden.
-        /// </summary>
         bool IsSealed { get; }
 
-        /// <summary>
-        /// True if the method is special in some way for tools. For example, it might be a property getter or setter.
-        /// </summary>
         bool IsSpecialName { get; }
 
-        /// <summary>
-        /// True if the method does not require an instance of its declaring type as its first argument.
-        /// </summary>
         bool IsStatic { get; }
 
-        /// <summary>
-        /// True if the method may be overridden (or if it is an override).
-        /// </summary>
         bool IsVirtual
         {
             get;
-            // ^ ensures result ==> !this.IsStatic;
         }
 
-        /// <summary>
-        /// Implementation flags.
-        /// </summary>
         MethodImplAttributes GetImplementationAttributes(EmitContext context);
 
-        /// <summary>
-        /// The parameters forming part of this signature.
-        /// </summary>
         ImmutableArray<IParameterDefinition> Parameters { get; }
 
-        /// <summary>
-        /// Detailed information about the PInvoke stub. Identifies which method to call, which module has the method and the calling convention among other things.
-        /// </summary>
         IPlatformInvokeInformation PlatformInvokeData
         {
             get;
-            // ^ requires this.IsPlatformInvoke;
         }
 
-        /// <summary>
-        /// True if the method calls another method containing security code. If this flag is set, the method
-        /// should have System.Security.DynamicSecurityMethodAttribute present in its list of custom attributes.
-        /// </summary>
         bool RequiresSecurityObject { get; }
 
-        /// <summary>
-        /// Custom attributes associated with the method's return value.
-        /// </summary>
         IEnumerable<ICustomAttribute> GetReturnValueAttributes(EmitContext context);
 
-        /// <summary>
-        /// The return value has associated marshalling information.
-        /// </summary>
         bool ReturnValueIsMarshalledExplicitly { get; }
 
-        /// <summary>
-        /// Specifies how the return value is marshalled when the method is called from unmanaged code.
-        /// </summary>
         IMarshallingInformation ReturnValueMarshallingInformation
         {
             get;
-            // ^ requires this.ReturnValueIsMarshalledExplicitly;
         }
 
-        /// <summary>
-        /// Checked if ReturnValueIsMarshalledExplicitly == true and ReturnValueMarshallingInformation is null
-        /// </summary>
         ImmutableArray<byte> ReturnValueMarshallingDescriptor
         {
             get;
-            // ^ requires this.ReturnValueIsMarshalledExplicitly;
         }
 
-        /// <summary>
-        /// Declarative security actions for this method.
-        /// </summary>
         IEnumerable<SecurityAttribute> SecurityAttributes { get; }
 
-        /// <summary>
-        /// Namespace containing this method.
-        /// TODO: Ideally we would expose INamespace on INamespaceTypeDefinition. Right now we can only get the qualified namespace name.
-        /// </summary>
         INamespace ContainingNamespace { get; }
     }
 
@@ -645,57 +506,30 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IParameterDefinition : IDefinition, INamedEntity, IParameterTypeInformation
     {
-        /// <summary>
-        /// A compile time constant value that should be supplied as the corresponding argument value by callers that do not explicitly specify an argument value for this parameter.
-        /// Null if the parameter doesn't have default value.
-        /// </summary>
+
         MetadataConstant? GetDefaultValue(EmitContext context);
 
-        /// <summary>
-        /// True if the parameter has a default value that should be supplied as the argument value by a caller for which the argument value has not been explicitly specified.
-        /// </summary>
         bool HasDefaultValue { get; }
 
-        /// <summary>
-        /// True if the argument value must be included in the marshalled arguments passed to a remote callee.
-        /// </summary>
         bool IsIn { get; }
 
-        /// <summary>
-        /// This parameter has associated marshalling information.
-        /// </summary>
         bool IsMarshalledExplicitly { get; }
 
-        /// <summary>
-        /// True if the argument value must be included in the marshalled arguments passed to a remote callee only if it is different from the default value (if there is one).
-        /// </summary>
         bool IsOptional
         {
             get;
-            // ^ result ==> this.HasDefaultValue;
         }
 
-        /// <summary>
-        /// True if the final value assigned to the parameter will be marshalled with the return values passed back from a remote callee.
-        /// </summary>
         bool IsOut { get; }
 
-        /// <summary>
-        /// Specifies how this parameter is marshalled when it is accessed from unmanaged code.
-        /// </summary>
         IMarshallingInformation? MarshallingInformation
         {
             get;
-            // ^ requires this.IsMarshalledExplicitly;
         }
 
-        /// <summary>
-        /// Checked if IsMarshalledExplicitly == true and MarshallingInformation is null
-        /// </summary>
         ImmutableArray<byte> MarshallingDescriptor
         {
             get;
-            // ^ requires this.IsMarshalledExplicitly;
         }
     }
 
@@ -705,48 +539,24 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IPropertyDefinition : ISignature, ITypeDefinitionMember
     {
-        /// <summary>
-        /// A list of methods that are associated with the property.
-        /// </summary>
+
         IEnumerable<IMethodReference> GetAccessors(EmitContext context);
 
-        /// <summary>
-        /// A compile time constant value that provides the default value for the property. (Who uses this and why?)
-        /// </summary>
         MetadataConstant? DefaultValue
         {
             get;
-            // ^ requires this.HasDefaultValue;
         }
 
-        /// <summary>
-        /// The method used to get the value of this property. May be absent (null).
-        /// </summary>
         IMethodReference? Getter { get; }
 
-        /// <summary>
-        /// True if this property has a compile time constant associated with that serves as a default value for the property. (Who uses this and why?)
-        /// </summary>
         bool HasDefaultValue { get; }
 
-        /// <summary>
-        /// True if this property gets special treatment from the runtime.
-        /// </summary>
         bool IsRuntimeSpecial { get; }
 
-        /// <summary>
-        /// True if this property is special in some way, as specified by the name.
-        /// </summary>
         bool IsSpecialName { get; }
 
-        /// <summary>
-        /// The parameters forming part of this signature.
-        /// </summary>
         ImmutableArray<IParameterDefinition> Parameters { get; }
 
-        /// <summary>
-        /// The method used to set the value of this property. May be absent (null).
-        /// </summary>
         IMethodReference? Setter { get; }
     }
 
@@ -756,45 +566,25 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ISignature
     {
-        /// <summary>
-        /// Calling convention of the signature.
-        /// </summary>
+
         CallingConvention CallingConvention { get; }
 
-        /// <summary>
-        /// The number of required parameters of the signature.
-        /// </summary>
         ushort ParameterCount { get; }
 
-        /// <summary>
-        /// The parameters forming part of this signature.
-        /// </summary>
         ImmutableArray<IParameterTypeInformation> GetParameters(EmitContext context);
 
-        /// <summary>
-        /// Returns the list of custom modifiers, if any, associated with the return type. 
-        /// </summary>
         ImmutableArray<ICustomModifier> ReturnValueCustomModifiers
         {
             get;
         }
 
-        /// <summary>
-        /// Returns the list of custom modifiers, if any, associated with the ref modifier. 
-        /// </summary>
         ImmutableArray<ICustomModifier> RefCustomModifiers
         {
             get;
         }
 
-        /// <summary>
-        /// True if the return value is passed by reference (using a managed pointer).
-        /// </summary>
         bool ReturnValueIsByRef { get; }
 
-        /// <summary>
-        /// The return type of the method or type of the property.
-        /// </summary>
         ITypeReference GetType(EmitContext context);
     }
 
@@ -804,14 +594,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ITypeDefinitionMember : ITypeMemberReference, IDefinition
     {
-        /// <summary>
-        /// The type definition that contains this member.
-        /// </summary>
+
         ITypeDefinition ContainingTypeDefinition { get; }
 
-        /// <summary>
-        /// Indicates if the member is public or confined to its containing type, derived types and/or declaring assembly.
-        /// </summary>
         TypeMemberVisibility Visibility { get; }
     }
 
@@ -821,9 +606,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ITypeMemberReference : IReference, INamedEntity
     {
-        /// <summary>
-        /// A reference to the containing type of the referenced type member.
-        /// </summary>
+
         ITypeReference GetContainingType(EmitContext context);
     }
 
@@ -832,11 +615,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ISpecializedEventDefinition : IEventDefinition
     {
-        /// <summary>
-        /// The event that has been specialized to obtain this event. When the containing type is an instance of type which is itself a specialized member (i.e. it is a nested
-        /// type of a generic type instance), then the unspecialized member refers to a member from the unspecialized containing type. (I.e. the unspecialized member always
-        /// corresponds to a definition that is not obtained via specialization.)
-        /// </summary>
+
         [NotNull]
         IEventDefinition UnspecializedVersion
         {
@@ -849,12 +628,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ISpecializedFieldReference : IFieldReference
     {
-        /// <summary>
-        /// A reference to the field definition that has been specialized to obtain the field definition referred to by this field reference. 
-        /// When the containing type of the referenced specialized field definition is itself a specialized nested type of a generic type instance, 
-        /// then the unspecialized field reference refers to the corresponding field definition from the unspecialized containing type definition.
-        /// (I.e. the unspecialized field reference always refers to a field definition that is not obtained via specialization.)
-        /// </summary>
+
         IFieldReference UnspecializedVersion { get; }
     }
 
@@ -863,12 +637,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ISpecializedMethodReference : IMethodReference
     {
-        /// <summary>
-        /// A reference to the method definition that has been specialized to obtain the method definition referred to by this method reference. 
-        /// When the containing type of the referenced specialized method definition is itself a specialized nested type of a generic type instance, 
-        /// then the unspecialized method reference refers to the corresponding method definition from the unspecialized containing type definition.
-        /// (I.e. the unspecialized method reference always refers to a method definition that is not obtained via specialization.)
-        /// </summary>
+
         IMethodReference UnspecializedVersion { get; }
     }
 
@@ -877,11 +646,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ISpecializedPropertyDefinition : IPropertyDefinition
     {
-        /// <summary>
-        /// The property that has been specialized to obtain this property. When the containing type is an instance of type which is itself a specialized member (i.e. it is a nested
-        /// type of a generic type instance), then the unspecialized member refers to a member from the unspecialized containing type. (I.e. the unspecialized member always
-        /// corresponds to a definition that is not obtained via specialization.)
-        /// </summary>
+
         [NotNull]
         IPropertyDefinition UnspecializedVersion
         {
@@ -894,38 +659,22 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IMethodReference : ISignature, ITypeMemberReference
     {
-        /// <summary>
-        /// True if the call sites that references the method with this object supply extra arguments.
-        /// </summary>
+
         bool AcceptsExtraArguments { get; }
 
-        /// <summary>
-        /// The number of generic parameters of the method. Zero if the referenced method is not generic.
-        /// </summary>
         ushort GenericParameterCount
         {
             get;
-            // ^ ensures !this.IsGeneric ==> result == 0;
-            // ^ ensures this.IsGeneric ==> result > 0;
         }
 
-        /// <summary>
-        /// True if the method has generic parameters;
-        /// </summary>
         bool IsGeneric { get; }
 
-        /// <summary>
-        /// The method being referred to.
-        /// </summary>
         IMethodDefinition? GetResolvedMethod(EmitContext context);
-        // ^ ensures this is IMethodDefinition ==> result == this;
 
-        /// <summary>
-        /// Information about this types of the extra arguments supplied at the call sites that references the method with this object.
-        /// </summary>
         ImmutableArray<IParameterTypeInformation> ExtraParameters { get; }
 
         IGenericMethodInstanceReference? AsGenericMethodInstanceReference { get; }
+
         ISpecializedMethodReference? AsSpecializedMethodReference { get; }
     }
 
@@ -934,15 +683,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericMethodInstanceReference : IMethodReference
     {
-        /// <summary>
-        /// The type arguments that were used to instantiate this.GenericMethod in order to create this method.
-        /// </summary>
-        IEnumerable<ITypeReference> GetGenericArguments(EmitContext context);
-        // ^ ensures result.GetEnumerator().MoveNext(); // The collection is always non empty.
 
-        /// <summary>
-        /// Returns the generic method of which this method is an instance.
-        /// </summary>
+        IEnumerable<ITypeReference> GetGenericArguments(EmitContext context);
+
         IMethodReference GetGenericMethod(EmitContext context);
         // ^ ensures result.ResolvedMethod.IsGeneric;
     }
@@ -959,48 +702,199 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGlobalMethodDefinition : IMethodDefinition
     {
-        /// <summary>
-        /// The name of the method.
-        /// </summary>
+
         new string Name { get; }
     }
-
     internal static class Extensions
     {
         internal static bool HasBody(this IMethodDefinition methodDef)
         {
-            // Method definition has body if it is a non-abstract, non-extern method.
-            // Additionally, methods within COM types have no body.
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(497, 38833, 39259);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39078, 39248);
 
-            return !methodDef.IsAbstract && !methodDef.IsExternal &&
-                (methodDef.ContainingTypeDefinition == null || !methodDef.ContainingTypeDefinition.IsComObject);
+                return f_497_39085_39106_M(!methodDef.IsAbstract) && (DynAbs.Tracing.TraceSender.Expression_True(497, 39085, 39131) && f_497_39110_39131_M(!methodDef.IsExternal)) && (DynAbs.Tracing.TraceSender.Expression_True(497, 39085, 39247) && (f_497_39153_39187(methodDef) == null || (DynAbs.Tracing.TraceSender.Expression_False(497, 39153, 39246) || f_497_39199_39246_M(!f_497_39200_39234(methodDef).IsComObject))));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(497, 38833, 39259);
+
+                bool
+                f_497_39085_39106_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39085, 39106);
+                    return return_v;
+                }
+
+
+                bool
+                f_497_39110_39131_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39110, 39131);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.ITypeDefinition
+                f_497_39153_39187(Microsoft.Cci.IMethodDefinition
+                this_param)
+                {
+                    var return_v = this_param.ContainingTypeDefinition;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39153, 39187);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.ITypeDefinition
+                f_497_39200_39234(Microsoft.Cci.IMethodDefinition
+                this_param)
+                {
+                    var return_v = this_param.ContainingTypeDefinition;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39200, 39234);
+                    return return_v;
+                }
+
+
+                bool
+                f_497_39199_39246_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39199, 39246);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 38833, 39259);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 38833, 39259);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// When emitting ref assemblies, some members will not be included.
-        /// </summary>
         public static bool ShouldInclude(this ITypeDefinitionMember member, EmitContext context)
         {
-            if (context.IncludePrivateMembers)
+            try
             {
-                return true;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(497, 39396, 40232);
 
-            var method = member as IMethodDefinition;
-            if (method != null && method.IsVirtual)
-            {
-                return true;
-            }
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39509, 39603) || true) && (context.IncludePrivateMembers)
+                )
 
-            switch (member.Visibility)
-            {
-                case TypeMemberVisibility.Private:
-                    return context.IncludePrivateMembers;
-                case TypeMemberVisibility.Assembly:
-                case TypeMemberVisibility.FamilyAndAssembly:
-                    return context.IncludePrivateMembers || context.Module.SourceAssemblyOpt?.InternalsAreVisible == true;
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(497, 39509, 39603);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39576, 39588);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(497, 39509, 39603);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39619, 39660);
+
+                var
+                method = member as IMethodDefinition
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39674, 39773) || true) && (method != null && (DynAbs.Tracing.TraceSender.Expression_True(497, 39678, 39712) && f_497_39696_39712(method)))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(497, 39674, 39773);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39746, 39758);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(497, 39674, 39773);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39789, 40195);
+
+                switch (f_497_39797_39814(member))
+                {
+
+                    case TypeMemberVisibility.Private:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(497, 39789, 40195);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 39904, 39941);
+
+                        return context.IncludePrivateMembers;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(497, 39789, 40195);
+
+                    case TypeMemberVisibility.Assembly:
+                    case TypeMemberVisibility.FamilyAndAssembly:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(497, 39789, 40195);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 40078, 40180);
+
+                        return context.IncludePrivateMembers || (DynAbs.Tracing.TraceSender.Expression_False(497, 40085, 40179) || f_497_40118_40171_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_497_40118_40150(context.Module), 497, 40118, 40171)?.InternalsAreVisible) == true);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(497, 39789, 40195);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(497, 40209, 40221);
+
+                return true;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(497, 39396, 40232);
+
+                bool
+                f_497_39696_39712(Microsoft.Cci.IMethodDefinition
+                this_param)
+                {
+                    var return_v = this_param.IsVirtual;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39696, 39712);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.TypeMemberVisibility
+                f_497_39797_39814(Microsoft.Cci.ITypeDefinitionMember
+                this_param)
+                {
+                    var return_v = this_param.Visibility;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 39797, 39814);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Symbols.ISourceAssemblySymbolInternal
+                f_497_40118_40150(Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder
+                this_param)
+                {
+                    var return_v = this_param.SourceAssemblyOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 40118, 40150);
+                    return return_v;
+                }
+
+
+                bool?
+                f_497_40118_40171_M(bool?
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(497, 40118, 40171);
+                    return return_v;
+                }
+
             }
-            return true;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(497, 39396, 40232);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 39396, 40232);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static Extensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(497, 38784, 40239);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(497, 38784, 40239);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(497, 38784, 40239);
+        }
+
     }
 }

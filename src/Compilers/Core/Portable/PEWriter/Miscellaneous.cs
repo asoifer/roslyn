@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,92 +13,328 @@ using EmitContext = Microsoft.CodeAnalysis.Emit.EmitContext;
 
 namespace Microsoft.Cci
 {
-    /// <summary>
-    /// A container for static helper methods that are used for manipulating and computing iterators.
-    /// </summary>
     internal static class IteratorHelper
     {
-        /// <summary>
-        /// True if the given enumerable is not null and contains at least one element.
-        /// </summary>
         public static bool EnumerableIsNotEmpty<T>([NotNullWhen(returnValue: true)] IEnumerable<T>? enumerable)
         {
-            if (enumerable == null)
+            try
             {
-                return false;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(503, 830, 1436);
 
-            var asIListT = enumerable as IList<T>;
-            if (asIListT != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 958, 1042) || true) && (enumerable == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 958, 1042);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1014, 1027);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(503, 958, 1042);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1058, 1096);
+
+                var
+                asIListT = enumerable as IList<T>
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1110, 1206) || true) && (asIListT != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 1110, 1206);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1164, 1191);
+
+                    return f_503_1171_1185(asIListT) != 0;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(503, 1110, 1206);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1222, 1256);
+
+                var
+                asIList = enumerable as IList
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1270, 1364) || true) && (asIList != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 1270, 1364);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1323, 1349);
+
+                    return f_503_1330_1343(asIList) != 0;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(503, 1270, 1364);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1380, 1425);
+
+                return f_503_1387_1424(f_503_1387_1413(enumerable));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(503, 830, 1436);
+
+                int
+                f_503_1171_1185(System.Collections.Generic.IList<T>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(503, 1171, 1185);
+                    return return_v;
+                }
+
+
+                int
+                f_503_1330_1343(System.Collections.IList
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(503, 1330, 1343);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerator<T>
+                f_503_1387_1413(System.Collections.Generic.IEnumerable<T>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 1387, 1413);
+                    return return_v;
+                }
+
+
+                bool
+                f_503_1387_1424(System.Collections.Generic.IEnumerator<T>
+                this_param)
+                {
+                    var return_v = this_param.MoveNext();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 1387, 1424);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return asIListT.Count != 0;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(503, 830, 1436);
+                throw;
             }
-
-            var asIList = enumerable as IList;
-            if (asIList != null)
+            finally
             {
-                return asIList.Count != 0;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 830, 1436);
             }
-
-            return enumerable.GetEnumerator().MoveNext();
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// True if the given enumerable is null or contains no elements
-        /// </summary>
         public static bool EnumerableIsEmpty<T>([NotNullWhen(returnValue: false)] IEnumerable<T>? enumerable)
         {
-            return !EnumerableIsNotEmpty<T>(enumerable);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(503, 1569, 1750);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 1695, 1739);
+
+                return !f_503_1703_1738(enumerable);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(503, 1569, 1750);
+
+                bool
+                f_503_1703_1738(System.Collections.Generic.IEnumerable<T>?
+                enumerable)
+                {
+                    var return_v = EnumerableIsNotEmpty<T>(enumerable);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 1703, 1738);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(503, 1569, 1750);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 1569, 1750);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Returns the number of elements in the given enumerable. A null enumerable is allowed and results in 0.
-        /// </summary>
         public static uint EnumerableCount<T>(IEnumerable<T>? enumerable)
         {
-            // ^ ensures result >= 0;
-            if (enumerable == null)
+            try
             {
-                return 0;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(503, 1925, 2713);
 
-            var asIListT = enumerable as IList<T>;
-            if (asIListT != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2054, 2134) || true) && (enumerable == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 2054, 2134);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2110, 2119);
+
+                    return 0;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(503, 2054, 2134);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2150, 2188);
+
+                var
+                asIListT = enumerable as IList<T>
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2202, 2299) || true) && (asIListT != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 2202, 2299);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2256, 2284);
+
+                    return (uint)f_503_2269_2283(asIListT);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(503, 2202, 2299);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2315, 2349);
+
+                var
+                asIList = enumerable as IList
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2363, 2458) || true) && (asIList != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 2363, 2458);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2416, 2443);
+
+                    return (uint)f_503_2429_2442(asIList);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(503, 2363, 2458);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2474, 2490);
+
+                uint
+                result = 0
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2504, 2559);
+
+                IEnumerator<T>
+                enumerator = f_503_2532_2558(enumerable)
+                ;
+                try
+                {
+                    while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2573, 2659) || true) && (f_503_2580_2601(enumerator))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(503, 2573, 2659);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2635, 2644);
+
+                        result++;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(503, 2573, 2659);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(503, 2573, 2659);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(503, 2573, 2659);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 2675, 2702);
+
+                return result & 0x7FFFFFFF;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(503, 1925, 2713);
+
+                int
+                f_503_2269_2283(System.Collections.Generic.IList<T>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(503, 2269, 2283);
+                    return return_v;
+                }
+
+
+                int
+                f_503_2429_2442(System.Collections.IList
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(503, 2429, 2442);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerator<T>
+                f_503_2532_2558(System.Collections.Generic.IEnumerable<T>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 2532, 2558);
+                    return return_v;
+                }
+
+
+                bool
+                f_503_2580_2601(System.Collections.Generic.IEnumerator<T>
+                this_param)
+                {
+                    var return_v = this_param.MoveNext();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 2580, 2601);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return (uint)asIListT.Count;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(503, 1925, 2713);
+                throw;
             }
-
-            var asIList = enumerable as IList;
-            if (asIList != null)
+            finally
             {
-                return (uint)asIList.Count;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 1925, 2713);
             }
-
-            uint result = 0;
-            IEnumerator<T> enumerator = enumerable.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                result++;
-            }
-
-            return result & 0x7FFFFFFF;
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static IteratorHelper()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(503, 641, 2720);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(503, 641, 2720);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 641, 2720);
+        }
+
     }
 
-    /// <summary>
-    /// A declarative specification of a security action applied to a set of permissions. Used by the CLR loader to enforce security restrictions.
-    /// Each security attribute represents a serialized permission or permission set for a specified security action.
-    /// The union of the security attributes with identical security action, define the permission set to which the security action applies.
-    /// </summary>
     internal struct SecurityAttribute
     {
+
         public DeclarativeSecurityAction Action { get; }
+
         public ICustomAttribute Attribute { get; }
 
         public SecurityAttribute(DeclarativeSecurityAction action, ICustomAttribute attribute)
         {
-            Action = action;
-            Attribute = attribute;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(503, 3338, 3512);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 3449, 3465);
+
+                Action = action;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 3479, 3501);
+
+                Attribute = attribute;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(503, 3338, 3512);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(503, 3338, 3512);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 3338, 3512);
+            }
+        }
+        static SecurityAttribute()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(503, 3176, 3519);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(503, 3176, 3519);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 3176, 3519);
         }
     }
 
@@ -107,76 +343,41 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IMarshallingInformation
     {
-        /// <summary>
-        /// <see cref="ITypeReference"/> or a string (usually a fully-qualified type name of a type implementing the custom marshaller, but Dev11 allows any string).
-        /// </summary>
+
         object GetCustomMarshaller(EmitContext context);
 
-        /// <summary>
-        /// An argument string (cookie) passed to the custom marshaller at run time.
-        /// </summary>
         string CustomMarshallerRuntimeArgument
         {
             get;
         }
 
-        /// <summary>
-        /// The unmanaged element type of the unmanaged array.
-        /// -1 if it should be omitted from the marshal blob.
-        /// </summary>
         System.Runtime.InteropServices.UnmanagedType ElementType
         {
             get;
         }
 
-        /// <summary>
-        /// Specifies the index of the parameter that contains the value of the Interface Identifier (IID) of the marshalled object.
-        /// -1 if it should be omitted from the marshal blob.
-        /// </summary>
         int IidParameterIndex
         {
             get;
         }
 
-        /// <summary>
-        /// The unmanaged type to which the managed type will be marshalled. This can be UnmanagedType.CustomMarshaler, in which case the unmanaged type
-        /// is decided at runtime.
-        /// </summary>
         System.Runtime.InteropServices.UnmanagedType UnmanagedType { get; }
 
-        /// <summary>
-        /// The number of elements in the fixed size portion of the unmanaged array.
-        /// -1 if it should be omitted from the marshal blob.
-        /// </summary>
         int NumberOfElements
         {
             get;
         }
 
-        /// <summary>
-        /// The zero based index of the parameter in the unmanaged method that contains the number of elements in the variable portion of unmanaged array.
-        /// If -1, the variable portion is of size zero, or the caller conveys the size of the variable portion of the array to the unmanaged method in some other way.
-        /// </summary>
         short ParamIndex
         {
             get;
         }
 
-        /// <summary>
-        /// The type to which the variant values of all elements of the safe array must belong. See also SafeArrayElementUserDefinedSubtype.
-        /// (The element type of a safe array is VARIANT. The "sub type" specifies the value of all of the tag fields (vt) of the element values. )
-        /// -1 if it should be omitted from the marshal blob.
-        /// </summary>
         VarEnum SafeArrayElementSubtype
         {
             get;
         }
 
-        /// <summary>
-        /// A reference to the user defined type to which the variant values of all elements of the safe array must belong.
-        /// (The element type of a safe array is VARIANT. The tag fields will all be either VT_DISPATCH or VT_UNKNOWN or VT_RECORD.
-        /// The "user defined sub type" specifies the type of value the ppdispVal/ppunkVal/pvRecord fields of the element values may point to.)
-        /// </summary>
         ITypeReference GetSafeArrayElementUserDefinedSubtype(EmitContext context);
     }
 
@@ -185,9 +386,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface INamedEntity
     {
-        /// <summary>
-        /// The name of the entity.
-        /// </summary>
+
         string? Name { get; }
     }
 
@@ -197,9 +396,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IContextualNamedEntity : INamedEntity
     {
-        /// <summary>
-        /// Method must be called before calling INamedEntity.Name.
-        /// </summary>
+
         void AssociateWithMetadataWriter(MetadataWriter metadataWriter);
     }
 
@@ -209,9 +406,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IParameterListEntry
     {
-        /// <summary>
-        /// The position in the parameter list where this instance can be found.
-        /// </summary>
+
         ushort Index { get; }
     }
 
@@ -220,37 +415,80 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IPlatformInvokeInformation
     {
-        /// <summary>
-        /// Module providing the method/field.
-        /// </summary>
+
         string? ModuleName { get; }
 
-        /// <summary>
-        /// Name of the method providing the implementation.
-        /// </summary>
         string? EntryPointName { get; }
 
-        /// <summary>
-        /// Flags that determine marshalling behavior.
-        /// </summary>
         MethodImportAttributes Flags { get; }
     }
-
     internal class ResourceSection
     {
         internal ResourceSection(byte[] sectionBytes, uint[] relocations)
         {
-            RoslynDebug.Assert(sectionBytes != null);
-            RoslynDebug.Assert(relocations != null);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(503, 8718, 8998);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 9035, 9047);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 9213, 9224);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 8808, 8849);
 
-            SectionBytes = sectionBytes;
-            Relocations = relocations;
+                f_503_8808_8848(sectionBytes != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 8863, 8903);
+
+                f_503_8863_8902(relocations != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 8919, 8947);
+
+                SectionBytes = sectionBytes;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(503, 8961, 8987);
+
+                Relocations = relocations;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(503, 8718, 8998);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(503, 8718, 8998);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 8718, 8998);
+            }
         }
 
         internal readonly byte[] SectionBytes;
-        //This is the offset into SectionBytes that should be modified.
-        //It should have the section's RVA added to it.
+
         internal readonly uint[] Relocations;
+
+        static ResourceSection()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(503, 8671, 9232);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(503, 8671, 9232);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(503, 8671, 9232);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(503, 8671, 9232);
+
+        static int
+        f_503_8808_8848(bool
+        b)
+        {
+            RoslynDebug.Assert(b);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 8808, 8848);
+            return 0;
+        }
+
+
+        static int
+        f_503_8863_8902(bool
+        b)
+        {
+            RoslynDebug.Assert(b);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(503, 8863, 8902);
+            return 0;
+        }
+
     }
 
     /// <summary>
@@ -259,50 +497,28 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IWin32Resource
     {
-        /// <summary>
-        /// A string that identifies what type of resource this is. Only valid if this.TypeId &lt; 0.
-        /// </summary>
+
         string TypeName
         {
             get;
-            // ^ requires this.TypeId < 0;
         }
 
-        /// <summary>
-        /// An integer tag that identifies what type of resource this is. If the value is less than 0, this.TypeName should be used instead.
-        /// </summary>
         int TypeId
         {
             get;
         }
 
-        /// <summary>
-        /// The name of the resource. Only valid if this.Id &lt; 0.
-        /// </summary>
         string Name
         {
             get;
-            // ^ requires this.Id < 0; 
         }
 
-        /// <summary>
-        /// An integer tag that identifies this resource. If the value is less than 0, this.Name should be used instead.
-        /// </summary>
         int Id { get; }
 
-        /// <summary>
-        /// The language for which this resource is appropriate.
-        /// </summary>
         uint LanguageId { get; }
 
-        /// <summary>
-        /// The code page for which this resource is appropriate.
-        /// </summary>
         uint CodePage { get; }
 
-        /// <summary>
-        /// The data of the resource.
-        /// </summary>
         IEnumerable<byte> Data { get; }
     }
 }

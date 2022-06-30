@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -9,31 +9,89 @@ namespace Microsoft.Cci
 {
     internal static class Constants
     {
-        // Non-portable CharSet values:
-        public const CharSet CharSet_None = (CharSet)1;
-        public const CharSet CharSet_Auto = (CharSet)4;
+        public const CharSet
+        CharSet_None = (CharSet)1
+        ;
 
-        // Non-portable CallingConvention values:
-        public const System.Runtime.InteropServices.CallingConvention CallingConvention_FastCall = (System.Runtime.InteropServices.CallingConvention)5;
+        public const CharSet
+        CharSet_Auto = (CharSet)4
+        ;
 
-        // Non-portable UnmanagedType values:
-        public const UnmanagedType UnmanagedType_CustomMarshaler = (UnmanagedType)44;
-        public const UnmanagedType UnmanagedType_IDispatch = (UnmanagedType)26;
-        public const UnmanagedType UnmanagedType_SafeArray = (UnmanagedType)29;
-        public const UnmanagedType UnmanagedType_VBByRefStr = (UnmanagedType)34;
-        public const UnmanagedType UnmanagedType_AnsiBStr = (UnmanagedType)35;
-        public const UnmanagedType UnmanagedType_TBStr = (UnmanagedType)36;
+        public const System.Runtime.InteropServices.CallingConvention
+        CallingConvention_FastCall = (System.Runtime.InteropServices.CallingConvention)5
+        ;
 
-        public const ComInterfaceType ComInterfaceType_InterfaceIsDual = 0;
-        public const ComInterfaceType ComInterfaceType_InterfaceIsIDispatch = (ComInterfaceType)2;
+        public const UnmanagedType
+        UnmanagedType_CustomMarshaler = (UnmanagedType)44
+        ;
 
-        public const ClassInterfaceType ClassInterfaceType_AutoDispatch = (ClassInterfaceType)1;
-        public const ClassInterfaceType ClassInterfaceType_AutoDual = (ClassInterfaceType)2;
+        public const UnmanagedType
+        UnmanagedType_IDispatch = (UnmanagedType)26
+        ;
 
-        // Non-portable CompilationRelaxations value:
-        public const int CompilationRelaxations_NoStringInterning = 0x0008;
+        public const UnmanagedType
+        UnmanagedType_SafeArray = (UnmanagedType)29
+        ;
 
-        public const TypeAttributes TypeAttributes_TypeForwarder = (TypeAttributes)0x00200000;
+        public const UnmanagedType
+        UnmanagedType_VBByRefStr = (UnmanagedType)34
+        ;
+
+        public const UnmanagedType
+        UnmanagedType_AnsiBStr = (UnmanagedType)35
+        ;
+
+        public const UnmanagedType
+        UnmanagedType_TBStr = (UnmanagedType)36
+        ;
+
+        public const ComInterfaceType
+        ComInterfaceType_InterfaceIsDual = 0
+        ;
+
+        public const ComInterfaceType
+        ComInterfaceType_InterfaceIsIDispatch = (ComInterfaceType)2
+        ;
+
+        public const ClassInterfaceType
+        ClassInterfaceType_AutoDispatch = (ClassInterfaceType)1
+        ;
+
+        public const ClassInterfaceType
+        ClassInterfaceType_AutoDual = (ClassInterfaceType)2
+        ;
+
+        public const int
+        CompilationRelaxations_NoStringInterning = 0x0008
+        ;
+
+        public const TypeAttributes
+        TypeAttributes_TypeForwarder = (TypeAttributes)0x00200000
+        ;
+
+        static Constants()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(478, 307, 1855);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 417, 442);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 474, 499);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 625, 705);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 792, 841);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 879, 922);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 960, 1003);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1041, 1085);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1123, 1165);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1203, 1242);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1285, 1321);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1362, 1421);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1466, 1521);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1564, 1615);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1700, 1749);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(478, 1790, 1847);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(478, 307, 1855);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(478, 307, 1855);
+        }
+
     }
 
     /// <summary>

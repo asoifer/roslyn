@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -29,48 +29,27 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IArrayTypeReference : ITypeReference
     {
-        /// <summary>
-        /// The type of the elements of this array.
-        /// </summary>
+
         ITypeReference GetElementType(EmitContext context);
 
-        /// <summary>
-        /// This type of array is a single dimensional array with zero lower bound for index values.
-        /// </summary>
         bool IsSZArray
         {
             get;
-            // ^ ensures result ==> Rank == 1;
         }
 
-        /// <summary>
-        /// A possibly empty list of lower bounds for dimension indices. When not explicitly specified, a lower bound defaults to zero.
-        /// The first lower bound in the list corresponds to the first dimension. Dimensions cannot be skipped.
-        /// </summary>
         ImmutableArray<int> LowerBounds
         {
             get;
-            // ^ ensures count(result) <= Rank;
         }
 
-        /// <summary>
-        /// The number of array dimensions.
-        /// </summary>
         int Rank
         {
             get;
-            // ^ ensures result > 0;
         }
 
-        /// <summary>
-        /// A possible empty list of upper bounds for dimension indices.
-        /// The first upper bound in the list corresponds to the first dimension. Dimensions cannot be skipped.
-        /// An unspecified upper bound means that instances of this type can have an arbitrary upper bound for that dimension.
-        /// </summary>
         ImmutableArray<int> Sizes
         {
             get;
-            // ^ ensures count(result) <= Rank;
         }
     }
 
@@ -80,14 +59,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ICustomModifier
     {
-        /// <summary>
-        /// If true, a language may use the modified storage location without being aware of the meaning of the modification.
-        /// </summary>
+
         bool IsOptional { get; }
 
-        /// <summary>
-        /// A type used as a tag that indicates which type of modification applies to the storage location.
-        /// </summary>
         ITypeReference GetModifier(EmitContext context);
     }
 
@@ -96,30 +70,19 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IParameterTypeInformation : IParameterListEntry
     {
-        /// <summary>
-        /// The list of custom modifiers, if any, associated with the parameter type. 
-        /// </summary>
+
         ImmutableArray<ICustomModifier> CustomModifiers
         {
             get;
         }
 
-        /// <summary>
-        /// The list of custom modifiers, if any, associated with the ref modifier. 
-        /// </summary>
         ImmutableArray<ICustomModifier> RefCustomModifiers
         {
             get;
         }
 
-        /// <summary>
-        /// True if the parameter is passed by reference (using a managed pointer).
-        /// </summary>
         bool IsByReference { get; }
 
-        /// <summary>
-        /// The type of argument value that corresponds to this parameter.
-        /// </summary>
         ITypeReference GetType(EmitContext context);
     }
 
@@ -128,40 +91,25 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericParameter : IGenericParameterReference
     {
-        /// <summary>
-        /// A list of classes or interfaces. All type arguments matching this parameter must be derived from all of the classes and implement all of the interfaces.
-        /// </summary>
+
         IEnumerable<TypeReferenceWithAttributes> GetConstraints(EmitContext context);
 
-        /// <summary>
-        /// True if all type arguments matching this parameter are constrained to be reference types.
-        /// </summary>
         bool MustBeReferenceType
         {
             get;
-            // ^ ensures result ==> !this.MustBeValueType;
         }
 
-        /// <summary>
-        /// True if all type arguments matching this parameter are constrained to be value types.
-        /// </summary>
         bool MustBeValueType
         {
             get;
-            // ^ ensures result ==> !this.MustBeReferenceType;
         }
 
-        /// <summary>
-        /// True if all type arguments matching this parameter are constrained to be value types or concrete classes with visible default constructors.
-        /// </summary>
         bool MustHaveDefaultConstructor { get; }
 
-        /// <summary>
-        /// Indicates if the generic type or method with this type parameter is co-, contra-, or non variant with respect to this type parameter.
-        /// </summary>
         TypeParameterVariance Variance { get; }
 
         IGenericMethodParameter? AsGenericMethodParameter { get; }
+
         IGenericTypeParameter? AsGenericTypeParameter { get; }
     }
 
@@ -177,13 +125,10 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericMethodParameter : IGenericParameter, IGenericMethodParameterReference
     {
-        /// <summary>
-        /// The generic method that defines this type parameter.
-        /// </summary>
+
         new IMethodDefinition DefiningMethod
         {
             get;
-            // ^ ensures result.IsGeneric;
         }
     }
 
@@ -192,9 +137,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericMethodParameterReference : IGenericParameterReference
     {
-        /// <summary>
-        /// A reference to the generic method that defines the referenced type parameter.
-        /// </summary>
+
         IMethodReference DefiningMethod { get; }
     }
 
@@ -203,16 +146,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericTypeInstanceReference : ITypeReference
     {
-        /// <summary>
-        /// The type arguments that were used to instantiate this.GenericType in order to create this type.
-        /// </summary>
-        ImmutableArray<ITypeReference> GetGenericArguments(EmitContext context);
-        // ^ ensures result.GetEnumerator().MoveNext(); // The collection is always non empty.
 
-        /// <summary>
-        /// Returns the generic type of which this type is an instance.
-        /// Equivalent to Symbol.OriginalDefinition
-        /// </summary>
+        ImmutableArray<ITypeReference> GetGenericArguments(EmitContext context);
+
         INamedTypeReference GetGenericType(EmitContext context);
         // ^ ensures result.ResolvedType.IsGeneric;
     }
@@ -222,9 +158,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericTypeParameter : IGenericParameter, IGenericTypeParameterReference
     {
-        /// <summary>
-        /// The generic type that defines this type parameter.
-        /// </summary>
+
         new ITypeDefinition DefiningType { get; }
     }
 
@@ -233,9 +167,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IGenericTypeParameterReference : IGenericParameterReference
     {
-        /// <summary>
-        /// A reference to the generic type that defines the referenced type parameter.
-        /// </summary>
+
         ITypeReference DefiningType { get; }
     }
 
@@ -244,14 +176,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface INamedTypeReference : ITypeReference, INamedEntity
     {
-        /// <summary>
-        /// The number of generic parameters. Zero if the type is not generic.
-        /// </summary>
+
         ushort GenericParameterCount { get; }
 
-        /// <summary>
-        /// If true, the persisted type name is mangled by appending "`n" where n is the number of type parameters, if the number of type parameters is greater than 0.
-        /// </summary>
         bool MangleName { get; }
     }
 
@@ -267,9 +194,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface INamespaceTypeDefinition : INamedTypeDefinition, INamespaceTypeReference
     {
-        /// <summary>
-        /// True if the type can be accessed from other assemblies.
-        /// </summary>
+
         bool IsPublic { get; }
     }
 
@@ -278,14 +203,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface INamespace : INamedEntity
     {
-        /// <summary>
-        /// Containing namespace or null if this namespace is global.
-        /// </summary>
+
         INamespace ContainingNamespace { get; }
 
-        /// <summary>
-        /// Returns underlying internal symbol object, if any.
-        /// </summary>
         INamespaceSymbolInternal GetInternalSymbol();
     }
 
@@ -294,14 +214,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface INamespaceTypeReference : INamedTypeReference
     {
-        /// <summary>
-        /// A reference to the unit that defines the referenced type.
-        /// </summary>
+
         IUnitReference GetUnit(EmitContext context);
 
-        /// <summary>
-        /// Fully qualified name of the containing namespace.
-        /// </summary>
         string NamespaceName { get; }
     }
 
@@ -324,42 +239,82 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ISpecializedNestedTypeReference : INestedTypeReference
     {
-        /// <summary>
-        /// A reference to the nested type that has been specialized to obtain this nested type reference. When the containing type is an instance of type which is itself a specialized member (i.e. it is a nested
-        /// type of a generic type instance), then the unspecialized member refers to a member from the unspecialized containing type. (I.e. the unspecialized member always
-        /// corresponds to a definition that is not obtained via specialization.)
-        /// </summary>
+
         [return: NotNull]
         INestedTypeReference GetUnspecializedVersion(EmitContext context);
     }
 
-    /// <summary>
-    /// Models an explicit implementation or override of a base class virtual method or an explicit implementation of an interface method.
-    /// </summary>
     internal struct MethodImplementation
     {
-        /// <summary>
-        /// The type that is explicitly implementing or overriding the base class virtual method or explicitly implementing an interface method.
-        /// </summary>
+
         public readonly Cci.IMethodDefinition ImplementingMethod;
 
-        /// <summary>
-        /// A reference to the method that provides the implementation.
-        /// </summary>
         public readonly Cci.IMethodReference ImplementedMethod;
 
         public MethodImplementation(Cci.IMethodDefinition ImplementingMethod, Cci.IMethodReference ImplementedMethod)
         {
-            this.ImplementingMethod = ImplementingMethod;
-            this.ImplementedMethod = ImplementedMethod;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(520, 13253, 13500);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(520, 13387, 13432);
+
+                this.ImplementingMethod = ImplementingMethod;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(520, 13446, 13489);
+
+                this.ImplementedMethod = ImplementedMethod;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(520, 13253, 13500);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(520, 13253, 13500);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(520, 13253, 13500);
+            }
         }
 
-        /// <summary>
-        /// The type that is explicitly implementing or overriding the base class virtual method or explicitly implementing an interface method.
-        /// </summary>
         public Cci.ITypeDefinition ContainingType
         {
-            get { return ImplementingMethod.ContainingTypeDefinition; }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(520, 13771, 13830);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(520, 13777, 13828);
+
+                    return f_520_13784_13827(ImplementingMethod);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(520, 13771, 13830);
+
+                    Microsoft.Cci.ITypeDefinition
+                    f_520_13784_13827(Microsoft.Cci.IMethodDefinition
+                    this_param)
+                    {
+                        var return_v = this_param.ContainingTypeDefinition;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(520, 13784, 13827);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(520, 13705, 13841);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(520, 13705, 13841);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
+        static MethodImplementation()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(520, 12751, 13848);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(520, 12751, 13848);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(520, 12751, 13848);
         }
     }
 
@@ -368,14 +323,9 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IModifiedTypeReference : ITypeReference
     {
-        /// <summary>
-        /// Returns the list of custom modifiers associated with the type reference.
-        /// </summary>
+
         ImmutableArray<ICustomModifier> CustomModifiers { get; }
 
-        /// <summary>
-        /// An unmodified type reference.
-        /// </summary>
         ITypeReference UnmodifiedType { get; }
     }
 
@@ -384,9 +334,7 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IPointerTypeReference : ITypeReference
     {
-        /// <summary>
-        /// The type of value stored at the target memory location.
-        /// </summary>
+
         ITypeReference GetTargetType(EmitContext context);
     }
 
@@ -395,43 +343,48 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface IFunctionPointerTypeReference : ITypeReference
     {
-        /// <summary>
-        /// The signature of the function located at the target memory address.
-        /// </summary>
+
         ISignature Signature { get; }
     }
 
-    /// <summary>
-    /// A type ref with attributes attached directly to the type reference
-    /// itself. Unlike <see cref="IReference.GetAttributes(EmitContext)"/> a
-    /// <see cref="TypeReferenceWithAttributes"/> will never provide attributes
-    /// for the "pointed at" declaration, and all attributes will be emitted
-    /// directly on the type ref, rather than the declaration.
-    /// </summary>
-    // TODO(https://github.com/dotnet/roslyn/issues/12677):
-    // Consider: This is basically just a work-around for our overly loose
-    // interpretation of IReference and IDefinition. This type would probably
-    // be unnecessary if we added a GetAttributes method onto IDefinition and
-    // properly segregated attributes that are on type references and attributes
-    // that are on underlying type definitions.
     internal struct TypeReferenceWithAttributes
     {
-        /// <summary>
-        /// The type reference.
-        /// </summary>
+
         public ITypeReference TypeRef { get; }
 
-        /// <summary>
-        /// The attributes on the type reference itself.
-        /// </summary>
         public ImmutableArray<ICustomAttribute> Attributes { get; }
 
         public TypeReferenceWithAttributes(
-            ITypeReference typeRef,
-            ImmutableArray<ICustomAttribute> attributes = default(ImmutableArray<ICustomAttribute>))
+                    ITypeReference typeRef,
+                    ImmutableArray<ICustomAttribute> attributes = default(ImmutableArray<ICustomAttribute>))
         {
-            TypeRef = typeRef;
-            Attributes = attributes.NullToEmpty();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(520, 16474, 16754);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(520, 16673, 16691);
+
+                TypeRef = typeRef;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(520, 16705, 16743);
+
+                Attributes = attributes.NullToEmpty();
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(520, 16474, 16754);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(520, 16474, 16754);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(520, 16474, 16754);
+            }
+        }
+        static TypeReferenceWithAttributes()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(520, 16108, 16761);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(520, 16108, 16761);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(520, 16108, 16761);
         }
     }
 
@@ -440,155 +393,65 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ITypeDefinition : IDefinition, ITypeReference
     {
-        /// <summary>
-        /// The byte alignment that values of the given type ought to have. Must be a power of 2. If zero, the alignment is decided at runtime.
-        /// </summary>
+
         ushort Alignment { get; }
 
-        /// <summary>
-        /// Returns null for interfaces and System.Object.
-        /// </summary>
         ITypeReference? GetBaseClass(EmitContext context);
-        // ^ ensures result == null || result.ResolvedType.IsClass;
 
-        /// <summary>
-        /// Zero or more events defined by this type.
-        /// </summary>
         IEnumerable<IEventDefinition> GetEvents(EmitContext context);
 
-        /// <summary>
-        /// Zero or more implementation overrides provided by the class.
-        /// </summary>
         IEnumerable<MethodImplementation> GetExplicitImplementationOverrides(EmitContext context);
 
-        /// <summary>
-        /// Zero or more fields defined by this type.
-        /// </summary>
         IEnumerable<IFieldDefinition> GetFields(EmitContext context);
 
-        /// <summary>
-        /// Zero or more parameters that can be used as type annotations.
-        /// </summary>
         IEnumerable<IGenericTypeParameter> GenericParameters
         {
             get;
-            // ^ requires this.IsGeneric;
         }
 
-        /// <summary>
-        /// The number of generic parameters. Zero if the type is not generic.
-        /// </summary>
         ushort GenericParameterCount
-        { // TODO: remove this
+        {
             get;
-            // ^ ensures !this.IsGeneric ==> result == 0;
-            // ^ ensures this.IsGeneric ==> result > 0;
         }
 
-        /// <summary>
-        /// True if this type has a non empty collection of SecurityAttributes or the System.Security.SuppressUnmanagedCodeSecurityAttribute.
-        /// </summary>
         bool HasDeclarativeSecurity { get; }
 
-        /// <summary>
-        /// Zero or more interfaces implemented by this type.
-        /// </summary>
         IEnumerable<TypeReferenceWithAttributes> Interfaces(EmitContext context);
 
-        /// <summary>
-        /// True if the type may not be instantiated.
-        /// </summary>
         bool IsAbstract { get; }
 
-        /// <summary>
-        /// Is type initialized anytime before first access to static field
-        /// </summary>
         bool IsBeforeFieldInit { get; }
 
-        /// <summary>
-        /// Is this imported from COM type library
-        /// </summary>
         bool IsComObject { get; }
 
-        /// <summary>
-        /// True if this type is parameterized (this.GenericParameters is a non empty collection).
-        /// </summary>
         bool IsGeneric { get; }
 
-        /// <summary>
-        /// True if the type is an interface.
-        /// </summary>
         bool IsInterface { get; }
 
-        /// <summary>
-        /// True if the type is a delegate.
-        /// </summary>
         bool IsDelegate { get; }
 
-        /// <summary>
-        /// True if this type gets special treatment from the runtime.
-        /// </summary>
         bool IsRuntimeSpecial { get; }
 
-        /// <summary>
-        /// True if this type is serializable.
-        /// </summary>
         bool IsSerializable { get; }
 
-        /// <summary>
-        /// True if the type has special name.
-        /// </summary>
         bool IsSpecialName { get; }
 
-        /// <summary>
-        /// True if the type is a Windows runtime type.
-        /// </summary>
-        /// <remarks>
-        /// A type can me marked as a Windows runtime type in source by applying the WindowsRuntimeImportAttribute.
-        /// WindowsRuntimeImportAttribute is a pseudo custom attribute defined as an internal class in System.Runtime.InteropServices.WindowsRuntime namespace.
-        /// This is needed to mark Windows runtime types which are redefined in mscorlib.dll and System.Runtime.WindowsRuntime.dll.
-        /// These two assemblies are special as they implement the CLR's support for WinRT.
-        /// </remarks>
         bool IsWindowsRuntimeImport { get; }
 
-        /// <summary>
-        /// True if the type may not be subtyped.
-        /// </summary>
         bool IsSealed { get; }
 
-        /// <summary>
-        /// Layout of the type.
-        /// </summary>
         LayoutKind Layout { get; }
 
-        /// <summary>
-        /// Zero or more methods defined by this type.
-        /// </summary>
         IEnumerable<IMethodDefinition> GetMethods(EmitContext context);
 
-        /// <summary>
-        /// Zero or more nested types defined by this type.
-        /// </summary>
         IEnumerable<INestedTypeDefinition> GetNestedTypes(EmitContext context);
 
-        /// <summary>
-        /// Zero or more properties defined by this type.
-        /// </summary>
         IEnumerable<IPropertyDefinition> GetProperties(EmitContext context);
 
-        /// <summary>
-        /// Declarative security actions for this type. Will be empty if this.HasSecurity is false.
-        /// </summary>
         IEnumerable<SecurityAttribute> SecurityAttributes { get; }
 
-        /// <summary>
-        /// Size of an object of this type. In bytes. If zero, the size is unspecified and will be determined at runtime.
-        /// </summary>
         uint SizeOf { get; }
 
-        /// <summary>
-        /// Default marshalling of the Strings in this class.
-        /// </summary>
         CharSet StringFormat { get; }
     }
 
@@ -597,42 +460,33 @@ namespace Microsoft.Cci
     /// </summary>
     internal interface ITypeReference : IReference
     {
-        /// <summary>
-        /// True if the type is an enumeration (it extends System.Enum and is sealed). Corresponds to C# enum.
-        /// </summary>
+
         bool IsEnum { get; }
 
-        /// <summary>
-        /// True if the type is a value type. 
-        /// Value types are sealed and extend System.ValueType or System.Enum.
-        /// A type parameter for which MustBeValueType (the struct constraint in C#) is true also returns true for this property.
-        /// </summary>
         bool IsValueType { get; }
 
-        /// <summary>
-        /// The type definition being referred to.
-        /// </summary>
         ITypeDefinition? GetResolvedType(EmitContext context);
 
-        /// <summary>
-        /// Unless the value of TypeCode is PrimitiveTypeCode.NotPrimitive, the type corresponds to a "primitive" CLR type (such as System.Int32) and
-        /// the type code identifies which of the primitive types it corresponds to.
-        /// </summary>
         PrimitiveTypeCode TypeCode { get; }
 
-        /// <summary>
-        /// TypeDefs defined in modules linked to the assembly being emitted are listed in the ExportedTypes table.
-        /// </summary>
         TypeDefinitionHandle TypeDef { get; }
 
         IGenericMethodParameterReference? AsGenericMethodParameterReference { get; }
+
         IGenericTypeInstanceReference? AsGenericTypeInstanceReference { get; }
+
         IGenericTypeParameterReference? AsGenericTypeParameterReference { get; }
+
         INamespaceTypeDefinition? AsNamespaceTypeDefinition(EmitContext context);
+
         INamespaceTypeReference? AsNamespaceTypeReference { get; }
+
         INestedTypeDefinition? AsNestedTypeDefinition(EmitContext context);
+
         INestedTypeReference? AsNestedTypeReference { get; }
+
         ISpecializedNestedTypeReference? AsSpecializedNestedTypeReference { get; }
+
         ITypeDefinition? AsTypeDefinition(EmitContext context);
     }
 

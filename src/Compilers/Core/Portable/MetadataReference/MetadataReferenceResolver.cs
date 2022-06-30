@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,27 +7,74 @@ using System.Collections.Immutable;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// Resolves references to metadata specified in the source (#r directives).
-    /// </summary>
     public abstract class MetadataReferenceResolver
     {
         public abstract override bool Equals(object? other);
+
         public abstract override int GetHashCode();
+
         public abstract ImmutableArray<PortableExecutableReference> ResolveReference(string reference, string? baseFilePath, MetadataReferenceProperties properties);
 
-        /// <summary>
-        /// True to instruct the compiler to invoke <see cref="ResolveMissingAssembly(MetadataReference, AssemblyIdentity)"/> for each assembly reference that
-        /// doesn't match any of the assemblies explicitly referenced by the <see cref="Compilation"/> (via <see cref="Compilation.ExternalReferences"/>, or #r directives.
-        /// </summary>
-        public virtual bool ResolveMissingAssemblies => false;
+        public virtual bool ResolveMissingAssemblies
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(433, 1197, 1205);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(433, 1200, 1205);
+                    return false; DynAbs.Tracing.TraceSender.TraceExitMethod(433, 1197, 1205);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(433, 1197, 1205);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(433, 1197, 1205);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        /// <summary>
-        /// Resolves a missing assembly reference.
-        /// </summary>
-        /// <param name="definition">The metadata definition (assembly or module) that declares assembly reference <paramref name="referenceIdentity"/> in its list of dependencies.</param>
-        /// <param name="referenceIdentity">Identity of the assembly reference that couldn't be resolved against metadata references explicitly specified to in the compilation.</param>
-        /// <returns>Resolved reference or null if the identity can't be resolved.</returns>
-        public virtual PortableExecutableReference? ResolveMissingAssembly(MetadataReference definition, AssemblyIdentity referenceIdentity) => null;
+        public virtual PortableExecutableReference? ResolveMissingAssembly(MetadataReference definition, AssemblyIdentity referenceIdentity)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(433, 1920, 1927);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(433, 1923, 1927);
+                return null; DynAbs.Tracing.TraceSender.TraceExitMethod(433, 1920, 1927);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(433, 1920, 1927);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(433, 1920, 1927);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
+        public MetadataReferenceResolver()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(433, 424, 1935);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(433, 424, 1935);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(433, 424, 1935);
+        }
+
+
+        static MetadataReferenceResolver()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(433, 424, 1935);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(433, 424, 1935);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(433, 424, 1935);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(433, 424, 1935);
     }
 }

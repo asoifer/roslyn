@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -19,56 +19,158 @@ using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis
 {
+
     [StructLayout(LayoutKind.Auto)]
     internal struct ModifierInfo<TypeSymbol>
-        where TypeSymbol : class
+            where TypeSymbol : class
     {
+
         internal readonly bool IsOptional;
+
         internal readonly TypeSymbol Modifier;
 
         public ModifierInfo(bool isOptional, TypeSymbol modifier)
         {
-            IsOptional = isOptional;
-            Modifier = modifier;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(406, 889, 1040);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 971, 995);
+
+                IsOptional = isOptional;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 1009, 1029);
+
+                Modifier = modifier;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(406, 889, 1040);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 889, 1040);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 889, 1040);
+            }
+        }
+        static ModifierInfo()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(406, 667, 1047);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(406, 667, 1047);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 667, 1047);
         }
     }
-
     internal static class ModifierInfoExtensions
     {
         internal static bool AnyRequired<TypeSymbol>(this ImmutableArray<ModifierInfo<TypeSymbol>> modifiers) where TypeSymbol : class
         {
-            return !modifiers.IsDefaultOrEmpty && modifiers.Any(m => !m.IsOptional);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(406, 1116, 1350);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 1267, 1339);
+
+                return f_406_1274_1301_M(!modifiers.IsDefaultOrEmpty) && (DynAbs.Tracing.TraceSender.Expression_True(406, 1274, 1338) && modifiers.Any(m => !m.IsOptional));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(406, 1116, 1350);
+
+                bool
+                f_406_1274_1301_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(406, 1274, 1301);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 1116, 1350);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 1116, 1350);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static ModifierInfoExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(406, 1055, 1357);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(406, 1055, 1357);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 1055, 1357);
+        }
+
     }
 
     [StructLayout(LayoutKind.Auto)]
     internal struct ParamInfo<TypeSymbol>
-        where TypeSymbol : class
+            where TypeSymbol : class
     {
+
         internal bool IsByRef;
+
         internal TypeSymbol Type;
-        internal ParameterHandle Handle; // may be nil
+
+        internal ParameterHandle Handle;
+
         internal ImmutableArray<ModifierInfo<TypeSymbol>> RefCustomModifiers;
+
         internal ImmutableArray<ModifierInfo<TypeSymbol>> CustomModifiers;
+        static ParamInfo()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(406, 1365, 1765);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(406, 1365, 1765);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 1365, 1765);
+        }
     }
 
     [StructLayout(LayoutKind.Auto)]
     internal struct LocalInfo<TypeSymbol>
-        where TypeSymbol : class
+            where TypeSymbol : class
     {
+
         internal readonly byte[] SignatureOpt;
+
         internal readonly TypeSymbol Type;
+
         internal readonly ImmutableArray<ModifierInfo<TypeSymbol>> CustomModifiers;
+
         internal readonly LocalSlotConstraints Constraints;
 
         internal LocalInfo(TypeSymbol type, ImmutableArray<ModifierInfo<TypeSymbol>> customModifiers, LocalSlotConstraints constraints, byte[] signatureOpt)
         {
-            Debug.Assert(type != null);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(406, 2138, 2527);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2311, 2338);
 
-            this.Type = type;
-            this.CustomModifiers = customModifiers;
-            this.Constraints = constraints;
-            this.SignatureOpt = signatureOpt;
+                f_406_2311_2337(type != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2354, 2371);
+
+                this.Type = type;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2385, 2424);
+
+                this.CustomModifiers = customModifiers;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2438, 2469);
+
+                this.Constraints = constraints;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2483, 2516);
+
+                this.SignatureOpt = signatureOpt;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(406, 2138, 2527);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 2138, 2527);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 2138, 2527);
+            }
         }
 
         internal LocalInfo<TypeSymbol> WithSignature(byte[] signature)
@@ -76,38 +178,116 @@ namespace Microsoft.CodeAnalysis
             return new LocalInfo<TypeSymbol>(this.Type, this.CustomModifiers, this.Constraints, signature);
         }
 
-        public bool IsByRef => (Constraints & LocalSlotConstraints.ByRef) != 0;
+        public bool IsByRef
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 2764, 2814);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2767, 2814);
+                    return (Constraints & LocalSlotConstraints.ByRef) != 0; DynAbs.Tracing.TraceSender.TraceExitMethod(406, 2764, 2814);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 2764, 2814);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 2764, 2814);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        public bool IsPinned => (Constraints & LocalSlotConstraints.Pinned) != 0;
+        public bool IsPinned
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 2848, 2899);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 2851, 2899);
+                    return (Constraints & LocalSlotConstraints.Pinned) != 0; DynAbs.Tracing.TraceSender.TraceExitMethod(406, 2848, 2899);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 2848, 2899);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 2848, 2899);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
+        static LocalInfo()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(406, 1773, 2907);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(406, 1773, 2907);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 1773, 2907);
+        }
+
+        static int
+        f_406_2311_2337(bool
+        condition)
+        {
+            Debug.Assert(condition);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 2311, 2337);
+            return 0;
+        }
+
     }
 
 #nullable enable
     internal interface IAttributeNamedArgumentDecoder
     {
+
         (KeyValuePair<string, TypedConstant> nameValuePair, bool isProperty, SerializationTypeCode typeCode, SerializationTypeCode elementTypeCode) DecodeCustomAttributeNamedArgumentOrThrow(ref BlobReader argReader);
     }
-
     internal abstract class MetadataDecoder<ModuleSymbol, TypeSymbol, MethodSymbol, FieldSymbol, Symbol> :
-        TypeNameDecoder<ModuleSymbol, TypeSymbol>,
-        IAttributeNamedArgumentDecoder
-        where ModuleSymbol : class, IModuleSymbolInternal
-        where TypeSymbol : class, Symbol, ITypeSymbolInternal
-        where MethodSymbol : class, Symbol, IMethodSymbolInternal
-        where FieldSymbol : class, Symbol, IFieldSymbolInternal
-        where Symbol : class, ISymbolInternal
-#nullable disable
+            TypeNameDecoder<ModuleSymbol, TypeSymbol>,
+            IAttributeNamedArgumentDecoder
+            where ModuleSymbol : class, IModuleSymbolInternal
+            where TypeSymbol : class, Symbol, ITypeSymbolInternal
+            where MethodSymbol : class, Symbol, IMethodSymbolInternal
+            where FieldSymbol : class, Symbol, IFieldSymbolInternal
+            where Symbol : class, ISymbolInternal
     {
         public readonly PEModule Module;
 
-        // Identity of an assembly containing the module, or null if the module is a standalone module
         private readonly AssemblyIdentity _containingAssemblyIdentity;
 
-        internal MetadataDecoder(PEModule module, AssemblyIdentity containingAssemblyIdentity, SymbolFactory<ModuleSymbol, TypeSymbol> factory, ModuleSymbol moduleSymbol) :
-            base(factory, moduleSymbol)
+        internal MetadataDecoder(PEModule module, AssemblyIdentity containingAssemblyIdentity, SymbolFactory<ModuleSymbol, TypeSymbol> factory, ModuleSymbol moduleSymbol) : base(f_406_4158_4165_C<ModuleSymbol, TypeSymbol>(factory), moduleSymbol)
         {
-            Debug.Assert(module != null);
-            this.Module = module;
-            _containingAssemblyIdentity = containingAssemblyIdentity;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(406, 3975, 4351);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 3778, 3784);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 3935, 3962);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 4205, 4234);
+
+                f_406_4205_4233(module != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 4248, 4269);
+
+                this.Module = module;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 4283, 4340);
+
+                _containingAssemblyIdentity = containingAssemblyIdentity;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(406, 3975, 4351);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 3975, 4351);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 3975, 4351);
+            }
         }
 
         internal TypeSymbol GetTypeOfToken(EntityHandle token)
@@ -1035,84 +1215,381 @@ tryAgain:
 
         private static ConstantValue DecodePrimitiveConstantValue(ref BlobReader sigReader, SignatureTypeCode typeCode, out bool isEnumTypeCode)
         {
-            switch (typeCode)
+            try
             {
-                case SignatureTypeCode.Boolean:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadBoolean());
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(406, 45893, 49065);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46054, 49054);
 
-                case SignatureTypeCode.Char:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadChar());
+                switch (typeCode)
+                {
 
-                case SignatureTypeCode.SByte:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadSByte());
+                    case SignatureTypeCode.Boolean:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46157, 46179);
 
-                case SignatureTypeCode.Byte:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadByte());
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46201, 46254);
 
-                case SignatureTypeCode.Int16:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadInt16());
+                        return f_406_46208_46253(sigReader.ReadBoolean());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
 
-                case SignatureTypeCode.UInt16:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadUInt16());
+                    case SignatureTypeCode.Char:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46324, 46346);
 
-                case SignatureTypeCode.Int32:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadInt32());
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46368, 46418);
 
-                case SignatureTypeCode.UInt32:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadUInt32());
+                        return f_406_46375_46417(sigReader.ReadChar());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
 
-                case SignatureTypeCode.Int64:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadInt64());
+                    case SignatureTypeCode.SByte:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46489, 46511);
 
-                case SignatureTypeCode.UInt64:
-                    isEnumTypeCode = true;
-                    return ConstantValue.Create(sigReader.ReadUInt64());
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46533, 46584);
 
-                case SignatureTypeCode.Single:
-                    isEnumTypeCode = false;
-                    return ConstantValue.Create(sigReader.ReadSingle());
+                        return f_406_46540_46583(sigReader.ReadSByte());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
 
-                case SignatureTypeCode.Double:
-                    isEnumTypeCode = false;
-                    return ConstantValue.Create(sigReader.ReadDouble());
+                    case SignatureTypeCode.Byte:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46654, 46676);
 
-                case SignatureTypeCode.String:
-                    isEnumTypeCode = false;
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46698, 46748);
 
-                    if (sigReader.RemainingBytes == 1)
-                    {
-                        if (sigReader.ReadByte() != 0xff)
+                        return f_406_46705_46747(sigReader.ReadByte());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.Int16:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46819, 46841);
+
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46863, 46914);
+
+                        return f_406_46870_46913(sigReader.ReadInt16());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.UInt16:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 46986, 47008);
+
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47030, 47082);
+
+                        return f_406_47037_47081(sigReader.ReadUInt16());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.Int32:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47153, 47175);
+
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47197, 47248);
+
+                        return f_406_47204_47247(sigReader.ReadInt32());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.UInt32:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47320, 47342);
+
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47364, 47416);
+
+                        return f_406_47371_47415(sigReader.ReadUInt32());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.Int64:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47487, 47509);
+
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47531, 47582);
+
+                        return f_406_47538_47581(sigReader.ReadInt64());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.UInt64:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47654, 47676);
+
+                        isEnumTypeCode = true;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47698, 47750);
+
+                        return f_406_47705_47749(sigReader.ReadUInt64());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.Single:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47822, 47845);
+
+                        isEnumTypeCode = false;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47867, 47919);
+
+                        return f_406_47874_47918(sigReader.ReadSingle());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.Double:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 47991, 48014);
+
+                        isEnumTypeCode = false;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48036, 48088);
+
+                        return f_406_48043_48087(sigReader.ReadDouble());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    case SignatureTypeCode.String:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48160, 48183);
+
+                        isEnumTypeCode = false;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48207, 48509) || true) && (sigReader.RemainingBytes == 1)
+                        )
+
                         {
-                            return ConstantValue.Bad;
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 48207, 48509);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48290, 48432) || true) && (sigReader.ReadByte() != 0xff)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 48290, 48432);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48380, 48405);
+
+                                return f_406_48387_48404();
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(406, 48290, 48432);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48460, 48486);
+
+                            return f_406_48467_48485();
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(406, 48207, 48509);
                         }
 
-                        return ConstantValue.Null;
-                    }
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48533, 48668) || true) && (sigReader.RemainingBytes % 2 != 0)
+                        )
 
-                    if (sigReader.RemainingBytes % 2 != 0)
-                    {
-                        return ConstantValue.Bad;
-                    }
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 48533, 48668);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48620, 48645);
 
-                    return ConstantValue.Create(sigReader.ReadUTF16(sigReader.RemainingBytes));
+                            return f_406_48627_48644();
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(406, 48533, 48668);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48692, 48767);
 
-                case SignatureTypeCode.Object:
-                    // null reference
-                    isEnumTypeCode = false;
-                    return ConstantValue.Null;
+                        return f_406_48699_48766(sigReader.ReadUTF16(sigReader.RemainingBytes));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
 
-                default:
-                    throw new UnsupportedSignatureContent();
+                    case SignatureTypeCode.Object:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48878, 48901);
+
+                        isEnumTypeCode = false;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48923, 48949);
+
+                        return f_406_48930_48948();
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 46054, 49054);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 48999, 49039);
+
+                        throw f_406_49005_49038();
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 46054, 49054);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(406, 45893, 49065);
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_46208_46253(bool
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 46208, 46253);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_46375_46417(char
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 46375, 46417);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_46540_46583(sbyte
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 46540, 46583);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_46705_46747(byte
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 46705, 46747);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_46870_46913(short
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 46870, 46913);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_47037_47081(ushort
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 47037, 47081);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_47204_47247(int
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 47204, 47247);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_47371_47415(uint
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 47371, 47415);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_47538_47581(long
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 47538, 47581);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_47705_47749(ulong
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 47705, 47749);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_47874_47918(float
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 47874, 47918);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_48043_48087(double
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 48043, 48087);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_48387_48404()
+                {
+                    var return_v = ConstantValue.Bad;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(406, 48387, 48404);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_48467_48485()
+                {
+                    var return_v = ConstantValue.Null;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(406, 48467, 48485);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_48627_48644()
+                {
+                    var return_v = ConstantValue.Bad;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(406, 48627, 48644);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_48699_48766(string
+                value)
+                {
+                    var return_v = ConstantValue.Create(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 48699, 48766);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ConstantValue
+                f_406_48930_48948()
+                {
+                    var return_v = ConstantValue.Null;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(406, 48930, 48948);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.UnsupportedSignatureContent
+                f_406_49005_49038()
+                {
+                    var return_v = new Microsoft.CodeAnalysis.UnsupportedSignatureContent();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 49005, 49038);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 45893, 49065);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 45893, 49065);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal ImmutableArray<LocalInfo<TypeSymbol>> GetLocalsOrThrow(StandaloneSignatureHandle handle)
@@ -1229,14 +1706,76 @@ tryAgain:
             return paramInfo;
         }
 
-        /// <exception cref="BadImageFormatException">An exception from metadata reader.</exception>
         internal static void GetSignatureCountsOrThrow(PEModule module, MethodDefinitionHandle methodDef, out int parameterCount, out int typeParameterCount)
         {
-            BlobHandle signature = module.GetMethodSignatureOrThrow(methodDef);
-            SignatureHeader signatureHeader;
-            BlobReader signatureReader = DecodeSignatureHeaderOrThrow(module, signature, out signatureHeader);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(406, 54031, 54565);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 54205, 54272);
 
-            GetSignatureCountsOrThrow(ref signatureReader, signatureHeader, out parameterCount, out typeParameterCount);
+                BlobHandle
+                signature = f_406_54228_54271(module, methodDef)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 54286, 54318);
+
+                SignatureHeader
+                signatureHeader
+                = default(SignatureHeader);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 54332, 54430);
+
+                BlobReader
+                signatureReader = f_406_54361_54429(module, signature, out signatureHeader)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 54446, 54554);
+
+                f_406_54446_54553(ref signatureReader, signatureHeader, out parameterCount, out typeParameterCount);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(406, 54031, 54565);
+
+                System.Reflection.Metadata.BlobHandle
+                f_406_54228_54271(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.MethodDefinitionHandle
+                methodDef)
+                {
+                    var return_v = this_param.GetMethodSignatureOrThrow(methodDef);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 54228, 54271);
+                    return return_v;
+                }
+
+
+                System.Reflection.Metadata.BlobReader
+                f_406_54361_54429(Microsoft.CodeAnalysis.PEModule
+                module, System.Reflection.Metadata.BlobHandle
+                signature, out System.Reflection.Metadata.SignatureHeader
+                signatureHeader)
+                {
+                    var return_v = DecodeSignatureHeaderOrThrow(module, signature, out signatureHeader);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 54361, 54429);
+                    return return_v;
+                }
+
+
+                int
+                f_406_54446_54553(ref System.Reflection.Metadata.BlobReader
+                signatureReader, System.Reflection.Metadata.SignatureHeader
+                signatureHeader, out int
+                parameterCount, out int
+                typeParameterCount)
+                {
+                    GetSignatureCountsOrThrow(ref signatureReader, signatureHeader, out parameterCount, out typeParameterCount);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 54446, 54553);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 54031, 54565);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 54031, 54565);
+            }
         }
 
         internal ParamInfo<TypeSymbol>[] GetSignatureForProperty(PropertyDefinitionHandle handle, out SignatureHeader signatureHeader, out BadImageFormatException BadImageFormatException)
@@ -1586,7 +2125,24 @@ tryAgain:
 
         private static TypedConstantKind GetPrimitiveOrEnumTypedConstantKind(TypeSymbol type)
         {
-            return (type.TypeKind == TypeKind.Enum) ? TypedConstantKind.Enum : TypedConstantKind.Primitive;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(406, 71508, 71724);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 71618, 71713);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(406, 71625, 71657) || (((type.TypeKind == TypeKind.Enum) && DynAbs.Tracing.TraceSender.Conditional_F2(406, 71660, 71682)) || DynAbs.Tracing.TraceSender.Conditional_F3(406, 71685, 71712))) ? TypedConstantKind.Enum : TypedConstantKind.Primitive;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(406, 71508, 71724);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 71508, 71724);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 71508, 71724);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <exception cref="UnsupportedSignatureContent">If the encoded named argument is invalid.</exception>
@@ -1622,38 +2178,105 @@ tryAgain:
         }
 
         internal bool IsTargetAttribute(
-            CustomAttributeHandle customAttribute,
-            string namespaceName,
-            string typeName,
-            bool ignoreCase = false)
+                    CustomAttributeHandle customAttribute,
+                    string namespaceName,
+                    string typeName,
+                    bool ignoreCase = false)
         {
             try
             {
-                EntityHandle ctor;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 73790, 74410);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 74038, 74056);
 
-                return Module.IsTargetAttribute(
-                    customAttribute,
-                    namespaceName,
-                    typeName,
-                    out ctor,
-                    ignoreCase);
+                    EntityHandle
+                    ctor
+                    = default(EntityHandle);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 74076, 74278);
+
+                    return f_406_74083_74277(Module, customAttribute, namespaceName, typeName, out ctor, ignoreCase);
+                }
+                catch (BadImageFormatException)
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(406, 74307, 74399);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 74371, 74384);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(406, 74307, 74399);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(406, 73790, 74410);
+
+                bool
+                f_406_74083_74277(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.CustomAttributeHandle
+                customAttribute, string
+                namespaceName, string
+                typeName, out System.Reflection.Metadata.EntityHandle
+                ctor, bool
+                ignoreCase)
+                {
+                    var return_v = this_param.IsTargetAttribute(customAttribute, namespaceName, typeName, out ctor, ignoreCase);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 74083, 74277);
+                    return return_v;
+                }
+
             }
-            catch (BadImageFormatException)
+            catch
             {
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 73790, 74410);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 73790, 74410);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal int GetTargetAttributeSignatureIndex(CustomAttributeHandle customAttribute, AttributeDescription description)
         {
             try
             {
-                return Module.GetTargetAttributeSignatureIndex(customAttribute, description);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 74422, 74807);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 74601, 74678);
+
+                    return f_406_74608_74677(Module, customAttribute, description);
+                }
+                catch (BadImageFormatException)
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(406, 74707, 74796);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 74771, 74781);
+
+                    return -1;
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(406, 74707, 74796);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(406, 74422, 74807);
+
+                int
+                f_406_74608_74677(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.CustomAttributeHandle
+                customAttribute, Microsoft.CodeAnalysis.AttributeDescription
+                description)
+                {
+                    var return_v = this_param.GetTargetAttributeSignatureIndex(customAttribute, description);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 74608, 74677);
+                    return return_v;
+                }
+
             }
-            catch (BadImageFormatException)
+            catch
             {
-                return -1;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 74422, 74807);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 74422, 74807);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal bool GetCustomAttribute(
@@ -1761,37 +2384,140 @@ tryAgain:
             attributeCtor = GetMethodSymbolForMethodDefOrMemberRef(ctor, attributeClass);
             return true;
         }
-#nullable disable
 
         internal bool GetCustomAttributeWellKnownType(CustomAttributeHandle handle, out WellKnownType wellKnownAttribute)
         {
-            wellKnownAttribute = WellKnownType.Unknown;
-
             try
             {
-                EntityHandle attributeType;
-                EntityHandle ctor;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 79122, 80200);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79260, 79303);
 
-                if (!Module.GetTypeAndConstructor(handle, out attributeType, out ctor))
+                wellKnownAttribute = WellKnownType.Unknown;
+
+                try
                 {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79355, 79382);
+
+                    EntityHandle
+                    attributeType
+                    = default(EntityHandle);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79400, 79418);
+
+                    EntityHandle
+                    ctor
+                    = default(EntityHandle);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79438, 79582) || true) && (!f_406_79443_79508(Module, handle, out attributeType, out ctor))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 79438, 79582);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79550, 79563);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 79438, 79582);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79602, 79631);
+
+                    StringHandle
+                    namespaceHandle
+                    = default(StringHandle);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79649, 79673);
+
+                    StringHandle
+                    nameHandle
+                    = default(StringHandle);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79691, 79857) || true) && (!f_406_79696_79783(Module, attributeType, out namespaceHandle, out nameHandle))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(406, 79691, 79857);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79825, 79838);
+
+                        return false;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(406, 79691, 79857);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79877, 79950);
+
+                    string
+                    fullName = f_406_79895_79949(Module, namespaceHandle, nameHandle)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 79968, 80038);
+
+                    wellKnownAttribute = f_406_79989_80037(fullName);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 80056, 80068);
+
+                    return true;
+                }
+                catch (BadImageFormatException)
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(406, 80097, 80189);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 80161, 80174);
+
                     return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(406, 80097, 80189);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(406, 79122, 80200);
+
+                bool
+                f_406_79443_79508(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.CustomAttributeHandle
+                customAttribute, out System.Reflection.Metadata.EntityHandle
+                ctorType, out System.Reflection.Metadata.EntityHandle
+                attributeCtor)
+                {
+                    var return_v = this_param.GetTypeAndConstructor(customAttribute, out ctorType, out attributeCtor);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 79443, 79508);
+                    return return_v;
                 }
 
-                StringHandle namespaceHandle;
-                StringHandle nameHandle;
-                if (!Module.GetAttributeNamespaceAndName(attributeType, out namespaceHandle, out nameHandle))
+
+                bool
+                f_406_79696_79783(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.EntityHandle
+                typeDefOrRef, out System.Reflection.Metadata.StringHandle
+                namespaceHandle, out System.Reflection.Metadata.StringHandle
+                nameHandle)
                 {
-                    return false;
+                    var return_v = this_param.GetAttributeNamespaceAndName(typeDefOrRef, out namespaceHandle, out nameHandle);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 79696, 79783);
+                    return return_v;
                 }
 
-                string fullName = Module.GetFullNameOrThrow(namespaceHandle, nameHandle);
-                wellKnownAttribute = WellKnownTypes.GetTypeFromMetadataName(fullName);
-                return true;
+
+                string
+                f_406_79895_79949(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.StringHandle
+                namespaceHandle, System.Reflection.Metadata.StringHandle
+                nameHandle)
+                {
+                    var return_v = this_param.GetFullNameOrThrow(namespaceHandle, nameHandle);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 79895, 79949);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.WellKnownType
+                f_406_79989_80037(string
+                metadataName)
+                {
+                    var return_v = WellKnownTypes.GetTypeFromMetadataName(metadataName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 79989, 80037);
+                    return return_v;
+                }
+
             }
-            catch (BadImageFormatException)
+            catch
             {
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 79122, 80200);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 79122, 80200);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         #endregion
@@ -1822,18 +2548,79 @@ tryAgain:
             return result;
         }
 
-        /// <exception cref="BadImageFormatException">An exception from metadata reader.</exception>
         internal BlobReader DecodeSignatureHeaderOrThrow(BlobHandle signature, out SignatureHeader signatureHeader)
         {
-            return DecodeSignatureHeaderOrThrow(Module, signature, out signatureHeader);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 81366, 81585);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 81498, 81574);
+
+                return f_406_81505_81573(Module, signature, out signatureHeader);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(406, 81366, 81585);
+
+                System.Reflection.Metadata.BlobReader
+                f_406_81505_81573(Microsoft.CodeAnalysis.PEModule
+                module, System.Reflection.Metadata.BlobHandle
+                signature, out System.Reflection.Metadata.SignatureHeader
+                signatureHeader)
+                {
+                    var return_v = DecodeSignatureHeaderOrThrow(module, signature, out signatureHeader);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 81505, 81573);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 81366, 81585);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 81366, 81585);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <exception cref="BadImageFormatException">An exception from metadata reader.</exception>
         internal static BlobReader DecodeSignatureHeaderOrThrow(PEModule module, BlobHandle signature, out SignatureHeader signatureHeader)
         {
-            BlobReader reader = module.GetMemoryReaderOrThrow(signature);
-            signatureHeader = reader.ReadSignatureHeader();
-            return reader;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(406, 81699, 82016);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 81855, 81916);
+
+                BlobReader
+                reader = f_406_81875_81915(module, signature)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 81930, 81977);
+
+                signatureHeader = reader.ReadSignatureHeader();
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 81991, 82005);
+
+                return reader;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(406, 81699, 82016);
+
+                System.Reflection.Metadata.BlobReader
+                f_406_81875_81915(Microsoft.CodeAnalysis.PEModule
+                this_param, System.Reflection.Metadata.BlobHandle
+                blob)
+                {
+                    var return_v = this_param.GetMemoryReaderOrThrow(blob);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 81875, 81915);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 81699, 82016);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 81699, 82016);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <exception cref="BadImageFormatException">An exception from metadata reader.</exception>
@@ -1874,14 +2661,28 @@ tryAgain:
             return paramInfo;
         }
 
-        /// <exception cref="BadImageFormatException">An exception from metadata reader.</exception>
         private static void GetSignatureCountsOrThrow(ref BlobReader signatureReader, SignatureHeader signatureHeader, out int parameterCount, out int typeParameterCount)
         {
-            // Get the type parameter count.
-            typeParameterCount = signatureHeader.IsGeneric ? signatureReader.ReadCompressedInteger() : 0;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(406, 83851, 84301);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 84084, 84177);
 
-            // Get the parameter count
-            parameterCount = signatureReader.ReadCompressedInteger();
+                typeParameterCount = (DynAbs.Tracing.TraceSender.Conditional_F1(406, 84105, 84130) || ((signatureHeader.IsGeneric && DynAbs.Tracing.TraceSender.Conditional_F2(406, 84133, 84172)) || DynAbs.Tracing.TraceSender.Conditional_F3(406, 84175, 84176))) ? signatureReader.ReadCompressedInteger() : 0;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 84233, 84290);
+
+                parameterCount = signatureReader.ReadCompressedInteger();
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(406, 83851, 84301);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 83851, 84301);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 83851, 84301);
+            }
         }
 
         internal TypeSymbol DecodeFieldSignature(FieldDefinitionHandle fieldHandle, out ImmutableArray<ModifierInfo<TypeSymbol>> customModifiers)
@@ -2116,46 +2917,14 @@ tryAgain:
             }
         }
 
-        /// <summary>
-        /// Enqueue the interfaces implemented and the type extended by a given TypeDef.
-        /// </summary>
-        /// <param name="typeDefsToSearch">Queue of TypeDefs to search.</param>
-        /// <param name="typeSymbolsToSearch">Queue of TypeSymbols (representing typeRefs to search).</param>
-        /// <param name="typeSymbol">Symbol for which we want to enqueue supertypes.</param>
         protected abstract void EnqueueTypeSymbolInterfacesAndBaseTypes(Queue<TypeDefinitionHandle> typeDefsToSearch, Queue<TypeSymbol> typeSymbolsToSearch, TypeSymbol typeSymbol);
 
-        /// <summary>
-        /// Enqueue the given type as either a def or a ref.
-        /// </summary>
-        /// <param name="typeDefsToSearch">Queue of TypeDefs to search.</param>
-        /// <param name="typeSymbolsToSearch">Queue of TypeSymbols (representing typeRefs to search).</param>
-        /// <param name="typeSymbol">Symbol to enqueue.</param>
         protected abstract void EnqueueTypeSymbol(Queue<TypeDefinitionHandle> typeDefsToSearch, Queue<TypeSymbol> typeSymbolsToSearch, TypeSymbol typeSymbol);
 
-        /// <summary>
-        /// Search the members of a TypeSymbol to find the one that matches a given MethodDef token.
-        /// </summary>
-        /// <param name="type">Type to search for method.</param>
-        /// <param name="methodDef">MethodDef handle of the method to find.</param>
-        /// <returns>The corresponding MethodSymbol or null.</returns>
         protected abstract MethodSymbol FindMethodSymbolInType(TypeSymbol type, MethodDefinitionHandle methodDef);
 
-        /// <summary>
-        /// Search the members of a TypeSymbol to find the one that matches a given FieldDef token.
-        /// </summary>
-        /// <param name="type">Type to search for field.</param>
-        /// <param name="fieldDef">FieldDef handle of the field to find.</param>
-        /// <returns>The corresponding FieldSymbol or null.</returns>
         protected abstract FieldSymbol FindFieldSymbolInType(TypeSymbol type, FieldDefinitionHandle fieldDef);
 
-        /// <summary>
-        /// Given a MemberRef token for a method, we can find a corresponding MethodSymbol by
-        /// searching for the name and signature.
-        /// </summary>
-        /// <param name="memberRef">A MemberRef token for a method.</param>
-        /// <param name="implementingTypeSymbol">Scope the search to supertypes of the implementing type.</param>
-        /// <param name="methodsOnly">True to only return method symbols, null if the token resolves to a field.</param>
-        /// <returns>The corresponding MethodSymbol or null.</returns>
         internal abstract Symbol GetSymbolForMemberRef(MemberReferenceHandle memberRef, TypeSymbol implementingTypeSymbol = null, bool methodsOnly = false);
 
         internal MethodSymbol GetMethodSymbolForMemberRef(MemberReferenceHandle methodRef, TypeSymbol implementingTypeSymbol)
@@ -2170,18 +2939,41 @@ tryAgain:
 
         protected override bool IsContainingAssembly(AssemblyIdentity identity)
         {
-            return _containingAssemblyIdentity != null && _containingAssemblyIdentity.Equals(identity);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(406, 99610, 99808);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(406, 99706, 99797);
+
+                return _containingAssemblyIdentity != null && (DynAbs.Tracing.TraceSender.Expression_True(406, 99713, 99796) && f_406_99752_99796(_containingAssemblyIdentity, identity));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(406, 99610, 99808);
+
+                bool
+                f_406_99752_99796(Microsoft.CodeAnalysis.AssemblyIdentity
+                this_param, Microsoft.CodeAnalysis.AssemblyIdentity
+                obj)
+                {
+                    var return_v = this_param.Equals(obj);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 99752, 99796);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(406, 99610, 99808);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 99610, 99808);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Given a method symbol, return the MethodDef token, if it is defined in
-        /// this module, or a nil token, otherwise.
-        /// </summary>
-        /// <param name="method">The method symbol for which to return a MethodDef token.</param>
-        /// <returns>A MethodDef token or nil.</returns>
         protected abstract MethodDefinitionHandle GetMethodHandle(MethodSymbol method);
 
         protected abstract ConcurrentDictionary<TypeDefinitionHandle, TypeSymbol> GetTypeHandleToTypeMap();
+
         protected abstract ConcurrentDictionary<TypeReferenceHandle, TypeSymbol> GetTypeRefHandleToTypeMap();
 
         protected abstract TypeSymbol SubstituteNoPiaLocalType(TypeDefinitionHandle typeDef, ref MetadataTypeName name, string interfaceGuid, string scope, string identifier);
@@ -2189,6 +2981,7 @@ tryAgain:
         protected abstract TypeSymbol LookupTopLevelTypeDefSymbol(string moduleName, ref MetadataTypeName emittedName, out bool isNoPiaLocalType);
 
         protected abstract TypeSymbol GetGenericTypeParamSymbol(int position);
+
         protected abstract TypeSymbol GetGenericMethodTypeParamSymbol(int position);
 
         private static TypedConstant CreateArrayTypedConstant(TypeSymbol type, ImmutableArray<TypedConstant> array)
@@ -2435,5 +3228,37 @@ tryAgain:
             var methodParam = methodParams[1];
             return !methodParam.IsByRef && methodParam.Type.Equals(eventType);
         }
+
+        static MetadataDecoder()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(406, 3222, 111547);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(406, 3222, 111547);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(406, 3222, 111547);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(406, 3222, 111547);
+
+        static int
+        f_406_4205_4233(bool
+        condition)
+        {
+            Debug.Assert(condition);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(406, 4205, 4233);
+            return 0;
+        }
+
+
+        static Microsoft.CodeAnalysis.SymbolFactory<ModuleSymbol, TypeSymbol>
+        f_406_4158_4165_C<ModuleSymbol, TypeSymbol>(Microsoft.CodeAnalysis.SymbolFactory<ModuleSymbol, TypeSymbol>
+        i) where ModuleSymbol : class, IModuleSymbolInternal
+                where TypeSymbol : class, Symbol, ITypeSymbolInternal
+
+        {
+            var return_v = i;
+            DynAbs.Tracing.TraceSender.TraceBaseCall(406, 3975, 4351);
+            return return_v;
+        }
+
     }
 }

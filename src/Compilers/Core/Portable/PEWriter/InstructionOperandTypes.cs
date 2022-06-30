@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -11,20 +11,59 @@ namespace Microsoft.Cci
     {
         internal static OperandType ReadOperandType(ImmutableArray<byte> il, ref int position)
         {
-            byte operation = il[position++];
-            if (operation == 0xfe)
+            try
             {
-                return (OperandType)TwoByte[il[position++]];
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(492, 372, 759);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(492, 483, 515);
+
+                byte
+                operation = il[position++]
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(492, 529, 748) || true) && (operation == 0xfe)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(492, 529, 748);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(492, 584, 628);
+
+                    return (OperandType)TwoByte[il[position++]];
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(492, 529, 748);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(492, 529, 748);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(492, 694, 733);
+
+                    return (OperandType)OneByte[operation];
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(492, 529, 748);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(492, 372, 759);
             }
-            else
+            catch
             {
-                return (OperandType)OneByte[operation];
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(492, 372, 759);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(492, 372, 759);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        // internal for testing
-        internal static readonly byte[] OneByte = new byte[]
+        internal static readonly byte[] OneByte;
+
+        internal static readonly byte[] TwoByte;
+
+        static InstructionOperandTypes()
         {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(492, 310, 15501);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(492, 836, 13550);
+            OneByte = new byte[]
+                    {
             (byte)OperandType.InlineNone,           // nop
             (byte)OperandType.InlineNone,           // break
             (byte)OperandType.InlineNone,           // ldarg.0
@@ -280,11 +319,9 @@ namespace Microsoft.Cci
             0,
             0,
             0,
-        };
-
-        // internal for testing
-        internal static readonly byte[] TwoByte = new byte[]
-        {
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(492, 13628, 15493);
+            TwoByte = new byte[]
+                    {
             (byte)OperandType.InlineNone,           // arglist           (0xfe 0x00)
             (byte)OperandType.InlineNone,           // ceq
             (byte)OperandType.InlineNone,           // cgt
@@ -316,6 +353,10 @@ namespace Microsoft.Cci
             (byte)OperandType.InlineType,           // sizeof
             (byte)OperandType.InlineNone,           // refanytype
             (byte)OperandType.InlineNone,           // readonly.         (0xfe 0x1e)
-        };
+                    }; DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(492, 310, 15501);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(492, 310, 15501);
+        }
+
     }
 }

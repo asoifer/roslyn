@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,36 +13,47 @@ using Microsoft.CodeAnalysis.PooledObjects;
 namespace Microsoft.CodeAnalysis
 {
     internal abstract class TypeNameDecoder<ModuleSymbol, TypeSymbol>
-        where ModuleSymbol : class
-        where TypeSymbol : class
+            where ModuleSymbol : class
+            where TypeSymbol : class
     {
         private readonly SymbolFactory<ModuleSymbol, TypeSymbol> _factory;
+
         protected readonly ModuleSymbol moduleSymbol;
 
         internal TypeNameDecoder(SymbolFactory<ModuleSymbol, TypeSymbol> factory, ModuleSymbol moduleSymbol)
         {
-            _factory = factory;
-            this.moduleSymbol = moduleSymbol;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(418, 716, 918);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(418, 640, 648);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(418, 691, 703);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(418, 841, 860);
+
+                _factory = factory;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(418, 874, 907);
+
+                this.moduleSymbol = moduleSymbol;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(418, 716, 918);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(418, 716, 918);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(418, 716, 918);
+            }
         }
 
         protected abstract bool IsContainingAssembly(AssemblyIdentity identity);
 
-        /// <summary>
-        /// Lookup a type defined in this module.
-        /// </summary>
         protected abstract TypeSymbol LookupTopLevelTypeDefSymbol(ref MetadataTypeName emittedName, out bool isNoPiaLocalType);
 
-        /// <summary>
-        /// Lookup a type defined in referenced assembly.
-        /// </summary>
         protected abstract TypeSymbol LookupTopLevelTypeDefSymbol(int referencedAssemblyIndex, ref MetadataTypeName emittedName);
+
         protected abstract TypeSymbol LookupNestedTypeDefSymbol(TypeSymbol container, ref MetadataTypeName emittedName);
 
-        /// <summary>
-        /// Given the identity of an assembly referenced by this module, finds
-        /// the index of that assembly in the list of assemblies referenced by
-        /// the current module.
-        /// </summary>
         protected abstract int GetIndexOfReferencedAssembly(AssemblyIdentity identity);
 
         internal TypeSymbol GetTypeSymbolForSerializedType(string s)
@@ -89,7 +100,38 @@ namespace Microsoft.CodeAnalysis
 
         protected TypeSymbol SystemTypeSymbol
         {
-            get { return _factory.GetSystemTypeSymbol(this.moduleSymbol); }
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(418, 3967, 4030);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(418, 3973, 4028);
+
+                    return f_418_3980_4027(_factory, this.moduleSymbol);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(418, 3967, 4030);
+
+                    TypeSymbol
+                    f_418_3980_4027(Microsoft.CodeAnalysis.SymbolFactory<ModuleSymbol, TypeSymbol>
+                    this_param, ModuleSymbol
+                    moduleSymbol)
+                    {
+                        var return_v = this_param.GetSystemTypeSymbol(moduleSymbol);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(418, 3980, 4027);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(418, 3905, 4041);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(418, 3905, 4041);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
         }
 
         protected TypeSymbol GetEnumUnderlyingType(TypeSymbol type)
@@ -254,5 +296,15 @@ namespace Microsoft.CodeAnalysis
 
             return container;
         }
+
+        static TypeNameDecoder()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(418, 431, 11782);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(418, 431, 11782);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(418, 431, 11782);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(418, 431, 11782);
     }
 }
