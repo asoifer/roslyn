@@ -30,7 +30,8 @@ namespace Microsoft.CodeAnalysis
         internal SyntaxNode(GreenNode green, SyntaxNode? parent, int position)
         {
             RoslynDebug.Assert(position >= 0, "position cannot be negative");
-            RoslynDebug.Assert(parent?.Green.IsList != true, "list cannot be a parent");
+            // LAFHIS
+            RoslynDebug.Assert(parent == null || parent.Green.IsList != true, "list cannot be a parent");
 
             Position = position;
             Green = green;

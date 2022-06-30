@@ -28,7 +28,8 @@ namespace Microsoft.CodeAnalysis.Text
             RequiresChangeRangesAreValid(oldText, newText, changeRanges);
 
             _newText = newText;
-            _info = new ChangeInfo(changeRanges, new WeakReference<SourceText>(oldText), (oldText as ChangedText)?._info);
+            // LAFHIS
+            _info = new ChangeInfo(changeRanges, new WeakReference<SourceText>(oldText), (oldText is ChangedText) ? ((ChangedText)oldText)._info : null);
         }
 
         private static void RequiresChangeRangesAreValid(

@@ -96,7 +96,8 @@ namespace Microsoft.CodeAnalysis.Text
         {
             get
             {
-                return _text?.Lines.IndexOf(_start) ?? 0;
+                // LAFHIS
+                return _text != null ? _text.Lines.IndexOf(_start) : 0;
             }
         }
 

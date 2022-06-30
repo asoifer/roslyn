@@ -213,7 +213,16 @@ namespace Microsoft.CodeAnalysis.Emit
         {
             foreach (var symbol in _changes.Keys)
             {
-                var namespaceTypeDef = (GetISymbolInternalOrNull(symbol)?.GetCciAdapter() as ITypeDefinition)?.AsNamespaceTypeDefinition(context);
+                // LAFHIS
+                INamespaceTypeDefinition namespaceTypeDef = null;
+                var temp = GetISymbolInternalOrNull(symbol);
+                if (temp != null)
+                {
+                    var temp2 = temp.GetCciAdapter();
+                    if (temp2 is ITypeDefinition)
+                        namespaceTypeDef = ((ITypeDefinition)temp2).AsNamespaceTypeDefinition(context);
+                }
+
                 if (namespaceTypeDef != null)
                 {
                     yield return namespaceTypeDef;
