@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -28,10 +28,7 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface ISyntaxReceiver
     {
-        /// <summary>
-        /// Called for each <see cref="SyntaxNode"/> in the compilation
-        /// </summary>
-        /// <param name="syntaxNode">The current <see cref="SyntaxNode"/> being visited</param>
+
         void OnVisitSyntaxNode(SyntaxNode syntaxNode);
     }
 
@@ -68,6 +65,7 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface ISyntaxContextReceiver
     {
+
         void OnVisitSyntaxNode(GeneratorSyntaxContext context);
     }
 

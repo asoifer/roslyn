@@ -19,23 +19,9 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface IErrorTypeSymbol : INamedTypeSymbol
     {
-        /// <summary>
-        /// When constructing this type, there may have been symbols that seemed to
-        /// be what the user intended, but were unsuitable. For example, a type might have been
-        /// inaccessible, or ambiguous. This property returns the possible symbols that the user
-        /// might have intended. It will return no symbols if no possible symbols were found.
-        /// See the CandidateReason property to understand why the symbols were unsuitable.
-        /// </summary>
-        /// <remarks>
-        /// This only applies if this INamedTypeSymbol has TypeKind TypeKind.Error.
-        /// If not, an empty ImmutableArray is returned.
-        /// </remarks>
-        ImmutableArray<ISymbol> CandidateSymbols { get; }
 
-        ///<summary>
-        /// If CandidateSymbols returns one or more symbols, returns the reason that those
-        /// symbols were not chosen. Otherwise, returns None.
-        /// </summary>
-        CandidateReason CandidateReason { get; }
+ImmutableArray<ISymbol> CandidateSymbols {get; }
+
+CandidateReason CandidateReason {get; }
     }
 }

@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -7,352 +7,355 @@ using System.Runtime.CompilerServices;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// Specifies the member names known to the compiler (such as <c>.ctor</c> or <c>op_Explicit</c>).
-    /// </summary>
     public static class WellKnownMemberNames
     {
-        /// <summary>
-        /// Name of the enum backing field.
-        /// </summary>
-        public const string EnumBackingFieldName = "value__";
-
-        /// <summary>
-        /// The name assigned to an instance constructor.
-        /// </summary>
-        public const string InstanceConstructorName = ".ctor";
-
-        /// <summary>
-        /// The name assigned to the static constructor.
-        /// </summary>
-        public const string StaticConstructorName = ".cctor";
-
-        /// <summary>
-        /// The symbol name assigned to all indexers, other than explicit interface implementations.
-        /// </summary>
-        /// <remarks>
-        /// Will not correspond to the name that appears in metadata.
-        /// </remarks>
-        public const string Indexer = "this[]";
-
-        /// <summary>
-        /// The name assigned to the destructor.
-        /// </summary>
-        public const string DestructorName = "Finalize";
-
-        /// <summary>
-        /// The name assigned to the delegate <c>Invoke</c> method.
-        /// </summary>
-        public const string DelegateInvokeName = "Invoke";
-
-        /// <summary>
-        /// The name assigned to the delegate <c>BeginInvoke</c> method.
-        /// </summary>
-        public const string DelegateBeginInvokeName = "BeginInvoke";
-
-        /// <summary>
-        /// The name assigned to the delegate <c>EndInvoke</c> method.
-        /// </summary>
-        public const string DelegateEndInvokeName = "EndInvoke";
-
-        /// <summary>
-        /// The name of an entry point method.
-        /// </summary>
-        public const string EntryPointMethodName = "Main";
-
-        /// <summary>
-        /// The default fully qualified name of a <c>Script</c> class.
-        /// </summary>
-        public const string DefaultScriptClassName = "Script";
-
-        /// <summary>
-        /// The name assigned to <c>Object.ToString</c> method.
-        /// </summary>
-        public const string ObjectToString = "ToString";
-
-        /// <summary>
-        /// The name assigned to <c>Object.Equals</c> method.
-        /// </summary>
-        public const string ObjectEquals = "Equals";
-
-        /// <summary>
-        /// The name assigned to <c>Object.GetHashCode</c> method.
-        /// </summary>
-        public const string ObjectGetHashCode = "GetHashCode";
-
-        /// <summary>
-        /// The name assigned to an implicit (widening) conversion.
-        /// </summary>
-        public const string ImplicitConversionName = "op_Implicit";
-
-        /// <summary>
-        /// The name assigned to an explicit (narrowing) conversion.
-        /// </summary>
-        public const string ExplicitConversionName = "op_Explicit";
-
-        /// <summary>
-        /// The name assigned to the Addition operator.
-        /// </summary>
-        public const string AdditionOperatorName = "op_Addition";
-
-        /// <summary>
-        /// The name assigned to the BitwiseAnd operator.
-        /// </summary>
-        public const string BitwiseAndOperatorName = "op_BitwiseAnd";
-
-        /// <summary>
-        /// The name assigned to the BitwiseOr operator.
-        /// </summary>
-        public const string BitwiseOrOperatorName = "op_BitwiseOr";
-
-        /// <summary>
-        /// The name assigned to the Decrement operator.
-        /// </summary>
-        public const string DecrementOperatorName = "op_Decrement";
-
-        /// <summary>
-        /// The name assigned to the Division operator.
-        /// </summary>
-        public const string DivisionOperatorName = "op_Division";
-
-        /// <summary>
-        /// The name assigned to the Equality operator.
-        /// </summary>
-        public const string EqualityOperatorName = "op_Equality";
-
-        /// <summary>
-        /// The name assigned to the ExclusiveOr operator.
-        /// </summary>
-        public const string ExclusiveOrOperatorName = "op_ExclusiveOr";
-
-        /// <summary>
-        /// The name assigned to the False operator.
-        /// </summary>
-        public const string FalseOperatorName = "op_False";
-
-        /// <summary>
-        /// The name assigned to the GreaterThan operator.
-        /// </summary>
-        public const string GreaterThanOperatorName = "op_GreaterThan";
-
-        /// <summary>
-        /// The name assigned to the GreaterThanOrEqual operator.
-        /// </summary>
-        public const string GreaterThanOrEqualOperatorName = "op_GreaterThanOrEqual";
-
-        /// <summary>
-        /// The name assigned to the Increment operator.
-        /// </summary>
-        public const string IncrementOperatorName = "op_Increment";
-
-        /// <summary>
-        /// The name assigned to the Inequality operator.
-        /// </summary>
-        public const string InequalityOperatorName = "op_Inequality";
-
-        /// <summary>
-        /// The name assigned to the LeftShift operator.
-        /// </summary>
-        public const string LeftShiftOperatorName = "op_LeftShift";
-
-        /// <summary>
-        /// The name assigned to the UnsignedLeftShift operator.
-        /// </summary>
-        public const string UnsignedLeftShiftOperatorName = "op_UnsignedLeftShift";
-
-        /// <summary>
-        /// The name assigned to the LessThan operator.
-        /// </summary>
-        public const string LessThanOperatorName = "op_LessThan";
-
-        /// <summary>
-        /// The name assigned to the LessThanOrEqual operator.
-        /// </summary>
-        public const string LessThanOrEqualOperatorName = "op_LessThanOrEqual";
-
-        /// <summary>
-        /// The name assigned to the LogicalNot operator.
-        /// </summary>
-        public const string LogicalNotOperatorName = "op_LogicalNot";
-
-        /// <summary>
-        /// The name assigned to the LogicalOr operator.
-        /// </summary>
-        public const string LogicalOrOperatorName = "op_LogicalOr";
-
-        /// <summary>
-        /// The name assigned to the LogicalAnd operator.
-        /// </summary>
-        public const string LogicalAndOperatorName = "op_LogicalAnd";
-
-        /// <summary>
-        /// The name assigned to the Modulus operator.
-        /// </summary>
-        public const string ModulusOperatorName = "op_Modulus";
-
-        /// <summary>
-        /// The name assigned to the Multiply operator.
-        /// </summary>
-        public const string MultiplyOperatorName = "op_Multiply";
-
-        /// <summary>
-        /// The name assigned to the OnesComplement operator.
-        /// </summary>
-        public const string OnesComplementOperatorName = "op_OnesComplement";
-
-        /// <summary>
-        /// The name assigned to the RightShift operator.
-        /// </summary>
-        public const string RightShiftOperatorName = "op_RightShift";
-
-        /// <summary>
-        /// The name assigned to the UnsignedRightShift operator.
-        /// </summary>
-        public const string UnsignedRightShiftOperatorName = "op_UnsignedRightShift";
-
-        /// <summary>
-        /// The name assigned to the Subtraction operator.
-        /// </summary>
-        public const string SubtractionOperatorName = "op_Subtraction";
-
-        /// <summary>
-        /// The name assigned to the True operator.
-        /// </summary>
-        public const string TrueOperatorName = "op_True";
-
-        /// <summary>
-        /// The name assigned to the UnaryNegation operator.
-        /// </summary>
-        public const string UnaryNegationOperatorName = "op_UnaryNegation";
-
-        /// <summary>
-        /// The name assigned to the UnaryPlus operator.
-        /// </summary>
-        public const string UnaryPlusOperatorName = "op_UnaryPlus";
-
-        /// <summary>
-        /// The name assigned to the Concatenate operator.
-        /// </summary>
-        public const string ConcatenateOperatorName = "op_Concatenate";
-
-        /// <summary>
-        /// The name assigned to the Exponent operator.
-        /// </summary>
-        public const string ExponentOperatorName = "op_Exponent";
-
-        /// <summary>
-        /// The name assigned to the IntegerDivision operator.
-        /// </summary>
-        public const string IntegerDivisionOperatorName = "op_IntegerDivision";
-
-        /// <summary>
-        /// The name assigned to the <c>Like</c> operator.
-        /// </summary>
-        public const string LikeOperatorName = "op_Like";
-
-        /// <summary>
-        /// The required name for the <c>GetEnumerator</c> method used in a ForEach statement.
-        /// </summary>
-        public const string GetEnumeratorMethodName = "GetEnumerator";
-
-        /// <summary>
-        /// The required name for the <c>GetAsyncEnumerator</c> method used in a ForEach statement.
-        /// </summary>
-        public const string GetAsyncEnumeratorMethodName = "GetAsyncEnumerator";
-
-        /// <summary>
-        /// The required name for the <c>MoveNextAsync</c> method used in a ForEach-await statement.
-        /// </summary>
-        public const string MoveNextAsyncMethodName = "MoveNextAsync";
-
-        /// <summary>
-        /// The required name for the <c>Deconstruct</c> method used in a deconstruction.
-        /// </summary>
-        public const string DeconstructMethodName = "Deconstruct";
-
-        /// <summary>
-        /// The required name for the <c>MoveNext</c> method used in a ForEach statement.
-        /// </summary>
-        public const string MoveNextMethodName = "MoveNext";
-
-        /// <summary>
-        /// The required name for the <c>Current</c> property used in a ForEach statement.
-        /// </summary>
-        public const string CurrentPropertyName = "Current";
-
-        /// <summary>
-        /// The required name for the <see cref="Nullable{T}.Value"/> property used in
-        /// a ForEach statement when the collection is a nullable struct.
-        /// </summary>
-        public const string ValuePropertyName = "Value";
-
-        /// <summary>
-        /// The name for the <c>Add</c> method to be invoked for each element in a collection initializer expression
-        /// (see C# Specification, §7.6.10.3 Collection initializers).
-        /// </summary>
-        public const string CollectionInitializerAddMethodName = "Add";
-
-        /// <summary>
-        /// The required name for the <c>GetAwaiter</c> method used to obtain an awaiter for a task
-        /// (see C# Specification, §7.7.7.1 Awaitable expressions).
-        /// </summary>
-        public const string GetAwaiter = nameof(GetAwaiter);
-
-        /// <summary>
-        /// The required name for the <c>IsCompleted</c> property used to determine if a task is already complete
-        /// (see C# Specification, §7.7.7.1 Awaitable expressions).
-        /// </summary>
-        public const string IsCompleted = nameof(IsCompleted);
-
-        /// <summary>
-        /// The required name for the <c>GetResult</c> method used to obtain the outcome of a task once it is complete
-        /// (see C# Specification, §7.7.7.1 Awaitable expressions).
-        /// </summary>
-        public const string GetResult = nameof(GetResult);
-
-        /// <summary>
-        /// The name of the <see cref="INotifyCompletion.OnCompleted"/> method used to register a resumption delegate
-        /// (see C# Specification, §7.7.7.1 Awaitable expressions).
-        /// </summary>
-        public const string OnCompleted = nameof(OnCompleted);
-
-        /// <summary>
-        /// The required name for the <c>Dispose</c> method used in a Using statement.
-        /// </summary>
-        public const string DisposeMethodName = "Dispose";
-
-        /// <summary>
-        /// The required name for the <c>DisposeAsync</c> method used in an await using statement.
-        /// </summary>
-        public const string DisposeAsyncMethodName = "DisposeAsync";
-
-        /// <summary>
-        /// The required name for the <c>Count</c> property used in a pattern-based Index or Range indexer.
-        /// </summary>
-        public const string CountPropertyName = "Count";
-
-        /// <summary>
-        /// The required name for the <c>Length</c> property used in a pattern-based Index or Range indexer.
-        /// </summary>
-        public const string LengthPropertyName = "Length";
-
-        /// <summary>
-        /// The required name for the <c>Slice</c> method used in a pattern-based Range indexer.
-        /// </summary>
-        public const string SliceMethodName = "Slice";
-
-        // internal until we settle on this long-term
-        internal const string CloneMethodName = "<Clone>$";
-        internal const string PrintMembersMethodName = "PrintMembers";
-
-        /// <summary>
-        /// The name of an entry point method synthesized for top-level statements.
-        /// </summary>
-        public const string TopLevelStatementsEntryPointMethodName = "<Main>$";
-
-        /// <summary>
-        /// The name of a type synthesized for a top-level statements entry point method.
-        /// </summary>
-        public const string TopLevelStatementsEntryPointTypeName = "<Program>$";
+        public const string
+        EnumBackingFieldName = "value__"
+        ;
+
+        public const string
+        InstanceConstructorName = ".ctor"
+        ;
+
+        public const string
+        StaticConstructorName = ".cctor"
+        ;
+
+        public const string
+        Indexer = "this[]"
+        ;
+
+        public const string
+        DestructorName = "Finalize"
+        ;
+
+        public const string
+        DelegateInvokeName = "Invoke"
+        ;
+
+        public const string
+        DelegateBeginInvokeName = "BeginInvoke"
+        ;
+
+        public const string
+        DelegateEndInvokeName = "EndInvoke"
+        ;
+
+        public const string
+        EntryPointMethodName = "Main"
+        ;
+
+        public const string
+        DefaultScriptClassName = "Script"
+        ;
+
+        public const string
+        ObjectToString = "ToString"
+        ;
+
+        public const string
+        ObjectEquals = "Equals"
+        ;
+
+        public const string
+        ObjectGetHashCode = "GetHashCode"
+        ;
+
+        public const string
+        ImplicitConversionName = "op_Implicit"
+        ;
+
+        public const string
+        ExplicitConversionName = "op_Explicit"
+        ;
+
+        public const string
+        AdditionOperatorName = "op_Addition"
+        ;
+
+        public const string
+        BitwiseAndOperatorName = "op_BitwiseAnd"
+        ;
+
+        public const string
+        BitwiseOrOperatorName = "op_BitwiseOr"
+        ;
+
+        public const string
+        DecrementOperatorName = "op_Decrement"
+        ;
+
+        public const string
+        DivisionOperatorName = "op_Division"
+        ;
+
+        public const string
+        EqualityOperatorName = "op_Equality"
+        ;
+
+        public const string
+        ExclusiveOrOperatorName = "op_ExclusiveOr"
+        ;
+
+        public const string
+        FalseOperatorName = "op_False"
+        ;
+
+        public const string
+        GreaterThanOperatorName = "op_GreaterThan"
+        ;
+
+        public const string
+        GreaterThanOrEqualOperatorName = "op_GreaterThanOrEqual"
+        ;
+
+        public const string
+        IncrementOperatorName = "op_Increment"
+        ;
+
+        public const string
+        InequalityOperatorName = "op_Inequality"
+        ;
+
+        public const string
+        LeftShiftOperatorName = "op_LeftShift"
+        ;
+
+        public const string
+        UnsignedLeftShiftOperatorName = "op_UnsignedLeftShift"
+        ;
+
+        public const string
+        LessThanOperatorName = "op_LessThan"
+        ;
+
+        public const string
+        LessThanOrEqualOperatorName = "op_LessThanOrEqual"
+        ;
+
+        public const string
+        LogicalNotOperatorName = "op_LogicalNot"
+        ;
+
+        public const string
+        LogicalOrOperatorName = "op_LogicalOr"
+        ;
+
+        public const string
+        LogicalAndOperatorName = "op_LogicalAnd"
+        ;
+
+        public const string
+        ModulusOperatorName = "op_Modulus"
+        ;
+
+        public const string
+        MultiplyOperatorName = "op_Multiply"
+        ;
+
+        public const string
+        OnesComplementOperatorName = "op_OnesComplement"
+        ;
+
+        public const string
+        RightShiftOperatorName = "op_RightShift"
+        ;
+
+        public const string
+        UnsignedRightShiftOperatorName = "op_UnsignedRightShift"
+        ;
+
+        public const string
+        SubtractionOperatorName = "op_Subtraction"
+        ;
+
+        public const string
+        TrueOperatorName = "op_True"
+        ;
+
+        public const string
+        UnaryNegationOperatorName = "op_UnaryNegation"
+        ;
+
+        public const string
+        UnaryPlusOperatorName = "op_UnaryPlus"
+        ;
+
+        public const string
+        ConcatenateOperatorName = "op_Concatenate"
+        ;
+
+        public const string
+        ExponentOperatorName = "op_Exponent"
+        ;
+
+        public const string
+        IntegerDivisionOperatorName = "op_IntegerDivision"
+        ;
+
+        public const string
+        LikeOperatorName = "op_Like"
+        ;
+
+        public const string
+        GetEnumeratorMethodName = "GetEnumerator"
+        ;
+
+        public const string
+        GetAsyncEnumeratorMethodName = "GetAsyncEnumerator"
+        ;
+
+        public const string
+        MoveNextAsyncMethodName = "MoveNextAsync"
+        ;
+
+        public const string
+        DeconstructMethodName = "Deconstruct"
+        ;
+
+        public const string
+        MoveNextMethodName = "MoveNext"
+        ;
+
+        public const string
+        CurrentPropertyName = "Current"
+        ;
+
+        public const string
+        ValuePropertyName = "Value"
+        ;
+
+        public const string
+        CollectionInitializerAddMethodName = "Add"
+        ;
+
+        public const string
+        GetAwaiter = nameof(GetAwaiter)
+        ;
+
+        public const string
+        IsCompleted = nameof(IsCompleted)
+        ;
+
+        public const string
+        GetResult = nameof(GetResult)
+        ;
+
+        public const string
+        OnCompleted = nameof(OnCompleted)
+        ;
+
+        public const string
+        DisposeMethodName = "Dispose"
+        ;
+
+        public const string
+        DisposeAsyncMethodName = "DisposeAsync"
+        ;
+
+        public const string
+        CountPropertyName = "Count"
+        ;
+
+        public const string
+        LengthPropertyName = "Length"
+        ;
+
+        public const string
+        SliceMethodName = "Slice"
+        ;
+
+        internal const string
+        CloneMethodName = "<Clone>$"
+        ;
+
+        internal const string
+        PrintMembersMethodName = "PrintMembers"
+        ;
+
+        public const string
+        TopLevelStatementsEntryPointMethodName = "<Main>$"
+        ;
+
+        public const string
+        TopLevelStatementsEntryPointTypeName = "<Program>$"
+        ;
+
+        static WellKnownMemberNames()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(654, 449, 13747);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 618, 650);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 789, 822);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 960, 992);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 1292, 1310);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 1440, 1467);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 1616, 1645);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 1799, 1838);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 1990, 2025);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 2153, 2182);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 2334, 2367);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 2512, 2539);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 2682, 2705);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 2853, 2886);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 3035, 3073);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 3223, 3261);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 3398, 3434);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 3573, 3613);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 3751, 3789);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 3927, 3965);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 4102, 4138);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 4275, 4311);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 4451, 4493);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 4627, 4657);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 4797, 4839);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 4986, 5042);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 5180, 5218);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 5357, 5397);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 5535, 5573);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 5719, 5773);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 5910, 5946);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 6090, 6140);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 6279, 6319);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 6457, 6495);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 6634, 6674);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 6810, 6844);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 6981, 7017);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 7160, 7208);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 7347, 7387);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 7534, 7590);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 7730, 7772);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 7905, 7933);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 8075, 8121);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 8259, 8297);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 8437, 8479);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 8616, 8652);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 8796, 8846);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 8986, 9014);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 9190, 9231);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 9412, 9463);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 9645, 9686);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 9857, 9894);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 10065, 10096);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 10268, 10299);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 10542, 10569);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 10839, 10881);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 11131, 11162);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 11426, 11459);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 11728, 11757);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 12025, 12058);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 12226, 12255);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 12435, 12474);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 12663, 12690);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 12880, 12909);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 13087, 13112);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 13202, 13230);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 13263, 13302);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 13467, 13517);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(654, 13688, 13739);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(654, 449, 13747);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(654, 449, 13747);
+        }
+
     }
 }

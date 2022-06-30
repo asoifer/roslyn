@@ -8,10 +8,7 @@ namespace Microsoft.CodeAnalysis.Symbols
 {
     internal interface INamedTypeSymbolInternal : ITypeSymbolInternal
     {
-        /// <summary>
-        /// For enum types, gets the underlying type. Returns null on all other
-        /// kinds of types.
-        /// </summary>
-        INamedTypeSymbolInternal EnumUnderlyingType { get; }
+
+INamedTypeSymbolInternal EnumUnderlyingType {get; }
     }
 }

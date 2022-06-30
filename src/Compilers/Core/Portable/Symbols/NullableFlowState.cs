@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -23,26 +23,60 @@ namespace Microsoft.CodeAnalysis
         /// </summary>
         MaybeNull
     }
-
     internal static class NullableFlowStateExtensions
     {
-        /// <summary>
-        /// This method directly converts a <see cref="NullableFlowState"/> to a <see cref="NullableAnnotation"/>,
-        /// ignoring the <see cref="ITypeSymbol"/> to which it is attached. It should only be used when converting
-        /// an RValue flow state to an RValue annotation for returning via the public API. For general use, please
-        /// use Microsoft.CodeAnalysis.CSharp.Symbols.TypeWithState.ToTypeWithAnnotations.
-        /// </summary>
         public static NullableAnnotation ToAnnotation(this NullableFlowState nullableFlowState)
         {
-            switch (nullableFlowState)
+            try
             {
-                case CodeAnalysis.NullableFlowState.MaybeNull:
-                    return CodeAnalysis.NullableAnnotation.Annotated;
-                case CodeAnalysis.NullableFlowState.NotNull:
-                    return CodeAnalysis.NullableAnnotation.NotAnnotated;
-                default:
-                    return CodeAnalysis.NullableAnnotation.None;
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(638, 1381, 1923);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(638, 1493, 1912);
+
+                switch (nullableFlowState)
+                {
+
+                    case CodeAnalysis.NullableFlowState.MaybeNull:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(638, 1493, 1912);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(638, 1620, 1669);
+
+                        return CodeAnalysis.NullableAnnotation.Annotated;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(638, 1493, 1912);
+
+                    case CodeAnalysis.NullableFlowState.NotNull:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(638, 1493, 1912);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(638, 1753, 1805);
+
+                        return CodeAnalysis.NullableAnnotation.NotAnnotated;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(638, 1493, 1912);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(638, 1493, 1912);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(638, 1853, 1897);
+
+                        return CodeAnalysis.NullableAnnotation.None;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(638, 1493, 1912);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(638, 1381, 1923);
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(638, 1381, 1923);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(638, 1381, 1923);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static NullableFlowStateExtensions()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(638, 828, 1930);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(638, 828, 1930);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(638, 828, 1930);
+        }
+
     }
 }

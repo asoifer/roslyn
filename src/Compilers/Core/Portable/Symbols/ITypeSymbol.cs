@@ -19,238 +19,504 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface ITypeSymbol : INamespaceOrTypeSymbol
     {
-        /// <summary>
-        /// An enumerated value that identifies whether this type is an array, pointer, enum, and so on.
-        /// </summary>
+
         TypeKind TypeKind { get; }
 
-        /// <summary>
-        /// The declared base type of this type, or null. The object type, interface types,
-        /// and pointer types do not have a base type. The base type of a type parameter
-        /// is its effective base class.
-        /// </summary>
         INamedTypeSymbol? BaseType { get; }
 
-        /// <summary>
-        /// Gets the set of interfaces that this type directly implements. This set does not include
-        /// interfaces that are base interfaces of directly implemented interfaces. This does
-        /// include the interfaces declared as constraints on type parameters.
-        /// </summary>
         ImmutableArray<INamedTypeSymbol> Interfaces { get; }
 
-        /// <summary>
-        /// The list of all interfaces of which this type is a declared subtype, excluding this type
-        /// itself. This includes all declared base interfaces, all declared base interfaces of base
-        /// types, and all declared base interfaces of those results (recursively). This also is the effective
-        /// interface set of a type parameter. Each result
-        /// appears exactly once in the list. This list is topologically sorted by the inheritance
-        /// relationship: if interface type A extends interface type B, then A precedes B in the
-        /// list. This is not quite the same as "all interfaces of which this type is a proper
-        /// subtype" because it does not take into account variance: AllInterfaces for
-        /// IEnumerable&lt;string&gt; will not include IEnumerable&lt;object&gt;.
-        /// </summary>
         ImmutableArray<INamedTypeSymbol> AllInterfaces { get; }
 
-        /// <summary>
-        /// True if this type is known to be a reference type. It is never the case that
-        /// <see cref="IsReferenceType"/> and <see cref="IsValueType"/> both return true. However, for an unconstrained type
-        /// parameter, <see cref="IsReferenceType"/> and <see cref="IsValueType"/> will both return false.
-        /// </summary>
         bool IsReferenceType { get; }
 
-        /// <summary>
-        /// True if this type is known to be a value type. It is never the case that
-        /// <see cref="IsReferenceType"/> and <see cref="IsValueType"/> both return true. However, for an unconstrained type
-        /// parameter, <see cref="IsReferenceType"/> and <see cref="IsValueType"/> will both return false.
-        /// </summary>
         bool IsValueType { get; }
 
-        /// <summary>
-        /// Is this a symbol for an anonymous type (including anonymous VB delegate).
-        /// </summary>
         bool IsAnonymousType { get; }
 
-        /// <summary>
-        /// Is this a symbol for a tuple .
-        /// </summary>
         bool IsTupleType { get; }
 
-        /// <summary>
-        /// True if the type represents a native integer. In C#, the types represented
-        /// by language keywords 'nint' and 'nuint'.
-        /// </summary>
         bool IsNativeIntegerType { get; }
 
-        /// <summary>
-        /// The original definition of this symbol. If this symbol is constructed from another
-        /// symbol by type substitution then <see cref="OriginalDefinition"/> gets the original symbol as it was defined in
-        /// source or metadata.
-        /// </summary>
         new ITypeSymbol OriginalDefinition { get; }
 
-        /// <summary>
-        /// An enumerated value that identifies certain 'special' types such as <see cref="System.Object"/>. 
-        /// Returns <see cref="Microsoft.CodeAnalysis.SpecialType.None"/> if the type is not special.
-        /// </summary>
         SpecialType SpecialType { get; }
 
-        /// <summary>
-        /// Returns the corresponding symbol in this type or a base type that implements 
-        /// interfaceMember (either implicitly or explicitly), or null if no such symbol exists
-        /// (which might be either because this type doesn't implement the container of
-        /// interfaceMember, or this type doesn't supply a member that successfully implements
-        /// interfaceMember).
-        /// </summary>
-        /// <param name="interfaceMember">
-        /// Must be a non-null interface property, method, or event.
-        /// </param>
         ISymbol? FindImplementationForInterfaceMember(ISymbol interfaceMember);
 
-        /// <summary>
-        /// True if the type is ref-like, meaning it follows rules similar to CLR by-ref variables. False if the type
-        /// is not ref-like or if the language has no concept of ref-like types.
-        /// </summary>
-        /// <remarks>
-        /// <see cref="Span{T}" /> is a commonly used ref-like type.
-        /// </remarks>
         bool IsRefLikeType { get; }
 
-        /// <summary>
-        /// True if the type is unmanaged according to language rules. False if managed or if the language
-        /// has no concept of unmanaged types.
-        /// </summary>
         bool IsUnmanagedType { get; }
 
-        /// <summary>
-        /// True if the type is readonly.
-        /// </summary>
         bool IsReadOnly { get; }
 
-        /// <summary>
-        /// True if the type is a record.
-        /// </summary>
         bool IsRecord { get; }
 
-        /// <summary>
-        /// Converts an <c>ITypeSymbol</c> and a nullable flow state to a string representation.
-        /// </summary>
-        /// <param name="topLevelNullability">The top-level nullability to use for formatting.</param>
-        /// <param name="format">Format or null for the default.</param>
-        /// <returns>A formatted string representation of the symbol with the given nullability.</returns>
         string ToDisplayString(NullableFlowState topLevelNullability, SymbolDisplayFormat? format = null);
 
-        /// <summary>
-        /// Converts a symbol to an array of string parts, each of which has a kind. Useful
-        /// for colorizing the display string.
-        /// </summary>
-        /// <param name="topLevelNullability">The top-level nullability to use for formatting.</param>
-        /// <param name="format">Format or null for the default.</param>
-        /// <returns>A read-only array of string parts.</returns>
         ImmutableArray<SymbolDisplayPart> ToDisplayParts(NullableFlowState topLevelNullability, SymbolDisplayFormat? format = null);
 
-        /// <summary>
-        /// Converts a symbol to a string that can be displayed to the user. May be tailored to a
-        /// specific location in the source code.
-        /// </summary>
-        /// <param name="semanticModel">Binding information (for determining names appropriate to
-        /// the context).</param>
-        /// <param name="topLevelNullability">The top-level nullability to use for formatting.</param>
-        /// <param name="position">A position in the source code (context).</param>
-        /// <param name="format">Formatting rules - null implies <see cref="SymbolDisplayFormat.MinimallyQualifiedFormat"/></param>
-        /// <returns>A formatted string that can be displayed to the user.</returns>
         string ToMinimalDisplayString(
-            SemanticModel semanticModel,
-            NullableFlowState topLevelNullability,
-            int position,
-            SymbolDisplayFormat? format = null);
+                    SemanticModel semanticModel,
+                    NullableFlowState topLevelNullability,
+                    int position,
+                    SymbolDisplayFormat? format = null);
 
-        /// <summary>
-        /// Convert a symbol to an array of string parts, each of which has a kind. May be tailored
-        /// to a specific location in the source code. Useful for colorizing the display string.
-        /// </summary>
-        /// <param name="semanticModel">Binding information (for determining names appropriate to
-        /// the context).</param>
-        /// <param name="topLevelNullability">The top-level nullability to use for formatting.</param>
-        /// <param name="position">A position in the source code (context).</param>
-        /// <param name="format">Formatting rules - null implies <see cref="SymbolDisplayFormat.MinimallyQualifiedFormat"/></param>
-        /// <returns>A read-only array of string parts.</returns>
         ImmutableArray<SymbolDisplayPart> ToMinimalDisplayParts(
-            SemanticModel semanticModel,
-            NullableFlowState topLevelNullability,
-            int position,
-            SymbolDisplayFormat? format = null);
+                    SemanticModel semanticModel,
+                    NullableFlowState topLevelNullability,
+                    int position,
+                    SymbolDisplayFormat? format = null);
 
-        /// <summary>
-        /// Nullable annotation associated with the type, or <see cref="NullableAnnotation.None"/> if there are none.
-        /// </summary>
         NullableAnnotation NullableAnnotation { get; }
 
-        /// <summary>
-        /// Returns the same type as this type but with the given nullable annotation.
-        /// </summary>
-        /// <param name="nullableAnnotation">The nullable annotation to use</param>
         ITypeSymbol WithNullableAnnotation(NullableAnnotation nullableAnnotation);
     }
-
-    // Intentionally not extension methods. We don't want them ever be called for symbol classes
-    // Once Default Interface Implementations are supported, we can move these methods into the interface. 
     internal static class ITypeSymbolHelpers
     {
         internal static bool IsNullableType([NotNullWhen(returnValue: true)] ITypeSymbol? typeOpt)
         {
-            return typeOpt?.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 10020, 10267);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 10158, 10256);
+
+                return typeOpt != null && (DynAbs.Tracing.TraceSender.Expression_True(630, 10165, 10255) && f_630_10184_10222(f_630_10184_10210(typeOpt)) == SpecialType.System_Nullable_T);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 10020, 10267);
+
+                Microsoft.CodeAnalysis.ITypeSymbol
+                f_630_10184_10210(Microsoft.CodeAnalysis.ITypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.OriginalDefinition;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 10184, 10210);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SpecialType
+                f_630_10184_10222(Microsoft.CodeAnalysis.ITypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.SpecialType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 10184, 10222);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 10020, 10267);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 10020, 10267);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsNullableOfBoolean([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return IsNullableType(type) && IsBooleanType(GetNullableUnderlyingType(type));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 10279, 10485);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 10396, 10474);
+
+                return f_630_10403_10423(type) && (DynAbs.Tracing.TraceSender.Expression_True(630, 10403, 10473) && f_630_10427_10473(f_630_10441_10472(type)));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 10279, 10485);
+
+                bool
+                f_630_10403_10423(Microsoft.CodeAnalysis.ITypeSymbol?
+                typeOpt)
+                {
+                    var return_v = IsNullableType(typeOpt);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 10403, 10423);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.ITypeSymbol
+                f_630_10441_10472(Microsoft.CodeAnalysis.ITypeSymbol
+                type)
+                {
+                    var return_v = GetNullableUnderlyingType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 10441, 10472);
+                    return return_v;
+                }
+
+
+                bool
+                f_630_10427_10473(Microsoft.CodeAnalysis.ITypeSymbol
+                type)
+                {
+                    var return_v = IsBooleanType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 10427, 10473);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 10279, 10485);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 10279, 10485);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static ITypeSymbol GetNullableUnderlyingType(ITypeSymbol type)
         {
-            Debug.Assert(IsNullableType(type));
-            return ((INamedTypeSymbol)type).TypeArguments[0];
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 10497, 10702);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 10593, 10628);
+
+                f_630_10593_10627(f_630_10606_10626(type));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 10642, 10691);
+
+                return f_630_10649_10687(((INamedTypeSymbol)type))[0];
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 10497, 10702);
+
+                bool
+                f_630_10606_10626(Microsoft.CodeAnalysis.ITypeSymbol
+                typeOpt)
+                {
+                    var return_v = IsNullableType(typeOpt);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 10606, 10626);
+                    return return_v;
+                }
+
+
+                int
+                f_630_10593_10627(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 10593, 10627);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ITypeSymbol>
+                f_630_10649_10687(Microsoft.CodeAnalysis.INamedTypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.TypeArguments;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 10649, 10687);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 10497, 10702);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 10497, 10702);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsBooleanType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType == SpecialType.System_Boolean;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 10714, 10891);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 10825, 10880);
+
+                return f_630_10832_10849_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(type, 630, 10832, 10849)?.SpecialType) == SpecialType.System_Boolean;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 10714, 10891);
+
+                Microsoft.CodeAnalysis.SpecialType?
+                f_630_10832_10849_M(Microsoft.CodeAnalysis.SpecialType?
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 10832, 10849);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 10714, 10891);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 10714, 10891);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsObjectType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType == SpecialType.System_Object;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 10903, 11078);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 11013, 11067);
+
+                return f_630_11020_11037_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(type, 630, 11020, 11037)?.SpecialType) == SpecialType.System_Object;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 10903, 11078);
+
+                Microsoft.CodeAnalysis.SpecialType?
+                f_630_11020_11037_M(Microsoft.CodeAnalysis.SpecialType?
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 11020, 11037);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 10903, 11078);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 10903, 11078);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsSignedIntegralType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType.IsSignedIntegralType() == true;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 11090, 11313);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 11231, 11302);
+
+                return type != null && (DynAbs.Tracing.TraceSender.Expression_True(630, 11238, 11301) && f_630_11254_11293(f_630_11254_11270(type)) == true);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 11090, 11313);
+
+                Microsoft.CodeAnalysis.SpecialType
+                f_630_11254_11270(Microsoft.CodeAnalysis.ITypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.SpecialType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 11254, 11270);
+                    return return_v;
+                }
+
+
+                bool
+                f_630_11254_11293(Microsoft.CodeAnalysis.SpecialType
+                specialType)
+                {
+                    var return_v = specialType.IsSignedIntegralType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 11254, 11293);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 11090, 11313);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 11090, 11313);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsUnsignedIntegralType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType.IsUnsignedIntegralType() == true;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 11325, 11552);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 11468, 11541);
+
+                return type != null && (DynAbs.Tracing.TraceSender.Expression_True(630, 11475, 11540) && f_630_11491_11532(f_630_11491_11507(type)) == true);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 11325, 11552);
+
+                Microsoft.CodeAnalysis.SpecialType
+                f_630_11491_11507(Microsoft.CodeAnalysis.ITypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.SpecialType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 11491, 11507);
+                    return return_v;
+                }
+
+
+                bool
+                f_630_11491_11532(Microsoft.CodeAnalysis.SpecialType
+                specialType)
+                {
+                    var return_v = specialType.IsUnsignedIntegralType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 11491, 11532);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 11325, 11552);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 11325, 11552);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsNumericType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType.IsNumericType() == true;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 11564, 11773);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 11698, 11762);
+
+                return type != null && (DynAbs.Tracing.TraceSender.Expression_True(630, 11705, 11761) && f_630_11721_11753(f_630_11721_11737(type)) == true);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 11564, 11773);
+
+                Microsoft.CodeAnalysis.SpecialType
+                f_630_11721_11737(Microsoft.CodeAnalysis.ITypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.SpecialType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 11721, 11737);
+                    return return_v;
+                }
+
+
+                bool
+                f_630_11721_11753(Microsoft.CodeAnalysis.SpecialType
+                specialType)
+                {
+                    var return_v = specialType.IsNumericType();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 11721, 11753);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 11564, 11773);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 11564, 11773);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static ITypeSymbol? GetEnumUnderlyingType(ITypeSymbol? type)
         {
-            return (type as INamedTypeSymbol)?.EnumUnderlyingType;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 11785, 12000);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 11902, 11989);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(630, 11909, 11935) || (((type is INamedTypeSymbol) && DynAbs.Tracing.TraceSender.Conditional_F2(630, 11938, 11981)) || DynAbs.Tracing.TraceSender.Conditional_F3(630, 11984, 11988))) ? f_630_11938_11981(((INamedTypeSymbol)type)) : null;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 11785, 12000);
+
+                Microsoft.CodeAnalysis.INamedTypeSymbol?
+                f_630_11938_11981(Microsoft.CodeAnalysis.INamedTypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.EnumUnderlyingType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 11938, 11981);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 11785, 12000);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 11785, 12000);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         [return: NotNullIfNotNull(parameterName: "type")]
         internal static ITypeSymbol? GetEnumUnderlyingTypeOrSelf(ITypeSymbol? type)
         {
-            return GetEnumUnderlyingType(type) ?? type;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 12012, 12225);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 12171, 12214);
+
+                return f_630_12178_12205(type) ?? (DynAbs.Tracing.TraceSender.Expression_Null<Microsoft.CodeAnalysis.ITypeSymbol?>(630, 12178, 12213) ?? type);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 12012, 12225);
+
+                Microsoft.CodeAnalysis.ITypeSymbol?
+                f_630_12178_12205(Microsoft.CodeAnalysis.ITypeSymbol?
+                type)
+                {
+                    var return_v = GetEnumUnderlyingType(type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(630, 12178, 12205);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 12012, 12225);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 12012, 12225);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal static bool IsDynamicType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.Kind == SymbolKind.DynamicType;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(630, 12237, 12403);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(630, 12348, 12392);
+
+                return f_630_12355_12365_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(type, 630, 12355, 12365)?.Kind) == SymbolKind.DynamicType;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(630, 12237, 12403);
+
+                Microsoft.CodeAnalysis.SymbolKind?
+                f_630_12355_12365_M(Microsoft.CodeAnalysis.SymbolKind?
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(630, 12355, 12365);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(630, 12237, 12403);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 12237, 12403);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
+        static ITypeSymbolHelpers()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(630, 9963, 12410);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(630, 9963, 12410);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(630, 9963, 12410);
+        }
+
     }
 }

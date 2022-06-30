@@ -15,7 +15,24 @@ namespace Microsoft.CodeAnalysis
 
         public virtual TResult? DefaultVisit(ISymbol symbol)
         {
-            return default(TResult?);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(645, 502, 615);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(645, 579, 604);
+
+                return default(TResult?);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(645, 502, 615);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(645, 502, 615);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(645, 502, 615);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public virtual TResult? VisitAlias(IAliasSymbol symbol)
@@ -112,5 +129,24 @@ namespace Microsoft.CodeAnalysis
         {
             return DefaultVisit(symbol);
         }
+
+        public SymbolVisitor()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterConstructor(645, 249, 3247);
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(645, 249, 3247);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(645, 249, 3247);
+        }
+
+
+        static SymbolVisitor()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(645, 249, 3247);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(645, 249, 3247);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(645, 249, 3247);
+        }
+
+        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(645, 249, 3247);
     }
 }

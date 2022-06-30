@@ -1535,8 +1535,8 @@ namespace Microsoft.CodeAnalysis
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(91, 7103, 7216);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(91, 7165, 7201);
 
-                        // LAFHIS TODO
-                        //f_91_7181_7200(f_91_7165_7180(getNested, item), getNested);
+                        // LAFHIS
+                        f_91_7181_7200(f_91_7165_7180(getNested, item), getNested);
                         DynAbs.Tracing.TraceSender.TraceExitCondition(91, 7103, 7216);
                     }
                 }
@@ -1565,15 +1565,14 @@ namespace Microsoft.CodeAnalysis
                 }
 
 
-                // LAFHIS TODO
-//                void? f_91_7181_7200(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder < T >
-//builder, System.Func < T, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder < T >>
-//getNested)
-//{
-//                    var return_v = builder?.FreeAll<T>(getNested);
-//                    DynAbs.Tracing.TraceSender.TraceEndInvocation(91, 7181, 7200);
-//                    return return_v;
-//                }
+                // LAFHIS
+                void f_91_7181_7200(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                builder, System.Func<T, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>>
+                getNested)
+                {
+                    builder?.FreeAll(getNested);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(91, 7181, 7200);
+                }
 
 
                 Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>

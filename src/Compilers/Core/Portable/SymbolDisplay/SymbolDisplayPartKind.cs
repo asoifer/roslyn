@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -81,20 +81,54 @@ namespace Microsoft.CodeAnalysis
         /// <summary>The name of a record.</summary>
         RecordClassName = 31,
     }
-
     internal static class InternalSymbolDisplayPartKind
     {
-        private const SymbolDisplayPartKind @base = SymbolDisplayPartKind.RecordClassName + 1;
-        public const SymbolDisplayPartKind Arity = @base + 0;
-        public const SymbolDisplayPartKind Other = @base + 1;
-    }
+        private const SymbolDisplayPartKind
+        @base = SymbolDisplayPartKind.RecordClassName + 1
+        ;
 
+        public const SymbolDisplayPartKind
+        Arity = @base + 0
+        ;
+
+        public const SymbolDisplayPartKind
+        Other = @base + 1
+        ;
+
+        static InternalSymbolDisplayPartKind()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(584, 3769, 4056);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(584, 3873, 3922);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(584, 3968, 3985);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(584, 4031, 4048);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(584, 3769, 4056);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(584, 3769, 4056);
+        }
+
+    }
     internal static partial class EnumBounds
     {
         internal static bool IsValid(this SymbolDisplayPartKind value)
         {
-            return (value >= SymbolDisplayPartKind.AliasName && value <= SymbolDisplayPartKind.RecordClassName) ||
-                (value >= InternalSymbolDisplayPartKind.Arity && value <= InternalSymbolDisplayPartKind.Other);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(584, 4121, 4434);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(584, 4208, 4423);
+
+                return (value >= SymbolDisplayPartKind.AliasName && (DynAbs.Tracing.TraceSender.Expression_True(584, 4216, 4306) && value <= SymbolDisplayPartKind.RecordClassName)) || (DynAbs.Tracing.TraceSender.Expression_False(584, 4215, 4422) || (value >= InternalSymbolDisplayPartKind.Arity && (DynAbs.Tracing.TraceSender.Expression_True(584, 4329, 4421) && value <= InternalSymbolDisplayPartKind.Other)));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(584, 4121, 4434);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(584, 4121, 4434);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(584, 4121, 4434);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
     }
 }

@@ -17,79 +17,31 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface IParameterSymbol : ISymbol
     {
-        /// <summary>
-        /// Whether the parameter passed by value or by reference.
-        /// </summary>
-        RefKind RefKind { get; }
 
-        /// <summary>
-        /// Returns true if the parameter was declared as a parameter array. 
-        /// </summary>
-        bool IsParams { get; }
+RefKind RefKind {get; }
 
-        /// <summary>
-        /// Returns true if the parameter is optional.
-        /// </summary>
-        bool IsOptional { get; }
+bool IsParams {get; }
 
-        /// <summary>
-        /// Returns true if the parameter is the hidden 'this' ('Me' in Visual Basic) parameter.
-        /// </summary>
-        bool IsThis { get; }
+bool IsOptional {get; }
 
-        /// <summary>
-        /// Returns true if the parameter is a discard parameter.
-        /// </summary>
-        bool IsDiscard { get; }
+bool IsThis {get; }
 
-        /// <summary>
-        /// Gets the type of the parameter.
-        /// </summary>
-        ITypeSymbol Type { get; }
+bool IsDiscard {get; }
 
-        /// <summary>
-        /// Gets the top-level nullability of the parameter.
-        /// </summary>
-        NullableAnnotation NullableAnnotation { get; }
+ITypeSymbol Type {get; }
 
-        /// <summary>
-        /// Custom modifiers associated with the parameter type, or an empty array if there are none.
-        /// </summary>
-        ImmutableArray<CustomModifier> CustomModifiers { get; }
+NullableAnnotation NullableAnnotation {get; }
 
-        /// <summary>
-        /// Custom modifiers associated with the ref modifier, or an empty array if there are none.
-        /// </summary>
-        ImmutableArray<CustomModifier> RefCustomModifiers { get; }
+ImmutableArray<CustomModifier> CustomModifiers {get; }
 
-        /// <summary>
-        /// Gets the ordinal position of the parameter. The first parameter has ordinal zero.
-        /// The 'this' parameter ('Me' in Visual Basic) has ordinal -1.
-        /// </summary>
-        int Ordinal { get; }
+ImmutableArray<CustomModifier> RefCustomModifiers {get; }
 
-        /// <summary>
-        /// Returns true if the parameter specifies a default value to be passed
-        /// when no value is provided as an argument to a call. The default value
-        /// can be obtained with the <see cref="ExplicitDefaultValue"/> property.
-        /// </summary>
-        bool HasExplicitDefaultValue { get; }
+int Ordinal {get; }
 
-        /// <summary>
-        /// Returns the default value of the parameter. 
-        /// </summary>
-        /// <remarks>
-        /// Returns null if the parameter type is a struct and the default value of the parameter
-        /// is the default value of the struct type.
-        /// </remarks>
-        /// <exception cref="System.InvalidOperationException">The parameter has no default value.</exception>
-        object? ExplicitDefaultValue { get; }
+bool HasExplicitDefaultValue {get; }
 
-        /// <summary>
-        /// Get the original definition of this symbol. If this symbol is derived from another
-        /// symbol by (say) type substitution, this gets the original symbol, as it was defined in
-        /// source or metadata.
-        /// </summary>
-        new IParameterSymbol OriginalDefinition { get; }
+object? ExplicitDefaultValue {get; }
+
+new IParameterSymbol OriginalDefinition {get; }
     }
 }

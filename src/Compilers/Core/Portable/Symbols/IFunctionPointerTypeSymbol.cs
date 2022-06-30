@@ -13,9 +13,7 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface IFunctionPointerTypeSymbol : ITypeSymbol
     {
-        /// <summary>
-        /// Gets the signature of the function pointed to by an instance of the function pointer type.
-        /// </summary>
-        public IMethodSymbol Signature { get; }
+
+public IMethodSymbol Signature {get; }
     }
 }

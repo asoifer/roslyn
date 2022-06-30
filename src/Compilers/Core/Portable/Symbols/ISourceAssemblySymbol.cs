@@ -13,6 +13,7 @@ namespace Microsoft.CodeAnalysis
     /// </remarks>
     public interface ISourceAssemblySymbol : IAssemblySymbol
     {
-        Compilation Compilation { get; }
+
+Compilation Compilation {get; }
     }
 }

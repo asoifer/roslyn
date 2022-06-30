@@ -108,11 +108,11 @@ namespace Microsoft.Cci
                 this.methodImplList = f_499_21081_21113(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 21197, 21324);
                 this._methodInstanceSignatureIndex = f_499_21229_21324(ReferenceEqualityComparer.Instance); DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 21893, 22055);
                 this._dummyAssemblyAttributeParent = new TypeReferenceHandle[,] { { default(TypeReferenceHandle), default(TypeReferenceHandle) }, { default(TypeReferenceHandle), default(TypeReferenceHandle) } }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 1919, 1989);
-                // LAFHIS TODO
-                //this._documentIndex = f_501_1936_1989(); 
+                // LAFHIS
+                this._documentIndex = f_501_1936_1989();
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 2061, 2160);
-                // LAFHIS TODO
-                //this._scopeIndex = f_501_2075_2160(ImportScopeEqualityComparer.Instance); 
+                // LAFHIS
+                this._scopeIndex = f_501_2075_2160(ImportScopeEqualityComparer.Instance);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 4006, 4049);
 
                 f_499_4006_4048(metadata != debugMetadataOpt);
@@ -156,6 +156,22 @@ namespace Microsoft.Cci
 
                 _smallMethodBodies = f_499_5065_5154(ByteSequenceBoolTupleComparer.Instance);
                 DynAbs.Tracing.TraceSender.TraceExitConstructor(499, 3560, 5166);
+
+                // LAFHIS
+                static Dictionary<DebugSourceDocument, DocumentHandle> f_501_1936_1989()
+                {
+                    var temp = new Dictionary<DebugSourceDocument, DocumentHandle>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(501, 1936, 1989);
+                    return temp;
+                }
+
+                // LAFHIS
+                static Dictionary<IImportScope, ImportScopeHandle> f_501_2075_2160(ImportScopeEqualityComparer s)
+                {
+                    var temp = new Dictionary<IImportScope, ImportScopeHandle>(s);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(501, 2075, 2160);
+                    return temp;
+                }
             }
             catch
             {
@@ -25247,8 +25263,8 @@ namespace Microsoft.Cci
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 132621, 132653);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 132684, 132723);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 12414, 12475);
-            // LAFHIS TODO
-            //ModuleImportScopeHandle = f_501_12440_12475(1); 
+            // LAFHIS
+            ModuleImportScopeHandle = f_501_12440_12475(1); 
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 33417, 33452);
             DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(499, 997, 179260);
 
@@ -25256,6 +25272,14 @@ namespace Microsoft.Cci
         }
 
         int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(499, 997, 179260);
+
+        // LAFHIS
+        static ImportScopeHandle f_501_12440_12475(int s)
+        {
+            var temp = MetadataTokens.ImportScopeHandle(s);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(501, 12440, 12475);
+            return temp;
+        }
 
         static System.Text.Encoding
         f_499_1111_1124()

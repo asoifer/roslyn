@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -6,60 +6,172 @@ using System;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// A single element of a symbol description.  For example, a keyword, a punctuation character or
-    /// a class name.
-    /// </summary>
-    /// <seealso cref="ISymbol.ToDisplayParts"/>
-    /// <seealso cref="ISymbol.ToMinimalDisplayParts"/>
-    /// <seealso cref="SymbolDisplayPartKind"/>
+
     public struct SymbolDisplayPart
     {
+
         private readonly SymbolDisplayPartKind _kind;
+
         private readonly string _text;
+
         private readonly ISymbol? _symbol;
 
-        /// <summary>
-        /// Gets the kind of this display part.
-        /// </summary>
-        public SymbolDisplayPartKind Kind { get { return _kind; } }
+        public SymbolDisplayPartKind Kind
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(583, 908, 929);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 914, 927);
 
-        /// <summary>
-        /// Gets the symbol associated with this display part, if there is one.
-        /// For example, the <see cref="ITypeSymbol"/> associated with a class name.
-        /// </summary>
-        /// <returns></returns>
-        public ISymbol? Symbol { get { return _symbol; } }
+                    return _kind;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(583, 908, 929);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(583, 872, 931);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(583, 872, 931);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
 
-        /// <summary>
-        /// Construct a non-formattable <see cref="SymbolDisplayPart"/> (i.e. with a fixed string value).
-        /// </summary>
-        /// <param name="kind">The kind of the display part.</param>
-        /// <param name="symbol">An optional associated symbol.</param>
-        /// <param name="text">The fixed string value of the part.</param>
+        public ISymbol? Symbol
+        {
+            get
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(583, 1215, 1238);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 1221, 1236);
+
+                    return _symbol;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(583, 1215, 1238);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(583, 1190, 1240);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(583, 1190, 1240);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+            }
+        }
+
         public SymbolDisplayPart(SymbolDisplayPartKind kind, ISymbol? symbol, string text)
         {
-            if (!kind.IsValid())
+            try
             {
-                throw new ArgumentOutOfRangeException(nameof(kind));
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterConstructor(583, 1625, 2077);
 
-            if (text == null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 1732, 1852) || true) && (!f_583_1737_1751(kind))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(583, 1732, 1852);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 1785, 1837);
+
+                    throw f_583_1791_1836(nameof(kind));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(583, 1732, 1852);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 1868, 1979) || true) && (text == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(583, 1868, 1979);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 1918, 1964);
+
+                    throw f_583_1924_1963(nameof(text));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(583, 1868, 1979);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 1995, 2008);
+
+                _kind = kind;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 2022, 2035);
+
+                _text = text;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 2049, 2066);
+
+                _symbol = symbol;
+                DynAbs.Tracing.TraceSender.TraceExitConstructor(583, 1625, 2077);
+            }
+            catch
             {
-                throw new ArgumentNullException(nameof(text));
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(583, 1625, 2077);
+                throw;
             }
-
-            _kind = kind;
-            _text = text;
-            _symbol = symbol;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(583, 1625, 2077);
+            }
         }
 
-        /// <summary>
-        /// Returns the string value of this symbol display part.
-        /// </summary>
         public override string ToString()
         {
-            return _text;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(583, 2203, 2285);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(583, 2261, 2274);
+
+                return _text;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(583, 2203, 2285);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(583, 2203, 2285);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(583, 2203, 2285);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+        static SymbolDisplayPart()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(583, 587, 2292);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(583, 587, 2292);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(583, 587, 2292);
+        }
+
+        static bool
+        f_583_1737_1751(Microsoft.CodeAnalysis.SymbolDisplayPartKind
+        value)
+        {
+            var return_v = value.IsValid();
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(583, 1737, 1751);
+            return return_v;
+        }
+
+
+        static System.ArgumentOutOfRangeException
+        f_583_1791_1836(string
+        paramName)
+        {
+            var return_v = new System.ArgumentOutOfRangeException(paramName);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(583, 1791, 1836);
+            return return_v;
+        }
+
+
+        static System.ArgumentNullException
+        f_583_1924_1963(string
+        paramName)
+        {
+            var return_v = new System.ArgumentNullException(paramName);
+            DynAbs.Tracing.TraceSender.TraceEndInvocation(583, 1924, 1963);
+            return return_v;
+        }
+
     }
 }

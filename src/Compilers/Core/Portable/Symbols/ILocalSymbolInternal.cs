@@ -6,10 +6,11 @@ namespace Microsoft.CodeAnalysis.Symbols
 {
     internal interface ILocalSymbolInternal : ISymbolInternal
     {
-        bool IsImportedFromMetadata { get; }
 
-        SynthesizedLocalKind SynthesizedKind { get; }
+bool IsImportedFromMetadata {get; }
 
-        SyntaxNode GetDeclaratorSyntax();
+SynthesizedLocalKind SynthesizedKind {get; }
+
+SyntaxNode GetDeclaratorSyntax();
     }
 }

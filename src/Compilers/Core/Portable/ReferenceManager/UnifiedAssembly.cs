@@ -8,29 +8,68 @@ using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// Assembly symbol referenced by a AssemblyRef for which we couldn't find a matching 
-    /// compilation reference but we found one that differs in version. 
-    /// Created only for assemblies that require runtime binding redirection policy,
-    /// i.e. not for Framework assemblies.
-    /// </summary>
-    internal struct UnifiedAssembly<TAssemblySymbol>
+
+internal struct UnifiedAssembly<TAssemblySymbol>
         where TAssemblySymbol : class, IAssemblySymbolInternal
     {
-        /// <summary>
-        /// Original reference that was unified to the identity of the <see cref="TargetAssembly"/>.
-        /// </summary>
-        internal readonly AssemblyIdentity OriginalReference;
 
-        internal readonly TAssemblySymbol TargetAssembly;
+internal readonly AssemblyIdentity OriginalReference;
 
-        public UnifiedAssembly(TAssemblySymbol targetAssembly, AssemblyIdentity originalReference)
+internal readonly TAssemblySymbol TargetAssembly;
+
+public UnifiedAssembly(TAssemblySymbol targetAssembly, AssemblyIdentity originalReference)
+		{
+			try
         {
-            Debug.Assert(originalReference != null);
-            Debug.Assert(targetAssembly != null);
+DynAbs.Tracing.TraceSender.TraceEnterConstructor(535,1092,1419);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(535,1207,1247);
 
-            this.OriginalReference = originalReference;
-            this.TargetAssembly = targetAssembly;
+f_535_1207_1246(originalReference != null);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(535,1261,1298);
+
+f_535_1261_1297(targetAssembly != null);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(535,1314,1357);
+
+this.OriginalReference = originalReference;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(535,1371,1408);
+
+this.TargetAssembly = targetAssembly;
+DynAbs.Tracing.TraceSender.TraceExitConstructor(535,1092,1419);
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(535,1092,1419);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(535,1092,1419);
+}
+		}
+static UnifiedAssembly(){DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(535,688,1426);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(535,688,1426);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(535,688,1426);
+}
+
+static int
+f_535_1207_1246(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(535, 1207, 1246);
+return 0;
+}
+
+
+static int
+f_535_1261_1297(bool
+condition)
+{
+Debug.Assert( condition);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(535, 1261, 1297);
+return 0;
+}
+
     }
 }

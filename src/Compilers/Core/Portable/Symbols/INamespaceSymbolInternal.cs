@@ -8,10 +8,7 @@ namespace Microsoft.CodeAnalysis.Symbols
 {
     internal interface INamespaceSymbolInternal : INamespaceOrTypeSymbolInternal
     {
-        /// <summary>
-        /// Returns whether this namespace is the unnamed, global namespace that is 
-        /// at the root of all namespaces.
-        /// </summary>
-        bool IsGlobalNamespace { get; }
+
+bool IsGlobalNamespace {get; }
     }
 }

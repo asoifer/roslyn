@@ -13,16 +13,9 @@ namespace Microsoft.CodeAnalysis.Symbols
     /// </remarks>
     internal interface ISynthesizedMethodBodyImplementationSymbol : ISymbolInternal
     {
-        /// <summary>
-        /// The symbol whose body lowering produced this synthesized symbol, 
-        /// or null if the symbol is synthesized based on declaration.
-        /// </summary>
-        IMethodSymbolInternal? Method { get; }
 
-        /// <summary>
-        /// True if this symbol body needs to be updated when the <see cref="Method"/> body is updated.
-        /// False if <see cref="Method"/> is null.
-        /// </summary>
-        bool HasMethodBodyDependency { get; }
+IMethodSymbolInternal? Method {get; }
+
+bool HasMethodBodyDependency {get; }
     }
 }

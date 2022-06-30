@@ -8,15 +8,13 @@ namespace Microsoft.CodeAnalysis.Symbols
 {
     internal interface ISourceAssemblySymbolInternal : IAssemblySymbolInternal
     {
-        AssemblyFlags AssemblyFlags { get; }
 
-        /// <summary>
-        /// The contents of the AssemblySignatureKeyAttribute
-        /// </summary>
-        string? SignatureKey { get; }
+AssemblyFlags AssemblyFlags {get; }
 
-        AssemblyHashAlgorithm HashAlgorithm { get; }
+string? SignatureKey {get; }
 
-        bool InternalsAreVisible { get; }
+AssemblyHashAlgorithm HashAlgorithm {get; }
+
+bool InternalsAreVisible {get; }
     }
 }

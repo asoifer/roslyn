@@ -4,34 +4,43 @@
 
 namespace Microsoft.CodeAnalysis
 {
-    internal partial class CommonReferenceManager<TCompilation, TAssemblySymbol>
-    {
-        /// <summary>
-        /// Private helper class to capture information about AssemblySymbol instance we 
-        /// should check for suitability. Used by the Bind method.
-        /// </summary>
-        private readonly struct AssemblyReferenceCandidate
+internal partial class CommonReferenceManager<TCompilation, TAssemblySymbol>
+{
+private readonly struct AssemblyReferenceCandidate
         {
-            /// <summary>
-            /// An index of the AssemblyData object in the input array. AssemblySymbol instance should 
-            /// be checked for suitability against assembly described by that object, taking into account 
-            /// assemblies described by other AssemblyData objects in the input array.
-            /// </summary>
-            public readonly int DefinitionIndex;
 
-            /// <summary>
-            /// AssemblySymbol instance to check for suitability.
-            /// </summary>
-            public readonly TAssemblySymbol? AssemblySymbol;
+public readonly int DefinitionIndex;
 
-            /// <summary>
-            /// Convenience constructor to initialize fields of this structure.
-            /// </summary>
-            public AssemblyReferenceCandidate(int definitionIndex, TAssemblySymbol symbol)
+public readonly TAssemblySymbol? AssemblySymbol;
+
+public AssemblyReferenceCandidate(int definitionIndex, TAssemblySymbol symbol)
+		{
+			try
             {
-                DefinitionIndex = definitionIndex;
-                AssemblySymbol = symbol;
+DynAbs.Tracing.TraceSender.TraceEnterConstructor(527,1353,1555);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(527,1464,1498);
+
+DefinitionIndex = definitionIndex;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(527,1516,1540);
+
+AssemblySymbol = symbol;
+DynAbs.Tracing.TraceSender.TraceExitConstructor(527,1353,1555);
             }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(527,1353,1555);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(527,1353,1555);
+}
+		}
+static AssemblyReferenceCandidate(){DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(527,548,1566);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(527,548,1566);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(527,548,1566);
+}
         }
-    }
+}
 }

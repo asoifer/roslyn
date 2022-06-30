@@ -1,30 +1,33 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
 namespace Microsoft.CodeAnalysis
 {
-    /// <summary>
-    /// A class that provides constants for common language names.
-    /// </summary>
     public static class LanguageNames
     {
-        /// <summary>
-        /// The common name used for the C# language.
-        /// </summary>
-        public const string CSharp = "C#";
+        public const string
+        CSharp = "C#"
+        ;
 
-        /// <summary>
-        /// The common name used for the Visual Basic language.
-        /// </summary>
-        public const string VisualBasic = "Visual Basic";
+        public const string
+        VisualBasic = "Visual Basic"
+        ;
 
-        /// <summary>
-        /// The common name used for the F# language.
-        /// </summary>
-        /// <remarks>
-        /// F# is not a supported compile target for the Roslyn compiler.
-        /// </remarks>
-        public const string FSharp = "F#";
+        public const string
+        FSharp = "F#"
+        ;
+
+        static LanguageNames()
+        {
+            DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(632, 356, 992);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(632, 528, 541);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(632, 686, 714);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(632, 971, 984);
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(632, 356, 992);
+
+            DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(632, 356, 992);
+        }
+
     }
 }
