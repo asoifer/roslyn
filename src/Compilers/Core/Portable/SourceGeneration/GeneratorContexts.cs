@@ -25,7 +25,8 @@ namespace Microsoft.CodeAnalysis
             ParseOptions = parseOptions;
             AdditionalFiles = additionalTexts;
             AnalyzerConfigOptions = optionsProvider;
-            SyntaxReceiver = (syntaxReceiver as SyntaxContextReceiverAdaptor)?.Receiver;
+            // LAFHIS
+            SyntaxReceiver = (syntaxReceiver is SyntaxContextReceiverAdaptor) ? ((SyntaxContextReceiverAdaptor)syntaxReceiver).Receiver : null;
             SyntaxContextReceiver = (syntaxReceiver is SyntaxContextReceiverAdaptor) ? null : syntaxReceiver;
             CancellationToken = cancellationToken;
             _additionalSources = additionalSources;

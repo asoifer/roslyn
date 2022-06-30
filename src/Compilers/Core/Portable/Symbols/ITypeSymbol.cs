@@ -198,7 +198,8 @@ namespace Microsoft.CodeAnalysis
     {
         internal static bool IsNullableType([NotNullWhen(returnValue: true)] ITypeSymbol? typeOpt)
         {
-            return typeOpt?.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T;
+            // LAFHIS
+            return typeOpt != null && typeOpt.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T;
         }
 
         internal static bool IsNullableOfBoolean([NotNullWhen(returnValue: true)] ITypeSymbol? type)
@@ -224,22 +225,26 @@ namespace Microsoft.CodeAnalysis
 
         internal static bool IsSignedIntegralType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType.IsSignedIntegralType() == true;
+            // LAFHIS
+            return type != null && type.SpecialType.IsSignedIntegralType() == true;
         }
 
         internal static bool IsUnsignedIntegralType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType.IsUnsignedIntegralType() == true;
+            // LAFHIS
+            return type != null && type.SpecialType.IsUnsignedIntegralType() == true;
         }
 
         internal static bool IsNumericType([NotNullWhen(returnValue: true)] ITypeSymbol? type)
         {
-            return type?.SpecialType.IsNumericType() == true;
+            // LAFHIS
+            return type != null && type.SpecialType.IsNumericType() == true;
         }
 
         internal static ITypeSymbol? GetEnumUnderlyingType(ITypeSymbol? type)
         {
-            return (type as INamedTypeSymbol)?.EnumUnderlyingType;
+            // LAFHIS
+            return (type is INamedTypeSymbol) ? ((INamedTypeSymbol)type).EnumUnderlyingType : null;
         }
 
         [return: NotNullIfNotNull(parameterName: "type")]

@@ -992,8 +992,10 @@ namespace Microsoft.CodeAnalysis
                 {
                     var definition = definitions[i].Identity;
                     var sourceCompilation = definitions[i].SourceCompilation;
+                    // LAFHIS
                     if (definition.ContentType == AssemblyContentType.Default &&
-                        sourceCompilation?.Options.OutputKind == OutputKind.WindowsRuntimeMetadata &&
+                        sourceCompilation != null &&
+                        sourceCompilation.Options.OutputKind == OutputKind.WindowsRuntimeMetadata &&
                         AssemblyIdentityComparer.SimpleNameComparer.Equals(reference.Name, definition.Name) &&
                         reference.Version.Equals(definition.Version) &&
                         reference.IsRetargetable == definition.IsRetargetable &&
