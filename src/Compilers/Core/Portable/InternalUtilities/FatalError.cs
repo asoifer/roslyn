@@ -7,7 +7,11 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 
+#if COMPILERCORE
 namespace Microsoft.CodeAnalysis
+#else
+namespace Microsoft.CodeAnalysis.ErrorReporting
+#endif
 {
     internal static class FatalError
     {
@@ -15,9 +19,10 @@ namespace Microsoft.CodeAnalysis
 
         private static Action<Exception>? s_nonFatalHandler;
 
+#pragma warning disable IDE0052 // Remove unread private members - We want to hold onto last exception to make investigation easier
         private static Exception? s_reportedException;
-
         private static string? s_reportedExceptionMessage;
+#pragma warning restore IDE0052
 
         [DisallowNull]
         public static Action<Exception>? Handler

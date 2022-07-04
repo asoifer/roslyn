@@ -4,8 +4,6 @@
 
 #nullable disable
 
-#if NETCOREAPP
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -1053,5 +1051,3 @@ namespace Microsoft.CodeAnalysis
 
     }
 }
-
-#endif
