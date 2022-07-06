@@ -39,7 +39,17 @@ namespace Roslyn.Utilities
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(323, 1193, 1254);
 
-                throw f_323_1199_1253(f_323_1215_1252());
+#if CODE_STYLE
+            throw new IOException(CodeStyleResources.Stream_is_too_long);
+#elif WORKSPACE
+            throw new IOException(WorkspacesResources.Stream_is_too_long);
+#else
+                // LAFHIS
+                var temp = CodeAnalysisResources.StreamIsTooLong;
+                DynAbs.Tracing.TraceSender.TraceEndMemberAccess(323, 1215, 1252);
+                
+                throw f_323_1199_1253(temp);
+#endif
                 DynAbs.Tracing.TraceSender.TraceExitStaticMethod(323, 657, 1273);
 
                 bool
@@ -84,13 +94,14 @@ namespace Roslyn.Utilities
                 }
 
 
-                string
-                f_323_1215_1252()
-                {
-                    var return_v = CodeAnalysisResources.StreamIsTooLong;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(323, 1215, 1252);
-                    return return_v;
-                }
+                // LAFHIS (preprocessor directives)
+                //string
+                //f_323_1215_1252()
+                //{
+                //    var return_v = CodeAnalysisResources.StreamIsTooLong;
+                //    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(323, 1215, 1252);
+                //    return return_v;
+                //}
 
 
                 System.IO.IOException
