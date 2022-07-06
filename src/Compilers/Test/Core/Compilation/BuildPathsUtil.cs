@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -13,7 +13,15 @@ using Microsoft.CodeAnalysis;
 
 namespace Microsoft.CodeAnalysis.Test.Utilities
 {
-    internal static class BuildPathsUtil
-    {
-    }
+internal static class BuildPathsUtil
+{
+static BuildPathsUtil()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(25055,445,495);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(25055,445,495);
+
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25055,445,495);
+}
+
+}
 }

@@ -1,4 +1,4 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -10,67 +10,134 @@ using Xunit;
 
 namespace Roslyn.Test.Utilities
 {
-    public static class ObjectReference
-    {
-        // We want to ensure this isn't inlined, because we need to ensure that any temporaries
-        // on the stack in this method or targetFactory get cleaned up. Otherwise, they might still
-        // be alive when we want to make later assertions.
-        [MethodImpl(MethodImplOptions.NoInlining)]
+public static class ObjectReference
+{
+[MethodImpl(MethodImplOptions.NoInlining)]
         public static ObjectReference<T> CreateFromFactory<T>(Func<T> targetFactory) where T : class
+		{
+			try
         {
-            return new ObjectReference<T>(targetFactory());
-        }
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25039,650,877);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,819,866);
 
-        public static ObjectReference<T> Create<T>(T target) where T : class
+return f_25039_826_865(f_25039_849_864(targetFactory));
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25039,650,877);
+
+T
+f_25039_849_864(System.Func<T>
+this_param)
+{
+var return_v = this_param.Invoke();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 849, 864);
+return return_v;
+}
+
+
+Roslyn.Test.Utilities.ObjectReference<T>
+f_25039_826_865(T
+target)
+{
+var return_v = new Roslyn.Test.Utilities.ObjectReference<T>( target);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 826, 865);
+return return_v;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,650,877);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,650,877);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+public static ObjectReference<T> Create<T>(T target) where T : class
+		{
+			try
         {
-            return new ObjectReference<T>(target);
+DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(25039,889,1031);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,982,1020);
+
+return f_25039_989_1019(target);
+DynAbs.Tracing.TraceSender.TraceExitStaticMethod(25039,889,1031);
+
+Roslyn.Test.Utilities.ObjectReference<T>
+f_25039_989_1019(T
+target)
+{
+var return_v = new Roslyn.Test.Utilities.ObjectReference<T>( target);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 989, 1019);
+return return_v;
+}
+
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,889,1031);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,889,1031);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
-    /// <summary>
-    /// A wrapper to hold onto an object that you wish to make assertions about the lifetime of. This type has specific protections
-    /// to ensure the best possible patterns to avoid "gotchas" with these sorts of tests.
-    /// </summary>
-    /// <remarks>
-    /// Specifically, consider this common pattern:
-    /// 
-    /// <code>
-    /// var weakReference = new WeakReference(strongReference);
-    /// strongReference = null;
-    /// GC.Collect(); // often a few times...
-    /// Assert.Null(weakReference.Target);
-    /// </code>
-    /// 
-    /// This code has a bug: it presumes that when strongReference = null is assigned, there are no other references anywhere.
-    /// But that line only tells the JIT to null out the place that's holding the active value. The JIT could have spilled a copy
-    /// at some point to the stack, which it now considers unused and isn't worth cleaning up. Or another register might still be
-    /// holding it, etc.
-    /// 
-    /// What this class does is it holds the only active reference in the heap, and any use of that reference is put in a method
-    /// that is marked NoInline; this ensures that when the uses are done, any temporaries still floating around are understood
-    /// by the JIT/GC to actually be unused.
-    /// </remarks>
-    public sealed class ObjectReference<T> where T : class
-    {
-        private T _strongReference;
+static ObjectReference()
+{
+DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(25039,340,1038);
+DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(25039,340,1038);
 
-        /// <summary>
-        /// Tracks if <see cref="GetReference"/> was called, which means it's no longer safe to do lifetime assertions.
-        /// </summary>
-        private bool _strongReferenceRetrievedOutsideScopedCall;
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,340,1038);
+}
 
-        private readonly WeakReference _weakReference;
+}
+public sealed class ObjectReference<T> where T : class
+{
+private T _strongReference;
 
-        public ObjectReference(T target)
-        {
-            if (target == null)
-            {
-                throw new ArgumentNullException(nameof(target));
-            }
+private bool _strongReferenceRetrievedOutsideScopedCall;
 
-            _strongReference = target;
-            _weakReference = new WeakReference(target);
-        }
+private readonly WeakReference _weakReference;
+
+public ObjectReference(T target)
+		{
+			try
+{DynAbs.Tracing.TraceSender.TraceEnterConstructor(25039,2779,3061);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,2456,2472);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,2666,2708);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,2752,2766);
+
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,2836,2951) || true) && (target == null)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(25039,2836,2951);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,2888,2936);
+
+throw f_25039_2894_2935(nameof(target));
+DynAbs.Tracing.TraceSender.TraceExitCondition(25039,2836,2951);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,2967,2993);
+
+_strongReference = target;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,3007,3050);
+
+_weakReference = f_25039_3024_3049<T>(target);
+DynAbs.Tracing.TraceSender.TraceExitConstructor(25039,2779,3061);
+}catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,2779,3061);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,2779,3061);
+}
+		}
 
         /// <summary>
         /// Asserts that the underlying object has been released.
@@ -105,33 +172,115 @@ namespace Roslyn.Test.Utilities
             ReleaseAndGarbageCollect(expectReleased: false);
         }
 
-        // Ensure the mention of the field doesn't result in any local temporaries being created in the parent
-        [MethodImpl(MethodImplOptions.NoInlining)]
+[MethodImpl(MethodImplOptions.NoInlining)]
         private void ReleaseAndGarbageCollect(bool expectReleased)
+		{
+			try
         {
-            if (_strongReferenceRetrievedOutsideScopedCall)
-            {
-                throw new InvalidOperationException($"The strong reference being held by the {nameof(ObjectReference<T>)} was retrieved via a call to {nameof(GetReference)}. Since the CLR might have cached a temporary somewhere in your stack, assertions can no longer be made about the correctness of lifetime.");
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(25039,4436,6226);
 
-            _strongReference = null;
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,4571,4963) || true) && (_strongReferenceRetrievedOutsideScopedCall)
+)
 
-            // The maximum number of iterations is determined by the expected outcome. If we expect the reference to be
-            // released, we loop many more times to avoid flaky test failures. Otherwise, we loop a few times knowing
-            // that the test will probably catch the failure on any given run. This strategy trades produces a few false
-            // negatives in testing to gain a significant performance advantage for the majority case.
-            var loopCount = expectReleased ? 1000 : 10;
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(25039,4571,4963);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,4651,4948);
+
+throw f_25039_4657_4947($"The strong reference being held by the {nameof(ObjectReference<T>)} was retrieved via a call to {nameof(GetReference)}. Since the CLR might have cached a temporary somewhere in your stack, assertions can no longer be made about the correctness of lifetime.");
+DynAbs.Tracing.TraceSender.TraceExitCondition(25039,4571,4963);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,4979,5003);
+
+_strongReference = null;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,5485,5528);
+
+var 
+loopCount = (DynAbs.Tracing.TraceSender.Conditional_F1(25039, 5501, 5515)||((expectReleased &&DynAbs.Tracing.TraceSender.Conditional_F2(25039, 5518, 5522))||DynAbs.Tracing.TraceSender.Conditional_F3(25039, 5525, 5527)))?1000 :10
+;
+try {DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,5979,5984);
 
             // We'll loop until the iteration count is reached, or until the weak reference disappears. When we're
             // trying to assert that the object is released, once the weak reference goes away, we know we're good. But
             // if we're trying to assert that the object is held, our only real option is to know to do it "enough"
             // times; but if it goes away then we are definitely done.
-            for (var i = 0; i < loopCount && _weakReference.IsAlive; i++)
-            {
-                GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced, blocking: true, compacting: true);
-                GC.WaitForPendingFinalizers();
-            }
+            for (var 
+i = 0
+; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,5970,6215) || true) && (i < loopCount &&(DynAbs.Tracing.TraceSender.Expression_True(25039, 5986, 6025)&&f_25039_6003_6025(_weakReference)))
+; DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,6027,6030)
+,i++,DynAbs.Tracing.TraceSender.TraceExitCondition(25039,5970,6215))
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(25039,5970,6215);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,6064,6152);
+
+f_25039_6064_6151(f_25039_6075_6091(), GCCollectionMode.Forced, blocking: true, compacting: true);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,6170,6200);
+
+f_25039_6170_6199();
+}
+}catch(System.Exception) { DynAbs.Tracing.TraceSender.TraceExitLoopByException(25039,1,246);
+ throw; }finally{DynAbs.Tracing.TraceSender.TraceExitLoop(25039,1,246);
+}DynAbs.Tracing.TraceSender.TraceExitMethod(25039,4436,6226);
+
+System.InvalidOperationException
+f_25039_4657_4947(string
+message)
+{
+var return_v = new System.InvalidOperationException( message);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 4657, 4947);
+return return_v;
+}
+
+
+bool
+f_25039_6003_6025(System.WeakReference
+this_param)
+{
+var return_v = this_param.IsAlive;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(25039, 6003, 6025);
+return return_v;
+}
+
+
+int
+f_25039_6075_6091()
+{
+var return_v = GC.MaxGeneration;
+DynAbs.Tracing.TraceSender.TraceEndMemberAccess(25039, 6075, 6091);
+return return_v;
+}
+
+
+int
+f_25039_6064_6151(int
+generation,System.GCCollectionMode
+mode,bool
+blocking,bool
+compacting)
+{
+GC.Collect( generation, mode, blocking: blocking, compacting: compacting);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 6064, 6151);
+return 0;
+}
+
+
+int
+f_25039_6170_6199()
+{
+GC.WaitForPendingFinalizers();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 6170, 6199);
+return 0;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,4436,6226);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,4436,6226);
+}
+		}
 
         /// <summary>
         /// Provides the underlying strong reference to the given action. This method is marked not be inlined, to ensure that no temporaries are left
@@ -144,28 +293,108 @@ namespace Roslyn.Test.Utilities
             action(GetReferenceWithChecks());
         }
 
-        /// <summary>
-        /// Provides the underlying strong reference to the given function. This method is marked not be inlined, to ensure that no temporaries are left
-        /// on the stack that might still root the strong reference. The caller must not "leak" the object out of the given action for any lifetime
-        /// assertions to be safe.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.NoInlining)]
+[MethodImpl(MethodImplOptions.NoInlining)]
         public U UseReference<U>(Func<T, U> function)
+		{
+			try
         {
-            return function(GetReferenceWithChecks());
-        }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(25039,7183,7358);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,7305,7347);
 
-        /// <summary>
-        /// Provides the underlying strong reference to the given function, lets a function extract some value, and then returns a new ObjectReference.
-        /// This method is marked not be inlined, to ensure that no temporaries are left on the stack that might still root the strong reference. The
-        /// caller must not "leak" the object out of the given action for any lifetime assertions to be safe.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.NoInlining)]
-        public ObjectReference<U> GetObjectReference<U>(Func<T, U> function) where U : class
-        {
-            var newValue = function(GetReferenceWithChecks());
-            return ObjectReference.Create(newValue);
+return f_25039_7312_7346(function, f_25039_7321_7345(this));
+DynAbs.Tracing.TraceSender.TraceExitMethod(25039,7183,7358);
+
+T
+f_25039_7321_7345(Roslyn.Test.Utilities.ObjectReference<T>
+this_param)
+{
+var return_v = this_param.GetReferenceWithChecks();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 7321, 7345);
+return return_v;
+}
+
+
+U
+f_25039_7312_7346(System.Func<T, U>
+this_param,T
+arg)
+{
+var return_v = this_param.Invoke( arg);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 7312, 7346);
+return return_v;
+}
+
         }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,7183,7358);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,7183,7358);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+[MethodImpl(MethodImplOptions.NoInlining)]
+        public ObjectReference<U> GetObjectReference<U>(Func<T, U> function) where U : class
+		{
+			try
+        {
+DynAbs.Tracing.TraceSender.TraceEnterMethod(25039,7832,8108);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,7993,8043);
+
+var 
+newValue = f_25039_8008_8042(function, f_25039_8017_8041(this))
+;
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,8057,8097);
+
+return f_25039_8064_8096(newValue);
+DynAbs.Tracing.TraceSender.TraceExitMethod(25039,7832,8108);
+
+T
+f_25039_8017_8041(Roslyn.Test.Utilities.ObjectReference<T>
+this_param)
+{
+var return_v = this_param.GetReferenceWithChecks();
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 8017, 8041);
+return return_v;
+}
+
+
+U
+f_25039_8008_8042(System.Func<T, U>
+this_param,T
+arg)
+{
+var return_v = this_param.Invoke( arg);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 8008, 8042);
+return return_v;
+}
+
+
+Roslyn.Test.Utilities.ObjectReference<U>
+f_25039_8064_8096(U
+target)
+{
+var return_v = ObjectReference.Create( target);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 8064, 8096);
+return return_v;
+}
+
+        }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,7832,8108);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,7832,8108);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
         /// <summary>
         /// Fetches the object strongly being held from this. Because the value returned might be cached in a local temporary from
@@ -179,14 +408,67 @@ namespace Roslyn.Test.Utilities
             return GetReferenceWithChecks();
         }
 
-        private T GetReferenceWithChecks()
+private T GetReferenceWithChecks()
+		{
+			try
         {
-            if (_strongReference == null)
-            {
-                throw new InvalidOperationException($"The type has already been released due to a call to {nameof(AssertReleased)}.");
-            }
+DynAbs.Tracing.TraceSender.TraceEnterMethod(25039,8806,9111);
 
-            return _strongReference;
+if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,8865,9060) || true) && (_strongReference == null)
+)
+
+{DynAbs.Tracing.TraceSender.TraceEnterCondition(25039,8865,9060);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,8927,9045);
+
+throw f_25039_8933_9044($"The type has already been released due to a call to {nameof(AssertReleased)}.");
+DynAbs.Tracing.TraceSender.TraceExitCondition(25039,8865,9060);
+}
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(25039,9076,9100);
+
+return _strongReference;
+DynAbs.Tracing.TraceSender.TraceExitMethod(25039,8806,9111);
+
+System.InvalidOperationException
+f_25039_8933_9044(string
+message)
+{
+var return_v = new System.InvalidOperationException( message);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 8933, 9044);
+return return_v;
+}
+
         }
-    }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(25039,8806,9111);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(25039,8806,9111);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
+
+static System.ArgumentNullException
+f_25039_2894_2935(string
+paramName)
+{
+var return_v = new System.ArgumentNullException( paramName);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 2894, 2935);
+return return_v;
+}
+
+
+static System.WeakReference
+f_25039_3024_3049<T>(T
+target)where T : class
+
+{
+var return_v = new System.WeakReference( (object)target);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(25039, 3024, 3049);
+return return_v;
+}
+
+}
 }
