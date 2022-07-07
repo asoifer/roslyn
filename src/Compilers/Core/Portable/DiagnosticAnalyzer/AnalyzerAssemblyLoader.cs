@@ -922,11 +922,60 @@ namespace Microsoft.CodeAnalysis
         {
             DynAbs.Tracing.TraceSender.TraceEnterConstructor(218, 437, 7438);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 550, 564);
-            this._guard = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 661, 692);
-            this._loadedAssembliesByPath = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 757, 796);
-            this._loadedAssemblyIdentitiesByPath = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 863, 898);
-            this._loadedAssembliesByIdentity = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 1035, 1106);
-            this._knownAssemblyPathsBySimpleName = new(f_218_1073_1105()); DynAbs.Tracing.TraceSender.TraceExitConstructor(218, 437, 7438);
+            this._guard = f_218_559_564();
+            object f_218_559_564()
+            {
+                var return_v = new object();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(218, 559, 564);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 661, 692);
+            this._loadedAssembliesByPath = f_218_687_692();
+
+            System.Collections.Generic.Dictionary<string, System.Reflection.Assembly>
+f_218_687_692()
+            {
+                var return_v = new System.Collections.Generic.Dictionary<string, System.Reflection.Assembly>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(218, 687, 692);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 757, 796);
+            this._loadedAssemblyIdentitiesByPath = f_218_791_796();
+
+            System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AssemblyIdentity>
+f_218_791_796()
+            {
+                var return_v = new System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AssemblyIdentity>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(218, 791, 796);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 863, 898);
+            this._loadedAssembliesByIdentity = f_218_893_898();
+
+            System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.AssemblyIdentity, System.Reflection.Assembly>
+f_218_893_898()
+            {
+                var return_v = new System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.AssemblyIdentity, System.Reflection.Assembly>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(218, 893, 898);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(218, 1035, 1106);
+            this._knownAssemblyPathsBySimpleName = f_218_1069_1106(f_218_1073_1105());
+
+            System.Collections.Generic.Dictionary<string, System.Collections.Generic.HashSet<string>>
+f_218_1069_1106(System.StringComparer
+comparer)
+            {
+                var return_v = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.HashSet<string>>((System.Collections.Generic.IEqualityComparer<string>)comparer);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(218, 1069, 1106);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceExitConstructor(218, 437, 7438);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(218, 437, 7438);
         }

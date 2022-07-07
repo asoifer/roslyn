@@ -689,7 +689,16 @@ namespace Microsoft.CodeAnalysis.ErrorReporting
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(329, 771, 790);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(329, 824, 850);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(329, 6892, 6916);
-            s_reportedMarker = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(329, 440, 7890);
+            s_reportedMarker = f_329_6911_6916();
+
+            static object
+f_329_6911_6916()
+            {
+                var return_v = new object();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(329, 6911, 6916);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(329, 440, 7890);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(329, 440, 7890);
         }

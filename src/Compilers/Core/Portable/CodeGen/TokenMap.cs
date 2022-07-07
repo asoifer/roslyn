@@ -25,7 +25,18 @@ namespace Microsoft.CodeAnalysis.CodeGen
             {
                 DynAbs.Tracing.TraceSender.TraceEnterConstructor(88, 1305, 1328);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(88, 1173, 1201);
-                this._itemIdentityToToken = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(88, 1229, 1259);
+                
+                this._itemIdentityToToken = f_88_1196_1201();
+
+                System.Collections.Concurrent.ConcurrentDictionary<Microsoft.CodeAnalysis.IReferenceOrISignature, uint>
+                f_88_1196_1201()
+                {
+                    var return_v = new System.Collections.Concurrent.ConcurrentDictionary<Microsoft.CodeAnalysis.IReferenceOrISignature, uint>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(88, 1196, 1201);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(88, 1229, 1259);
                 this._items = f_88_1238_1259(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(88, 1282, 1292);
                 this._count = 0; DynAbs.Tracing.TraceSender.TraceExitConstructor(88, 1305, 1328);
             }

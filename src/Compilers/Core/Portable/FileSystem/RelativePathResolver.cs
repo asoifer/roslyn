@@ -206,7 +206,19 @@ namespace Microsoft.CodeAnalysis
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(303, 2199, 2246);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(303, 2215, 2246);
-                return new(searchPaths, f_303_2232_2245()); DynAbs.Tracing.TraceSender.TraceExitMethod(303, 2199, 2246);
+                return f_303_2215_2246(searchPaths, f_303_2232_2245());
+
+                Microsoft.CodeAnalysis.RelativePathResolver
+f_303_2215_2246(System.Collections.Immutable.ImmutableArray<string>
+searchPaths, string
+baseDirectory)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.RelativePathResolver(searchPaths, baseDirectory);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(303, 2215, 2246);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceExitMethod(303, 2199, 2246);
             }
             catch
             {

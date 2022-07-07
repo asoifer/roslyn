@@ -3093,7 +3093,10 @@ namespace Microsoft.CodeAnalysis
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(661, 20512, 20550);
 
+                // LAFHIS
                 stack.Push((this, leading, trailing));
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(661, 20512, 20549);
+
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(661, 20714, 20742);
 
                 f_661_20714_20741(writer, stack);
@@ -3211,7 +3214,10 @@ namespace Microsoft.CodeAnalysis
                                             ;
                                             DynAbs.Tracing.TraceSender.TraceSimpleStatement(661, 22182, 22252);
 
+                                            // LAFHIS
                                             stack.Push((child, currentLeading | !first, currentTrailing | !last));
+                                            DynAbs.Tracing.TraceSender.TraceEndInvocation(661, 22182, 22251);
+
                                             DynAbs.Tracing.TraceSender.TraceExitCondition(661, 21993, 22279);
                                         }
                                     }

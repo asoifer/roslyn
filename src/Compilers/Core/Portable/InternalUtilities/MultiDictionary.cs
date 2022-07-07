@@ -748,7 +748,19 @@ namespace Roslyn.Utilities
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6528, 6539);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6591, 6605);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6922, 6949);
-                this._emptySet = new(null, null); DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7276, 7320);
+                this._emptySet = f_346_6934_6949(null, null);
+
+                Roslyn.Utilities.MultiDictionary<K, V>.ValueSet
+f_346_6934_6949(object?
+value, System.Collections.Generic.IEqualityComparer<V>?
+equalityComparer)
+                {
+                    var return_v = new Roslyn.Utilities.MultiDictionary<K, V>.ValueSet(value, equalityComparer);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(346, 6934, 6949);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7276, 7320);
 
                 _dictionary = f_346_7290_7319<K>();
                 DynAbs.Tracing.TraceSender.TraceExitConstructor(346, 7227, 7331);

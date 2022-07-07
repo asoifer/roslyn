@@ -200,7 +200,17 @@ namespace Roslyn.Utilities
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(375, 677, 1694);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(375, 811, 827);
-                    Instance = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(375, 677, 1694);
+                    Instance = f_375_822_827<T>();
+
+                    static Roslyn.Utilities.SpecializedCollections.Empty.List<T>
+f_375_822_827<T>()
+                    {
+                        var return_v = new Roslyn.Utilities.SpecializedCollections.Empty.List<T>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(375, 822, 827);
+                        return return_v;
+                    }
+
+                    DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(375, 677, 1694);
 
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(375, 677, 1694);
                 }

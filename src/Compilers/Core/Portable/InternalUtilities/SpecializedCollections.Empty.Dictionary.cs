@@ -313,7 +313,16 @@ namespace Roslyn.Utilities
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(371, 449, 2742);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(371, 1028, 1044);
-                    Instance = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(371, 449, 2742);
+                    Instance = f_371_1039_1044<TKey, TValue>();
+
+                    static Roslyn.Utilities.SpecializedCollections.Empty.Dictionary<TKey, TValue>
+f_371_1039_1044<TKey, TValue>()
+                    {
+                        var return_v = new Roslyn.Utilities.SpecializedCollections.Empty.Dictionary<TKey, TValue>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(371, 1039, 1044);
+                        return return_v;
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(371, 449, 2742);
 
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(371, 449, 2742);
                 }

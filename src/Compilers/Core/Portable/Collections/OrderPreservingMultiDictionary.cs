@@ -1109,7 +1109,17 @@ namespace Microsoft.CodeAnalysis.Collections
             DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(110, 776, 11997);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1806, 1835);
             s_poolInstance = f_110_1823_1835(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 2689, 2714);
-            s_emptyDictionary = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(110, 776, 11997);
+            s_emptyDictionary = f_110_2709_2714<K>();
+
+            static System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                f_110_2709_2714<K>()
+            {
+                var return_v = new System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 2709, 2714);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(110, 776, 11997);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 776, 11997);
         }

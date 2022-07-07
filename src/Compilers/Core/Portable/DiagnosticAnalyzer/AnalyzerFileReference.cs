@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -64,10 +64,34 @@ AnalyzerLoadFailed
                 _assemblyLoader = assemblyLoader ?? (DynAbs.Tracing.TraceSender.Expression_Null<Microsoft.CodeAnalysis.IAnalyzerAssemblyLoader>(232, 2509, 2582) ?? throw f_232_2533_2582(nameof(assemblyLoader)));
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 2599, 2736);
 
-                _diagnosticAnalyzers = new(this, typeof(DiagnosticAnalyzerAttribute), GetDiagnosticsAnalyzerSupportedLanguages, allowNetFramework: true);
+                _diagnosticAnalyzers = f_232_2622_2735(this, typeof(DiagnosticAnalyzerAttribute), GetDiagnosticsAnalyzerSupportedLanguages, allowNetFramework: true);
+
+                static Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+f_232_2622_2735(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference
+reference, System.Type
+attributeType, Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.AttributeLanguagesFunc
+languagesFunc, bool
+allowNetFramework)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>(reference, attributeType, languagesFunc, allowNetFramework: allowNetFramework);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 2622, 2735);
+                    return return_v;
+                }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 2750, 2860);
 
-                _generators = new(this, typeof(GeneratorAttribute), GetGeneratorSupportedLanguages, allowNetFramework: false);
+                _generators = f_232_2764_2859(this, typeof(GeneratorAttribute), GetGeneratorSupportedLanguages, allowNetFramework: false);
+                static Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<Microsoft.CodeAnalysis.ISourceGenerator>
+f_232_2764_2859(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference
+reference, System.Type
+attributeType, Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.AttributeLanguagesFunc
+languagesFunc, bool
+allowNetFramework)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<Microsoft.CodeAnalysis.ISourceGenerator>(reference, attributeType, languagesFunc, allowNetFramework: allowNetFramework);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 2764, 2859);
+                    return return_v;
+                }
+
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 3033, 3080);
 
                 f_232_3033_3079(
@@ -1697,7 +1721,17 @@ AnalyzerLoadFailed
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(232, 17230, 17599);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17363, 17379);
-                    Instance = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(232, 17230, 17599);
+                    Instance = f_232_17374_17379();
+
+                    static Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>.ExtTypeComparer
+f_232_17374_17379()
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>.ExtTypeComparer();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17374, 17379);
+                        return return_v;
+                    }
+
+                    DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(232, 17230, 17599);
 
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 17230, 17599);
                 }

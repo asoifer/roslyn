@@ -179,11 +179,48 @@ namespace Roslyn.Utilities
         {
             DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(541, 646, 3118);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 820, 834);
-            s_gate = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1170, 1191);
-            s_lastSnapshot = null; DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1629, 1650);
-            s_typeToIndex = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1696, 1711);
-            s_types = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1788, 1809);
-            s_typeReaders = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(541, 646, 3118);
+            s_gate = f_541_829_834();
+
+            static object
+f_541_829_834()
+            {
+                var return_v = new object();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(541, 829, 834);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1170, 1191);
+            s_lastSnapshot = null; 
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1629, 1650);
+            s_typeToIndex = f_541_1645_1650();
+
+            static System.Collections.Generic.Dictionary<System.Type, int>
+f_541_1645_1650()
+            {
+                var return_v = new System.Collections.Generic.Dictionary<System.Type, int>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(541, 1645, 1650);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1696, 1711);
+            s_types = f_541_1706_1711();
+
+            static System.Collections.Generic.List<System.Type>
+f_541_1706_1711()
+            {
+                var return_v = new System.Collections.Generic.List<System.Type>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(541, 1706, 1711);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(541, 1788, 1809);
+            s_typeReaders = f_541_1804_1809();
+
+            static System.Collections.Generic.List<System.Func<Roslyn.Utilities.ObjectReader, Roslyn.Utilities.IObjectWritable>>
+f_541_1804_1809()
+            {
+                var return_v = new System.Collections.Generic.List<System.Func<Roslyn.Utilities.ObjectReader, Roslyn.Utilities.IObjectWritable>>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(541, 1804, 1809);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(541, 646, 3118);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(541, 646, 3118);
         }

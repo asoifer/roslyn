@@ -16,7 +16,18 @@ namespace Roslyn.Utilities
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(395, 769, 783);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(395, 772, 783);
-                return new(result); DynAbs.Tracing.TraceSender.TraceExitMethod(395, 769, 783);
+                return f_395_772_783(result);
+
+                System.Threading.Tasks.ValueTask<T>
+f_395_772_783(T?
+result)
+                {
+                    var return_v = new System.Threading.Tasks.ValueTask<T>(result);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(395, 772, 783);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceExitMethod(395, 769, 783);
             }
             catch
             {
@@ -38,7 +49,16 @@ namespace Roslyn.Utilities
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(395, 847, 855);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(395, 850, 855);
-                    return new(); DynAbs.Tracing.TraceSender.TraceExitMethod(395, 847, 855);
+                    return f_395_850_855();
+
+                    System.Threading.Tasks.ValueTask
+f_395_850_855()
+                    {
+                        var return_v = new System.Threading.Tasks.ValueTask();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(395, 850, 855);
+                        return return_v;
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(395, 847, 855);
                 }
                 catch
                 {

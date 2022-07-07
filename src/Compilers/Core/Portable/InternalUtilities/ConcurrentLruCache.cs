@@ -45,7 +45,15 @@ namespace Microsoft.CodeAnalysis.InternalUtilities
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 853, 859);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 901, 910);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 1023, 1042);
-                this._lockObject = new();
+                this._lockObject = f_315_1037_1042();
+                object
+f_315_1037_1042()
+                {
+                    var return_v = new object();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 1037, 1042);
+                    return return_v;
+                }
+
                 if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 1119, 1241) || true) && (capacity <= 0)
                 )
 

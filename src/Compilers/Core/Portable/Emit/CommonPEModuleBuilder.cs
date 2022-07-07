@@ -126,9 +126,37 @@ namespace Microsoft.CodeAnalysis.Emit
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1362, 1377);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1468, 1482);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1519, 1545);
-                this._referencesInILMap = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1594, 1617);
-                this._stringsInILMap = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1683, 1714);
-                this._sourceDocumentsInILMap = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1928, 1999);
+                this._referencesInILMap = f_286_1540_1545();
+                Microsoft.CodeAnalysis.CodeGen.TokenMap
+f_286_1540_1545()
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CodeGen.TokenMap();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 1540, 1545);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1594, 1617);
+                this._stringsInILMap = f_286_1612_1617();
+                Microsoft.CodeAnalysis.CodeGen.ItemTokenMap<string>
+f_286_1612_1617()
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CodeGen.ItemTokenMap<string>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 1612, 1617);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1683, 1714);
+                this._sourceDocumentsInILMap = f_286_1709_1714();
+
+                Microsoft.CodeAnalysis.CodeGen.ItemTokenMap<Microsoft.Cci.DebugSourceDocument>
+f_286_1709_1714()
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CodeGen.ItemTokenMap<Microsoft.Cci.DebugSourceDocument>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 1709, 1714);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 1928, 1999);
                 this._embeddedTexts = f_286_1945_1999(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 2119, 2234);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 2246, 2287);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 2804, 2844);

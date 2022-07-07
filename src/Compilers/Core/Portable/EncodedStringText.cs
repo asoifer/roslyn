@@ -830,7 +830,17 @@ namespace Microsoft.CodeAnalysis.Text
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 408, 447);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 752, 852);
             s_utf8Encoding = f_15_769_852(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true); DynAbs.Tracing.TraceSender.TraceSimpleStatement(15, 904, 952);
-            s_fallbackEncoding = new(CreateFallbackEncoding); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(15, 334, 11717);
+            s_fallbackEncoding = f_15_925_952(CreateFallbackEncoding);
+
+            static System.Lazy<System.Text.Encoding>
+f_15_925_952(System.Func<System.Text.Encoding>
+valueFactory)
+            {
+                var return_v = new System.Lazy<System.Text.Encoding>(valueFactory);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(15, 925, 952);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(15, 334, 11717);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(15, 334, 11717);
         }

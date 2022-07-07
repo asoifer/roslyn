@@ -3984,7 +3984,19 @@ namespace Roslyn.Utilities
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 1026, 1056);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 1089, 1108);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 1151, 1205);
-            DirectorySeparatorStr = new(DirectorySeparatorChar, 1); DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 1236, 1261);
+            DirectorySeparatorStr = f_302_1175_1205(DirectorySeparatorChar, 1);
+
+            static string
+f_302_1175_1205(char
+c, int
+count)
+            {
+                var return_v = new string(c, count);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(302, 1175, 1205);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 1236, 1261);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 21212, 21311);
             s_pathChars = new char[] { VolumeSeparatorChar, DirectorySeparatorChar, AltDirectorySeparatorChar }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(302, 27601, 27630);
             Comparer = f_302_27612_27630(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(302, 654, 28434);

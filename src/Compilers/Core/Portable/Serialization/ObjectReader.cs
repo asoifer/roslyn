@@ -1687,7 +1687,17 @@ namespace Roslyn.Utilities
             {
                 DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(543, 14258, 15345);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 14455, 14517);
-                s_objectListPool = new(() => new List<T>(20)); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(543, 14258, 15345);
+                s_objectListPool = f_543_14491_14517(() => new List<T>(20));
+
+                static Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.List<T>>
+f_543_14491_14517(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.List<T>>.Factory
+factory)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.List<T>>(factory);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 14491, 14517);
+                    return return_v;
+                }
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(543, 14258, 15345);
 
                 DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(543, 14258, 15345);
             }

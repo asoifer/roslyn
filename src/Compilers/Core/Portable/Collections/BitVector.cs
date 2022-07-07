@@ -1854,7 +1854,20 @@ namespace Microsoft.CodeAnalysis
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(93, 610, 644);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(93, 930, 951);
             s_nullValue = default; DynAbs.Tracing.TraceSender.TraceSimpleStatement(93, 996, 1034);
-            s_emptyValue = new(0, s_emptyArray, 0); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(93, 382, 12863);
+            s_emptyValue = f_93_1011_1034(0, s_emptyArray, 0);
+
+            static Microsoft.CodeAnalysis.BitVector
+                f_93_1011_1034(int
+                bits0, ulong[]
+                bits, int
+                capacity)
+            {
+                var return_v = new Microsoft.CodeAnalysis.BitVector((ulong)bits0, bits, capacity);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(93, 1011, 1034);
+                return return_v;
+            }
+
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(93, 382, 12863);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(93, 382, 12863);
         }

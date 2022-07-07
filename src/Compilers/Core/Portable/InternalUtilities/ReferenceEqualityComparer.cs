@@ -119,7 +119,15 @@ namespace Roslyn.Utilities
         {
             DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(359, 422, 1109);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(359, 557, 573);
-            Instance = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(359, 422, 1109);
+            Instance = f_359_568_573();
+            static Roslyn.Utilities.ReferenceEqualityComparer
+f_359_568_573()
+            {
+                var return_v = new Roslyn.Utilities.ReferenceEqualityComparer();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(359, 568, 573);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(359, 422, 1109);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(359, 422, 1109);
         }

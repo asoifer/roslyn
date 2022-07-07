@@ -2519,8 +2519,28 @@ namespace Roslyn.Utilities
             {
                 DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(544, 15778, 17793);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(544, 16052, 16176);
-                s_referenceDictionaryPool = new(() => new Dictionary<object, int>(128, ReferenceEqualityComparer.Instance)); DynAbs.Tracing.TraceSender.TraceSimpleStatement(544, 16253, 16337);
-                s_valueDictionaryPool = new(() => new Dictionary<object, int>(128)); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(544, 15778, 17793);
+                s_referenceDictionaryPool = f_544_16097_16176(() => new Dictionary<object, int>(128, ReferenceEqualityComparer.Instance));
+                static Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.Dictionary<object, int>>
+f_544_16097_16176(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.Dictionary<object, int>>.Factory
+factory)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.Dictionary<object, int>>(factory);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(544, 16097, 16176);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(544, 16253, 16337);
+                s_valueDictionaryPool = f_544_16294_16337(() => new Dictionary<object, int>(128));
+                static Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.Dictionary<object, int>>
+f_544_16294_16337(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.Dictionary<object, int>>.Factory
+factory)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.Dictionary<object, int>>(factory);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(544, 16294, 16337);
+                    return return_v;
+                }
+
+                DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(544, 15778, 17793);
 
                 DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(544, 15778, 17793);
             }

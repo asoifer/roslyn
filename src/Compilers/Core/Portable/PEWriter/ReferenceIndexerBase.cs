@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -28,8 +28,24 @@ namespace Microsoft.Cci
             {
                 DynAbs.Tracing.TraceSender.TraceEnterConstructor(509, 763, 864);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(509, 597, 617);
-                this._alreadySeen = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(509, 677, 701);
-                this._alreadyHasToken = new(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(509, 727, 750);
+                this._alreadySeen = f_509_612_617();
+                System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.IReferenceOrISignature>
+f_509_612_617()
+                {
+                    var return_v = new System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.IReferenceOrISignature>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(509, 612, 617);
+                    return return_v;
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(509, 677, 701);
+                this._alreadyHasToken = f_509_696_701();
+                System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.IReferenceOrISignature>
+f_509_696_701()
+                {
+                    var return_v = new System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.IReferenceOrISignature>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(509, 696, 701);
+                    return return_v;
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(509, 727, 750);
                 DynAbs.Tracing.TraceSender.TraceExitConstructor(509, 763, 864);
             }
             catch

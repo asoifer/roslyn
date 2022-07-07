@@ -431,7 +431,16 @@ namespace Roslyn.Utilities
         {
             DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(318, 511, 4159);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(318, 606, 619);
-            Empty = new(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(318, 511, 4159);
+            Empty = f_318_614_619<T>();
+
+            static Roslyn.Utilities.ConsList<T>
+f_318_614_619<T>()
+            {
+                var return_v = new Roslyn.Utilities.ConsList<T>();
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(318, 614, 619);
+                return return_v;
+            }
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(318, 511, 4159);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(318, 511, 4159);
         }
