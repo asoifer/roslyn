@@ -33,7 +33,34 @@ namespace Microsoft.CodeAnalysis.Syntax.InternalSyntax
 
         public static SeparatedSyntaxListBuilder<TNode> Create()
         {
-            return new SeparatedSyntaxListBuilder<TNode>(8);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(823, 758, 898);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(823, 839, 887);
+
+                return f_823_846_886(8);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(823, 758, 898);
+
+                Microsoft.CodeAnalysis.Syntax.InternalSyntax.SeparatedSyntaxListBuilder<TNode>
+                f_823_846_886(int
+                size)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Syntax.InternalSyntax.SeparatedSyntaxListBuilder<TNode>(size);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(823, 846, 886);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(823, 758, 898);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(823, 758, 898);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal SeparatedSyntaxListBuilder(SyntaxListBuilder builder)
@@ -239,8 +266,38 @@ namespace Microsoft.CodeAnalysis.Syntax.InternalSyntax
 
         public SeparatedSyntaxListBuilder<TNode> Add(TNode node)
         {
-            _builder!.Add(node);
-            return this;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(823, 1746, 1884);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(823, 1827, 1847);
+
+                f_823_1827_1846(_builder!, node);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(823, 1861, 1873);
+
+                return this;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(823, 1746, 1884);
+
+                int
+                f_823_1827_1846(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxListBuilder
+                this_param, TNode
+                item)
+                {
+                    this_param.Add((Microsoft.CodeAnalysis.GreenNode)item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(823, 1827, 1846);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(823, 1746, 1884);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(823, 1746, 1884);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public void AddSeparator(GreenNode separatorToken)
@@ -277,7 +334,36 @@ namespace Microsoft.CodeAnalysis.Syntax.InternalSyntax
 
         public void AddRange(TNode[] items, int offset, int length)
         {
-            _builder!.AddRange(items, offset, length);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(823, 2024, 2161);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(823, 2108, 2150);
+
+                f_823_2108_2149(_builder!, items, offset, length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(823, 2024, 2161);
+
+                int
+                f_823_2108_2149(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxListBuilder
+                this_param, TNode[]
+                items, int
+                offset, int
+                length)
+                {
+                    this_param.AddRange((Microsoft.CodeAnalysis.GreenNode[])items, offset, length);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(823, 2108, 2149);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(823, 2024, 2161);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(823, 2024, 2161);
+            }
         }
 
         public void AddRange(in SeparatedSyntaxList<TNode> nodes)
@@ -397,10 +483,58 @@ namespace Microsoft.CodeAnalysis.Syntax.InternalSyntax
 
         public SeparatedSyntaxList<TNode> ToList()
         {
-            return _builder == null
-                ? default(SeparatedSyntaxList<TNode>)
-                : new SeparatedSyntaxList<TNode>(new SyntaxList<GreenNode>(_builder.ToListNode()));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(823, 2661, 2918);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(823, 2728, 2907);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(823, 2735, 2751) || ((_builder == null
+                && DynAbs.Tracing.TraceSender.Conditional_F2(823, 2771, 2806)) || DynAbs.Tracing.TraceSender.Conditional_F3(823, 2826, 2906))) ? default(SeparatedSyntaxList<TNode>)
+                : f_823_2826_2906(f_823_2857_2905(f_823_2883_2904(_builder)));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(823, 2661, 2918);
+
+                Microsoft.CodeAnalysis.GreenNode?
+                f_823_2883_2904(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxListBuilder
+                this_param)
+                {
+                    var return_v = this_param.ToListNode();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(823, 2883, 2904);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<Microsoft.CodeAnalysis.GreenNode>
+                f_823_2857_2905(Microsoft.CodeAnalysis.GreenNode?
+                node)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<Microsoft.CodeAnalysis.GreenNode>(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(823, 2857, 2905);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Syntax.InternalSyntax.SeparatedSyntaxList<TNode>
+                f_823_2826_2906(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<Microsoft.CodeAnalysis.GreenNode>
+                list)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Syntax.InternalSyntax.SeparatedSyntaxList<TNode>(list);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(823, 2826, 2906);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(823, 2661, 2918);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(823, 2661, 2918);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
 
         internal SyntaxListBuilder? UnderlyingBuilder
         {
