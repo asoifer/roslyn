@@ -2430,7 +2430,33 @@ f_286_1709_1714()
 
         internal sealed override void CompilationFinished()
         {
-            this.CompilationState.Freeze();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 22918, 23036);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 22994, 23025);
+
+                f_286_22994_23024(this.CompilationState);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 22918, 23036);
+
+                int
+                f_286_22994_23024(TModuleCompilationState
+                this_param)
+                {
+                    this_param.Freeze();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 22994, 23024);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 22918, 23036);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 22918, 23036);
+            }
         }
 
         internal override IAssemblySymbolInternal CommonCorLibrary
@@ -2464,12 +2490,71 @@ f_286_1709_1714()
 
         internal sealed override Cci.ITypeReference EncTranslateType(ITypeSymbolInternal type, DiagnosticBag diagnostics)
         {
-            return EncTranslateLocalVariableType((TTypeSymbol)type, diagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 23460, 23678);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 23598, 23667);
+
+                return f_286_23605_23666(this, type, diagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 23460, 23678);
+
+                Microsoft.Cci.ITypeReference
+                f_286_23605_23666(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.Symbols.ITypeSymbolInternal
+                type, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.EncTranslateLocalVariableType((TTypeSymbol)type, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 23605, 23666);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 23460, 23678);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 23460, 23678);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal virtual Cci.ITypeReference EncTranslateLocalVariableType(TTypeSymbol type, DiagnosticBag diagnostics)
         {
-            return Translate(type, null, diagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 23690, 23878);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 23825, 23867);
+
+                return f_286_23832_23866(this, type, null, diagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 23690, 23878);
+
+                Microsoft.Cci.ITypeReference
+                f_286_23832_23866(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TTypeSymbol
+                symbol, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.Translate(symbol, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 23832, 23866);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 23690, 23878);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 23690, 23878);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         protected bool HaveDeterminedTopLevelTypes
@@ -2535,72 +2620,499 @@ f_286_1709_1714()
         /// </summary>
         public override IEnumerable<Cci.INamespaceTypeDefinition> GetTopLevelTypeDefinitions(EmitContext context)
         {
-            Cci.TypeReferenceIndexer typeReferenceIndexer = null;
-            HashSet<string> names;
-
-            // First time through, we need to collect emitted names of all top level types.
-            if (_namesOfTopLevelTypes == null)
+            try
             {
-                names = new HashSet<string>();
-            }
-            else
-            {
-                names = null;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 24312, 27017);
 
-            // First time through, we need to push things through TypeReferenceIndexer
-            // to make sure we collect all to be embedded NoPia types and members.
-            if (EmbeddedTypesManagerOpt != null && !EmbeddedTypesManagerOpt.IsFrozen)
-            {
-                typeReferenceIndexer = new Cci.TypeReferenceIndexer(context);
-                Debug.Assert(names != null);
+                var listYield = new List<Cci.INamespaceTypeDefinition>();
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 24442, 24495);
 
-                // Run this reference indexer on the assembly- and module-level attributes first.
-                // We'll run it on all other types below.
-                // The purpose is to trigger Translate on all types.
-                Dispatch(typeReferenceIndexer);
-            }
+                Cci.TypeReferenceIndexer
+                typeReferenceIndexer = null
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 24509, 24531);
 
-            AddTopLevelType(names, RootModuleType);
-            VisitTopLevelType(typeReferenceIndexer, RootModuleType);
-            yield return RootModuleType;
+                HashSet<string>
+                names
+                = default(HashSet<string>);
 
-            foreach (var typeDef in GetAnonymousTypeDefinitions(context))
-            {
-                AddTopLevelType(names, typeDef);
-                VisitTopLevelType(typeReferenceIndexer, typeDef);
-                yield return typeDef;
-            }
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 24640, 24831) || true) && (_namesOfTopLevelTypes == null)
+                )
 
-            foreach (var typeDef in GetTopLevelTypeDefinitionsCore(context))
-            {
-                AddTopLevelType(names, typeDef);
-                VisitTopLevelType(typeReferenceIndexer, typeDef);
-                yield return typeDef;
-            }
-
-            var privateImpl = PrivateImplClass;
-            if (privateImpl != null)
-            {
-                AddTopLevelType(names, privateImpl);
-                VisitTopLevelType(typeReferenceIndexer, privateImpl);
-                yield return privateImpl;
-            }
-
-            if (EmbeddedTypesManagerOpt != null)
-            {
-                foreach (var embedded in EmbeddedTypesManagerOpt.GetTypes(context.Diagnostics, names))
                 {
-                    AddTopLevelType(names, embedded);
-                    yield return embedded;
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 24640, 24831);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 24707, 24737);
 
-            if (names != null)
-            {
-                Debug.Assert(_namesOfTopLevelTypes == null);
-                _namesOfTopLevelTypes = names;
+                    names = f_286_24715_24736();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 24640, 24831);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 24640, 24831);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 24803, 24816);
+
+                    names = null;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 24640, 24831);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25019, 25526) || true) && (f_286_25023_25046() != null && (DynAbs.Tracing.TraceSender.Expression_True(286, 25023, 25091) && f_286_25058_25091_M(!f_286_25059_25082().IsFrozen)))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 25019, 25526);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25125, 25186);
+
+                    typeReferenceIndexer = f_286_25148_25185(context);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25204, 25232);
+
+                    f_286_25204_25231(names != null);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25480, 25511);
+
+                    f_286_25480_25510(this, typeReferenceIndexer);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 25019, 25526);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25542, 25581);
+
+                f_286_25542_25580(names, f_286_25565_25579());
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25595, 25651);
+
+                f_286_25595_25650(typeReferenceIndexer, f_286_25635_25649());
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25665, 25693);
+
+                listYield.Add(f_286_25678_25692());
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25709, 25956);
+                    foreach (var typeDef in f_286_25733_25769_I(f_286_25733_25769(this, context)))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 25709, 25956);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25803, 25835);
+
+                        f_286_25803_25834(names, typeDef);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25853, 25902);
+
+                        f_286_25853_25901(typeReferenceIndexer, typeDef);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25920, 25941);
+
+                        listYield.Add(typeDef);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(286, 25709, 25956);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(286, 1, 248);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(286, 1, 248);
+                }
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 25972, 26222);
+                    foreach (var typeDef in f_286_25996_26035_I(f_286_25996_26035(this, context)))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 25972, 26222);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26069, 26101);
+
+                        f_286_26069_26100(names, typeDef);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26119, 26168);
+
+                        f_286_26119_26167(typeReferenceIndexer, typeDef);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26186, 26207);
+
+                        listYield.Add(typeDef);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(286, 25972, 26222);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(286, 1, 251);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(286, 1, 251);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26238, 26273);
+
+                var
+                privateImpl = f_286_26256_26272()
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26287, 26509) || true) && (privateImpl != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 26287, 26509);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26344, 26380);
+
+                    f_286_26344_26379(names, privateImpl);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26398, 26451);
+
+                    f_286_26398_26450(typeReferenceIndexer, privateImpl);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26469, 26494);
+
+                    listYield.Add(privateImpl);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 26287, 26509);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26525, 26832) || true) && (f_286_26529_26552() != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 26525, 26832);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26594, 26817);
+                        foreach (var embedded in f_286_26619_26679_I(f_286_26619_26679(f_286_26619_26642(), context.Diagnostics, names)))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 26594, 26817);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26721, 26754);
+
+                            f_286_26721_26753(names, embedded);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26776, 26798);
+
+                            listYield.Add(embedded);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(286, 26594, 26817);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(286, 1, 224);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(286, 1, 224);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 26525, 26832);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26848, 27006) || true) && (names != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 26848, 27006);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26899, 26943);
+
+                    f_286_26899_26942(_namesOfTopLevelTypes == null);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 26961, 26991);
+
+                    _namesOfTopLevelTypes = names;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 26848, 27006);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 24312, 27017);
+
+                return listYield;
+
+                System.Collections.Generic.HashSet<string>
+                f_286_24715_24736()
+                {
+                    var return_v = new System.Collections.Generic.HashSet<string>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 24715, 24736);
+                    return return_v;
+                }
+
+
+                TEmbeddedTypesManager
+                f_286_25023_25046()
+                {
+                    var return_v = EmbeddedTypesManagerOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 25023, 25046);
+                    return return_v;
+                }
+
+
+                TEmbeddedTypesManager
+                f_286_25059_25082()
+                {
+                    var return_v = EmbeddedTypesManagerOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 25059, 25082);
+                    return return_v;
+                }
+
+
+                bool
+                f_286_25058_25091_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 25058, 25091);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.TypeReferenceIndexer
+                f_286_25148_25185(Microsoft.CodeAnalysis.Emit.EmitContext
+                context)
+                {
+                    var return_v = new Microsoft.Cci.TypeReferenceIndexer(context);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25148, 25185);
+                    return return_v;
+                }
+
+
+                int
+                f_286_25204_25231(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25204, 25231);
+                    return 0;
+                }
+
+
+                int
+                f_286_25480_25510(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.Cci.TypeReferenceIndexer
+                visitor)
+                {
+                    this_param.Dispatch((Microsoft.Cci.MetadataVisitor)visitor);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25480, 25510);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.RootModuleType
+                f_286_25565_25579()
+                {
+                    var return_v = RootModuleType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 25565, 25579);
+                    return return_v;
+                }
+
+
+                int
+                f_286_25542_25580(System.Collections.Generic.HashSet<string>?
+                names, Microsoft.Cci.RootModuleType
+                type)
+                {
+                    AddTopLevelType(names, (Microsoft.Cci.INamespaceTypeDefinition)type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25542, 25580);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.RootModuleType
+                f_286_25635_25649()
+                {
+                    var return_v = RootModuleType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 25635, 25649);
+                    return return_v;
+                }
+
+
+                int
+                f_286_25595_25650(Microsoft.Cci.TypeReferenceIndexer?
+                noPiaIndexer, Microsoft.Cci.RootModuleType
+                type)
+                {
+                    VisitTopLevelType(noPiaIndexer, (Microsoft.Cci.INamespaceTypeDefinition)type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25595, 25650);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.RootModuleType
+                f_286_25678_25692()
+                {
+                    var return_v = RootModuleType;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 25678, 25692);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerable<Microsoft.Cci.INamespaceTypeDefinition>
+                f_286_25733_25769(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.Emit.EmitContext
+                context)
+                {
+                    var return_v = this_param.GetAnonymousTypeDefinitions(context);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25733, 25769);
+                    return return_v;
+                }
+
+
+                int
+                f_286_25803_25834(System.Collections.Generic.HashSet<string>?
+                names, Microsoft.Cci.INamespaceTypeDefinition
+                type)
+                {
+                    AddTopLevelType(names, type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25803, 25834);
+                    return 0;
+                }
+
+
+                int
+                f_286_25853_25901(Microsoft.Cci.TypeReferenceIndexer?
+                noPiaIndexer, Microsoft.Cci.INamespaceTypeDefinition
+                type)
+                {
+                    VisitTopLevelType(noPiaIndexer, type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25853, 25901);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.IEnumerable<Microsoft.Cci.INamespaceTypeDefinition>
+                f_286_25733_25769_I(System.Collections.Generic.IEnumerable<Microsoft.Cci.INamespaceTypeDefinition>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25733, 25769);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerable<Microsoft.Cci.INamespaceTypeDefinition>
+                f_286_25996_26035(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.Emit.EmitContext
+                context)
+                {
+                    var return_v = this_param.GetTopLevelTypeDefinitionsCore(context);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25996, 26035);
+                    return return_v;
+                }
+
+
+                int
+                f_286_26069_26100(System.Collections.Generic.HashSet<string>?
+                names, Microsoft.Cci.INamespaceTypeDefinition
+                type)
+                {
+                    AddTopLevelType(names, type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26069, 26100);
+                    return 0;
+                }
+
+
+                int
+                f_286_26119_26167(Microsoft.Cci.TypeReferenceIndexer?
+                noPiaIndexer, Microsoft.Cci.INamespaceTypeDefinition
+                type)
+                {
+                    VisitTopLevelType(noPiaIndexer, type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26119, 26167);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.IEnumerable<Microsoft.Cci.INamespaceTypeDefinition>
+                f_286_25996_26035_I(System.Collections.Generic.IEnumerable<Microsoft.Cci.INamespaceTypeDefinition>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 25996, 26035);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                f_286_26256_26272()
+                {
+                    var return_v = PrivateImplClass;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 26256, 26272);
+                    return return_v;
+                }
+
+
+                int
+                f_286_26344_26379(System.Collections.Generic.HashSet<string>?
+                names, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                type)
+                {
+                    AddTopLevelType(names, (Microsoft.Cci.INamespaceTypeDefinition)type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26344, 26379);
+                    return 0;
+                }
+
+
+                int
+                f_286_26398_26450(Microsoft.Cci.TypeReferenceIndexer?
+                noPiaIndexer, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                type)
+                {
+                    VisitTopLevelType(noPiaIndexer, (Microsoft.Cci.INamespaceTypeDefinition)type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26398, 26450);
+                    return 0;
+                }
+
+
+                TEmbeddedTypesManager?
+                f_286_26529_26552()
+                {
+                    var return_v = EmbeddedTypesManagerOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 26529, 26552);
+                    return return_v;
+                }
+
+
+                TEmbeddedTypesManager
+                f_286_26619_26642()
+                {
+                    var return_v = EmbeddedTypesManagerOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 26619, 26642);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.Cci.INamespaceTypeDefinition>
+                f_286_26619_26679(TEmbeddedTypesManager
+                this_param, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics, System.Collections.Generic.HashSet<string>?
+                namesOfTopLevelTypes)
+                {
+                    var return_v = this_param.GetTypes(diagnostics, namesOfTopLevelTypes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26619, 26679);
+                    return return_v;
+                }
+
+
+                int
+                f_286_26721_26753(System.Collections.Generic.HashSet<string>?
+                names, Microsoft.Cci.INamespaceTypeDefinition
+                type)
+                {
+                    AddTopLevelType(names, type);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26721, 26753);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.Cci.INamespaceTypeDefinition>
+                f_286_26619_26679_I(System.Collections.Immutable.ImmutableArray<Microsoft.Cci.INamespaceTypeDefinition>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26619, 26679);
+                    return return_v;
+                }
+
+
+                int
+                f_286_26899_26942(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 26899, 26942);
+                    return 0;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 24312, 27017);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 24312, 27017);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public virtual ImmutableArray<TNamedTypeSymbol> GetAdditionalTopLevelTypes(DiagnosticBag diagnostics)
@@ -2651,17 +3163,106 @@ f_286_1709_1714()
 
         internal sealed override Cci.IAssemblyReference Translate(IAssemblySymbolInternal symbol, DiagnosticBag diagnostics)
         {
-            return Translate((TAssemblySymbol)symbol, diagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 27732, 27939);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 27873, 27928);
+
+                return f_286_27880_27927(this, symbol, diagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 27732, 27939);
+
+                Microsoft.Cci.IAssemblyReference
+                f_286_27880_27927(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.Symbols.IAssemblySymbolInternal
+                symbol, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.Translate((TAssemblySymbol)symbol, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 27880, 27927);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 27732, 27939);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 27732, 27939);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal sealed override Cci.ITypeReference Translate(ITypeSymbolInternal symbol, SyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics)
         {
-            return Translate((TTypeSymbol)symbol, (TSyntaxNode)syntaxNodeOpt, diagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 27951, 28200);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 28110, 28189);
+
+                return f_286_28117_28188(this, symbol, syntaxNodeOpt, diagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 27951, 28200);
+
+                Microsoft.Cci.ITypeReference
+                f_286_28117_28188(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.Symbols.ITypeSymbolInternal
+                symbol, Microsoft.CodeAnalysis.SyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.Translate((TTypeSymbol)symbol, (TSyntaxNode)syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 28117, 28188);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 27951, 28200);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 27951, 28200);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal sealed override Cci.IMethodReference Translate(IMethodSymbolInternal symbol, DiagnosticBag diagnostics, bool needDeclaration)
         {
-            return Translate((TMethodSymbol)symbol, diagnostics, needDeclaration);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 28212, 28452);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 28371, 28441);
+
+                return f_286_28378_28440(this, symbol, diagnostics, needDeclaration);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 28212, 28452);
+
+                Microsoft.Cci.IMethodReference
+                f_286_28378_28440(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.Symbols.IMethodSymbolInternal
+                symbol, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics, bool
+                needDeclaration)
+                {
+                    var return_v = this_param.Translate((TMethodSymbol)symbol, diagnostics, needDeclaration);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 28378, 28440);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 28212, 28452);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 28212, 28452);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal sealed override IModuleSymbolInternal CommonSourceModule
@@ -2757,12 +3358,53 @@ f_286_1709_1714()
         }
 
         internal MetadataConstant CreateConstant(
-            TTypeSymbol type,
-            object value,
-            TSyntaxNode syntaxNodeOpt,
-            DiagnosticBag diagnostics)
+                    TTypeSymbol type,
+                    object value,
+                    TSyntaxNode syntaxNodeOpt,
+                    DiagnosticBag diagnostics)
         {
-            return new MetadataConstant(Translate(type, syntaxNodeOpt, diagnostics), value);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 28870, 29165);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 29074, 29154);
+
+                return f_286_29081_29153(f_286_29102_29145(this, type, syntaxNodeOpt, diagnostics), value);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 28870, 29165);
+
+                Microsoft.Cci.ITypeReference
+                f_286_29102_29145(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TTypeSymbol
+                symbol, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.Translate(symbol, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 29102, 29145);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CodeGen.MetadataConstant
+                f_286_29081_29153(Microsoft.Cci.ITypeReference
+                type, object
+                value)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CodeGen.MetadataConstant(type, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 29081, 29153);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 28870, 29165);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 28870, 29165);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static void AddTopLevelType(HashSet<string> names, Cci.INamespaceTypeDefinition type)
@@ -2850,25 +3492,198 @@ f_286_1709_1714()
 
         internal Cci.IFieldReference GetModuleVersionId(Cci.ITypeReference mvidType, TSyntaxNode syntaxOpt, DiagnosticBag diagnostics)
         {
-            PrivateImplementationDetails details = GetPrivateImplClass(syntaxOpt, diagnostics);
-            EnsurePrivateImplementationDetailsStaticConstructor(details, syntaxOpt, diagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 29632, 30036);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 29783, 29866);
 
-            return details.GetModuleVersionId(mvidType);
+                PrivateImplementationDetails
+                details = f_286_29822_29865(this, syntaxOpt, diagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 29880, 29965);
+
+                f_286_29880_29964(this, details, syntaxOpt, diagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 29981, 30025);
+
+                return f_286_29988_30024(details, mvidType);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 29632, 30036);
+
+                Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                f_286_29822_29865(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetPrivateImplClass(syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 29822, 29865);
+                    return return_v;
+                }
+
+
+                int
+                f_286_29880_29964(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                details, TSyntaxNode
+                syntaxOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    this_param.EnsurePrivateImplementationDetailsStaticConstructor(details, syntaxOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 29880, 29964);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.IFieldReference
+                f_286_29988_30024(Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                this_param, Microsoft.Cci.ITypeReference
+                mvidType)
+                {
+                    var return_v = this_param.GetModuleVersionId(mvidType);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 29988, 30024);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 29632, 30036);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 29632, 30036);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal Cci.IFieldReference GetInstrumentationPayloadRoot(int analysisKind, Cci.ITypeReference payloadType, TSyntaxNode syntaxOpt, DiagnosticBag diagnostics)
         {
-            PrivateImplementationDetails details = GetPrivateImplClass(syntaxOpt, diagnostics);
-            EnsurePrivateImplementationDetailsStaticConstructor(details, syntaxOpt, diagnostics);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 30048, 30517);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 30231, 30314);
 
-            return details.GetOrAddInstrumentationPayloadRoot(analysisKind, payloadType);
+                PrivateImplementationDetails
+                details = f_286_30270_30313(this, syntaxOpt, diagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 30328, 30413);
+
+                f_286_30328_30412(this, details, syntaxOpt, diagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 30429, 30506);
+
+                return f_286_30436_30505(details, analysisKind, payloadType);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 30048, 30517);
+
+                Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                f_286_30270_30313(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetPrivateImplClass(syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 30270, 30313);
+                    return return_v;
+                }
+
+
+                int
+                f_286_30328_30412(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                details, TSyntaxNode
+                syntaxOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    this_param.EnsurePrivateImplementationDetailsStaticConstructor(details, syntaxOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 30328, 30412);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.IFieldReference
+                f_286_30436_30505(Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                this_param, int
+                analysisKind, Microsoft.Cci.ITypeReference
+                payloadRootType)
+                {
+                    var return_v = this_param.GetOrAddInstrumentationPayloadRoot(analysisKind, payloadRootType);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 30436, 30505);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 30048, 30517);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 30048, 30517);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private void EnsurePrivateImplementationDetailsStaticConstructor(PrivateImplementationDetails details, TSyntaxNode syntaxOpt, DiagnosticBag diagnostics)
         {
-            if (details.GetMethod(WellKnownMemberNames.StaticConstructorName) == null)
+            try
             {
-                details.TryAddSynthesizedMethod(CreatePrivateImplementationDetailsStaticConstructor(details, syntaxOpt, diagnostics));
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 30529, 30957);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 30706, 30946) || true) && (f_286_30710_30771(details, WellKnownMemberNames.StaticConstructorName) == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 30706, 30946);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 30813, 30931);
+
+                    f_286_30813_30930(details, f_286_30845_30929(this, details, syntaxOpt, diagnostics));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 30706, 30946);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 30529, 30957);
+
+                Microsoft.Cci.IMethodDefinition?
+                f_286_30710_30771(Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                this_param, string
+                name)
+                {
+                    var return_v = this_param.GetMethod(name);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 30710, 30771);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.IMethodDefinition
+                f_286_30845_30929(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                details, TSyntaxNode
+                syntaxOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.CreatePrivateImplementationDetailsStaticConstructor(details, syntaxOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 30845, 30929);
+                    return return_v;
+                }
+
+
+                bool
+                f_286_30813_30930(Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                this_param, Microsoft.Cci.IMethodDefinition
+                method)
+                {
+                    var return_v = this_param.TryAddSynthesizedMethod(method);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 30813, 30930);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 30529, 30957);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 30529, 30957);
             }
         }
 
@@ -3204,83 +4019,535 @@ f_286_1709_1714()
         /// </summary>
         public IEnumerable<Cci.INestedTypeDefinition> GetSynthesizedTypes(TNamedTypeSymbol container)
         {
-            IEnumerable<Cci.INestedTypeDefinition> declareTypes = GetSynthesizedNestedTypes(container);
-            IEnumerable<Cci.INestedTypeDefinition> compileEmitTypes = null;
-
-            if (_synthesizedTypeMembers.TryGetValue(container, out var defs))
+            try
             {
-                compileEmitTypes = defs.NestedTypes;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 33565, 34314);
+                Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions defs = default(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 33683, 33774);
 
-            if (declareTypes == null)
+                IEnumerable<Cci.INestedTypeDefinition>
+                declareTypes = f_286_33737_33773(this, container)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 33788, 33851);
+
+                IEnumerable<Cci.INestedTypeDefinition>
+                compileEmitTypes = null
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 33867, 34016) || true) && (f_286_33871_33931(_synthesizedTypeMembers, container, out defs))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 33867, 34016);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 33965, 34001);
+
+                    compileEmitTypes = defs.NestedTypes;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 33867, 34016);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34032, 34129) || true) && (declareTypes == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 34032, 34129);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34090, 34114);
+
+                    return compileEmitTypes;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 34032, 34129);
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34145, 34242) || true) && (compileEmitTypes == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 34145, 34242);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34207, 34227);
+
+                    return declareTypes;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 34145, 34242);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34258, 34303);
+
+                return f_286_34265_34302(declareTypes, compileEmitTypes);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 33565, 34314);
+
+                System.Collections.Generic.IEnumerable<Microsoft.Cci.INestedTypeDefinition>
+                f_286_33737_33773(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TNamedTypeSymbol
+                container)
+                {
+                    var return_v = this_param.GetSynthesizedNestedTypes(container);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 33737, 33773);
+                    return return_v;
+                }
+
+
+                bool
+                f_286_33871_33931(System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+                this_param, TNamedTypeSymbol
+                key, out Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 33871, 33931);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerable<Microsoft.Cci.INestedTypeDefinition>
+                f_286_34265_34302(System.Collections.Generic.IEnumerable<Microsoft.Cci.INestedTypeDefinition>
+                first, System.Collections.Generic.IEnumerable<Microsoft.Cci.INestedTypeDefinition>
+                second)
+                {
+                    var return_v = first.Concat<Microsoft.Cci.INestedTypeDefinition>(second);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34265, 34302);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return compileEmitTypes;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 33565, 34314);
+                throw;
             }
-
-            if (compileEmitTypes == null)
+            finally
             {
-                return declareTypes;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 33565, 34314);
             }
-
-            return declareTypes.Concat(compileEmitTypes);
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private SynthesizedDefinitions GetOrAddSynthesizedDefinitions(TNamedTypeSymbol container)
         {
-            Debug.Assert(container.IsDefinition);
-            return _synthesizedTypeMembers.GetOrAdd(container, _ => new SynthesizedDefinitions());
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 34326, 34588);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34440, 34477);
+
+                f_286_34440_34476(f_286_34453_34475(container));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34491, 34577);
+
+                return f_286_34498_34576(_synthesizedTypeMembers, container, _ => new SynthesizedDefinitions());
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 34326, 34588);
+
+                bool
+                f_286_34453_34475(TNamedTypeSymbol
+                this_param)
+                {
+                    var return_v = this_param.IsDefinition;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 34453, 34475);
+                    return return_v;
+                }
+
+
+                int
+                f_286_34440_34476(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34440, 34476);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                f_286_34498_34576(System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+                this_param, TNamedTypeSymbol
+                key, System.Func<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+                valueFactory)
+                {
+                    var return_v = this_param.GetOrAdd(key, valueFactory);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34498, 34576);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 34326, 34588);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 34326, 34588);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public void AddSynthesizedDefinition(TNamedTypeSymbol container, Cci.IMethodDefinition method)
         {
-            Debug.Assert(method != null);
-
-            SynthesizedDefinitions defs = GetOrAddSynthesizedDefinitions(container);
-            if (defs.Methods == null)
+            try
             {
-                Interlocked.CompareExchange(ref defs.Methods, new ConcurrentQueue<Cci.IMethodDefinition>(), null);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 34600, 35077);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34719, 34748);
 
-            defs.Methods.Enqueue(method);
+                f_286_34719_34747(method != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34764, 34836);
+
+                SynthesizedDefinitions
+                defs = f_286_34794_34835(this, container)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34850, 35021) || true) && (defs.Methods == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 34850, 35021);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 34908, 35006);
+
+                    f_286_34908_35005(ref defs.Methods, f_286_34954_34998(), null);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 34850, 35021);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35037, 35066);
+
+                f_286_35037_35065(
+                            defs.Methods, method);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 34600, 35077);
+
+                int
+                f_286_34719_34747(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34719, 34747);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                f_286_34794_34835(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TNamedTypeSymbol
+                container)
+                {
+                    var return_v = this_param.GetOrAddSynthesizedDefinitions(container);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34794, 34835);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>
+                f_286_34954_34998()
+                {
+                    var return_v = new System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34954, 34998);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>?
+                f_286_34908_35005(ref System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>?
+                location1, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>
+                value, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 34908, 35005);
+                    return return_v;
+                }
+
+
+                int
+                f_286_35037_35065(System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IMethodDefinition>
+                this_param, Microsoft.Cci.IMethodDefinition
+                item)
+                {
+                    this_param.Enqueue(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35037, 35065);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 34600, 35077);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 34600, 35077);
+            }
         }
 
         public void AddSynthesizedDefinition(TNamedTypeSymbol container, Cci.IPropertyDefinition property)
         {
-            Debug.Assert(property != null);
-
-            SynthesizedDefinitions defs = GetOrAddSynthesizedDefinitions(container);
-            if (defs.Properties == null)
+            try
             {
-                Interlocked.CompareExchange(ref defs.Properties, new ConcurrentQueue<Cci.IPropertyDefinition>(), null);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 35089, 35585);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35212, 35243);
 
-            defs.Properties.Enqueue(property);
+                f_286_35212_35242(property != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35259, 35331);
+
+                SynthesizedDefinitions
+                defs = f_286_35289_35330(this, container)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35345, 35524) || true) && (defs.Properties == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 35345, 35524);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35406, 35509);
+
+                    f_286_35406_35508(ref defs.Properties, f_286_35455_35501(), null);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 35345, 35524);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35540, 35574);
+
+                f_286_35540_35573(
+                            defs.Properties, property);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 35089, 35585);
+
+                int
+                f_286_35212_35242(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35212, 35242);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                f_286_35289_35330(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TNamedTypeSymbol
+                container)
+                {
+                    var return_v = this_param.GetOrAddSynthesizedDefinitions(container);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35289, 35330);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>
+                f_286_35455_35501()
+                {
+                    var return_v = new System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35455, 35501);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>?
+                f_286_35406_35508(ref System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>?
+                location1, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>
+                value, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35406, 35508);
+                    return return_v;
+                }
+
+
+                int
+                f_286_35540_35573(System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IPropertyDefinition>
+                this_param, Microsoft.Cci.IPropertyDefinition
+                item)
+                {
+                    this_param.Enqueue(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35540, 35573);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 35089, 35585);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 35089, 35585);
+            }
         }
 
         public void AddSynthesizedDefinition(TNamedTypeSymbol container, Cci.IFieldDefinition field)
         {
-            Debug.Assert(field != null);
-
-            SynthesizedDefinitions defs = GetOrAddSynthesizedDefinitions(container);
-            if (defs.Fields == null)
+            try
             {
-                Interlocked.CompareExchange(ref defs.Fields, new ConcurrentQueue<Cci.IFieldDefinition>(), null);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 35597, 36066);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35714, 35742);
 
-            defs.Fields.Enqueue(field);
+                f_286_35714_35741(field != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35758, 35830);
+
+                SynthesizedDefinitions
+                defs = f_286_35788_35829(this, container)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35844, 36012) || true) && (defs.Fields == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 35844, 36012);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 35901, 35997);
+
+                    f_286_35901_35996(ref defs.Fields, f_286_35946_35989(), null);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 35844, 36012);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 36028, 36055);
+
+                f_286_36028_36054(
+                            defs.Fields, field);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 35597, 36066);
+
+                int
+                f_286_35714_35741(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35714, 35741);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                f_286_35788_35829(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TNamedTypeSymbol
+                container)
+                {
+                    var return_v = this_param.GetOrAddSynthesizedDefinitions(container);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35788, 35829);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>
+                f_286_35946_35989()
+                {
+                    var return_v = new System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35946, 35989);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>?
+                f_286_35901_35996(ref System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>?
+                location1, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>
+                value, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 35901, 35996);
+                    return return_v;
+                }
+
+
+                int
+                f_286_36028_36054(System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.IFieldDefinition>
+                this_param, Microsoft.Cci.IFieldDefinition
+                item)
+                {
+                    this_param.Enqueue(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 36028, 36054);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 35597, 36066);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 35597, 36066);
+            }
         }
 
         public void AddSynthesizedDefinition(TNamedTypeSymbol container, Cci.INestedTypeDefinition nestedType)
         {
-            Debug.Assert(nestedType != null);
-
-            SynthesizedDefinitions defs = GetOrAddSynthesizedDefinitions(container);
-            if (defs.NestedTypes == null)
+            try
             {
-                Interlocked.CompareExchange(ref defs.NestedTypes, new ConcurrentQueue<Cci.INestedTypeDefinition>(), null);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 36078, 36587);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 36205, 36238);
 
-            defs.NestedTypes.Enqueue(nestedType);
+                f_286_36205_36237(nestedType != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 36254, 36326);
+
+                SynthesizedDefinitions
+                defs = f_286_36284_36325(this, container)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 36340, 36523) || true) && (defs.NestedTypes == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 36340, 36523);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 36402, 36508);
+
+                    f_286_36402_36507(ref defs.NestedTypes, f_286_36452_36500(), null);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 36340, 36523);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 36539, 36576);
+
+                f_286_36539_36575(
+                            defs.NestedTypes, nestedType);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 36078, 36587);
+
+                int
+                f_286_36205_36237(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 36205, 36237);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                f_286_36284_36325(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, TNamedTypeSymbol
+                container)
+                {
+                    var return_v = this_param.GetOrAddSynthesizedDefinitions(container);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 36284, 36325);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>
+                f_286_36452_36500()
+                {
+                    var return_v = new System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 36452, 36500);
+                    return return_v;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>?
+                f_286_36402_36507(ref System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>?
+                location1, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>
+                value, System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 36402, 36507);
+                    return return_v;
+                }
+
+
+                int
+                f_286_36539_36575(System.Collections.Concurrent.ConcurrentQueue<Microsoft.Cci.INestedTypeDefinition>
+                this_param, Microsoft.Cci.INestedTypeDefinition
+                item)
+                {
+                    this_param.Enqueue(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 36539, 36575);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 36078, 36587);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 36078, 36587);
+            }
         }
 
         public void AddSynthesizedDefinition(INamespaceSymbolInternal container, INamespaceOrTypeSymbolInternal typeOrNamespace)
@@ -3377,51 +4644,355 @@ f_286_1709_1714()
         /// Returns null if there are no synthesized fields.
         /// </summary>
         public IEnumerable<Cci.IFieldDefinition> GetSynthesizedFields(TNamedTypeSymbol container)
-            => _synthesizedTypeMembers.TryGetValue(container, out var defs) ? defs.Fields : null;
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 37453, 37537);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 37456, 37537);
+                DynAbs.Tracing.TraceSender.Conditional_F1(286, 37456, 37516);
+                return ((f_286_37456_37516(_synthesizedTypeMembers, container, out var defs) && 
+                    DynAbs.Tracing.TraceSender.Conditional_F2(286, 37519, 37530)) || DynAbs.Tracing.TraceSender.Conditional_F3(286, 37533, 37537)) ? defs.Fields : null; 
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 37453, 37537);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 37453, 37537);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 37453, 37537);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_286_37456_37516(System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+            this_param, TNamedTypeSymbol
+            key, out Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+            value)
+            {
+                var return_v = this_param.TryGetValue(key, out value);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 37456, 37516);
+                return return_v;
+            }
+
+        }
 
         /// <summary>
         /// Returns null if there are no synthesized properties.
         /// </summary>
         public IEnumerable<Cci.IPropertyDefinition> GetSynthesizedProperties(TNamedTypeSymbol container)
-            => _synthesizedTypeMembers.TryGetValue(container, out var defs) ? defs.Properties : null;
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 37773, 37861);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 37776, 37861);
+                DynAbs.Tracing.TraceSender.Conditional_F1(286, 37776, 37836);
+                return ((f_286_37776_37836(_synthesizedTypeMembers, container, out var defs) && 
+                    DynAbs.Tracing.TraceSender.Conditional_F2(286, 37839, 37854)) || DynAbs.Tracing.TraceSender.Conditional_F3(286, 37857, 37861)) ? 
+                    defs.Properties : null; 
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 37773, 37861);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 37773, 37861);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 37773, 37861);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_286_37776_37836(System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+            this_param, TNamedTypeSymbol
+            key, out Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+            value)
+            {
+                var return_v = this_param.TryGetValue(key, out value);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 37776, 37836);
+                return return_v;
+            }
+
+        }
 
         /// <summary>
         /// Returns null if there are no synthesized methods.
         /// </summary>
         public IEnumerable<Cci.IMethodDefinition> GetSynthesizedMethods(TNamedTypeSymbol container)
-            => _synthesizedTypeMembers.TryGetValue(container, out var defs) ? defs.Methods : null;
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 38089, 38174);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38092, 38174);
+                DynAbs.Tracing.TraceSender.Conditional_F1(286, 38092, 38152);
+                return ((f_286_38092_38152(_synthesizedTypeMembers, container, out var defs) && 
+                    DynAbs.Tracing.TraceSender.Conditional_F2(286, 38155, 38167)) || DynAbs.Tracing.TraceSender.Conditional_F3(286, 38170, 38174)) ? 
+                    defs.Methods : null; DynAbs.Tracing.TraceSender.TraceExitMethod(286, 38089, 38174);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 38089, 38174);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 38089, 38174);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            bool
+            f_286_38092_38152(System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+            this_param, TNamedTypeSymbol
+            key, out Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+            value)
+            {
+                var return_v = this_param.TryGetValue(key, out value);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38092, 38152);
+                return return_v;
+            }
+
+        }
 
         internal override ImmutableDictionary<ISymbolInternal, ImmutableArray<ISymbolInternal>> GetAllSynthesizedMembers()
         {
-            var builder = ImmutableDictionary.CreateBuilder<ISymbolInternal, ImmutableArray<ISymbolInternal>>();
-
-            foreach (var entry in _synthesizedTypeMembers)
+            try
             {
-                builder.Add(entry.Key, entry.Value.GetAllMembers());
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 38187, 38978);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38326, 38426);
 
-            var namespaceMembers = _lazySynthesizedNamespaceMembers;
-            if (namespaceMembers != null)
-            {
-                foreach (var entry in namespaceMembers)
+                var
+                builder = f_286_38340_38425()
+                ;
+                try
                 {
-                    builder.Add(entry.Key, entry.Value.ToImmutableArray<ISymbolInternal>());
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38442, 38588);
+                    foreach (var entry in f_286_38464_38487_I(_synthesizedTypeMembers))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 38442, 38588);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38521, 38573);
 
-            return builder.ToImmutable();
+                        f_286_38521_38572(builder, entry.Key, f_286_38544_38571(entry.Value));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(286, 38442, 38588);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(286, 1, 147);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(286, 1, 147);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38604, 38660);
+
+                var
+                namespaceMembers = _lazySynthesizedNamespaceMembers
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38674, 38922) || true) && (namespaceMembers != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 38674, 38922);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38736, 38907);
+                        foreach (var entry in f_286_38758_38774_I(namespaceMembers))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 38736, 38907);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38816, 38888);
+
+                            f_286_38816_38887(builder, entry.Key, f_286_38839_38886(entry.Value));
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(286, 38736, 38907);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(286, 1, 172);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(286, 1, 172);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 38674, 38922);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 38938, 38967);
+
+                return f_286_38945_38966(builder);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 38187, 38978);
+
+                System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Symbols.ISymbolInternal, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>>.Builder
+                f_286_38340_38425()
+                {
+                    var return_v = ImmutableDictionary.CreateBuilder<ISymbolInternal, ImmutableArray<ISymbolInternal>>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38340, 38425);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>
+                f_286_38544_38571(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions
+                this_param)
+                {
+                    var return_v = this_param.GetAllMembers();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38544, 38571);
+                    return return_v;
+                }
+
+
+                int
+                f_286_38521_38572(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Symbols.ISymbolInternal, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>>.Builder
+                this_param, TNamedTypeSymbol
+                key, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>
+                value)
+                {
+                    this_param.Add((Microsoft.CodeAnalysis.Symbols.ISymbolInternal)key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38521, 38572);
+                    return 0;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+                f_286_38464_38487_I(System.Collections.Concurrent.ConcurrentDictionary<TNamedTypeSymbol, Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>.SynthesizedDefinitions>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38464, 38487);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>
+                f_286_38839_38886(System.Collections.Concurrent.ConcurrentQueue<Microsoft.CodeAnalysis.Symbols.INamespaceOrTypeSymbolInternal>
+                items)
+                {
+                    var return_v = items.ToImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38839, 38886);
+                    return return_v;
+                }
+
+
+                int
+                f_286_38816_38887(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Symbols.ISymbolInternal, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>>.Builder
+                this_param, Microsoft.CodeAnalysis.Symbols.INamespaceSymbolInternal
+                key, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>
+                value)
+                {
+                    this_param.Add((Microsoft.CodeAnalysis.Symbols.ISymbolInternal)key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38816, 38887);
+                    return 0;
+                }
+
+
+                System.Collections.Concurrent.ConcurrentDictionary<Microsoft.CodeAnalysis.Symbols.INamespaceSymbolInternal, System.Collections.Concurrent.ConcurrentQueue<Microsoft.CodeAnalysis.Symbols.INamespaceOrTypeSymbolInternal>>
+                f_286_38758_38774_I(System.Collections.Concurrent.ConcurrentDictionary<Microsoft.CodeAnalysis.Symbols.INamespaceSymbolInternal, System.Collections.Concurrent.ConcurrentQueue<Microsoft.CodeAnalysis.Symbols.INamespaceOrTypeSymbolInternal>>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38758, 38774);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Symbols.ISymbolInternal, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>>
+                f_286_38945_38966(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Symbols.ISymbolInternal, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Symbols.ISymbolInternal>>.Builder
+                this_param)
+                {
+                    var return_v = this_param.ToImmutable();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 38945, 38966);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 38187, 38978);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 38187, 38978);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         #region Token Mapping
 
         Cci.IFieldReference ITokenDeferral.GetFieldForData(ImmutableArray<byte> data, SyntaxNode syntaxNode, DiagnosticBag diagnostics)
         {
-            Debug.Assert(this.SupportsPrivateImplClass);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 39045, 39487);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 39197, 39241);
 
-            var privateImpl = this.GetPrivateImplClass((TSyntaxNode)syntaxNode, diagnostics);
+                f_286_39197_39240(f_286_39210_39239(this));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 39257, 39338);
 
-            // map a field to the block (that makes it addressable via a token)
-            return privateImpl.CreateDataField(data);
+                var
+                privateImpl = f_286_39275_39337(this, syntaxNode, diagnostics)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 39435, 39476);
+
+                return f_286_39442_39475(privateImpl, data);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 39045, 39487);
+
+                bool
+                f_286_39210_39239(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param)
+                {
+                    var return_v = this_param.SupportsPrivateImplClass;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 39210, 39239);
+                    return return_v;
+                }
+
+
+                int
+                f_286_39197_39240(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 39197, 39240);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                f_286_39275_39337(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetPrivateImplClass((TSyntaxNode)syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 39275, 39337);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.IFieldReference
+                f_286_39442_39475(Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                this_param, System.Collections.Immutable.ImmutableArray<byte>
+                data)
+                {
+                    var return_v = this_param.CreateDataField(data);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 39442, 39475);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 39045, 39487);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 39045, 39487);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public abstract Cci.IMethodReference GetInitArrayHelper();
@@ -3505,29 +5076,201 @@ f_286_1709_1714()
 
         internal PrivateImplementationDetails GetPrivateImplClass(TSyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics)
         {
-            var result = _privateImplementationDetails;
-
-            if ((result == null) && this.SupportsPrivateImplClass)
+            try
             {
-                result = new PrivateImplementationDetails(
-                        this,
-                        this.SourceModule.Name,
-                        Compilation.GetSubmissionSlotIndex(),
-                        this.GetSpecialType(SpecialType.System_Object, syntaxNodeOpt, diagnostics),
-                        this.GetSpecialType(SpecialType.System_ValueType, syntaxNodeOpt, diagnostics),
-                        this.GetSpecialType(SpecialType.System_Byte, syntaxNodeOpt, diagnostics),
-                        this.GetSpecialType(SpecialType.System_Int16, syntaxNodeOpt, diagnostics),
-                        this.GetSpecialType(SpecialType.System_Int32, syntaxNodeOpt, diagnostics),
-                        this.GetSpecialType(SpecialType.System_Int64, syntaxNodeOpt, diagnostics),
-                        SynthesizeAttribute(WellKnownMember.System_Runtime_CompilerServices_CompilerGeneratedAttribute__ctor));
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 40178, 41642);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 40314, 40357);
 
-                if (Interlocked.CompareExchange(ref _privateImplementationDetails, result, null) != null)
+                var
+                result = _privateImplementationDetails
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 40373, 41601) || true) && ((result == null) && (DynAbs.Tracing.TraceSender.Expression_True(286, 40377, 40426) && f_286_40397_40426(this)))
+                )
+
                 {
-                    result = _privateImplementationDetails;
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 40373, 41601);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 40460, 41378);
 
-            return result;
+                    result = f_286_40469_41377(this, f_286_40559_40581(this.SourceModule), f_286_40608_40644(Compilation), f_286_40671_40745(this, SpecialType.System_Object, syntaxNodeOpt, diagnostics), f_286_40772_40849(this, SpecialType.System_ValueType, syntaxNodeOpt, diagnostics), f_286_40876_40948(this, SpecialType.System_Byte, syntaxNodeOpt, diagnostics), f_286_40975_41048(this, SpecialType.System_Int16, syntaxNodeOpt, diagnostics), f_286_41075_41148(this, SpecialType.System_Int32, syntaxNodeOpt, diagnostics), f_286_41175_41248(this, SpecialType.System_Int64, syntaxNodeOpt, diagnostics), f_286_41275_41376(this, WellKnownMember.System_Runtime_CompilerServices_CompilerGeneratedAttribute__ctor));
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 41398, 41586) || true) && (f_286_41402_41478(ref _privateImplementationDetails, result, null) != null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 41398, 41586);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 41528, 41567);
+
+                        result = _privateImplementationDetails;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(286, 41398, 41586);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(286, 40373, 41601);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 41617, 41631);
+
+                return result;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 40178, 41642);
+
+                bool
+                f_286_40397_40426(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param)
+                {
+                    var return_v = this_param.SupportsPrivateImplClass;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 40397, 40426);
+                    return return_v;
+                }
+
+
+                string
+                f_286_40559_40581(TSourceModuleSymbol
+                this_param)
+                {
+                    var return_v = this_param.Name;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(286, 40559, 40581);
+                    return return_v;
+                }
+
+
+                int
+                f_286_40608_40644(TCompilation
+                this_param)
+                {
+                    var return_v = this_param.GetSubmissionSlotIndex();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 40608, 40644);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_40671_40745(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType(specialType, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 40671, 40745);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_40772_40849(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType(specialType, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 40772, 40849);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_40876_40948(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType(specialType, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 40876, 40948);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_40975_41048(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType(specialType, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 40975, 41048);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_41075_41148(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType(specialType, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 41075, 41148);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_41175_41248(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SpecialType
+                specialType, TSyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType(specialType, syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 41175, 41248);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.ICustomAttribute
+                f_286_41275_41376(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.WellKnownMember
+                attributeConstructor)
+                {
+                    var return_v = this_param.SynthesizeAttribute(attributeConstructor);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 41275, 41376);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                f_286_40469_41377(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                moduleBuilder, string
+                moduleName, int
+                submissionSlotIndex, Microsoft.Cci.INamedTypeReference
+                systemObject, Microsoft.Cci.INamedTypeReference
+                systemValueType, Microsoft.Cci.INamedTypeReference
+                systemInt8Type, Microsoft.Cci.INamedTypeReference
+                systemInt16Type, Microsoft.Cci.INamedTypeReference
+                systemInt32Type, Microsoft.Cci.INamedTypeReference
+                systemInt64Type, Microsoft.Cci.ICustomAttribute
+                compilerGeneratedAttribute)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails((Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder)moduleBuilder, moduleName, submissionSlotIndex, (Microsoft.Cci.ITypeReference)systemObject, (Microsoft.Cci.ITypeReference)systemValueType, (Microsoft.Cci.ITypeReference)systemInt8Type, (Microsoft.Cci.ITypeReference)systemInt16Type, (Microsoft.Cci.ITypeReference)systemInt32Type, (Microsoft.Cci.ITypeReference)systemInt64Type, compilerGeneratedAttribute);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 40469, 41377);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                f_286_41402_41478(ref Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                location1, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                value, Microsoft.CodeAnalysis.CodeGen.PrivateImplementationDetails
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 41402, 41478);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 40178, 41642);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 40178, 41642);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal PrivateImplementationDetails PrivateImplClass
@@ -3584,16 +5327,78 @@ f_286_1709_1714()
 
         public sealed override Cci.ITypeReference GetPlatformType(Cci.PlatformType platformType, EmitContext context)
         {
-            Debug.Assert((object)this == context.Module);
-
-            switch (platformType)
+            try
             {
-                case Cci.PlatformType.SystemType:
-                    return GetSystemType((TSyntaxNode)context.SyntaxNodeOpt, context.Diagnostics);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(286, 41938, 42502);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 42072, 42117);
 
-                default:
-                    return GetSpecialType((SpecialType)platformType, (TSyntaxNode)context.SyntaxNodeOpt, context.Diagnostics);
+                f_286_42072_42116((object)this == context.Module);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 42133, 42491);
+
+                switch (platformType)
+                {
+
+                    case Cci.PlatformType.SystemType:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 42133, 42491);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 42242, 42320);
+
+                        return f_286_42249_42319(this, context.SyntaxNodeOpt, context.Diagnostics);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(286, 42133, 42491);
+
+                    default:
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(286, 42133, 42491);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(286, 42370, 42476);
+
+                        return f_286_42377_42475(this, platformType, context.SyntaxNodeOpt, context.Diagnostics);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(286, 42133, 42491);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(286, 41938, 42502);
+
+                int
+                f_286_42072_42116(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 42072, 42116);
+                    return 0;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_42249_42319(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.CodeAnalysis.SyntaxNode
+                syntaxOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSystemType((TSyntaxNode)syntaxOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 42249, 42319);
+                    return return_v;
+                }
+
+
+                Microsoft.Cci.INamedTypeReference
+                f_286_42377_42475(Microsoft.CodeAnalysis.Emit.PEModuleBuilder<TCompilation, TSourceModuleSymbol, TAssemblySymbol, TTypeSymbol, TNamedTypeSymbol, TMethodSymbol, TSyntaxNode, TEmbeddedTypesManager, TModuleCompilationState>
+                this_param, Microsoft.Cci.PlatformType
+                specialType, Microsoft.CodeAnalysis.SyntaxNode
+                syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                diagnostics)
+                {
+                    var return_v = this_param.GetSpecialType((Microsoft.CodeAnalysis.SpecialType)specialType, (TSyntaxNode)syntaxNodeOpt, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(286, 42377, 42475);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(286, 41938, 42502);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(286, 41938, 42502);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         static PEModuleBuilder()

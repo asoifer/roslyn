@@ -1148,7 +1148,43 @@ namespace Microsoft.CodeAnalysis
         [Conditional("DEBUG")]
         internal void AssertCanReuseForCompilation(TCompilation compilation)
         {
-            Debug.Assert(compilation.MakeSourceAssemblySimpleName() == this.SimpleAssemblyName);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(531, 16047, 16267);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 16172, 16256);
+
+                f_531_16172_16255(f_531_16185_16227(compilation) == this.SimpleAssemblyName);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(531, 16047, 16267);
+
+                string
+                f_531_16185_16227(TCompilation
+                this_param)
+                {
+                    var return_v = this_param.MakeSourceAssemblySimpleName();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 16185, 16227);
+                    return return_v;
+                }
+
+
+                int
+                f_531_16172_16255(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 16172, 16255);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(531, 16047, 16267);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(531, 16047, 16267);
+            }
         }
 
         internal bool IsBound
@@ -1180,45 +1216,163 @@ namespace Microsoft.CodeAnalysis
         /// Call only while holding <see cref="CommonReferenceManager.SymbolCacheAndReferenceManagerStateGuard"/>.
         /// </summary>
         internal void InitializeNoLock(
-            Dictionary<MetadataReference, int> referencedAssembliesMap,
-            Dictionary<MetadataReference, int> referencedModulesMap,
-            IDictionary<(string, string), MetadataReference> boundReferenceDirectiveMap,
-            ImmutableArray<MetadataReference> directiveReferences,
-            ImmutableArray<MetadataReference> explicitReferences,
-            ImmutableDictionary<AssemblyIdentity, PortableExecutableReference?> implicitReferenceResolutions,
-            bool containsCircularReferences,
-            ImmutableArray<Diagnostic> diagnostics,
-            TAssemblySymbol? corLibraryOpt,
-            ImmutableArray<PEModule> referencedModules,
-            ImmutableArray<ModuleReferences<TAssemblySymbol>> referencedModulesReferences,
-            ImmutableArray<TAssemblySymbol> referencedAssemblies,
-            ImmutableArray<ImmutableArray<string>> aliasesOfReferencedAssemblies,
-            ImmutableArray<UnifiedAssembly<TAssemblySymbol>> unifiedAssemblies)
+                    Dictionary<MetadataReference, int> referencedAssembliesMap,
+                    Dictionary<MetadataReference, int> referencedModulesMap,
+                    IDictionary<(string, string), MetadataReference> boundReferenceDirectiveMap,
+                    ImmutableArray<MetadataReference> directiveReferences,
+                    ImmutableArray<MetadataReference> explicitReferences,
+                    ImmutableDictionary<AssemblyIdentity, PortableExecutableReference?> implicitReferenceResolutions,
+                    bool containsCircularReferences,
+                    ImmutableArray<Diagnostic> diagnostics,
+                    TAssemblySymbol? corLibraryOpt,
+                    ImmutableArray<PEModule> referencedModules,
+                    ImmutableArray<ModuleReferences<TAssemblySymbol>> referencedModulesReferences,
+                    ImmutableArray<TAssemblySymbol> referencedAssemblies,
+                    ImmutableArray<ImmutableArray<string>> aliasesOfReferencedAssemblies,
+                    ImmutableArray<UnifiedAssembly<TAssemblySymbol>> unifiedAssemblies)
         {
-            AssertUnbound();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(531, 16583, 19023);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 17642, 17658);
 
-            Debug.Assert(referencedModules.Length == referencedModulesReferences.Length);
-            Debug.Assert(referencedModules.Length == referencedModulesMap.Count);
-            Debug.Assert(referencedAssemblies.Length == aliasesOfReferencedAssemblies.Length);
+                f_531_17642_17657(this);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 17674, 17751);
 
-            _lazyReferencedAssembliesMap = referencedAssembliesMap;
-            _lazyReferencedModuleIndexMap = referencedModulesMap;
-            _lazyDiagnostics = diagnostics;
-            _lazyReferenceDirectiveMap = boundReferenceDirectiveMap;
-            _lazyDirectiveReferences = directiveReferences;
-            _lazyExplicitReferences = explicitReferences;
-            _lazyImplicitReferenceResolutions = implicitReferenceResolutions;
+                f_531_17674_17750(referencedModules.Length == referencedModulesReferences.Length);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 17765, 17834);
 
-            _lazyCorLibraryOpt = corLibraryOpt;
-            _lazyReferencedModules = referencedModules;
-            _lazyReferencedModulesReferences = referencedModulesReferences;
-            _lazyReferencedAssemblies = referencedAssemblies;
-            _lazyAliasesOfReferencedAssemblies = aliasesOfReferencedAssemblies;
-            _lazyUnifiedAssemblies = unifiedAssemblies;
-            _lazyHasCircularReference = containsCircularReferences.ToThreeState();
+                f_531_17765_17833(referencedModules.Length == f_531_17806_17832(referencedModulesMap));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 17848, 17930);
 
-            // once we flip this bit the state of the manager is immutable and available to any readers:
-            Interlocked.Exchange(ref _isBound, 1);
+                f_531_17848_17929(referencedAssemblies.Length == aliasesOfReferencedAssemblies.Length);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 17946, 18001);
+
+                _lazyReferencedAssembliesMap = referencedAssembliesMap;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18015, 18068);
+
+                _lazyReferencedModuleIndexMap = referencedModulesMap;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18082, 18113);
+
+                _lazyDiagnostics = diagnostics;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18127, 18183);
+
+                _lazyReferenceDirectiveMap = boundReferenceDirectiveMap;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18197, 18244);
+
+                _lazyDirectiveReferences = directiveReferences;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18258, 18303);
+
+                _lazyExplicitReferences = explicitReferences;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18317, 18382);
+
+                _lazyImplicitReferenceResolutions = implicitReferenceResolutions;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18398, 18433);
+
+                _lazyCorLibraryOpt = corLibraryOpt;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18447, 18490);
+
+                _lazyReferencedModules = referencedModules;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18504, 18567);
+
+                _lazyReferencedModulesReferences = referencedModulesReferences;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18581, 18630);
+
+                _lazyReferencedAssemblies = referencedAssemblies;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18644, 18711);
+
+                _lazyAliasesOfReferencedAssemblies = aliasesOfReferencedAssemblies;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18725, 18768);
+
+                _lazyUnifiedAssemblies = unifiedAssemblies;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18782, 18852);
+
+                _lazyHasCircularReference = f_531_18810_18851(containsCircularReferences);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 18974, 19012);
+
+                f_531_18974_19011(ref _isBound, 1);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(531, 16583, 19023);
+
+                int
+                f_531_17642_17657(Microsoft.CodeAnalysis.CommonReferenceManager<TCompilation, TAssemblySymbol>
+                this_param)
+                {
+                    this_param.AssertUnbound();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 17642, 17657);
+                    return 0;
+                }
+
+
+                int
+                f_531_17674_17750(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 17674, 17750);
+                    return 0;
+                }
+
+
+                int
+                f_531_17806_17832(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 17806, 17832);
+                    return return_v;
+                }
+
+
+                int
+                f_531_17765_17833(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 17765, 17833);
+                    return 0;
+                }
+
+
+                int
+                f_531_17848_17929(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 17848, 17929);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.ThreeState
+                f_531_18810_18851(bool
+                value)
+                {
+                    var return_v = value.ToThreeState();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 18810, 18851);
+                    return return_v;
+                }
+
+
+                int
+                f_531_18974_19011(ref int
+                location1, int
+                value)
+                {
+                    var return_v = Interlocked.Exchange(ref location1, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 18974, 19011);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(531, 16583, 19023);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(531, 16583, 19023);
+            }
         }
 
         private static readonly ImmutableArray<string> s_supersededAlias;
@@ -1600,12 +1754,12 @@ namespace Microsoft.CodeAnalysis
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 24096, 24137);
 
                         var
-                        symbolIdentity = symbols[i].Identity
+                        symbolIdentity = f_531_24117_24136(symbols[i])
                         ;
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 24155, 24210);
 
                         var
-                        versionPattern = symbols[i].AssemblyVersionPattern
+                        versionPattern = f_531_24176_24209(symbols[i])
                         ;
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 24228, 24273);
 
@@ -1679,6 +1833,26 @@ namespace Microsoft.CodeAnalysis
                     Debug.Assert(condition);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 23840, 23897);
                     return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.AssemblyIdentity
+                f_531_24117_24136(TAssemblySymbol
+                this_param)
+                {
+                    var return_v = this_param.Identity;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 24117, 24136);
+                    return return_v;
+                }
+
+
+                System.Version?
+                f_531_24176_24209(TAssemblySymbol
+                this_param)
+                {
+                    var return_v = this_param.AssemblyVersionPattern;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 24176, 24209);
+                    return return_v;
                 }
 
 
@@ -1825,7 +1999,7 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 26018, 26078);
 
                 var
-                versionPattern = candidateSymbol.AssemblyVersionPattern
+                versionPattern = f_531_26039_26077(candidateSymbol)
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 26092, 26218);
 
@@ -1893,6 +2067,16 @@ namespace Microsoft.CodeAnalysis
                 {
                     var return_v = this_param.Minor;
                     DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 25803, 25825);
+                    return return_v;
+                }
+
+
+                System.Version?
+                f_531_26039_26077(TAssemblySymbol
+                this_param)
+                {
+                    var return_v = this_param.AssemblyVersionPattern;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 26039, 26077);
                     return return_v;
                 }
 
@@ -2416,7 +2600,7 @@ namespace Microsoft.CodeAnalysis
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(531, 30275, 30338);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 30278, 30338);
                     var temp = f_531_30278_30307();
-                    return f_531_30278_30338(ref temp, aliases => aliases); 
+                    return f_531_30278_30338(ref temp, aliases => aliases);
                     DynAbs.Tracing.TraceSender.TraceExitMethod(531, 30275, 30338);
                 }
                 catch
@@ -2439,8 +2623,17 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(531, 30351, 30641);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 30496, 30630);
 
-                return f_531_30503_30629(ReferencedAssembliesMap, ra => KeyValuePairUtil.Create(ra.Key, (IAssemblySymbolInternal)ReferencedAssemblies[ra.Value]));
+                return f_531_30503_30629(f_531_30503_30526(), ra => KeyValuePairUtil.Create(ra.Key, (IAssemblySymbolInternal)ReferencedAssemblies[ra.Value]));
                 DynAbs.Tracing.TraceSender.TraceExitMethod(531, 30351, 30641);
+
+                System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
+                f_531_30503_30526()
+                {
+                    var return_v = ReferencedAssembliesMap;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 30503, 30526);
+                    return return_v;
+                }
+
 
                 System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.MetadataReference, Microsoft.CodeAnalysis.Symbols.IAssemblySymbolInternal>>
                 f_531_30503_30629(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
@@ -2477,8 +2670,17 @@ namespace Microsoft.CodeAnalysis
                 = default(int);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 30784, 30886);
 
-                return (DynAbs.Tracing.TraceSender.Conditional_F1(531, 30791, 30848) || ((f_531_30791_30848(ReferencedAssembliesMap, reference, out index) && DynAbs.Tracing.TraceSender.Conditional_F2(531, 30851, 30878)) || DynAbs.Tracing.TraceSender.Conditional_F3(531, 30881, 30885))) ? ReferencedAssemblies[index] : null;
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(531, 30791, 30848) || ((f_531_30791_30848(f_531_30791_30814(), reference, out index) && DynAbs.Tracing.TraceSender.Conditional_F2(531, 30851, 30878)) || DynAbs.Tracing.TraceSender.Conditional_F3(531, 30881, 30885))) ? f_531_30851_30871()[index] : null;
                 DynAbs.Tracing.TraceSender.TraceExitMethod(531, 30653, 30897);
+
+                System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
+                f_531_30791_30814()
+                {
+                    var return_v = ReferencedAssembliesMap;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 30791, 30814);
+                    return return_v;
+                }
+
 
                 bool
                 f_531_30791_30848(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
@@ -2488,6 +2690,15 @@ namespace Microsoft.CodeAnalysis
                 {
                     var return_v = this_param.TryGetValue(key, out value);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(531, 30791, 30848);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TAssemblySymbol>
+                f_531_30851_30871()
+                {
+                    var return_v = ReferencedAssemblies;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 30851, 30871);
                     return return_v;
                 }
 
@@ -2516,8 +2727,17 @@ namespace Microsoft.CodeAnalysis
                 = default(int);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31024, 31103);
 
-                return (DynAbs.Tracing.TraceSender.Conditional_F1(531, 31031, 31089) || ((f_531_31031_31089(ReferencedModuleIndexMap, reference, out index) && DynAbs.Tracing.TraceSender.Conditional_F2(531, 31092, 31097)) || DynAbs.Tracing.TraceSender.Conditional_F3(531, 31100, 31102))) ? index : -1;
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(531, 31031, 31089) || ((f_531_31031_31089(f_531_31031_31055(), reference, out index) && DynAbs.Tracing.TraceSender.Conditional_F2(531, 31092, 31097)) || DynAbs.Tracing.TraceSender.Conditional_F3(531, 31100, 31102))) ? index : -1;
                 DynAbs.Tracing.TraceSender.TraceExitMethod(531, 30909, 31114);
+
+                System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
+                f_531_31031_31055()
+                {
+                    var return_v = ReferencedModuleIndexMap;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 31031, 31055);
+                    return return_v;
+                }
+
 
                 bool
                 f_531_31031_31089(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
@@ -2551,11 +2771,11 @@ namespace Microsoft.CodeAnalysis
                 try
                 {
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31392, 31627);
-                    foreach (var entry in f_531_31414_31437_I(ReferencedAssembliesMap))
+                    foreach (var entry in f_531_31414_31437_I(f_531_31414_31437()))
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(531, 31392, 31627);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31471, 31612) || true) && ((object)ReferencedAssemblies[entry.Value] == assemblySymbol)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31471, 31612) || true) && ((object)f_531_31483_31503()[entry.Value] == assemblySymbol)
                         )
 
                         {
@@ -2581,6 +2801,24 @@ namespace Microsoft.CodeAnalysis
 
                 return null;
                 DynAbs.Tracing.TraceSender.TraceExitMethod(531, 31269, 31666);
+
+                System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
+                f_531_31414_31437()
+                {
+                    var return_v = ReferencedAssembliesMap;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 31414, 31437);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TAssemblySymbol>
+                f_531_31483_31503()
+                {
+                    var return_v = ReferencedAssemblies;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 31483, 31503);
+                    return return_v;
+                }
+
 
                 System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
                 f_531_31414_31437_I(System.Collections.Generic.Dictionary<Microsoft.CodeAnalysis.MetadataReference, int>
@@ -2610,13 +2848,13 @@ namespace Microsoft.CodeAnalysis
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(531, 31678, 31999);
 
-                var listYield = new List<(IAssemblySymbolInternal, ImmutableArray<string>)>();
+                var listYield = new List<(IAssemblySymbolInternal, ImmutableArray<string>)> ();
                 try
                 {
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31823, 31828);
                     for (int
         i = 0
-        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31814, 31988) || true) && (i < ReferencedAssemblies.Length)
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31814, 31988) || true) && (i < f_531_31834_31854().Length)
         ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31863, 31866)
         , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(531, 31814, 31988))
 
@@ -2624,7 +2862,7 @@ namespace Microsoft.CodeAnalysis
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(531, 31814, 31988);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 31900, 31973);
 
-                        listYield.Add((ReferencedAssemblies[i], AliasesOfReferencedAssemblies[i]));
+                        listYield.Add((f_531_31914_31934()[i], f_531_31939_31968()[i]));
                     }
                 }
                 catch (System.Exception)
@@ -2639,6 +2877,33 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceExitMethod(531, 31678, 31999);
 
                 return listYield;
+
+                System.Collections.Immutable.ImmutableArray<TAssemblySymbol>
+                f_531_31834_31854()
+                {
+                    var return_v = ReferencedAssemblies;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 31834, 31854);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TAssemblySymbol>
+                f_531_31914_31934()
+                {
+                    var return_v = ReferencedAssemblies;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 31914, 31934);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<System.Collections.Immutable.ImmutableArray<string>>
+                f_531_31939_31968()
+                {
+                    var return_v = AliasesOfReferencedAssemblies;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 31939, 31968);
+                    return return_v;
+                }
+
             }
             catch
             {
@@ -2651,7 +2916,7 @@ namespace Microsoft.CodeAnalysis
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
-
+        
         public bool DeclarationsAccessibleWithoutAlias(int referencedAssemblyIndex)
         {
             try
@@ -2660,12 +2925,21 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 32111, 32180);
 
                 var
-                aliases = AliasesOfReferencedAssemblies[referencedAssemblyIndex]
+                aliases = f_531_32125_32154()[referencedAssemblyIndex]
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(531, 32194, 32310);
 
                 return aliases.Length == 0 || (DynAbs.Tracing.TraceSender.Expression_False(531, 32201, 32309) || aliases.IndexOf(MetadataReferenceProperties.GlobalAlias, f_531_32281_32303()) >= 0);
                 DynAbs.Tracing.TraceSender.TraceExitMethod(531, 32011, 32321);
+
+                System.Collections.Immutable.ImmutableArray<System.Collections.Immutable.ImmutableArray<string>>
+                f_531_32125_32154()
+                {
+                    var return_v = AliasesOfReferencedAssemblies;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(531, 32125, 32154);
+                    return return_v;
+                }
+
 
                 System.StringComparer
                 f_531_32281_32303()

@@ -93,24 +93,125 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
         private WrappedValue ComputeValue(TKey key)
         {
-            var value = _computeValue(key);
-            return new WrappedValue(value);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(216, 1856, 2011);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 1924, 1955);
+
+                var
+                value = f_216_1936_1954(this, key)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 1969, 2000);
+
+                return f_216_1976_1999(value);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(216, 1856, 2011);
+
+                TValue
+                f_216_1936_1954(Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>
+                this_param, TKey
+                arg)
+                {
+                    var return_v = this_param._computeValue(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(216, 1936, 1954);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>.WrappedValue
+                f_216_1976_1999(TValue?
+                value)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>.WrappedValue(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(216, 1976, 1999);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(216, 1856, 2011);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(216, 1856, 2011);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value)
         {
-            // Catch any exceptions from the computeValue callback, which calls into user code.
             try
             {
-                value = _valueCache.GetValue(key, _valueCacheCallback).Value;
-                Debug.Assert(value is object);
-                return true;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(216, 2023, 2548);
+                // Catch any exceptions from the computeValue callback, which calls into user code.
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 2257, 2318);
+
+                    value = f_216_2265_2317(f_216_2265_2311(_valueCache, key, _valueCacheCallback));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 2336, 2366);
+
+                    f_216_2336_2365(value is object);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 2384, 2396);
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(216, 2425, 2537);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 2475, 2491);
+
+                    value = default;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(216, 2509, 2522);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(216, 2425, 2537);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(216, 2023, 2548);
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>.WrappedValue
+                f_216_2265_2311(System.Runtime.CompilerServices.ConditionalWeakTable<TKey, Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>.WrappedValue>
+                this_param, TKey
+                key, System.Runtime.CompilerServices.ConditionalWeakTable<TKey, Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>.WrappedValue>.CreateValueCallback
+                createValueCallback)
+                {
+                    var return_v = this_param.GetValue(key, createValueCallback);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(216, 2265, 2311);
+                    return return_v;
+                }
+
+
+                TValue?
+                f_216_2265_2317(Microsoft.CodeAnalysis.Diagnostics.AnalysisValueProvider<TKey, TValue>.WrappedValue
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(216, 2265, 2317);
+                    return return_v;
+                }
+
+
+                int
+                f_216_2336_2365(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(216, 2336, 2365);
+                    return 0;
+                }
+
             }
-            catch (Exception)
+            catch
             {
-                value = default;
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(216, 2023, 2548);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(216, 2023, 2548);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         static AnalysisValueProvider()

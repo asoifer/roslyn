@@ -397,15 +397,73 @@ namespace Microsoft.CodeAnalysis.Syntax.InternalSyntax
 
         public bool Any(int kind)
         {
-            foreach (var element in this)
+            try
             {
-                if (element.RawKind == kind)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(834, 2140, 2407);
+                try
                 {
-                    return true;
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(834, 2190, 2367);
+                    foreach (var element in f_834_2214_2218_I(this))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(834, 2190, 2367);
 
-            return false;
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(834, 2252, 2352) || true) && (f_834_2256_2271(element) == kind)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(834, 2252, 2352);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(834, 2321, 2333);
+
+                            return true;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(834, 2252, 2352);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(834, 2190, 2367);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(834, 1, 178);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(834, 1, 178);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(834, 2383, 2396);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(834, 2140, 2407);
+
+                int
+                f_834_2256_2271(TNode
+                this_param)
+                {
+                    var return_v = this_param.RawKind;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(834, 2256, 2271);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<TNode>
+                f_834_2214_2218_I(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<TNode>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(834, 2214, 2218);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(834, 2140, 2407);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(834, 2140, 2407);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal TNode[] Nodes
@@ -550,7 +608,34 @@ namespace Microsoft.CodeAnalysis.Syntax.InternalSyntax
 
         public Enumerator GetEnumerator()
         {
-            return new Enumerator(this);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(834, 3118, 3215);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(834, 3176, 3204);
+
+                return f_834_3183_3203(this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(834, 3118, 3215);
+
+                Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<TNode>.Enumerator
+                f_834_3183_3203(Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<TNode>
+                list)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Syntax.InternalSyntax.SyntaxList<TNode>.Enumerator(list);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(834, 3183, 3203);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(834, 3118, 3215);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(834, 3118, 3215);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal void CopyTo(int offset, ArrayElement<GreenNode>[] array, int arrayOffset, int count)

@@ -44,15 +44,68 @@ namespace Microsoft.CodeAnalysis.Syntax
         /// </summary>
         public TWarningState GetWarningState(string id, int position)
         {
-            var entry = GetEntryAtOrBeforePosition(position);
-
-            TWarningState state;
-            if (entry.SpecificWarningOption.TryGetValue(id, out state))
+            try
             {
-                return state;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(655, 1641, 2007);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(655, 1727, 1776);
 
-            return entry.GeneralWarningOption;
+                var
+                entry = f_655_1739_1775(this, position)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(655, 1792, 1812);
+
+                TWarningState
+                state
+                = default(TWarningState);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(655, 1826, 1946) || true) && (f_655_1830_1884(entry.SpecificWarningOption, id, out state))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(655, 1826, 1946);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(655, 1918, 1931);
+
+                    return state;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(655, 1826, 1946);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(655, 1962, 1996);
+
+                return entry.GeneralWarningOption;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(655, 1641, 2007);
+
+                Microsoft.CodeAnalysis.Syntax.AbstractWarningStateMap<TWarningState>.WarningStateMapEntry
+                f_655_1739_1775(Microsoft.CodeAnalysis.Syntax.AbstractWarningStateMap<TWarningState>
+                this_param, int
+                position)
+                {
+                    var return_v = this_param.GetEntryAtOrBeforePosition(position);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(655, 1739, 1775);
+                    return return_v;
+                }
+
+
+                bool
+                f_655_1830_1884(System.Collections.Immutable.ImmutableDictionary<string, TWarningState>
+                this_param, string
+                key, out TWarningState
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(655, 1830, 1884);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(655, 1641, 2007);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(655, 1641, 2007);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private WarningStateMapEntry GetEntryAtOrBeforePosition(int position)

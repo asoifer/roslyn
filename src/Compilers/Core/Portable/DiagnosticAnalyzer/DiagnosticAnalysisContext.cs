@@ -1261,7 +1261,7 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
                     // LAFHIS
                     // f_256_35890_35919(this, diagnostic);
-                    
+
                     _reportDiagnostic(diagnostic);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(256, 35890, 35919);
                 }
@@ -2239,7 +2239,45 @@ namespace Microsoft.CodeAnalysis.Diagnostics
         /// <param name="syntaxKinds">Action will be executed only if a <see cref="SyntaxNode"/>'s Kind matches one of the syntax kind values.</param>
         public void RegisterSyntaxNodeAction(Action<SyntaxNodeAnalysisContext> action, params TLanguageKindEnum[] syntaxKinds)
         {
-            this.RegisterSyntaxNodeAction(action, syntaxKinds.AsImmutableOrEmpty());
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(256, 55738, 55964);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(256, 55881, 55953);
+
+                f_256_55881_55952(this, action, f_256_55919_55951(syntaxKinds));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(256, 55738, 55964);
+
+                System.Collections.Immutable.ImmutableArray<TLanguageKindEnum>
+                f_256_55919_55951(TLanguageKindEnum[]
+                items)
+                {
+                    var return_v = items.AsImmutableOrEmpty<TLanguageKindEnum>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(256, 55919, 55951);
+                    return return_v;
+                }
+
+
+                int
+                f_256_55881_55952(Microsoft.CodeAnalysis.Diagnostics.CodeBlockStartAnalysisContext<TLanguageKindEnum>
+                this_param, System.Action<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext>
+                action, System.Collections.Immutable.ImmutableArray<TLanguageKindEnum>
+                syntaxKinds)
+                {
+                    this_param.RegisterSyntaxNodeAction(action, syntaxKinds);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(256, 55881, 55952);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(256, 55738, 55964);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(256, 55738, 55964);
+            }
         }
 
         public abstract void RegisterSyntaxNodeAction(Action<SyntaxNodeAnalysisContext> action, ImmutableArray<TLanguageKindEnum> syntaxKinds);
@@ -4532,7 +4570,7 @@ namespace Microsoft.CodeAnalysis.Diagnostics
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(256, 88560, 88592);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(256, 88563, 88592);
-                
+
                 // LAFHIS
                 //return f_256_88563_88592(this, syntaxTree); 
                 var temp = _getSemanticModel(syntaxTree);

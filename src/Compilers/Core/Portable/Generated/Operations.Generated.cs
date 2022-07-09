@@ -1284,32 +1284,14 @@ namespace Microsoft.CodeAnalysis.Operations
 
         IObjectOrCollectionInitializerOperation Initializer { get; }
     }
-    /// <summary>
-    /// Obsolete interface that used to represent a collection element initializer. It has been replaced by
-    /// <see cref="IInvocationOperation" /> and <see cref="IDynamicInvocationOperation" />, as appropriate.
-    /// <para>
-    /// Current usage:
-    ///   None. This API has been obsoleted in favor of <see cref="IInvocationOperation" /> and <see cref="IDynamicInvocationOperation" />.
-    /// </para>
-    /// </summary>
-    /// <remarks>
-    /// <para>This node is associated with the following operation kinds:</para>
-    /// <list type="bullet">
-    /// <item><description><see cref="OperationKind.CollectionElementInitializer"/></description></item>
-    /// </list>
-    /// <para>This interface is reserved for implementation by its associated APIs. We reserve the right to
-    /// change it in the future.</para>
-    /// </remarks>
     [Obsolete("ICollectionElementInitializerOperation has been replaced with " + nameof(IInvocationOperation) + " and " + nameof(IDynamicInvocationOperation), error: true)]
     public interface ICollectionElementInitializerOperation : IOperation
     {
-
         IMethodSymbol AddMethod { get; }
-
         ImmutableArray<IOperation> Arguments { get; }
-
         bool IsDynamic { get; }
     }
+
     /// <summary>
     /// Represents an operation that gets a string value for the <see cref="Argument" /> name.
     /// <para>
@@ -50159,7 +50141,38 @@ namespace Microsoft.CodeAnalysis.Operations
     }
     public abstract partial class OperationVisitor<TArgument, TResult>
     {
-        public virtual TResult? Visit(IOperation? operation, TArgument argument) => operation is null ? default(TResult) : operation.Accept(this, argument);
+        public virtual TResult? Visit(IOperation? operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 432518, 432592);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 432521, 432592);
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(306, 432521, 432538) || ((operation is null && DynAbs.Tracing.TraceSender.Conditional_F2(306, 432541, 432557)) || DynAbs.Tracing.TraceSender.Conditional_F3(306, 432560, 432592))) ? default(TResult) : f_306_432560_432592(operation, this, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 432518, 432592);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 432518, 432592);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 432518, 432592);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_432560_432592(Microsoft.CodeAnalysis.IOperation
+            this_param, Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            visitor, TArgument?
+            argument)
+            {
+                var return_v = this_param.Accept<TArgument, TResult>(visitor, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 432560, 432592);
+                return return_v;
+            }
+
+        }
+
 
         public virtual TResult? DefaultVisit(IOperation operation, TArgument argument)
         {
@@ -50200,125 +50213,3782 @@ namespace Microsoft.CodeAnalysis.Operations
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
-        public virtual TResult? VisitInvalid(IInvalidOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitBlock(IBlockOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitVariableDeclarationGroup(IVariableDeclarationGroupOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSwitch(ISwitchOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitForEachLoop(IForEachLoopOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitForLoop(IForLoopOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitForToLoop(IForToLoopOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitWhileLoop(IWhileLoopOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitLabeled(ILabeledOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitBranch(IBranchOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitEmpty(IEmptyOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitReturn(IReturnOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitLock(ILockOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTry(ITryOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitUsing(IUsingOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitExpressionStatement(IExpressionStatementOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitLocalFunction(ILocalFunctionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitStop(IStopOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitEnd(IEndOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitRaiseEvent(IRaiseEventOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitLiteral(ILiteralOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitConversion(IConversionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitInvocation(IInvocationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitArrayElementReference(IArrayElementReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitLocalReference(ILocalReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitParameterReference(IParameterReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitFieldReference(IFieldReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitMethodReference(IMethodReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitPropertyReference(IPropertyReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitEventReference(IEventReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitUnaryOperator(IUnaryOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitBinaryOperator(IBinaryOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitConditional(IConditionalOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitCoalesce(ICoalesceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitAnonymousFunction(IAnonymousFunctionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitObjectCreation(IObjectCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTypeParameterObjectCreation(ITypeParameterObjectCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitArrayCreation(IArrayCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitInstanceReference(IInstanceReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitIsType(IIsTypeOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitAwait(IAwaitOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSimpleAssignment(ISimpleAssignmentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitCompoundAssignment(ICompoundAssignmentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitParenthesized(IParenthesizedOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitEventAssignment(IEventAssignmentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitConditionalAccess(IConditionalAccessOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitConditionalAccessInstance(IConditionalAccessInstanceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitInterpolatedString(IInterpolatedStringOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitAnonymousObjectCreation(IAnonymousObjectCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitObjectOrCollectionInitializer(IObjectOrCollectionInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitMemberInitializer(IMemberInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        [Obsolete("ICollectionElementInitializerOperation has been replaced with " + nameof(IInvocationOperation) + " and " + nameof(IDynamicInvocationOperation), error: true)]
-        public virtual TResult? VisitCollectionElementInitializer(ICollectionElementInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitNameOf(INameOfOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTuple(ITupleOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDynamicObjectCreation(IDynamicObjectCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDynamicMemberReference(IDynamicMemberReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDynamicInvocation(IDynamicInvocationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDynamicIndexerAccess(IDynamicIndexerAccessOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTranslatedQuery(ITranslatedQueryOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDelegateCreation(IDelegateCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDefaultValue(IDefaultValueOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTypeOf(ITypeOfOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSizeOf(ISizeOfOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitAddressOf(IAddressOfOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitIsPattern(IIsPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitIncrementOrDecrement(IIncrementOrDecrementOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitThrow(IThrowOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDeconstructionAssignment(IDeconstructionAssignmentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDeclarationExpression(IDeclarationExpressionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitOmittedArgument(IOmittedArgumentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitFieldInitializer(IFieldInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitVariableInitializer(IVariableInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitPropertyInitializer(IPropertyInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitParameterInitializer(IParameterInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitArrayInitializer(IArrayInitializerOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitVariableDeclarator(IVariableDeclaratorOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitVariableDeclaration(IVariableDeclarationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitArgument(IArgumentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitCatchClause(ICatchClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSwitchCase(ISwitchCaseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDefaultCaseClause(IDefaultCaseClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitPatternCaseClause(IPatternCaseClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitRangeCaseClause(IRangeCaseClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitRelationalCaseClause(IRelationalCaseClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSingleValueCaseClause(ISingleValueCaseClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitInterpolatedStringText(IInterpolatedStringTextOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitInterpolation(IInterpolationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitConstantPattern(IConstantPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDeclarationPattern(IDeclarationPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTupleBinaryOperator(ITupleBinaryOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitMethodBodyOperation(IMethodBodyOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitConstructorBodyOperation(IConstructorBodyOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDiscardOperation(IDiscardOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitFlowCapture(IFlowCaptureOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitFlowCaptureReference(IFlowCaptureReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitIsNull(IIsNullOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitCaughtException(ICaughtExceptionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitStaticLocalInitializationSemaphore(IStaticLocalInitializationSemaphoreOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitFlowAnonymousFunction(IFlowAnonymousFunctionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitCoalesceAssignment(ICoalesceAssignmentOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitRangeOperation(IRangeOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitReDim(IReDimOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitReDimClause(IReDimClauseOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitRecursivePattern(IRecursivePatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitDiscardPattern(IDiscardPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSwitchExpression(ISwitchExpressionOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitSwitchExpressionArm(ISwitchExpressionArmOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitPropertySubpattern(IPropertySubpatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        internal virtual TResult? VisitAggregateQuery(IAggregateQueryOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        internal virtual TResult? VisitNoPiaObjectCreation(INoPiaObjectCreationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        internal virtual TResult? VisitPlaceholder(IPlaceholderOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        internal virtual TResult? VisitPointerIndirectionReference(IPointerIndirectionReferenceOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        internal virtual TResult? VisitWithStatement(IWithStatementOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitUsingDeclaration(IUsingDeclarationOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitNegatedPattern(INegatedPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitBinaryPattern(IBinaryPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitTypePattern(ITypePatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitRelationalPattern(IRelationalPatternOperation operation, TArgument argument) => DefaultVisit(operation, argument);
-        public virtual TResult? VisitWith(IWithOperation operation, TArgument argument) => DefaultVisit(operation, argument);
+        public virtual TResult? VisitInvalid(IInvalidOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 432915, 432951);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 432918, 432951);
+                return f_306_432918_432951(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 432915, 432951);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 432915, 432951);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 432915, 432951);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_432918_432951(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IInvalidOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 432918, 432951);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitBlock(IBlockOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433044, 433080);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433047, 433080);
+                return f_306_433047_433080(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433044, 433080);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433044, 433080);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433044, 433080);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433047_433080(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IBlockOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433047, 433080);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitVariableDeclarationGroup(IVariableDeclarationGroupOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433211, 433247);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433214, 433247);
+                return f_306_433214_433247(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433211, 433247);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433211, 433247);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433211, 433247);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433214_433247(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IVariableDeclarationGroupOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433214, 433247);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSwitch(ISwitchOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433342, 433378);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433345, 433378);
+                return f_306_433345_433378(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433342, 433378);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433342, 433378);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433342, 433378);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433345_433378(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISwitchOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433345, 433378);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitForEachLoop(IForEachLoopOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433483, 433519);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433486, 433519);
+                return f_306_433486_433519(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433483, 433519);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433483, 433519);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433483, 433519);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433486_433519(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IForEachLoopOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433486, 433519);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitForLoop(IForLoopOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433616, 433652);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433619, 433652);
+                return f_306_433619_433652(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433616, 433652);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433616, 433652);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433616, 433652);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433619_433652(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IForLoopOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433619, 433652);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitForToLoop(IForToLoopOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433753, 433789);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433756, 433789);
+                return f_306_433756_433789(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433753, 433789);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433753, 433789);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433753, 433789);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433756_433789(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IForToLoopOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433756, 433789);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitWhileLoop(IWhileLoopOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 433890, 433926);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 433893, 433926);
+                return f_306_433893_433926(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 433890, 433926);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 433890, 433926);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 433890, 433926);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_433893_433926(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IWhileLoopOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 433893, 433926);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitLabeled(ILabeledOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434023, 434059);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434026, 434059);
+                return f_306_434026_434059(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434023, 434059);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434023, 434059);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434023, 434059);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434026_434059(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ILabeledOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434026, 434059);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitBranch(IBranchOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434154, 434190);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434157, 434190);
+                return f_306_434157_434190(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434154, 434190);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434154, 434190);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434154, 434190);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434157_434190(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IBranchOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434157, 434190);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitEmpty(IEmptyOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434283, 434319);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434286, 434319);
+                return f_306_434286_434319(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434283, 434319);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434283, 434319);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434283, 434319);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434286_434319(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IEmptyOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434286, 434319);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitReturn(IReturnOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434414, 434450);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434417, 434450);
+                return f_306_434417_434450(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434414, 434450);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434414, 434450);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434414, 434450);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434417_434450(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IReturnOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434417, 434450);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitLock(ILockOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434541, 434577);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434544, 434577);
+                return f_306_434544_434577(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434541, 434577);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434541, 434577);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434541, 434577);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434544_434577(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ILockOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434544, 434577);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTry(ITryOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434666, 434702);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434669, 434702);
+                return f_306_434669_434702(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434666, 434702);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434666, 434702);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434666, 434702);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434669_434702(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITryOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434669, 434702);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitUsing(IUsingOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434795, 434831);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434798, 434831);
+                return f_306_434798_434831(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434795, 434831);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434795, 434831);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434795, 434831);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434798_434831(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IUsingOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434798, 434831);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitExpressionStatement(IExpressionStatementOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 434952, 434988);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 434955, 434988);
+                return f_306_434955_434988(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 434952, 434988);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 434952, 434988);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 434952, 434988);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_434955_434988(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IExpressionStatementOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 434955, 434988);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitLocalFunction(ILocalFunctionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435097, 435133);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435100, 435133);
+                return f_306_435100_435133(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435097, 435133);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435097, 435133);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435097, 435133);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435100_435133(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ILocalFunctionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435100, 435133);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitStop(IStopOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435224, 435260);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435227, 435260);
+                return f_306_435227_435260(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435224, 435260);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435224, 435260);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435224, 435260);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435227_435260(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IStopOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435227, 435260);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitEnd(IEndOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435349, 435385);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435352, 435385);
+                return f_306_435352_435385(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435349, 435385);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435349, 435385);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435349, 435385);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435352_435385(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IEndOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435352, 435385);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitRaiseEvent(IRaiseEventOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435488, 435524);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435491, 435524);
+                return f_306_435491_435524(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435488, 435524);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435488, 435524);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435488, 435524);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435491_435524(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IRaiseEventOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435491, 435524);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitLiteral(ILiteralOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435621, 435657);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435624, 435657);
+                return f_306_435624_435657(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435621, 435657);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435621, 435657);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435621, 435657);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435624_435657(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ILiteralOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435624, 435657);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitConversion(IConversionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435760, 435796);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435763, 435796);
+                return f_306_435763_435796(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435760, 435796);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435760, 435796);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435760, 435796);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435763_435796(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IConversionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435763, 435796);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitInvocation(IInvocationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 435899, 435935);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 435902, 435935);
+                return f_306_435902_435935(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 435899, 435935);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 435899, 435935);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 435899, 435935);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_435902_435935(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IInvocationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 435902, 435935);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitArrayElementReference(IArrayElementReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436060, 436096);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436063, 436096);
+                return f_306_436063_436096(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436060, 436096);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436060, 436096);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436060, 436096);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436063_436096(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IArrayElementReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436063, 436096);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitLocalReference(ILocalReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436207, 436243);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436210, 436243);
+                return f_306_436210_436243(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436207, 436243);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436207, 436243);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436207, 436243);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436210_436243(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ILocalReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436210, 436243);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitParameterReference(IParameterReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436362, 436398);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436365, 436398);
+                return f_306_436365_436398(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436362, 436398);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436362, 436398);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436362, 436398);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436365_436398(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IParameterReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436365, 436398);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitFieldReference(IFieldReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436509, 436545);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436512, 436545);
+                return f_306_436512_436545(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436509, 436545);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436509, 436545);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436509, 436545);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436512_436545(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IFieldReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436512, 436545);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitMethodReference(IMethodReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436658, 436694);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436661, 436694);
+                return f_306_436661_436694(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436658, 436694);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436658, 436694);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436658, 436694);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436661_436694(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IMethodReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436661, 436694);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitPropertyReference(IPropertyReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436811, 436847);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436814, 436847);
+                return f_306_436814_436847(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436811, 436847);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436811, 436847);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436811, 436847);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436814_436847(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IPropertyReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436814, 436847);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitEventReference(IEventReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 436958, 436994);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 436961, 436994);
+                return f_306_436961_436994(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 436958, 436994);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 436958, 436994);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 436958, 436994);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_436961_436994(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IEventReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 436961, 436994);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitUnaryOperator(IUnaryOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437095, 437131);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437098, 437131);
+                return f_306_437098_437131(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437095, 437131);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437095, 437131);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437095, 437131);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437098_437131(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IUnaryOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437098, 437131);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitBinaryOperator(IBinaryOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437234, 437270);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437237, 437270);
+                return f_306_437237_437270(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437234, 437270);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437234, 437270);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437234, 437270);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437237_437270(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IBinaryOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437237, 437270);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitConditional(IConditionalOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437375, 437411);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437378, 437411);
+                return f_306_437378_437411(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437375, 437411);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437375, 437411);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437375, 437411);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437378_437411(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IConditionalOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437378, 437411);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitCoalesce(ICoalesceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437510, 437546);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437513, 437546);
+                return f_306_437513_437546(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437510, 437546);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437510, 437546);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437510, 437546);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437513_437546(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ICoalesceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437513, 437546);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitAnonymousFunction(IAnonymousFunctionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437663, 437699);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437666, 437699);
+                return f_306_437666_437699(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437663, 437699);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437663, 437699);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437663, 437699);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437666_437699(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IAnonymousFunctionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437666, 437699);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitObjectCreation(IObjectCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437810, 437846);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437813, 437846);
+                return f_306_437813_437846(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437810, 437846);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437810, 437846);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437810, 437846);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437813_437846(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IObjectCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437813, 437846);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTypeParameterObjectCreation(ITypeParameterObjectCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 437983, 438019);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 437986, 438019);
+                return f_306_437986_438019(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 437983, 438019);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 437983, 438019);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 437983, 438019);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_437986_438019(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITypeParameterObjectCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 437986, 438019);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitArrayCreation(IArrayCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438128, 438164);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438131, 438164);
+                return f_306_438131_438164(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438128, 438164);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438128, 438164);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438128, 438164);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438131_438164(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IArrayCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438131, 438164);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitInstanceReference(IInstanceReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438281, 438317);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438284, 438317);
+                return f_306_438284_438317(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438281, 438317);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438281, 438317);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438281, 438317);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438284_438317(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IInstanceReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438284, 438317);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitIsType(IIsTypeOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438412, 438448);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438415, 438448);
+                return f_306_438415_438448(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438412, 438448);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438412, 438448);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438412, 438448);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438415_438448(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IIsTypeOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438415, 438448);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitAwait(IAwaitOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438541, 438577);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438544, 438577);
+                return f_306_438544_438577(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438541, 438577);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438541, 438577);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438541, 438577);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438544_438577(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IAwaitOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438544, 438577);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSimpleAssignment(ISimpleAssignmentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438692, 438728);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438695, 438728);
+                return f_306_438695_438728(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438692, 438728);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438692, 438728);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438692, 438728);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438695_438728(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISimpleAssignmentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438695, 438728);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitCompoundAssignment(ICompoundAssignmentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438847, 438883);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438850, 438883);
+                return f_306_438850_438883(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438847, 438883);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438847, 438883);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438847, 438883);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438850_438883(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ICompoundAssignmentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438850, 438883);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitParenthesized(IParenthesizedOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 438992, 439028);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 438995, 439028);
+                return f_306_438995_439028(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 438992, 439028);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 438992, 439028);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 438992, 439028);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_438995_439028(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IParenthesizedOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 438995, 439028);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitEventAssignment(IEventAssignmentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 439141, 439177);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 439144, 439177);
+                return f_306_439144_439177(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 439141, 439177);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 439141, 439177);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 439141, 439177);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_439144_439177(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IEventAssignmentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 439144, 439177);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitConditionalAccess(IConditionalAccessOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 439294, 439330);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 439297, 439330);
+                return f_306_439297_439330(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 439294, 439330);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 439294, 439330);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 439294, 439330);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_439297_439330(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IConditionalAccessOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 439297, 439330);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitConditionalAccessInstance(IConditionalAccessInstanceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 439463, 439499);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 439466, 439499);
+                return f_306_439466_439499(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 439463, 439499);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 439463, 439499);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 439463, 439499);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_439466_439499(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IConditionalAccessInstanceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 439466, 439499);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitInterpolatedString(IInterpolatedStringOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 439618, 439654);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 439621, 439654);
+                return f_306_439621_439654(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 439618, 439654);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 439618, 439654);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 439618, 439654);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_439621_439654(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IInterpolatedStringOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 439621, 439654);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitAnonymousObjectCreation(IAnonymousObjectCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 439783, 439819);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 439786, 439819);
+                return f_306_439786_439819(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 439783, 439819);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 439783, 439819);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 439783, 439819);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_439786_439819(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IAnonymousObjectCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 439786, 439819);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitObjectOrCollectionInitializer(IObjectOrCollectionInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 439960, 439996);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 439963, 439996);
+                return f_306_439963_439996(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 439960, 439996);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 439960, 439996);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 439960, 439996);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_439963_439996(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IObjectOrCollectionInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 439963, 439996);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitMemberInitializer(IMemberInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 440113, 440149);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 440116, 440149);
+                return f_306_440116_440149(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 440113, 440149);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 440113, 440149);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 440113, 440149);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_440116_440149(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IMemberInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 440116, 440149);
+                return return_v;
+            }
+
+        }
+
+        //[Obsolete("ICollectionElementInitializerOperation has been replaced with " + nameof(IInvocationOperation) + " and " + nameof(IDynamicInvocationOperation), error: true)]
+        public virtual TResult? VisitNameOf(INameOfOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 440597, 440633);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 440600, 440633);
+                return f_306_440600_440633(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 440597, 440633);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 440597, 440633);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 440597, 440633);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_440600_440633(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.INameOfOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 440600, 440633);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTuple(ITupleOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 440726, 440762);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 440729, 440762);
+                return f_306_440729_440762(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 440726, 440762);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 440726, 440762);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 440726, 440762);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_440729_440762(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITupleOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 440729, 440762);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDynamicObjectCreation(IDynamicObjectCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 440887, 440923);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 440890, 440923);
+                return f_306_440890_440923(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 440887, 440923);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 440887, 440923);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 440887, 440923);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_440890_440923(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDynamicObjectCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 440890, 440923);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDynamicMemberReference(IDynamicMemberReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441050, 441086);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441053, 441086);
+                return f_306_441053_441086(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441050, 441086);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441050, 441086);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441050, 441086);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441053_441086(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDynamicMemberReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441053, 441086);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDynamicInvocation(IDynamicInvocationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441203, 441239);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441206, 441239);
+                return f_306_441206_441239(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441203, 441239);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441203, 441239);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441203, 441239);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441206_441239(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDynamicInvocationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441206, 441239);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDynamicIndexerAccess(IDynamicIndexerAccessOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441362, 441398);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441365, 441398);
+                return f_306_441365_441398(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441362, 441398);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441362, 441398);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441362, 441398);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441365_441398(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDynamicIndexerAccessOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441365, 441398);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTranslatedQuery(ITranslatedQueryOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441511, 441547);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441514, 441547);
+                return f_306_441514_441547(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441511, 441547);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441511, 441547);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441511, 441547);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441514_441547(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITranslatedQueryOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441514, 441547);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDelegateCreation(IDelegateCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441662, 441698);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441665, 441698);
+                return f_306_441665_441698(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441662, 441698);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441662, 441698);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441662, 441698);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441665_441698(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDelegateCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441665, 441698);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDefaultValue(IDefaultValueOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441805, 441841);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441808, 441841);
+                return f_306_441808_441841(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441805, 441841);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441805, 441841);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441805, 441841);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441808_441841(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDefaultValueOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441808, 441841);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTypeOf(ITypeOfOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 441936, 441972);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 441939, 441972);
+                return f_306_441939_441972(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 441936, 441972);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 441936, 441972);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 441936, 441972);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_441939_441972(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITypeOfOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 441939, 441972);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSizeOf(ISizeOfOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442067, 442103);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442070, 442103);
+                return f_306_442070_442103(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442067, 442103);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442067, 442103);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442067, 442103);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442070_442103(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISizeOfOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442070, 442103);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitAddressOf(IAddressOfOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442204, 442240);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442207, 442240);
+                return f_306_442207_442240(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442204, 442240);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442204, 442240);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442204, 442240);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442207_442240(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IAddressOfOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442207, 442240);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitIsPattern(IIsPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442341, 442377);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442344, 442377);
+                return f_306_442344_442377(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442341, 442377);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442341, 442377);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442341, 442377);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442344_442377(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IIsPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442344, 442377);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitIncrementOrDecrement(IIncrementOrDecrementOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442500, 442536);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442503, 442536);
+                return f_306_442503_442536(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442500, 442536);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442500, 442536);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442500, 442536);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442503_442536(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IIncrementOrDecrementOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442503, 442536);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitThrow(IThrowOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442629, 442665);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442632, 442665);
+                return f_306_442632_442665(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442629, 442665);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442629, 442665);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442629, 442665);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442632_442665(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IThrowOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442632, 442665);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDeconstructionAssignment(IDeconstructionAssignmentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442796, 442832);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442799, 442832);
+                return f_306_442799_442832(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442796, 442832);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442796, 442832);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442796, 442832);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442799_442832(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDeconstructionAssignmentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442799, 442832);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDeclarationExpression(IDeclarationExpressionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 442957, 442993);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 442960, 442993);
+                return f_306_442960_442993(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 442957, 442993);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 442957, 442993);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 442957, 442993);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_442960_442993(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDeclarationExpressionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 442960, 442993);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitOmittedArgument(IOmittedArgumentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 443106, 443142);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 443109, 443142);
+                return f_306_443109_443142(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 443106, 443142);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 443106, 443142);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 443106, 443142);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_443109_443142(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IOmittedArgumentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 443109, 443142);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitFieldInitializer(IFieldInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 443257, 443293);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 443260, 443293);
+                return f_306_443260_443293(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 443257, 443293);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 443257, 443293);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 443257, 443293);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_443260_443293(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IFieldInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 443260, 443293);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitVariableInitializer(IVariableInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 443414, 443450);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 443417, 443450);
+                return f_306_443417_443450(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 443414, 443450);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 443414, 443450);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 443414, 443450);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_443417_443450(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IVariableInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 443417, 443450);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitPropertyInitializer(IPropertyInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 443571, 443607);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 443574, 443607);
+                return f_306_443574_443607(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 443571, 443607);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 443571, 443607);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 443571, 443607);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_443574_443607(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IPropertyInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 443574, 443607);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitParameterInitializer(IParameterInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 443730, 443766);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 443733, 443766);
+                return f_306_443733_443766(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 443730, 443766);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 443730, 443766);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 443730, 443766);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_443733_443766(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IParameterInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 443733, 443766);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitArrayInitializer(IArrayInitializerOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 443881, 443917);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 443884, 443917);
+                return f_306_443884_443917(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 443881, 443917);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 443881, 443917);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 443881, 443917);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_443884_443917(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IArrayInitializerOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 443884, 443917);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitVariableDeclarator(IVariableDeclaratorOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444036, 444072);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444039, 444072);
+                return f_306_444039_444072(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444036, 444072);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444036, 444072);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444036, 444072);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444039_444072(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IVariableDeclaratorOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444039, 444072);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitVariableDeclaration(IVariableDeclarationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444193, 444229);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444196, 444229);
+                return f_306_444196_444229(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444193, 444229);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444193, 444229);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444193, 444229);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444196_444229(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IVariableDeclarationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444196, 444229);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitArgument(IArgumentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444328, 444364);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444331, 444364);
+                return f_306_444331_444364(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444328, 444364);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444328, 444364);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444328, 444364);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444331_444364(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IArgumentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444331, 444364);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitCatchClause(ICatchClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444469, 444505);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444472, 444505);
+                return f_306_444472_444505(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444469, 444505);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444469, 444505);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444469, 444505);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444472_444505(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ICatchClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444472, 444505);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSwitchCase(ISwitchCaseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444608, 444644);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444611, 444644);
+                return f_306_444611_444644(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444608, 444644);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444608, 444644);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444608, 444644);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444611_444644(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISwitchCaseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444611, 444644);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDefaultCaseClause(IDefaultCaseClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444761, 444797);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444764, 444797);
+                return f_306_444764_444797(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444761, 444797);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444761, 444797);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444761, 444797);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444764_444797(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDefaultCaseClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444764, 444797);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitPatternCaseClause(IPatternCaseClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 444914, 444950);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 444917, 444950);
+                return f_306_444917_444950(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 444914, 444950);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 444914, 444950);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 444914, 444950);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_444917_444950(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IPatternCaseClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 444917, 444950);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitRangeCaseClause(IRangeCaseClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445063, 445099);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445066, 445099);
+                return f_306_445066_445099(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445063, 445099);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445063, 445099);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445063, 445099);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445066_445099(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IRangeCaseClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445066, 445099);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitRelationalCaseClause(IRelationalCaseClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445222, 445258);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445225, 445258);
+                return f_306_445225_445258(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445222, 445258);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445222, 445258);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445222, 445258);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445225_445258(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IRelationalCaseClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445225, 445258);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSingleValueCaseClause(ISingleValueCaseClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445383, 445419);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445386, 445419);
+                return f_306_445386_445419(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445383, 445419);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445383, 445419);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445383, 445419);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445386_445419(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISingleValueCaseClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445386, 445419);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitInterpolatedStringText(IInterpolatedStringTextOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445546, 445582);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445549, 445582);
+                return f_306_445549_445582(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445546, 445582);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445546, 445582);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445546, 445582);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445549_445582(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IInterpolatedStringTextOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445549, 445582);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitInterpolation(IInterpolationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445691, 445727);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445694, 445727);
+                return f_306_445694_445727(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445691, 445727);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445691, 445727);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445691, 445727);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445694_445727(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IInterpolationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445694, 445727);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitConstantPattern(IConstantPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445840, 445876);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445843, 445876);
+                return f_306_445843_445876(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445840, 445876);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445840, 445876);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445840, 445876);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445843_445876(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IConstantPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445843, 445876);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDeclarationPattern(IDeclarationPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 445995, 446031);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 445998, 446031);
+                return f_306_445998_446031(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 445995, 446031);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 445995, 446031);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 445995, 446031);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_445998_446031(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDeclarationPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 445998, 446031);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTupleBinaryOperator(ITupleBinaryOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 446144, 446180);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 446147, 446180);
+                return f_306_446147_446180(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 446144, 446180);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 446144, 446180);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 446144, 446180);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_446147_446180(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITupleBinaryOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 446147, 446180);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitMethodBodyOperation(IMethodBodyOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 446292, 446328);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 446295, 446328);
+                return f_306_446295_446328(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 446292, 446328);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 446292, 446328);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 446292, 446328);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_446295_446328(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IMethodBodyOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 446295, 446328);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitConstructorBodyOperation(IConstructorBodyOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 446450, 446486);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 446453, 446486);
+                return f_306_446453_446486(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 446450, 446486);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 446450, 446486);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 446450, 446486);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_446453_446486(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IConstructorBodyOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 446453, 446486);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDiscardOperation(IDiscardOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 446592, 446628);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 446595, 446628);
+                return f_306_446595_446628(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 446592, 446628);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 446592, 446628);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 446592, 446628);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_446595_446628(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDiscardOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 446595, 446628);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitFlowCapture(IFlowCaptureOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 446733, 446769);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 446736, 446769);
+                return f_306_446736_446769(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 446733, 446769);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 446733, 446769);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 446733, 446769);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_446736_446769(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.FlowAnalysis.IFlowCaptureOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 446736, 446769);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitFlowCaptureReference(IFlowCaptureReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 446892, 446928);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 446895, 446928);
+                return f_306_446895_446928(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 446892, 446928);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 446892, 446928);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 446892, 446928);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_446895_446928(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.FlowAnalysis.IFlowCaptureReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 446895, 446928);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitIsNull(IIsNullOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447023, 447059);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447026, 447059);
+                return f_306_447026_447059(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447023, 447059);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447023, 447059);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447023, 447059);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447026_447059(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.FlowAnalysis.IIsNullOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447026, 447059);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitCaughtException(ICaughtExceptionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447172, 447208);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447175, 447208);
+                return f_306_447175_447208(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447172, 447208);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447172, 447208);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447172, 447208);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447175_447208(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.FlowAnalysis.ICaughtExceptionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447175, 447208);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitStaticLocalInitializationSemaphore(IStaticLocalInitializationSemaphoreOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447359, 447395);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447362, 447395);
+                return f_306_447362_447395(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447359, 447395);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447359, 447395);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447359, 447395);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447362_447395(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.FlowAnalysis.IStaticLocalInitializationSemaphoreOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447362, 447395);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitFlowAnonymousFunction(IFlowAnonymousFunctionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447520, 447556);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447523, 447556);
+                return f_306_447523_447556(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447520, 447556);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447520, 447556);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447520, 447556);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447523_447556(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.FlowAnalysis.IFlowAnonymousFunctionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447523, 447556);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitCoalesceAssignment(ICoalesceAssignmentOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447675, 447711);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447678, 447711);
+                return f_306_447678_447711(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447675, 447711);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447675, 447711);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447675, 447711);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447678_447711(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ICoalesceAssignmentOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447678, 447711);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitRangeOperation(IRangeOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447813, 447849);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447816, 447849);
+                return f_306_447816_447849(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447813, 447849);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447813, 447849);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447813, 447849);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447816_447849(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IRangeOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447816, 447849);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitReDim(IReDimOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 447942, 447978);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 447945, 447978);
+                return f_306_447945_447978(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 447942, 447978);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 447942, 447978);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 447942, 447978);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_447945_447978(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IReDimOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 447945, 447978);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitReDimClause(IReDimClauseOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448083, 448119);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448086, 448119);
+                return f_306_448086_448119(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448083, 448119);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448083, 448119);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448083, 448119);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448086_448119(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IReDimClauseOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448086, 448119);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitRecursivePattern(IRecursivePatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448234, 448270);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448237, 448270);
+                return f_306_448237_448270(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448234, 448270);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448234, 448270);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448234, 448270);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448237_448270(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IRecursivePatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448237, 448270);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitDiscardPattern(IDiscardPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448381, 448417);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448384, 448417);
+                return f_306_448384_448417(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448381, 448417);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448381, 448417);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448381, 448417);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448384_448417(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IDiscardPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448384, 448417);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSwitchExpression(ISwitchExpressionOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448532, 448568);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448535, 448568);
+                return f_306_448535_448568(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448532, 448568);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448532, 448568);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448532, 448568);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448535_448568(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISwitchExpressionOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448535, 448568);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitSwitchExpressionArm(ISwitchExpressionArmOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448689, 448725);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448692, 448725);
+                return f_306_448692_448725(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448689, 448725);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448689, 448725);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448689, 448725);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448692_448725(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ISwitchExpressionArmOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448692, 448725);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitPropertySubpattern(IPropertySubpatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448844, 448880);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448847, 448880);
+                return f_306_448847_448880(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448844, 448880);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448844, 448880);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448844, 448880);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448847_448880(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IPropertySubpatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448847, 448880);
+                return return_v;
+            }
+
+        }
+
+        internal virtual TResult? VisitAggregateQuery(IAggregateQueryOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 448993, 449029);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 448996, 449029);
+                return f_306_448996_449029(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 448993, 449029);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 448993, 449029);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 448993, 449029);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_448996_449029(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IAggregateQueryOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 448996, 449029);
+                return return_v;
+            }
+
+        }
+
+        internal virtual TResult? VisitNoPiaObjectCreation(INoPiaObjectCreationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 449152, 449188);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 449155, 449188);
+                return f_306_449155_449188(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 449152, 449188);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 449152, 449188);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 449152, 449188);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_449155_449188(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.INoPiaObjectCreationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 449155, 449188);
+                return return_v;
+            }
+
+        }
+
+        internal virtual TResult? VisitPlaceholder(IPlaceholderOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 449295, 449331);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 449298, 449331);
+                return f_306_449298_449331(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 449295, 449331);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 449295, 449331);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 449295, 449331);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_449298_449331(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IPlaceholderOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 449298, 449331);
+                return return_v;
+            }
+
+        }
+
+        internal virtual TResult? VisitPointerIndirectionReference(IPointerIndirectionReferenceOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 449470, 449506);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 449473, 449506);
+                return f_306_449473_449506(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 449470, 449506);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 449470, 449506);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 449470, 449506);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_449473_449506(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IPointerIndirectionReferenceOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 449473, 449506);
+                return return_v;
+            }
+
+        }
+
+        internal virtual TResult? VisitWithStatement(IWithStatementOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 449617, 449653);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 449620, 449653);
+                return f_306_449620_449653(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 449617, 449653);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 449617, 449653);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 449617, 449653);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_449620_449653(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IWithStatementOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 449620, 449653);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitUsingDeclaration(IUsingDeclarationOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 449768, 449804);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 449771, 449804);
+                return f_306_449771_449804(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 449768, 449804);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 449768, 449804);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 449768, 449804);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_449771_449804(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IUsingDeclarationOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 449771, 449804);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitNegatedPattern(INegatedPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 449915, 449951);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 449918, 449951);
+                return f_306_449918_449951(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 449915, 449951);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 449915, 449951);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 449915, 449951);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_449918_449951(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.INegatedPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 449918, 449951);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitBinaryPattern(IBinaryPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 450060, 450096);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 450063, 450096);
+                return f_306_450063_450096(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 450060, 450096);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 450060, 450096);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 450060, 450096);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_450063_450096(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IBinaryPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 450063, 450096);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitTypePattern(ITypePatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 450201, 450237);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 450204, 450237);
+                return f_306_450204_450237(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 450201, 450237);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 450201, 450237);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 450201, 450237);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_450204_450237(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.ITypePatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 450204, 450237);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitRelationalPattern(IRelationalPatternOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 450354, 450390);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 450357, 450390);
+                return f_306_450357_450390(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 450354, 450390);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 450354, 450390);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 450354, 450390);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_450357_450390(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IRelationalPatternOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 450357, 450390);
+                return return_v;
+            }
+
+        }
+
+        public virtual TResult? VisitWith(IWithOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(306, 450481, 450517);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(306, 450484, 450517);
+                return f_306_450484_450517(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(306, 450481, 450517);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(306, 450481, 450517);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(306, 450481, 450517);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_306_450484_450517(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IWithOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.DefaultVisit((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(306, 450484, 450517);
+                return return_v;
+            }
+
+        }
+
     }
 }

@@ -222,9 +222,71 @@ namespace Microsoft.CodeAnalysis.Collections
         /// <param name="array"></param>
         public void AddValues(ArrayBuilder<TElement> array)
         {
-            foreach (var kvp in this.EnsureFullyPopulated())
+            try
             {
-                array.AddRange(kvp.Value);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 4834, 5043);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 4910, 5032);
+                    foreach (var kvp in f_96_4930_4957_I(f_96_4930_4957(this)))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 4910, 5032);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 4991, 5017);
+
+                        f_96_4991_5016(array, kvp.Value);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(96, 4910, 5032);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(96, 1, 123);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(96, 1, 123);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 4834, 5043);
+
+                System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_4930_4957(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param)
+                {
+                    var return_v = this_param.EnsureFullyPopulated();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 4930, 4957);
+                    return return_v;
+                }
+
+
+                int
+                f_96_4991_5016(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<TElement>
+                this_param, System.Collections.Immutable.ImmutableArray<TElement>
+                items)
+                {
+                    this_param.AddRange(items);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 4991, 5016);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_4930_4957_I(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 4930, 4957);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 4834, 5043);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 4834, 5043);
             }
         }
 
@@ -234,7 +296,36 @@ namespace Microsoft.CodeAnalysis.Collections
         /// <returns>The concurrent dictionary</returns>
         private ConcurrentDictionary<TKey, ImmutableArray<TElement>> CreateConcurrentDictionary()
         {
-            return new ConcurrentDictionary<TKey, ImmutableArray<TElement>>(concurrencyLevel: 2, capacity: 0, comparer: _comparer);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 5222, 5466);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 5336, 5455);
+
+                return f_96_5343_5454(concurrencyLevel: 2, capacity: 0, comparer: _comparer);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 5222, 5466);
+
+                System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_5343_5454(int
+                concurrencyLevel, int
+                capacity, System.Collections.Generic.IEqualityComparer<TKey>
+                comparer)
+                {
+                    var return_v = new System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>(concurrencyLevel: concurrencyLevel, capacity: capacity, comparer: comparer);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 5343, 5454);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 5222, 5466);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 5222, 5466);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -243,8 +334,35 @@ namespace Microsoft.CodeAnalysis.Collections
         /// <returns>A new, empty dictionary, suitable for use as the fully populated map.</returns>
         private IDictionary<TKey, ImmutableArray<TElement>> CreateDictionaryForFullyPopulatedMap(int capacity)
         {
-            // CONSIDER: If capacity is small, consider using a more frugal data structure.
-            return new Dictionary<TKey, ImmutableArray<TElement>>(capacity, _comparer);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 5714, 6020);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 5934, 6009);
+
+                return f_96_5941_6008(capacity, _comparer);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 5714, 6020);
+
+                System.Collections.Generic.Dictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_5941_6008(int
+                capacity, System.Collections.Generic.IEqualityComparer<TKey>
+                comparer)
+                {
+                    var return_v = new System.Collections.Generic.Dictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>(capacity, comparer);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 5941, 6008);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 5714, 6020);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 5714, 6020);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -252,35 +370,136 @@ namespace Microsoft.CodeAnalysis.Collections
         /// </summary>
         private ImmutableArray<TElement> GetOrCreateValue(TKey key)
         {
-            ImmutableArray<TElement> elements;
-            ConcurrentDictionary<TKey, ImmutableArray<TElement>>? concurrentMap;
-
-            // Check if we're fully populated before trying to retrieve the elements.  If we are
-            // and we don't get any elements back, then we don't have to go any further.
-            var localMap = _map;
-
-            if (localMap == null)
+            try
             {
-                concurrentMap = CreateConcurrentDictionary();
-                localMap = Interlocked.CompareExchange(ref _map, concurrentMap, null);
-                if (localMap == null)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 6178, 7640);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6262, 6296);
+
+                ImmutableArray<TElement>
+                elements
+                = default(ImmutableArray<TElement>);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6310, 6378);
+
+                ConcurrentDictionary<TKey, ImmutableArray<TElement>>?
+                concurrentMap
+                = default(ConcurrentDictionary<TKey, ImmutableArray<TElement>>?);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6582, 6602);
+
+                var
+                localMap = _map
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6618, 7037) || true) && (localMap == null)
+                )
+
                 {
-                    return AddToConcurrentMap(concurrentMap, key);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 6618, 7037);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6672, 6717);
+
+                    concurrentMap = f_96_6688_6716(this);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6735, 6805);
+
+                    localMap = f_96_6746_6804(ref _map, concurrentMap, null);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6823, 6950) || true) && (localMap == null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 6823, 6950);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 6885, 6931);
+
+                        return f_96_6892_6930(this, concurrentMap, key);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(96, 6823, 6950);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(96, 6618, 7037);
                 }
-                // Some other thread beat us to the initial population
-            }
 
-            // first check to see if they are already cached
-            if (localMap.TryGetValue(key, out elements))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 7115, 7223) || true) && (f_96_7119_7158(localMap, key, out elements))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 7115, 7223);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 7192, 7208);
+
+                    return elements;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(96, 7115, 7223);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 7312, 7393);
+
+                concurrentMap = localMap as ConcurrentDictionary<TKey, ImmutableArray<TElement>>;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 7541, 7629);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(96, 7548, 7569) || ((concurrentMap == null && DynAbs.Tracing.TraceSender.Conditional_F2(96, 7572, 7587)) || DynAbs.Tracing.TraceSender.Conditional_F3(96, 7590, 7628))) ? s_emptySentinel : f_96_7590_7628(this, concurrentMap, key);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 6178, 7640);
+
+                System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_6688_6716(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param)
+                {
+                    var return_v = this_param.CreateConcurrentDictionary();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 6688, 6716);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                f_96_6746_6804(ref System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                location1, System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                value, System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, (System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>)value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 6746, 6804);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TElement>
+                f_96_6892_6930(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                map, TKey
+                key)
+                {
+                    var return_v = this_param.AddToConcurrentMap(map, key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 6892, 6930);
+                    return return_v;
+                }
+
+
+                bool
+                f_96_7119_7158(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                this_param, TKey
+                key, out System.Collections.Immutable.ImmutableArray<TElement>
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 7119, 7158);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TElement>
+                f_96_7590_7628(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                map, TKey
+                key)
+                {
+                    var return_v = this_param.AddToConcurrentMap(map, key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 7590, 7628);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return elements;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 6178, 7640);
+                throw;
             }
-
-            // How we proceed depends on whether we're fully populated.
-            concurrentMap = localMap as ConcurrentDictionary<TKey, ImmutableArray<TElement>>;
-
-            // If we're fully populated, the value wasn't found. Otherwise, lookup the new value and add it to the concurrent map.
-            return concurrentMap == null ? s_emptySentinel : AddToConcurrentMap(concurrentMap, key);
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 6178, 7640);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -291,16 +510,63 @@ namespace Microsoft.CodeAnalysis.Collections
         /// <returns>The added entry. If there was a race, and another thread beat this one, then this returns the previously added entry.</returns>
         private ImmutableArray<TElement> AddToConcurrentMap(ConcurrentDictionary<TKey, ImmutableArray<TElement>> map, TKey key)
         {
-            var elements = _getElementsOfKey(key);
-
-            if (elements.IsDefaultOrEmpty)
+            try
             {
-                // In this case, we're not fully populated, so remember that this was a failed
-                // lookup.
-                elements = s_emptySentinel;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 8061, 8550);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 8205, 8243);
 
-            return map.GetOrAdd(key, elements);
+                var
+                elements = f_96_8220_8242(this, key)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 8259, 8488) || true) && (elements.IsDefaultOrEmpty)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 8259, 8488);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 8446, 8473);
+
+                    elements = s_emptySentinel;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(96, 8259, 8488);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 8504, 8539);
+
+                return f_96_8511_8538(map, key, elements);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 8061, 8550);
+
+                System.Collections.Immutable.ImmutableArray<TElement>
+                f_96_8220_8242(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, TKey
+                arg)
+                {
+                    var return_v = this_param._getElementsOfKey(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 8220, 8242);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TElement>
+                f_96_8511_8538(System.Collections.Concurrent.ConcurrentDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                this_param, TKey
+                key, System.Collections.Immutable.ImmutableArray<TElement>
+                value)
+                {
+                    var return_v = this_param.GetOrAdd(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 8511, 8538);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 8061, 8550);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 8061, 8550);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static bool IsNotFullyPopulatedMap([NotNullWhen(returnValue: false)] IDictionary<TKey, ImmutableArray<TElement>>? existingMap)
@@ -332,39 +598,276 @@ namespace Microsoft.CodeAnalysis.Collections
         /// <returns></returns>
         private IDictionary<TKey, ImmutableArray<TElement>> CreateFullyPopulatedMap(IDictionary<TKey, ImmutableArray<TElement>>? existingMap)
         {
-            Debug.Assert(IsNotFullyPopulatedMap(existingMap));
-
-            // Enumerate all the keys and attempt to generate values for all of them.
-            var allKeys = _getKeys(_comparer);
-            Debug.Assert(_comparer == allKeys.Comparer);
-
-            var fullyPopulatedMap = CreateDictionaryForFullyPopulatedMap(capacity: allKeys.Count);
-            if (existingMap == null)
+            try
             {
-                // The concurrent map has never been created.
-                foreach (var key in allKeys)
-                {
-                    fullyPopulatedMap.Add(key, _getElementsOfKey(key));
-                }
-            }
-            else
-            {
-                foreach (var key in allKeys)
-                {
-                    // Copy non-empty values from the existing map
-                    ImmutableArray<TElement> elements;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 9359, 10763);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 9517, 9567);
 
-                    if (!existingMap.TryGetValue(key, out elements))
+                f_96_9517_9566(f_96_9530_9565(existingMap));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 9670, 9704);
+
+                var
+                allKeys = f_96_9684_9703(this, _comparer)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 9718, 9762);
+
+                f_96_9718_9761(_comparer == f_96_9744_9760(allKeys));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 9778, 9864);
+
+                var
+                fullyPopulatedMap = f_96_9802_9863(this, capacity: f_96_9849_9862(allKeys))
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 9878, 10711) || true) && (existingMap == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 9878, 10711);
+                    try
                     {
-                        elements = _getElementsOfKey(key);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 9998, 10137);
+                        foreach (var key in f_96_10018_10025_I(allKeys))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 9998, 10137);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10067, 10118);
+
+                            f_96_10067_10117(fullyPopulatedMap, key, f_96_10094_10116(this, key));
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(96, 9998, 10137);
+                        }
                     }
-
-                    Debug.Assert(elements != s_emptySentinel);
-                    fullyPopulatedMap.Add(key, elements);
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(96, 1, 140);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(96, 1, 140);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(96, 9878, 10711);
                 }
-            }
 
-            return fullyPopulatedMap;
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 9878, 10711);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10203, 10696);
+                        foreach (var key in f_96_10223_10230_I(allKeys))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 10203, 10696);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10340, 10374);
+
+                            ImmutableArray<TElement>
+                            elements
+                            = default(ImmutableArray<TElement>);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10398, 10552) || true) && (!f_96_10403_10445(existingMap, key, out elements))
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 10398, 10552);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10495, 10529);
+
+                                elements = f_96_10506_10528(this, key);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(96, 10398, 10552);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10576, 10618);
+
+                            f_96_10576_10617(elements != s_emptySentinel);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10640, 10677);
+
+                            f_96_10640_10676(fullyPopulatedMap, key, elements);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(96, 10203, 10696);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(96, 1, 494);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(96, 1, 494);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(96, 9878, 10711);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 10727, 10752);
+
+                return fullyPopulatedMap;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 9359, 10763);
+
+                bool
+                f_96_9530_9565(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                existingMap)
+                {
+                    var return_v = IsNotFullyPopulatedMap(existingMap);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 9530, 9565);
+                    return return_v;
+                }
+
+
+                int
+                f_96_9517_9566(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 9517, 9566);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.HashSet<TKey>
+                f_96_9684_9703(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, System.Collections.Generic.IEqualityComparer<TKey>
+                arg)
+                {
+                    var return_v = this_param._getKeys(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 9684, 9703);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEqualityComparer<TKey>
+                f_96_9744_9760(System.Collections.Generic.HashSet<TKey>
+                this_param)
+                {
+                    var return_v = this_param.Comparer;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(96, 9744, 9760);
+                    return return_v;
+                }
+
+
+                int
+                f_96_9718_9761(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 9718, 9761);
+                    return 0;
+                }
+
+
+                int
+                f_96_9849_9862(System.Collections.Generic.HashSet<TKey>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(96, 9849, 9862);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_9802_9863(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, int
+                capacity)
+                {
+                    var return_v = this_param.CreateDictionaryForFullyPopulatedMap(capacity: capacity);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 9802, 9863);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TElement>
+                f_96_10094_10116(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, TKey
+                arg)
+                {
+                    var return_v = this_param._getElementsOfKey(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10094, 10116);
+                    return return_v;
+                }
+
+
+                int
+                f_96_10067_10117(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                this_param, TKey
+                key, System.Collections.Immutable.ImmutableArray<TElement>
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10067, 10117);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.HashSet<TKey>
+                f_96_10018_10025_I(System.Collections.Generic.HashSet<TKey>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10018, 10025);
+                    return return_v;
+                }
+
+
+                bool
+                f_96_10403_10445(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                this_param, TKey
+                key, out System.Collections.Immutable.ImmutableArray<TElement>
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10403, 10445);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<TElement>
+                f_96_10506_10528(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, TKey
+                arg)
+                {
+                    var return_v = this_param._getElementsOfKey(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10506, 10528);
+                    return return_v;
+                }
+
+
+                int
+                f_96_10576_10617(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10576, 10617);
+                    return 0;
+                }
+
+
+                int
+                f_96_10640_10676(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                this_param, TKey
+                key, System.Collections.Immutable.ImmutableArray<TElement>
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10640, 10676);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.HashSet<TKey>
+                f_96_10223_10230_I(System.Collections.Generic.HashSet<TKey>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 10223, 10230);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 9359, 10763);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 9359, 10763);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -373,29 +876,116 @@ namespace Microsoft.CodeAnalysis.Collections
         /// </summary>
         private IDictionary<TKey, ImmutableArray<TElement>> EnsureFullyPopulated()
         {
-            IDictionary<TKey, ImmutableArray<TElement>>? fullyPopulatedMap = null;
-
-            var currentMap = _map;
-            while (IsNotFullyPopulatedMap(currentMap))
+            try
             {
-                if (fullyPopulatedMap == null)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(96, 10964, 11939);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11063, 11133);
+
+                IDictionary<TKey, ImmutableArray<TElement>>?
+                fullyPopulatedMap = null
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11149, 11171);
+
+                var
+                currentMap = _map
+                ;
+                try
                 {
-                    fullyPopulatedMap = CreateFullyPopulatedMap(currentMap);
+                    while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11185, 11843) || true) && (f_96_11192_11226(currentMap))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 11185, 11843);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11260, 11406) || true) && (fullyPopulatedMap == null)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 11260, 11406);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11331, 11387);
+
+                            fullyPopulatedMap = f_96_11351_11386(this, currentMap);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(96, 11260, 11406);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11426, 11513);
+
+                        var
+                        replacedMap = f_96_11444_11512(ref _map, fullyPopulatedMap, currentMap)
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11531, 11683) || true) && (replacedMap == currentMap)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(96, 11531, 11683);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11639, 11664);
+
+                            return fullyPopulatedMap;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(96, 11531, 11683);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11803, 11828);
+
+                        currentMap = replacedMap;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(96, 11185, 11843);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(96, 11185, 11843);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(96, 11185, 11843);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(96, 11910, 11928);
+
+                return currentMap;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(96, 10964, 11939);
+
+                bool
+                f_96_11192_11226(System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                existingMap)
+                {
+                    var return_v = IsNotFullyPopulatedMap(existingMap);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 11192, 11226);
+                    return return_v;
                 }
 
-                var replacedMap = Interlocked.CompareExchange(ref _map, fullyPopulatedMap, currentMap);
-                if (replacedMap == currentMap)
+
+                System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                f_96_11351_11386(Microsoft.CodeAnalysis.Collections.CachingDictionary<TKey, TElement>
+                this_param, System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                existingMap)
                 {
-                    // Normal exit.
-                    return fullyPopulatedMap;
+                    var return_v = this_param.CreateFullyPopulatedMap(existingMap);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 11351, 11386);
+                    return return_v;
                 }
 
-                // Another thread either initialized a new ConcurrentMap or a fully-populated map.
-                currentMap = replacedMap;
+
+                System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                f_96_11444_11512(ref System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                location1, System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>
+                value, System.Collections.Generic.IDictionary<TKey, System.Collections.Immutable.ImmutableArray<TElement>>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(96, 11444, 11512);
+                    return return_v;
+                }
+
             }
-
-            // The map is already fully populated
-            return currentMap;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(96, 10964, 11939);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(96, 10964, 11939);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         static CachingDictionary()

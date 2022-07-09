@@ -167,67 +167,415 @@ namespace Roslyn.Utilities
 
         public OneOrMany<T> Add(T one)
         {
-            var builder = ArrayBuilder<T>.GetInstance();
-            if (_many.IsDefault)
+            try
             {
-                builder.Add(_one!);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(351, 1724, 2124);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 1779, 1823);
+
+                var
+                builder = f_351_1793_1822()
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 1837, 2014) || true) && (_many.IsDefault)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 1837, 2014);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 1890, 1909);
+
+                    f_351_1890_1908(builder, _one!);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(351, 1837, 2014);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 1837, 2014);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 1975, 1999);
+
+                    f_351_1975_1998(builder, _many);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(351, 1837, 2014);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2028, 2045);
+
+                f_351_2028_2044(builder, one);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2059, 2113);
+
+                return f_351_2066_2112(f_351_2083_2111(builder));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(351, 1724, 2124);
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                f_351_1793_1822()
+                {
+                    var return_v = ArrayBuilder<T>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 1793, 1822);
+                    return return_v;
+                }
+
+
+                int
+                f_351_1890_1908(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param, T
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 1890, 1908);
+                    return 0;
+                }
+
+
+                int
+                f_351_1975_1998(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param, System.Collections.Immutable.ImmutableArray<T>
+                items)
+                {
+                    this_param.AddRange(items);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 1975, 1998);
+                    return 0;
+                }
+
+
+                int
+                f_351_2028_2044(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param, T
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2028, 2044);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<T>
+                f_351_2083_2111(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param)
+                {
+                    var return_v = this_param.ToImmutableAndFree();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2083, 2111);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.OneOrMany<T>
+                f_351_2066_2112(System.Collections.Immutable.ImmutableArray<T>
+                many)
+                {
+                    var return_v = new Roslyn.Utilities.OneOrMany<T>(many);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2066, 2112);
+                    return return_v;
+                }
+
             }
-            else
+            catch
             {
-                builder.AddRange(_many);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(351, 1724, 2124);
+                throw;
             }
-            builder.Add(one);
-            return new OneOrMany<T>(builder.ToImmutableAndFree());
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(351, 1724, 2124);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public bool Contains(T item)
         {
-            RoslynDebug.Assert(item != null);
-            if (Count == 1)
+            try
             {
-                return item.Equals(_one);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(351, 2136, 2594);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2189, 2222);
 
-            var iter = GetEnumerator();
-            while (iter.MoveNext())
-            {
-                if (item.Equals(iter.Current))
+                f_351_2189_2221(item != null);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2236, 2324) || true) && (Count == 1)
+                )
+
                 {
-                    return true;
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 2236, 2324);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2284, 2309);
 
-            return false;
+                    return f_351_2291_2308(item, _one);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(351, 2236, 2324);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2340, 2367);
+
+                var
+                iter = GetEnumerator()
+                ;
+                try
+                {
+                    while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2381, 2554) || true) && (iter.MoveNext())
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 2381, 2554);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2437, 2539) || true) && (f_351_2441_2466(item, iter.Current))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 2437, 2539);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2508, 2520);
+
+                            return true;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(351, 2437, 2539);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(351, 2381, 2554);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(351, 2381, 2554);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(351, 2381, 2554);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2570, 2583);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(351, 2136, 2594);
+
+                int
+                f_351_2189_2221(bool
+                b)
+                {
+                    RoslynDebug.Assert(b);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2189, 2221);
+                    return 0;
+                }
+
+
+                bool
+                f_351_2291_2308(T
+                this_param, T?
+                obj)
+                {
+                    var return_v = this_param.Equals((object?)obj);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2291, 2308);
+                    return return_v;
+                }
+
+
+                bool
+                f_351_2441_2466(T
+                this_param, T
+                obj)
+                {
+                    var return_v = this_param.Equals((object)obj);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2441, 2466);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(351, 2136, 2594);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(351, 2136, 2594);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public OneOrMany<T> RemoveAll(T item)
         {
-            if (_many.IsDefault)
+            try
             {
-                return item.Equals(_one) ? default : this;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(351, 2606, 3296);
 
-            var builder = ArrayBuilder<T>.GetInstance();
-            var iter = GetEnumerator();
-            while (iter.MoveNext())
-            {
-                if (!item.Equals(iter.Current))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2668, 2778) || true) && (_many.IsDefault)
+                )
+
                 {
-                    builder.Add(iter.Current);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 2668, 2778);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2721, 2763);
+
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(351, 2728, 2745) || ((f_351_2728_2745(item, _one) && DynAbs.Tracing.TraceSender.Conditional_F2(351, 2748, 2755)) || DynAbs.Tracing.TraceSender.Conditional_F3(351, 2758, 2762))) ? default : this;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(351, 2668, 2778);
                 }
-            }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2794, 2838);
 
-            if (builder.Count == 0)
+                var
+                builder = f_351_2808_2837()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2852, 2879);
+
+                var
+                iter = GetEnumerator()
+                ;
+                try
+                {
+                    while ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2893, 3081) || true) && (iter.MoveNext())
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 2893, 3081);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 2949, 3066) || true) && (!f_351_2954_2979(item, iter.Current))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 2949, 3066);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 3021, 3047);
+
+                            f_351_3021_3046(builder, iter.Current);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(351, 2949, 3066);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(351, 2893, 3081);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(351, 2893, 3081);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(351, 2893, 3081);
+                }
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 3097, 3183) || true) && (f_351_3101_3114(builder) == 0)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(351, 3097, 3183);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 3153, 3168);
+
+                    return default;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(351, 3097, 3183);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 3199, 3285);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(351, 3206, 3228) || ((f_351_3206_3219(builder) == Count && DynAbs.Tracing.TraceSender.Conditional_F2(351, 3231, 3235)) || DynAbs.Tracing.TraceSender.Conditional_F3(351, 3238, 3284))) ? this : f_351_3238_3284(f_351_3255_3283(builder));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(351, 2606, 3296);
+
+                bool
+                f_351_2728_2745(T
+                this_param, T?
+                obj)
+                {
+                    var return_v = this_param.Equals((object?)obj);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2728, 2745);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                f_351_2808_2837()
+                {
+                    var return_v = ArrayBuilder<T>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2808, 2837);
+                    return return_v;
+                }
+
+
+                bool
+                f_351_2954_2979(T
+                this_param, T
+                obj)
+                {
+                    var return_v = this_param.Equals((object)obj);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 2954, 2979);
+                    return return_v;
+                }
+
+
+                int
+                f_351_3021_3046(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param, T
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 3021, 3046);
+                    return 0;
+                }
+
+
+                int
+                f_351_3101_3114(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(351, 3101, 3114);
+                    return return_v;
+                }
+
+
+                int
+                f_351_3206_3219(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(351, 3206, 3219);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<T>
+                f_351_3255_3283(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<T>
+                this_param)
+                {
+                    var return_v = this_param.ToImmutableAndFree();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 3255, 3283);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.OneOrMany<T>
+                f_351_3238_3284(System.Collections.Immutable.ImmutableArray<T>
+                many)
+                {
+                    var return_v = new Roslyn.Utilities.OneOrMany<T>(many);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 3238, 3284);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                return default;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(351, 2606, 3296);
+                throw;
             }
-
-            return builder.Count == Count ? this : new OneOrMany<T>(builder.ToImmutableAndFree());
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(351, 2606, 3296);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public Enumerator GetEnumerator()
         {
-            return new Enumerator(this);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(351, 3308, 3405);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(351, 3366, 3394);
+
+                return f_351_3373_3393(this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(351, 3308, 3405);
+
+                Roslyn.Utilities.OneOrMany<T>.Enumerator
+                f_351_3373_3393(Roslyn.Utilities.OneOrMany<T>
+                collection)
+                {
+                    var return_v = new Roslyn.Utilities.OneOrMany<T>.Enumerator(collection);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(351, 3373, 3393);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(351, 3308, 3405);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(351, 3308, 3405);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal struct Enumerator

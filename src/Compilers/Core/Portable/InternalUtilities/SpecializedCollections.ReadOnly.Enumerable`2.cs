@@ -34,7 +34,34 @@ namespace Roslyn.Utilities
 
                 public new IEnumerator<T> GetEnumerator()
                 {
-                    return this.Underlying.GetEnumerator();
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(379, 704, 844);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(379, 786, 825);
+
+                        return f_379_793_824(this.Underlying);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(379, 704, 844);
+
+                        System.Collections.Generic.IEnumerator<T>
+                        f_379_793_824(TUnderlying
+                        this_param)
+                        {
+                            var return_v = this_param.GetEnumerator();
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(379, 793, 824);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(379, 704, 844);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(379, 704, 844);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 static Enumerable()

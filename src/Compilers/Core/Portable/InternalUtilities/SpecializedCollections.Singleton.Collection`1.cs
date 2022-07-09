@@ -100,7 +100,45 @@ namespace Roslyn.Utilities
 
                 public bool Contains(T item)
                 {
-                    return EqualityComparer<T>.Default.Equals(_loneValue, item);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(381, 1008, 1156);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(381, 1077, 1137);
+
+                        return f_381_1084_1136(f_381_1084_1111(), _loneValue, item);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(381, 1008, 1156);
+
+                        System.Collections.Generic.EqualityComparer<T>
+                        f_381_1084_1111()
+                        {
+                            var return_v = EqualityComparer<T>.Default;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(381, 1084, 1111);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_381_1084_1136(System.Collections.Generic.EqualityComparer<T>
+                        this_param, T?
+                        x, T?
+                        y)
+                        {
+                            var return_v = this_param.Equals(x, y);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(381, 1084, 1136);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(381, 1008, 1156);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(381, 1008, 1156);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public void CopyTo(T[] array, int arrayIndex)
@@ -203,12 +241,66 @@ namespace Roslyn.Utilities
 
                 public IEnumerator<T> GetEnumerator()
                 {
-                    return new Enumerator<T>(_loneValue);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(381, 1565, 1699);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(381, 1643, 1680);
+
+                        return f_381_1650_1679(_loneValue);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(381, 1565, 1699);
+
+                        Roslyn.Utilities.SpecializedCollections.Singleton.Enumerator<T>
+                        f_381_1650_1679(T?
+                        value)
+                        {
+                            var return_v = new Roslyn.Utilities.SpecializedCollections.Singleton.Enumerator<T>(value);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(381, 1650, 1679);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(381, 1565, 1699);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(381, 1565, 1699);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 IEnumerator IEnumerable.GetEnumerator()
                 {
-                    return GetEnumerator();
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(381, 1719, 1841);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(381, 1799, 1822);
+
+                        return f_381_1806_1821(this);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(381, 1719, 1841);
+
+                        System.Collections.Generic.IEnumerator<T>
+                        f_381_1806_1821(Roslyn.Utilities.SpecializedCollections.Singleton.List<T>
+                        this_param)
+                        {
+                            var return_v = this_param.GetEnumerator();
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(381, 1806, 1821);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(381, 1719, 1841);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(381, 1719, 1841);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public T this[int index]
@@ -289,12 +381,46 @@ namespace Roslyn.Utilities
 
                 public int IndexOf(T item)
                 {
-                    if (Equals(_loneValue, item))
+                    try
                     {
-                        return 0;
-                    }
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(381, 2355, 2585);
 
-                    return -1;
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(381, 2422, 2532) || true) && (f_381_2426_2450(_loneValue, item))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(381, 2422, 2532);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(381, 2500, 2509);
+
+                            return 0;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(381, 2422, 2532);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(381, 2556, 2566);
+
+                        return -1;
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(381, 2355, 2585);
+
+                        bool
+                        f_381_2426_2450(T?
+                        objA, T?
+                        objB)
+                        {
+                            var return_v = Equals((object?)objA, (object?)objB);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(381, 2426, 2450);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(381, 2355, 2585);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(381, 2355, 2585);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public void Insert(int index, T item)

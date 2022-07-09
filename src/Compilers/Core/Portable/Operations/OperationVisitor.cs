@@ -38,9 +38,36 @@ namespace Microsoft.CodeAnalysis.Operations
     }
     public abstract partial class OperationVisitor<TArgument, TResult>
     {        // Make public after review: https://github.com/dotnet/roslyn/issues/21281
-        internal virtual TResult? VisitFixed(IFixedOperation operation, TArgument argument) =>
-            // https://github.com/dotnet/roslyn/issues/21281
-            //return DefaultVisit(operation, argument);
-            VisitNoneOperation(operation, argument);
+        internal virtual TResult? VisitFixed(IFixedOperation operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(472, 1706, 1880);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(472, 1841, 1880);
+                return f_472_1841_1880(this, operation, argument); DynAbs.Tracing.TraceSender.TraceExitMethod(472, 1706, 1880);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(472, 1706, 1880);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(472, 1706, 1880);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+
+            TResult?
+            f_472_1841_1880(Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, TResult>
+            this_param, Microsoft.CodeAnalysis.Operations.IFixedOperation
+            operation, TArgument?
+            argument)
+            {
+                var return_v = this_param.VisitNoneOperation((Microsoft.CodeAnalysis.IOperation)operation, argument);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(472, 1841, 1880);
+                return return_v;
+            }
+
+        }
     }
 }

@@ -235,41 +235,221 @@ namespace Microsoft.CodeAnalysis.Operations
 
         private void VisitChildrenOperations(IOperation operation, TArgument argument)
         {
-            foreach (var child in ((Operation)operation).ChildOperations)
+            try
             {
-                Visit(child, argument);
-            }
-        }
-
-        public override object? Visit(IOperation? operation, TArgument argument)
-        {
-            if (operation != null)
-            {
-                _recursionDepth++;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(473, 1996, 2242);
                 try
                 {
-                    StackGuard.EnsureSufficientExecutionStack(_recursionDepth);
-                    operation.Accept(this, argument);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2099, 2231);
+                    foreach (var child in f_473_2121_2159_I(f_473_2121_2159(((Operation)operation))))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(473, 2099, 2231);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2193, 2216);
+
+                        f_473_2193_2215(this, child, argument);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(473, 2099, 2231);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(473, 1, 133);
+                    throw;
                 }
                 finally
                 {
-                    _recursionDepth--;
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(473, 1, 133);
                 }
-            }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(473, 1996, 2242);
 
-            return null;
+                Microsoft.CodeAnalysis.Operation.Enumerable
+                f_473_2121_2159(Microsoft.CodeAnalysis.Operation
+                this_param)
+                {
+                    var return_v = this_param.ChildOperations;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(473, 2121, 2159);
+                    return return_v;
+                }
+
+
+                object?
+                f_473_2193_2215(Microsoft.CodeAnalysis.Operations.OperationWalker<TArgument>
+                this_param, Microsoft.CodeAnalysis.IOperation
+                operation, TArgument?
+                argument)
+                {
+                    var return_v = this_param.Visit(operation, argument);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(473, 2193, 2215);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Operation.Enumerable
+                f_473_2121_2159_I(Microsoft.CodeAnalysis.Operation.Enumerable
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(473, 2121, 2159);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(473, 1996, 2242);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(473, 1996, 2242);
+            }
+        }
+
+
+        public override object? Visit(IOperation? operation, TArgument argument)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(473, 2254, 2776);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2351, 2737) || true) && (operation != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(473, 2351, 2737);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2406, 2424);
+
+                    _recursionDepth++;
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2486, 2545);
+
+                        f_473_2486_2544(_recursionDepth);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2567, 2600);
+
+                        f_473_2567_2599(operation, this, argument);
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinally(473, 2637, 2722);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2685, 2703);
+
+                        _recursionDepth--;
+                        DynAbs.Tracing.TraceSender.TraceExitFinally(473, 2637, 2722);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(473, 2351, 2737);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2753, 2765);
+
+                return null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(473, 2254, 2776);
+
+                int
+                f_473_2486_2544(int
+                recursionDepth)
+                {
+                    StackGuard.EnsureSufficientExecutionStack(recursionDepth);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(473, 2486, 2544);
+                    return 0;
+                }
+
+
+                object?
+                f_473_2567_2599(Microsoft.CodeAnalysis.IOperation
+                this_param, Microsoft.CodeAnalysis.Operations.OperationWalker<TArgument>
+                visitor, TArgument?
+                argument)
+                {
+                    var return_v = this_param.Accept<TArgument, object?>((Microsoft.CodeAnalysis.Operations.OperationVisitor<TArgument, object>)visitor, argument);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(473, 2567, 2599);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(473, 2254, 2776);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(473, 2254, 2776);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public override object? DefaultVisit(IOperation operation, TArgument argument)
         {
-            VisitChildrenOperations(operation, argument);
-            return null;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(473, 2788, 2973);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2891, 2936);
+
+                f_473_2891_2935(this, operation, argument);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 2950, 2962);
+
+                return null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(473, 2788, 2973);
+
+                int
+                f_473_2891_2935(Microsoft.CodeAnalysis.Operations.OperationWalker<TArgument>
+                this_param, Microsoft.CodeAnalysis.IOperation
+                operation, TArgument?
+                argument)
+                {
+                    this_param.VisitChildrenOperations(operation, argument);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(473, 2891, 2935);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(473, 2788, 2973);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(473, 2788, 2973);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal override object? VisitNoneOperation(IOperation operation, TArgument argument)
         {
-            VisitChildrenOperations(operation, argument);
-            return null;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(473, 2985, 3178);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 3096, 3141);
+
+                f_473_3096_3140(this, operation, argument);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(473, 3155, 3167);
+
+                return null;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(473, 2985, 3178);
+
+                int
+                f_473_3096_3140(Microsoft.CodeAnalysis.Operations.OperationWalker<TArgument>
+                this_param, Microsoft.CodeAnalysis.IOperation
+                operation, TArgument?
+                argument)
+                {
+                    this_param.VisitChildrenOperations(operation, argument);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(473, 3096, 3140);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(473, 2985, 3178);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(473, 2985, 3178);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
+
     }
 }

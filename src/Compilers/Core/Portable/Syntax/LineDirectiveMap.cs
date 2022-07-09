@@ -61,11 +61,106 @@ namespace Microsoft.CodeAnalysis
         // span, taking into account line directives.
         public FileLinePositionSpan TranslateSpan(SourceText sourceText, string treeFilePath, TextSpan span)
         {
-            var unmappedStartPos = sourceText.Lines.GetLinePosition(span.Start);
-            var unmappedEndPos = sourceText.Lines.GetLinePosition(span.End);
-            var entry = FindEntry(unmappedStartPos.Line);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(666, 2247, 2680);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 2372, 2440);
 
-            return TranslateSpan(entry, treeFilePath, unmappedStartPos, unmappedEndPos);
+                var
+                unmappedStartPos = f_666_2395_2439(f_666_2395_2411(sourceText), span.Start)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 2454, 2518);
+
+                var
+                unmappedEndPos = f_666_2475_2517(f_666_2475_2491(sourceText), span.End)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 2532, 2577);
+
+                var
+                entry = f_666_2544_2576(this, unmappedStartPos.Line)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 2593, 2669);
+
+                return f_666_2600_2668(this, entry, treeFilePath, unmappedStartPos, unmappedEndPos);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(666, 2247, 2680);
+
+                Microsoft.CodeAnalysis.Text.TextLineCollection
+                f_666_2395_2411(Microsoft.CodeAnalysis.Text.SourceText
+                this_param)
+                {
+                    var return_v = this_param.Lines;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(666, 2395, 2411);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.LinePosition
+                f_666_2395_2439(Microsoft.CodeAnalysis.Text.TextLineCollection
+                this_param, int
+                position)
+                {
+                    var return_v = this_param.GetLinePosition(position);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 2395, 2439);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.TextLineCollection
+                f_666_2475_2491(Microsoft.CodeAnalysis.Text.SourceText
+                this_param)
+                {
+                    var return_v = this_param.Lines;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(666, 2475, 2491);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.LinePosition
+                f_666_2475_2517(Microsoft.CodeAnalysis.Text.TextLineCollection
+                this_param, int
+                position)
+                {
+                    var return_v = this_param.GetLinePosition(position);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 2475, 2517);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>.LineMappingEntry
+                f_666_2544_2576(Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>
+                this_param, int
+                lineNumber)
+                {
+                    var return_v = this_param.FindEntry(lineNumber);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 2544, 2576);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.FileLinePositionSpan
+                f_666_2600_2668(Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>
+                this_param, Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>.LineMappingEntry
+                entry, string
+                treeFilePath, Microsoft.CodeAnalysis.Text.LinePosition
+                unmappedStartPos, Microsoft.CodeAnalysis.Text.LinePosition
+                unmappedEndPos)
+                {
+                    var return_v = this_param.TranslateSpan(entry, treeFilePath, unmappedStartPos, unmappedEndPos);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 2600, 2668);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(666, 2247, 2680);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(666, 2247, 2680);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         protected FileLinePositionSpan TranslateSpan(LineMappingEntry entry, string treeFilePath, LinePosition unmappedStartPos, LinePosition unmappedEndPos)
@@ -210,9 +305,40 @@ namespace Microsoft.CodeAnalysis
         // Find the line mapped entry with the largest unmapped line number <= lineNumber.
         protected LineMappingEntry FindEntry(int lineNumber)
         {
-            int r = FindEntryIndex(lineNumber);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(666, 4606, 4768);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 4683, 4718);
 
-            return this.Entries[r];
+                int
+                r = f_666_4691_4717(this, lineNumber)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 4734, 4757);
+
+                return this.Entries[r];
+                DynAbs.Tracing.TraceSender.TraceExitMethod(666, 4606, 4768);
+
+                int
+                f_666_4691_4717(Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>
+                this_param, int
+                lineNumber)
+                {
+                    var return_v = this_param.FindEntryIndex(lineNumber);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 4691, 4717);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(666, 4606, 4768);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(666, 4606, 4768);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         protected int FindEntryIndex(int lineNumber)
@@ -267,31 +393,192 @@ namespace Microsoft.CodeAnalysis
         // entry for the file. This always starts with the null mapped that maps line 0 to line 0.
         private LineMappingEntry[] CreateEntryMap(SyntaxTree tree, IList<TDirective> directives)
         {
-            var entries = new LineMappingEntry[directives.Count + 1];
-            var current = InitializeFirstEntry();
-            var index = 0;
-            entries[index] = current;
-
-            if (directives.Count > 0)
+            try
             {
-                var sourceText = tree.GetText();
-                foreach (var directive in directives)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(666, 5295, 6237);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5408, 5465);
+
+                var
+                entries = new LineMappingEntry[f_666_5443_5459(directives) + 1]
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5479, 5516);
+
+                var
+                current = f_666_5493_5515(this)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5530, 5544);
+
+                var
+                index = 0
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5558, 5583);
+
+                entries[index] = current;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5599, 5947) || true) && (f_666_5603_5619(directives) > 0)
+                )
+
                 {
-                    current = GetEntry(directive, sourceText, current);
-                    ++index;
-                    entries[index] = current;
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(666, 5599, 5947);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5657, 5689);
+
+                    var
+                    sourceText = f_666_5674_5688(tree)
+                    ;
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5707, 5932);
+                        foreach (var directive in f_666_5733_5743_I(directives))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(666, 5707, 5932);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5785, 5836);
+
+                            current = f_666_5795_5835(this, directive, sourceText, current);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5858, 5866);
+
+                            ++index;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 5888, 5913);
+
+                            entries[index] = current;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(666, 5707, 5932);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(666, 1, 226);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(666, 1, 226);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(666, 5599, 5947);
                 }
-            }
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 6049, 6054);
 
-#if DEBUG
-            // Make sure the entries array is correctly sorted. 
-            for (int i = 0; i < entries.Length - 1; ++i)
+                    // Make sure the entries array is correctly sorted. 
+                    for (int
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 6040, 6187) || true) && (i < f_666_6060_6074(entries) - 1)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 6080, 6083)
+        , ++i, DynAbs.Tracing.TraceSender.TraceExitCondition(666, 6040, 6187))
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(666, 6040, 6187);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 6117, 6172);
+
+                        f_666_6117_6171(entries[i].CompareTo(entries[i + 1]) < 0);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(666, 1, 148);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(666, 1, 148);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(666, 6211, 6226);
+
+                return entries;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(666, 5295, 6237);
+
+                int
+                f_666_5443_5459(System.Collections.Generic.IList<TDirective>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(666, 5443, 5459);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>.LineMappingEntry
+                f_666_5493_5515(Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>
+                this_param)
+                {
+                    var return_v = this_param.InitializeFirstEntry();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 5493, 5515);
+                    return return_v;
+                }
+
+
+                int
+                f_666_5603_5619(System.Collections.Generic.IList<TDirective>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(666, 5603, 5619);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.SourceText
+                f_666_5674_5688(Microsoft.CodeAnalysis.SyntaxTree
+                this_param)
+                {
+                    var return_v = this_param.GetText();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 5674, 5688);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>.LineMappingEntry
+                f_666_5795_5835(Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>
+                this_param, TDirective
+                directive, Microsoft.CodeAnalysis.Text.SourceText
+                sourceText, Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>.LineMappingEntry
+                previous)
+                {
+                    var return_v = this_param.GetEntry(directive, sourceText, previous);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 5795, 5835);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IList<TDirective>
+                f_666_5733_5743_I(System.Collections.Generic.IList<TDirective>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 5733, 5743);
+                    return return_v;
+                }
+
+
+                int
+                f_666_6060_6074(Microsoft.CodeAnalysis.LineDirectiveMap<TDirective>.LineMappingEntry[]
+                this_param)
+                {
+                    var return_v = this_param.Length;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(666, 6060, 6074);
+                    return return_v;
+                }
+
+
+                int
+                f_666_6117_6171(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(666, 6117, 6171);
+                    return 0;
+                }
+
+            }
+            catch
             {
-                Debug.Assert(entries[i].CompareTo(entries[i + 1]) < 0);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(666, 5295, 6237);
+                throw;
             }
-#endif
-
-            return entries;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(666, 5295, 6237);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         static LineDirectiveMap()

@@ -879,31 +879,102 @@ namespace Microsoft.CodeAnalysis
 
         public void AddSymbol(TSymbol symbol, string name, int arity)
         {
-            UniqueSymbolOrArities pair;
-            if (!_nameMap.TryGetValue(name, out pair))
+            try
             {
-                // First time seeing a symbol with this name.  Create a mapping for it from the name
-                // to the one arity we've seen, and also store around the symbol as it's currently
-                // unique.
-                pair = new UniqueSymbolOrArities(arity, symbol);
-                _nameMap.Add(name, pair);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 8895, 10020);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 8981, 9008);
+
+                UniqueSymbolOrArities
+                pair
+                = default(UniqueSymbolOrArities);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 9022, 9667) || true) && (!f_47_9027_9063(_nameMap, name, out pair))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 9022, 9667);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 9327, 9375);
+
+                    pair = f_47_9334_9374(arity, symbol);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 9393, 9418);
+
+                    f_47_9393_9417(_nameMap, name, pair);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(47, 9022, 9667);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 9022, 9667);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 9484, 9514);
+
+                    pair.AddSymbol(symbol, arity);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 9630, 9652);
+
+                    _nameMap[name] = pair;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(47, 9022, 9667);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 9930, 10001);
+
+                f_47_9930_10000(pair.UniqueSymbol == null || (DynAbs.Tracing.TraceSender.Expression_False(47, 9943, 9999) || pair.UniqueSymbol == symbol));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(47, 8895, 10020);
+
+                bool
+                f_47_9027_9063(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+                this_param, string
+                key, out Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 9027, 9063);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities
+                f_47_9334_9374(int
+                arity, TSymbol
+                uniqueSymbol)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities(arity, uniqueSymbol);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 9334, 9374);
+                    return return_v;
+                }
+
+
+                int
+                f_47_9393_9417(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+                this_param, string
+                key, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 9393, 9417);
+                    return 0;
+                }
+
+
+                int
+                f_47_9930_10000(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 9930, 10000);
+                    return 0;
+                }
+
             }
-            else
+            catch
             {
-                pair.AddSymbol(symbol, arity);
-
-                // Since 'pair' is a struct, the dictionary must be updated with the new value
-                _nameMap[name] = pair;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 8895, 10020);
+                throw;
             }
-
-#if DEBUG
-            // After adding this symbol, the name must map to it (if it's unique), or it must map to
-            // nothing (if it's not unique).  If it maps to another symbol then we've done something
-            // horribly wrong.
-            Debug.Assert(pair.UniqueSymbol == null || pair.UniqueSymbol == symbol);
-#endif
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 8895, 10020);
+            }
         }
-
+        
         public ICollection<String> Names
         {
             get
@@ -959,24 +1030,89 @@ namespace Microsoft.CodeAnalysis
         /// <param name="uniqueSymbol"></param>
         /// <returns></returns>
         public bool TryGetAritiesAndUniqueSymbol(
-            string name,
-            out IArityEnumerable? arities,
-            out TSymbol? uniqueSymbol)
+                    string name,
+                    out IArityEnumerable? arities,
+                    out TSymbol? uniqueSymbol)
         {
-            Debug.Assert(CanBeAdded(name));
-
-            UniqueSymbolOrArities pair;
-            if (!_nameMap.TryGetValue(name, out pair))
+            try
             {
-                arities = null;
-                uniqueSymbol = null;
-                return false;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(47, 10530, 11214);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10706, 10737);
 
-            // If a unique symbol is set (not null), then its arity should be determined
-            // by inspecting the symbol.
-            pair.GetUniqueSymbolOrArities(out arities, out uniqueSymbol);
-            return true;
+                f_47_10706_10736(f_47_10719_10735(this, name));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10753, 10780);
+
+                UniqueSymbolOrArities
+                pair
+                = default(UniqueSymbolOrArities);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10794, 10968) || true) && (!f_47_10799_10835(_nameMap, name, out pair))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(47, 10794, 10968);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10869, 10884);
+
+                    arities = null;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10902, 10922);
+
+                    uniqueSymbol = null;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 10940, 10953);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(47, 10794, 10968);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 11116, 11177);
+
+                pair.GetUniqueSymbolOrArities(out arities, out uniqueSymbol);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(47, 11191, 11203);
+
+                return true;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(47, 10530, 11214);
+
+                bool
+                f_47_10719_10735(Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>
+                this_param, string
+                name)
+                {
+                    var return_v = this_param.CanBeAdded(name);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 10719, 10735);
+                    return return_v;
+                }
+
+
+                int
+                f_47_10706_10736(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 10706, 10736);
+                    return 0;
+                }
+
+
+                bool
+                f_47_10799_10835(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities>
+                this_param, string
+                key, out Microsoft.CodeAnalysis.AbstractLookupSymbolsInfo<TSymbol>.UniqueSymbolOrArities
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(47, 10799, 10835);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(47, 10530, 11214);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(47, 10530, 11214);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public void Clear()

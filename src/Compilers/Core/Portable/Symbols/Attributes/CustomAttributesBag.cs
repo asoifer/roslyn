@@ -77,7 +77,35 @@ namespace Microsoft.CodeAnalysis
         /// </summary>
         public static CustomAttributesBag<T> WithEmptyData()
         {
-            return new CustomAttributesBag<T>(CustomAttributeBagCompletionPart.EarlyDecodedWellKnownAttributeData | CustomAttributeBagCompletionPart.DecodedWellKnownAttributeData, default(ImmutableArray<T>));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(803, 1862, 2146);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 1939, 2135);
+
+                return f_803_1946_2134(CustomAttributeBagCompletionPart.EarlyDecodedWellKnownAttributeData | CustomAttributeBagCompletionPart.DecodedWellKnownAttributeData, default(ImmutableArray<T>));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(803, 1862, 2146);
+
+                Microsoft.CodeAnalysis.CustomAttributesBag<T>
+                f_803_1946_2134(Microsoft.CodeAnalysis.CustomAttributesBag<T>.CustomAttributeBagCompletionPart
+                part, System.Collections.Immutable.ImmutableArray<T>
+                customAttributes)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.CustomAttributesBag<T>(part, customAttributes);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 1946, 2134);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(803, 1862, 2146);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(803, 1862, 2146);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public bool IsEmpty
@@ -123,10 +151,68 @@ namespace Microsoft.CodeAnalysis
         /// <returns>Returns true if early decoded data were stored into the bag on this thread.</returns>
         public bool SetEarlyDecodedWellKnownAttributeData(EarlyWellKnownAttributeData data)
         {
-            WellKnownAttributeData.Seal(data);
-            var setOnOurThread = Interlocked.CompareExchange(ref _earlyDecodedWellKnownAttributeData, data, null) == null;
-            NotePartComplete(CustomAttributeBagCompletionPart.EarlyDecodedWellKnownAttributeData);
-            return setOnOurThread;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(803, 2835, 3248);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 2943, 2977);
+
+                f_803_2943_2976(data);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 2991, 3101);
+
+                var
+                setOnOurThread = f_803_3012_3092(ref _earlyDecodedWellKnownAttributeData, data, null) == null
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 3115, 3201);
+
+                f_803_3115_3200(this, CustomAttributeBagCompletionPart.EarlyDecodedWellKnownAttributeData);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 3215, 3237);
+
+                return setOnOurThread;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(803, 2835, 3248);
+
+                int
+                f_803_2943_2976(Microsoft.CodeAnalysis.EarlyWellKnownAttributeData
+                data)
+                {
+                    WellKnownAttributeData.Seal((Microsoft.CodeAnalysis.WellKnownAttributeData)data);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 2943, 2976);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.EarlyWellKnownAttributeData
+                f_803_3012_3092(ref Microsoft.CodeAnalysis.EarlyWellKnownAttributeData
+                location1, Microsoft.CodeAnalysis.EarlyWellKnownAttributeData
+                value, Microsoft.CodeAnalysis.EarlyWellKnownAttributeData
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 3012, 3092);
+                    return return_v;
+                }
+
+
+                int
+                f_803_3115_3200(Microsoft.CodeAnalysis.CustomAttributesBag<T>
+                this_param, Microsoft.CodeAnalysis.CustomAttributesBag<T>.CustomAttributeBagCompletionPart
+                part)
+                {
+                    this_param.NotePartComplete(part);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 3115, 3200);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(803, 2835, 3248);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(803, 2835, 3248);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -136,10 +222,68 @@ namespace Microsoft.CodeAnalysis
         /// <returns>Returns true if decoded data were stored into the bag on this thread.</returns>
         public bool SetDecodedWellKnownAttributeData(WellKnownAttributeData data)
         {
-            WellKnownAttributeData.Seal(data);
-            var setOnOurThread = Interlocked.CompareExchange(ref _decodedWellKnownAttributeData, data, null) == null;
-            NotePartComplete(CustomAttributeBagCompletionPart.DecodedWellKnownAttributeData);
-            return setOnOurThread;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(803, 3603, 3996);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 3701, 3735);
+
+                f_803_3701_3734(data);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 3749, 3854);
+
+                var
+                setOnOurThread = f_803_3770_3845(ref _decodedWellKnownAttributeData, data, null) == null
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 3868, 3949);
+
+                f_803_3868_3948(this, CustomAttributeBagCompletionPart.DecodedWellKnownAttributeData);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 3963, 3985);
+
+                return setOnOurThread;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(803, 3603, 3996);
+
+                int
+                f_803_3701_3734(Microsoft.CodeAnalysis.WellKnownAttributeData
+                data)
+                {
+                    WellKnownAttributeData.Seal(data);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 3701, 3734);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.WellKnownAttributeData
+                f_803_3770_3845(ref Microsoft.CodeAnalysis.WellKnownAttributeData
+                location1, Microsoft.CodeAnalysis.WellKnownAttributeData
+                value, Microsoft.CodeAnalysis.WellKnownAttributeData
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 3770, 3845);
+                    return return_v;
+                }
+
+
+                int
+                f_803_3868_3948(Microsoft.CodeAnalysis.CustomAttributesBag<T>
+                this_param, Microsoft.CodeAnalysis.CustomAttributesBag<T>.CustomAttributeBagCompletionPart
+                part)
+                {
+                    this_param.NotePartComplete(part);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 3868, 3948);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(803, 3603, 3996);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(803, 3603, 3996);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -149,10 +293,78 @@ namespace Microsoft.CodeAnalysis
         /// <returns>Returns true if bound attributes were stored into the bag on this thread.</returns>
         public bool SetAttributes(ImmutableArray<T> newCustomAttributes)
         {
-            Debug.Assert(!newCustomAttributes.IsDefault);
-            var setOnOurThread = ImmutableInterlocked.InterlockedCompareExchange(ref _customAttributes, newCustomAttributes, default(ImmutableArray<T>)) == default(ImmutableArray<T>);
-            NotePartComplete(CustomAttributeBagCompletionPart.Attributes);
-            return setOnOurThread;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(803, 4314, 4756);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 4403, 4448);
+
+                f_803_4403_4447(f_803_4416_4446_M(!newCustomAttributes.IsDefault));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 4462, 4633);
+
+                var
+                setOnOurThread = f_803_4483_4602(ref _customAttributes, newCustomAttributes, default(ImmutableArray<T>)) == default(ImmutableArray<T>)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 4647, 4709);
+
+                f_803_4647_4708(this, CustomAttributeBagCompletionPart.Attributes);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 4723, 4745);
+
+                return setOnOurThread;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(803, 4314, 4756);
+
+                bool
+                f_803_4416_4446_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(803, 4416, 4446);
+                    return return_v;
+                }
+
+
+                int
+                f_803_4403_4447(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 4403, 4447);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<T>
+                f_803_4483_4602(ref System.Collections.Immutable.ImmutableArray<T>
+                location, System.Collections.Immutable.ImmutableArray<T>
+                value, System.Collections.Immutable.ImmutableArray<T>
+                comparand)
+                {
+                    var return_v = ImmutableInterlocked.InterlockedCompareExchange(ref location, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 4483, 4602);
+                    return return_v;
+                }
+
+
+                int
+                f_803_4647_4708(Microsoft.CodeAnalysis.CustomAttributesBag<T>
+                this_param, Microsoft.CodeAnalysis.CustomAttributesBag<T>.CustomAttributeBagCompletionPart
+                part)
+                {
+                    this_param.NotePartComplete(part);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(803, 4647, 4708);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(803, 4314, 4756);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(803, 4314, 4756);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public ImmutableArray<T> Attributes
@@ -377,8 +589,18 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(803, 6746, 6917);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 6839, 6906);
 
-                f_803_6839_6905(ref _state, (this.State | part));
+                f_803_6839_6905(ref _state, (f_803_6886_6896(this) | part));
                 DynAbs.Tracing.TraceSender.TraceExitMethod(803, 6746, 6917);
+
+                Microsoft.CodeAnalysis.CustomAttributesBag<T>.CustomAttributeBagCompletionPart
+                f_803_6886_6896(Microsoft.CodeAnalysis.CustomAttributesBag<T>
+                this_param)
+                {
+                    var return_v = this_param.State;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(803, 6886, 6896);
+                    return return_v;
+                }
+
 
                 bool
                 f_803_6839_6905(ref int
@@ -409,8 +631,18 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(803, 6929, 7067);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(803, 7021, 7056);
 
-                return (this.State & part) == part;
+                return (f_803_7029_7039(this) & part) == part;
                 DynAbs.Tracing.TraceSender.TraceExitMethod(803, 6929, 7067);
+
+                Microsoft.CodeAnalysis.CustomAttributesBag<T>.CustomAttributeBagCompletionPart
+                f_803_7029_7039(Microsoft.CodeAnalysis.CustomAttributesBag<T>
+                this_param)
+                {
+                    var return_v = this_param.State;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(803, 7029, 7039);
+                    return return_v;
+                }
+
             }
             catch
             {

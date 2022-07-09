@@ -31,7 +31,34 @@ namespace Microsoft.CodeAnalysis.Syntax
 
         public static SyntaxListBuilder<TNode> Create()
         {
-            return new SyntaxListBuilder<TNode>(8);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(683, 512, 634);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(683, 584, 623);
+
+                return f_683_591_622(8);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(683, 512, 634);
+
+                Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder<TNode>
+                f_683_591_622(int
+                size)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder<TNode>(size);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(683, 591, 622);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(683, 512, 634);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(683, 512, 634);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         internal SyntaxListBuilder(SyntaxListBuilder? builder)
@@ -148,23 +175,138 @@ namespace Microsoft.CodeAnalysis.Syntax
 
         public SyntaxListBuilder<TNode> Add(TNode node)
         {
-            _builder!.Add(node);
-            return this;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(683, 1131, 1260);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(683, 1203, 1223);
+
+                f_683_1203_1222(_builder!, node);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(683, 1237, 1249);
+
+                return this;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(683, 1131, 1260);
+
+                int
+                f_683_1203_1222(Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder
+                this_param, TNode
+                item)
+                {
+                    this_param.Add((Microsoft.CodeAnalysis.SyntaxNode)item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(683, 1203, 1222);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(683, 1131, 1260);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(683, 1131, 1260);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public void AddRange(TNode[] items, int offset, int length)
         {
-            _builder!.AddRange(items, offset, length);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(683, 1272, 1409);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(683, 1356, 1398);
+
+                f_683_1356_1397(_builder!, items, offset, length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(683, 1272, 1409);
+
+                int
+                f_683_1356_1397(Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder
+                this_param, TNode[]
+                items, int
+                offset, int
+                length)
+                {
+                    this_param.AddRange((Microsoft.CodeAnalysis.SyntaxNode[])items, offset, length);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(683, 1356, 1397);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(683, 1272, 1409);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(683, 1272, 1409);
+            }
         }
 
         public void AddRange(SyntaxList<TNode> nodes)
         {
-            _builder!.AddRange(nodes);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(683, 1421, 1528);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(683, 1491, 1517);
+
+                f_683_1491_1516(_builder!, nodes);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(683, 1421, 1528);
+
+                int
+                f_683_1491_1516(Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder
+                this_param, Microsoft.CodeAnalysis.SyntaxList<TNode>
+                list)
+                {
+                    this_param.AddRange<TNode>(list);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(683, 1491, 1516);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(683, 1421, 1528);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(683, 1421, 1528);
+            }
         }
 
         public void AddRange(SyntaxList<TNode> nodes, int offset, int length)
         {
-            _builder!.AddRange(nodes, offset, length);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(683, 1540, 1687);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(683, 1634, 1676);
+
+                f_683_1634_1675(_builder!, nodes, offset, length);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(683, 1540, 1687);
+
+                int
+                f_683_1634_1675(Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder
+                this_param, Microsoft.CodeAnalysis.SyntaxList<TNode>
+                list, int
+                offset, int
+                count)
+                {
+                    this_param.AddRange<TNode>(list, offset, count);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(683, 1634, 1675);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(683, 1540, 1687);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(683, 1540, 1687);
+            }
         }
 
         public bool Any(int kind)

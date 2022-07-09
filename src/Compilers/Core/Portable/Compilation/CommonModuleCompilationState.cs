@@ -113,25 +113,155 @@ namespace Microsoft.CodeAnalysis
 
         internal void SetStateMachineType(TMethodSymbol method, TNamedTypeSymbol stateMachineClass)
         {
-            Debug.Assert(!Frozen);
-
-            if (_lazyStateMachineTypes == null)
+            try
             {
-                Interlocked.CompareExchange(ref _lazyStateMachineTypes, new Dictionary<TMethodSymbol, TNamedTypeSymbol>(), null);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(143, 1329, 1837);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 1445, 1467);
+
+                f_143_1445_1466(f_143_1458_1465_M(!Frozen));
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 1483, 1679) || true) && (_lazyStateMachineTypes == null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(143, 1483, 1679);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 1551, 1664);
+
+                    f_143_1551_1663(ref _lazyStateMachineTypes, f_143_1607_1656(), null);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(143, 1483, 1679);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 1701, 1723);
+
+                lock (_lazyStateMachineTypes)
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 1757, 1811);
+
+                    f_143_1757_1810(_lazyStateMachineTypes, method, stateMachineClass);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(143, 1329, 1837);
+
+                bool
+                f_143_1458_1465_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(143, 1458, 1465);
+                    return return_v;
+                }
+
+
+                int
+                f_143_1445_1466(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(143, 1445, 1466);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>
+                f_143_1607_1656()
+                {
+                    var return_v = new System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(143, 1607, 1656);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>?
+                f_143_1551_1663(ref System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>?
+                location1, System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>
+                value, System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>?
+                comparand)
+                {
+                    var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(143, 1551, 1663);
+                    return return_v;
+                }
+
+
+                int
+                f_143_1757_1810(System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>
+                this_param, TMethodSymbol
+                key, TNamedTypeSymbol
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(143, 1757, 1810);
+                    return 0;
+                }
+
             }
-
-            lock (_lazyStateMachineTypes)
+            catch
             {
-                _lazyStateMachineTypes.Add(method, stateMachineClass);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(143, 1329, 1837);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(143, 1329, 1837);
             }
         }
 
+
         internal bool TryGetStateMachineType(TMethodSymbol method, [NotNullWhen(true)] out TNamedTypeSymbol? stateMachineType)
         {
-            Debug.Assert(Frozen);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(143, 1849, 2184);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 1992, 2013);
 
-            stateMachineType = null;
-            return _lazyStateMachineTypes != null && _lazyStateMachineTypes.TryGetValue(method, out stateMachineType);
+                f_143_1992_2012(f_143_2005_2011());
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 2029, 2053);
+
+                stateMachineType = null;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(143, 2067, 2173);
+
+                return _lazyStateMachineTypes != null && (DynAbs.Tracing.TraceSender.Expression_True(143, 2074, 2172) && f_143_2108_2172(_lazyStateMachineTypes, method, out stateMachineType));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(143, 1849, 2184);
+
+                bool
+                f_143_2005_2011()
+                {
+                    var return_v = Frozen;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(143, 2005, 2011);
+                    return return_v;
+                }
+
+
+                int
+                f_143_1992_2012(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(143, 1992, 2012);
+                    return 0;
+                }
+
+
+                bool
+                f_143_2108_2172(System.Collections.Generic.Dictionary<TMethodSymbol, TNamedTypeSymbol>
+                this_param, TMethodSymbol
+                key, out TNamedTypeSymbol?
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(143, 2108, 2172);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(143, 1849, 2184);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(143, 1849, 2184);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public ModuleCompilationState()

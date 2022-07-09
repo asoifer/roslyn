@@ -81,30 +81,172 @@ namespace Roslyn.Utilities
 
         public bool Contains(T value)
         {
-            return _map.ContainsKey(value);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(335, 1046, 1142);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1100, 1131);
+
+                return f_335_1107_1130(_map, value);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(335, 1046, 1142);
+
+                bool
+                f_335_1107_1130(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                this_param, T
+                key)
+                {
+                    var return_v = this_param.ContainsKey(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 1107, 1130);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(335, 1046, 1142);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(335, 1046, 1142);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public ImmutableSetWithInsertionOrder<T> Add(T value)
         {
-            // no reason to cause allocations if value is already in the set
-            if (_map.ContainsKey(value))
+            try
             {
-                return this;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(335, 1154, 1530);
 
-            return new ImmutableSetWithInsertionOrder<T>(_map.Add(value, _nextElementValue), _nextElementValue + 1u);
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1310, 1398) || true) && (f_335_1314_1337(_map, value))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(335, 1310, 1398);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1371, 1383);
+
+                    return this;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(335, 1310, 1398);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1414, 1519);
+
+                return f_335_1421_1518(f_335_1459_1493(_map, value, _nextElementValue), _nextElementValue + 1u);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(335, 1154, 1530);
+
+                bool
+                f_335_1314_1337(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                this_param, T
+                key)
+                {
+                    var return_v = this_param.ContainsKey(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 1314, 1337);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableDictionary<T, uint>
+                f_335_1459_1493(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                this_param, T
+                key, uint
+                value)
+                {
+                    var return_v = this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 1459, 1493);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.ImmutableSetWithInsertionOrder<T>
+                f_335_1421_1518(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                map, uint
+                nextElementValue)
+                {
+                    var return_v = new Roslyn.Utilities.ImmutableSetWithInsertionOrder<T>(map, nextElementValue);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 1421, 1518);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(335, 1154, 1530);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(335, 1154, 1530);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public ImmutableSetWithInsertionOrder<T> Remove(T value)
         {
-            var modifiedMap = _map.Remove(value);
-            if (modifiedMap == _map)
+            try
             {
-                // no reason to cause allocations if value is missing
-                return this;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(335, 1542, 1959);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1623, 1660);
 
-            return this.Count == 1 ? Empty : new ImmutableSetWithInsertionOrder<T>(modifiedMap, _nextElementValue);
+                var
+                modifiedMap = f_335_1641_1659(_map, value)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1674, 1829) || true) && (modifiedMap == _map)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(335, 1674, 1829);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1802, 1814);
+
+                    return this;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(335, 1674, 1829);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 1845, 1948);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(335, 1852, 1867) || ((f_335_1852_1862(this) == 1 && DynAbs.Tracing.TraceSender.Conditional_F2(335, 1870, 1875)) || DynAbs.Tracing.TraceSender.Conditional_F3(335, 1878, 1947))) ? Empty : f_335_1878_1947(modifiedMap, _nextElementValue);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(335, 1542, 1959);
+
+                System.Collections.Immutable.ImmutableDictionary<T, uint>
+                f_335_1641_1659(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                this_param, T
+                key)
+                {
+                    var return_v = this_param.Remove(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 1641, 1659);
+                    return return_v;
+                }
+
+
+                int
+                f_335_1852_1862(Roslyn.Utilities.ImmutableSetWithInsertionOrder<T>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(335, 1852, 1862);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.ImmutableSetWithInsertionOrder<T>
+                f_335_1878_1947(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                map, uint
+                nextElementValue)
+                {
+                    var return_v = new Roslyn.Utilities.ImmutableSetWithInsertionOrder<T>(map, nextElementValue);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 1878, 1947);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(335, 1542, 1959);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(335, 1542, 1959);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public IEnumerable<T> InInsertionOrder
@@ -156,17 +298,119 @@ namespace Roslyn.Utilities
 
         public override string ToString()
         {
-            return "{" + string.Join(", ", this) + "}";
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(335, 2122, 2234);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 2180, 2223);
+
+                return "{" + f_335_2193_2216(", ", this) + "}";
+                DynAbs.Tracing.TraceSender.TraceExitMethod(335, 2122, 2234);
+
+                string
+                f_335_2193_2216(string
+                separator, Roslyn.Utilities.ImmutableSetWithInsertionOrder<T>
+                values)
+                {
+                    var return_v = string.Join(separator, (System.Collections.Generic.IEnumerable<T>)values);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 2193, 2216);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(335, 2122, 2234);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(335, 2122, 2234);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _map.Keys.GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(335, 2246, 2352);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 2308, 2341);
+
+                return f_335_2315_2340(f_335_2315_2324(_map));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(335, 2246, 2352);
+
+                System.Collections.Generic.IEnumerable<T>
+                f_335_2315_2324(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                this_param)
+                {
+                    var return_v = this_param.Keys;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(335, 2315, 2324);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerator<T>
+                f_335_2315_2340(System.Collections.Generic.IEnumerable<T>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 2315, 2340);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(335, 2246, 2352);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(335, 2246, 2352);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _map.Keys.GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(335, 2364, 2472);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(335, 2428, 2461);
+
+                return f_335_2435_2460(f_335_2435_2444(_map));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(335, 2364, 2472);
+
+                System.Collections.Generic.IEnumerable<T>
+                f_335_2435_2444(System.Collections.Immutable.ImmutableDictionary<T, uint>
+                this_param)
+                {
+                    var return_v = this_param.Keys;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(335, 2435, 2444);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.IEnumerator<T>
+                f_335_2435_2460(System.Collections.Generic.IEnumerable<T>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(335, 2435, 2460);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(335, 2364, 2472);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(335, 2364, 2472);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         static ImmutableSetWithInsertionOrder()

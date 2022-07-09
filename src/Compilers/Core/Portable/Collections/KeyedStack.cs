@@ -19,27 +19,163 @@ namespace Microsoft.CodeAnalysis.Collections
 
         public void Push(T key, R value)
         {
-            Stack<R>? store;
-            if (!_dict.TryGetValue(key, out store))
+            try
             {
-                store = new Stack<R>();
-                _dict.Add(key, store);
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(108, 626, 908);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 683, 699);
 
-            store.Push(value);
+                Stack<R>?
+                store
+                = default(Stack<R>?);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 713, 863) || true) && (!f_108_718_751(_dict, key, out store))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(108, 713, 863);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 785, 808);
+
+                    store = f_108_793_807();
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 826, 848);
+
+                    f_108_826_847(_dict, key, store);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(108, 713, 863);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 879, 897);
+
+                f_108_879_896(
+                            store, value);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(108, 626, 908);
+
+                bool
+                f_108_718_751(System.Collections.Generic.Dictionary<T, System.Collections.Generic.Stack<R>>
+                this_param, T
+                key, out System.Collections.Generic.Stack<R>?
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 718, 751);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.Stack<R>
+                f_108_793_807()
+                {
+                    var return_v = new System.Collections.Generic.Stack<R>();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 793, 807);
+                    return return_v;
+                }
+
+
+                int
+                f_108_826_847(System.Collections.Generic.Dictionary<T, System.Collections.Generic.Stack<R>>
+                this_param, T
+                key, System.Collections.Generic.Stack<R>
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 826, 847);
+                    return 0;
+                }
+
+
+                int
+                f_108_879_896(System.Collections.Generic.Stack<R>
+                this_param, R?
+                item)
+                {
+                    this_param.Push(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 879, 896);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(108, 626, 908);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(108, 626, 908);
+            }
         }
 
         public bool TryPop(T key, [MaybeNullWhen(returnValue: false)] out R value)
         {
-            Stack<R>? store;
-            if (_dict.TryGetValue(key, out store) && store.Count > 0)
+            try
             {
-                value = store.Pop();
-                return true;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(108, 920, 1278);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 1019, 1035);
 
-            value = default(R)!;
-            return false;
+                Stack<R>?
+                store
+                = default(Stack<R>?);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 1049, 1204) || true) && (f_108_1053_1086(_dict, key, out store) && (DynAbs.Tracing.TraceSender.Expression_True(108, 1053, 1105) && f_108_1090_1101(store) > 0))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(108, 1049, 1204);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 1139, 1159);
+
+                    value = f_108_1147_1158(store);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 1177, 1189);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(108, 1049, 1204);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 1220, 1240);
+
+                value = default(R)!;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(108, 1254, 1267);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(108, 920, 1278);
+
+                bool
+                f_108_1053_1086(System.Collections.Generic.Dictionary<T, System.Collections.Generic.Stack<R>>
+                this_param, T
+                key, out System.Collections.Generic.Stack<R>?
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 1053, 1086);
+                    return return_v;
+                }
+
+
+                int
+                f_108_1090_1101(System.Collections.Generic.Stack<R>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(108, 1090, 1101);
+                    return return_v;
+                }
+
+
+                R
+                f_108_1147_1158(System.Collections.Generic.Stack<R>
+                this_param)
+                {
+                    var return_v = this_param.Pop();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(108, 1147, 1158);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(108, 920, 1278);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(108, 920, 1278);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public KeyedStack()

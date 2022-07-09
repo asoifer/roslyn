@@ -9363,8 +9363,8 @@ namespace Microsoft.Cci
 
                 return f_499_78321_78805(f_499_78321_78786(f_499_78321_78343(this), (x, y) =>
                             {
-                // Spec: GenericParam table is sorted by Owner and then by Number.
-                int result = CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(x)) - CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(y));
+                                // Spec: GenericParam table is sorted by Owner and then by Number.
+                                int result = CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(x)) - CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(y));
                                 if (result != 0)
                                 {
                                     return result;
@@ -24659,13 +24659,63 @@ namespace Microsoft.Cci
 
             public int GetOrAdd(T item)
             {
-                int index;
-                if (!this.TryGetValue(item, out index))
+                try
                 {
-                    index = Add(item);
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(499, 174303, 174556);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174363, 174373);
 
-                return index;
+                    int
+                    index
+                    = default(int);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174391, 174508) || true) && (!f_499_174396_174429(this, item, out index))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(499, 174391, 174508);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174471, 174489);
+
+                        index = f_499_174479_174488(this, item);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(499, 174391, 174508);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174528, 174541);
+
+                    return index;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(499, 174303, 174556);
+
+                    bool
+                    f_499_174396_174429(Microsoft.Cci.MetadataWriter.HeapOrReferenceIndexBase<T>
+                    this_param, T
+                    item, out int
+                    index)
+                    {
+                        var return_v = this_param.TryGetValue(item, out index);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 174396, 174429);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_499_174479_174488(Microsoft.Cci.MetadataWriter.HeapOrReferenceIndexBase<T>
+                    this_param, T
+                    item)
+                    {
+                        var return_v = this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 174479, 174488);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(499, 174303, 174556);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(499, 174303, 174556);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             public IReadOnlyList<T> Rows
@@ -24695,15 +24745,111 @@ namespace Microsoft.Cci
 
             public int Add(T item)
             {
-                Debug.Assert(!_writer._tableIndicesAreComplete);
-#if DEBUG
-                int i;
-                Debug.Assert(!this.TryGetValue(item, out i));
-#endif
-                int index = _firstRowId + _rows.Count;
-                this.AddItem(item, index);
-                _rows.Add(item);
-                return index;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(499, 174685, 175074);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174740, 174788);
+
+                    f_499_174740_174787(!_writer._tableIndicesAreComplete);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174817, 174823);
+
+                    int
+                    i
+                    = default(int);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174841, 174886);
+
+                    f_499_174841_174885(!f_499_174855_174884(this, item, out i));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174912, 174950);
+
+                    int
+                    index = _firstRowId + f_499_174938_174949(_rows)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 174968, 174994);
+
+                    f_499_174968_174993(this, item, index);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 175012, 175028);
+
+                    f_499_175012_175027(_rows, item);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 175046, 175059);
+
+                    return index;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(499, 174685, 175074);
+
+                    int
+                    f_499_174740_174787(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 174740, 174787);
+                        return 0;
+                    }
+
+
+                    bool
+                    f_499_174855_174884(Microsoft.Cci.MetadataWriter.HeapOrReferenceIndexBase<T>
+                    this_param, T
+                    item, out int
+                    index)
+                    {
+                        var return_v = this_param.TryGetValue(item, out index);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 174855, 174884);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_499_174841_174885(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 174841, 174885);
+                        return 0;
+                    }
+
+
+                    int
+                    f_499_174938_174949(System.Collections.Generic.List<T>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(499, 174938, 174949);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_499_174968_174993(Microsoft.Cci.MetadataWriter.HeapOrReferenceIndexBase<T>
+                    this_param, T
+                    item, int
+                    index)
+                    {
+                        this_param.AddItem(item, index);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 174968, 174993);
+                        return 0;
+                    }
+
+
+                    int
+                    f_499_175012_175027(System.Collections.Generic.List<T>
+                    this_param, T
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 175012, 175027);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(499, 174685, 175074);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(499, 174685, 175074);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             protected abstract void AddItem(T item, int index);
@@ -25056,22 +25202,133 @@ namespace Microsoft.Cci
 
             public override bool TryGetValue(T item, out int index)
             {
-                if (_instanceIndex.TryGetValue(item, out index))
+                try
                 {
-                    return true;
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(499, 177761, 178209);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 177849, 177969) || true) && (f_499_177853_177896(_instanceIndex, item, out index))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(499, 177849, 177969);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 177938, 177950);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(499, 177849, 177969);
+                    }
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 177987, 178163) || true) && (f_499_177991_178036(_structuralIndex, item, out index))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(499, 177987, 178163);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 178078, 178110);
+
+                        f_499_178078_178109(_instanceIndex, item, index);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 178132, 178144);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(499, 177987, 178163);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 178181, 178194);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(499, 177761, 178209);
+
+                    bool
+                    f_499_177853_177896(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, out int
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 177853, 177896);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_499_177991_178036(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, out int
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 177991, 178036);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_499_178078_178109(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, int
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 178078, 178109);
+                        return 0;
+                    }
+
                 }
-                if (_structuralIndex.TryGetValue(item, out index))
+                catch
                 {
-                    _instanceIndex.Add(item, index);
-                    return true;
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(499, 177761, 178209);
+                    throw;
                 }
-                return false;
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(499, 177761, 178209);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             protected override void AddItem(T item, int index)
             {
-                _instanceIndex.Add(item, index);
-                _structuralIndex.Add(item, index);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(499, 178225, 178407);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 178308, 178340);
+
+                    f_499_178308_178339(_instanceIndex, item, index);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 178358, 178392);
+
+                    f_499_178358_178391(_structuralIndex, item, index);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(499, 178225, 178407);
+
+                    int
+                    f_499_178308_178339(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, int
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 178308, 178339);
+                        return 0;
+                    }
+
+
+                    int
+                    f_499_178358_178391(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, int
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 178358, 178391);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(499, 178225, 178407);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(499, 178225, 178407);
+                }
             }
 
             static InstanceAndStructuralReferenceIndex()
@@ -25264,7 +25521,7 @@ namespace Microsoft.Cci
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 132684, 132723);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 12414, 12475);
             // LAFHIS
-            ModuleImportScopeHandle = f_501_12440_12475(1); 
+            ModuleImportScopeHandle = f_501_12440_12475(1);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 33417, 33452);
             DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(499, 997, 179260);
 

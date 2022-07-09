@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -2547,7 +2547,36 @@ namespace Microsoft.Cci
 
             public bool TryGetValue(T item, out int rowId)
             {
-                return _index.TryGetValue(item, out rowId);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(487, 17872, 18009);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(487, 17951, 17994);
+
+                    return f_487_17958_17993(_index, item, out rowId);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(487, 17872, 18009);
+
+                    bool
+                    f_487_17958_17993(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, out int
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(487, 17958, 17993);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(487, 17872, 18009);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(487, 17872, 18009);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             public int this[T item]
@@ -2686,9 +2715,51 @@ namespace Microsoft.Cci
 
             public void Add(T item)
             {
-                _index.Add(item, NextRowId);
-                _rows.Add(item);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(487, 18488, 18621);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(487, 18544, 18572);
+
+                    f_487_18544_18571(_index, item, NextRowId);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(487, 18590, 18606);
+
+                    f_487_18590_18605(_rows, item);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(487, 18488, 18621);
+
+                    int
+                    f_487_18544_18571(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, int
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(487, 18544, 18571);
+                        return 0;
+                    }
+
+
+                    int
+                    f_487_18590_18605(System.Collections.Generic.List<T>
+                    this_param, T
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(487, 18590, 18605);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(487, 18488, 18621);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(487, 18488, 18621);
+                }
             }
+
             static DefinitionIndex()
             {
                 DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(487, 17420, 18632);

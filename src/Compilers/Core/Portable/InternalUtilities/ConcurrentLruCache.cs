@@ -219,18 +219,114 @@ f_315_1037_1042()
 
         public void Add(K key, V value)
         {
-            lock (_lockObject)
+            try
             {
-                UnsafeAdd(key, value, true);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 2676, 2837);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 2738, 2749);
+                lock (_lockObject)
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 2783, 2811);
+
+                    f_315_2783_2810(this, key, value, true);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 2676, 2837);
+
+                int
+                f_315_2783_2810(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, V
+                value, bool
+                throwExceptionIfKeyExists)
+                {
+                    this_param.UnsafeAdd(key, value, throwExceptionIfKeyExists);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 2783, 2810);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 2676, 2837);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 2676, 2837);
             }
         }
 
         private void MoveNodeToTop(LinkedListNode<K> node)
         {
-            if (!object.ReferenceEquals(_nodeList.First, node))
+            try
             {
-                _nodeList.Remove(node);
-                _nodeList.AddFirst(node);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 2849, 3100);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 2924, 3089) || true) && (!f_315_2929_2974(f_315_2952_2967(_nodeList), node))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 2924, 3089);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3008, 3031);
+
+                    f_315_3008_3030(_nodeList, node);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3049, 3074);
+
+                    f_315_3049_3073(_nodeList, node);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(315, 2924, 3089);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 2849, 3100);
+
+                System.Collections.Generic.LinkedListNode<K>?
+                f_315_2952_2967(System.Collections.Generic.LinkedList<K>
+                this_param)
+                {
+                    var return_v = this_param.First;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(315, 2952, 2967);
+                    return return_v;
+                }
+
+
+                bool
+                f_315_2929_2974(System.Collections.Generic.LinkedListNode<K>?
+                objA, System.Collections.Generic.LinkedListNode<K>
+                objB)
+                {
+                    var return_v = object.ReferenceEquals((object?)objA, (object)objB);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 2929, 2974);
+                    return return_v;
+                }
+
+
+                int
+                f_315_3008_3030(System.Collections.Generic.LinkedList<K>
+                this_param, System.Collections.Generic.LinkedListNode<K>
+                node)
+                {
+                    this_param.Remove(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3008, 3030);
+                    return 0;
+                }
+
+
+                int
+                f_315_3049_3073(System.Collections.Generic.LinkedList<K>
+                this_param, System.Collections.Generic.LinkedListNode<K>
+                node)
+                {
+                    this_param.AddFirst(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3049, 3073);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 2849, 3100);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 2849, 3100);
             }
         }
 
@@ -239,17 +335,148 @@ f_315_1037_1042()
         /// </summary>
         private void UnsafeEvictLastNode()
         {
-            Debug.Assert(_capacity > 0);
-            var lastNode = _nodeList.Last;
-            _nodeList.Remove(lastNode!);
-            _cache.Remove(lastNode!.Value);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 3212, 3441);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3271, 3299);
+
+                f_315_3271_3298(_capacity > 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3313, 3343);
+
+                var
+                lastNode = f_315_3328_3342(_nodeList)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3357, 3385);
+
+                f_315_3357_3384(_nodeList, lastNode!);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3399, 3430);
+
+                f_315_3399_3429(_cache, f_315_3413_3428(lastNode!));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 3212, 3441);
+
+                int
+                f_315_3271_3298(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3271, 3298);
+                    return 0;
+                }
+
+
+                System.Collections.Generic.LinkedListNode<K>?
+                f_315_3328_3342(System.Collections.Generic.LinkedList<K>
+                this_param)
+                {
+                    var return_v = this_param.Last;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(315, 3328, 3342);
+                    return return_v;
+                }
+
+
+                int
+                f_315_3357_3384(System.Collections.Generic.LinkedList<K>
+                this_param, System.Collections.Generic.LinkedListNode<K>
+                node)
+                {
+                    this_param.Remove(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3357, 3384);
+                    return 0;
+                }
+
+
+                K
+                f_315_3413_3428(System.Collections.Generic.LinkedListNode<K>
+                this_param)
+                {
+                    var return_v = this_param.Value;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(315, 3413, 3428);
+                    return return_v;
+                }
+
+
+                bool
+                f_315_3399_3429(System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue>
+                this_param, K
+                key)
+                {
+                    var return_v = this_param.Remove(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3399, 3429);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 3212, 3441);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 3212, 3441);
+            }
         }
 
         private void UnsafeAddNodeToTop(K key, V value)
         {
-            var node = new LinkedListNode<K>(key);
-            _cache.Add(key, new CacheValue { Node = node, Value = value });
-            _nodeList.AddFirst(node);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 3453, 3690);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3525, 3563);
+
+                var
+                node = f_315_3536_3562(key)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3577, 3640);
+
+                f_315_3577_3639(_cache, key, new CacheValue { Node = DynAbs.Tracing.TraceSender.TraceInitializationWrapper(() => node, 315, 3593, 3638), Value = value });
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3654, 3679);
+
+                f_315_3654_3678(_nodeList, node);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 3453, 3690);
+
+                System.Collections.Generic.LinkedListNode<K>
+                f_315_3536_3562(K
+                value)
+                {
+                    var return_v = new System.Collections.Generic.LinkedListNode<K>(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3536, 3562);
+                    return return_v;
+                }
+
+
+                int
+                f_315_3577_3639(System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue>
+                this_param, K
+                key, Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue
+                value)
+                {
+                    this_param.Add(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3577, 3639);
+                    return 0;
+                }
+
+
+                int
+                f_315_3654_3678(System.Collections.Generic.LinkedList<K>
+                this_param, System.Collections.Generic.LinkedListNode<K>
+                node)
+                {
+                    this_param.AddFirst(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3654, 3678);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 3453, 3690);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 3453, 3690);
+            }
         }
 
         /// <summary>
@@ -257,26 +484,160 @@ f_315_1037_1042()
         /// </summary>
         private void UnsafeAdd(K key, V value, bool throwExceptionIfKeyExists)
         {
-            if (_cache.TryGetValue(key, out var result))
+            try
             {
-                if (throwExceptionIfKeyExists)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 3776, 4582);
+                Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue result = default(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3871, 4571) || true) && (f_315_3875_3914(_cache, key, out result))
+                )
+
                 {
-                    throw new ArgumentException("Key already exists", nameof(key));
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 3871, 4571);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 3948, 4329) || true) && (throwExceptionIfKeyExists)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 3948, 4329);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4019, 4082);
+
+                        throw f_315_4025_4081("Key already exists", nameof(key));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 3948, 4329);
+                    }
+
+                    else
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 3948, 4329);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4124, 4329) || true) && (!f_315_4129_4155(result.Value, value))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 4124, 4329);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4197, 4218);
+
+                            result.Value = value;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4240, 4261);
+
+                            _cache[key] = result;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4283, 4310);
+
+                            f_315_4283_4309(this, result.Node);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(315, 4124, 4329);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 3948, 4329);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(315, 3871, 4571);
                 }
-                else if (!result.Value.Equals(value))
+
+                else
+
                 {
-                    result.Value = value;
-                    _cache[key] = result;
-                    MoveNodeToTop(result.Node);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 3871, 4571);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4395, 4507) || true) && (f_315_4399_4411(_cache) == _capacity)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 4395, 4507);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4466, 4488);
+
+                        f_315_4466_4487(this);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 4395, 4507);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 4525, 4556);
+
+                    f_315_4525_4555(this, key, value);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(315, 3871, 4571);
                 }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 3776, 4582);
+
+                bool
+                f_315_3875_3914(System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue>
+                this_param, K
+                key, out Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 3875, 3914);
+                    return return_v;
+                }
+
+
+                System.ArgumentException
+                f_315_4025_4081(string
+                message, string
+                paramName)
+                {
+                    var return_v = new System.ArgumentException(message, paramName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 4025, 4081);
+                    return return_v;
+                }
+
+
+                bool
+                f_315_4129_4155(V
+                this_param, V
+                obj)
+                {
+                    var return_v = this_param.Equals((object)obj);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 4129, 4155);
+                    return return_v;
+                }
+
+
+                int
+                f_315_4283_4309(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, System.Collections.Generic.LinkedListNode<K>
+                node)
+                {
+                    this_param.MoveNodeToTop(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 4283, 4309);
+                    return 0;
+                }
+
+
+                int
+                f_315_4399_4411(System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue>
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(315, 4399, 4411);
+                    return return_v;
+                }
+
+
+                int
+                f_315_4466_4487(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param)
+                {
+                    this_param.UnsafeEvictLastNode();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 4466, 4487);
+                    return 0;
+                }
+
+
+                int
+                f_315_4525_4555(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, V
+                value)
+                {
+                    this_param.UnsafeAddNodeToTop(key, value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 4525, 4555);
+                    return 0;
+                }
+
             }
-            else
+            catch
             {
-                if (_cache.Count == _capacity)
-                {
-                    UnsafeEvictLastNode();
-                }
-                UnsafeAddNodeToTop(key, value);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 3776, 4582);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 3776, 4582);
             }
         }
 
@@ -387,10 +748,40 @@ f_315_1037_1042()
 
         public bool TryGetValue(K key, [MaybeNullWhen(returnValue: false)] out V value)
         {
-            lock (_lockObject)
+            try
             {
-                return UnsafeTryGetValue(key, out value);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 5109, 5331);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5219, 5230);
+                lock (_lockObject)
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5264, 5305);
+
+                    return f_315_5271_5304(this, key, out value);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 5109, 5331);
+
+                bool
+                f_315_5271_5304(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, out V
+                value)
+                {
+                    var return_v = this_param.UnsafeTryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 5271, 5304);
+                    return return_v;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 5109, 5331);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 5109, 5331);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -398,50 +789,236 @@ f_315_1037_1042()
         /// </summary>
         public bool UnsafeTryGetValue(K key, [MaybeNullWhen(returnValue: false)] out V value)
         {
-            if (_cache.TryGetValue(key, out var result))
+            try
             {
-                MoveNodeToTop(result.Node);
-                value = result.Value;
-                return true;
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 5417, 5840);
+                Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue result = default(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5527, 5829) || true) && (f_315_5531_5570(_cache, key, out result))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 5527, 5829);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5604, 5631);
+
+                    f_315_5604_5630(this, result.Node);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5649, 5670);
+
+                    value = result.Value;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5688, 5700);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(315, 5527, 5829);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 5527, 5829);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5766, 5783);
+
+                    value = default!;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5801, 5814);
+
+                    return false;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(315, 5527, 5829);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 5417, 5840);
+
+                bool
+                f_315_5531_5570(System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue>
+                this_param, K
+                key, out Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>.CacheValue
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 5531, 5570);
+                    return return_v;
+                }
+
+
+                int
+                f_315_5604_5630(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, System.Collections.Generic.LinkedListNode<K>
+                node)
+                {
+                    this_param.MoveNodeToTop(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 5604, 5630);
+                    return 0;
+                }
+
             }
-            else
+            catch
             {
-                value = default!;
-                return false;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 5417, 5840);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 5417, 5840);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public V GetOrAdd(K key, V value)
         {
-            lock (_lockObject)
+            try
             {
-                if (UnsafeTryGetValue(key, out var result))
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 5852, 6249);
+                V result = default(V);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5916, 5927);
+                lock (_lockObject)
                 {
-                    return result;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 5961, 6223) || true) && (f_315_5965_6003(this, key, out result))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 5961, 6223);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6045, 6059);
+
+                        return result;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 5961, 6223);
+                    }
+
+                    else
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 5961, 6223);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6141, 6169);
+
+                        f_315_6141_6168(this, key, value, true);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6191, 6204);
+
+                        return value;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 5961, 6223);
+                    }
                 }
-                else
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 5852, 6249);
+
+                bool
+                f_315_5965_6003(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, out V
+                value)
                 {
-                    UnsafeAdd(key, value, true);
-                    return value;
+                    var return_v = this_param.UnsafeTryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 5965, 6003);
+                    return return_v;
                 }
+
+
+                int
+                f_315_6141_6168(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, V
+                value, bool
+                throwExceptionIfKeyExists)
+                {
+                    this_param.UnsafeAdd(key, value, throwExceptionIfKeyExists);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 6141, 6168);
+                    return 0;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 5852, 6249);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 5852, 6249);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public V GetOrAdd(K key, Func<V> creator)
         {
-            lock (_lockObject)
+            try
             {
-                if (UnsafeTryGetValue(key, out var result))
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(315, 6261, 6710);
+                V result = default(V);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6333, 6344);
+                lock (_lockObject)
                 {
-                    return result;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6378, 6684) || true) && (f_315_6382_6420(this, key, out result))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 6378, 6684);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6462, 6476);
+
+                        return result;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 6378, 6684);
+                    }
+
+                    else
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(315, 6378, 6684);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6558, 6580);
+
+                        var
+                        value = f_315_6570_6579(creator)
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6602, 6630);
+
+                        f_315_6602_6629(this, key, value, true);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(315, 6652, 6665);
+
+                        return value;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(315, 6378, 6684);
+                    }
                 }
-                else
+                DynAbs.Tracing.TraceSender.TraceExitMethod(315, 6261, 6710);
+
+                bool
+                f_315_6382_6420(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, out V
+                value)
                 {
-                    var value = creator();
-                    UnsafeAdd(key, value, true);
-                    return value;
+                    var return_v = this_param.UnsafeTryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 6382, 6420);
+                    return return_v;
                 }
+
+
+                V
+                f_315_6570_6579(System.Func<V>
+                this_param)
+                {
+                    var return_v = this_param.Invoke();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 6570, 6579);
+                    return return_v;
+                }
+
+
+                int
+                f_315_6602_6629(Microsoft.CodeAnalysis.InternalUtilities.ConcurrentLruCache<K, V>
+                this_param, K
+                key, V
+                value, bool
+                throwExceptionIfKeyExists)
+                {
+                    this_param.UnsafeAdd(key, value, throwExceptionIfKeyExists);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(315, 6602, 6629);
+                    return 0;
+                }
+
             }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(315, 6261, 6710);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(315, 6261, 6710);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public V GetOrAdd<T>(K key, T arg, Func<T, V> creator)

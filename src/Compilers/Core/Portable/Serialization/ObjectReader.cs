@@ -1627,23 +1627,170 @@ namespace Roslyn.Utilities
             }
 
             public static ReaderReferenceMap<T> Create()
-                => new(s_objectListPool.Allocate());
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(543, 14692, 14727);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 14695, 14727);
+                    return f_543_14695_14727(f_543_14699_14726(s_objectListPool)); DynAbs.Tracing.TraceSender.TraceExitMethod(543, 14692, 14727);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(543, 14692, 14727);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(543, 14692, 14727);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
+
+                System.Collections.Generic.List<T>
+                f_543_14699_14726(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.List<T>>
+                this_param)
+                {
+                    var return_v = this_param.Allocate();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 14699, 14726);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.ObjectReader.ReaderReferenceMap<T>
+                f_543_14695_14727(System.Collections.Generic.List<T>
+                values)
+                {
+                    var return_v = new Roslyn.Utilities.ObjectReader.ReaderReferenceMap<T>(values);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 14695, 14727);
+                    return return_v;
+                }
+
+            }
 
             public void Dispose()
             {
-                _values.Clear();
-                s_objectListPool.Free(_values);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(543, 14744, 14878);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 14798, 14814);
+
+                    f_543_14798_14813(_values);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 14832, 14863);
+
+                    f_543_14832_14862(s_objectListPool, _values);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(543, 14744, 14878);
+
+                    int
+                    f_543_14798_14813(System.Collections.Generic.List<T>
+                    this_param)
+                    {
+                        this_param.Clear();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 14798, 14813);
+                        return 0;
+                    }
+
+
+                    int
+                    f_543_14832_14862(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<System.Collections.Generic.List<T>>
+                    this_param, System.Collections.Generic.List<T>
+                    obj)
+                    {
+                        this_param.Free(obj);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 14832, 14862);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(543, 14744, 14878);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(543, 14744, 14878);
+                }
             }
 
             public int GetNextObjectId()
             {
-                var id = _values.Count;
-                _values.Add(null);
-                return id;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(543, 14894, 15057);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 14955, 14978);
+
+                    var
+                    id = f_543_14964_14977(_values)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 14996, 15014);
+
+                    f_543_14996_15013(_values, null);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 15032, 15042);
+
+                    return id;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(543, 14894, 15057);
+
+                    int
+                    f_543_14964_14977(System.Collections.Generic.List<T>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(543, 14964, 14977);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_543_14996_15013(System.Collections.Generic.List<T>
+                    this_param, T
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 14996, 15013);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(543, 14894, 15057);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(543, 14894, 15057);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             public void AddValue(T value)
-                => _values.Add(value);
+            {
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(543, 15120, 15141);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 15123, 15141);
+                    f_543_15123_15141(_values, value); DynAbs.Tracing.TraceSender.TraceExitMethod(543, 15120, 15141);
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(543, 15120, 15141);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(543, 15120, 15141);
+                }
+
+                int
+                f_543_15123_15141(System.Collections.Generic.List<T>
+                this_param, T
+                item)
+                {
+                    this_param.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(543, 15123, 15141);
+                    return 0;
+                }
+
+            }
 
             public void AddValue(int index, T value)
             {
@@ -1670,7 +1817,7 @@ namespace Roslyn.Utilities
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(543, 15310, 15333);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(543, 15313, 15333);
-                    return _values[referenceId]; DynAbs.Tracing.TraceSender.TraceExitMethod(543, 15310, 15333);
+                    return f_543_15313_15333(_values, referenceId); DynAbs.Tracing.TraceSender.TraceExitMethod(543, 15310, 15333);
                 }
                 catch
                 {
@@ -1682,7 +1829,19 @@ namespace Roslyn.Utilities
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(543, 15310, 15333);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
+
+                T
+                f_543_15313_15333(System.Collections.Generic.List<T>
+                this_param, int
+                i0)
+                {
+                    var return_v = this_param[i0];
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(543, 15313, 15333);
+                    return return_v;
+                }
+
             }
+
             static ReaderReferenceMap()
             {
                 DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(543, 14258, 15345);

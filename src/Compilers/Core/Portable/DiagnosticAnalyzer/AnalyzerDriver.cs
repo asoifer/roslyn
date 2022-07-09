@@ -13806,65 +13806,417 @@ namespace Microsoft.CodeAnalysis.Diagnostics
         /// False, otherwise.
         /// </returns>
         protected override bool TryExecuteDeclaringReferenceActions(
-            SymbolDeclaredCompilationEvent symbolEvent,
-            AnalysisScope analysisScope,
-            AnalysisState? analysisState,
-            bool isGeneratedCodeSymbol,
-            IGroupedAnalyzerActions additionalPerSymbolActions,
-            CancellationToken cancellationToken)
+                    SymbolDeclaredCompilationEvent symbolEvent,
+                    AnalysisScope analysisScope,
+                    AnalysisState? analysisState,
+                    bool isGeneratedCodeSymbol,
+                    IGroupedAnalyzerActions additionalPerSymbolActions,
+                    CancellationToken cancellationToken)
         {
-            var symbol = symbolEvent.Symbol;
-
-            ComputeShouldExecuteActions(
-                AnalyzerActions, additionalPerSymbolActions.AnalyzerActions, symbol,
-                executeSyntaxNodeActions: out var executeSyntaxNodeActions,
-                executeCodeBlockActions: out var executeCodeBlockActions,
-                executeOperationActions: out var executeOperationActions,
-                executeOperationBlockActions: out var executeOperationBlockActions);
-
-            var success = true;
-            if (executeSyntaxNodeActions || executeOperationActions || executeCodeBlockActions || executeOperationBlockActions)
+            try
             {
-                var declaringReferences = symbolEvent.DeclaringSyntaxReferences;
-                var coreActions = GetOrCreateCoreActions();
-                for (var i = 0; i < declaringReferences.Length; i++)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 120318, 123392);
+                bool executeSyntaxNodeActions = default(bool);
+                bool executeCodeBlockActions = default(bool);
+                bool executeOperationActions = default(bool);
+                bool executeOperationBlockActions = default(bool);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 120701, 120733);
+
+                var
+                symbol = f_222_120714_120732(symbolEvent)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 120749, 121176);
+
+                f_222_120749_121175(f_222_120795_120810(), f_222_120812_120854(additionalPerSymbolActions), symbol, executeSyntaxNodeActions: out executeSyntaxNodeActions, executeCodeBlockActions: out executeCodeBlockActions, executeOperationActions: out executeOperationActions, executeOperationBlockActions: out executeOperationBlockActions);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121192, 121211);
+
+                var
+                success = true
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121225, 123350) || true) && (executeSyntaxNodeActions || (DynAbs.Tracing.TraceSender.Expression_False(222, 121229, 121280) || executeOperationActions) || (DynAbs.Tracing.TraceSender.Expression_False(222, 121229, 121307) || executeCodeBlockActions) || (DynAbs.Tracing.TraceSender.Expression_False(222, 121229, 121339) || executeOperationBlockActions))
+                )
+
                 {
-                    cancellationToken.ThrowIfCancellationRequested();
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 121225, 123350);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121373, 121437);
 
-                    var decl = declaringReferences[i];
-                    if (analysisScope.FilterFileOpt != null && analysisScope.FilterFileOpt?.SourceTree != decl.SyntaxTree)
-                    {
-                        continue;
-                    }
+                    var
+                    declaringReferences = f_222_121399_121436(symbolEvent)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121455, 121498);
 
-                    var isInGeneratedCode = isGeneratedCodeSymbol || IsGeneratedOrHiddenCodeLocation(decl.SyntaxTree, decl.Span);
-                    if (isInGeneratedCode && DoNotAnalyzeGeneratedCode)
+                    var
+                    coreActions = f_222_121473_121497(this)
+                    ;
+                    try
                     {
-                        analysisState?.MarkDeclarationComplete(symbol, i, analysisScope.Analyzers);
-                        continue;
-                    }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121525, 121530);
+                        for (var
+        i = 0
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121516, 122767) || true) && (i < declaringReferences.Length)
+        ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121564, 121567)
+        , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(222, 121516, 122767))
 
-                    if (!TryExecuteDeclaringReferenceActions(decl, i, symbolEvent, analysisScope, analysisState, coreActions, (GroupedAnalyzerActions)additionalPerSymbolActions,
-                        executeSyntaxNodeActions, executeOperationActions, executeCodeBlockActions, executeOperationBlockActions, isInGeneratedCode, cancellationToken))
-                    {
-                        success = false;
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 121516, 122767);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121609, 121658);
+
+                            cancellationToken.ThrowIfCancellationRequested();
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121682, 121716);
+
+                            var
+                            decl = declaringReferences[i]
+                            ;
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121738, 121921) || true) && (f_222_121742_121769(analysisScope) != null && (DynAbs.Tracing.TraceSender.Expression_True(222, 121742, 121839) && f_222_121781_121820_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_222_121781_121808(analysisScope), 222, 121781, 121820)?.SourceTree) != f_222_121824_121839(decl)))
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 121738, 121921);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121889, 121898);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 121738, 121921);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 121945, 122054);
+
+                            var
+                            isInGeneratedCode = isGeneratedCodeSymbol || (DynAbs.Tracing.TraceSender.Expression_False(222, 121969, 122053) || f_222_121994_122053(this, f_222_122026_122041(decl), f_222_122043_122052(decl)))
+                            ;
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122076, 122309) || true) && (isInGeneratedCode && (DynAbs.Tracing.TraceSender.Expression_True(222, 122080, 122126) && f_222_122101_122126()))
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 122076, 122309);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122176, 122251);
+
+                                DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(analysisState, 222, 122176, 122250)?.MarkDeclarationComplete(symbol, i, f_222_122226_122249(analysisScope)), 222, 122190, 122250);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122277, 122286);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 122076, 122309);
+                            }
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122333, 122748) || true) && (!f_222_122338_122659(this, decl, i, symbolEvent, analysisScope, analysisState, coreActions, additionalPerSymbolActions, executeSyntaxNodeActions, executeOperationActions, executeCodeBlockActions, executeOperationBlockActions, isInGeneratedCode, cancellationToken))
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 122333, 122748);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122709, 122725);
+
+                                success = false;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 122333, 122748);
+                            }
+                        }
                     }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 1252);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 1252);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 121225, 123350);
                 }
+
+                else
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 121225, 123350);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122801, 123350) || true) && (analysisState != null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 122801, 123350);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122860, 122909);
+
+                        cancellationToken.ThrowIfCancellationRequested();
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 122927, 122999);
+
+                        f_222_122927_122998(analysisState, symbol, f_222_122974_122997(analysisScope));
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123019, 123083);
+
+                        var
+                        declaringReferences = f_222_123045_123082(symbolEvent)
+                        ;
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123110, 123115);
+                            for (var
+            i = 0
+            ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123101, 123335) || true) && (i < declaringReferences.Length)
+            ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123149, 123152)
+            , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(222, 123101, 123335))
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 123101, 123335);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123194, 123228);
+
+                                var
+                                decl = declaringReferences[i]
+                                ;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123250, 123316);
+
+                                f_222_123250_123315(this, decl, symbol, i, analysisState);
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 235);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 235);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(222, 122801, 123350);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 121225, 123350);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123366, 123381);
+
+                return success;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(222, 120318, 123392);
+
+                Microsoft.CodeAnalysis.ISymbol
+                f_222_120714_120732(Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                this_param)
+                {
+                    var return_v = this_param.Symbol;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 120714, 120732);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerActions
+                f_222_120795_120810()
+                {
+                    var return_v = AnalyzerActions;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 120795, 120810);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerActions
+                f_222_120812_120854(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.IGroupedAnalyzerActions
+                this_param)
+                {
+                    var return_v = this_param.AnalyzerActions;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 120812, 120854);
+                    return return_v;
+                }
+
+
+                int
+                f_222_120749_121175(Microsoft.CodeAnalysis.Diagnostics.AnalyzerActions
+                coreActions, Microsoft.CodeAnalysis.Diagnostics.AnalyzerActions
+                additionalActions, Microsoft.CodeAnalysis.ISymbol
+                symbol, out bool
+                executeSyntaxNodeActions, out bool
+                executeCodeBlockActions, out bool
+                executeOperationActions, out bool
+                executeOperationBlockActions)
+                {
+                    ComputeShouldExecuteActions(coreActions, additionalActions, symbol, out executeSyntaxNodeActions, out executeCodeBlockActions, out executeOperationActions, out executeOperationBlockActions);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 120749, 121175);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxReference>
+                f_222_121399_121436(Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                this_param)
+                {
+                    var return_v = this_param.DeclaringSyntaxReferences;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 121399, 121436);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                f_222_121473_121497(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>
+                this_param)
+                {
+                    var return_v = this_param.GetOrCreateCoreActions();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 121473, 121497);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.SourceOrAdditionalFile?
+                f_222_121742_121769(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                this_param)
+                {
+                    var return_v = this_param.FilterFileOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 121742, 121769);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.SourceOrAdditionalFile?
+                f_222_121781_121808(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                this_param)
+{
+                    var return_v = this_param.FilterFileOpt;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 121781, 121808);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree?
+                f_222_121781_121820_M(Microsoft.CodeAnalysis.SyntaxTree?
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 121781, 121820);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_222_121824_121839(Microsoft.CodeAnalysis.SyntaxReference
+                this_param)
+                {
+                    var return_v = this_param.SyntaxTree;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 121824, 121839);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_222_122026_122041(Microsoft.CodeAnalysis.SyntaxReference
+                this_param)
+                {
+                    var return_v = this_param.SyntaxTree;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 122026, 122041);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Text.TextSpan
+                f_222_122043_122052(Microsoft.CodeAnalysis.SyntaxReference
+                this_param)
+                {
+                    var return_v = this_param.Span;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 122043, 122052);
+                    return return_v;
+                }
+
+
+                bool
+                f_222_121994_122053(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>
+                this_param, Microsoft.CodeAnalysis.SyntaxTree
+                syntaxTree, Microsoft.CodeAnalysis.Text.TextSpan
+                span)
+                {
+                    var return_v = this_param.IsGeneratedOrHiddenCodeLocation(syntaxTree, span);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 121994, 122053);
+                    return return_v;
+                }
+
+
+                bool
+                f_222_122101_122126()
+                {
+                    var return_v = DoNotAnalyzeGeneratedCode;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 122101, 122126);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>?
+                f_222_122226_122249(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                this_param)
+                {
+                    var return_v = this_param.Analyzers;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 122226, 122249);
+                    return return_v;
+                }
+
+
+                bool
+                f_222_122338_122659(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>
+                this_param, Microsoft.CodeAnalysis.SyntaxReference
+                decl, int
+                declarationIndex, Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                symbolEvent, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                analysisScope, Microsoft.CodeAnalysis.Diagnostics.AnalysisState?
+                analysisState, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                coreActions, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.IGroupedAnalyzerActions
+                additionalPerSymbolActions, bool
+                shouldExecuteSyntaxNodeActions, bool
+                shouldExecuteOperationActions, bool
+                shouldExecuteCodeBlockActions, bool
+                shouldExecuteOperationBlockActions, bool
+                isInGeneratedCode, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.TryExecuteDeclaringReferenceActions(decl, declarationIndex, symbolEvent, analysisScope, analysisState, coreActions, (Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions)additionalPerSymbolActions, shouldExecuteSyntaxNodeActions, shouldExecuteOperationActions, shouldExecuteCodeBlockActions, shouldExecuteOperationBlockActions, isInGeneratedCode, cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 122338, 122659);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                f_222_122974_122997(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                this_param)
+                {
+                    var return_v = this_param.Analyzers;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 122974, 122997);
+                    return return_v;
+                }
+
+
+                int
+                f_222_122927_122998(Microsoft.CodeAnalysis.Diagnostics.AnalysisState
+                this_param, Microsoft.CodeAnalysis.ISymbol
+                symbol, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                analyzers)
+                {
+                    this_param.MarkDeclarationsComplete(symbol, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>)analyzers);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 122927, 122998);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxReference>
+                f_222_123045_123082(Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                this_param)
+                {
+                    var return_v = this_param.DeclaringSyntaxReferences;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 123045, 123082);
+                    return return_v;
+                }
+
+
+                int
+                f_222_123250_123315(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>
+                this_param, Microsoft.CodeAnalysis.SyntaxReference
+                declaration, Microsoft.CodeAnalysis.ISymbol
+                symbol, int
+                declarationIndex, Microsoft.CodeAnalysis.Diagnostics.AnalysisState
+                analysisState)
+                {
+                    this_param.ClearCachedAnalysisDataIfAnalyzed(declaration, symbol, declarationIndex, analysisState);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 123250, 123315);
+                    return 0;
+                }
+
             }
-            else if (analysisState != null)
+            catch
             {
-                cancellationToken.ThrowIfCancellationRequested();
-                analysisState.MarkDeclarationsComplete(symbol, analysisScope.Analyzers);
-
-                var declaringReferences = symbolEvent.DeclaringSyntaxReferences;
-                for (var i = 0; i < declaringReferences.Length; i++)
-                {
-                    var decl = declaringReferences[i];
-                    ClearCachedAnalysisDataIfAnalyzed(decl, symbol, i, analysisState);
-                }
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 120318, 123392);
+                throw;
             }
-
-            return success;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 120318, 123392);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private void ClearCachedAnalysisDataIfAnalyzed(SyntaxReference declaration, ISymbol symbol, int declarationIndex, AnalysisState analysisState)
@@ -13888,8 +14240,7 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 123761, 123826);
 
-                f_222_123761_123825(
-                            CurrentCompilationData, declaration);
+                f_222_123761_123825(f_222_123761_123783(), declaration);
                 DynAbs.Tracing.TraceSender.TraceExitMethod(222, 123404, 123837);
 
                 int
@@ -13910,6 +14261,15 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                 {
                     var return_v = this_param.IsDeclarationComplete(symbol, declarationIndex);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 123628, 123689);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.CompilationData
+                f_222_123761_123783()
+                {
+                    var return_v = CurrentCompilationData;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 123761, 123783);
                     return return_v;
                 }
 
@@ -13980,7 +14340,7 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 124887, 125076);
 
                 ImmutableArray<SyntaxNode>
-                nodesToAnalyze = f_222_124931_125075(topmostNodeForAnalysis, symbol, declarationInfos, analysisScope, isPartialDeclAnalysis, semanticModel, AnalyzerExecutor)
+                nodesToAnalyze = f_222_124931_125075(topmostNodeForAnalysis, symbol, declarationInfos, analysisScope, isPartialDeclAnalysis, semanticModel, f_222_125058_125074())
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 125090, 125232);
 
@@ -14061,6 +14421,15 @@ namespace Microsoft.CodeAnalysis.Diagnostics
                 {
                     var return_v = this_param.ContainsSpan(filterSpan);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 124813, 124872);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                f_222_125058_125074()
+                {
+                    var return_v = AnalyzerExecutor;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 125058, 125074);
                     return return_v;
                 }
 
@@ -14172,279 +14541,1657 @@ namespace Microsoft.CodeAnalysis.Diagnostics
         /// False, otherwise.
         /// </returns>
         private bool TryExecuteDeclaringReferenceActions(
-            SyntaxReference decl,
-            int declarationIndex,
-            SymbolDeclaredCompilationEvent symbolEvent,
-            AnalysisScope analysisScope,
-            AnalysisState? analysisState,
-            GroupedAnalyzerActions coreActions,
-            GroupedAnalyzerActions additionalPerSymbolActions,
-            bool shouldExecuteSyntaxNodeActions,
-            bool shouldExecuteOperationActions,
-            bool shouldExecuteCodeBlockActions,
-            bool shouldExecuteOperationBlockActions,
-            bool isInGeneratedCode,
-            CancellationToken cancellationToken)
+                    SyntaxReference decl,
+                    int declarationIndex,
+                    SymbolDeclaredCompilationEvent symbolEvent,
+                    AnalysisScope analysisScope,
+                    AnalysisState? analysisState,
+                    GroupedAnalyzerActions coreActions,
+                    GroupedAnalyzerActions additionalPerSymbolActions,
+                    bool shouldExecuteSyntaxNodeActions,
+                    bool shouldExecuteOperationActions,
+                    bool shouldExecuteCodeBlockActions,
+                    bool shouldExecuteOperationBlockActions,
+                    bool isInGeneratedCode,
+                    CancellationToken cancellationToken)
         {
-            Debug.Assert(shouldExecuteSyntaxNodeActions || shouldExecuteOperationActions || shouldExecuteCodeBlockActions || shouldExecuteOperationBlockActions);
-            Debug.Assert(!isInGeneratedCode || !DoNotAnalyzeGeneratedCode);
-
-            var symbol = symbolEvent.Symbol;
-
-            var semanticModel = symbolEvent.SemanticModelWithCachedBoundNodes ??
-                SemanticModelProvider.GetSemanticModel(decl.SyntaxTree, symbolEvent.Compilation);
-
-            var cacheAnalysisData = analysisScope.Analyzers.Length < Analyzers.Length &&
-                (!analysisScope.FilterSpanOpt.HasValue || analysisScope.FilterSpanOpt.Value.Length >= decl.SyntaxTree.GetRoot(cancellationToken).Span.Length);
-
-            var declarationAnalysisData = CurrentCompilationData.GetOrComputeDeclarationAnalysisData(
-                decl,
-                computeDeclarationAnalysisData: () => ComputeDeclarationAnalysisData(symbol, decl, semanticModel, analysisScope, cancellationToken),
-                cacheAnalysisData: cacheAnalysisData);
-
-            if (!analysisScope.ShouldAnalyze(declarationAnalysisData.TopmostNodeForAnalysis))
+            try
             {
-                return true;
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 126345, 140439);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 127033, 127182);
 
-            var success = true;
+                f_222_127033_127181(shouldExecuteSyntaxNodeActions || (DynAbs.Tracing.TraceSender.Expression_False(222, 127046, 127109) || shouldExecuteOperationActions) || (DynAbs.Tracing.TraceSender.Expression_False(222, 127046, 127142) || shouldExecuteCodeBlockActions) || (DynAbs.Tracing.TraceSender.Expression_False(222, 127046, 127180) || shouldExecuteOperationBlockActions));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 127196, 127259);
 
-            // Execute stateless syntax node actions.
-            executeNodeActions();
+                f_222_127196_127258(!isInGeneratedCode || (DynAbs.Tracing.TraceSender.Expression_False(222, 127209, 127257) || f_222_127231_127257_M(!DoNotAnalyzeGeneratedCode)));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 127275, 127307);
 
-            // Execute actions in executable code: code block actions, operation actions and operation block actions.
-            executeExecutableCodeActions();
+                var
+                symbol = f_222_127288_127306(symbolEvent)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 127323, 127490);
 
-            // Mark completion if we successfully executed all actions and only if we are analyzing a span containing the entire syntax node.
-            if (success && analysisState != null && !declarationAnalysisData.IsPartialAnalysis)
-            {
-                // Ensure that we do not mark declaration complete/clear state if cancellation was requested.
-                // Other thread(s) might still be executing analysis, and clearing state could lead to corrupt execution
-                // or unknown exceptions.
-                cancellationToken.ThrowIfCancellationRequested();
+                var
+                semanticModel = f_222_127343_127388(symbolEvent) ?? (DynAbs.Tracing.TraceSender.Expression_Null<Microsoft.CodeAnalysis.SemanticModel?>(222, 127343, 127489) ?? f_222_127409_127489(f_222_127409_127430(), f_222_127448_127463(decl), f_222_127465_127488(symbolEvent)))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 127506, 127742);
 
-                foreach (var analyzer in analysisScope.Analyzers)
+                var
+                cacheAnalysisData = analysisScope.Analyzers.Length < f_222_127563_127572().Length && (DynAbs.Tracing.TraceSender.Expression_True(222, 127530, 127741) && (f_222_127601_127638_M(!analysisScope.FilterSpanOpt.HasValue) || (DynAbs.Tracing.TraceSender.Expression_False(222, 127601, 127740) || analysisScope.FilterSpanOpt.Value.Length >= f_222_127686_127728(f_222_127686_127701(decl), cancellationToken).Span.Length)))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 127758, 128076);
+
+                var
+                declarationAnalysisData = f_222_127788_128075(f_222_127788_127810(), decl, computeDeclarationAnalysisData: () => ComputeDeclarationAnalysisData(symbol, decl, semanticModel, analysisScope, cancellationToken), cacheAnalysisData: cacheAnalysisData)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 128092, 128233) || true) && (!f_222_128097_128172(analysisScope, f_222_128125_128171(declarationAnalysisData)))
+                )
+
                 {
-                    analysisState.MarkDeclarationComplete(symbol, declarationIndex, analyzer);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 128092, 128233);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 128206, 128218);
+
+                    return true;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 128092, 128233);
                 }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 128249, 128268);
 
-                if (cacheAnalysisData)
+                var
+                success = true
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 128339, 128360);
+
+                f_222_128339_128359();
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 128495, 128526);
+
+                f_222_128495_128525();
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 128685, 129527) || true) && (success && (DynAbs.Tracing.TraceSender.Expression_True(222, 128689, 128721) && analysisState != null) && (DynAbs.Tracing.TraceSender.Expression_True(222, 128689, 128767) && f_222_128725_128767_M(!declarationAnalysisData.IsPartialAnalysis)))
+                )
+
                 {
-                    ClearCachedAnalysisDataIfAnalyzed(decl, symbol, declarationIndex, analysisState);
-                }
-            }
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 128685, 129527);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129077, 129126);
 
-            return success;
-
-            void executeNodeActions()
-            {
-                if (shouldExecuteSyntaxNodeActions)
-                {
-                    var nodesToAnalyze = declarationAnalysisData.DescendantNodesToAnalyze;
-                    executeNodeActionsByKind(analysisScope, nodesToAnalyze, coreActions);
-                    executeNodeActionsByKind(analysisScope, nodesToAnalyze, additionalPerSymbolActions);
-                }
-            }
-
-            void executeNodeActionsByKind(AnalysisScope analysisScope, ImmutableArray<SyntaxNode> nodesToAnalyze, GroupedAnalyzerActions groupedActions)
-            {
-                foreach (var (analyzer, groupedActionsForAnalyzer) in groupedActions.GroupedActionsByAnalyzer)
-                {
-                    var nodeActionsByKind = groupedActionsForAnalyzer.NodeActionsByAnalyzerAndKind;
-                    if (nodeActionsByKind.IsEmpty || !analysisScope.Contains(analyzer))
+                    cancellationToken.ThrowIfCancellationRequested();
+                    try
                     {
-                        continue;
-                    }
-
-                    if (!AnalyzerExecutor.TryExecuteSyntaxNodeActions(nodesToAnalyze, nodeActionsByKind,
-                            analyzer, semanticModel, _getKind, declarationAnalysisData.TopmostNodeForAnalysis.FullSpan,
-                            declarationIndex, symbol, analysisScope, analysisState, isInGeneratedCode))
-                    {
-                        success = false;
-                    }
-                }
-            }
-
-            void executeExecutableCodeActions()
-            {
-                if (!shouldExecuteCodeBlockActions && !shouldExecuteOperationActions && !shouldExecuteOperationBlockActions)
-                {
-                    return;
-                }
-
-                // Compute the executable code blocks of interest.
-                var executableCodeBlocks = ImmutableArray<SyntaxNode>.Empty;
-                var executableCodeBlockActionsBuilder = ArrayBuilder<ExecutableCodeBlockAnalyzerActions>.GetInstance();
-                try
-                {
-                    foreach (var declInNode in declarationAnalysisData.DeclarationsInNode)
-                    {
-                        if (declInNode.DeclaredNode == declarationAnalysisData.TopmostNodeForAnalysis || declInNode.DeclaredNode == declarationAnalysisData.DeclaringReferenceSyntax)
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129146, 129329);
+                        foreach (var analyzer in f_222_129171_129194_I(f_222_129171_129194(analysisScope)))
                         {
-                            executableCodeBlocks = declInNode.ExecutableCodeBlocks;
-                            if (!executableCodeBlocks.IsEmpty)
-                            {
-                                if (shouldExecuteCodeBlockActions || shouldExecuteOperationBlockActions)
-                                {
-                                    addExecutableCodeBlockAnalyzerActions(coreActions, analysisScope, executableCodeBlockActionsBuilder);
-                                    addExecutableCodeBlockAnalyzerActions(additionalPerSymbolActions, analysisScope, executableCodeBlockActionsBuilder);
-                                }
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 129146, 129329);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129236, 129310);
 
-                                // Execute operation actions.
-                                if (shouldExecuteOperationActions || shouldExecuteOperationBlockActions)
-                                {
-                                    var operationBlocksToAnalyze = GetOperationBlocksToAnalyze(executableCodeBlocks, semanticModel, cancellationToken);
-                                    var operationsToAnalyze = getOperationsToAnalyzeWithStackGuard(operationBlocksToAnalyze);
-
-                                    if (!operationsToAnalyze.IsEmpty)
-                                    {
-                                        try
-                                        {
-                                            executeOperationsActions(operationsToAnalyze);
-                                            executeOperationsBlockActions(operationBlocksToAnalyze, operationsToAnalyze, executableCodeBlockActionsBuilder);
-                                        }
-                                        finally
-                                        {
-                                            AnalyzerExecutor.OnOperationBlockActionsExecuted(operationBlocksToAnalyze);
-                                        }
-                                    }
-                                }
-
-                                break;
-                            }
+                            f_222_129236_129309(analysisState, symbol, declarationIndex, analyzer);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 129146, 129329);
                         }
                     }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 184);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 184);
+                    }
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129349, 129512) || true) && (cacheAnalysisData)
+                    )
 
-                    executeCodeBlockActions(executableCodeBlocks, executableCodeBlockActionsBuilder);
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 129349, 129512);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129412, 129493);
+
+                        f_222_129412_129492(this, decl, symbol, declarationIndex, analysisState);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(222, 129349, 129512);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 128685, 129527);
                 }
-                finally
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129543, 129558);
+
+                return success;
+
+                void executeNodeActions()
                 {
-                    executableCodeBlockActionsBuilder.Free();
-                }
-            }
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 129574, 130009);
 
-            ImmutableArray<IOperation> getOperationsToAnalyzeWithStackGuard(ImmutableArray<IOperation> operationBlocksToAnalyze)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129632, 129994) || true) && (shouldExecuteSyntaxNodeActions)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 129632, 129994);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129708, 129778);
+
+                            var
+                            nodesToAnalyze = f_222_129729_129777(declarationAnalysisData)
+                            ;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129800, 129869);
+
+                            f_222_129800_129868(analysisScope, nodesToAnalyze, coreActions);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 129891, 129975);
+
+                            f_222_129891_129974(analysisScope, nodesToAnalyze, additionalPerSymbolActions);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 129632, 129994);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 129574, 130009);
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        f_222_129729_129777(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.DescendantNodesToAnalyze;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 129729, 129777);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_129800_129868(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        nodesToAnalyze, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        groupedActions)
+                        {
+                            executeNodeActionsByKind(analysisScope, nodesToAnalyze, groupedActions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 129800, 129868);
+                            return 0;
+                        }
+
+
+                        int
+                        f_222_129891_129974(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        nodesToAnalyze, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        groupedActions)
+                        {
+                            executeNodeActionsByKind(analysisScope, nodesToAnalyze, groupedActions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 129891, 129974);
+                            return 0;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 129574, 130009);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 129574, 130009);
+                    }
+                }
+
+                void executeNodeActionsByKind(AnalysisScope analysisScope, ImmutableArray<SyntaxNode> nodesToAnalyze, GroupedAnalyzerActions groupedActions)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 130025, 131038);
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 130198, 131023);
+                            foreach (var (analyzer, groupedActionsForAnalyzer) in f_222_130252_130291_I(f_222_130252_130291(groupedActions)))
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 130198, 131023);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 130333, 130412);
+
+                                var
+                                nodeActionsByKind = f_222_130357_130411(groupedActionsForAnalyzer)
+                                ;
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 130434, 130582) || true) && (f_222_130438_130463(nodeActionsByKind) || (DynAbs.Tracing.TraceSender.Expression_False(222, 130438, 130500) || !f_222_130468_130500(analysisScope, analyzer)))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 130434, 130582);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 130550, 130559);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 130434, 130582);
+                                }
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 130606, 131004) || true) && (!f_222_130611_130915(f_222_130611_130627(), nodesToAnalyze, nodeActionsByKind, analyzer, semanticModel, _getKind, f_222_130755_130810(f_222_130755_130801(declarationAnalysisData)), declarationIndex, symbol, analysisScope, analysisState, isInGeneratedCode))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 130606, 131004);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 130965, 130981);
+
+                                    success = false;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 130606, 131004);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 130198, 131023);
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 826);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 826);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 130025, 131038);
+
+                        System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        f_222_130252_130291(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        this_param)
+                        {
+                            var return_v = this_param.GroupedActionsByAnalyzer;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 130252, 130291);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableDictionary<TLanguageKindEnum, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalyzerAction<TLanguageKindEnum>>>
+                        f_222_130357_130411(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer
+                        this_param)
+                        {
+                            var return_v = this_param.NodeActionsByAnalyzerAndKind;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 130357, 130411);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_130438_130463(System.Collections.Immutable.ImmutableDictionary<TLanguageKindEnum, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalyzerAction<TLanguageKindEnum>>>
+                        this_param)
+                        {
+                            var return_v = this_param.IsEmpty;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 130438, 130463);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_130468_130500(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer)
+                        {
+                            var return_v = this_param.Contains(analyzer);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 130468, 130500);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        f_222_130611_130627()
+                        {
+                            var return_v = AnalyzerExecutor;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 130611, 130627);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.SyntaxNode
+                        f_222_130755_130801(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.TopmostNodeForAnalysis;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 130755, 130801);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Text.TextSpan
+                        f_222_130755_130810(Microsoft.CodeAnalysis.SyntaxNode
+                        this_param)
+                        {
+                            var return_v = this_param.FullSpan;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 130755, 130810);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_130611_130915(Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        nodesToAnalyze, System.Collections.Immutable.ImmutableDictionary<TLanguageKindEnum, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalyzerAction<TLanguageKindEnum>>>
+                        nodeActionsByKind, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer, Microsoft.CodeAnalysis.SemanticModel
+                        model, System.Func<Microsoft.CodeAnalysis.SyntaxNode, TLanguageKindEnum>
+                        getKind, Microsoft.CodeAnalysis.Text.TextSpan
+                        filterSpan, int
+                        declarationIndex, Microsoft.CodeAnalysis.ISymbol
+                        declaredSymbol, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, Microsoft.CodeAnalysis.Diagnostics.AnalysisState?
+                        analysisState, bool
+                        isGeneratedCode)
+                        {
+                            var return_v = this_param.TryExecuteSyntaxNodeActions<TLanguageKindEnum>((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxNode>)nodesToAnalyze, (System.Collections.Generic.IDictionary<TLanguageKindEnum, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalyzerAction<TLanguageKindEnum>>>)nodeActionsByKind, analyzer, model, getKind, filterSpan, declarationIndex, declaredSymbol, analysisScope, analysisState, isGeneratedCode);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 130611, 130915);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        f_222_130252_130291_I(System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 130252, 130291);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 130025, 131038);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 130025, 131038);
+                    }
+                }
+
+                void executeExecutableCodeActions()
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 131054, 134277);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131122, 131297) || true) && (!shouldExecuteCodeBlockActions && (DynAbs.Tracing.TraceSender.Expression_True(222, 131126, 131190) && !shouldExecuteOperationActions) && (DynAbs.Tracing.TraceSender.Expression_True(222, 131126, 131229) && !shouldExecuteOperationBlockActions))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 131122, 131297);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131271, 131278);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 131122, 131297);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131385, 131445);
+
+                        var
+                        executableCodeBlocks = ImmutableArray<SyntaxNode>.Empty
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131463, 131566);
+
+                        var
+                        executableCodeBlockActionsBuilder = f_222_131503_131565()
+                        ;
+                        try
+                        {
+                            try
+                            {
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131628, 134012);
+                                foreach (var declInNode in f_222_131655_131697_I(f_222_131655_131697(declarationAnalysisData)))
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 131628, 134012);
+
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131747, 133989) || true) && (declInNode.DeclaredNode == f_222_131778_131824(declarationAnalysisData) || (DynAbs.Tracing.TraceSender.Expression_False(222, 131751, 131903) || declInNode.DeclaredNode == f_222_131855_131903(declarationAnalysisData)))
+                                    )
+
+                                    {
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 131747, 133989);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 131961, 132016);
+
+                                        executableCodeBlocks = declInNode.ExecutableCodeBlocks;
+
+                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132046, 133962) || true) && (f_222_132050_132079_M(!executableCodeBlocks.IsEmpty))
+                                        )
+
+                                        {
+                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 132046, 133962);
+
+                                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132145, 132580) || true) && (shouldExecuteCodeBlockActions || (DynAbs.Tracing.TraceSender.Expression_False(222, 132149, 132216) || shouldExecuteOperationBlockActions))
+                                            )
+
+                                            {
+                                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 132145, 132580);
+                                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132290, 132391);
+
+                                                f_222_132290_132390(coreActions, analysisScope, executableCodeBlockActionsBuilder);
+                                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132429, 132545);
+
+                                                f_222_132429_132544(additionalPerSymbolActions, analysisScope, executableCodeBlockActionsBuilder);
+                                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 132145, 132580);
+                                            }
+
+                                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132679, 133889) || true) && (shouldExecuteOperationActions || (DynAbs.Tracing.TraceSender.Expression_False(222, 132683, 132750) || shouldExecuteOperationBlockActions))
+                                            )
+
+                                            {
+                                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 132679, 133889);
+                                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132824, 132939);
+
+                                                var
+                                                operationBlocksToAnalyze = f_222_132855_132938(executableCodeBlocks, semanticModel, cancellationToken)
+                                                ;
+                                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 132977, 133066);
+
+                                                var
+                                                operationsToAnalyze = f_222_133003_133065(operationBlocksToAnalyze)
+                                                ;
+
+                                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 133106, 133854) || true) && (f_222_133110_133138_M(!operationsToAnalyze.IsEmpty))
+                                                )
+
+                                                {
+                                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 133106, 133854);
+                                                    try
+                                                    {
+                                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 133312, 133358);
+
+                                                        f_222_133312_133357(operationsToAnalyze);
+                                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 133404, 133516);
+
+                                                        f_222_133404_133515(operationBlocksToAnalyze, operationsToAnalyze, executableCodeBlockActionsBuilder);
+                                                    }
+                                                    finally
+                                                    {
+                                                        DynAbs.Tracing.TraceSender.TraceEnterFinally(222, 133601, 133815);
+                                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 133697, 133772);
+
+                                                        f_222_133697_133771(f_222_133697_133713(), operationBlocksToAnalyze);
+                                                        DynAbs.Tracing.TraceSender.TraceExitFinally(222, 133601, 133815);
+                                                    }
+                                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 133106, 133854);
+                                                }
+                                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 132679, 133889);
+                                            }
+                                            DynAbs.Tracing.TraceSender.TraceBreak(222, 133925, 133931);
+
+                                            break;
+                                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 132046, 133962);
+                                        }
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(222, 131747, 133989);
+                                    }
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 131628, 134012);
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 2385);
+                                throw;
+                            }
+                            finally
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 2385);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 134036, 134117);
+
+                            f_222_134036_134116(executableCodeBlocks, executableCodeBlockActionsBuilder);
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterFinally(222, 134154, 134262);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 134202, 134243);
+
+                            f_222_134202_134242(executableCodeBlockActionsBuilder);
+                            DynAbs.Tracing.TraceSender.TraceExitFinally(222, 134154, 134262);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 131054, 134277);
+
+                        Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        f_222_131503_131565()
+                        {
+                            var return_v = ArrayBuilder<ExecutableCodeBlockAnalyzerActions>.GetInstance();
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 131503, 131565);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DeclarationInfo>
+                        f_222_131655_131697(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.DeclarationsInNode;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 131655, 131697);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.SyntaxNode
+                        f_222_131778_131824(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.TopmostNodeForAnalysis;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 131778, 131824);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.SyntaxNode
+                        f_222_131855_131903(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.DeclaringReferenceSyntax;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 131855, 131903);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_132050_132079_M(bool
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 132050, 132079);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_132290_132390(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        groupedActions, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        builder)
+                        {
+                            addExecutableCodeBlockAnalyzerActions(groupedActions, analysisScope, builder);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 132290, 132390);
+                            return 0;
+                        }
+
+
+                        int
+                        f_222_132429_132544(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        groupedActions, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        builder)
+                        {
+                            addExecutableCodeBlockAnalyzerActions(groupedActions, analysisScope, builder);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 132429, 132544);
+                            return 0;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        f_222_132855_132938(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        executableBlocks, Microsoft.CodeAnalysis.SemanticModel
+                        semanticModel, System.Threading.CancellationToken
+                        cancellationToken)
+                        {
+                            var return_v = GetOperationBlocksToAnalyze(executableBlocks, semanticModel, cancellationToken);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 132855, 132938);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        f_222_133003_133065(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationBlocksToAnalyze)
+                        {
+                            var return_v = getOperationsToAnalyzeWithStackGuard(operationBlocksToAnalyze);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 133003, 133065);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_133110_133138_M(bool
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 133110, 133138);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_133312_133357(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationsToAnalyze)
+                        {
+                            executeOperationsActions(operationsToAnalyze);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 133312, 133357);
+                            return 0;
+                        }
+
+
+                        int
+                        f_222_133404_133515(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationBlocksToAnalyze, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationsToAnalyze, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        codeBlockActions)
+                        {
+                            executeOperationsBlockActions(operationBlocksToAnalyze, operationsToAnalyze, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>)codeBlockActions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 133404, 133515);
+                            return 0;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        f_222_133697_133713()
+                        {
+                            var return_v = AnalyzerExecutor;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 133697, 133713);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_133697_133771(Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationBlocks)
+                        {
+                            this_param.OnOperationBlockActionsExecuted(operationBlocks);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 133697, 133771);
+                            return 0;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DeclarationInfo>
+                        f_222_131655_131697_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.DeclarationInfo>
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 131655, 131697);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_134036_134116(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        executableCodeBlocks, Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        codeBlockActions)
+                        {
+                            executeCodeBlockActions(executableCodeBlocks, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>)codeBlockActions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 134036, 134116);
+                            return 0;
+                        }
+
+
+                        int
+                        f_222_134202_134242(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        this_param)
+                        {
+                            this_param.Free();
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 134202, 134242);
+                            return 0;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 131054, 134277);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 131054, 134277);
+                    }
+                }
+
+                ImmutableArray<IOperation> getOperationsToAnalyzeWithStackGuard(ImmutableArray<IOperation> operationBlocksToAnalyze)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 134293, 135256);
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 134486, 134542);
+
+                            return f_222_134493_134541(operationBlocksToAnalyze);
+                        }
+                        catch (Exception ex) when (ex is InsufficientExecutionStackException || (DynAbs.Tracing.TraceSender.Expression_False(222, 134606, 134694) || f_222_134651_134694(ex)))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCatch(222, 134579, 135241);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 134948, 135018);
+
+                            var
+                            diagnostic = f_222_134965_135017(ex)
+                            ;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135040, 135073);
+
+                            var
+                            analyzer = f_222_135055_135069(this)[0]
+                            ;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135097, 135160);
+
+                            f_222_135097_135159(f_222_135097_135113(), ex, analyzer, diagnostic);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135182, 135222);
+
+                            return ImmutableArray<IOperation>.Empty;
+                            DynAbs.Tracing.TraceSender.TraceExitCatch(222, 134579, 135241);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 134293, 135256);
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        f_222_134493_134541(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationBlocks)
+                        {
+                            var return_v = GetOperationsToAnalyze(operationBlocks);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 134493, 134541);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_134651_134694(System.Exception
+                        exception)
+                        {
+                            var return_v = FatalError.ReportAndCatchUnlessCanceled(exception);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 134651, 134694);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostic
+                        f_222_134965_135017(System.Exception
+                        e)
+                        {
+                            var return_v = AnalyzerExecutor.CreateDriverExceptionDiagnostic(e);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 134965, 135017);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                        f_222_135055_135069(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>
+                        this_param)
+                        {
+                            var return_v = this_param.Analyzers;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 135055, 135069);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        f_222_135097_135113()
+                        {
+                            var return_v = AnalyzerExecutor;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 135097, 135113);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_135097_135159(Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        this_param, System.Exception
+                        arg1, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        arg2, Microsoft.CodeAnalysis.Diagnostic
+                        arg3)
+                        {
+                            this_param.OnAnalyzerException(arg1, arg2, arg3);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 135097, 135159);
+                            return 0;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 134293, 135256);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 134293, 135256);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+
+                void executeOperationsActions(ImmutableArray<IOperation> operationsToAnalyze)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 135272, 135688);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135382, 135673) || true) && (shouldExecuteOperationActions)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 135382, 135673);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135457, 135537);
+
+                            f_222_135457_135536(analysisScope, operationsToAnalyze, coreActions);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135559, 135654);
+
+                            f_222_135559_135653(analysisScope, operationsToAnalyze, additionalPerSymbolActions);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 135382, 135673);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 135272, 135688);
+
+                        int
+                        f_222_135457_135536(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationsToAnalyze, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        groupedActions)
+                        {
+                            executeOperationsActionsByKind(analysisScope, operationsToAnalyze, groupedActions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 135457, 135536);
+                            return 0;
+                        }
+
+
+                        int
+                        f_222_135559_135653(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationsToAnalyze, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        groupedActions)
+                        {
+                            executeOperationsActionsByKind(analysisScope, operationsToAnalyze, groupedActions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 135559, 135653);
+                            return 0;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 135272, 135688);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 135272, 135688);
+                    }
+                }
+
+                void executeOperationsActionsByKind(AnalysisScope analysisScope, ImmutableArray<IOperation> operationsToAnalyze, GroupedAnalyzerActions groupedActions)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 135704, 136742);
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 135888, 136727);
+                            foreach (var (analyzer, groupedActionsForAnalyzer) in f_222_135942_135981_I(f_222_135942_135981(groupedActions)))
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 135888, 136727);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 136023, 136112);
+
+                                var
+                                operationActionsByKind = f_222_136052_136111(groupedActionsForAnalyzer)
+                                ;
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 136134, 136287) || true) && (f_222_136138_136168(operationActionsByKind) || (DynAbs.Tracing.TraceSender.Expression_False(222, 136138, 136205) || !f_222_136173_136205(analysisScope, analyzer)))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 136134, 136287);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 136255, 136264);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 136134, 136287);
+                                }
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 136311, 136708) || true) && (!f_222_136316_136619(f_222_136316_136332(), operationsToAnalyze, operationActionsByKind, analyzer, semanticModel, f_222_136459_136514(f_222_136459_136505(declarationAnalysisData)), declarationIndex, symbol, analysisScope, analysisState, isInGeneratedCode))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 136311, 136708);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 136669, 136685);
+
+                                    success = false;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 136311, 136708);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 135888, 136727);
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 840);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 840);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 135704, 136742);
+
+                        System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        f_222_135942_135981(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        this_param)
+                        {
+                            var return_v = this_param.GroupedActionsByAnalyzer;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 135942, 135981);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.OperationKind, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationAnalyzerAction>>
+                        f_222_136052_136111(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer
+                        this_param)
+                        {
+                            var return_v = this_param.OperationActionsByAnalyzerAndKind;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 136052, 136111);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_136138_136168(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.OperationKind, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationAnalyzerAction>>
+                        this_param)
+                        {
+                            var return_v = this_param.IsEmpty;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 136138, 136168);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_136173_136205(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer)
+                        {
+                            var return_v = this_param.Contains(analyzer);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 136173, 136205);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        f_222_136316_136332()
+                        {
+                            var return_v = AnalyzerExecutor;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 136316, 136332);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.SyntaxNode
+                        f_222_136459_136505(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.TopmostNodeForAnalysis;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 136459, 136505);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Text.TextSpan
+                        f_222_136459_136514(Microsoft.CodeAnalysis.SyntaxNode
+                        this_param)
+                        {
+                            var return_v = this_param.FullSpan;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 136459, 136514);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_136316_136619(Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationsToAnalyze, System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.OperationKind, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationAnalyzerAction>>
+                        operationActionsByKind, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer, Microsoft.CodeAnalysis.SemanticModel
+                        model, Microsoft.CodeAnalysis.Text.TextSpan
+                        filterSpan, int
+                        declarationIndex, Microsoft.CodeAnalysis.ISymbol
+                        declaredSymbol, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, Microsoft.CodeAnalysis.Diagnostics.AnalysisState?
+                        analysisState, bool
+                        isGeneratedCode)
+                        {
+                            var return_v = this_param.TryExecuteOperationActions((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.IOperation>)operationsToAnalyze, (System.Collections.Generic.IDictionary<Microsoft.CodeAnalysis.OperationKind, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationAnalyzerAction>>)operationActionsByKind, analyzer, model, filterSpan, declarationIndex, declaredSymbol, analysisScope, analysisState, isGeneratedCode);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 136316, 136619);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        f_222_135942_135981_I(System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 135942, 135981);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 135704, 136742);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 135704, 136742);
+                    }
+                }
+
+                void executeOperationsBlockActions(ImmutableArray<IOperation> operationBlocksToAnalyze, ImmutableArray<IOperation> operationsToAnalyze, IEnumerable<ExecutableCodeBlockAnalyzerActions> codeBlockActions)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 136758, 138267);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 136992, 137099) || true) && (!shouldExecuteOperationBlockActions)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 136992, 137099);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137073, 137080);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 136992, 137099);
+                        }
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137119, 138252);
+                            foreach (var analyzerActions in f_222_137151_137167_I(codeBlockActions))
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 137119, 138252);
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137209, 137496) || true) && (analyzerActions.OperationBlockStartActions.IsEmpty && (DynAbs.Tracing.TraceSender.Expression_True(222, 137213, 137337) && analyzerActions.OperationBlockActions.IsEmpty) && (DynAbs.Tracing.TraceSender.Expression_True(222, 137213, 137414) && analyzerActions.OperationBlockEndActions.IsEmpty))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 137209, 137496);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137464, 137473);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 137209, 137496);
+                                }
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137520, 137655) || true) && (!f_222_137525_137573(analysisScope, analyzerActions.Analyzer))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 137520, 137655);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137623, 137632);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 137520, 137655);
+                                }
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 137679, 138233) || true) && (!f_222_137684_138144(f_222_137684_137700(), analyzerActions.OperationBlockStartActions, analyzerActions.OperationBlockActions, analyzerActions.OperationBlockEndActions, analyzerActions.Analyzer, f_222_137935_137981(declarationAnalysisData), symbol, operationBlocksToAnalyze, operationsToAnalyze, semanticModel, declarationIndex, analysisScope, analysisState, isInGeneratedCode))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 137679, 138233);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138194, 138210);
+
+                                    success = false;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 137679, 138233);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 137119, 138252);
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 1134);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 1134);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 136758, 138267);
+
+                        bool
+                        f_222_137525_137573(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer)
+                        {
+                            var return_v = this_param.Contains(analyzer);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 137525, 137573);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        f_222_137684_137700()
+                        {
+                            var return_v = AnalyzerExecutor;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 137684, 137700);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.SyntaxNode
+                        f_222_137935_137981(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.TopmostNodeForAnalysis;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 137935, 137981);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_137684_138144(Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationBlockStartAnalyzerAction>
+                        operationBlockStartActions, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationBlockAnalyzerAction>
+                        operationBlockActions, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.OperationBlockAnalyzerAction>
+                        operationBlockEndActions, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer, Microsoft.CodeAnalysis.SyntaxNode
+                        declaredNode, Microsoft.CodeAnalysis.ISymbol
+                        declaredSymbol, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operationBlocks, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.IOperation>
+                        operations, Microsoft.CodeAnalysis.SemanticModel
+                        semanticModel, int
+                        declarationIndex, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, Microsoft.CodeAnalysis.Diagnostics.AnalysisState?
+                        analysisState, bool
+                        isGeneratedCode)
+                        {
+                            var return_v = this_param.TryExecuteOperationBlockActions((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.OperationBlockStartAnalyzerAction>)operationBlockStartActions, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.OperationBlockAnalyzerAction>)operationBlockActions, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.OperationBlockAnalyzerAction>)operationBlockEndActions, analyzer, declaredNode, declaredSymbol, operationBlocks, operations, semanticModel, declarationIndex, analysisScope, analysisState, isGeneratedCode);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 137684, 138144);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        f_222_137151_137167_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 137151, 137167);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 136758, 138267);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 136758, 138267);
+                    }
+                }
+
+                void executeCodeBlockActions(ImmutableArray<SyntaxNode> executableCodeBlocks, IEnumerable<ExecutableCodeBlockAnalyzerActions> codeBlockActions)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(222, 138283, 139711);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138459, 138593) || true) && (executableCodeBlocks.IsEmpty || (DynAbs.Tracing.TraceSender.Expression_False(222, 138463, 138525) || !shouldExecuteCodeBlockActions))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 138459, 138593);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138567, 138574);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(222, 138459, 138593);
+                        }
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138613, 139696);
+                            foreach (var analyzerActions in f_222_138645_138661_I(codeBlockActions))
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 138613, 139696);
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138703, 138975) || true) && (analyzerActions.CodeBlockStartActions.IsEmpty && (DynAbs.Tracing.TraceSender.Expression_True(222, 138707, 138821) && analyzerActions.CodeBlockActions.IsEmpty) && (DynAbs.Tracing.TraceSender.Expression_True(222, 138707, 138893) && analyzerActions.CodeBlockEndActions.IsEmpty))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 138703, 138975);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138943, 138952);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 138703, 138975);
+                                }
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 138999, 139134) || true) && (!f_222_139004_139052(analysisScope, analyzerActions.Analyzer))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 138999, 139134);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 139102, 139111);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 138999, 139134);
+                                }
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 139158, 139677) || true) && (!f_222_139163_139588(f_222_139163_139179(), analyzerActions.CodeBlockStartActions, analyzerActions.CodeBlockActions, analyzerActions.CodeBlockEndActions, analyzerActions.Analyzer, f_222_139394_139440(declarationAnalysisData), symbol, executableCodeBlocks, semanticModel, _getKind, declarationIndex, analysisScope, analysisState, isInGeneratedCode))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 139158, 139677);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 139638, 139654);
+
+                                    success = false;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 139158, 139677);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 138613, 139696);
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 1084);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 1084);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(222, 138283, 139711);
+
+                        bool
+                        f_222_139004_139052(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer)
+                        {
+                            var return_v = this_param.Contains(analyzer);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 139004, 139052);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        f_222_139163_139179()
+                        {
+                            var return_v = AnalyzerExecutor;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 139163, 139179);
+                            return return_v;
+                        }
+
+
+                        Microsoft.CodeAnalysis.SyntaxNode
+                        f_222_139394_139440(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                        this_param)
+                        {
+                            var return_v = this_param.TopmostNodeForAnalysis;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 139394, 139440);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_139163_139588(Microsoft.CodeAnalysis.Diagnostics.AnalyzerExecutor
+                        this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.CodeBlockStartAnalyzerAction<TLanguageKindEnum>>
+                        codeBlockStartActions, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.CodeBlockAnalyzerAction>
+                        codeBlockActions, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.CodeBlockAnalyzerAction>
+                        codeBlockEndActions, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer, Microsoft.CodeAnalysis.SyntaxNode
+                        declaredNode, Microsoft.CodeAnalysis.ISymbol
+                        declaredSymbol, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.SyntaxNode>
+                        executableCodeBlocks, Microsoft.CodeAnalysis.SemanticModel
+                        semanticModel, System.Func<Microsoft.CodeAnalysis.SyntaxNode, TLanguageKindEnum>
+                        getKind, int
+                        declarationIndex, Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        analysisScope, Microsoft.CodeAnalysis.Diagnostics.AnalysisState?
+                        analysisState, bool
+                        isGeneratedCode)
+                        {
+                            var return_v = this_param.TryExecuteCodeBlockActions<TLanguageKindEnum>((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.CodeBlockStartAnalyzerAction<TLanguageKindEnum>>)codeBlockStartActions, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.CodeBlockAnalyzerAction>)codeBlockActions, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.CodeBlockAnalyzerAction>)codeBlockEndActions, analyzer, declaredNode, declaredSymbol, executableCodeBlocks, semanticModel, getKind, declarationIndex, analysisScope, analysisState, isGeneratedCode);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 139163, 139588);
+                            return return_v;
+                        }
+
+
+                        System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        f_222_138645_138661_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 138645, 138661);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 138283, 139711);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 138283, 139711);
+                    }
+                }
+
+                static void addExecutableCodeBlockAnalyzerActions(
+                                GroupedAnalyzerActions groupedActions,
+                                AnalysisScope analysisScope,
+                                ArrayBuilder<ExecutableCodeBlockAnalyzerActions> builder)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(222, 139727, 140428);
+                        Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions executableCodeBlockActions = default(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions);
+                        try
+                        {
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 139987, 140413);
+                            foreach (var (analyzer, groupedActionsForAnalyzer) in f_222_140041_140080_I(f_222_140041_140080(groupedActions)))
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 139987, 140413);
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 140122, 140394) || true) && (f_222_140126_140158(analysisScope, analyzer) && (DynAbs.Tracing.TraceSender.Expression_True(222, 140126, 140281) && f_222_140187_140281(groupedActionsForAnalyzer, out executableCodeBlockActions)))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(222, 140122, 140394);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(222, 140331, 140371);
+
+                                    f_222_140331_140370(builder, executableCodeBlockActions);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(222, 140122, 140394);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(222, 139987, 140413);
+                            }
+                        }
+                        catch (System.Exception)
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoopByException(222, 1, 427);
+                            throw;
+                        }
+                        finally
+                        {
+                            DynAbs.Tracing.TraceSender.TraceExitLoop(222, 1, 427);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitStaticMethod(222, 139727, 140428);
+
+                        System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        f_222_140041_140080(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActions
+                        this_param)
+                        {
+                            var return_v = this_param.GroupedActionsByAnalyzer;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 140041, 140080);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_140126_140158(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                        this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                        analyzer)
+                        {
+                            var return_v = this_param.Contains(analyzer);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 140126, 140158);
+                            return return_v;
+                        }
+
+
+                        bool
+                        f_222_140187_140281(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer
+                        this_param, out Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions
+                        actions)
+                        {
+                            var return_v = this_param.TryGetExecutableCodeBlockActions(out actions);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 140187, 140281);
+                            return return_v;
+                        }
+
+
+                        int
+                        f_222_140331_140370(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions>
+                        this_param, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.ExecutableCodeBlockAnalyzerActions
+                        item)
+                        {
+                            this_param.Add(item);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 140331, 140370);
+                            return 0;
+                        }
+
+
+                        System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        f_222_140041_140080_I(System.Collections.Immutable.ImmutableArray<(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer analyzer, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>.GroupedAnalyzerActionsForAnalyzer groupedActions)>
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 140041, 140080);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 139727, 140428);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 139727, 140428);
+                    }
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(222, 126345, 140439);
+
+                int
+                f_222_127033_127181(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 127033, 127181);
+                    return 0;
+                }
+
+
+                bool
+                f_222_127231_127257_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127231, 127257);
+                    return return_v;
+                }
+
+
+                int
+                f_222_127196_127258(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 127196, 127258);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.ISymbol
+                f_222_127288_127306(Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                this_param)
+                {
+                    var return_v = this_param.Symbol;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127288, 127306);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SemanticModel?
+                f_222_127343_127388(Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                this_param)
+                {
+                    var return_v = this_param.SemanticModelWithCachedBoundNodes;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127343, 127388);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.CachingSemanticModelProvider
+                f_222_127409_127430()
+                {
+                    var return_v = SemanticModelProvider;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127409, 127430);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_222_127448_127463(Microsoft.CodeAnalysis.SyntaxReference
+                this_param)
+                {
+                    var return_v = this_param.SyntaxTree;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127448, 127463);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Compilation
+                f_222_127465_127488(Microsoft.CodeAnalysis.Diagnostics.SymbolDeclaredCompilationEvent
+                this_param)
+                {
+                    var return_v = this_param.Compilation;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127465, 127488);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SemanticModel
+                f_222_127409_127489(Microsoft.CodeAnalysis.Diagnostics.CachingSemanticModelProvider
+                this_param, Microsoft.CodeAnalysis.SyntaxTree
+                tree, Microsoft.CodeAnalysis.Compilation
+                compilation)
+                {
+                    var return_v = this_param.GetSemanticModel(tree, compilation);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 127409, 127489);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                f_222_127563_127572()
+                {
+                    var return_v = Analyzers;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127563, 127572);
+                    return return_v;
+                }
+
+
+                bool
+                f_222_127601_127638_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127601, 127638);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxTree
+                f_222_127686_127701(Microsoft.CodeAnalysis.SyntaxReference
+                this_param)
+                {
+                    var return_v = this_param.SyntaxTree;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127686, 127701);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxNode
+                f_222_127686_127728(Microsoft.CodeAnalysis.SyntaxTree
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.GetRoot(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 127686, 127728);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.CompilationData
+                f_222_127788_127810()
+                {
+                    var return_v = CurrentCompilationData;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 127788, 127810);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                f_222_127788_128075(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.CompilationData
+                this_param, Microsoft.CodeAnalysis.SyntaxReference
+                declaration, System.Func<Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData>
+                computeDeclarationAnalysisData, bool
+                cacheAnalysisData)
+                {
+                    var return_v = this_param.GetOrComputeDeclarationAnalysisData(declaration, computeDeclarationAnalysisData: computeDeclarationAnalysisData, cacheAnalysisData: cacheAnalysisData);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 127788, 128075);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.SyntaxNode
+                f_222_128125_128171(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver.DeclarationAnalysisData
+                this_param)
+                {
+                    var return_v = this_param.TopmostNodeForAnalysis;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 128125, 128171);
+                    return return_v;
+                }
+
+
+                bool
+                f_222_128097_128172(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                this_param, Microsoft.CodeAnalysis.SyntaxNode
+                node)
+                {
+                    var return_v = this_param.ShouldAnalyze(node);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 128097, 128172);
+                    return return_v;
+                }
+
+
+                int
+                f_222_128339_128359()
+                {
+                    executeNodeActions();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 128339, 128359);
+                    return 0;
+                }
+
+
+                int
+                f_222_128495_128525()
+                {
+                    executeExecutableCodeActions();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 128495, 128525);
+                    return 0;
+                }
+
+
+                bool
+                f_222_128725_128767_M(bool
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 128725, 128767);
+                    return return_v;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                f_222_129171_129194(Microsoft.CodeAnalysis.Diagnostics.AnalysisScope
+                this_param)
+                {
+                    var return_v = this_param.Analyzers;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(222, 129171, 129194);
+                    return return_v;
+                }
+
+
+                int
+                f_222_129236_129309(Microsoft.CodeAnalysis.Diagnostics.AnalysisState
+                this_param, Microsoft.CodeAnalysis.ISymbol
+                symbol, int
+                declarationIndex, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                analyzer)
+                {
+                    this_param.MarkDeclarationComplete(symbol, declarationIndex, analyzer);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 129236, 129309);
+                    return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                f_222_129171_129194_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 129171, 129194);
+                    return return_v;
+                }
+
+
+                int
+                f_222_129412_129492(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver<TLanguageKindEnum>
+                this_param, Microsoft.CodeAnalysis.SyntaxReference
+                declaration, Microsoft.CodeAnalysis.ISymbol
+                symbol, int
+                declarationIndex, Microsoft.CodeAnalysis.Diagnostics.AnalysisState
+                analysisState)
+                {
+                    this_param.ClearCachedAnalysisDataIfAnalyzed(declaration, symbol, declarationIndex, analysisState);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(222, 129412, 129492);
+                    return 0;
+                }
+
+            }
+            catch
             {
-                try
-                {
-                    return GetOperationsToAnalyze(operationBlocksToAnalyze);
-                }
-                catch (Exception ex) when (ex is InsufficientExecutionStackException || FatalError.ReportAndCatchUnlessCanceled(ex))
-                {
-                    // the exception filter will short-circuit if `ex` is `InsufficientExecutionStackException` (from OperationWalker)
-                    // and no non-fatal-watson will be logged as a result.
-                    var diagnostic = AnalyzerExecutor.CreateDriverExceptionDiagnostic(ex);
-                    var analyzer = this.Analyzers[0];
-
-                    AnalyzerExecutor.OnAnalyzerException(ex, analyzer, diagnostic);
-                    return ImmutableArray<IOperation>.Empty;
-                }
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(222, 126345, 140439);
+                throw;
             }
-
-            void executeOperationsActions(ImmutableArray<IOperation> operationsToAnalyze)
+            finally
             {
-                if (shouldExecuteOperationActions)
-                {
-                    executeOperationsActionsByKind(analysisScope, operationsToAnalyze, coreActions);
-                    executeOperationsActionsByKind(analysisScope, operationsToAnalyze, additionalPerSymbolActions);
-                }
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(222, 126345, 140439);
             }
-
-            void executeOperationsActionsByKind(AnalysisScope analysisScope, ImmutableArray<IOperation> operationsToAnalyze, GroupedAnalyzerActions groupedActions)
-            {
-                foreach (var (analyzer, groupedActionsForAnalyzer) in groupedActions.GroupedActionsByAnalyzer)
-                {
-                    var operationActionsByKind = groupedActionsForAnalyzer.OperationActionsByAnalyzerAndKind;
-                    if (operationActionsByKind.IsEmpty || !analysisScope.Contains(analyzer))
-                    {
-                        continue;
-                    }
-
-                    if (!AnalyzerExecutor.TryExecuteOperationActions(operationsToAnalyze, operationActionsByKind,
-                            analyzer, semanticModel, declarationAnalysisData.TopmostNodeForAnalysis.FullSpan,
-                            declarationIndex, symbol, analysisScope, analysisState, isInGeneratedCode))
-                    {
-                        success = false;
-                    }
-                }
-            }
-
-            void executeOperationsBlockActions(ImmutableArray<IOperation> operationBlocksToAnalyze, ImmutableArray<IOperation> operationsToAnalyze, IEnumerable<ExecutableCodeBlockAnalyzerActions> codeBlockActions)
-            {
-                if (!shouldExecuteOperationBlockActions)
-                {
-                    return;
-                }
-
-                foreach (var analyzerActions in codeBlockActions)
-                {
-                    if (analyzerActions.OperationBlockStartActions.IsEmpty &&
-                        analyzerActions.OperationBlockActions.IsEmpty &&
-                        analyzerActions.OperationBlockEndActions.IsEmpty)
-                    {
-                        continue;
-                    }
-
-                    if (!analysisScope.Contains(analyzerActions.Analyzer))
-                    {
-                        continue;
-                    }
-
-                    if (!AnalyzerExecutor.TryExecuteOperationBlockActions(
-                        analyzerActions.OperationBlockStartActions, analyzerActions.OperationBlockActions,
-                        analyzerActions.OperationBlockEndActions, analyzerActions.Analyzer, declarationAnalysisData.TopmostNodeForAnalysis, symbol,
-                        operationBlocksToAnalyze, operationsToAnalyze, semanticModel, declarationIndex, analysisScope, analysisState, isInGeneratedCode))
-                    {
-                        success = false;
-                    }
-                }
-            }
-
-            void executeCodeBlockActions(ImmutableArray<SyntaxNode> executableCodeBlocks, IEnumerable<ExecutableCodeBlockAnalyzerActions> codeBlockActions)
-            {
-                if (executableCodeBlocks.IsEmpty || !shouldExecuteCodeBlockActions)
-                {
-                    return;
-                }
-
-                foreach (var analyzerActions in codeBlockActions)
-                {
-                    if (analyzerActions.CodeBlockStartActions.IsEmpty &&
-                        analyzerActions.CodeBlockActions.IsEmpty &&
-                        analyzerActions.CodeBlockEndActions.IsEmpty)
-                    {
-                        continue;
-                    }
-
-                    if (!analysisScope.Contains(analyzerActions.Analyzer))
-                    {
-                        continue;
-                    }
-
-                    if (!AnalyzerExecutor.TryExecuteCodeBlockActions(
-                        analyzerActions.CodeBlockStartActions, analyzerActions.CodeBlockActions,
-                        analyzerActions.CodeBlockEndActions, analyzerActions.Analyzer, declarationAnalysisData.TopmostNodeForAnalysis, symbol,
-                        executableCodeBlocks, semanticModel, _getKind, declarationIndex, analysisScope, analysisState, isInGeneratedCode))
-                    {
-                        success = false;
-                    }
-                }
-            }
-
-            static void addExecutableCodeBlockAnalyzerActions(
-                GroupedAnalyzerActions groupedActions,
-                AnalysisScope analysisScope,
-                ArrayBuilder<ExecutableCodeBlockAnalyzerActions> builder)
-            {
-                foreach (var (analyzer, groupedActionsForAnalyzer) in groupedActions.GroupedActionsByAnalyzer)
-                {
-                    if (analysisScope.Contains(analyzer) &&
-                        groupedActionsForAnalyzer.TryGetExecutableCodeBlockActions(out var executableCodeBlockActions))
-                    {
-                        builder.Add(executableCodeBlockActions);
-                    }
-                }
-            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static ImmutableArray<SyntaxNode> GetSyntaxNodesToAnalyze(

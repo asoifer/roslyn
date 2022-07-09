@@ -143,19 +143,97 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
 
             protected sealed override TAttributeData PortAttributeIfNeedTo(TAttributeData attrData, TSyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics)
             {
-                // Note, when porting attributes, we are not using constructors from original symbol.
-                // The constructors might be missing (for example, in metadata case) and doing lookup
-                // will ensure that we report appropriate errors.
-
-                if (TypeManager.IsTargetAttribute(UnderlyingMethod, attrData, AttributeDescription.LCIDConversionAttribute))
+                try
                 {
-                    if (attrData.CommonConstructorArguments.Length == 1)
-                    {
-                        return TypeManager.CreateSynthesizedAttribute(WellKnownMember.System_Runtime_InteropServices_LCIDConversionAttribute__ctor, attrData, syntaxNodeOpt, diagnostics);
-                    }
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(773, 3578, 4528);
 
-                return null;
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(773, 4027, 4481) || true) && (f_773_4031_4134(f_773_4031_4042(), f_773_4061_4077(), attrData, AttributeDescription.LCIDConversionAttribute))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(773, 4027, 4481);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(773, 4176, 4462) || true) && (attrData.CommonConstructorArguments.Length == 1)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(773, 4176, 4462);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(773, 4277, 4439);
+
+                            return f_773_4284_4438(f_773_4284_4295(), WellKnownMember.System_Runtime_InteropServices_LCIDConversionAttribute__ctor, attrData, syntaxNodeOpt, diagnostics);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(773, 4176, 4462);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(773, 4027, 4481);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(773, 4501, 4513);
+
+                    return null;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(773, 3578, 4528);
+
+                    TEmbeddedTypesManager
+                    f_773_4031_4042()
+                    {
+                        var return_v = TypeManager;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(773, 4031, 4042);
+                        return return_v;
+                    }
+
+
+                    TMethodSymbol
+                    f_773_4061_4077()
+                    {
+                        var return_v = UnderlyingMethod;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(773, 4061, 4077);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_773_4031_4134(TEmbeddedTypesManager
+                    this_param, TMethodSymbol
+                    underlyingSymbol, TAttributeData
+                    attrData, Microsoft.CodeAnalysis.AttributeDescription
+                    description)
+                    {
+                        var return_v = this_param.IsTargetAttribute((TSymbol)underlyingSymbol, attrData, description);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(773, 4031, 4134);
+                        return return_v;
+                    }
+
+
+                    TEmbeddedTypesManager
+                    f_773_4284_4295()
+                    {
+                        var return_v = TypeManager;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(773, 4284, 4295);
+                        return return_v;
+                    }
+
+
+                    TAttributeData
+                    f_773_4284_4438(TEmbeddedTypesManager
+                    this_param, Microsoft.CodeAnalysis.WellKnownMember
+                    constructor, TAttributeData
+                    attrData, TSyntaxNode
+                    syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                    diagnostics)
+                    {
+                        var return_v = this_param.CreateSynthesizedAttribute(constructor, attrData, syntaxNodeOpt, diagnostics);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(773, 4284, 4438);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(773, 3578, 4528);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(773, 3578, 4528);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             Cci.IMethodBody Cci.IMethodDefinition.GetBody(EmitContext context)
@@ -1644,7 +1722,34 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
 
             ImmutableArray<Cci.IParameterTypeInformation> Cci.ISignature.GetParameters(EmitContext context)
             {
-                return StaticCast<Cci.IParameterTypeInformation>.From(_parameters);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(773, 12154, 12364);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(773, 12282, 12349);
+
+                    return f_773_12289_12348(_parameters);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(773, 12154, 12364);
+
+                    System.Collections.Immutable.ImmutableArray<Microsoft.Cci.IParameterTypeInformation>
+                    f_773_12289_12348(System.Collections.Immutable.ImmutableArray<TEmbeddedParameter>
+                    from)
+                    {
+                        var return_v = StaticCast<Cci.IParameterTypeInformation>.From(from);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(773, 12289, 12348);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(773, 12154, 12364);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(773, 12154, 12364);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             ImmutableArray<Cci.ICustomModifier> Cci.ISignature.RefCustomModifiers
@@ -1763,7 +1868,64 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
             /// </remarks>
             public override string ToString()
             {
-                return UnderlyingMethod.GetInternalSymbol().GetISymbol().ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(773, 13080, 13277);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(773, 13146, 13262);
+
+                    return f_773_13153_13261(f_773_13153_13202(f_773_13153_13189(f_773_13153_13169())), SymbolDisplayFormat.ILVisualizationFormat);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(773, 13080, 13277);
+
+                    TMethodSymbol
+                    f_773_13153_13169()
+                    {
+                        var return_v = UnderlyingMethod;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(773, 13153, 13169);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Symbols.ISymbolInternal?
+                    f_773_13153_13189(TMethodSymbol
+                    this_param)
+                    {
+                        var return_v = this_param.GetInternalSymbol();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(773, 13153, 13189);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.ISymbol
+                    f_773_13153_13202(Microsoft.CodeAnalysis.Symbols.ISymbolInternal?
+                    this_param)
+                    {
+                        var return_v = this_param.GetISymbol();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(773, 13153, 13202);
+                        return return_v;
+                    }
+
+
+                    string
+                    f_773_13153_13261(Microsoft.CodeAnalysis.ISymbol
+                    this_param, Microsoft.CodeAnalysis.SymbolDisplayFormat
+                    format)
+                    {
+                        var return_v = this_param.ToDisplayString(format);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(773, 13153, 13261);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(773, 13080, 13277);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(773, 13080, 13277);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             static CommonEmbeddedMethod()

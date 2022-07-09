@@ -44,19 +44,79 @@ namespace Microsoft.CodeAnalysis.Collections
 
         public void Free()
         {
-            if (_dictionary != null)
+            try
             {
-                // Allow our ValueSets to return their underlying ArrayBuilders to the pool.
-                foreach (var kvp in _dictionary)
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 1258, 1697);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1301, 1652) || true) && (_dictionary != null)
+                )
+
                 {
-                    kvp.Value.Free();
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(110, 1301, 1652);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1452, 1561);
+                        foreach (var kvp in f_110_1472_1483_I(_dictionary))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(110, 1452, 1561);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1525, 1542);
+
+                            kvp.Value.Free();
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(110, 1452, 1561);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(110, 1, 110);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(110, 1, 110);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1581, 1600);
+
+                    f_110_1581_1599(
+                                    _dictionary);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1618, 1637);
+
+                    _dictionary = null;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(110, 1301, 1652);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 1668, 1686);
+
+                DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_pool, 110, 1668, 1685)?.Free(this), 110, 1674, 1685);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 1258, 1697);
+
+                Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                f_110_1472_1483_I(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 1472, 1483);
+                    return return_v;
                 }
 
-                _dictionary.Free();
-                _dictionary = null;
-            }
 
-            _pool?.Free(this);
+                int
+                f_110_1581_1599(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                this_param)
+                {
+                    this_param.Free();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 1581, 1599);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 1258, 1697);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 1258, 1697);
+            }
         }
 
         private static readonly ObjectPool<OrderPreservingMultiDictionary<K, V>> s_poolInstance;
@@ -101,9 +161,62 @@ namespace Microsoft.CodeAnalysis.Collections
 
         public static OrderPreservingMultiDictionary<K, V> GetInstance()
         {
-            var instance = s_poolInstance.Allocate();
-            Debug.Assert(instance.IsEmpty);
-            return instance;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(110, 2223, 2439);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 2312, 2353);
+
+                var
+                instance = f_110_2327_2352(s_poolInstance)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 2367, 2398);
+
+                f_110_2367_2397(f_110_2380_2396(instance));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 2412, 2428);
+
+                return instance;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(110, 2223, 2439);
+
+                Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>
+                f_110_2327_2352(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>>
+                this_param)
+                {
+                    var return_v = this_param.Allocate();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 2327, 2352);
+                    return return_v;
+                }
+
+
+                bool
+                f_110_2380_2396(Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>
+                this_param)
+                {
+                    var return_v = this_param.IsEmpty;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(110, 2380, 2396);
+                    return return_v;
+                }
+
+
+                int
+                f_110_2367_2397(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 2367, 2397);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 2223, 2439);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 2223, 2439);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private static readonly Dictionary<K, ValueSet> s_emptyDictionary;
@@ -132,7 +245,32 @@ namespace Microsoft.CodeAnalysis.Collections
 
         private void EnsureDictionary()
         {
-            _dictionary ??= PooledDictionary<K, ValueSet>.GetInstance();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 2946, 3073);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 3002, 3062);
+
+                _dictionary ??= f_110_3018_3061();
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 2946, 3073);
+
+                Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                f_110_3018_3061()
+                {
+                    var return_v = PooledDictionary<K, ValueSet>.GetInstance();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 3018, 3061);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 2946, 3073);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 2946, 3073);
+            }
         }
 
         public bool IsEmpty
@@ -163,17 +301,89 @@ namespace Microsoft.CodeAnalysis.Collections
         /// </summary>
         public void Add(K k, V v)
         {
-            if (_dictionary is object && _dictionary.TryGetValue(k, out var valueSet))
+            try
             {
-                Debug.Assert(valueSet.Count >= 1);
-                // Have to re-store the ValueSet in case we upgraded the existing ValueSet from 
-                // holding a single item to holding multiple items.
-                _dictionary[k] = valueSet.WithAddedItem(v);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 3231, 3818);
+                Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet valueSet = default(Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet);
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 3281, 3807) || true) && (_dictionary is object && (DynAbs.Tracing.TraceSender.Expression_True(110, 3285, 3354) && f_110_3310_3354(_dictionary, k, out valueSet)))
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(110, 3281, 3807);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 3388, 3422);
+
+                    f_110_3388_3421(valueSet.Count >= 1);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 3607, 3650);
+
+                    _dictionary[k] = valueSet.WithAddedItem(v);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(110, 3281, 3807);
+                }
+
+                else
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(110, 3281, 3807);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 3716, 3740);
+
+                    f_110_3716_3739(this);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 3758, 3792);
+
+                    _dictionary![k] = f_110_3776_3791(v);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(110, 3281, 3807);
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 3231, 3818);
+
+                bool
+                f_110_3310_3354(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                this_param, K
+                key, out Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 3310, 3354);
+                    return return_v;
+                }
+
+
+                int
+                f_110_3388_3421(bool
+                condition)
+                {
+                    Debug.Assert(condition);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 3388, 3421);
+                    return 0;
+                }
+
+
+                int
+                f_110_3716_3739(Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>
+                this_param)
+                {
+                    this_param.EnsureDictionary();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 3716, 3739);
+                    return 0;
+                }
+
+
+                Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet
+                f_110_3776_3791(V
+                value)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet(value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 3776, 3791);
+                    return return_v;
+                }
+
             }
-            else
+            catch
             {
-                this.EnsureDictionary();
-                _dictionary![k] = new ValueSet(v);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 3231, 3818);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 3231, 3818);
             }
         }
 
@@ -241,17 +451,98 @@ namespace Microsoft.CodeAnalysis.Collections
 
         public Dictionary<K, ValueSet>.Enumerator GetEnumerator()
         {
-            return _dictionary is null ? s_emptyDictionary.GetEnumerator() : _dictionary.GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 4283, 4469);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 4365, 4458);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(110, 4372, 4391) || ((_dictionary is null && DynAbs.Tracing.TraceSender.Conditional_F2(110, 4394, 4427)) || DynAbs.Tracing.TraceSender.Conditional_F3(110, 4430, 4457))) ? f_110_4394_4427(s_emptyDictionary) : f_110_4430_4457(_dictionary);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 4283, 4469);
+
+                System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>.Enumerator
+                f_110_4394_4427(System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 4394, 4427);
+                    return return_v;
+                }
+
+
+                System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>.Enumerator
+                f_110_4430_4457(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 4430, 4457);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 4283, 4469);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 4283, 4469);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         IEnumerator<KeyValuePair<K, ValueSet>> IEnumerable<KeyValuePair<K, ValueSet>>.GetEnumerator()
         {
-            return GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 4481, 4633);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 4599, 4622);
+
+                return f_110_4606_4621(this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 4481, 4633);
+
+                System.Collections.Generic.Dictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>.Enumerator
+                f_110_4606_4621(Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 4606, 4621);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 4481, 4633);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 4481, 4633);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 9511, 9621);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 9583, 9606);
+
+                return GetEnumerator();
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 9511, 9621);
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 9511, 9621);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 9511, 9621);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         /// <summary>
@@ -323,9 +614,37 @@ namespace Microsoft.CodeAnalysis.Collections
 
         public bool Contains(K key, V value)
         {
-            return _dictionary is object &&
-                _dictionary.TryGetValue(key, out var valueSet) &&
-                valueSet.Contains(value);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 5345, 5558);
+                Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet valueSet = default(Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 5406, 5547);
+
+                return _dictionary is object && (DynAbs.Tracing.TraceSender.Expression_True(110, 5413, 5501) && f_110_5455_5501(_dictionary, key, out valueSet)) && (DynAbs.Tracing.TraceSender.Expression_True(110, 5413, 5546) && valueSet.Contains(value));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(110, 5345, 5558);
+
+                bool
+                f_110_5455_5501(Microsoft.CodeAnalysis.PooledObjects.PooledDictionary<K, Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet>
+                this_param, K
+                key, out Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet
+                value)
+                {
+                    var return_v = this_param.TryGetValue(key, out value);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 5455, 5501);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 5345, 5558);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 5345, 5558);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public Dictionary<K, ValueSet>.KeyCollection Keys
@@ -692,11 +1011,75 @@ namespace Microsoft.CodeAnalysis.Collections
 
             internal bool Contains(V item)
             {
-                Debug.Assert(this.Count >= 1);
-                var arrayBuilder = _value as ArrayBuilder<V>;
-                return arrayBuilder == null
-                    ? EqualityComparer<V>.Default.Equals(item, (V)_value)
-                    : arrayBuilder.Contains(item);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 8270, 8613);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 8333, 8363);
+
+                    f_110_8333_8362(this.Count >= 1);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 8381, 8426);
+
+                    var
+                    arrayBuilder = _value as ArrayBuilder<V>
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 8444, 8598);
+
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(110, 8451, 8471) || ((arrayBuilder == null
+                    && DynAbs.Tracing.TraceSender.Conditional_F2(110, 8495, 8546)) || DynAbs.Tracing.TraceSender.Conditional_F3(110, 8570, 8597))) ? f_110_8495_8546(f_110_8495_8522(), item, _value) : f_110_8570_8597(arrayBuilder, item);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(110, 8270, 8613);
+
+                    int
+                    f_110_8333_8362(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 8333, 8362);
+                        return 0;
+                    }
+
+
+                    System.Collections.Generic.EqualityComparer<V>
+                    f_110_8495_8522()
+                    {
+                        var return_v = EqualityComparer<V>.Default;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(110, 8495, 8522);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_110_8495_8546(System.Collections.Generic.EqualityComparer<V>
+                    this_param, V
+                    x, object
+                    y)
+                    {
+                        var return_v = this_param.Equals(x, (V)y);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 8495, 8546);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_110_8570_8597(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<V>
+                    this_param, V
+                    item)
+                    {
+                        var return_v = this_param.Contains(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 8570, 8597);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 8270, 8613);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 8270, 8613);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             internal ImmutableArray<V> Items
@@ -895,28 +1278,136 @@ namespace Microsoft.CodeAnalysis.Collections
 
             internal ValueSet WithAddedItem(V item)
             {
-                Debug.Assert(this.Count >= 1);
-
-                var arrayBuilder = _value as ArrayBuilder<V>;
-                if (arrayBuilder == null)
+                try
                 {
-                    // Promote from singleton V to ArrayBuilder<V>.
-                    Debug.Assert(_value is V, "_value must be a V");
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(110, 9894, 11027);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 9966, 9996);
 
-                    // By default we allocate array builders with a size of two.  That's to store
-                    // the single item already in _value, and to store the item we're adding.  
-                    // In general, we presume that the amount of values per key will be low, so this
-                    // means we have very little overhead when there are multiple keys per value.
-                    arrayBuilder = ArrayBuilder<V>.GetInstance(capacity: 2);
-                    arrayBuilder.Add((V)_value);
-                    arrayBuilder.Add(item);
+                    f_110_9966_9995(this.Count >= 1);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10016, 10061);
+
+                    var
+                    arrayBuilder = _value as ArrayBuilder<V>
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10079, 10958) || true) && (arrayBuilder == null)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(110, 10079, 10958);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10214, 10262);
+
+                        f_110_10214_10261(_value is V, "_value must be a V");
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10683, 10739);
+
+                        arrayBuilder = f_110_10698_10738(capacity: 2);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10761, 10789);
+
+                        f_110_10761_10788(arrayBuilder, _value);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10811, 10834);
+
+                        f_110_10811_10833(arrayBuilder, item);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(110, 10079, 10958);
+                    }
+
+                    else
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(110, 10079, 10958);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10916, 10939);
+
+                        f_110_10916_10938(arrayBuilder, item);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(110, 10079, 10958);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(110, 10978, 11012);
+
+                    return f_110_10985_11011(arrayBuilder);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(110, 9894, 11027);
+
+                    int
+                    f_110_9966_9995(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 9966, 9995);
+                        return 0;
+                    }
+
+
+                    int
+                    f_110_10214_10261(bool
+                    condition, string
+                    message)
+                    {
+                        Debug.Assert(condition, message);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 10214, 10261);
+                        return 0;
+                    }
+
+
+                    Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<V>
+                    f_110_10698_10738(int
+                    capacity)
+                    {
+                        var return_v = ArrayBuilder<V>.GetInstance(capacity: capacity);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 10698, 10738);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_110_10761_10788(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<V>
+                    this_param, object
+                    item)
+                    {
+                        this_param.Add((V)item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 10761, 10788);
+                        return 0;
+                    }
+
+
+                    int
+                    f_110_10811_10833(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<V>
+                    this_param, V
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 10811, 10833);
+                        return 0;
+                    }
+
+
+                    int
+                    f_110_10916_10938(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<V>
+                    this_param, V
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 10916, 10938);
+                        return 0;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet
+                    f_110_10985_11011(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<V>
+                    values)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.Collections.OrderPreservingMultiDictionary<K, V>.ValueSet(values);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(110, 10985, 11011);
+                        return return_v;
+                    }
+
                 }
-                else
+                catch
                 {
-                    arrayBuilder.Add(item);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(110, 9894, 11027);
+                    throw;
                 }
-
-                return new ValueSet(arrayBuilder);
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(110, 9894, 11027);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             public struct Enumerator : IEnumerator<V>

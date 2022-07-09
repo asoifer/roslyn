@@ -38,9 +38,38 @@ namespace Microsoft.CodeAnalysis
 
             public void ClearAndFree(List<T> list)
             {
-                list.Clear();
-                base.Free(list);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(12, 853, 986);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(12, 924, 937);
+
+                    f_12_924_936(list);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(12, 955, 971);
+
+                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => base.Free(list), 12, 955, 970);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(12, 853, 986);
+
+                    int
+                    f_12_924_936(System.Collections.Generic.List<T>
+                    this_param)
+                    {
+                        this_param.Clear();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(12, 924, 936);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(12, 853, 986);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(12, 853, 986);
+                }
             }
+
 
             [Obsolete("Do not use Free, Use ClearAndFree instead.", error: true)]
             public new void Free(List<T> list)

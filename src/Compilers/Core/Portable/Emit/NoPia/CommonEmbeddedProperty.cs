@@ -476,9 +476,36 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
             }
 
             ImmutableArray<Cci.IParameterTypeInformation> Cci.ISignature.GetParameters(EmitContext context)
+		{
+			try
             {
-                return StaticCast<Cci.IParameterTypeInformation>.From(_parameters);
+DynAbs.Tracing.TraceSender.TraceEnterMethod(775,4524,4734);
+DynAbs.Tracing.TraceSender.TraceSimpleStatement(775,4652,4719);
+
+return f_775_4659_4718(_parameters);
+DynAbs.Tracing.TraceSender.TraceExitMethod(775,4524,4734);
+
+System.Collections.Immutable.ImmutableArray<Microsoft.Cci.IParameterTypeInformation>
+f_775_4659_4718(System.Collections.Immutable.ImmutableArray<TEmbeddedParameter>
+from)
+{
+var return_v = StaticCast<Cci.IParameterTypeInformation>.From( from);
+DynAbs.Tracing.TraceSender.TraceEndInvocation(775, 4659, 4718);
+return return_v;
+}
+
             }
+catch
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(775,4524,4734);
+throw;
+}
+finally
+{
+DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(775,4524,4734);
+}
+			throw new System.Exception("Slicer error: unreachable code");
+		}
 
             ImmutableArray<Cci.ICustomModifier> Cci.ISignature.ReturnValueCustomModifiers
             {

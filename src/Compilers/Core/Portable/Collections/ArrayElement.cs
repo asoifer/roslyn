@@ -182,6 +182,7 @@ namespace Microsoft.CodeAnalysis
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
+
         static ArrayElement()
         {
             DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(92, 318, 2175);

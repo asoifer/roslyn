@@ -163,16 +163,82 @@ namespace Microsoft.CodeAnalysis.Emit.NoPia
 
             internal void EmbedCorrespondingComEventInterfaceMethod(TSyntaxNode syntaxNodeOpt, DiagnosticBag diagnostics, bool isUsedForComAwareEventBinding)
             {
-                if (_isUsedForComAwareEventBinding == 0 &&
-                    (!isUsedForComAwareEventBinding ||
-                     Interlocked.CompareExchange(ref _isUsedForComAwareEventBinding, 1, 0) == 0))
+                try
                 {
-                    Debug.Assert(!isUsedForComAwareEventBinding || _isUsedForComAwareEventBinding != 0);
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(770, 2816, 3587);
 
-                    EmbedCorrespondingComEventInterfaceMethodInternal(syntaxNodeOpt, diagnostics, isUsedForComAwareEventBinding);
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(770, 2994, 3468) || true) && (_isUsedForComAwareEventBinding == 0 && (DynAbs.Tracing.TraceSender.Expression_True(770, 2998, 3190) && (!isUsedForComAwareEventBinding || (DynAbs.Tracing.TraceSender.Expression_False(770, 3059, 3189) || f_770_3115_3184(ref _isUsedForComAwareEventBinding, 1, 0) == 0))))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(770, 2994, 3468);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(770, 3232, 3316);
+
+                        f_770_3232_3315(!isUsedForComAwareEventBinding || (DynAbs.Tracing.TraceSender.Expression_False(770, 3245, 3314) || _isUsedForComAwareEventBinding != 0));
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(770, 3340, 3449);
+
+                        f_770_3340_3448(this, syntaxNodeOpt, diagnostics, isUsedForComAwareEventBinding);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(770, 2994, 3468);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(770, 3488, 3572);
+
+                    f_770_3488_3571(!isUsedForComAwareEventBinding || (DynAbs.Tracing.TraceSender.Expression_False(770, 3501, 3570) || _isUsedForComAwareEventBinding != 0));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(770, 2816, 3587);
+
+                    int
+                    f_770_3115_3184(ref int
+                    location1, int
+                    value, int
+                    comparand)
+                    {
+                        var return_v = Interlocked.CompareExchange(ref location1, value, comparand);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(770, 3115, 3184);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_770_3232_3315(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(770, 3232, 3315);
+                        return 0;
+                    }
+
+
+                    int
+                    f_770_3340_3448(Microsoft.CodeAnalysis.Emit.NoPia.EmbeddedTypesManager<TPEModuleBuilder, TModuleCompilationState, TEmbeddedTypesManager, TSyntaxNode, TAttributeData, TSymbol, TAssemblySymbol, TNamedTypeSymbol, TFieldSymbol, TMethodSymbol, TEventSymbol, TPropertySymbol, TParameterSymbol, TTypeParameterSymbol, TEmbeddedType, TEmbeddedField, TEmbeddedMethod, TEmbeddedEvent, TEmbeddedProperty, TEmbeddedParameter, TEmbeddedTypeParameter>.CommonEmbeddedEvent
+                    this_param, TSyntaxNode
+                    syntaxNodeOpt, Microsoft.CodeAnalysis.DiagnosticBag
+                    diagnostics, bool
+                    isUsedForComAwareEventBinding)
+                    {
+                        this_param.EmbedCorrespondingComEventInterfaceMethodInternal(syntaxNodeOpt, diagnostics, isUsedForComAwareEventBinding);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(770, 3340, 3448);
+                        return 0;
+                    }
+
+
+                    int
+                    f_770_3488_3571(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(770, 3488, 3571);
+                        return 0;
+                    }
+
                 }
-
-                Debug.Assert(!isUsedForComAwareEventBinding || _isUsedForComAwareEventBinding != 0);
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(770, 2816, 3587);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(770, 2816, 3587);
+                }
             }
 
             Cci.IMethodReference Cci.IEventDefinition.Adder

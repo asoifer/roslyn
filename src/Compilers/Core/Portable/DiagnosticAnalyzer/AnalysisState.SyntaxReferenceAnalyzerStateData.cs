@@ -590,16 +590,95 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
             public override void SetStateKind(StateKind stateKind)
             {
-                ExecutableNodesAnalysisState.SetStateKind(stateKind);
-                base.SetStateKind(stateKind);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(215, 5095, 5297);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(215, 5182, 5235);
+
+                    f_215_5182_5234(f_215_5182_5210(), stateKind);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(215, 5253, 5282);
+
+                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => base.SetStateKind(stateKind), 215, 5253, 5281);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(215, 5095, 5297);
+
+                    TNodeStateData
+                    f_215_5182_5210()
+                    {
+                        var return_v = ExecutableNodesAnalysisState;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(215, 5182, 5210);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_215_5182_5234(TNodeStateData
+                    this_param, Microsoft.CodeAnalysis.Diagnostics.AnalysisState.StateKind
+                    stateKind)
+                    {
+                        this_param.SetStateKind(stateKind);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(215, 5182, 5234);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(215, 5095, 5297);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(215, 5095, 5297);
+                }
             }
 
             public override void Free()
             {
-                base.Free();
-                ExecutableNodesAnalysisState.Free();
-                CurrentBlockEndActions = null;
-                CurrentBlockNodeActions = null;
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(215, 5313, 5551);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(215, 5373, 5385);
+
+                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => base.Free(), 215, 5373, 5384);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(215, 5403, 5439);
+
+                    f_215_5403_5438(f_215_5403_5431());
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(215, 5457, 5487);
+
+                    CurrentBlockEndActions = null;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(215, 5505, 5536);
+
+                    CurrentBlockNodeActions = null;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(215, 5313, 5551);
+
+                    TNodeStateData
+                    f_215_5403_5431()
+                    {
+                        var return_v = ExecutableNodesAnalysisState;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(215, 5403, 5431);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_215_5403_5438(TNodeStateData
+                    this_param)
+                    {
+                        this_param.Free();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(215, 5403, 5438);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(215, 5313, 5551);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(215, 5313, 5551);
+                }
             }
 
             static BlockAnalyzerStateData()

@@ -63,12 +63,66 @@ namespace Microsoft.CodeAnalysis
 
         public IEnumerator<TElement> GetEnumerator()
         {
-            return _elements.GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(101, 959, 1072);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(101, 1028, 1061);
+
+                return f_101_1035_1060(_elements);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(101, 959, 1072);
+
+                System.Collections.Generic.IEnumerator<TElement>
+                f_101_1035_1060(System.Collections.Generic.IEnumerable<TElement>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(101, 1035, 1060);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(101, 959, 1072);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(101, 959, 1072);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(101, 1084, 1182);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(101, 1148, 1171);
+
+                return f_101_1155_1170(this);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(101, 1084, 1182);
+
+                System.Collections.Generic.IEnumerator<TElement>
+                f_101_1155_1170(Microsoft.CodeAnalysis.Grouping<TKey, TElement>
+                this_param)
+                {
+                    var return_v = this_param.GetEnumerator();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(101, 1155, 1170);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(101, 1084, 1182);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(101, 1084, 1182);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         static Grouping()

@@ -126,32 +126,200 @@ namespace Roslyn.Utilities
 
                 public bool IsProperSubsetOf(IEnumerable<T> other)
                 {
-                    return Underlying.IsProperSubsetOf(other);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(380, 1171, 1323);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(380, 1262, 1304);
+
+                        return f_380_1269_1303(Underlying, other);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(380, 1171, 1323);
+
+                        bool
+                        f_380_1269_1303(TUnderlying
+                        this_param, System.Collections.Generic.IEnumerable<T>
+                        other)
+                        {
+                            var return_v = this_param.IsProperSubsetOf(other);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(380, 1269, 1303);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(380, 1171, 1323);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(380, 1171, 1323);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public bool IsProperSupersetOf(IEnumerable<T> other)
                 {
-                    return Underlying.IsProperSupersetOf(other);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(380, 1343, 1499);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(380, 1436, 1480);
+
+                        return f_380_1443_1479(Underlying, other);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(380, 1343, 1499);
+
+                        bool
+                        f_380_1443_1479(TUnderlying
+                        this_param, System.Collections.Generic.IEnumerable<T>
+                        other)
+                        {
+                            var return_v = this_param.IsProperSupersetOf(other);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(380, 1443, 1479);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(380, 1343, 1499);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(380, 1343, 1499);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public bool IsSubsetOf(IEnumerable<T> other)
                 {
-                    return Underlying.IsSubsetOf(other);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(380, 1519, 1659);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(380, 1604, 1640);
+
+                        return f_380_1611_1639(Underlying, other);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(380, 1519, 1659);
+
+                        bool
+                        f_380_1611_1639(TUnderlying
+                        this_param, System.Collections.Generic.IEnumerable<T>
+                        other)
+                        {
+                            var return_v = this_param.IsSubsetOf(other);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(380, 1611, 1639);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(380, 1519, 1659);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(380, 1519, 1659);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public bool IsSupersetOf(IEnumerable<T> other)
                 {
-                    return Underlying.IsSupersetOf(other);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(380, 1679, 1823);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(380, 1766, 1804);
+
+                        return f_380_1773_1803(Underlying, other);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(380, 1679, 1823);
+
+                        bool
+                        f_380_1773_1803(TUnderlying
+                        this_param, System.Collections.Generic.IEnumerable<T>
+                        other)
+                        {
+                            var return_v = this_param.IsSupersetOf(other);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(380, 1773, 1803);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(380, 1679, 1823);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(380, 1679, 1823);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public bool Overlaps(IEnumerable<T> other)
                 {
-                    return Underlying.Overlaps(other);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(380, 1843, 1979);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(380, 1926, 1960);
+
+                        return f_380_1933_1959(Underlying, other);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(380, 1843, 1979);
+
+                        bool
+                        f_380_1933_1959(TUnderlying
+                        this_param, System.Collections.Generic.IEnumerable<T>
+                        other)
+                        {
+                            var return_v = this_param.Overlaps(other);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(380, 1933, 1959);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(380, 1843, 1979);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(380, 1843, 1979);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public bool SetEquals(IEnumerable<T> other)
                 {
-                    return Underlying.SetEquals(other);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(380, 1999, 2137);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(380, 2083, 2118);
+
+                        return f_380_2090_2117(Underlying, other);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(380, 1999, 2137);
+
+                        bool
+                        f_380_2090_2117(TUnderlying
+                        this_param, System.Collections.Generic.IEnumerable<T>
+                        other)
+                        {
+                            var return_v = this_param.SetEquals(other);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(380, 2090, 2117);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(380, 1999, 2137);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(380, 1999, 2137);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public void SymmetricExceptWith(IEnumerable<T> other)

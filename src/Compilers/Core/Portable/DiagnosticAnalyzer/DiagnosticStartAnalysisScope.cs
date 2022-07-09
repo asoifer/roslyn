@@ -1824,14 +1824,96 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
         public override void RegisterCodeBlockEndAction(Action<CodeBlockAnalysisContext> action)
         {
-            DiagnosticAnalysisContextHelpers.VerifyArguments(action);
-            _scope.RegisterCodeBlockEndAction(_analyzer, action);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(263, 14503, 14751);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(263, 14616, 14673);
+
+                f_263_14616_14672(action);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(263, 14687, 14740);
+
+                f_263_14687_14739(_scope, _analyzer, action);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(263, 14503, 14751);
+
+                int
+                f_263_14616_14672(System.Action<Microsoft.CodeAnalysis.Diagnostics.CodeBlockAnalysisContext>
+                action)
+                {
+                    DiagnosticAnalysisContextHelpers.VerifyArguments(action);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(263, 14616, 14672);
+                    return 0;
+                }
+
+
+                int
+                f_263_14687_14739(Microsoft.CodeAnalysis.Diagnostics.HostCodeBlockStartAnalysisScope<TLanguageKindEnum>
+                this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                analyzer, System.Action<Microsoft.CodeAnalysis.Diagnostics.CodeBlockAnalysisContext>
+                action)
+                {
+                    this_param.RegisterCodeBlockEndAction(analyzer, action);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(263, 14687, 14739);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(263, 14503, 14751);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(263, 14503, 14751);
+            }
         }
 
         public override void RegisterSyntaxNodeAction(Action<SyntaxNodeAnalysisContext> action, ImmutableArray<TLanguageKindEnum> syntaxKinds)
         {
-            DiagnosticAnalysisContextHelpers.VerifyArguments(action, syntaxKinds);
-            _scope.RegisterSyntaxNodeAction(_analyzer, action, syntaxKinds);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(263, 14763, 15081);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(263, 14922, 14992);
+
+                f_263_14922_14991(action, syntaxKinds);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(263, 15006, 15070);
+
+                f_263_15006_15069(_scope, _analyzer, action, syntaxKinds);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(263, 14763, 15081);
+
+                int
+                f_263_14922_14991(System.Action<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext>
+                action, System.Collections.Immutable.ImmutableArray<TLanguageKindEnum>
+                syntaxKinds)
+                {
+                    DiagnosticAnalysisContextHelpers.VerifyArguments(action, syntaxKinds);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(263, 14922, 14991);
+                    return 0;
+                }
+
+
+                int
+                f_263_15006_15069(Microsoft.CodeAnalysis.Diagnostics.HostCodeBlockStartAnalysisScope<TLanguageKindEnum>
+                this_param, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                analyzer, System.Action<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext>
+                action, System.Collections.Immutable.ImmutableArray<TLanguageKindEnum>
+                syntaxKinds)
+                {
+                    this_param.RegisterSyntaxNodeAction(analyzer, action, syntaxKinds);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(263, 15006, 15069);
+                    return 0;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(263, 14763, 15081);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(263, 14763, 15081);
+            }
         }
 
         static AnalyzerCodeBlockStartAnalysisContext()
@@ -2485,8 +2567,37 @@ namespace Microsoft.CodeAnalysis.Diagnostics
 
         public void RegisterSyntaxNodeAction(DiagnosticAnalyzer analyzer, Action<SyntaxNodeAnalysisContext> action, ImmutableArray<TLanguageKindEnum> syntaxKinds)
         {
-            _syntaxNodeActions = _syntaxNodeActions.Add(new SyntaxNodeAnalyzerAction<TLanguageKindEnum>(action, syntaxKinds, analyzer));
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(263, 21511, 21825);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(263, 21690, 21814);
+
+                _syntaxNodeActions = _syntaxNodeActions.Add(f_263_21734_21812(action, syntaxKinds, analyzer));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(263, 21511, 21825);
+
+                Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalyzerAction<TLanguageKindEnum>
+                f_263_21734_21812(System.Action<Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalysisContext>
+                action, System.Collections.Immutable.ImmutableArray<TLanguageKindEnum>
+                kinds, Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                analyzer)
+                {
+                    var return_v = new Microsoft.CodeAnalysis.Diagnostics.SyntaxNodeAnalyzerAction<TLanguageKindEnum>(action, kinds, analyzer);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(263, 21734, 21812);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(263, 21511, 21825);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(263, 21511, 21825);
+            }
         }
+
 
         static HostCodeBlockStartAnalysisScope()
         {

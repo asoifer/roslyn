@@ -95,12 +95,68 @@ namespace Roslyn.Utilities
 
                 public bool Contains(T item)
                 {
-                    return this.Underlying.Contains(item);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(377, 999, 1125);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(377, 1068, 1106);
+
+                        return f_377_1075_1105(this.Underlying, item);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(377, 999, 1125);
+
+                        bool
+                        f_377_1075_1105(TUnderlying
+                        this_param, T?
+                        item)
+                        {
+                            var return_v = this_param.Contains(item);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(377, 1075, 1105);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(377, 999, 1125);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(377, 999, 1125);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
                 }
 
                 public void CopyTo(T[] array, int arrayIndex)
                 {
-                    this.Underlying.CopyTo(array, arrayIndex);
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(377, 1145, 1292);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(377, 1231, 1273);
+
+                        f_377_1231_1272(this.Underlying, array, arrayIndex);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(377, 1145, 1292);
+
+                        int
+                        f_377_1231_1272(TUnderlying
+                        this_param, T[]
+                        array, int
+                        arrayIndex)
+                        {
+                            this_param.CopyTo(array, arrayIndex);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(377, 1231, 1272);
+                            return 0;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(377, 1145, 1292);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(377, 1145, 1292);
+                    }
                 }
 
                 public int Count

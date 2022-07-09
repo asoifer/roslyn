@@ -207,7 +207,34 @@ namespace Roslyn.Utilities
 
         public static TextKeyedCache<T> GetInstance()
         {
-            return s_staticPool.Allocate();
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(390, 3761, 3873);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 3831, 3862);
+
+                return f_390_3838_3861(s_staticPool);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(390, 3761, 3873);
+
+                Roslyn.Utilities.TextKeyedCache<T>
+                f_390_3838_3861(Microsoft.CodeAnalysis.PooledObjects.ObjectPool<Roslyn.Utilities.TextKeyedCache<T>>
+                this_param)
+                {
+                    var return_v = this_param.Allocate();
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 3838, 3861);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(390, 3761, 3873);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(390, 3761, 3873);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public void Free()
@@ -233,32 +260,130 @@ namespace Roslyn.Utilities
 
         internal T? FindItem(char[] chars, int start, int len, int hashCode)
         {
-            // get direct element reference to avoid extra range checks
-            ref var localSlot = ref _localTable[LocalIdxFromHash(hashCode)];
-
-            var text = localSlot.Text;
-
-            if (text != null && localSlot.HashCode == hashCode)
+            try
             {
-                if (StringTable.TextEquals(text, chars.AsSpan(start, len)))
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(390, 4220, 5123);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4386, 4450);
+
+                ref var
+                localSlot = ref _localTable[f_390_4422_4448(hashCode)]
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4466, 4492);
+
+                var
+                text = localSlot.Text
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4508, 4748) || true) && (text != null && (DynAbs.Tracing.TraceSender.Expression_True(390, 4512, 4558) && localSlot.HashCode == hashCode))
+                )
+
                 {
-                    return localSlot.Item;
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(390, 4508, 4748);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4592, 4733) || true) && (f_390_4596_4650(text, f_390_4625_4649(chars, start, len)))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(390, 4592, 4733);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4692, 4714);
+
+                        return localSlot.Item;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(390, 4592, 4733);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(390, 4508, 4748);
                 }
-            }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4764, 4831);
 
-            SharedEntryValue? e = FindSharedEntry(chars, start, len, hashCode);
-            if (e != null)
+                SharedEntryValue?
+                e = f_390_4786_4830(this, chars, start, len, hashCode)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4845, 5083) || true) && (e != null)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(390, 4845, 5083);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4892, 4922);
+
+                    localSlot.HashCode = hashCode;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4940, 4964);
+
+                    localSlot.Text = e.Text;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 4984, 5000);
+
+                    var
+                    tk = e.Item
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 5018, 5038);
+
+                    localSlot.Item = tk;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 5058, 5068);
+
+                    return tk;
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(390, 4845, 5083);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 5099, 5112);
+
+                return null!;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(390, 4220, 5123);
+
+                int
+                f_390_4422_4448(int
+                hash)
+                {
+                    var return_v = LocalIdxFromHash(hash);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 4422, 4448);
+                    return return_v;
+                }
+
+
+                System.Span<char>
+                f_390_4625_4649(char[]
+                array, int
+                start, int
+                length)
+                {
+                    var return_v = array.AsSpan<char>(start, length);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 4625, 4649);
+                    return return_v;
+                }
+
+
+                bool
+                f_390_4596_4650(string
+                array, System.Span<char>
+                text)
+                {
+                    var return_v = StringTable.TextEquals(array, (System.ReadOnlySpan<char>)text);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 4596, 4650);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.TextKeyedCache<T>.SharedEntryValue?
+                f_390_4786_4830(Roslyn.Utilities.TextKeyedCache<T>
+                this_param, char[]
+                chars, int
+                start, int
+                len, int
+                hashCode)
+                {
+                    var return_v = this_param.FindSharedEntry(chars, start, len, hashCode);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 4786, 4830);
+                    return return_v;
+                }
+
+            }
+            catch
             {
-                localSlot.HashCode = hashCode;
-                localSlot.Text = e.Text;
-
-                var tk = e.Item;
-                localSlot.Item = tk;
-
-                return tk;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(390, 4220, 5123);
+                throw;
             }
-
-            return null!;
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(390, 4220, 5123);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private SharedEntryValue? FindSharedEntry(char[] chars, int start, int len, int hashCode)
@@ -401,17 +526,93 @@ namespace Roslyn.Utilities
 
         internal void AddItem(char[] chars, int start, int len, int hashCode, T item)
         {
-            var text = _strings.Add(chars, start, len);
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(390, 6273, 6851);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6375, 6418);
 
-            // add to the shared table first (in case someone looks for same item)
-            var e = new SharedEntryValue(text, item);
-            AddSharedEntry(hashCode, e);
+                var
+                text = f_390_6386_6417(_strings, chars, start, len)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6518, 6559);
 
-            // add to the local table too
-            ref var localSlot = ref _localTable[LocalIdxFromHash(hashCode)];
-            localSlot.HashCode = hashCode;
-            localSlot.Text = text;
-            localSlot.Item = item;
+                var
+                e = f_390_6526_6558(text, item)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6573, 6601);
+
+                f_390_6573_6600(this, hashCode, e);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6660, 6724);
+
+                ref var
+                localSlot = ref _localTable[f_390_6696_6722(hashCode)]
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6738, 6768);
+
+                localSlot.HashCode = hashCode;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6782, 6804);
+
+                localSlot.Text = text;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(390, 6818, 6840);
+
+                localSlot.Item = item;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(390, 6273, 6851);
+
+                string
+                f_390_6386_6417(Roslyn.Utilities.StringTable
+                this_param, char[]
+                chars, int
+                start, int
+                len)
+                {
+                    var return_v = this_param.Add(chars, start, len);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 6386, 6417);
+                    return return_v;
+                }
+
+
+                Roslyn.Utilities.TextKeyedCache<T>.SharedEntryValue
+                f_390_6526_6558(string
+                Text, T
+                item)
+                {
+                    var return_v = new Roslyn.Utilities.TextKeyedCache<T>.SharedEntryValue(Text, item);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 6526, 6558);
+                    return return_v;
+                }
+
+
+                int
+                f_390_6573_6600(Roslyn.Utilities.TextKeyedCache<T>
+                this_param, int
+                hashCode, Roslyn.Utilities.TextKeyedCache<T>.SharedEntryValue
+                e)
+                {
+                    this_param.AddSharedEntry(hashCode, e);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 6573, 6600);
+                    return 0;
+                }
+
+
+                int
+                f_390_6696_6722(int
+                hash)
+                {
+                    var return_v = LocalIdxFromHash(hash);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(390, 6696, 6722);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(390, 6273, 6851);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(390, 6273, 6851);
+            }
         }
 
         private void AddSharedEntry(int hashCode, SharedEntryValue e)

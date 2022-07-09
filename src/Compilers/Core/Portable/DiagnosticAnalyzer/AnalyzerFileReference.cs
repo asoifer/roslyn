@@ -1619,38 +1619,251 @@ allowNetFramework)
 
             internal ImmutableArray<TExtension> GetExtensionsForAllLanguages(bool includeDuplicates)
             {
-                if (_lazyAllExtensions.IsDefault)
+                try
                 {
-                    ImmutableInterlocked.InterlockedInitialize(ref _lazyAllExtensions, CreateExtensionsForAllLanguages(this, includeDuplicates));
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 15830, 16230);
 
-                return _lazyAllExtensions;
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 15951, 16169) || true) && (_lazyAllExtensions.IsDefault)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 15951, 16169);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16025, 16150);
+
+                        f_232_16025_16149(ref _lazyAllExtensions, f_232_16092_16148(this, includeDuplicates));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 15951, 16169);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16189, 16215);
+
+                    return _lazyAllExtensions;
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(232, 15830, 16230);
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_16092_16148(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    extensions, bool
+                    includeDuplicates)
+                    {
+                        var return_v = CreateExtensionsForAllLanguages(extensions, includeDuplicates);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16092, 16148);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_232_16025_16149(ref System.Collections.Immutable.ImmutableArray<TExtension>
+                    location, System.Collections.Immutable.ImmutableArray<TExtension>
+                    value)
+                    {
+                        var return_v = ImmutableInterlocked.InterlockedInitialize(ref location, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16025, 16149);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 15830, 16230);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 15830, 16230);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             private static ImmutableArray<TExtension> CreateExtensionsForAllLanguages(Extensions<TExtension> extensions, bool includeDuplicates)
             {
-                // Get all analyzers in the assembly.
-                var map = ImmutableDictionary.CreateBuilder<string, ImmutableArray<TExtension>>();
-                extensions.AddExtensions(map);
-
-                var builder = ImmutableArray.CreateBuilder<TExtension>();
-                foreach (var analyzers in map.Values)
+                try
                 {
-                    foreach (var analyzer in analyzers)
+                    DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(232, 16246, 17214);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16466, 16548);
+
+                    var
+                    map = f_232_16476_16547()
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16566, 16596);
+
+                    f_232_16566_16595(extensions, map);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16616, 16673);
+
+                    var
+                    builder = f_232_16630_16672()
+                    ;
+                    try
                     {
-                        builder.Add(analyzer);
-                    }
-                }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16691, 16917);
+                        foreach (var analyzers in f_232_16717_16727_I(f_232_16717_16727(map)))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 16691, 16917);
+                            try
+                            {
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16769, 16898);
+                                foreach (var analyzer in f_232_16794_16803_I(analyzers))
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 16769, 16898);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16853, 16875);
 
-                if (includeDuplicates)
-                {
-                    return builder.ToImmutable();
+                                    f_232_16853_16874(builder, analyzer);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(232, 16769, 16898);
+                                }
+                            }
+                            catch (System.Exception)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoopByException(232, 1, 130);
+                                throw;
+                            }
+                            finally
+                            {
+                                DynAbs.Tracing.TraceSender.TraceExitLoop(232, 1, 130);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(232, 16691, 16917);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(232, 1, 227);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(232, 1, 227);
+                    }
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 16937, 17199) || true) && (includeDuplicates)
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 16937, 17199);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17000, 17029);
+
+                        return f_232_17007_17028(builder);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 16937, 17199);
+                    }
+
+                    else
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 16937, 17199);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17111, 17180);
+
+                        return f_232_17118_17179(f_232_17118_17160(builder, ExtTypeComparer.Instance));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 16937, 17199);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitStaticMethod(232, 16246, 17214);
+
+                    System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>.Builder
+                    f_232_16476_16547()
+                    {
+                        var return_v = ImmutableDictionary.CreateBuilder<string, ImmutableArray<TExtension>>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16476, 16547);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_16566_16595(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param, System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>.Builder
+                    builder)
+                    {
+                        this_param.AddExtensions(builder);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16566, 16595);
+                        return 0;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    f_232_16630_16672()
+                    {
+                        var return_v = ImmutableArray.CreateBuilder<TExtension>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16630, 16672);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Generic.IEnumerable<System.Collections.Immutable.ImmutableArray<TExtension>>
+                    f_232_16717_16727(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.Values;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 16717, 16727);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_16853_16874(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param, TExtension
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16853, 16874);
+                        return 0;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_16794_16803_I(System.Collections.Immutable.ImmutableArray<TExtension>
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16794, 16803);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Generic.IEnumerable<System.Collections.Immutable.ImmutableArray<TExtension>>
+                    f_232_16717_16727_I(System.Collections.Generic.IEnumerable<System.Collections.Immutable.ImmutableArray<TExtension>>
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 16717, 16727);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_17007_17028(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.ToImmutable();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17007, 17028);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Generic.IEnumerable<TExtension>
+                    f_232_17118_17160(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    source, Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>.ExtTypeComparer
+                    comparer)
+                    {
+                        var return_v = source.Distinct<TExtension>((System.Collections.Generic.IEqualityComparer<TExtension>)comparer);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17118, 17160);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_17118_17179(System.Collections.Generic.IEnumerable<TExtension>
+                    items)
+                    {
+                        var return_v = items.ToImmutableArray<TExtension>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17118, 17179);
+                        return return_v;
+                    }
+
                 }
-                else
+                catch
                 {
-                    return builder.Distinct(ExtTypeComparer.Instance).ToImmutableArray();
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 16246, 17214);
+                    throw;
                 }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 16246, 17214);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
+
             private class ExtTypeComparer : IEqualityComparer<TExtension>
             {
                 public static readonly ExtTypeComparer Instance;
@@ -1706,7 +1919,45 @@ allowNetFramework)
 
                 }
 
-                public int GetHashCode(TExtension obj) => obj.GetType().GetHashCode();
+                public int GetHashCode(TExtension obj)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 17553, 17583);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17556, 17583);
+                        return f_232_17556_17583(f_232_17556_17569(obj)); DynAbs.Tracing.TraceSender.TraceExitMethod(232, 17553, 17583);
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 17553, 17583);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 17553, 17583);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+
+                    System.Type
+                    f_232_17556_17569(TExtension
+                    this_param)
+                    {
+                        var return_v = this_param.GetType();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17556, 17569);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_17556_17583(System.Type
+                    this_param)
+                    {
+                        var return_v = this_param.GetHashCode();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17556, 17583);
+                        return return_v;
+                    }
+
+                }
 
                 public ExtTypeComparer()
                 {
@@ -1741,20 +1992,129 @@ f_232_17374_17379()
 
             internal ImmutableArray<TExtension> GetExtensions(string language)
             {
-                if (string.IsNullOrEmpty(language))
+                try
                 {
-                    throw new ArgumentException("language");
-                }
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 17615, 18003);
 
-                return ImmutableInterlocked.GetOrAdd(ref _lazyExtensionsPerLanguage, language, CreateLanguageSpecificExtensions, this);
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17714, 17849) || true) && (f_232_17718_17748(language))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 17714, 17849);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17790, 17830);
+
+                        throw f_232_17796_17829("language");
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 17714, 17849);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 17869, 17988);
+
+                    return f_232_17876_17987(ref _lazyExtensionsPerLanguage, language, CreateLanguageSpecificExtensions, this);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(232, 17615, 18003);
+
+                    bool
+                    f_232_17718_17748(string
+                    value)
+                    {
+                        var return_v = string.IsNullOrEmpty(value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17718, 17748);
+                        return return_v;
+                    }
+
+
+                    System.ArgumentException
+                    f_232_17796_17829(string
+                    message)
+                    {
+                        var return_v = new System.ArgumentException(message);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17796, 17829);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_17876_17987(ref System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>
+                    location, string
+                    key, System.Func<string, Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>, System.Collections.Immutable.ImmutableArray<TExtension>>
+                    valueFactory, Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    factoryArgument)
+                    {
+                        var return_v = ImmutableInterlocked.GetOrAdd(ref location, key, valueFactory, factoryArgument);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 17876, 17987);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 17615, 18003);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 17615, 18003);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             private static ImmutableArray<TExtension> CreateLanguageSpecificExtensions(string language, Extensions<TExtension> extensions)
             {
-                // Get all analyzers in the assembly for the given language.
-                var builder = ImmutableArray.CreateBuilder<TExtension>();
-                extensions.AddExtensions(builder, language);
-                return builder.ToImmutable();
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(232, 18019, 18437);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 18256, 18313);
+
+                    var
+                    builder = f_232_18270_18312()
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 18331, 18375);
+
+                    f_232_18331_18374(extensions, builder, language);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 18393, 18422);
+
+                    return f_232_18400_18421(builder);
+                    DynAbs.Tracing.TraceSender.TraceExitStaticMethod(232, 18019, 18437);
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    f_232_18270_18312()
+                    {
+                        var return_v = ImmutableArray.CreateBuilder<TExtension>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 18270, 18312);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_18331_18374(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param, System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    builder, string
+                    language)
+                    {
+                        this_param.AddExtensions(builder, language);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 18331, 18374);
+                        return 0;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_18400_18421(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.ToImmutable();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 18400, 18421);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 18019, 18437);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 18019, 18437);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             internal ImmutableDictionary<string, ImmutableHashSet<string>> GetExtensionTypeNameMap()
@@ -1831,155 +2191,799 @@ f_232_17374_17379()
 
             internal void AddExtensions(ImmutableDictionary<string, ImmutableArray<TExtension>>.Builder builder)
             {
-                ImmutableDictionary<string, ImmutableHashSet<string>> analyzerTypeNameMap;
-                Assembly analyzerAssembly;
-
                 try
                 {
-                    analyzerTypeNameMap = GetExtensionTypeNameMap();
-                    if (analyzerTypeNameMap.Count == 0)
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 18966, 20900);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19099, 19173);
+
+                    ImmutableDictionary<string, ImmutableHashSet<string>>
+                    analyzerTypeNameMap
+                    = default(ImmutableDictionary<string, ImmutableHashSet<string>>);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19191, 19217);
+
+                    Assembly
+                    analyzerAssembly
+                    = default(Assembly);
+
+                    try
                     {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19281, 19329);
+
+                        analyzerTypeNameMap = f_232_19303_19328(this);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19351, 19465) || true) && (f_232_19355_19380(analyzerTypeNameMap) == 0)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 19351, 19465);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19435, 19442);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(232, 19351, 19465);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19489, 19533);
+
+                        analyzerAssembly = f_232_19508_19532(_reference);
+                    }
+                    catch (Exception e)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCatch(232, 19570, 19757);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19630, 19709);
+
+                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 19630, 19708).Invoke(_reference, f_232_19680_19707(e)), 232, 19660, 19708);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19731, 19738);
+
                         return;
+                        DynAbs.Tracing.TraceSender.TraceExitCatch(232, 19570, 19757);
                     }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19777, 19810);
 
-                    analyzerAssembly = _reference.GetAssembly();
-                }
-                catch (Exception e)
-                {
-                    _reference.AnalyzerLoadFailed?.Invoke(_reference, CreateAnalyzerFailedArgs(e));
-                    return;
-                }
+                    var
+                    initialCount = f_232_19796_19809(builder)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19828, 19854);
 
-                var initialCount = builder.Count;
-                var reportedError = false;
-
-                // Add language specific analyzers.
-                foreach (var (language, _) in analyzerTypeNameMap)
-                {
-                    if (language == null)
+                    var
+                    reportedError = false
+                    ;
+                    try
                     {
-                        continue;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 19927, 20331);
+                        foreach (var (language, _) in f_232_19957_19976_I(analyzerTypeNameMap))
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 19927, 20331);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 20018, 20120) || true) && (language == null)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 20018, 20120);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 20088, 20097);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(232, 20018, 20120);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 20144, 20257);
+
+                            var
+                            analyzers = f_232_20160_20256(this, analyzerAssembly, analyzerTypeNameMap, language, ref reportedError)
+                            ;
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 20279, 20312);
+
+                            f_232_20279_20311(builder, language, analyzers);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(232, 19927, 20331);
+                        }
+                    }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(232, 1, 405);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(232, 1, 405);
+                    }
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 20590, 20885) || true) && (f_232_20594_20607(builder) == initialCount && (DynAbs.Tracing.TraceSender.Expression_True(232, 20594, 20641) && !reportedError))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 20590, 20885);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 20683, 20866);
+
+                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 20683, 20865).Invoke(_reference, f_232_20733_20864(AnalyzerLoadFailureEventArgs.FailureErrorCode.NoAnalyzers, f_232_20825_20863())), 232, 20713, 20865);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 20590, 20885);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(232, 18966, 20900);
+
+                    System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    f_232_19303_19328(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param)
+                    {
+                        var return_v = this_param.GetExtensionTypeNameMap();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 19303, 19328);
+                        return return_v;
                     }
 
-                    var analyzers = GetLanguageSpecificAnalyzers(analyzerAssembly, analyzerTypeNameMap, language, ref reportedError);
-                    builder.Add(language, analyzers);
-                }
 
-                // If there were types with the attribute but weren't an analyzer, generate a diagnostic.
-                // If we've reported errors already while trying to instantiate types, don't complain that there are no analyzers.
-                if (builder.Count == initialCount && !reportedError)
+                    int
+                    f_232_19355_19380(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 19355, 19380);
+                        return return_v;
+                    }
+
+
+                    System.Reflection.Assembly
+                    f_232_19508_19532(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference
+                    this_param)
+                    {
+                        var return_v = this_param.GetAssembly();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 19508, 19532);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_19680_19707(System.Exception
+                    e)
+                    {
+                        var return_v = CreateAnalyzerFailedArgs(e);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 19680, 19707);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_19796_19809(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 19796, 19809);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_20160_20256(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param, System.Reflection.Assembly
+                    analyzerAssembly, System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    analyzerTypeNameMap, string
+                    language, ref bool
+                    reportedError)
+                    {
+                        var return_v = this_param.GetLanguageSpecificAnalyzers(analyzerAssembly, analyzerTypeNameMap, language, ref reportedError);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 20160, 20256);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_20279_20311(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>.Builder
+                    this_param, string
+                    key, System.Collections.Immutable.ImmutableArray<TExtension>
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 20279, 20311);
+                        return 0;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    f_232_19957_19976_I(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 19957, 19976);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_20594_20607(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableArray<TExtension>>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 20594, 20607);
+                        return return_v;
+                    }
+
+
+                    string
+                    f_232_20825_20863()
+                    {
+                        var return_v = CodeAnalysisResources.NoAnalyzersFound;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 20825, 20863);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_20733_20864(Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs.FailureErrorCode
+                    errorCode, string
+                    message)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs(errorCode, message);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 20733, 20864);
+                        return return_v;
+                    }
+
+                }
+                catch
                 {
-                    _reference.AnalyzerLoadFailed?.Invoke(_reference, new AnalyzerLoadFailureEventArgs(AnalyzerLoadFailureEventArgs.FailureErrorCode.NoAnalyzers, CodeAnalysisResources.NoAnalyzersFound));
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 18966, 20900);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 18966, 20900);
                 }
             }
 
             internal void AddExtensions(ImmutableArray<TExtension>.Builder builder, string language)
             {
-                ImmutableDictionary<string, ImmutableHashSet<string>> analyzerTypeNameMap;
-                Assembly analyzerAssembly;
-
                 try
                 {
-                    analyzerTypeNameMap = GetExtensionTypeNameMap();
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 20916, 22904);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21037, 21111);
 
-                    // If there are no analyzers, don't load the assembly at all.
-                    if (!analyzerTypeNameMap.ContainsKey(language))
+                    ImmutableDictionary<string, ImmutableHashSet<string>>
+                    analyzerTypeNameMap
+                    = default(ImmutableDictionary<string, ImmutableHashSet<string>>);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21129, 21155);
+
+                    Assembly
+                    analyzerAssembly
+                    = default(Assembly);
+
+                    try
                     {
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21219, 21267);
+
+                        analyzerTypeNameMap = f_232_21241_21266(this);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21374, 21500) || true) && (!f_232_21379_21420(analyzerTypeNameMap, language))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 21374, 21500);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21470, 21477);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(232, 21374, 21500);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21524, 21568);
+
+                        analyzerAssembly = f_232_21543_21567(_reference);
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21590, 21782) || true) && (analyzerAssembly == null)
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 21590, 21782);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21752, 21759);
+
+                            return;
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(232, 21590, 21782);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCatch(232, 21819, 22006);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21879, 21958);
+
+                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 21879, 21957).Invoke(_reference, f_232_21929_21956(e)), 232, 21909, 21957);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 21980, 21987);
+
                         return;
+                        DynAbs.Tracing.TraceSender.TraceExitCatch(232, 21819, 22006);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 22026, 22059);
+
+                    var
+                    initialCount = f_232_22045_22058(builder)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 22077, 22103);
+
+                    var
+                    reportedError = false
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 22176, 22289);
+
+                    var
+                    analyzers = f_232_22192_22288(this, analyzerAssembly, analyzerTypeNameMap, language, ref reportedError)
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 22307, 22335);
+
+                    f_232_22307_22334(builder, analyzers);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 22594, 22889) || true) && (f_232_22598_22611(builder) == initialCount && (DynAbs.Tracing.TraceSender.Expression_True(232, 22598, 22645) && !reportedError))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 22594, 22889);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 22687, 22870);
+
+                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 22687, 22869).Invoke(_reference, f_232_22737_22868(AnalyzerLoadFailureEventArgs.FailureErrorCode.NoAnalyzers, f_232_22829_22867())), 232, 22717, 22869);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 22594, 22889);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(232, 20916, 22904);
+
+                    System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    f_232_21241_21266(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param)
+                    {
+                        var return_v = this_param.GetExtensionTypeNameMap();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 21241, 21266);
+                        return return_v;
                     }
 
-                    analyzerAssembly = _reference.GetAssembly();
-                    if (analyzerAssembly == null)
+
+                    bool
+                    f_232_21379_21420(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    this_param, string
+                    key)
                     {
-                        // This can be null if NoOpAnalyzerAssemblyLoader is used.
-                        return;
+                        var return_v = this_param.ContainsKey(key);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 21379, 21420);
+                        return return_v;
                     }
+
+
+                    System.Reflection.Assembly
+                    f_232_21543_21567(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference
+                    this_param)
+                    {
+                        var return_v = this_param.GetAssembly();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 21543, 21567);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_21929_21956(System.Exception
+                    e)
+                    {
+                        var return_v = CreateAnalyzerFailedArgs(e);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 21929, 21956);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_22045_22058(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 22045, 22058);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_22192_22288(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param, System.Reflection.Assembly
+                    analyzerAssembly, System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    analyzerTypeNameMap, string
+                    language, ref bool
+                    reportedError)
+                    {
+                        var return_v = this_param.GetLanguageSpecificAnalyzers(analyzerAssembly, analyzerTypeNameMap, language, ref reportedError);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 22192, 22288);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_22307_22334(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param, System.Collections.Immutable.ImmutableArray<TExtension>
+                    items)
+                    {
+                        this_param.AddRange(items);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 22307, 22334);
+                        return 0;
+                    }
+
+
+                    int
+                    f_232_22598_22611(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.Count;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 22598, 22611);
+                        return return_v;
+                    }
+
+
+                    string
+                    f_232_22829_22867()
+                    {
+                        var return_v = CodeAnalysisResources.NoAnalyzersFound;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 22829, 22867);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_22737_22868(Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs.FailureErrorCode
+                    errorCode, string
+                    message)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs(errorCode, message);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 22737, 22868);
+                        return return_v;
+                    }
+
                 }
-                catch (Exception e)
+                catch
                 {
-                    _reference.AnalyzerLoadFailed?.Invoke(_reference, CreateAnalyzerFailedArgs(e));
-                    return;
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 20916, 22904);
+                    throw;
                 }
-
-                var initialCount = builder.Count;
-                var reportedError = false;
-
-                // Add language specific analyzers.
-                var analyzers = GetLanguageSpecificAnalyzers(analyzerAssembly, analyzerTypeNameMap, language, ref reportedError);
-                builder.AddRange(analyzers);
-
-                // If there were types with the attribute but weren't an analyzer, generate a diagnostic.
-                // If we've reported errors already while trying to instantiate types, don't complain that there are no analyzers.
-                if (builder.Count == initialCount && !reportedError)
+                finally
                 {
-                    _reference.AnalyzerLoadFailed?.Invoke(_reference, new AnalyzerLoadFailureEventArgs(AnalyzerLoadFailureEventArgs.FailureErrorCode.NoAnalyzers, CodeAnalysisResources.NoAnalyzersFound));
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 20916, 22904);
                 }
             }
 
             private ImmutableArray<TExtension> GetLanguageSpecificAnalyzers(Assembly analyzerAssembly, ImmutableDictionary<string, ImmutableHashSet<string>> analyzerTypeNameMap, string language, ref bool reportedError)
             {
-                ImmutableHashSet<string>? languageSpecificAnalyzerTypeNames;
-                if (!analyzerTypeNameMap.TryGetValue(language, out languageSpecificAnalyzerTypeNames))
+                try
                 {
-                    return ImmutableArray<TExtension>.Empty;
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 22920, 23565);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 23159, 23219);
+
+                    ImmutableHashSet<string>?
+                    languageSpecificAnalyzerTypeNames
+                    = default(ImmutableHashSet<string>?);
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 23237, 23423) || true) && (!f_232_23242_23322(analyzerTypeNameMap, language, out languageSpecificAnalyzerTypeNames))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 23237, 23423);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 23364, 23404);
+
+                        return ImmutableArray<TExtension>.Empty;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(232, 23237, 23423);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 23441, 23550);
+
+                    return f_232_23448_23549(this, analyzerAssembly, languageSpecificAnalyzerTypeNames, ref reportedError);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(232, 22920, 23565);
+
+                    bool
+                    f_232_23242_23322(System.Collections.Immutable.ImmutableDictionary<string, System.Collections.Immutable.ImmutableHashSet<string>>
+                    this_param, string
+                    key, out System.Collections.Immutable.ImmutableHashSet<string>?
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 23242, 23322);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_23448_23549(Microsoft.CodeAnalysis.Diagnostics.AnalyzerFileReference.Extensions<TExtension>
+                    this_param, System.Reflection.Assembly
+                    analyzerAssembly, System.Collections.Immutable.ImmutableHashSet<string>
+                    analyzerTypeNames, ref bool
+                    reportedError)
+                    {
+                        var return_v = this_param.GetAnalyzersForTypeNames(analyzerAssembly, (System.Collections.Generic.IEnumerable<string>)analyzerTypeNames, ref reportedError);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 23448, 23549);
+                        return return_v;
+                    }
+
                 }
-                return this.GetAnalyzersForTypeNames(analyzerAssembly, languageSpecificAnalyzerTypeNames, ref reportedError);
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 22920, 23565);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 22920, 23565);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             private ImmutableArray<TExtension> GetAnalyzersForTypeNames(Assembly analyzerAssembly, IEnumerable<string> analyzerTypeNames, ref bool reportedError)
             {
-                var analyzers = ImmutableArray.CreateBuilder<TExtension>();
-
-                // Given the type names, get the actual System.Type and try to create an instance of the type through reflection.
-                foreach (var typeName in analyzerTypeNames)
+                try
                 {
-                    Type? type;
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(232, 23581, 26264);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 23763, 23822);
+
+                    var
+                    analyzers = f_232_23779_23821()
+                    ;
                     try
                     {
-                        type = analyzerAssembly.GetType(typeName, throwOnError: true, ignoreCase: false);
-                    }
-                    catch (Exception e)
-                    {
-                        _reference.AnalyzerLoadFailed?.Invoke(_reference, CreateAnalyzerFailedArgs(e, typeName));
-                        reportedError = true;
-                        continue;
-                    }
-
-                    Debug.Assert(type != null);
-
-                    // check if this references net framework, and issue a diagnostic that this isn't supported
-                    if (!_allowNetFramework)
-                    {
-                        var targetFrameworkAttribute = analyzerAssembly.GetCustomAttribute<TargetFrameworkAttribute>();
-                        if (targetFrameworkAttribute is object && targetFrameworkAttribute.FrameworkName.StartsWith(".NETFramework", StringComparison.OrdinalIgnoreCase))
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 23973, 26198);
+                        foreach (var typeName in f_232_23998_24015_I(analyzerTypeNames))
                         {
-                            _reference.AnalyzerLoadFailed?.Invoke(_reference, new AnalyzerLoadFailureEventArgs(
-                                AnalyzerLoadFailureEventArgs.FailureErrorCode.ReferencesFramework,
-                                string.Format(CodeAnalysisResources.AssemblyReferencesNetFramework, typeName),
-                                typeNameOpt: typeName));
-                            continue;
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 23973, 26198);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24057, 24068);
+
+                            Type?
+                            type
+                            = default(Type?);
+                            try
+                            {
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24142, 24223);
+
+                                type = f_232_24149_24222(analyzerAssembly, typeName, throwOnError: true, ignoreCase: false);
+                            }
+                            catch (Exception e)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCatch(232, 24268, 24530);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24336, 24425);
+
+                                DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 24336, 24424).Invoke(_reference, f_232_24386_24423(e, typeName)), 232, 24366, 24424);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24451, 24472);
+
+                                reportedError = true;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24498, 24507);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCatch(232, 24268, 24530);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24554, 24581);
+
+                            f_232_24554_24580(type != null);
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24718, 25556) || true) && (!_allowNetFramework)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 24718, 25556);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24791, 24886);
+
+                                var
+                                targetFrameworkAttribute = f_232_24822_24885(analyzerAssembly)
+                                ;
+
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 24912, 25533) || true) && (targetFrameworkAttribute is object && (DynAbs.Tracing.TraceSender.Expression_True(232, 24916, 25056) && f_232_24954_25056(f_232_24954_24992(targetFrameworkAttribute), ".NETFramework", StringComparison.OrdinalIgnoreCase)))
+                                )
+
+                                {
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 24912, 25533);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 25114, 25467);
+
+                                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 25114, 25466).Invoke(_reference, f_232_25164_25465(AnalyzerLoadFailureEventArgs.FailureErrorCode.ReferencesFramework, f_232_25331_25408(f_232_25345_25397(), typeName), typeNameOpt: typeName)), 232, 25144, 25466);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 25497, 25506);
+
+                                    continue;
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(232, 24912, 25533);
+                                }
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(232, 24718, 25556);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 25580, 25601);
+
+                            TExtension?
+                            analyzer
+                            = default(TExtension?);
+                            try
+                            {
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 25675, 25731);
+
+                                analyzer = f_232_25686_25716(type) as TExtension;
+                            }
+                            catch (Exception e)
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCatch(232, 25776, 26038);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 25844, 25933);
+
+                                DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_reference.AnalyzerLoadFailed, 232, 25844, 25932).Invoke(_reference, f_232_25894_25931(e, typeName)), 232, 25874, 25932);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 25959, 25980);
+
+                                reportedError = true;
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 26006, 26015);
+
+                                continue;
+                                DynAbs.Tracing.TraceSender.TraceExitCatch(232, 25776, 26038);
+                            }
+
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 26062, 26179) || true) && (analyzer != null)
+                            )
+
+                            {
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(232, 26062, 26179);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 26132, 26156);
+
+                                f_232_26132_26155(analyzers, analyzer);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(232, 26062, 26179);
+                            }
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(232, 23973, 26198);
                         }
                     }
+                    catch (System.Exception)
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoopByException(232, 1, 2226);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceExitLoop(232, 1, 2226);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(232, 26218, 26249);
 
-                    TExtension? analyzer;
-                    try
+                    return f_232_26225_26248(analyzers);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(232, 23581, 26264);
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    f_232_23779_23821()
                     {
-                        analyzer = Activator.CreateInstance(type) as TExtension;
-                    }
-                    catch (Exception e)
-                    {
-                        _reference.AnalyzerLoadFailed?.Invoke(_reference, CreateAnalyzerFailedArgs(e, typeName));
-                        reportedError = true;
-                        continue;
+                        var return_v = ImmutableArray.CreateBuilder<TExtension>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 23779, 23821);
+                        return return_v;
                     }
 
-                    if (analyzer != null)
+
+                    System.Type?
+                    f_232_24149_24222(System.Reflection.Assembly
+                    this_param, string
+                    name, bool
+                    throwOnError, bool
+                    ignoreCase)
                     {
-                        analyzers.Add(analyzer);
+                        var return_v = this_param.GetType(name, throwOnError: throwOnError, ignoreCase: ignoreCase);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 24149, 24222);
+                        return return_v;
                     }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_24386_24423(System.Exception
+                    e, string
+                    typeName)
+                    {
+                        var return_v = CreateAnalyzerFailedArgs(e, typeName);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 24386, 24423);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_24554_24580(bool
+                    condition)
+                    {
+                        Debug.Assert(condition);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 24554, 24580);
+                        return 0;
+                    }
+
+
+                    System.Runtime.Versioning.TargetFrameworkAttribute?
+                    f_232_24822_24885(System.Reflection.Assembly
+                    element)
+                    {
+                        var return_v = element.GetCustomAttribute<System.Runtime.Versioning.TargetFrameworkAttribute>();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 24822, 24885);
+                        return return_v;
+                    }
+
+
+                    string
+                    f_232_24954_24992(System.Runtime.Versioning.TargetFrameworkAttribute
+                    this_param)
+                    {
+                        var return_v = this_param.FrameworkName;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 24954, 24992);
+                        return return_v;
+                    }
+
+
+                    bool
+                    f_232_24954_25056(string
+                    this_param, string
+                    value, System.StringComparison
+                    comparisonType)
+                    {
+                        var return_v = this_param.StartsWith(value, comparisonType);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 24954, 25056);
+                        return return_v;
+                    }
+
+
+                    string
+                    f_232_25345_25397()
+                    {
+                        var return_v = CodeAnalysisResources.AssemblyReferencesNetFramework;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(232, 25345, 25397);
+                        return return_v;
+                    }
+
+
+                    string
+                    f_232_25331_25408(string
+                    format, string
+                    arg0)
+                    {
+                        var return_v = string.Format(format, (object)arg0);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 25331, 25408);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_25164_25465(Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs.FailureErrorCode
+                    errorCode, string
+                    message, string
+                    typeNameOpt)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs(errorCode, message, typeNameOpt: typeNameOpt);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 25164, 25465);
+                        return return_v;
+                    }
+
+
+                    object?
+                    f_232_25686_25716(System.Type
+                    type)
+                    {
+                        var return_v = Activator.CreateInstance(type);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 25686, 25716);
+                        return return_v;
+                    }
+
+
+                    Microsoft.CodeAnalysis.Diagnostics.AnalyzerLoadFailureEventArgs
+                    f_232_25894_25931(System.Exception
+                    e, string
+                    typeName)
+                    {
+                        var return_v = CreateAnalyzerFailedArgs(e, typeName);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 25894, 25931);
+                        return return_v;
+                    }
+
+
+                    int
+                    f_232_26132_26155(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param, TExtension
+                    item)
+                    {
+                        this_param.Add(item);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 26132, 26155);
+                        return 0;
+                    }
+
+
+                    System.Collections.Generic.IEnumerable<string>
+                    f_232_23998_24015_I(System.Collections.Generic.IEnumerable<string>
+                    i)
+                    {
+                        var return_v = i;
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 23998, 24015);
+                        return return_v;
+                    }
+
+
+                    System.Collections.Immutable.ImmutableArray<TExtension>
+                    f_232_26225_26248(System.Collections.Immutable.ImmutableArray<TExtension>.Builder
+                    this_param)
+                    {
+                        var return_v = this_param.ToImmutable();
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(232, 26225, 26248);
+                        return return_v;
+                    }
+
                 }
-
-                return analyzers.ToImmutable();
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(232, 23581, 26264);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(232, 23581, 26264);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             static Extensions()
