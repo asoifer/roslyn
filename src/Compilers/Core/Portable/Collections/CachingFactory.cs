@@ -76,53 +76,243 @@ namespace Microsoft.CodeAnalysis
 
         public void Add(TKey key, TValue value)
         {
-            var hash = GetKeyHash(key);
-            var idx = hash & mask;
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(97, 2668, 2888);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 2732, 2759);
 
-            entries[idx].hash = hash;
-            entries[idx].value = value;
+                var
+                hash = f_97_2743_2758(this, key)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 2773, 2795);
+
+                var
+                idx = hash & mask
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 2811, 2836);
+
+                entries[idx].hash = hash;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 2850, 2877);
+
+                entries[idx].value = value;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(97, 2668, 2888);
+
+                int
+                f_97_2743_2758(Microsoft.CodeAnalysis.CachingFactory<TKey, TValue>
+                this_param, TKey
+                key)
+                {
+                    var return_v = this_param.GetKeyHash(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(97, 2743, 2758);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(97, 2668, 2888);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(97, 2668, 2888);
+            }
         }
 
         public bool TryGetValue(TKey key, [MaybeNullWhen(returnValue: false)] out TValue value)
         {
-            int hash = GetKeyHash(key);
-            int idx = hash & mask;
-
-            var entries = this.entries;
-            if (entries[idx].hash == hash)
+            try
             {
-                var candidate = entries[idx].value;
-                if (_keyValueEquality(key, candidate))
-                {
-                    value = candidate;
-                    return true;
-                }
-            }
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(97, 2900, 3484);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3012, 3039);
 
-            value = default!;
-            return false;
+                int
+                hash = f_97_3023_3038(this, key)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3053, 3075);
+
+                int
+                idx = hash & mask
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3091, 3118);
+
+                var
+                entries = this.entries
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3132, 3413) || true) && (entries[idx].hash == hash)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(97, 3132, 3413);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3195, 3230);
+
+                    var
+                    candidate = entries[idx].value
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3248, 3398) || true) && (f_97_3252_3285(this, key, candidate))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(97, 3248, 3398);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3327, 3345);
+
+                        value = candidate;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3367, 3379);
+
+                        return true;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(97, 3248, 3398);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(97, 3132, 3413);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3429, 3446);
+
+                value = default!;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3460, 3473);
+
+                return false;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(97, 2900, 3484);
+
+                int
+                f_97_3023_3038(Microsoft.CodeAnalysis.CachingFactory<TKey, TValue>
+                this_param, TKey
+                key)
+                {
+                    var return_v = this_param.GetKeyHash(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(97, 3023, 3038);
+                    return return_v;
+                }
+
+
+                bool
+                f_97_3252_3285(Microsoft.CodeAnalysis.CachingFactory<TKey, TValue>
+                this_param, TKey
+                arg1, TValue?
+                arg2)
+                {
+                    var return_v = this_param._keyValueEquality(arg1, arg2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(97, 3252, 3285);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(97, 2900, 3484);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(97, 2900, 3484);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         public TValue GetOrMakeValue(TKey key)
         {
-            int hash = GetKeyHash(key);
-            int idx = hash & mask;
-
-            var entries = this.entries;
-            if (entries[idx].hash == hash)
+            try
             {
-                var candidate = entries[idx].value;
-                if (_keyValueEquality(key, candidate))
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(97, 3496, 4092);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3559, 3586);
+
+                int
+                hash = f_97_3570_3585(this, key)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3600, 3622);
+
+                int
+                idx = hash & mask
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3638, 3665);
+
+                var
+                entries = this.entries
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3679, 3925) || true) && (entries[idx].hash == hash)
+                )
+
                 {
-                    return candidate;
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(97, 3679, 3925);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3742, 3777);
+
+                    var
+                    candidate = entries[idx].value
+                    ;
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3795, 3910) || true) && (f_97_3799_3832(this, key, candidate))
+                    )
+
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(97, 3795, 3910);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3874, 3891);
+
+                        return candidate;
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(97, 3795, 3910);
+                    }
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(97, 3679, 3925);
                 }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3941, 3972);
+
+                var
+                value = f_97_3953_3971(this, key)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 3986, 4011);
+
+                entries[idx].hash = hash;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 4025, 4052);
+
+                entries[idx].value = value;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(97, 4068, 4081);
+
+                return value;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(97, 3496, 4092);
+
+                int
+                f_97_3570_3585(Microsoft.CodeAnalysis.CachingFactory<TKey, TValue>
+                this_param, TKey
+                key)
+                {
+                    var return_v = this_param.GetKeyHash(key);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(97, 3570, 3585);
+                    return return_v;
+                }
+
+
+                bool
+                f_97_3799_3832(Microsoft.CodeAnalysis.CachingFactory<TKey, TValue>
+                this_param, TKey
+                arg1, TValue?
+                arg2)
+                {
+                    var return_v = this_param._keyValueEquality(arg1, arg2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(97, 3799, 3832);
+                    return return_v;
+                }
+
+
+                TValue
+                f_97_3953_3971(Microsoft.CodeAnalysis.CachingFactory<TKey, TValue>
+                this_param, TKey
+                arg)
+                {
+                    var return_v = this_param._valueFactory(arg);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(97, 3953, 3971);
+                    return return_v;
+                }
+
             }
-
-            var value = _valueFactory(key);
-            entries[idx].hash = hash;
-            entries[idx].value = value;
-
-            return value;
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(97, 3496, 4092);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(97, 3496, 4092);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
         private int GetKeyHash(TKey key)
@@ -255,7 +445,6 @@ namespace Microsoft.CodeAnalysis
             }
         }
 
-
         public void Add(TKey key, TValue value)
         {
             try
@@ -299,7 +488,6 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(97, 5655, 5889);
             }
         }
-
 
         public bool TryGetValue(TKey key, [MaybeNullWhen(returnValue: false)] out TValue value)
         {

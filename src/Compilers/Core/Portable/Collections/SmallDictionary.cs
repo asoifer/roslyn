@@ -1710,7 +1710,6 @@ hasBucket:
             throw new System.Exception("Slicer error: unreachable code");
         }
 
-
         private void HandleInsert(AvlNode node, AvlNode? parent, K key, V value, bool add)
         {
             try
@@ -2273,7 +2272,34 @@ hasBucket:
 
             public Enumerator GetEnumerator()
             {
-                return new Enumerator(_dict);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(113, 17925, 18035);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(113, 17991, 18020);
+
+                    return f_113_17998_18019(_dict);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(113, 17925, 18035);
+
+                    Microsoft.CodeAnalysis.SmallDictionary<K, V>.KeyCollection.Enumerator
+                    f_113_17998_18019(Microsoft.CodeAnalysis.SmallDictionary<K, V>
+                    dict)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.SmallDictionary<K, V>.KeyCollection.Enumerator(dict);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(113, 17998, 18019);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(113, 17925, 18035);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(113, 17925, 18035);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
             public class EnumerableImpl : IEnumerator<K>
             {
@@ -2819,7 +2845,34 @@ hasBucket:
 
             public Enumerator GetEnumerator()
             {
-                return new Enumerator(_dict);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(113, 21282, 21392);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(113, 21348, 21377);
+
+                    return f_113_21355_21376(_dict);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(113, 21282, 21392);
+
+                    Microsoft.CodeAnalysis.SmallDictionary<K, V>.ValueCollection.Enumerator
+                    f_113_21355_21376(Microsoft.CodeAnalysis.SmallDictionary<K, V>
+                    dict)
+                    {
+                        var return_v = new Microsoft.CodeAnalysis.SmallDictionary<K, V>.ValueCollection.Enumerator(dict);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(113, 21355, 21376);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(113, 21282, 21392);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(113, 21282, 21392);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
             public class EnumerableImpl : IEnumerator<V>
             {
@@ -3346,7 +3399,6 @@ hasBucket:
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
-
         public class EnumerableImpl : IEnumerator<KeyValuePair<K, V>>
         {
             private Enumerator _e;

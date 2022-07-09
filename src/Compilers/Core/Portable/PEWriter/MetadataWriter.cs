@@ -9312,7 +9312,7 @@ namespace Microsoft.Cci
 
                 System.Reflection.Metadata.EntityHandle
                 f_499_77366_77434(Microsoft.Cci.MetadataWriter
-                this_param, Microsoft.Cci.IMethodDefinition
+                this_param, Microsoft.Cci.IMethodDefinition?
                 methodReference)
                 {
                     var return_v = this_param.GetMethodHandle((Microsoft.Cci.IMethodReference?)methodReference);
@@ -9363,8 +9363,8 @@ namespace Microsoft.Cci
 
                 return f_499_78321_78805(f_499_78321_78786(f_499_78321_78343(this), (x, y) =>
                             {
-                                // Spec: GenericParam table is sorted by Owner and then by Number.
-                                int result = CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(x)) - CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(y));
+                // Spec: GenericParam table is sorted by Owner and then by Number.
+                int result = CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(x)) - CodedIndex.TypeOrMethodDef(GetDeclaringTypeOrMethodHandle(y));
                                 if (result != 0)
                                 {
                                     return result;
@@ -24924,12 +24924,69 @@ namespace Microsoft.Cci
 
             public override bool TryGetValue(T item, out int index)
             {
-                return _index.TryGetValue(item, out index);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(499, 175771, 175917);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 175859, 175902);
+
+                    return f_499_175866_175901(_index, item, out index);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(499, 175771, 175917);
+
+                    bool
+                    f_499_175866_175901(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, out int
+                    value)
+                    {
+                        var return_v = this_param.TryGetValue(key, out value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 175866, 175901);
+                        return return_v;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(499, 175771, 175917);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(499, 175771, 175917);
+                }
+                throw new System.Exception("Slicer error: unreachable code");
             }
 
             protected override void AddItem(T item, int index)
             {
-                _index.Add(item, index);
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(499, 175933, 176055);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 176016, 176040);
+
+                    f_499_176016_176039(_index, item, index);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(499, 175933, 176055);
+
+                    int
+                    f_499_176016_176039(System.Collections.Generic.Dictionary<T, int>
+                    this_param, T
+                    key, int
+                    value)
+                    {
+                        this_param.Add(key, value);
+                        DynAbs.Tracing.TraceSender.TraceEndInvocation(499, 176016, 176039);
+                        return 0;
+                    }
+
+                }
+                catch
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(499, 175933, 176055);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(499, 175933, 176055);
+                }
             }
 
             static HeapOrReferenceIndex()
@@ -25521,7 +25578,7 @@ namespace Microsoft.Cci
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(499, 132684, 132723);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 12414, 12475);
             // LAFHIS
-            ModuleImportScopeHandle = f_501_12440_12475(1);
+            ModuleImportScopeHandle = f_501_12440_12475(1); 
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(501, 33417, 33452);
             DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(499, 997, 179260);
 

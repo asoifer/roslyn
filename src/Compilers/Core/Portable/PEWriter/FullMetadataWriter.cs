@@ -2759,7 +2759,6 @@ namespace Microsoft.Cci
                     DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(487, 18488, 18621);
                 }
             }
-
             static DefinitionIndex()
             {
                 DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(487, 17420, 18632);

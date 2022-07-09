@@ -98,12 +98,6 @@ namespace Microsoft.CodeAnalysis.Diagnostics
             }
         }
 
-        /// <summary>
-        /// Adds an element to the tail of the queue.  This method will throw if the queue 
-        /// is completed.
-        /// </summary>
-        /// <exception cref="InvalidOperationException">The queue is already completed.</exception>
-        /// <param name="value">The value to add.</param>
         public void Enqueue(TElement value)
         {
             try
@@ -154,11 +148,6 @@ namespace Microsoft.CodeAnalysis.Diagnostics
             }
         }
 
-        /// <summary>
-        /// Tries to add an element to the tail of the queue.  This method will return false if the queue
-        /// is completed.
-        /// </summary>
-        /// <param name="value">The value to add.</param>
         public bool TryEnqueue(TElement value)
         {
             try
@@ -228,9 +217,6 @@ retry:
             return true;
         }
 
-        /// <summary>
-        /// Attempts to dequeue an existing item and return whether or not it was available.
-        /// </summary>
         public bool TryDequeue(out TElement d)
         {
             try
@@ -341,11 +327,6 @@ retry:
             }
         }
 
-        /// <summary>
-        /// Signals that no further elements will be enqueued.  All outstanding and future
-        /// Dequeue Task will be cancelled.
-        /// </summary>
-        /// <exception cref="InvalidOperationException">The queue is already completed.</exception>
         public void Complete()
         {
             try
@@ -416,11 +397,6 @@ retry:
             }
         }
 
-        /// <summary>
-        /// Same operation as <see cref="AsyncQueue{TElement}.Complete"/> except it will not
-        /// throw if the queue is already completed.
-        /// </summary>
-        /// <returns>Whether or not the operation succeeded.</returns>
         public bool TryComplete()
         {
             try
@@ -734,41 +710,160 @@ retry:
             }
         }
 
-        /// <summary>
-        /// Gets a task whose result is the element at the head of the queue. If the queue
-        /// is empty, the returned task waits for an element to be enqueued. If <see cref="Complete"/> 
-        /// is called before an element becomes available, the returned task is cancelled.
-        /// </summary>
         [PerformanceSensitive("https://github.com/dotnet/roslyn/issues/23582", OftenCompletesSynchronously = true)]
         public Task<TElement> DequeueAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            var optionalResult = TryDequeueAsync(cancellationToken);
-            if (optionalResult.IsCompletedSuccessfully)
+            try
             {
-                var result = optionalResult.Result;
-                return result.HasValue
-                    ? Task.FromResult(result.Value)
-                    : Task.FromCanceled<TElement>(new CancellationToken(canceled: true));
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(241, 8202, 9271);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 8444, 8500);
+
+                var
+                optionalResult = f_241_8465_8499(this, cancellationToken)
+                ;
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 8514, 8824) || true) && (optionalResult.IsCompletedSuccessfully)
+                )
+
+                {
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(241, 8514, 8824);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 8590, 8625);
+
+                    var
+                    result = optionalResult.Result
+                    ;
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 8643, 8809);
+
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(241, 8650, 8665) || ((result.HasValue
+                    && DynAbs.Tracing.TraceSender.Conditional_F2(241, 8689, 8718)) || DynAbs.Tracing.TraceSender.Conditional_F3(241, 8742, 8808))) ? f_241_8689_8718(result.Value) : f_241_8742_8808(f_241_8770_8807(canceled: true));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(241, 8514, 8824);
+                }
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 8840, 8880);
+
+                return f_241_8847_8879(optionalResult);
+
+                static async Task<TElement> dequeueSlowAsync(ValueTask<Optional<TElement>> optionalResult)
+                {
+                    try
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(241, 8896, 9260);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 9019, 9075);
+
+                        var
+                        result = await optionalResult.ConfigureAwait(false)
+                        ;
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 9093, 9205) || true) && (f_241_9097_9113_M(!result.HasValue))
+                        )
+
+                        {
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(241, 9093, 9205);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 9136, 9205);
+
+                            f_241_9136_9173(canceled: true).ThrowIfCancellationRequested();
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(241, 9093, 9205);
+                        }
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(241, 9225, 9245);
+
+                        return result.Value;
+                        DynAbs.Tracing.TraceSender.TraceExitStaticMethod(241, 8896, 9260);
+
+                        bool
+                        f_241_9097_9113_M(bool
+                        i)
+                        {
+                            var return_v = i;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(241, 9097, 9113);
+                            return return_v;
+                        }
+
+
+                        System.Threading.CancellationToken
+                        f_241_9136_9173(bool
+                        canceled)
+                        {
+                            var return_v = new System.Threading.CancellationToken(canceled: canceled);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 9136, 9173);
+                            return return_v;
+                        }
+
+                    }
+                    catch
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 8896, 9260);
+                        throw;
+                    }
+                    finally
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 8896, 9260);
+                    }
+                    throw new System.Exception("Slicer error: unreachable code");
+                }
+                DynAbs.Tracing.TraceSender.TraceExitMethod(241, 8202, 9271);
+
+                System.Threading.Tasks.ValueTask<Microsoft.CodeAnalysis.Optional<TElement>>
+                f_241_8465_8499(Microsoft.CodeAnalysis.Diagnostics.AsyncQueue<TElement>
+                this_param, System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = this_param.TryDequeueAsync(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 8465, 8499);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.Task<TElement>
+                f_241_8689_8718(TElement
+                result)
+                {
+                    var return_v = Task.FromResult(result);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 8689, 8718);
+                    return return_v;
+                }
+
+
+                System.Threading.CancellationToken
+                f_241_8770_8807(bool
+                canceled)
+                {
+                    var return_v = new System.Threading.CancellationToken(canceled: canceled);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 8770, 8807);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.Task<TElement>
+                f_241_8742_8808(System.Threading.CancellationToken
+                cancellationToken)
+                {
+                    var return_v = Task.FromCanceled<TElement>(cancellationToken);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 8742, 8808);
+                    return return_v;
+                }
+
+
+                System.Threading.Tasks.Task<TElement>
+                f_241_8847_8879(System.Threading.Tasks.ValueTask<Microsoft.CodeAnalysis.Optional<TElement>>
+                optionalResult)
+                {
+                    var return_v = dequeueSlowAsync(optionalResult);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(241, 8847, 8879);
+                    return return_v;
+                }
+
             }
-
-            return dequeueSlowAsync(optionalResult);
-
-            static async Task<TElement> dequeueSlowAsync(ValueTask<Optional<TElement>> optionalResult)
+            catch
             {
-                var result = await optionalResult.ConfigureAwait(false);
-                if (!result.HasValue)
-                    new CancellationToken(canceled: true).ThrowIfCancellationRequested();
-
-                return result.Value;
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(241, 8202, 9271);
+                throw;
             }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(241, 8202, 9271);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
         }
 
-        /// <summary>
-        /// Gets a task whose result is the element at the head of the queue. If the queue
-        /// is empty, the returned task waits for an element to be enqueued. If <see cref="Complete"/> 
-        /// is called before an element becomes available, the returned task is completed and
-        /// <see cref="Optional{T}.HasValue"/> will be <see langword="false"/>.
-        /// </summary>
         [PerformanceSensitive("https://github.com/dotnet/roslyn/issues/23582", OftenCompletesSynchronously = true)]
         public ValueTask<Optional<TElement>> TryDequeueAsync(CancellationToken cancellationToken)
         {
