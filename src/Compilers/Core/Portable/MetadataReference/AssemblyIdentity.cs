@@ -397,7 +397,11 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(420, 9409, 10398);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(420, 10225, 10387);
 
-                return (DynAbs.Tracing.TraceSender.Conditional_F1(420, 10232, 10340) || ((cultureName == null || (DynAbs.Tracing.TraceSender.Expression_False(420, 10232, 10340) || f_420_10255_10340(f_420_10255_10295(), cultureName, InvariantCultureDisplay)) && DynAbs.Tracing.TraceSender.Conditional_F2(420, 10360, 10372)) || DynAbs.Tracing.TraceSender.Conditional_F3(420, 10375, 10386))) ? string.Empty : cultureName;
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(420, 10232, 10340) || 
+                    (((cultureName == null || (DynAbs.Tracing.TraceSender.Expression_False(420, 10232, 10340) || 
+                    f_420_10255_10340(f_420_10255_10295(), cultureName, InvariantCultureDisplay))) && 
+                    DynAbs.Tracing.TraceSender.Conditional_F2(420, 10360, 10372)) || 
+                    DynAbs.Tracing.TraceSender.Conditional_F3(420, 10375, 10386))) ? string.Empty : cultureName;
                 DynAbs.Tracing.TraceSender.TraceExitStaticMethod(420, 9409, 10398);
 
                 System.StringComparer

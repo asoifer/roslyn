@@ -431,6 +431,76 @@ namespace Microsoft.CodeAnalysis.Syntax
             throw new System.Exception("Slicer error: unreachable code");
         }
 
+        public SeparatedSyntaxListBuilder<TNode> AddRange(in SeparatedSyntaxList<TNode> nodes, int count)
+        {
+            try
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(671, 2683, 3081);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(671, 2805, 2828);
+
+                CheckExpectedElement();
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(671, 2842, 2897);
+
+                SyntaxNodeOrTokenList
+                list = nodes.GetWithSeparators()
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(671, 2911, 2981);
+
+                f_671_2911_2980(_builder, list, this.Count, f_671_2947_2979(count << 1, list.Count));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(671, 2995, 3044);
+
+                _expectedSeparator = ((f_671_3018_3032(_builder) & 1) != 0);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(671, 3058, 3070);
+
+                return this;
+                DynAbs.Tracing.TraceSender.TraceExitMethod(671, 2683, 3081);
+
+                int
+                f_671_2947_2979(int
+                val1, int
+                val2)
+                {
+                    var return_v = Math.Min(val1, val2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(671, 2947, 2979);
+                    return return_v;
+                }
+
+
+                int
+                f_671_2911_2980(Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder
+                this_param, Microsoft.CodeAnalysis.SyntaxNodeOrTokenList
+                list, int
+                offset, int
+                count)
+                {
+                    this_param.AddRange(list, offset, count);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(671, 2911, 2980);
+                    return 0;
+                }
+
+
+                int
+                f_671_3018_3032(Microsoft.CodeAnalysis.Syntax.SyntaxListBuilder
+                this_param)
+                {
+                    var return_v = this_param.Count;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(671, 3018, 3032);
+                    return return_v;
+                }
+
+            }
+            catch
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(671, 2683, 3081);
+                throw;
+            }
+            finally
+            {
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(671, 2683, 3081);
+            }
+            throw new System.Exception("Slicer error: unreachable code");
+        }
+
         public SeparatedSyntaxList<TNode> ToList()
         {
             try

@@ -160,12 +160,26 @@ namespace Roslyn.Utilities
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(25065, 2677, 2776);
                 DynAbs.Tracing.TraceSender.Conditional_F1(25065, 2677, 2745);
 
-                // TODO LAFHIS
+                // LAFHIS
                 //return ((_isGenerated != null && (DynAbs.Tracing.TraceSender.Expression_True(25065, 2677, 2745) 
                 //    && f_25065_2701_2745(_isGenerated, tree, out var kind)) 
                 //    && DynAbs.Tracing.TraceSender.Conditional_F2(25065, 2748, 2752)) || 
                 //    DynAbs.Tracing.TraceSender.Conditional_F3(25065, 2755, 2776)) ? kind : 
                 //    GeneratedKind.Unknown; 
+
+                var temp = _isGenerated != null;
+                if (temp)
+                { 
+                    DynAbs.Tracing.TraceSender.Expression_True(25065, 2677, 2745);
+                    var temp2 = f_25065_2701_2745(_isGenerated, tree, out var kind);
+                    if (temp2)
+                    {
+                        DynAbs.Tracing.TraceSender.Conditional_F2(25065, 2748, 2752);
+                        return kind;
+                    }
+                }
+
+                DynAbs.Tracing.TraceSender.Conditional_F3(25065, 2755, 2776);
                 return GeneratedKind.Unknown;
 
                 DynAbs.Tracing.TraceSender.TraceExitMethod(25065, 2674, 2776);

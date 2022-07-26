@@ -303,6 +303,318 @@ namespace Microsoft.CodeAnalysis
             try
             {
                 DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(784, 4295, 6741);
+
+                // LAFHIS
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 1946, 1981);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2011, 2052);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2082, 2117);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2147, 2184);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2214, 2249);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2279, 2316);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2346, 2385);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2415, 2452);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2482, 2521);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2551, 2588);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2618, 2657);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2687, 2726);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2756, 2795);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2825, 2864);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2894, 2933);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2963, 3004);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 3034, 3081);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 4265, 4282);
+                TypeHandleTargets = default(ImmutableArray<TypeHandleTargetInfo>); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 6784, 6869);
+                s_signature_HasThis_Void = new byte[] { (byte)SignatureAttributes.Instance, 0, Void }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 6911, 7007);
+                s_signature_HasThis_Void_Byte = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7049, 7147);
+                s_signature_HasThis_Void_Int16 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Int16 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7189, 7287);
+                s_signature_HasThis_Void_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7329, 7429);
+                s_signature_HasThis_Void_UInt32 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, UInt32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7471, 7582);
+                s_signature_HasThis_Void_Int32_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Int32, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7624, 7761);
+                s_signature_HasThis_Void_Int32_Int32_Int32_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, Int32, Int32, Int32, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7803, 7903);
+                s_signature_HasThis_Void_String = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7945, 8045);
+                s_signature_HasThis_Void_Object = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Object }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8087, 8202);
+                s_signature_HasThis_Void_String_String = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, String, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8244, 8361);
+                s_signature_HasThis_Void_String_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, String, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8403, 8533);
+                s_signature_HasThis_Void_String_String_String = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, String, String, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8575, 8720);
+                s_signature_HasThis_Void_String_String_String_String = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, String, String, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8762, 8917);
+                s_signature_HasThis_Void_AttributeTargets = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.AttributeTargets }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8959, 9116);
+                s_signature_HasThis_Void_AssemblyNameFlags = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.AssemblyNameFlags }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9158, 9315);
+                s_signature_HasThis_Void_MethodImplOptions = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.MethodImplOptions }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9357, 9494);
+                s_signature_HasThis_Void_CharSet = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.CharSet }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9536, 9679);
+                s_signature_HasThis_Void_LayoutKind = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.LayoutKind }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9721, 9870);
+                s_signature_HasThis_Void_UnmanagedType = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.UnmanagedType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9912, 10067);
+                s_signature_HasThis_Void_TypeLibTypeFlags = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.TypeLibTypeFlags }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10109, 10268);
+                s_signature_HasThis_Void_ClassInterfaceType = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.ClassInterfaceType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10310, 10465);
+                s_signature_HasThis_Void_ComInterfaceType = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.ComInterfaceType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10507, 10674);
+                s_signature_HasThis_Void_CompilationRelaxations = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.CompilationRelaxations }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10716, 10867);
+                s_signature_HasThis_Void_DebuggingModes = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.DebuggingModes }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10909, 11074);
+                s_signature_HasThis_Void_SecurityCriticalScope = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.SecurityCriticalScope }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11116, 11273);
+                s_signature_HasThis_Void_CallingConvention = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.CallingConvention }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11315, 11480);
+                s_signature_HasThis_Void_AssemblyHashAlgorithm = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.AssemblyHashAlgorithm }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11522, 11620);
+                s_signature_HasThis_Void_Int64 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Int64 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11662, 11829);
+                s_signature_HasThis_Void_UInt8_UInt8_UInt32_UInt32_UInt32 = new byte[] {
+            (byte)SignatureAttributes.Instance, 5, Void, Byte, Byte, UInt32, UInt32, UInt32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11871, 12031);
+                s_signature_HasThis_Void_UIn8_UInt8_Int32_Int32_Int32 = new byte[] {
+            (byte)SignatureAttributes.Instance, 5, Void, Byte, Byte, Int32, Int32, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12077, 12179);
+                s_signature_HasThis_Void_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12221, 12340);
+                s_signature_HasThis_Void_Boolean_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12384, 12558);
+                s_signature_HasThis_Void_Boolean_TransactionOption = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, TypeHandle, (byte)TypeHandleTarget.TransactionOption }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12600, 12787);
+                s_signature_HasThis_Void_Boolean_TransactionOption_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, Boolean, TypeHandle, (byte)TypeHandleTarget.TransactionOption, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12829, 13033);
+                s_signature_HasThis_Void_Boolean_TransactionOption_Int32_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, Boolean, TypeHandle, (byte)TypeHandleTarget.TransactionOption, Int32, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13077, 13228);
+                s_signature_HasThis_Void_SecurityAction = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13270, 13407);
+                s_signature_HasThis_Void_Type = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13449, 13638);
+                s_signature_HasThis_Void_Type_Type = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13680, 13921);
+                s_signature_HasThis_Void_Type_Type_Type = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13963, 14256);
+                s_signature_HasThis_Void_Type_Type_Type_Type = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14298, 14448);
+                s_signature_HasThis_Void_Type_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14492, 14611);
+                s_signature_HasThis_Void_SzArray_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, SzArray, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14653, 14766);
+                s_signature_HasThis_Void_SzArray_Byte = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, SzArray, Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14808, 14925);
+                s_signature_HasThis_Void_SzArray_String = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, SzArray, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14967, 15101);
+                s_signature_HasThis_Void_Boolean_SzArray_String = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, SzArray, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15143, 15260);
+                s_signature_HasThis_Void_Boolean_String = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15304, 15487);
+                s_signature_HasThis_Void_String_DeprecationType_UInt32 = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15529, 15766);
+                s_signature_HasThis_Void_String_DeprecationType_UInt32_Platform = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32, TypeHandle, (byte)TypeHandleTarget.Platform }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15808, 16043);
+                s_signature_HasThis_Void_String_DeprecationType_UInt32_Type = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16085, 16283);
+                s_signature_HasThis_Void_String_DeprecationType_UInt32_String = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16329, 16390);
+                s_signatures_HasThis_Void_Only = new byte[][] { s_signature_HasThis_Void }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16434, 16509);
+                s_signatures_HasThis_Void_String_Only = new byte[][] { s_signature_HasThis_Void_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16553, 16624);
+                s_signatures_HasThis_Void_Type_Only = new byte[][] { s_signature_HasThis_Void_Type }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16668, 16745);
+                s_signatures_HasThis_Void_Boolean_Only = new byte[][] { s_signature_HasThis_Void_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16791, 16899);
+                s_signaturesOfTypeIdentifierAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_String_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16943, 17019);
+                s_signaturesOfAttributeUsage = new byte[][] { s_signature_HasThis_Void_AttributeTargets }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17063, 17151);
+                s_signaturesOfAssemblySignatureKeyAttribute = new byte[][] { s_signature_HasThis_Void_String_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17195, 17402);
+                s_signaturesOfAssemblyFlagsAttribute = new byte[][]{
+                s_signature_HasThis_Void_AssemblyNameFlags,
+            s_signature_HasThis_Void_Int32,
+            s_signature_HasThis_Void_UInt32
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17446, 17528);
+                s_signaturesOfDefaultParameterValueAttribute = new byte[][] { s_signature_HasThis_Void_Object }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17572, 17648);
+                s_signaturesOfDateTimeConstantAttribute = new byte[][] { s_signature_HasThis_Void_Int64 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17692, 17849);
+                s_signaturesOfDecimalConstantAttribute = new byte[][] { s_signature_HasThis_Void_UInt8_UInt8_UInt32_UInt32_UInt32, s_signature_HasThis_Void_UIn8_UInt8_Int32_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17893, 17980);
+                s_signaturesOfSecurityPermissionAttribute = new byte[][] { s_signature_HasThis_Void_SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18026, 18224);
+                s_signaturesOfMethodImplAttribute = new byte[][]{
+                s_signature_HasThis_Void,
+            s_signature_HasThis_Void_Int16,
+            s_signature_HasThis_Void_MethodImplOptions,
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18270, 18346);
+                s_signaturesOfDefaultCharSetAttribute = new byte[][] { s_signature_HasThis_Void_CharSet }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18392, 18463);
+                s_signaturesOfFieldOffsetAttribute = new byte[][] { s_signature_HasThis_Void_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18507, 18622);
+                s_signaturesOfMemberNotNullAttribute = new byte[][] { s_signature_HasThis_Void_String, s_signature_HasThis_Void_SzArray_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18666, 18801);
+                s_signaturesOfMemberNotNullWhenAttribute = new byte[][] { s_signature_HasThis_Void_Boolean_String, s_signature_HasThis_Void_Boolean_SzArray_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18845, 18921);
+                s_signaturesOfFixedBufferAttribute = new byte[][] { s_signature_HasThis_Void_Type_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18965, 19053);
+                s_signaturesOfPrincipalPermissionAttribute = new byte[][] { s_signature_HasThis_Void_SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19097, 19179);
+                s_signaturesOfPermissionSetAttribute = new byte[][] { s_signature_HasThis_Void_SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19225, 19379);
+                s_signaturesOfStructLayoutAttribute = new byte[][]{
+                s_signature_HasThis_Void_Int16,
+            s_signature_HasThis_Void_LayoutKind,
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19425, 19579);
+                s_signaturesOfMarshalAsAttribute = new byte[][]{
+                s_signature_HasThis_Void_Int16,
+            s_signature_HasThis_Void_UnmanagedType,
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19625, 19784);
+                s_signaturesOfTypeLibTypeAttribute = new byte[][]{
+                s_signature_HasThis_Void_Int16,
+            s_signature_HasThis_Void_TypeLibTypeFlags,
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19830, 20186);
+                s_signaturesOfWebMethodAttribute = new byte[][]{
+                s_signature_HasThis_Void,
+            s_signature_HasThis_Void_Boolean,
+            s_signature_HasThis_Void_Boolean_TransactionOption,
+            s_signature_HasThis_Void_Boolean_TransactionOption_Int32,
+            s_signature_HasThis_Void_Boolean_TransactionOption_Int32_Boolean
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20232, 20385);
+                s_signaturesOfHostProtectionAttribute = new byte[][]{
+                s_signature_HasThis_Void,
+            s_signature_HasThis_Void_SecurityAction
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20431, 20694);
+                s_signaturesOfVisualBasicComClassAttribute = new byte[][]{
+                s_signature_HasThis_Void,
+            s_signature_HasThis_Void_String,
+            s_signature_HasThis_Void_String_String,
+            s_signature_HasThis_Void_String_String_String
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20740, 20903);
+                s_signaturesOfClassInterfaceAttribute = new byte[][]{
+                s_signature_HasThis_Void_Int16,
+            s_signature_HasThis_Void_ClassInterfaceType
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20949, 21109);
+                s_signaturesOfInterfaceTypeAttribute = new byte[][]{
+                s_signature_HasThis_Void_Int16,
+            s_signature_HasThis_Void_ComInterfaceType
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21155, 21330);
+                s_signaturesOfCompilationRelaxationsAttribute = new byte[][]{
+                s_signature_HasThis_Void_Int32,
+            s_signature_HasThis_Void_CompilationRelaxations
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21376, 21541);
+                s_signaturesOfDebuggableAttribute = new byte[][]{
+                s_signature_HasThis_Void_Boolean_Boolean,
+            s_signature_HasThis_Void_DebuggingModes
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21587, 21904);
+                s_signaturesOfComSourceInterfacesAttribute = new byte[][]{
+                s_signature_HasThis_Void_String,
+            s_signature_HasThis_Void_Type,
+            s_signature_HasThis_Void_Type_Type,
+            s_signature_HasThis_Void_Type_Type_Type,
+            s_signature_HasThis_Void_Type_Type_Type_Type
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21950, 22030);
+                s_signaturesOfTypeLibVersionAttribute = new byte[][] { s_signature_HasThis_Void_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22074, 22172);
+                s_signaturesOfComCompatibleVersionAttribute = new byte[][] { s_signature_HasThis_Void_Int32_Int32_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22216, 22352);
+                s_signaturesOfObsoleteAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_String, s_signature_HasThis_Void_String_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22396, 22499);
+                s_signaturesOfDynamicAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_SzArray_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22543, 22655);
+                s_signaturesOfTupleElementNamesAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_SzArray_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22701, 22863);
+                s_signaturesOfSecurityCriticalAttribute = new byte[][]{
+                s_signature_HasThis_Void,
+            s_signature_HasThis_Void_SecurityCriticalScope
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22909, 23008);
+                s_signaturesOfMyGroupCollectionAttribute = new byte[][] { s_signature_HasThis_Void_String_String_String_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23052, 23133);
+                s_signaturesOfComEventInterfaceAttribute = new byte[][] { s_signature_HasThis_Void_Type_Type }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23177, 23251);
+                s_signaturesOfLCIDConversionAttribute = new byte[][] { s_signature_HasThis_Void_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23295, 23391);
+                s_signaturesOfUnmanagedFunctionPointerAttribute = new byte[][] { s_signature_HasThis_Void_CallingConvention }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23435, 23523);
+                s_signaturesOfPrimaryInteropAssemblyAttribute = new byte[][] { s_signature_HasThis_Void_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23567, 23739);
+                s_signaturesOfAssemblyAlgorithmIdAttribute = new byte[][]{
+                s_signature_HasThis_Void_AssemblyHashAlgorithm,
+            s_signature_HasThis_Void_UInt32
+                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23785, 24139);
+                s_signaturesOfDeprecatedAttribute = new byte[][]{
+                s_signature_HasThis_Void_String_DeprecationType_UInt32,
+            s_signature_HasThis_Void_String_DeprecationType_UInt32_Platform,
+            s_signature_HasThis_Void_String_DeprecationType_UInt32_Type,
+            s_signature_HasThis_Void_String_DeprecationType_UInt32_String,
+        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24185, 24291);
+                s_signaturesOfNullableAttribute = new byte[][] { s_signature_HasThis_Void_Byte, s_signature_HasThis_Void_SzArray_Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24335, 24409);
+                s_signaturesOfNullableContextAttribute = new byte[][] { s_signature_HasThis_Void_Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24453, 24562);
+                s_signaturesOfNativeIntegerAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_SzArray_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24659, 24790);
+                OptionalAttribute = f_784_24679_24790("System.Runtime.InteropServices", "OptionalAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24847, 24980);
+                ComImportAttribute = f_784_24868_24980("System.Runtime.InteropServices", "ComImportAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25037, 25154);
+                AttributeUsageAttribute = f_784_25063_25154("System", "AttributeUsageAttribute", s_signaturesOfAttributeUsage); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25211, 25343);
+                ConditionalAttribute = f_784_25234_25343("System.Diagnostics", "ConditionalAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25400, 25574);
+                CaseInsensitiveExtensionAttribute = f_784_25436_25574("System.Runtime.CompilerServices", "ExtensionAttribute", s_signatures_HasThis_Void_Only, matchIgnoringCase: true); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25631, 25804);
+                CaseSensitiveExtensionAttribute = f_784_25665_25804("System.Runtime.CompilerServices", "ExtensionAttribute", s_signatures_HasThis_Void_Only, matchIgnoringCase: false); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25863, 26022);
+                InternalsVisibleToAttribute = f_784_25893_26022("System.Runtime.CompilerServices", "InternalsVisibleToAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26079, 26234);
+                AssemblySignatureKeyAttribute = f_784_26111_26234("System.Reflection", "AssemblySignatureKeyAttribute", s_signaturesOfAssemblySignatureKeyAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26291, 26430);
+                AssemblyKeyFileAttribute = f_784_26318_26430("System.Reflection", "AssemblyKeyFileAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26487, 26626);
+                AssemblyKeyNameAttribute = f_784_26514_26626("System.Reflection", "AssemblyKeyNameAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26683, 26794);
+                ParamArrayAttribute = f_784_26705_26794("System", "ParamArrayAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26851, 26986);
+                DefaultMemberAttribute = f_784_26876_26986("System.Reflection", "DefaultMemberAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27043, 27188);
+                IndexerNameAttribute = f_784_27066_27188("System.Runtime.CompilerServices", "IndexerNameAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27245, 27389);
+                AssemblyDelaySignAttribute = f_784_27274_27389("System.Reflection", "AssemblyDelaySignAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27446, 27585);
+                AssemblyVersionAttribute = f_784_27473_27585("System.Reflection", "AssemblyVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27642, 27789);
+                AssemblyFileVersionAttribute = f_784_27673_27789("System.Reflection", "AssemblyFileVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27846, 27981);
+                AssemblyTitleAttribute = f_784_27871_27981("System.Reflection", "AssemblyTitleAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28038, 28185);
+                AssemblyDescriptionAttribute = f_784_28069_28185("System.Reflection", "AssemblyDescriptionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28242, 28381);
+                AssemblyCultureAttribute = f_784_28269_28381("System.Reflection", "AssemblyCultureAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28438, 28577);
+                AssemblyCompanyAttribute = f_784_28465_28577("System.Reflection", "AssemblyCompanyAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28634, 28773);
+                AssemblyProductAttribute = f_784_28661_28773("System.Reflection", "AssemblyProductAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28830, 28995);
+                AssemblyInformationalVersionAttribute = f_784_28870_28995("System.Reflection", "AssemblyInformationalVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29052, 29195);
+                AssemblyCopyrightAttribute = f_784_29081_29195("System.Reflection", "AssemblyCopyrightAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29252, 29408);
+                SatelliteContractVersionAttribute = f_784_29288_29408("System.Resources", "SatelliteContractVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29465, 29608);
+                AssemblyTrademarkAttribute = f_784_29494_29608("System.Reflection", "AssemblyTrademarkAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29665, 29799);
+                AssemblyFlagsAttribute = f_784_29690_29799("System.Reflection", "AssemblyFlagsAttribute", s_signaturesOfAssemblyFlagsAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29856, 30010);
+                DecimalConstantAttribute = f_784_29883_30010("System.Runtime.CompilerServices", "DecimalConstantAttribute", s_signaturesOfDecimalConstantAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30067, 30215);
+                IUnknownConstantAttribute = f_784_30095_30215("System.Runtime.CompilerServices", "IUnknownConstantAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30272, 30416);
+                CallerFilePathAttribute = f_784_30298_30416("System.Runtime.CompilerServices", "CallerFilePathAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30473, 30621);
+                CallerLineNumberAttribute = f_784_30501_30621("System.Runtime.CompilerServices", "CallerLineNumberAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30678, 30826);
+                CallerMemberNameAttribute = f_784_30706_30826("System.Runtime.CompilerServices", "CallerMemberNameAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30883, 31033);
+                IDispatchConstantAttribute = f_784_30912_31033("System.Runtime.CompilerServices", "IDispatchConstantAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31090, 31261);
+                DefaultParameterValueAttribute = f_784_31123_31261("System.Runtime.InteropServices", "DefaultParameterValueAttribute", s_signaturesOfDefaultParameterValueAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31318, 31465);
+                UnverifiableCodeAttribute = f_784_31346_31465("System.Runtime.InteropServices", "UnverifiableCodeAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31522, 31684);
+                SecurityPermissionAttribute = f_784_31552_31684("System.Runtime.InteropServices", "SecurityPermissionAttribute", s_signaturesOfSecurityPermissionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31741, 31881);
+                DllImportAttribute = f_784_31762_31881("System.Runtime.InteropServices", "DllImportAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31938, 32077);
+                MethodImplAttribute = f_784_31960_32077("System.Runtime.CompilerServices", "MethodImplAttribute", s_signaturesOfMethodImplAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32134, 32271);
+                PreserveSigAttribute = f_784_32157_32271("System.Runtime.InteropServices", "PreserveSigAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32328, 32478);
+                DefaultCharSetAttribute = f_784_32354_32478("System.Runtime.InteropServices", "DefaultCharSetAttribute", s_signaturesOfDefaultCharSetAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32535, 32673);
+                SpecialNameAttribute = f_784_32558_32673("System.Runtime.CompilerServices", "SpecialNameAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32730, 32845);
+                SerializableAttribute = f_784_32754_32845("System", "SerializableAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32902, 33019);
+                NonSerializedAttribute = f_784_32927_33019("System", "NonSerializedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33076, 33220);
+                StructLayoutAttribute = f_784_33100_33220("System.Runtime.InteropServices", "StructLayoutAttribute", s_signaturesOfStructLayoutAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33277, 33418);
+                FieldOffsetAttribute = f_784_33300_33418("System.Runtime.InteropServices", "FieldOffsetAttribute", s_signaturesOfFieldOffsetAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33475, 33617);
+                FixedBufferAttribute = f_784_33498_33617("System.Runtime.CompilerServices", "FixedBufferAttribute", s_signaturesOfFixedBufferAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33674, 33808);
+                AllowNullAttribute = f_784_33695_33808("System.Diagnostics.CodeAnalysis", "AllowNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33865, 34005);
+                DisallowNullAttribute = f_784_33889_34005("System.Diagnostics.CodeAnalysis", "DisallowNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34062, 34196);
+                MaybeNullAttribute = f_784_34083_34196("System.Diagnostics.CodeAnalysis", "MaybeNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34253, 34403);
+                MaybeNullWhenAttribute = f_784_34278_34403("System.Diagnostics.CodeAnalysis", "MaybeNullWhenAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34460, 34590);
+                NotNullAttribute = f_784_34479_34590("System.Diagnostics.CodeAnalysis", "NotNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34647, 34795);
+                MemberNotNullAttribute = f_784_34672_34795("System.Diagnostics.CodeAnalysis", "MemberNotNullAttribute", s_signaturesOfMemberNotNullAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34852, 35012);
+                MemberNotNullWhenAttribute = f_784_34881_35012("System.Diagnostics.CodeAnalysis", "MemberNotNullWhenAttribute", s_signaturesOfMemberNotNullWhenAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35069, 35224);
+                NotNullIfNotNullAttribute = f_784_35097_35224("System.Diagnostics.CodeAnalysis", "NotNullIfNotNullAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35281, 35427);
+                NotNullWhenAttribute = f_784_35304_35427("System.Diagnostics.CodeAnalysis", "NotNullWhenAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35484, 35638);
+                DoesNotReturnIfAttribute = f_784_35511_35638("System.Diagnostics.CodeAnalysis", "DoesNotReturnIfAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35695, 35837);
+                DoesNotReturnAttribute = f_784_35720_35837("System.Diagnostics.CodeAnalysis", "DoesNotReturnAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35894, 36029);
+                MarshalAsAttribute = f_784_35915_36029("System.Runtime.InteropServices", "MarshalAsAttribute", s_signaturesOfMarshalAsAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36086, 36205);
+                InAttribute = f_784_36100_36205("System.Runtime.InteropServices", "InAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36262, 36383);
+                OutAttribute = f_784_36277_36383("System.Runtime.InteropServices", "OutAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36440, 36576);
+                IsReadOnlyAttribute = f_784_36462_36576("System.Runtime.CompilerServices", "IsReadOnlyAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36633, 36771);
+                IsUnmanagedAttribute = f_784_36656_36771("System.Runtime.CompilerServices", "IsUnmanagedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36828, 36962);
+                CoClassAttribute = f_784_36847_36962("System.Runtime.InteropServices", "CoClassAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37019, 37149);
+                GuidAttribute = f_784_37035_37149("System.Runtime.InteropServices", "GuidAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37206, 37329);
+                CLSCompliantAttribute = f_784_37230_37329("System", "CLSCompliantAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37386, 37533);
+                HostProtectionAttribute = f_784_37412_37533("System.Security.Permissions", "HostProtectionAttribute", s_signaturesOfHostProtectionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37590, 37748);
+                SuppressUnmanagedCodeSecurityAttribute = f_784_37631_37748("System.Security", "SuppressUnmanagedCodeSecurityAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37805, 37967);
+                PrincipalPermissionAttribute = f_784_37836_37967("System.Security.Permissions", "PrincipalPermissionAttribute", s_signaturesOfPrincipalPermissionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38024, 38168);
+                PermissionSetAttribute = f_784_38049_38168("System.Security.Permissions", "PermissionSetAttribute", s_signaturesOfPermissionSetAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38225, 38375);
+                TypeIdentifierAttribute = f_784_38251_38375("System.Runtime.InteropServices", "TypeIdentifierAttribute", s_signaturesOfTypeIdentifierAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38432, 38556);
+                VisualBasicEmbeddedAttribute = f_784_38463_38556("Microsoft.VisualBasic", "Embedded", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38613, 38748);
+                CodeAnalysisEmbeddedAttribute = f_784_38645_38748("Microsoft.CodeAnalysis", "EmbeddedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38805, 38950);
+                VisualBasicComClassAttribute = f_784_38836_38950("Microsoft.VisualBasic", "ComClassAttribute", s_signaturesOfVisualBasicComClassAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39007, 39158);
+                StandardModuleAttribute = f_784_39033_39158("Microsoft.VisualBasic.CompilerServices", "StandardModuleAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39215, 39364);
+                OptionCompareAttribute = f_784_39240_39364("Microsoft.VisualBasic.CompilerServices", "OptionCompareAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39421, 39590);
+                AccessedThroughPropertyAttribute = f_784_39456_39590("System.Runtime.CompilerServices", "AccessedThroughPropertyAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39647, 39771);
+                WebMethodAttribute = f_784_39668_39771("System.Web.Services", "WebMethodAttribute", s_signaturesOfWebMethodAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39828, 39985);
+                DateTimeConstantAttribute = f_784_39856_39985("System.Runtime.CompilerServices", "DateTimeConstantAttribute", s_signaturesOfDateTimeConstantAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40042, 40192);
+                ClassInterfaceAttribute = f_784_40068_40192("System.Runtime.InteropServices", "ClassInterfaceAttribute", s_signaturesOfClassInterfaceAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40249, 40414);
+                ComSourceInterfacesAttribute = f_784_40280_40414("System.Runtime.InteropServices", "ComSourceInterfacesAttribute", s_signaturesOfComSourceInterfacesAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40471, 40614);
+                ComVisibleAttribute = f_784_40493_40614("System.Runtime.InteropServices", "ComVisibleAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40671, 40815);
+                DispIdAttribute = f_784_40689_40815("System.Runtime.InteropServices", "DispIdAttribute", new byte[][] { s_signature_HasThis_Void_Int32 }); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40872, 41022);
+                TypeLibVersionAttribute = f_784_40898_41022("System.Runtime.InteropServices", "TypeLibVersionAttribute", s_signaturesOfTypeLibVersionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41079, 41247);
+                ComCompatibleVersionAttribute = f_784_41111_41247("System.Runtime.InteropServices", "ComCompatibleVersionAttribute", s_signaturesOfComCompatibleVersionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41304, 41451);
+                InterfaceTypeAttribute = f_784_41329_41451("System.Runtime.InteropServices", "InterfaceTypeAttribute", s_signaturesOfInterfaceTypeAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41508, 41678);
+                WindowsRuntimeImportAttribute = f_784_41540_41678("System.Runtime.InteropServices.WindowsRuntime", "WindowsRuntimeImportAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41735, 41877);
+                DynamicSecurityMethodAttribute = f_784_41768_41877("System.Security", "DynamicSecurityMethodAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41934, 42089);
+                RequiredAttributeAttribute = f_784_41963_42089("System.Runtime.CompilerServices", "RequiredAttributeAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42146, 42303);
+                AsyncMethodBuilderAttribute = f_784_42176_42303("System.Runtime.CompilerServices", "AsyncMethodBuilderAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42360, 42515);
+                AsyncStateMachineAttribute = f_784_42389_42515("System.Runtime.CompilerServices", "AsyncStateMachineAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42572, 42733);
+                IteratorStateMachineAttribute = f_784_42604_42733("System.Runtime.CompilerServices", "IteratorStateMachineAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42790, 42965);
+                CompilationRelaxationsAttribute = f_784_42824_42965("System.Runtime.CompilerServices", "CompilationRelaxationsAttribute", s_signaturesOfCompilationRelaxationsAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43022, 43172);
+                ReferenceAssemblyAttribute = f_784_43051_43172("System.Runtime.CompilerServices", "ReferenceAssemblyAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43229, 43385);
+                RuntimeCompatibilityAttribute = f_784_43261_43385("System.Runtime.CompilerServices", "RuntimeCompatibilityAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43442, 43568);
+                DebuggableAttribute = f_784_43464_43568("System.Diagnostics", "DebuggableAttribute", s_signaturesOfDebuggableAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43625, 43776);
+                TypeForwardedToAttribute = f_784_43652_43776("System.Runtime.CompilerServices", "TypeForwardedToAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43833, 43942);
+                STAThreadAttribute = f_784_43854_43942("System", "STAThreadAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43999, 44108);
+                MTAThreadAttribute = f_784_44020_44108("System", "MTAThreadAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44165, 44273);
+                ObsoleteAttribute = f_784_44185_44273("System", "ObsoleteAttribute", s_signaturesOfObsoleteAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44330, 44471);
+                TypeLibTypeAttribute = f_784_44353_44471("System.Runtime.InteropServices", "TypeLibTypeAttribute", s_signaturesOfTypeLibTypeAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44528, 44658);
+                DynamicAttribute = f_784_44547_44658("System.Runtime.CompilerServices", "DynamicAttribute", s_signaturesOfDynamicAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44715, 44875);
+                TupleElementNamesAttribute = f_784_44744_44875("System.Runtime.CompilerServices", "TupleElementNamesAttribute", s_signaturesOfTupleElementNamesAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44932, 45070);
+                IsByRefLikeAttribute = f_784_44955_45070("System.Runtime.CompilerServices", "IsByRefLikeAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45127, 45258);
+                DebuggerHiddenAttribute = f_784_45153_45258("System.Diagnostics", "DebuggerHiddenAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45315, 45456);
+                DebuggerNonUserCodeAttribute = f_784_45346_45456("System.Diagnostics", "DebuggerNonUserCodeAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45513, 45662);
+                DebuggerStepperBoundaryAttribute = f_784_45548_45662("System.Diagnostics", "DebuggerStepperBoundaryAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45719, 45860);
+                DebuggerStepThroughAttribute = f_784_45750_45860("System.Diagnostics", "DebuggerStepThroughAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45917, 46058);
+                SecurityCriticalAttribute = f_784_45945_46058("System.Security", "SecurityCriticalAttribute", s_signaturesOfSecurityCriticalAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46115, 46255);
+                SecuritySafeCriticalAttribute = f_784_46147_46255("System.Security", "SecuritySafeCriticalAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46312, 46469);
+                DesignerGeneratedAttribute = f_784_46341_46469("Microsoft.VisualBasic.CompilerServices", "DesignerGeneratedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46526, 46676);
+                MyGroupCollectionAttribute = f_784_46555_46676("Microsoft.VisualBasic", "MyGroupCollectionAttribute", s_signaturesOfMyGroupCollectionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46733, 46892);
+                ComEventInterfaceAttribute = f_784_46762_46892("System.Runtime.InteropServices", "ComEventInterfaceAttribute", s_signaturesOfComEventInterfaceAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46949, 47100);
+                BestFitMappingAttribute = f_784_46975_47100("System.Runtime.InteropServices", "BestFitMappingAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47157, 47258);
+                FlagsAttribute = f_784_47174_47258("System", "FlagsAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47315, 47465);
+                LCIDConversionAttribute = f_784_47341_47465("System.Runtime.InteropServices", "LCIDConversionAttribute", s_signaturesOfLCIDConversionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47522, 47702);
+                UnmanagedFunctionPointerAttribute = f_784_47558_47702("System.Runtime.InteropServices", "UnmanagedFunctionPointerAttribute", s_signaturesOfUnmanagedFunctionPointerAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47759, 47933);
+                PrimaryInteropAssemblyAttribute = f_784_47793_47933("System.Runtime.InteropServices", "PrimaryInteropAssemblyAttribute", s_signaturesOfPrimaryInteropAssemblyAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47990, 48150);
+                ImportedFromTypeLibAttribute = f_784_48021_48150("System.Runtime.InteropServices", "ImportedFromTypeLibAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48207, 48344);
+                DefaultEventAttribute = f_784_48231_48344("System.ComponentModel", "DefaultEventAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48401, 48552);
+                AssemblyConfigurationAttribute = f_784_48434_48552("System.Reflection", "AssemblyConfigurationAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48609, 48761);
+                AssemblyAlgorithmIdAttribute = f_784_48640_48761("System.Reflection", "AssemblyAlgorithmIdAttribute", s_signaturesOfAssemblyAlgorithmIdAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48818, 48953);
+                DeprecatedAttribute = f_784_48840_48953("Windows.Foundation.Metadata", "DeprecatedAttribute", s_signaturesOfDeprecatedAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49010, 49143);
+                NullableAttribute = f_784_49030_49143("System.Runtime.CompilerServices", "NullableAttribute", s_signaturesOfNullableAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49200, 49354);
+                NullableContextAttribute = f_784_49227_49354("System.Runtime.CompilerServices", "NullableContextAttribute", s_signaturesOfNullableContextAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49411, 49571);
+                NullablePublicOnlyAttribute = f_784_49441_49571("System.Runtime.CompilerServices", "NullablePublicOnlyAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49628, 49764);
+                ExperimentalAttribute = f_784_49652_49764("Windows.Foundation.Metadata", "ExperimentalAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49821, 49983);
+                ExcludeFromCodeCoverageAttribute = f_784_49856_49983("System.Diagnostics.CodeAnalysis", "ExcludeFromCodeCoverageAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50040, 50200);
+                EnumeratorCancellationAttribute = f_784_50074_50200("System.Runtime.CompilerServices", "EnumeratorCancellationAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50257, 50401);
+                SkipLocalsInitAttribute = f_784_50283_50401("System.Runtime.CompilerServices", "SkipLocalsInitAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50458, 50606);
+                NativeIntegerAttribute = f_784_50483_50606("System.Runtime.CompilerServices", "NativeIntegerAttribute", s_signaturesOfNativeIntegerAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50663, 50813);
+                ModuleInitializerAttribute = f_784_50692_50813("System.Runtime.CompilerServices", "ModuleInitializerAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50870, 51025);
+                UnmanagedCallersOnlyAttribute = f_784_50902_51025("System.Runtime.InteropServices", "UnmanagedCallersOnlyAttribute", s_signatures_HasThis_Void_Only);
+
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 4349, 4380);
 
                 const string
@@ -322,6 +634,7 @@ namespace Microsoft.CodeAnalysis
 
                 TypeHandleTargets = f_784_4574_6729((new[] {
 f_784_4601_4681(system, "AttributeTargets", SerializationTypeCode.Int32)                ,f_784_4700_4794("System.Reflection", "AssemblyNameFlags", SerializationTypeCode.Int32)                ,f_784_4813_4904(compilerServices, "MethodImplOptions", SerializationTypeCode.Int32)                ,f_784_4923_5003(interopServices, "CharSet", SerializationTypeCode.Int32)                ,f_784_5022_5105(interopServices, "LayoutKind", SerializationTypeCode.Int32)                ,f_784_5124_5210(interopServices, "UnmanagedType", SerializationTypeCode.Int32)                ,f_784_5229_5318(interopServices, "TypeLibTypeFlags", SerializationTypeCode.Int32)                ,f_784_5337_5428(interopServices, "ClassInterfaceType", SerializationTypeCode.Int32)                ,f_784_5447_5536(interopServices, "ComInterfaceType", SerializationTypeCode.Int32)                ,f_784_5555_5651(compilerServices, "CompilationRelaxations", SerializationTypeCode.Int32)                ,f_784_5670_5782("System.Diagnostics.DebuggableAttribute", "DebuggingModes", SerializationTypeCode.Int32)                ,f_784_5801_5897("System.Security", "SecurityCriticalScope", SerializationTypeCode.Int32)                ,f_784_5916_6006(interopServices, "CallingConvention", SerializationTypeCode.Int32)                ,f_784_6025_6137("System.Configuration.Assemblies", "AssemblyHashAlgorithm", SerializationTypeCode.Int32)                ,f_784_6156_6258("System.EnterpriseServices", "TransactionOption", SerializationTypeCode.Int32)                ,f_784_6277_6378("System.Security.Permissions", "SecurityAction", SerializationTypeCode.Int32)                ,f_784_6397_6464(system, "Type", SerializationTypeCode.Type)                ,f_784_6483_6585("Windows.Foundation.Metadata", "DeprecationType", SerializationTypeCode.Int32)                ,f_784_6604_6699("Windows.Foundation.Metadata", "Platform", SerializationTypeCode.Int32)            }));
+
                 DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(784, 4295, 6741);
             }
             catch
@@ -333,315 +646,6 @@ f_784_4601_4681(system, "AttributeTargets", SerializationTypeCode.Int32)        
             {
                 DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(784, 4295, 6741);
             }
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 1946, 1981);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2011, 2052);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2082, 2117);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2147, 2184);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2214, 2249);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2279, 2316);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2346, 2385);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2415, 2452);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2482, 2521);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2551, 2588);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2618, 2657);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2687, 2726);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2756, 2795);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2825, 2864);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2894, 2933);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 2963, 3004);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 3034, 3081);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 4265, 4282);
-            TypeHandleTargets = default(ImmutableArray<TypeHandleTargetInfo>); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 6784, 6869);
-            s_signature_HasThis_Void = new byte[] { (byte)SignatureAttributes.Instance, 0, Void }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 6911, 7007);
-            s_signature_HasThis_Void_Byte = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7049, 7147);
-            s_signature_HasThis_Void_Int16 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Int16 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7189, 7287);
-            s_signature_HasThis_Void_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7329, 7429);
-            s_signature_HasThis_Void_UInt32 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, UInt32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7471, 7582);
-            s_signature_HasThis_Void_Int32_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Int32, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7624, 7761);
-            s_signature_HasThis_Void_Int32_Int32_Int32_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, Int32, Int32, Int32, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7803, 7903);
-            s_signature_HasThis_Void_String = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 7945, 8045);
-            s_signature_HasThis_Void_Object = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Object }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8087, 8202);
-            s_signature_HasThis_Void_String_String = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, String, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8244, 8361);
-            s_signature_HasThis_Void_String_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, String, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8403, 8533);
-            s_signature_HasThis_Void_String_String_String = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, String, String, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8575, 8720);
-            s_signature_HasThis_Void_String_String_String_String = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, String, String, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8762, 8917);
-            s_signature_HasThis_Void_AttributeTargets = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.AttributeTargets }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 8959, 9116);
-            s_signature_HasThis_Void_AssemblyNameFlags = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.AssemblyNameFlags }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9158, 9315);
-            s_signature_HasThis_Void_MethodImplOptions = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.MethodImplOptions }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9357, 9494);
-            s_signature_HasThis_Void_CharSet = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.CharSet }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9536, 9679);
-            s_signature_HasThis_Void_LayoutKind = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.LayoutKind }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9721, 9870);
-            s_signature_HasThis_Void_UnmanagedType = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.UnmanagedType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 9912, 10067);
-            s_signature_HasThis_Void_TypeLibTypeFlags = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.TypeLibTypeFlags }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10109, 10268);
-            s_signature_HasThis_Void_ClassInterfaceType = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.ClassInterfaceType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10310, 10465);
-            s_signature_HasThis_Void_ComInterfaceType = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.ComInterfaceType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10507, 10674);
-            s_signature_HasThis_Void_CompilationRelaxations = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.CompilationRelaxations }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10716, 10867);
-            s_signature_HasThis_Void_DebuggingModes = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.DebuggingModes }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 10909, 11074);
-            s_signature_HasThis_Void_SecurityCriticalScope = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.SecurityCriticalScope }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11116, 11273);
-            s_signature_HasThis_Void_CallingConvention = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.CallingConvention }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11315, 11480);
-            s_signature_HasThis_Void_AssemblyHashAlgorithm = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.AssemblyHashAlgorithm }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11522, 11620);
-            s_signature_HasThis_Void_Int64 = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Int64 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11662, 11829);
-            s_signature_HasThis_Void_UInt8_UInt8_UInt32_UInt32_UInt32 = new byte[] {
-            (byte)SignatureAttributes.Instance, 5, Void, Byte, Byte, UInt32, UInt32, UInt32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 11871, 12031);
-            s_signature_HasThis_Void_UIn8_UInt8_Int32_Int32_Int32 = new byte[] {
-            (byte)SignatureAttributes.Instance, 5, Void, Byte, Byte, Int32, Int32, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12077, 12179);
-            s_signature_HasThis_Void_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12221, 12340);
-            s_signature_HasThis_Void_Boolean_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12384, 12558);
-            s_signature_HasThis_Void_Boolean_TransactionOption = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, TypeHandle, (byte)TypeHandleTarget.TransactionOption }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12600, 12787);
-            s_signature_HasThis_Void_Boolean_TransactionOption_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, Boolean, TypeHandle, (byte)TypeHandleTarget.TransactionOption, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 12829, 13033);
-            s_signature_HasThis_Void_Boolean_TransactionOption_Int32_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, Boolean, TypeHandle, (byte)TypeHandleTarget.TransactionOption, Int32, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13077, 13228);
-            s_signature_HasThis_Void_SecurityAction = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13270, 13407);
-            s_signature_HasThis_Void_Type = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13449, 13638);
-            s_signature_HasThis_Void_Type_Type = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13680, 13921);
-            s_signature_HasThis_Void_Type_Type_Type = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 13963, 14256);
-            s_signature_HasThis_Void_Type_Type_Type_Type = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14298, 14448);
-            s_signature_HasThis_Void_Type_Int32 = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, TypeHandle, (byte)TypeHandleTarget.SystemType, Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14492, 14611);
-            s_signature_HasThis_Void_SzArray_Boolean = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, SzArray, Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14653, 14766);
-            s_signature_HasThis_Void_SzArray_Byte = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, SzArray, Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14808, 14925);
-            s_signature_HasThis_Void_SzArray_String = new byte[] { (byte)SignatureAttributes.Instance, 1, Void, SzArray, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 14967, 15101);
-            s_signature_HasThis_Void_Boolean_SzArray_String = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, SzArray, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15143, 15260);
-            s_signature_HasThis_Void_Boolean_String = new byte[] { (byte)SignatureAttributes.Instance, 2, Void, Boolean, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15304, 15487);
-            s_signature_HasThis_Void_String_DeprecationType_UInt32 = new byte[] { (byte)SignatureAttributes.Instance, 3, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15529, 15766);
-            s_signature_HasThis_Void_String_DeprecationType_UInt32_Platform = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32, TypeHandle, (byte)TypeHandleTarget.Platform }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 15808, 16043);
-            s_signature_HasThis_Void_String_DeprecationType_UInt32_Type = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32, TypeHandle, (byte)TypeHandleTarget.SystemType }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16085, 16283);
-            s_signature_HasThis_Void_String_DeprecationType_UInt32_String = new byte[] { (byte)SignatureAttributes.Instance, 4, Void, String, TypeHandle, (byte)TypeHandleTarget.DeprecationType, UInt32, String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16329, 16390);
-            s_signatures_HasThis_Void_Only = new byte[][] { s_signature_HasThis_Void }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16434, 16509);
-            s_signatures_HasThis_Void_String_Only = new byte[][] { s_signature_HasThis_Void_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16553, 16624);
-            s_signatures_HasThis_Void_Type_Only = new byte[][] { s_signature_HasThis_Void_Type }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16668, 16745);
-            s_signatures_HasThis_Void_Boolean_Only = new byte[][] { s_signature_HasThis_Void_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16791, 16899);
-            s_signaturesOfTypeIdentifierAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_String_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 16943, 17019);
-            s_signaturesOfAttributeUsage = new byte[][] { s_signature_HasThis_Void_AttributeTargets }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17063, 17151);
-            s_signaturesOfAssemblySignatureKeyAttribute = new byte[][] { s_signature_HasThis_Void_String_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17195, 17402);
-            s_signaturesOfAssemblyFlagsAttribute = new byte[][]{
-                s_signature_HasThis_Void_AssemblyNameFlags,
-            s_signature_HasThis_Void_Int32,
-            s_signature_HasThis_Void_UInt32
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17446, 17528);
-            s_signaturesOfDefaultParameterValueAttribute = new byte[][] { s_signature_HasThis_Void_Object }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17572, 17648);
-            s_signaturesOfDateTimeConstantAttribute = new byte[][] { s_signature_HasThis_Void_Int64 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17692, 17849);
-            s_signaturesOfDecimalConstantAttribute = new byte[][] { s_signature_HasThis_Void_UInt8_UInt8_UInt32_UInt32_UInt32, s_signature_HasThis_Void_UIn8_UInt8_Int32_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 17893, 17980);
-            s_signaturesOfSecurityPermissionAttribute = new byte[][] { s_signature_HasThis_Void_SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18026, 18224);
-            s_signaturesOfMethodImplAttribute = new byte[][]{
-                s_signature_HasThis_Void,
-            s_signature_HasThis_Void_Int16,
-            s_signature_HasThis_Void_MethodImplOptions,
-        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18270, 18346);
-            s_signaturesOfDefaultCharSetAttribute = new byte[][] { s_signature_HasThis_Void_CharSet }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18392, 18463);
-            s_signaturesOfFieldOffsetAttribute = new byte[][] { s_signature_HasThis_Void_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18507, 18622);
-            s_signaturesOfMemberNotNullAttribute = new byte[][] { s_signature_HasThis_Void_String, s_signature_HasThis_Void_SzArray_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18666, 18801);
-            s_signaturesOfMemberNotNullWhenAttribute = new byte[][] { s_signature_HasThis_Void_Boolean_String, s_signature_HasThis_Void_Boolean_SzArray_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18845, 18921);
-            s_signaturesOfFixedBufferAttribute = new byte[][] { s_signature_HasThis_Void_Type_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 18965, 19053);
-            s_signaturesOfPrincipalPermissionAttribute = new byte[][] { s_signature_HasThis_Void_SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19097, 19179);
-            s_signaturesOfPermissionSetAttribute = new byte[][] { s_signature_HasThis_Void_SecurityAction }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19225, 19379);
-            s_signaturesOfStructLayoutAttribute = new byte[][]{
-                s_signature_HasThis_Void_Int16,
-            s_signature_HasThis_Void_LayoutKind,
-        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19425, 19579);
-            s_signaturesOfMarshalAsAttribute = new byte[][]{
-                s_signature_HasThis_Void_Int16,
-            s_signature_HasThis_Void_UnmanagedType,
-        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19625, 19784);
-            s_signaturesOfTypeLibTypeAttribute = new byte[][]{
-                s_signature_HasThis_Void_Int16,
-            s_signature_HasThis_Void_TypeLibTypeFlags,
-        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 19830, 20186);
-            s_signaturesOfWebMethodAttribute = new byte[][]{
-                s_signature_HasThis_Void,
-            s_signature_HasThis_Void_Boolean,
-            s_signature_HasThis_Void_Boolean_TransactionOption,
-            s_signature_HasThis_Void_Boolean_TransactionOption_Int32,
-            s_signature_HasThis_Void_Boolean_TransactionOption_Int32_Boolean
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20232, 20385);
-            s_signaturesOfHostProtectionAttribute = new byte[][]{
-                s_signature_HasThis_Void,
-            s_signature_HasThis_Void_SecurityAction
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20431, 20694);
-            s_signaturesOfVisualBasicComClassAttribute = new byte[][]{
-                s_signature_HasThis_Void,
-            s_signature_HasThis_Void_String,
-            s_signature_HasThis_Void_String_String,
-            s_signature_HasThis_Void_String_String_String
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20740, 20903);
-            s_signaturesOfClassInterfaceAttribute = new byte[][]{
-                s_signature_HasThis_Void_Int16,
-            s_signature_HasThis_Void_ClassInterfaceType
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 20949, 21109);
-            s_signaturesOfInterfaceTypeAttribute = new byte[][]{
-                s_signature_HasThis_Void_Int16,
-            s_signature_HasThis_Void_ComInterfaceType
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21155, 21330);
-            s_signaturesOfCompilationRelaxationsAttribute = new byte[][]{
-                s_signature_HasThis_Void_Int32,
-            s_signature_HasThis_Void_CompilationRelaxations
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21376, 21541);
-            s_signaturesOfDebuggableAttribute = new byte[][]{
-                s_signature_HasThis_Void_Boolean_Boolean,
-            s_signature_HasThis_Void_DebuggingModes
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21587, 21904);
-            s_signaturesOfComSourceInterfacesAttribute = new byte[][]{
-                s_signature_HasThis_Void_String,
-            s_signature_HasThis_Void_Type,
-            s_signature_HasThis_Void_Type_Type,
-            s_signature_HasThis_Void_Type_Type_Type,
-            s_signature_HasThis_Void_Type_Type_Type_Type
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 21950, 22030);
-            s_signaturesOfTypeLibVersionAttribute = new byte[][] { s_signature_HasThis_Void_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22074, 22172);
-            s_signaturesOfComCompatibleVersionAttribute = new byte[][] { s_signature_HasThis_Void_Int32_Int32_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22216, 22352);
-            s_signaturesOfObsoleteAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_String, s_signature_HasThis_Void_String_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22396, 22499);
-            s_signaturesOfDynamicAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_SzArray_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22543, 22655);
-            s_signaturesOfTupleElementNamesAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_SzArray_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22701, 22863);
-            s_signaturesOfSecurityCriticalAttribute = new byte[][]{
-                s_signature_HasThis_Void,
-            s_signature_HasThis_Void_SecurityCriticalScope
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 22909, 23008);
-            s_signaturesOfMyGroupCollectionAttribute = new byte[][] { s_signature_HasThis_Void_String_String_String_String }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23052, 23133);
-            s_signaturesOfComEventInterfaceAttribute = new byte[][] { s_signature_HasThis_Void_Type_Type }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23177, 23251);
-            s_signaturesOfLCIDConversionAttribute = new byte[][] { s_signature_HasThis_Void_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23295, 23391);
-            s_signaturesOfUnmanagedFunctionPointerAttribute = new byte[][] { s_signature_HasThis_Void_CallingConvention }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23435, 23523);
-            s_signaturesOfPrimaryInteropAssemblyAttribute = new byte[][] { s_signature_HasThis_Void_Int32_Int32 }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23567, 23739);
-            s_signaturesOfAssemblyAlgorithmIdAttribute = new byte[][]{
-                s_signature_HasThis_Void_AssemblyHashAlgorithm,
-            s_signature_HasThis_Void_UInt32
-                    }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 23785, 24139);
-            s_signaturesOfDeprecatedAttribute = new byte[][]{
-                s_signature_HasThis_Void_String_DeprecationType_UInt32,
-            s_signature_HasThis_Void_String_DeprecationType_UInt32_Platform,
-            s_signature_HasThis_Void_String_DeprecationType_UInt32_Type,
-            s_signature_HasThis_Void_String_DeprecationType_UInt32_String,
-        }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24185, 24291);
-            s_signaturesOfNullableAttribute = new byte[][] { s_signature_HasThis_Void_Byte, s_signature_HasThis_Void_SzArray_Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24335, 24409);
-            s_signaturesOfNullableContextAttribute = new byte[][] { s_signature_HasThis_Void_Byte }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24453, 24562);
-            s_signaturesOfNativeIntegerAttribute = new byte[][] { s_signature_HasThis_Void, s_signature_HasThis_Void_SzArray_Boolean }; DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24659, 24790);
-            OptionalAttribute = f_784_24679_24790("System.Runtime.InteropServices", "OptionalAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 24847, 24980);
-            ComImportAttribute = f_784_24868_24980("System.Runtime.InteropServices", "ComImportAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25037, 25154);
-            AttributeUsageAttribute = f_784_25063_25154("System", "AttributeUsageAttribute", s_signaturesOfAttributeUsage); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25211, 25343);
-            ConditionalAttribute = f_784_25234_25343("System.Diagnostics", "ConditionalAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25400, 25574);
-            CaseInsensitiveExtensionAttribute = f_784_25436_25574("System.Runtime.CompilerServices", "ExtensionAttribute", s_signatures_HasThis_Void_Only, matchIgnoringCase: true); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25631, 25804);
-            CaseSensitiveExtensionAttribute = f_784_25665_25804("System.Runtime.CompilerServices", "ExtensionAttribute", s_signatures_HasThis_Void_Only, matchIgnoringCase: false); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 25863, 26022);
-            InternalsVisibleToAttribute = f_784_25893_26022("System.Runtime.CompilerServices", "InternalsVisibleToAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26079, 26234);
-            AssemblySignatureKeyAttribute = f_784_26111_26234("System.Reflection", "AssemblySignatureKeyAttribute", s_signaturesOfAssemblySignatureKeyAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26291, 26430);
-            AssemblyKeyFileAttribute = f_784_26318_26430("System.Reflection", "AssemblyKeyFileAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26487, 26626);
-            AssemblyKeyNameAttribute = f_784_26514_26626("System.Reflection", "AssemblyKeyNameAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26683, 26794);
-            ParamArrayAttribute = f_784_26705_26794("System", "ParamArrayAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 26851, 26986);
-            DefaultMemberAttribute = f_784_26876_26986("System.Reflection", "DefaultMemberAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27043, 27188);
-            IndexerNameAttribute = f_784_27066_27188("System.Runtime.CompilerServices", "IndexerNameAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27245, 27389);
-            AssemblyDelaySignAttribute = f_784_27274_27389("System.Reflection", "AssemblyDelaySignAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27446, 27585);
-            AssemblyVersionAttribute = f_784_27473_27585("System.Reflection", "AssemblyVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27642, 27789);
-            AssemblyFileVersionAttribute = f_784_27673_27789("System.Reflection", "AssemblyFileVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 27846, 27981);
-            AssemblyTitleAttribute = f_784_27871_27981("System.Reflection", "AssemblyTitleAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28038, 28185);
-            AssemblyDescriptionAttribute = f_784_28069_28185("System.Reflection", "AssemblyDescriptionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28242, 28381);
-            AssemblyCultureAttribute = f_784_28269_28381("System.Reflection", "AssemblyCultureAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28438, 28577);
-            AssemblyCompanyAttribute = f_784_28465_28577("System.Reflection", "AssemblyCompanyAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28634, 28773);
-            AssemblyProductAttribute = f_784_28661_28773("System.Reflection", "AssemblyProductAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 28830, 28995);
-            AssemblyInformationalVersionAttribute = f_784_28870_28995("System.Reflection", "AssemblyInformationalVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29052, 29195);
-            AssemblyCopyrightAttribute = f_784_29081_29195("System.Reflection", "AssemblyCopyrightAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29252, 29408);
-            SatelliteContractVersionAttribute = f_784_29288_29408("System.Resources", "SatelliteContractVersionAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29465, 29608);
-            AssemblyTrademarkAttribute = f_784_29494_29608("System.Reflection", "AssemblyTrademarkAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29665, 29799);
-            AssemblyFlagsAttribute = f_784_29690_29799("System.Reflection", "AssemblyFlagsAttribute", s_signaturesOfAssemblyFlagsAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 29856, 30010);
-            DecimalConstantAttribute = f_784_29883_30010("System.Runtime.CompilerServices", "DecimalConstantAttribute", s_signaturesOfDecimalConstantAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30067, 30215);
-            IUnknownConstantAttribute = f_784_30095_30215("System.Runtime.CompilerServices", "IUnknownConstantAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30272, 30416);
-            CallerFilePathAttribute = f_784_30298_30416("System.Runtime.CompilerServices", "CallerFilePathAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30473, 30621);
-            CallerLineNumberAttribute = f_784_30501_30621("System.Runtime.CompilerServices", "CallerLineNumberAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30678, 30826);
-            CallerMemberNameAttribute = f_784_30706_30826("System.Runtime.CompilerServices", "CallerMemberNameAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 30883, 31033);
-            IDispatchConstantAttribute = f_784_30912_31033("System.Runtime.CompilerServices", "IDispatchConstantAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31090, 31261);
-            DefaultParameterValueAttribute = f_784_31123_31261("System.Runtime.InteropServices", "DefaultParameterValueAttribute", s_signaturesOfDefaultParameterValueAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31318, 31465);
-            UnverifiableCodeAttribute = f_784_31346_31465("System.Runtime.InteropServices", "UnverifiableCodeAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31522, 31684);
-            SecurityPermissionAttribute = f_784_31552_31684("System.Runtime.InteropServices", "SecurityPermissionAttribute", s_signaturesOfSecurityPermissionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31741, 31881);
-            DllImportAttribute = f_784_31762_31881("System.Runtime.InteropServices", "DllImportAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 31938, 32077);
-            MethodImplAttribute = f_784_31960_32077("System.Runtime.CompilerServices", "MethodImplAttribute", s_signaturesOfMethodImplAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32134, 32271);
-            PreserveSigAttribute = f_784_32157_32271("System.Runtime.InteropServices", "PreserveSigAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32328, 32478);
-            DefaultCharSetAttribute = f_784_32354_32478("System.Runtime.InteropServices", "DefaultCharSetAttribute", s_signaturesOfDefaultCharSetAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32535, 32673);
-            SpecialNameAttribute = f_784_32558_32673("System.Runtime.CompilerServices", "SpecialNameAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32730, 32845);
-            SerializableAttribute = f_784_32754_32845("System", "SerializableAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 32902, 33019);
-            NonSerializedAttribute = f_784_32927_33019("System", "NonSerializedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33076, 33220);
-            StructLayoutAttribute = f_784_33100_33220("System.Runtime.InteropServices", "StructLayoutAttribute", s_signaturesOfStructLayoutAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33277, 33418);
-            FieldOffsetAttribute = f_784_33300_33418("System.Runtime.InteropServices", "FieldOffsetAttribute", s_signaturesOfFieldOffsetAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33475, 33617);
-            FixedBufferAttribute = f_784_33498_33617("System.Runtime.CompilerServices", "FixedBufferAttribute", s_signaturesOfFixedBufferAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33674, 33808);
-            AllowNullAttribute = f_784_33695_33808("System.Diagnostics.CodeAnalysis", "AllowNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 33865, 34005);
-            DisallowNullAttribute = f_784_33889_34005("System.Diagnostics.CodeAnalysis", "DisallowNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34062, 34196);
-            MaybeNullAttribute = f_784_34083_34196("System.Diagnostics.CodeAnalysis", "MaybeNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34253, 34403);
-            MaybeNullWhenAttribute = f_784_34278_34403("System.Diagnostics.CodeAnalysis", "MaybeNullWhenAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34460, 34590);
-            NotNullAttribute = f_784_34479_34590("System.Diagnostics.CodeAnalysis", "NotNullAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34647, 34795);
-            MemberNotNullAttribute = f_784_34672_34795("System.Diagnostics.CodeAnalysis", "MemberNotNullAttribute", s_signaturesOfMemberNotNullAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 34852, 35012);
-            MemberNotNullWhenAttribute = f_784_34881_35012("System.Diagnostics.CodeAnalysis", "MemberNotNullWhenAttribute", s_signaturesOfMemberNotNullWhenAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35069, 35224);
-            NotNullIfNotNullAttribute = f_784_35097_35224("System.Diagnostics.CodeAnalysis", "NotNullIfNotNullAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35281, 35427);
-            NotNullWhenAttribute = f_784_35304_35427("System.Diagnostics.CodeAnalysis", "NotNullWhenAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35484, 35638);
-            DoesNotReturnIfAttribute = f_784_35511_35638("System.Diagnostics.CodeAnalysis", "DoesNotReturnIfAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35695, 35837);
-            DoesNotReturnAttribute = f_784_35720_35837("System.Diagnostics.CodeAnalysis", "DoesNotReturnAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 35894, 36029);
-            MarshalAsAttribute = f_784_35915_36029("System.Runtime.InteropServices", "MarshalAsAttribute", s_signaturesOfMarshalAsAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36086, 36205);
-            InAttribute = f_784_36100_36205("System.Runtime.InteropServices", "InAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36262, 36383);
-            OutAttribute = f_784_36277_36383("System.Runtime.InteropServices", "OutAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36440, 36576);
-            IsReadOnlyAttribute = f_784_36462_36576("System.Runtime.CompilerServices", "IsReadOnlyAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36633, 36771);
-            IsUnmanagedAttribute = f_784_36656_36771("System.Runtime.CompilerServices", "IsUnmanagedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 36828, 36962);
-            CoClassAttribute = f_784_36847_36962("System.Runtime.InteropServices", "CoClassAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37019, 37149);
-            GuidAttribute = f_784_37035_37149("System.Runtime.InteropServices", "GuidAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37206, 37329);
-            CLSCompliantAttribute = f_784_37230_37329("System", "CLSCompliantAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37386, 37533);
-            HostProtectionAttribute = f_784_37412_37533("System.Security.Permissions", "HostProtectionAttribute", s_signaturesOfHostProtectionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37590, 37748);
-            SuppressUnmanagedCodeSecurityAttribute = f_784_37631_37748("System.Security", "SuppressUnmanagedCodeSecurityAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 37805, 37967);
-            PrincipalPermissionAttribute = f_784_37836_37967("System.Security.Permissions", "PrincipalPermissionAttribute", s_signaturesOfPrincipalPermissionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38024, 38168);
-            PermissionSetAttribute = f_784_38049_38168("System.Security.Permissions", "PermissionSetAttribute", s_signaturesOfPermissionSetAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38225, 38375);
-            TypeIdentifierAttribute = f_784_38251_38375("System.Runtime.InteropServices", "TypeIdentifierAttribute", s_signaturesOfTypeIdentifierAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38432, 38556);
-            VisualBasicEmbeddedAttribute = f_784_38463_38556("Microsoft.VisualBasic", "Embedded", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38613, 38748);
-            CodeAnalysisEmbeddedAttribute = f_784_38645_38748("Microsoft.CodeAnalysis", "EmbeddedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 38805, 38950);
-            VisualBasicComClassAttribute = f_784_38836_38950("Microsoft.VisualBasic", "ComClassAttribute", s_signaturesOfVisualBasicComClassAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39007, 39158);
-            StandardModuleAttribute = f_784_39033_39158("Microsoft.VisualBasic.CompilerServices", "StandardModuleAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39215, 39364);
-            OptionCompareAttribute = f_784_39240_39364("Microsoft.VisualBasic.CompilerServices", "OptionCompareAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39421, 39590);
-            AccessedThroughPropertyAttribute = f_784_39456_39590("System.Runtime.CompilerServices", "AccessedThroughPropertyAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39647, 39771);
-            WebMethodAttribute = f_784_39668_39771("System.Web.Services", "WebMethodAttribute", s_signaturesOfWebMethodAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 39828, 39985);
-            DateTimeConstantAttribute = f_784_39856_39985("System.Runtime.CompilerServices", "DateTimeConstantAttribute", s_signaturesOfDateTimeConstantAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40042, 40192);
-            ClassInterfaceAttribute = f_784_40068_40192("System.Runtime.InteropServices", "ClassInterfaceAttribute", s_signaturesOfClassInterfaceAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40249, 40414);
-            ComSourceInterfacesAttribute = f_784_40280_40414("System.Runtime.InteropServices", "ComSourceInterfacesAttribute", s_signaturesOfComSourceInterfacesAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40471, 40614);
-            ComVisibleAttribute = f_784_40493_40614("System.Runtime.InteropServices", "ComVisibleAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40671, 40815);
-            DispIdAttribute = f_784_40689_40815("System.Runtime.InteropServices", "DispIdAttribute", new byte[][] { s_signature_HasThis_Void_Int32 }); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 40872, 41022);
-            TypeLibVersionAttribute = f_784_40898_41022("System.Runtime.InteropServices", "TypeLibVersionAttribute", s_signaturesOfTypeLibVersionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41079, 41247);
-            ComCompatibleVersionAttribute = f_784_41111_41247("System.Runtime.InteropServices", "ComCompatibleVersionAttribute", s_signaturesOfComCompatibleVersionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41304, 41451);
-            InterfaceTypeAttribute = f_784_41329_41451("System.Runtime.InteropServices", "InterfaceTypeAttribute", s_signaturesOfInterfaceTypeAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41508, 41678);
-            WindowsRuntimeImportAttribute = f_784_41540_41678("System.Runtime.InteropServices.WindowsRuntime", "WindowsRuntimeImportAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41735, 41877);
-            DynamicSecurityMethodAttribute = f_784_41768_41877("System.Security", "DynamicSecurityMethodAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 41934, 42089);
-            RequiredAttributeAttribute = f_784_41963_42089("System.Runtime.CompilerServices", "RequiredAttributeAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42146, 42303);
-            AsyncMethodBuilderAttribute = f_784_42176_42303("System.Runtime.CompilerServices", "AsyncMethodBuilderAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42360, 42515);
-            AsyncStateMachineAttribute = f_784_42389_42515("System.Runtime.CompilerServices", "AsyncStateMachineAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42572, 42733);
-            IteratorStateMachineAttribute = f_784_42604_42733("System.Runtime.CompilerServices", "IteratorStateMachineAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 42790, 42965);
-            CompilationRelaxationsAttribute = f_784_42824_42965("System.Runtime.CompilerServices", "CompilationRelaxationsAttribute", s_signaturesOfCompilationRelaxationsAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43022, 43172);
-            ReferenceAssemblyAttribute = f_784_43051_43172("System.Runtime.CompilerServices", "ReferenceAssemblyAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43229, 43385);
-            RuntimeCompatibilityAttribute = f_784_43261_43385("System.Runtime.CompilerServices", "RuntimeCompatibilityAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43442, 43568);
-            DebuggableAttribute = f_784_43464_43568("System.Diagnostics", "DebuggableAttribute", s_signaturesOfDebuggableAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43625, 43776);
-            TypeForwardedToAttribute = f_784_43652_43776("System.Runtime.CompilerServices", "TypeForwardedToAttribute", s_signatures_HasThis_Void_Type_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43833, 43942);
-            STAThreadAttribute = f_784_43854_43942("System", "STAThreadAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 43999, 44108);
-            MTAThreadAttribute = f_784_44020_44108("System", "MTAThreadAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44165, 44273);
-            ObsoleteAttribute = f_784_44185_44273("System", "ObsoleteAttribute", s_signaturesOfObsoleteAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44330, 44471);
-            TypeLibTypeAttribute = f_784_44353_44471("System.Runtime.InteropServices", "TypeLibTypeAttribute", s_signaturesOfTypeLibTypeAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44528, 44658);
-            DynamicAttribute = f_784_44547_44658("System.Runtime.CompilerServices", "DynamicAttribute", s_signaturesOfDynamicAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44715, 44875);
-            TupleElementNamesAttribute = f_784_44744_44875("System.Runtime.CompilerServices", "TupleElementNamesAttribute", s_signaturesOfTupleElementNamesAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 44932, 45070);
-            IsByRefLikeAttribute = f_784_44955_45070("System.Runtime.CompilerServices", "IsByRefLikeAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45127, 45258);
-            DebuggerHiddenAttribute = f_784_45153_45258("System.Diagnostics", "DebuggerHiddenAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45315, 45456);
-            DebuggerNonUserCodeAttribute = f_784_45346_45456("System.Diagnostics", "DebuggerNonUserCodeAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45513, 45662);
-            DebuggerStepperBoundaryAttribute = f_784_45548_45662("System.Diagnostics", "DebuggerStepperBoundaryAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45719, 45860);
-            DebuggerStepThroughAttribute = f_784_45750_45860("System.Diagnostics", "DebuggerStepThroughAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 45917, 46058);
-            SecurityCriticalAttribute = f_784_45945_46058("System.Security", "SecurityCriticalAttribute", s_signaturesOfSecurityCriticalAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46115, 46255);
-            SecuritySafeCriticalAttribute = f_784_46147_46255("System.Security", "SecuritySafeCriticalAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46312, 46469);
-            DesignerGeneratedAttribute = f_784_46341_46469("Microsoft.VisualBasic.CompilerServices", "DesignerGeneratedAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46526, 46676);
-            MyGroupCollectionAttribute = f_784_46555_46676("Microsoft.VisualBasic", "MyGroupCollectionAttribute", s_signaturesOfMyGroupCollectionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46733, 46892);
-            ComEventInterfaceAttribute = f_784_46762_46892("System.Runtime.InteropServices", "ComEventInterfaceAttribute", s_signaturesOfComEventInterfaceAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 46949, 47100);
-            BestFitMappingAttribute = f_784_46975_47100("System.Runtime.InteropServices", "BestFitMappingAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47157, 47258);
-            FlagsAttribute = f_784_47174_47258("System", "FlagsAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47315, 47465);
-            LCIDConversionAttribute = f_784_47341_47465("System.Runtime.InteropServices", "LCIDConversionAttribute", s_signaturesOfLCIDConversionAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47522, 47702);
-            UnmanagedFunctionPointerAttribute = f_784_47558_47702("System.Runtime.InteropServices", "UnmanagedFunctionPointerAttribute", s_signaturesOfUnmanagedFunctionPointerAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47759, 47933);
-            PrimaryInteropAssemblyAttribute = f_784_47793_47933("System.Runtime.InteropServices", "PrimaryInteropAssemblyAttribute", s_signaturesOfPrimaryInteropAssemblyAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 47990, 48150);
-            ImportedFromTypeLibAttribute = f_784_48021_48150("System.Runtime.InteropServices", "ImportedFromTypeLibAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48207, 48344);
-            DefaultEventAttribute = f_784_48231_48344("System.ComponentModel", "DefaultEventAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48401, 48552);
-            AssemblyConfigurationAttribute = f_784_48434_48552("System.Reflection", "AssemblyConfigurationAttribute", s_signatures_HasThis_Void_String_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48609, 48761);
-            AssemblyAlgorithmIdAttribute = f_784_48640_48761("System.Reflection", "AssemblyAlgorithmIdAttribute", s_signaturesOfAssemblyAlgorithmIdAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 48818, 48953);
-            DeprecatedAttribute = f_784_48840_48953("Windows.Foundation.Metadata", "DeprecatedAttribute", s_signaturesOfDeprecatedAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49010, 49143);
-            NullableAttribute = f_784_49030_49143("System.Runtime.CompilerServices", "NullableAttribute", s_signaturesOfNullableAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49200, 49354);
-            NullableContextAttribute = f_784_49227_49354("System.Runtime.CompilerServices", "NullableContextAttribute", s_signaturesOfNullableContextAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49411, 49571);
-            NullablePublicOnlyAttribute = f_784_49441_49571("System.Runtime.CompilerServices", "NullablePublicOnlyAttribute", s_signatures_HasThis_Void_Boolean_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49628, 49764);
-            ExperimentalAttribute = f_784_49652_49764("Windows.Foundation.Metadata", "ExperimentalAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 49821, 49983);
-            ExcludeFromCodeCoverageAttribute = f_784_49856_49983("System.Diagnostics.CodeAnalysis", "ExcludeFromCodeCoverageAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50040, 50200);
-            EnumeratorCancellationAttribute = f_784_50074_50200("System.Runtime.CompilerServices", "EnumeratorCancellationAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50257, 50401);
-            SkipLocalsInitAttribute = f_784_50283_50401("System.Runtime.CompilerServices", "SkipLocalsInitAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50458, 50606);
-            NativeIntegerAttribute = f_784_50483_50606("System.Runtime.CompilerServices", "NativeIntegerAttribute", s_signaturesOfNativeIntegerAttribute); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50663, 50813);
-            ModuleInitializerAttribute = f_784_50692_50813("System.Runtime.CompilerServices", "ModuleInitializerAttribute", s_signatures_HasThis_Void_Only); DynAbs.Tracing.TraceSender.TraceSimpleStatement(784, 50870, 51025);
-            UnmanagedCallersOnlyAttribute = f_784_50902_51025("System.Runtime.InteropServices", "UnmanagedCallersOnlyAttribute", s_signatures_HasThis_Void_Only);
         }
 
         private static readonly byte[] s_signature_HasThis_Void;

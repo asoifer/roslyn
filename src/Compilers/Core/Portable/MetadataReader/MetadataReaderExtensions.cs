@@ -503,10 +503,13 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 4330, 4400);
 
                 string
-                cultureName = (DynAbs.Tracing.TraceSender.Conditional_F1(409, 4351, 4364) || ((culture.IsNil && DynAbs.Tracing.TraceSender.Conditional_F2(409, 4367, 4371)) || DynAbs.Tracing.TraceSender.Conditional_F3(409, 4374, 4399))) ? null : f_409_4374_4399(reader, culture)
+                cultureName = (DynAbs.Tracing.TraceSender.Conditional_F1(409, 4351, 4364) || ((culture.IsNil && 
+                DynAbs.Tracing.TraceSender.Conditional_F2(409, 4367, 4371)) || 
+                DynAbs.Tracing.TraceSender.Conditional_F3(409, 4374, 4399))) ? null : f_409_4374_4399(reader, culture)
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 4414, 4649) || true) && (cultureName != null && (DynAbs.Tracing.TraceSender.Expression_True(409, 4418, 4496) && !f_409_4442_4496(cultureName)))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 4414, 4649) || true) && (cultureName != null && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(409, 4418, 4496) && !f_409_4442_4496(cultureName)))
                 )
 
                 {
@@ -542,7 +545,8 @@ namespace Microsoft.CodeAnalysis
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(409, 4907, 5540);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 4965, 5167) || true) && (!f_409_4970_5020(publicKeyOrToken))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 4965, 5167) || true) && 
+                            (!f_409_4970_5020(publicKeyOrToken))
                         )
 
                         {
@@ -560,7 +564,10 @@ namespace Microsoft.CodeAnalysis
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(409, 4907, 5540);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 5249, 5521) || true) && (f_409_5253_5278_M(!publicKeyOrToken.IsEmpty) && (DynAbs.Tracing.TraceSender.Expression_True(409, 5253, 5369) && publicKeyOrToken.Length != AssemblyIdentity.PublicKeyTokenSize))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 5249, 5521) || true) && 
+                            (f_409_5253_5278_M(!publicKeyOrToken.IsEmpty) && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(409, 5253, 5369) && 
+                            publicKeyOrToken.Length != AssemblyIdentity.PublicKeyTokenSize))
                         )
 
                         {
@@ -583,7 +590,8 @@ namespace Microsoft.CodeAnalysis
 
                     hasPublicKey = f_409_6021_6046_M(!publicKeyOrToken.IsEmpty);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 6065, 6271) || true) && (hasPublicKey && (DynAbs.Tracing.TraceSender.Expression_True(409, 6069, 6136) && !f_409_6086_6136(publicKeyOrToken)))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 6065, 6271) || true) && (hasPublicKey && 
+                        (DynAbs.Tracing.TraceSender.Expression_True(409, 6069, 6136) && !f_409_6086_6136(publicKeyOrToken)))
                     )
 
                     {
@@ -891,7 +899,17 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(409, 7080, 7315);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 7193, 7304);
 
-                return typeDef.BaseType.IsNil && (DynAbs.Tracing.TraceSender.Expression_True(409, 7200, 7303) && reader.IsPublicNonInterfaceType(typeDef, "System", "Object"));
+                return typeDef.BaseType.IsNil && (DynAbs.Tracing.TraceSender.Expression_True(409, 7200, 7303) &&
+                    f_409_7227_7303(ref typeDef, "System", "Object"));
+                
+                // LAFHIS
+                bool f_409_7227_7303(ref TypeDefinition t, string s1, string s2)
+                {
+                    var b = reader.IsPublicNonInterfaceType(t, s1, s2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(409, 7227, 7303);
+                    return b;
+                }
+
                 DynAbs.Tracing.TraceSender.TraceExitStaticMethod(409, 7080, 7315);
             }
             catch
@@ -1020,8 +1038,28 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(409, 8066, 8500);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(409, 8227, 8489);
 
-                return (typeDef.Attributes & (TypeAttributes.Public | TypeAttributes.Interface)) == TypeAttributes.Public && (DynAbs.Tracing.TraceSender.Expression_True(409, 8234, 8405) && reader.StringComparer.Equals(typeDef.Name, typeName)) && (DynAbs.Tracing.TraceSender.Expression_True(409, 8234, 8488) && reader.StringComparer.Equals(typeDef.Namespace, namespaceName));
+                return (typeDef.Attributes & (TypeAttributes.Public | TypeAttributes.Interface)) == TypeAttributes.Public && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(409, 8234, 8405) &&
+                    f_409_8337_8406(reader.StringComparer, typeDef.Name, typeName)) && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(409, 8234, 8488) &&
+                    f_409_8410_8488(reader.StringComparer, typeDef.Namespace, namespaceName));
                 DynAbs.Tracing.TraceSender.TraceExitStaticMethod(409, 8066, 8500);
+
+                // LAFHIS
+                bool f_409_8337_8406(MetadataStringComparer m, StringHandle s1, string s2)
+                {
+                    var b = reader.StringComparer.Equals(s1, s2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(409, 8337, 8406);
+                    return b;
+                }
+
+                // LAFHIS
+                bool f_409_8410_8488(MetadataStringComparer m, StringHandle s1, string s2)
+                {
+                    var b = reader.StringComparer.Equals(s1, s2);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(409, 8410, 8488);
+                    return b;
+                }
             }
             catch
             {

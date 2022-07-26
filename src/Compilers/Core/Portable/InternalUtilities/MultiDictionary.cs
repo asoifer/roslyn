@@ -983,7 +983,11 @@ equalityComparer)
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6528, 6539);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6591, 6605);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6922, 6949);
-                this._emptySet = new(null, null); DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7421, 7473);
+                this._emptySet = new(null, null);
+                // LAFHIS
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(346, 6934, 6949);
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7421, 7473);
 
                 _dictionary = f_346_7435_7472<K>(comparer);
                 DynAbs.Tracing.TraceSender.TraceExitConstructor(346, 7343, 7484);
@@ -1007,7 +1011,11 @@ equalityComparer)
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6528, 6539);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6591, 6605);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 6922, 6949);
-                this._emptySet = new(null, null); DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7632, 7694);
+                this._emptySet = new(null, null);
+                // LAFHIS
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(346, 6934, 6949);
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7632, 7694);
 
                 _dictionary = f_346_7646_7693<K>(capacity, comparer);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(346, 7708, 7739);

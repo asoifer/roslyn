@@ -8592,15 +8592,27 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                             try
                             {
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10709, 69182, 69531) || true) && (!(isOrdinaryEmbeddableStruct || (DynAbs.Tracing.TraceSender.Expression_False(10709, 69188, 69341) || (isOrdinaryStruct && (DynAbs.Tracing.TraceSender.Expression_True(10709, 69248, 69340) && (f_10709_69269_69309(module, fieldRid) & FieldAttributes.Static) == 0))) || (DynAbs.Tracing.TraceSender.Expression_False(10709, 69188, 69436) || module.ShouldImportField(fieldRid, moduleSymbol.ImportOptions))))
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10709, 69182, 69531) || true) && 
+                                    (!(isOrdinaryEmbeddableStruct || (DynAbs.Tracing.TraceSender.Expression_False(10709, 69188, 69341) || 
+                                    (isOrdinaryStruct && (DynAbs.Tracing.TraceSender.Expression_True(10709, 69248, 69340) && 
+                                    (f_10709_69269_69309(module, fieldRid) & FieldAttributes.Static) == 0))) || 
+                                    (DynAbs.Tracing.TraceSender.Expression_False(10709, 69188, 69436) ||
+                                    f_10709_69346_69436(module, fieldRid, moduleSymbol.ImportOptions))))
                                 )
-
                                 {
                                     DynAbs.Tracing.TraceSender.TraceEnterCondition(10709, 69182, 69531);
                                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10709, 69495, 69504);
 
                                     continue;
                                     DynAbs.Tracing.TraceSender.TraceExitCondition(10709, 69182, 69531);
+                                }
+
+                                // LAFHIS (this should be a ref param)
+                                bool f_10709_69346_69436(PEModule module, FieldDefinitionHandle fieldRid, MetadataImportOptions options)
+                                {
+                                    var retVal = module.ShouldImportField(fieldRid, options);
+                                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10709, 69346, 69436);
+                                    return retVal;
                                 }
                             }
                             catch (BadImageFormatException)
@@ -8886,7 +8898,18 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                         {
                             DynAbs.Tracing.TraceSender.TraceEnterCondition(10709, 71082, 71553);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10709, 71192, 71534) || true) && (isOrdinaryEmbeddableStruct || (DynAbs.Tracing.TraceSender.Expression_False(10709, 71196, 71293) || module.ShouldImportMethod(methodHandle, moduleSymbol.ImportOptions)))
+                            // LAFHIS
+                            bool f_10709_71226_71293()
+                            {
+                                var temp = module.ShouldImportMethod(methodHandle, moduleSymbol.ImportOptions);
+                                DynAbs.Tracing.TraceSender.TraceEndInvocation(10709, 71226, 71293);
+                                return temp;
+                            }
+
+                            // LAFHIS
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10709, 71192, 71534) || true) && 
+                                (isOrdinaryEmbeddableStruct || (DynAbs.Tracing.TraceSender.Expression_False(10709, 71196, 71293) ||
+                                f_10709_71226_71293()))
                             )
 
                             {

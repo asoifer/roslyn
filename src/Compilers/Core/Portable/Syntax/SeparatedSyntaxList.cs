@@ -147,8 +147,9 @@ namespace Microsoft.CodeAnalysis
             }
         }
 
+        // LAFHIS (base call first, then end invocation)
         internal SeparatedSyntaxList(SyntaxNode node, int index)
-        : this(f_669_1799_1837_C(f_669_1799_1837(node, index)))
+        : this(f_669_1799_1837(f_669_1799_1837_C(node), index))
         {
             try
             {
@@ -2567,8 +2568,8 @@ namespace Microsoft.CodeAnalysis
         }
 
 
-        static Microsoft.CodeAnalysis.SyntaxNodeOrTokenList
-        f_669_1799_1837_C(Microsoft.CodeAnalysis.SyntaxNodeOrTokenList
+        static SyntaxNode
+        f_669_1799_1837_C(SyntaxNode
         i)
         {
             var return_v = i;

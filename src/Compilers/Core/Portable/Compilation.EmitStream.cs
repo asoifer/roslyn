@@ -713,7 +713,7 @@ namespace Microsoft.CodeAnalysis
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 15431, 15468);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 15497, 15534);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 65639, 65689);
-            DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 135887, 135944);
+            DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 136230, 136287);
             s_createSetCallback = t => new Microsoft.CodeAnalysis.Collections.SmallConcurrentSetOfInts(); 
             DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(6, 420, 9130);
 

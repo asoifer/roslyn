@@ -2987,6 +2987,10 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 35800, 35870);
 
                 externalSyntaxTrees.AddAll(syntaxAndDeclarations.ExternalSyntaxTrees);
+
+                // LAFHIS: EndInvocation
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(10038, 35800, 35869);
+
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 35884, 35918);
 
                 bool

@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -86,7 +86,7 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 22623, 22681);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 44166, 44281);
                 this._getTypeCache = f_145_44195_44281(50, ReferenceEqualityComparer.Instance); DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 136118, 136152);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(577, 1678, 1747);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(532, 1678, 1747);
                 // LAFHIS // new WeakList<IAssemblySymbolInternal>(); (532)
                 //this._retargetingAssemblySymbols = f_577_1708_1747();
                 this._retargetingAssemblySymbols = f_532_1708_1747();

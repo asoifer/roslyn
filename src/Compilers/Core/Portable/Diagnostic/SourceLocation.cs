@@ -41,7 +41,9 @@ namespace Microsoft.CodeAnalysis
         }
 
         public SourceLocation(SyntaxNode node)
-        : this(f_201_842_857_C(f_201_842_857(node)), f_201_859_868(node))
+        // LAFHIS
+        //: this(f_201_842_857_C(f_201_842_857(node)), f_201_859_868(node))
+        : this(f_201_842_857(f_201_842_857_C(node)), f_201_859_868(node))
         {
             try
             {
@@ -123,7 +125,9 @@ namespace Microsoft.CodeAnalysis
         }
 
         public SourceLocation(SyntaxReference syntaxRef)
-        : this(f_201_1501_1521_C(f_201_1501_1521(syntaxRef)), f_201_1523_1537(syntaxRef))
+        // LAFHIS, BaseCall
+        //: this(f_201_1501_1521_C(f_201_1501_1521(syntaxRef)), f_201_1523_1537(syntaxRef))
+        : this(f_201_1501_1521(f_201_1501_1521_C(syntaxRef)), f_201_1523_1537(syntaxRef))
         {
             try
             {
@@ -547,8 +551,8 @@ namespace Microsoft.CodeAnalysis
         }
 
 
-        static Microsoft.CodeAnalysis.SyntaxTree
-        f_201_842_857_C(Microsoft.CodeAnalysis.SyntaxTree
+        static Microsoft.CodeAnalysis.SyntaxNode
+        f_201_842_857_C(Microsoft.CodeAnalysis.SyntaxNode
         i)
         {
             var return_v = i;
@@ -627,8 +631,8 @@ namespace Microsoft.CodeAnalysis
         }
 
 
-        static Microsoft.CodeAnalysis.SyntaxTree
-        f_201_1501_1521_C(Microsoft.CodeAnalysis.SyntaxTree
+        static SyntaxReference
+        f_201_1501_1521_C(SyntaxReference
         i)
         {
             var return_v = i;

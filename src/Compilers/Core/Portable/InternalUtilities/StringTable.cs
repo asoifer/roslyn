@@ -2247,6 +2247,9 @@ foundIdx:
 
                 unsafe
                 {
+                    // LAFHIS
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(387, 19805, 19994);
+
                     fixed (byte*
     bytes = &utf8Bytes.GetPinnableReference()
     )
