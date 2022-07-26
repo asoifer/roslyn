@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -3623,25 +3623,50 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DiagnosticBag
                 semanticDiagnostics = f_10345_26439_26474(_compilation)
                 ;
-
-                // Check constraints within named aliases.
-
-                // Force resolution of named aliases.
-                foreach (var (_, alias) in UsingAliases)
+                try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26673, 26726);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26600, 26824);
+                    foreach (var (_, alias) in f_10345_26627_26639_I(UsingAliases))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10345, 26600, 26824);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26673, 26726);
 
-                    f_10345_26673_26725(alias.Alias, basesBeingResolved: null);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26744, 26809);
+                        f_10345_26673_26725(alias.Alias, basesBeingResolved: null);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26744, 26809);
 
-                    f_10345_26744_26808(semanticDiagnostics, f_10345_26773_26807(alias.Alias));
+                        f_10345_26744_26808(semanticDiagnostics, f_10345_26773_26807(alias.Alias));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10345, 26600, 26824);
+                    }
                 }
-
-                foreach (var (_, alias) in UsingAliases)
+                catch (System.Exception)
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26913, 26963);
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10345, 1, 225);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10345, 1, 225);
+                }
+                try
+                {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26840, 26978);
+                    foreach (var (_, alias) in f_10345_26867_26879_I(UsingAliases))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10345, 26840, 26978);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26913, 26963);
 
-                    f_10345_26913_26962(alias.Alias, semanticDiagnostics);
+                        f_10345_26913_26962(alias.Alias, semanticDiagnostics);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10345, 26840, 26978);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10345, 1, 139);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10345, 1, 139);
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 26994, 27050);
 
@@ -3770,6 +3795,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                 }
 
 
+                System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.CSharp.AliasAndUsingDirective>
+                f_10345_26627_26639_I(System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.CSharp.AliasAndUsingDirective>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10345, 26627, 26639);
+                    return return_v;
+                }
+
+
                 int
                 f_10345_26913_26962(Microsoft.CodeAnalysis.CSharp.Symbols.AliasSymbol
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
@@ -3778,6 +3813,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                     this_param.CheckConstraints(diagnostics);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(10345, 26913, 26962);
                     return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.CSharp.AliasAndUsingDirective>
+                f_10345_26867_26879_I(System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.CSharp.AliasAndUsingDirective>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10345, 26867, 26879);
+                    return return_v;
                 }
 
 
@@ -5054,11 +5099,26 @@ namespace Microsoft.CodeAnalysis.CSharp
             try
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10345, 38300, 38809);
-                foreach (var (_, usingAlias) in this.UsingAliases)
+                try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 38523, 38597);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 38440, 38612);
+                    foreach (var (_, usingAlias) in f_10345_38472_38489_I(this.UsingAliases))
+                    {
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(10345, 38440, 38612);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(10345, 38523, 38597);
 
-                    f_10345_38523_38596(result, usingAlias.Alias, options, originalBinder);
+                        f_10345_38523_38596(result, usingAlias.Alias, options, originalBinder);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(10345, 38440, 38612);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(10345, 1, 173);
+                    throw;
+                }
+                finally
+                {
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(10345, 1, 173);
                 }
                 try
                 {
@@ -5093,6 +5153,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                     AddAliasSymbolToResult(result, aliasSymbol, options, originalBinder);
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(10345, 38523, 38596);
                     return 0;
+                }
+
+
+                System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.CSharp.AliasAndUsingDirective>
+                f_10345_38472_38489_I(System.Collections.Immutable.ImmutableDictionary<string, Microsoft.CodeAnalysis.CSharp.AliasAndUsingDirective>
+                i)
+                {
+                    var return_v = i;
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(10345, 38472, 38489);
+                    return return_v;
                 }
 
 
@@ -5543,7 +5613,7 @@ namespace Microsoft.CodeAnalysis.CSharp
         }
 
 
-        int
+        static int
         f_10345_2064_2098(bool
         condition)
         {
