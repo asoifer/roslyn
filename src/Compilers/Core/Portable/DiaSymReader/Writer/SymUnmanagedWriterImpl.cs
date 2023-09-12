@@ -663,6 +663,8 @@ namespace Microsoft.DiaSymReader
                     {
                         unsafe
                         {
+                            // LAFHIS
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 5582, 5604);
                             fixed (byte*
     bytes = checksum
     )
@@ -693,6 +695,8 @@ namespace Microsoft.DiaSymReader
                     {
                         unsafe
                         {
+                            // LAFHIS
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 6118, 6138);
                             fixed (byte*
     bytes = source
     )
@@ -2300,6 +2304,10 @@ namespace Microsoft.DiaSymReader
                         {
                             unsafe
                             {
+                                // LAFHIS
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 17726, 17754);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 17792, 17822);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 17860, 17885);
                                 fixed (int*
     yieldPtr = yieldOffsets
     )
@@ -2501,6 +2509,8 @@ namespace Microsoft.DiaSymReader
 
                 try
                 {
+                    // LAFHIS
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 19204, 19223);
                     fixed (byte*
     pb = metadata
     )
@@ -2774,6 +2784,8 @@ namespace Microsoft.DiaSymReader
 
                 try
                 {
+                    // LAFHIS
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 20737, 20757);
                     fixed (byte*
     dataPtr = data
     )
@@ -2902,6 +2914,8 @@ namespace Microsoft.DiaSymReader
 
                 try
                 {
+                    // LAFHIS
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 21413, 21433);
                     fixed (byte*
     dataPtr = data
     )
@@ -3290,6 +3304,8 @@ namespace Microsoft.DiaSymReader
                 byte[]
                 data = new byte[dataLength]
                 ;
+
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(755, 24239, 24254);
                 fixed (byte*
     pb = data
     )

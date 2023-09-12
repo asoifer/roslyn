@@ -429,6 +429,7 @@ namespace Microsoft.CodeAnalysis
 
                 unsafe
                 {
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(560, 6226, 6250);
                     fixed (byte*
     bytes = pubKeyData
     )

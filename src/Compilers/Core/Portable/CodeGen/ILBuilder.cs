@@ -3558,7 +3558,7 @@ tryAgain:
                         }
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(56, 35734, 35784);
 
-                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_56_35734_35759(block), 56, 35734, 35783).WriteContentTo(writer), 56, 35760, 35783);
+                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_56_35734_35759(block), 56, 35734, 35783)?.WriteContentTo(writer), 56, 35760, 35783);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(56, 35804, 37811);
 
                         switch (f_56_35812_35828(block))

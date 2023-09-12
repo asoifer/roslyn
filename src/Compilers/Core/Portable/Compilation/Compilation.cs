@@ -12138,10 +12138,15 @@ namespace Microsoft.CodeAnalysis
                     }
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 126175, 126484);
 
+                    // LAFHIS: adding another () before F2
                     Func<Stream?>?
                     getPortablePdbStream =
-                    (DynAbs.Tracing.TraceSender.Conditional_F1(145, 126234, 126340) || ((f_145_126234_126273(moduleBeingBuilt) != DebugInformationFormat.PortablePdb || (DynAbs.Tracing.TraceSender.Expression_False(145, 126234, 126340) || pdbStreamProvider == null
-                    ) && DynAbs.Tracing.TraceSender.Conditional_F2(145, 126364, 126368)) || DynAbs.Tracing.TraceSender.Conditional_F3(145, 126392, 126483))) ? null
+                    (DynAbs.Tracing.TraceSender.Conditional_F1(145, 126234, 126340) || 
+                    (((f_145_126234_126273(moduleBeingBuilt) != DebugInformationFormat.PortablePdb || 
+                    (DynAbs.Tracing.TraceSender.Expression_False(145, 126234, 126340) || 
+                    pdbStreamProvider == null
+                    )) && DynAbs.Tracing.TraceSender.Conditional_F2(145, 126364, 126368)) || 
+                    DynAbs.Tracing.TraceSender.Conditional_F3(145, 126392, 126483))) ? null
                     : (Func<Stream?>)(() => ConditionalGetOrCreateStream(pdbStreamProvider, metadataDiagnostics))
                     ;
 

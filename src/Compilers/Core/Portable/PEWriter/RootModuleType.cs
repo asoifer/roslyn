@@ -78,6 +78,10 @@ namespace Microsoft.Cci
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(512, 1013, 1200);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(512, 1107, 1189);
 
+                // LAFHIS
+                if (_methods == null)
+                    DynAbs.Tracing.TraceSender.TraceEnterExpression(512, 1107, 1189);
+
                 return _methods ??= f_512_1127_1188();
                 DynAbs.Tracing.TraceSender.TraceExitMethod(512, 1013, 1200);
 

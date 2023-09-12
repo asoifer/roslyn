@@ -1456,7 +1456,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                         definition = f_10198_10867_10884(e)
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10198, 10999, 11168) || true) && (definition.ShouldInclude(context) || (DynAbs.Tracing.TraceSender.Expression_False(10198, 11003, 11083) || !f_10198_11041_11083(f_10198_11041_11073(definition, context))))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10198, 10999, 11168) || true) && 
+                            (definition.ShouldInclude(context) || 
+                            (DynAbs.Tracing.TraceSender.Expression_False(10198, 11003, 11083) || 
+                            !f_10198_11041_11083(f_10198_11041_11073(definition, context))))
                         )
 
                         {
@@ -2324,7 +2327,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
                         f_10198_16647_16703((object)(f_10198_16669_16691(f) ?? (DynAbs.Tracing.TraceSender.Expression_Null<Microsoft.CodeAnalysis.CSharp.Symbols.FieldSymbol?>(10198, 16669, 16696) ?? f)) == f);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10198, 16722, 16870) || true) && (isStruct || (DynAbs.Tracing.TraceSender.Expression_False(10198, 16726, 16778) || f_10198_16738_16755(f).ShouldInclude(context)))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10198, 16722, 16870) || true) && 
+                            (isStruct || (DynAbs.Tracing.TraceSender.Expression_False(10198, 16726, 16778) || 
+                            f_10198_16738_16755(f).ShouldInclude(context)))
                         )
 
                         {

@@ -170,7 +170,7 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 2758, 2825);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 3122, 3178);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 3227, 3275);
-                this._reportedDiagnostics = f_127_3250_3275(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68176, 68185);
+                this._reportedDiagnostics = f_127_3250_3275(); DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68250, 68259);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 4756, 4791);
 
                 IEnumerable<string>
@@ -394,64 +394,66 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 6910, 7288);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7160, 7277);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 6910, 7362);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7183, 7268);
 
-                //return f_127_7167_7276_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(
-                //    f_127_7167_7240(f_127_7167_7180(type)), 127, 7167, 7276) ? 
-                //    f_127_7241_7273(.InformationalVersion, '+')[0]);
-                return "";
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 6910, 7288);
+                var
+                temp = f_127_7194_7267(f_127_7194_7207(type))
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7282, 7351);
+
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(127, 7289, 7301) || ((temp != null && DynAbs.Tracing.TraceSender.Conditional_F2(127, 7304, 7343)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 7346, 7350))) ? f_127_7304_7340(f_127_7304_7329(temp), '+')[0] : null;
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 6910, 7362);
 
                 System.Reflection.Assembly
-                f_127_7167_7180(System.Type
+                f_127_7194_7207(System.Type
                 this_param)
                 {
                     var return_v = this_param.Assembly;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7167, 7180);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7194, 7207);
                     return return_v;
                 }
 
 
                 System.Reflection.AssemblyInformationalVersionAttribute?
-                f_127_7167_7240(System.Reflection.Assembly
+                f_127_7194_7267(System.Reflection.Assembly
                 element)
                 {
                     var return_v = element.GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7167, 7240);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7194, 7267);
+                    return return_v;
+                }
+
+
+                string
+                f_127_7304_7329(System.Reflection.AssemblyInformationalVersionAttribute
+                this_param)
+                {
+                    var return_v = this_param.InformationalVersion;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7304, 7329);
                     return return_v;
                 }
 
 
                 string[]
-                f_127_7241_7273(string
+                f_127_7304_7340(string
                 this_param, char
                 separator)
                 {
                     var return_v = this_param.Split(separator);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7241, 7273);
-                    return return_v;
-                }
-
-
-                string?
-                f_127_7167_7276_M(string?
-                i)
-                {
-                    var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7167, 7276);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7304, 7340);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 6910, 7288);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 6910, 7362);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 6910, 7288);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 6910, 7362);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -460,55 +462,55 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 7300, 7511);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7377, 7450);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 7374, 7585);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7451, 7524);
 
                 var
-                hash = DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_127_7388_7443(f_127_7388_7401(type)), 127, 7388, 7449)?.Hash
+                hash = DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_127_7462_7517(f_127_7462_7475(type)), 127, 7462, 7523)?.Hash
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7464, 7500);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7538, 7574);
 
-                return f_127_7471_7499(hash);
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 7300, 7511);
+                return f_127_7545_7573(hash);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 7374, 7585);
 
                 System.Reflection.Assembly
-                f_127_7388_7401(System.Type
+                f_127_7462_7475(System.Type
                 this_param)
                 {
                     var return_v = this_param.Assembly;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7388, 7401);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7462, 7475);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommitHashAttribute?
-                f_127_7388_7443(System.Reflection.Assembly
+                f_127_7462_7517(System.Reflection.Assembly
                 element)
                 {
                     var return_v = element.GetCustomAttribute<Microsoft.CodeAnalysis.CommitHashAttribute>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7388, 7443);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7462, 7517);
                     return return_v;
                 }
 
 
                 string?
-                f_127_7471_7499(string?
+                f_127_7545_7573(string?
                 hash)
                 {
                     var return_v = ExtractShortCommitHash(hash);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7471, 7499);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7545, 7573);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 7300, 7511);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 7374, 7585);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 7300, 7511);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 7374, 7585);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -519,69 +521,69 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 7806, 7933);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7869, 7922);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 7880, 8007);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 7943, 7996);
 
-                return f_127_7876_7921(f_127_7876_7913(f_127_7876_7903(f_127_7876_7894(f_127_7876_7880()))));
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 7806, 7933);
+                return f_127_7950_7995(f_127_7950_7987(f_127_7950_7977(f_127_7950_7968(f_127_7950_7954()))));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 7880, 8007);
 
                 System.Type
-                f_127_7876_7880()
+                f_127_7950_7954()
                 {
                     var return_v = Type;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7876, 7880);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7950, 7954);
                     return return_v;
                 }
 
 
                 System.Reflection.TypeInfo
-                f_127_7876_7894(System.Type
+                f_127_7950_7968(System.Type
                 type)
                 {
                     var return_v = type.GetTypeInfo();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7876, 7894);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7950, 7968);
                     return return_v;
                 }
 
 
                 System.Reflection.Assembly
-                f_127_7876_7903(System.Reflection.TypeInfo
+                f_127_7950_7977(System.Reflection.TypeInfo
                 this_param)
                 {
                     var return_v = this_param.Assembly;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7876, 7903);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7950, 7977);
                     return return_v;
                 }
 
 
                 System.Reflection.AssemblyName
-                f_127_7876_7913(System.Reflection.Assembly
+                f_127_7950_7987(System.Reflection.Assembly
                 this_param)
                 {
                     var return_v = this_param.GetName();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7876, 7913);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 7950, 7987);
                     return return_v;
                 }
 
 
                 System.Version?
-                f_127_7876_7921(System.Reflection.AssemblyName
+                f_127_7950_7995(System.Reflection.AssemblyName
                 this_param)
                 {
                     var return_v = this_param.Version;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7876, 7921);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 7950, 7995);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 7806, 7933);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 7880, 8007);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 7806, 7933);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 7880, 8007);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -590,39 +592,39 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 7945, 8033);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8002, 8022);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8019, 8107);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8076, 8096);
 
-                return f_127_8009_8021(f_127_8009_8016());
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 7945, 8033);
+                return f_127_8083_8095(f_127_8083_8090());
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8019, 8107);
 
                 System.Globalization.CultureInfo
-                f_127_8009_8016()
+                f_127_8083_8090()
                 {
                     var return_v = Culture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8009, 8016);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8083, 8090);
                     return return_v;
                 }
 
 
                 string
-                f_127_8009_8021(System.Globalization.CultureInfo
+                f_127_8083_8095(System.Globalization.CultureInfo
                 this_param)
                 {
                     var return_v = this_param.Name;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8009, 8021);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8083, 8095);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 7945, 8033);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8019, 8107);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 7945, 8033);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8019, 8107);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -631,20 +633,20 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8045, 8270);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8179, 8259);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8119, 8344);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8253, 8333);
 
                 return (path, properties) => MetadataReference.CreateFromFile(path, properties);
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8045, 8270);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8119, 8344);
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8045, 8270);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8119, 8344);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8045, 8270);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8119, 8344);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -653,96 +655,96 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8282, 8635);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8419, 8514);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8356, 8709);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8493, 8588);
 
                 var
-                pathResolver = f_127_8438_8513(f_127_8463_8487(f_127_8463_8472()), f_127_8489_8512(f_127_8489_8498()))
+                pathResolver = f_127_8512_8587(f_127_8537_8561(f_127_8537_8546()), f_127_8563_8586(f_127_8563_8572()))
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8528, 8624);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 8602, 8698);
 
-                return f_127_8535_8623(pathResolver, f_127_8590_8611(this), loggerOpt);
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8282, 8635);
+                return f_127_8609_8697(pathResolver, f_127_8664_8685(this), loggerOpt);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8356, 8709);
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_8463_8472()
+                f_127_8537_8546()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8463, 8472);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8537, 8546);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<string>
-                f_127_8463_8487(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_8537_8561(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ReferencePaths;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8463, 8487);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8537, 8561);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_8489_8498()
+                f_127_8563_8572()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8489, 8498);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8563, 8572);
                     return return_v;
                 }
 
 
                 string?
-                f_127_8489_8512(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_8563_8586(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.BaseDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8489, 8512);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 8563, 8586);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.RelativePathResolver
-                f_127_8438_8513(System.Collections.Immutable.ImmutableArray<string>
+                f_127_8512_8587(System.Collections.Immutable.ImmutableArray<string>
                 searchPaths, string?
                 baseDirectory)
                 {
                     var return_v = new Microsoft.CodeAnalysis.RelativePathResolver(searchPaths, baseDirectory);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 8438, 8513);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 8512, 8587);
                     return return_v;
                 }
 
 
                 System.Func<string, Microsoft.CodeAnalysis.MetadataReferenceProperties, Microsoft.CodeAnalysis.PortableExecutableReference>
-                f_127_8590_8611(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_8664_8685(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.GetMetadataProvider();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 8590, 8611);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 8664, 8685);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonCompiler.LoggingMetadataFileReferenceResolver
-                f_127_8535_8623(Microsoft.CodeAnalysis.RelativePathResolver
+                f_127_8609_8697(Microsoft.CodeAnalysis.RelativePathResolver
                 pathResolver, System.Func<string, Microsoft.CodeAnalysis.MetadataReferenceProperties, Microsoft.CodeAnalysis.PortableExecutableReference>
                 provider, Microsoft.CodeAnalysis.TouchedFileLogger?
                 logger)
                 {
                     var return_v = new Microsoft.CodeAnalysis.CommonCompiler.LoggingMetadataFileReferenceResolver(pathResolver, provider, logger);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 8535, 8623);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 8609, 8697);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8282, 8635);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8356, 8709);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8282, 8635);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8356, 8709);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -754,87 +756,87 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8822, 9868);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9070, 9159);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 8896, 9942);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9144, 9233);
 
                 var
-                commandLineReferenceResolver = f_127_9105_9158(this, touchedFiles)
+                commandLineReferenceResolver = f_127_9179_9232(this, touchedFiles)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9175, 9240);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9249, 9314);
 
                 List<MetadataReference>
-                resolved = f_127_9210_9239()
+                resolved = f_127_9284_9313()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9254, 9365);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9328, 9439);
 
-                f_127_9254_9364(f_127_9254_9263(), commandLineReferenceResolver, diagnostics, f_127_9333_9353(this), resolved);
+                f_127_9328_9438(f_127_9328_9337(), commandLineReferenceResolver, diagnostics, f_127_9407_9427(this), resolved);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9381, 9825) || true) && (f_127_9385_9409(f_127_9385_9394()))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9455, 9899) || true) && (f_127_9459_9483(f_127_9459_9468()))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 9381, 9825);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9443, 9501);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 9455, 9899);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9517, 9575);
 
                     referenceDirectiveResolver = commandLineReferenceResolver;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 9381, 9825);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 9455, 9899);
                 }
 
                 else
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 9381, 9825);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9691, 9810);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 9455, 9899);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9765, 9884);
 
-                    referenceDirectiveResolver = f_127_9720_9809(commandLineReferenceResolver, f_127_9781_9808(resolved));
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 9381, 9825);
+                    referenceDirectiveResolver = f_127_9794_9883(commandLineReferenceResolver, f_127_9855_9882(resolved));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 9455, 9899);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9841, 9857);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 9915, 9931);
 
                 return resolved;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8822, 9868);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 8896, 9942);
 
                 Microsoft.CodeAnalysis.MetadataReferenceResolver
-                f_127_9105_9158(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_9179_9232(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.TouchedFileLogger?
                 loggerOpt)
                 {
                     var return_v = this_param.GetCommandLineMetadataReferenceResolver(loggerOpt);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9105, 9158);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9179, 9232);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.List<Microsoft.CodeAnalysis.MetadataReference>
-                f_127_9210_9239()
+                f_127_9284_9313()
                 {
                     var return_v = new System.Collections.Generic.List<Microsoft.CodeAnalysis.MetadataReference>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9210, 9239);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9284, 9313);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_9254_9263()
+                f_127_9328_9337()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9254, 9263);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9328, 9337);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_9333_9353(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_9407_9427(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9333, 9353);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9407, 9427);
                     return return_v;
                 }
 
 
                 bool
-                f_127_9254_9364(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_9328_9438(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param, Microsoft.CodeAnalysis.MetadataReferenceResolver
                 metadataResolver, System.Collections.Generic.List<Microsoft.CodeAnalysis.DiagnosticInfo>
                 diagnosticsOpt, Microsoft.CodeAnalysis.CommonMessageProvider
@@ -842,59 +844,59 @@ namespace Microsoft.CodeAnalysis
                 resolved)
                 {
                     var return_v = this_param.ResolveMetadataReferences(metadataResolver, diagnosticsOpt, messageProviderOpt, resolved);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9254, 9364);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9328, 9438);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_9385_9394()
+                f_127_9459_9468()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9385, 9394);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9459, 9468);
                     return return_v;
                 }
 
 
                 bool
-                f_127_9385_9409(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_9459_9483(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.IsScriptRunner;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9385, 9409);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 9459, 9483);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.MetadataReference>
-                f_127_9781_9808(System.Collections.Generic.List<Microsoft.CodeAnalysis.MetadataReference>
+                f_127_9855_9882(System.Collections.Generic.List<Microsoft.CodeAnalysis.MetadataReference>
                 items)
                 {
                     var return_v = items.ToImmutableArray<Microsoft.CodeAnalysis.MetadataReference>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9781, 9808);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9855, 9882);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonCompiler.ExistingReferencesResolver
-                f_127_9720_9809(Microsoft.CodeAnalysis.MetadataReferenceResolver
+                f_127_9794_9883(Microsoft.CodeAnalysis.MetadataReferenceResolver
                 resolver, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.MetadataReference>
                 availableReferences)
                 {
                     var return_v = new Microsoft.CodeAnalysis.CommonCompiler.ExistingReferencesResolver(resolver, availableReferences);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9720, 9809);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 9794, 9883);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8822, 9868);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 8896, 9942);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8822, 9868);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 8896, 9942);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -903,33 +905,33 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 10174, 10364);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 10301, 10353);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 10248, 10438);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 10375, 10427);
 
-                return f_127_10308_10352(this, file, diagnostics, out _);
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 10174, 10364);
+                return f_127_10382_10426(this, file, diagnostics, out _);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 10248, 10438);
 
                 Microsoft.CodeAnalysis.Text.SourceText?
-                f_127_10308_10352(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_10382_10426(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.CommandLineSourceFile
                 file, System.Collections.Generic.IList<Microsoft.CodeAnalysis.DiagnosticInfo>
                 diagnostics, out string?
                 normalizedFilePath)
                 {
                     var return_v = this_param.TryReadFileContent(file, diagnostics, out normalizedFilePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 10308, 10352);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 10382, 10426);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 10174, 10364);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 10248, 10438);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 10174, 10364);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 10248, 10438);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -938,8 +940,8 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 10838, 12084);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 10997, 11022);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 10912, 12158);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11071, 11096);
 
                 var
                 filePath = file.Path
@@ -947,128 +949,128 @@ namespace Microsoft.CodeAnalysis
                 try
                 {
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11072, 11829) || true) && (file.IsInputRedirected)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11146, 11903) || true) && (file.IsInputRedirected)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 11072, 11829);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11140, 11185);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 11146, 11903);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11214, 11259);
 
                         using var
-                        data = f_127_11157_11184()
+                        data = f_127_11231_11258()
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11207, 11237);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11281, 11311);
 
                         normalizedFilePath = filePath;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11259, 11421);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11333, 11495);
 
-                        return f_127_11266_11420(data, _fallbackEncoding, f_127_11316_11334(f_127_11316_11325()), f_127_11336_11363(f_127_11336_11345()), canBeEmbedded: f_127_11380_11419(f_127_11380_11399(), file.Path));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 11072, 11829);
+                        return f_127_11340_11494(data, _fallbackEncoding, f_127_11390_11408(f_127_11390_11399()), f_127_11410_11437(f_127_11410_11419()), canBeEmbedded: f_127_11454_11493(f_127_11454_11473(), file.Path));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 11146, 11903);
                     }
 
                     else
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 11072, 11829);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11503, 11573);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 11146, 11903);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11577, 11647);
 
                         using var
-                        data = f_127_11520_11572(filePath)
+                        data = f_127_11594_11646(filePath)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11595, 11626);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11669, 11700);
 
-                        normalizedFilePath = f_127_11616_11625(data);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11648, 11810);
+                        normalizedFilePath = f_127_11690_11699(data);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11722, 11884);
 
-                        return f_127_11655_11809(data, _fallbackEncoding, f_127_11705_11723(f_127_11705_11714()), f_127_11725_11752(f_127_11725_11734()), canBeEmbedded: f_127_11769_11808(f_127_11769_11788(), file.Path));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 11072, 11829);
+                        return f_127_11729_11883(data, _fallbackEncoding, f_127_11779_11797(f_127_11779_11788()), f_127_11799_11826(f_127_11799_11808()), canBeEmbedded: f_127_11843_11882(f_127_11843_11862(), file.Path));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 11146, 11903);
                     }
                 }
                 catch (Exception e)
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 11858, 12073);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11910, 11984);
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 11932, 12147);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 11984, 12058);
 
-                    f_127_11910_11983(diagnostics, f_127_11926_11982(f_127_11948_11968(this), e, filePath));
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12002, 12028);
+                    f_127_11984_12057(diagnostics, f_127_12000_12056(f_127_12022_12042(this), e, filePath));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12076, 12102);
 
                     normalizedFilePath = null;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12046, 12058);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12120, 12132);
 
                     return null;
-                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 11858, 12073);
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 11932, 12147);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 10838, 12084);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 10912, 12158);
 
                 System.IO.Stream
-                f_127_11157_11184()
+                f_127_11231_11258()
                 {
                     var return_v = Console.OpenStandardInput();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11157, 11184);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11231, 11258);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_11316_11325()
+                f_127_11390_11399()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11316, 11325);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11390, 11399);
                     return return_v;
                 }
 
 
                 System.Text.Encoding?
-                f_127_11316_11334(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_11390_11408(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Encoding;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11316, 11334);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11390, 11408);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_11336_11345()
+                f_127_11410_11419()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11336, 11345);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11410, 11419);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
-                f_127_11336_11363(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_11410_11437(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ChecksumAlgorithm;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11336, 11363);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11410, 11437);
                     return return_v;
                 }
 
 
                 Roslyn.Utilities.IReadOnlySet<string>
-                f_127_11380_11399()
+                f_127_11454_11473()
                 {
                     var return_v = EmbeddedSourcePaths;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11380, 11399);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11454, 11473);
                     return return_v;
                 }
 
 
                 bool
-                f_127_11380_11419(Roslyn.Utilities.IReadOnlySet<string>
+                f_127_11454_11493(Roslyn.Utilities.IReadOnlySet<string>
                 this_param, string
                 item)
                 {
                     var return_v = this_param.Contains(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11380, 11419);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11454, 11493);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceText
-                f_127_11266_11420(System.IO.Stream
+                f_127_11340_11494(System.IO.Stream
                 stream, System.Lazy<System.Text.Encoding>
                 getEncoding, System.Text.Encoding?
                 defaultEncoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
@@ -1076,91 +1078,91 @@ namespace Microsoft.CodeAnalysis
                 canBeEmbedded)
                 {
                     var return_v = EncodedStringText.Create(stream, getEncoding, defaultEncoding, checksumAlgorithm, canBeEmbedded: canBeEmbedded);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11266, 11420);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11340, 11494);
                     return return_v;
                 }
 
 
                 System.IO.FileStream
-                f_127_11520_11572(string
+                f_127_11594_11646(string
                 filePath)
                 {
                     var return_v = OpenFileForReadWithSmallBufferOptimization(filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11520, 11572);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11594, 11646);
                     return return_v;
                 }
 
 
                 string
-                f_127_11616_11625(System.IO.FileStream
+                f_127_11690_11699(System.IO.FileStream
                 this_param)
                 {
                     var return_v = this_param.Name;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11616, 11625);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11690, 11699);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_11705_11714()
+                f_127_11779_11788()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11705, 11714);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11779, 11788);
                     return return_v;
                 }
 
 
                 System.Text.Encoding?
-                f_127_11705_11723(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_11779_11797(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Encoding;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11705, 11723);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11779, 11797);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_11725_11734()
+                f_127_11799_11808()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11725, 11734);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11799, 11808);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
-                f_127_11725_11752(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_11799_11826(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ChecksumAlgorithm;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11725, 11752);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11799, 11826);
                     return return_v;
                 }
 
 
                 Roslyn.Utilities.IReadOnlySet<string>
-                f_127_11769_11788()
+                f_127_11843_11862()
                 {
                     var return_v = EmbeddedSourcePaths;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11769, 11788);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11843, 11862);
                     return return_v;
                 }
 
 
                 bool
-                f_127_11769_11808(Roslyn.Utilities.IReadOnlySet<string>
+                f_127_11843_11882(Roslyn.Utilities.IReadOnlySet<string>
                 this_param, string
                 item)
                 {
                     var return_v = this_param.Contains(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11769, 11808);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11843, 11882);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceText
-                f_127_11655_11809(System.IO.FileStream
+                f_127_11729_11883(System.IO.FileStream
                 stream, System.Lazy<System.Text.Encoding>
                 getEncoding, System.Text.Encoding?
                 defaultEncoding, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
@@ -1168,52 +1170,52 @@ namespace Microsoft.CodeAnalysis
                 canBeEmbedded)
                 {
                     var return_v = EncodedStringText.Create((System.IO.Stream)stream, getEncoding, defaultEncoding, checksumAlgorithm, canBeEmbedded: canBeEmbedded);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11655, 11809);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11729, 11883);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_11948_11968(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_12022_12042(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 11948, 11968);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 12022, 12042);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_11926_11982(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_12000_12056(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, System.Exception
                 e, string
                 filePath)
                 {
                     var return_v = ToFileReadDiagnostics(messageProvider, e, filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11926, 11982);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12000, 12056);
                     return return_v;
                 }
 
 
                 int
-                f_127_11910_11983(System.Collections.Generic.IList<Microsoft.CodeAnalysis.DiagnosticInfo>
+                f_127_11984_12057(System.Collections.Generic.IList<Microsoft.CodeAnalysis.DiagnosticInfo>
                 this_param, Microsoft.CodeAnalysis.DiagnosticInfo
                 item)
                 {
                     this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11910, 11983);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 11984, 12057);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 10838, 12084);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 10912, 12158);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 10838, 12084);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 10912, 12158);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -1225,83 +1227,83 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 12211, 14456);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 12285, 14530);
                 string? normalizedPath = default(string?);
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic> setDiagnostics = default(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12446, 12529);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12520, 12603);
 
                 var
-                configs = f_127_12460_12528(analyzerConfigPaths.Length)
+                configs = f_127_12534_12602(analyzerConfigPaths.Length)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12545, 12601);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12619, 12675);
 
                 var
-                processedDirs = f_127_12565_12600()
+                processedDirs = f_127_12639_12674()
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12617, 14053);
-                    foreach (var configPath in f_127_12644_12663_I(analyzerConfigPaths))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12691, 14127);
+                    foreach (var configPath in f_127_12718_12737_I(analyzerConfigPaths))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 12617, 14053);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 12978, 13072);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 12691, 14127);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13052, 13146);
 
                         string?
-                        fileContent = f_127_13000_13071(this, configPath, diagnostics, out normalizedPath)
+                        fileContent = f_127_13074_13145(this, configPath, diagnostics, out normalizedPath)
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13090, 13253) || true) && (fileContent is null)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13164, 13327) || true) && (fileContent is null)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 13090, 13253);
-                            DynAbs.Tracing.TraceSender.TraceBreak(127, 13228, 13234);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 13164, 13327);
+                            DynAbs.Tracing.TraceSender.TraceBreak(127, 13302, 13308);
 
                             break;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 13090, 13253);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 13164, 13327);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13273, 13312);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13347, 13386);
 
-                        f_127_13273_13311(normalizedPath is object);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13330, 13402);
-
-                        var
-                        directory = f_127_13346_13383(normalizedPath) ?? (DynAbs.Tracing.TraceSender.Expression_Null<string?>(127, 13346, 13401) ?? normalizedPath)
-                        ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13420, 13489);
+                        f_127_13347_13385(normalizedPath is object);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13404, 13476);
 
                         var
-                        editorConfig = f_127_13439_13488(fileContent, normalizedPath)
+                        directory = f_127_13420_13457(normalizedPath) ?? (DynAbs.Tracing.TraceSender.Expression_Null<string?>(127, 13420, 13475) ?? normalizedPath)
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13494, 13563);
+
+                        var
+                        editorConfig = f_127_13513_13562(fileContent, normalizedPath)
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13509, 13994) || true) && (f_127_13513_13535_M(!editorConfig.IsGlobal))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13583, 14068) || true) && (f_127_13587_13609_M(!editorConfig.IsGlobal))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 13509, 13994);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 13583, 14068);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13577, 13924) || true) && (f_127_13581_13614(processedDirs, directory))
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13651, 13998) || true) && (f_127_13655_13688(processedDirs, directory))
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 13577, 13924);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13664, 13869);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 13651, 13998);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13738, 13943);
 
-                                f_127_13664_13868(diagnostics, f_127_13680_13867(f_127_13728_13743(), f_127_13774_13826(f_127_13774_13789()), directory));
-                                DynAbs.Tracing.TraceSender.TraceBreak(127, 13895, 13901);
+                                f_127_13738_13942(diagnostics, f_127_13754_13941(f_127_13802_13817(), f_127_13848_13900(f_127_13848_13863()), directory));
+                                DynAbs.Tracing.TraceSender.TraceBreak(127, 13969, 13975);
 
                                 break;
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 13577, 13924);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 13651, 13998);
                             }
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 13946, 13975);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14020, 14049);
 
-                            f_127_13946_13974(processedDirs, directory);
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 13509, 13994);
+                            f_127_14020_14048(processedDirs, directory);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 13583, 14068);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14012, 14038);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14086, 14112);
 
-                        f_127_14012_14037(configs, editorConfig);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 12617, 14053);
+                        f_127_14086_14111(configs, editorConfig);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 12691, 14127);
                     }
                 }
                 catch (System.Exception)
@@ -1313,265 +1315,265 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 1437);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14069, 14090);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14143, 14164);
 
-                f_127_14069_14089(
+                f_127_14143_14163(
                             processedDirs);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14106, 14274) || true) && (f_127_14110_14136(diagnostics))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14180, 14348) || true) && (f_127_14184_14210(diagnostics))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 14106, 14274);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14170, 14185);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 14180, 14348);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14244, 14259);
 
-                    f_127_14170_14184(configs);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14203, 14228);
+                    f_127_14244_14258(configs);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14277, 14302);
 
                     analyzerConfigSet = null;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14246, 14259);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14320, 14333);
 
                     return false;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 14106, 14274);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 14180, 14348);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14290, 14368);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14364, 14442);
 
-                analyzerConfigSet = f_127_14310_14367(configs, out setDiagnostics);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14382, 14419);
+                analyzerConfigSet = f_127_14384_14441(configs, out setDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14456, 14493);
 
-                f_127_14382_14418(diagnostics, setDiagnostics);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14433, 14445);
+                f_127_14456_14492(diagnostics, setDiagnostics);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14507, 14519);
 
                 return true;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 12211, 14456);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 12285, 14530);
 
                 Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
-                f_127_12460_12528(int
+                f_127_12534_12602(int
                 capacity)
                 {
                     var return_v = ArrayBuilder<AnalyzerConfig>.GetInstance(capacity);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12460, 12528);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12534, 12602);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
-                f_127_12565_12600()
+                f_127_12639_12674()
                 {
                     var return_v = PooledHashSet<string>.GetInstance();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12565, 12600);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12639, 12674);
                     return return_v;
                 }
 
 
                 string?
-                f_127_13000_13071(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_13074_13145(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, out string?
                 normalizedPath)
                 {
                     var return_v = this_param.TryReadFileContent(filePath, diagnostics, out normalizedPath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13000, 13071);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13074, 13145);
                     return return_v;
                 }
 
 
                 int
-                f_127_13273_13311(bool
+                f_127_13347_13385(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13273, 13311);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13347, 13385);
                     return 0;
                 }
 
 
                 string?
-                f_127_13346_13383(string
+                f_127_13420_13457(string
                 path)
                 {
                     var return_v = Path.GetDirectoryName(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13346, 13383);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13420, 13457);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.AnalyzerConfig
-                f_127_13439_13488(string
+                f_127_13513_13562(string
                 text, string
                 pathToFile)
                 {
                     var return_v = AnalyzerConfig.Parse(text, pathToFile);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13439, 13488);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13513, 13562);
                     return return_v;
                 }
 
 
                 bool
-                f_127_13513_13535_M(bool
+                f_127_13587_13609_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13513, 13535);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13587, 13609);
                     return return_v;
                 }
 
 
                 bool
-                f_127_13581_13614(Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
+                f_127_13655_13688(Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
                 this_param, string
                 item)
                 {
                     var return_v = this_param.Contains(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13581, 13614);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13655, 13688);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_13728_13743()
+                f_127_13802_13817()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13728, 13743);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13802, 13817);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_13774_13789()
+                f_127_13848_13863()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13774, 13789);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13848, 13863);
                     return return_v;
                 }
 
 
                 int
-                f_127_13774_13826(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_13848_13900(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_MultipleAnalyzerConfigsInSameDir;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13774, 13826);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 13848, 13900);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostic
-                f_127_13680_13867(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_13754_13941(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, int
                 errorCode, params object[]
                 arguments)
                 {
                     var return_v = Diagnostic.Create(messageProvider, errorCode, arguments);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13680, 13867);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13754, 13941);
                     return return_v;
                 }
 
 
                 int
-                f_127_13664_13868(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_13738_13942(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diag)
                 {
                     this_param.Add(diag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13664, 13868);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13738, 13942);
                     return 0;
                 }
 
 
                 bool
-                f_127_13946_13974(Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
+                f_127_14020_14048(Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
                 this_param, string
                 item)
                 {
                     var return_v = this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 13946, 13974);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14020, 14048);
                     return return_v;
                 }
 
 
                 int
-                f_127_14012_14037(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
+                f_127_14086_14111(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
                 this_param, Microsoft.CodeAnalysis.AnalyzerConfig
                 item)
                 {
                     this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14012, 14037);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14086, 14111);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<string>
-                f_127_12644_12663_I(System.Collections.Immutable.ImmutableArray<string>
+                f_127_12718_12737_I(System.Collections.Immutable.ImmutableArray<string>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12644, 12663);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 12718, 12737);
                     return return_v;
                 }
 
 
                 int
-                f_127_14069_14089(Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
+                f_127_14143_14163(Microsoft.CodeAnalysis.PooledObjects.PooledHashSet<string>
                 this_param)
                 {
                     this_param.Free();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14069, 14089);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14143, 14163);
                     return 0;
                 }
 
 
                 bool
-                f_127_14110_14136(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_14184_14210(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.HasAnyErrors();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14110, 14136);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14184, 14210);
                     return return_v;
                 }
 
 
                 int
-                f_127_14170_14184(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
+                f_127_14244_14258(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
                 this_param)
                 {
                     this_param.Free();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14170, 14184);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14244, 14258);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.AnalyzerConfigSet
-                f_127_14310_14367(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
+                f_127_14384_14441(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfig>
                 analyzerConfigs, out System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics)
                 {
                     var return_v = AnalyzerConfigSet.Create(analyzerConfigs, out diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14310, 14367);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14384, 14441);
                     return return_v;
                 }
 
 
                 int
-                f_127_14382_14418(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_14456_14492(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics)
                 {
                     this_param.AddRange<Microsoft.CodeAnalysis.Diagnostic>(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14382, 14418);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 14456, 14492);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 12211, 14456);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 12285, 14530);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 12211, 14456);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 12285, 14530);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -1580,51 +1582,51 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 14626, 14846);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 14700, 14920);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14691, 14807) || true) && (f_127_14695_14727(_fallbackEncoding))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14765, 14881) || true) && (f_127_14769_14801(_fallbackEncoding))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 14691, 14807);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14761, 14792);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 14765, 14881);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14835, 14866);
 
-                    return f_127_14768_14791(_fallbackEncoding);
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 14691, 14807);
+                    return f_127_14842_14865(_fallbackEncoding);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 14765, 14881);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14823, 14835);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 14897, 14909);
 
                 return null;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 14626, 14846);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 14700, 14920);
 
                 bool
-                f_127_14695_14727(System.Lazy<System.Text.Encoding>
+                f_127_14769_14801(System.Lazy<System.Text.Encoding>
                 this_param)
                 {
                     var return_v = this_param.IsValueCreated;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 14695, 14727);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 14769, 14801);
                     return return_v;
                 }
 
 
                 System.Text.Encoding
-                f_127_14768_14791(System.Lazy<System.Text.Encoding>
+                f_127_14842_14865(System.Lazy<System.Text.Encoding>
                 this_param)
                 {
                     var return_v = this_param.Value;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 14768, 14791);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 14842, 14865);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 14626, 14846);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 14700, 14920);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 14626, 14846);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 14700, 14920);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -1633,144 +1635,144 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 14977, 15680);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 15051, 15754);
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15144, 15208);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15218, 15282);
 
                     var
-                    data = f_127_15155_15207(filePath)
+                    data = f_127_15229_15281(filePath)
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15226, 15253);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15300, 15327);
 
-                    normalizedPath = f_127_15243_15252(data);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15271, 15415);
+                    normalizedPath = f_127_15317_15326(data);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15345, 15489);
                     using (var
-                    reader = f_127_15291_15328(data, f_127_15314_15327())
+                    reader = f_127_15365_15402(data, f_127_15388_15401())
                     )
                     {
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15370, 15396);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15444, 15470);
 
-                        return f_127_15377_15395(reader);
-                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 15271, 15415);
+                        return f_127_15451_15469(reader);
+                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 15345, 15489);
                     }
                 }
                 catch (Exception e)
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 15444, 15669);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15496, 15584);
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 15518, 15743);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15570, 15658);
 
-                    f_127_15496_15583(diagnostics, f_127_15512_15582(f_127_15530_15581(f_127_15552_15567(), e, filePath)));
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15602, 15624);
+                    f_127_15570_15657(diagnostics, f_127_15586_15656(f_127_15604_15655(f_127_15626_15641(), e, filePath)));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15676, 15698);
 
                     normalizedPath = null;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15642, 15654);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 15716, 15728);
 
                     return null;
-                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 15444, 15669);
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 15518, 15743);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 14977, 15680);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 15051, 15754);
 
                 System.IO.FileStream
-                f_127_15155_15207(string
+                f_127_15229_15281(string
                 filePath)
                 {
                     var return_v = OpenFileForReadWithSmallBufferOptimization(filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15155, 15207);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15229, 15281);
                     return return_v;
                 }
 
 
                 string
-                f_127_15243_15252(System.IO.FileStream
+                f_127_15317_15326(System.IO.FileStream
                 this_param)
                 {
                     var return_v = this_param.Name;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 15243, 15252);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 15317, 15326);
                     return return_v;
                 }
 
 
                 System.Text.Encoding
-                f_127_15314_15327()
+                f_127_15388_15401()
                 {
                     var return_v = Encoding.UTF8;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 15314, 15327);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 15388, 15401);
                     return return_v;
                 }
 
 
                 System.IO.StreamReader
-                f_127_15291_15328(System.IO.FileStream
+                f_127_15365_15402(System.IO.FileStream
                 stream, System.Text.Encoding
                 encoding)
                 {
                     var return_v = new System.IO.StreamReader((System.IO.Stream)stream, encoding);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15291, 15328);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15365, 15402);
                     return return_v;
                 }
 
 
                 string
-                f_127_15377_15395(System.IO.StreamReader
+                f_127_15451_15469(System.IO.StreamReader
                 this_param)
                 {
                     var return_v = this_param.ReadToEnd();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15377, 15395);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15451, 15469);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_15552_15567()
+                f_127_15626_15641()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 15552, 15567);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 15626, 15641);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_15530_15581(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_15604_15655(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, System.Exception
                 e, string
                 filePath)
                 {
                     var return_v = ToFileReadDiagnostics(messageProvider, e, filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15530, 15581);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15604, 15655);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostic
-                f_127_15512_15582(Microsoft.CodeAnalysis.DiagnosticInfo
+                f_127_15586_15656(Microsoft.CodeAnalysis.DiagnosticInfo
                 info)
                 {
                     var return_v = Diagnostic.Create(info);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15512, 15582);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15586, 15656);
                     return return_v;
                 }
 
 
                 int
-                f_127_15496_15583(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_15570_15657(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diag)
                 {
                     this_param.Add(diag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15496, 15583);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 15570, 15657);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 14977, 15680);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 15051, 15754);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 14977, 15680);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 15051, 15754);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -1779,14 +1781,14 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 15692, 16388);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16147, 16377);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 15766, 16462);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16221, 16451);
 
-                return f_127_16154_16376(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, bufferSize: 1, options: FileOptions.None);
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 15692, 16388);
+                return f_127_16228_16450(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, bufferSize: 1, options: FileOptions.None);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 15766, 16462);
 
                 System.IO.FileStream
-                f_127_16154_16376(string
+                f_127_16228_16450(string
                 path, System.IO.FileMode
                 mode, System.IO.FileAccess
                 access, System.IO.FileShare
@@ -1795,19 +1797,19 @@ namespace Microsoft.CodeAnalysis
                 options)
                 {
                     var return_v = new System.IO.FileStream(path, mode, access, share, bufferSize: bufferSize, options: options);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 16154, 16376);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 16228, 16450);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 15692, 16388);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 15766, 16462);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 15692, 16388);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 15766, 16462);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -1816,216 +1818,216 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 16400, 17486);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 16474, 17560);
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16554, 17241);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16628, 17315);
                     using (var
-                    stream = f_127_16574_16626(filePath)
+                    stream = f_127_16648_16700(filePath)
                     )
                     {
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16668, 16711);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16742, 16785);
 
                         const int
                         LargeObjectHeapLimit = 80 * 1024
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16733, 17120) || true) && (f_127_16737_16750(stream) < LargeObjectHeapLimit)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16807, 17194) || true) && (f_127_16811_16824(stream) < LargeObjectHeapLimit)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 16733, 17120);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16823, 16848);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 16807, 17194);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16897, 16922);
 
                             ArraySegment<byte>
                             bytes
                             = default(ArraySegment<byte>);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16874, 17097) || true) && (f_127_16878_16936(stream, out bytes))
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16948, 17171) || true) && (f_127_16952_17010(stream, out bytes))
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 16874, 17097);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 16994, 17070);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 16948, 17171);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17068, 17144);
 
-                                return f_127_17001_17069(filePath, bytes, f_127_17041_17068(f_127_17041_17050()));
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 16874, 17097);
+                                return f_127_17075_17143(filePath, bytes, f_127_17115_17142(f_127_17115_17124()));
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 16948, 17171);
                             }
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 16733, 17120);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 16807, 17194);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17144, 17222);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17218, 17296);
 
-                        return f_127_17151_17221(filePath, stream, f_127_17193_17220(f_127_17193_17202()));
-                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 16554, 17241);
+                        return f_127_17225_17295(filePath, stream, f_127_17267_17294(f_127_17267_17276()));
+                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 16628, 17315);
                     }
                 }
                 catch (Exception e)
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 17270, 17475);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17322, 17430);
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 17344, 17549);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17396, 17504);
 
-                    f_127_17322_17429(diagnostics, f_127_17338_17428(f_127_17338_17353(), f_127_17371_17427(f_127_17393_17413(this), e, filePath)));
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17448, 17460);
+                    f_127_17396_17503(diagnostics, f_127_17412_17502(f_127_17412_17427(), f_127_17445_17501(f_127_17467_17487(this), e, filePath)));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17522, 17534);
 
                     return null;
-                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 17270, 17475);
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 17344, 17549);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 16400, 17486);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 16474, 17560);
 
                 System.IO.FileStream
-                f_127_16574_16626(string
+                f_127_16648_16700(string
                 filePath)
                 {
                     var return_v = OpenFileForReadWithSmallBufferOptimization(filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 16574, 16626);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 16648, 16700);
                     return return_v;
                 }
 
 
                 long
-                f_127_16737_16750(System.IO.FileStream
+                f_127_16811_16824(System.IO.FileStream
                 this_param)
                 {
                     var return_v = this_param.Length;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 16737, 16750);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 16811, 16824);
                     return return_v;
                 }
 
 
                 bool
-                f_127_16878_16936(System.IO.FileStream
+                f_127_16952_17010(System.IO.FileStream
                 data, out System.ArraySegment<byte>
                 bytes)
                 {
                     var return_v = EncodedStringText.TryGetBytesFromStream((System.IO.Stream)data, out bytes);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 16878, 16936);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 16952, 17010);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_17041_17050()
+                f_127_17115_17124()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17041, 17050);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17115, 17124);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
-                f_127_17041_17068(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_17115_17142(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ChecksumAlgorithm;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17041, 17068);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17115, 17142);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.EmbeddedText
-                f_127_17001_17069(string
+                f_127_17075_17143(string
                 filePath, System.ArraySegment<byte>
                 bytes, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
                 checksumAlgorithm)
                 {
                     var return_v = EmbeddedText.FromBytes(filePath, bytes, checksumAlgorithm);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17001, 17069);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17075, 17143);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_17193_17202()
+                f_127_17267_17276()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17193, 17202);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17267, 17276);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
-                f_127_17193_17220(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_17267_17294(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ChecksumAlgorithm;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17193, 17220);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17267, 17294);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.EmbeddedText
-                f_127_17151_17221(string
+                f_127_17225_17295(string
                 filePath, System.IO.FileStream
                 stream, Microsoft.CodeAnalysis.Text.SourceHashAlgorithm
                 checksumAlgorithm)
                 {
                     var return_v = EmbeddedText.FromStream(filePath, (System.IO.Stream)stream, checksumAlgorithm);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17151, 17221);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17225, 17295);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_17338_17353()
+                f_127_17412_17427()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17338, 17353);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17412, 17427);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_17393_17413(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_17467_17487(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17393, 17413);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17467, 17487);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_17371_17427(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_17445_17501(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, System.Exception
                 e, string
                 filePath)
                 {
                     var return_v = ToFileReadDiagnostics(messageProvider, e, filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17371, 17427);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17445, 17501);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostic
-                f_127_17338_17428(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_17412_17502(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, Microsoft.CodeAnalysis.DiagnosticInfo
                 info)
                 {
                     var return_v = this_param.CreateDiagnostic(info);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17338, 17428);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17412, 17502);
                     return return_v;
                 }
 
 
                 int
-                f_127_17322_17429(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_17396_17503(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diag)
                 {
                     this_param.Add(diag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17322, 17429);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17396, 17503);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 16400, 17486);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 16474, 17560);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 16400, 17486);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 16474, 17560);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -2034,68 +2036,68 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 17498, 20014);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17633, 17701);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 17572, 20088);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17707, 17775);
 
-                f_127_17633_17700(f_127_17646_17689(f_127_17646_17665(compilation)) is object);
+                f_127_17707_17774(f_127_17720_17763(f_127_17720_17739(compilation)) is object);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17715, 17842) || true) && (f_127_17719_17728().EmbeddedFiles.IsEmpty)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17789, 17916) || true) && (f_127_17793_17802().EmbeddedFiles.IsEmpty)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 17715, 17842);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17784, 17827);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 17789, 17916);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17858, 17901);
 
                     return ImmutableArray<EmbeddedText?>.Empty;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 17715, 17842);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 17789, 17916);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17858, 17947);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17932, 18021);
 
                 var
-                embeddedTreeMap = f_127_17880_17946(f_127_17915_17924().EmbeddedFiles.Length)
+                embeddedTreeMap = f_127_17954_18020(f_127_17989_17998().EmbeddedFiles.Length)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 17961, 18058);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18035, 18132);
 
                 var
-                embeddedFileOrderedSet = f_127_17990_18057(f_127_18013_18022().EmbeddedFiles.Select(e => e.Path))
+                embeddedFileOrderedSet = f_127_18064_18131(f_127_18087_18096().EmbeddedFiles.Select(e => e.Path))
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18074, 18991);
-                    foreach (var tree in f_127_18095_18118_I(f_127_18095_18118(compilation)))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18148, 19065);
+                    foreach (var tree in f_127_18169_18192_I(f_127_18169_18192(compilation)))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 18074, 18991);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 18148, 19065);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18223, 18341) || true) && (!f_127_18228_18271(f_127_18228_18247(), f_127_18257_18270(tree)))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18297, 18415) || true) && (!f_127_18302_18345(f_127_18302_18321(), f_127_18331_18344(tree)))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 18223, 18341);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18313, 18322);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 18297, 18415);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18387, 18396);
 
                             continue;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 18223, 18341);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 18297, 18415);
                         }
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18482, 18598) || true) && (f_127_18486_18528(embeddedTreeMap, f_127_18514_18527(tree)))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18556, 18672) || true) && (f_127_18560_18602(embeddedTreeMap, f_127_18588_18601(tree)))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 18482, 18598);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18570, 18579);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 18556, 18672);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18644, 18653);
 
                             continue;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 18482, 18598);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 18556, 18672);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18690, 18731);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18764, 18805);
 
-                        f_127_18690_18730(
+                        f_127_18764_18804(
                                         // map embedded file path to corresponding source tree
-                                        embeddedTreeMap, f_127_18710_18723(tree), tree);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18839, 18976);
+                                        embeddedTreeMap, f_127_18784_18797(tree), tree);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 18913, 19050);
 
-                        f_127_18839_18975(this, tree, f_127_18894_18937(f_127_18894_18913(compilation)), embeddedFileOrderedSet, diagnostics);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 18074, 18991);
+                        f_127_18913_19049(this, tree, f_127_18968_19011(f_127_18968_18987(compilation)), embeddedFileOrderedSet, diagnostics);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 18148, 19065);
                     }
                 }
                 catch (System.Exception)
@@ -2107,61 +2109,61 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 918);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19007, 19107);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19081, 19181);
 
                 var
-                embeddedTextBuilder = f_127_19033_19106(f_127_19077_19105(embeddedFileOrderedSet))
+                embeddedTextBuilder = f_127_19107_19180(f_127_19151_19179(embeddedFileOrderedSet))
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19121, 19942);
-                    foreach (var path in f_127_19142_19164_I(embeddedFileOrderedSet))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19195, 20016);
+                    foreach (var path in f_127_19216_19238_I(embeddedFileOrderedSet))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 19121, 19942);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19198, 19215);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 19195, 20016);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19272, 19289);
 
                         SyntaxTree?
                         tree
                         = default(SyntaxTree?);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19233, 19252);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19307, 19326);
 
                         EmbeddedText?
                         text
                         = default(EmbeddedText?);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19272, 19696) || true) && (f_127_19276_19319(embeddedTreeMap, path, out tree))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19346, 19770) || true) && (f_127_19350_19393(embeddedTreeMap, path, out tree))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 19272, 19696);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19361, 19414);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 19346, 19770);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19435, 19488);
 
-                            text = f_127_19368_19413(path, f_127_19398_19412(tree));
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19436, 19463);
+                            text = f_127_19442_19487(path, f_127_19472_19486(tree));
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19510, 19537);
 
-                            f_127_19436_19462(text != null);
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 19272, 19696);
+                            f_127_19510_19536(text != null);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 19346, 19770);
                         }
 
                         else
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 19272, 19696);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19545, 19598);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 19346, 19770);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19619, 19672);
 
-                            text = f_127_19552_19597(this, path, diagnostics);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19620, 19677);
+                            text = f_127_19626_19671(this, path, diagnostics);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19694, 19751);
 
-                            f_127_19620_19676(text != null || (DynAbs.Tracing.TraceSender.Expression_False(127, 19633, 19675) || f_127_19649_19675(diagnostics)));
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 19272, 19696);
+                            f_127_19694_19750(text != null || (DynAbs.Tracing.TraceSender.Expression_False(127, 19707, 19749) || f_127_19723_19749(diagnostics)));
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 19346, 19770);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19897, 19927);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19971, 20001);
 
-                        f_127_19897_19926(
+                        f_127_19971_20000(
                                         // We can safely add nulls because result will be ignored if any error is produced.
                                         // This allows the MoveToImmutable to work below in all cases.
                                         embeddedTextBuilder, text);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 19121, 19942);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 19195, 20016);
                     }
                 }
                 catch (System.Exception)
@@ -2173,193 +2175,193 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 822);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 19958, 20003);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 20032, 20077);
 
-                return f_127_19965_20002(embeddedTextBuilder);
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 17498, 20014);
+                return f_127_20039_20076(embeddedTextBuilder);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 17572, 20088);
 
                 Microsoft.CodeAnalysis.CompilationOptions
-                f_127_17646_17665(Microsoft.CodeAnalysis.Compilation
+                f_127_17720_17739(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.Options;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17646, 17665);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17720, 17739);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.SourceReferenceResolver?
-                f_127_17646_17689(Microsoft.CodeAnalysis.CompilationOptions
+                f_127_17720_17763(Microsoft.CodeAnalysis.CompilationOptions
                 this_param)
                 {
                     var return_v = this_param.SourceReferenceResolver;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17646, 17689);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17720, 17763);
                     return return_v;
                 }
 
 
                 int
-                f_127_17633_17700(bool
+                f_127_17707_17774(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17633, 17700);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17707, 17774);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_17719_17728()
+                f_127_17793_17802()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17719, 17728);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17793, 17802);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_17915_17924()
+                f_127_17989_17998()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17915, 17924);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 17989, 17998);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_17880_17946(int
+                f_127_17954_18020(int
                 capacity)
                 {
                     var return_v = new System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>(capacity);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17880, 17946);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17954, 18020);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_18013_18022()
+                f_127_18087_18096()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18013, 18022);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18087, 18096);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Collections.OrderedSet<string>
-                f_127_17990_18057(System.Collections.Generic.IEnumerable<string>
+                f_127_18064_18131(System.Collections.Generic.IEnumerable<string>
                 items)
                 {
                     var return_v = new Microsoft.CodeAnalysis.Collections.OrderedSet<string>(items);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 17990, 18057);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18064, 18131);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_18095_18118(Microsoft.CodeAnalysis.Compilation
+                f_127_18169_18192(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.SyntaxTrees;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18095, 18118);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18169, 18192);
                     return return_v;
                 }
 
 
                 Roslyn.Utilities.IReadOnlySet<string>
-                f_127_18228_18247()
+                f_127_18302_18321()
                 {
                     var return_v = EmbeddedSourcePaths;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18228, 18247);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18302, 18321);
                     return return_v;
                 }
 
 
                 string
-                f_127_18257_18270(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_18331_18344(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18257, 18270);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18331, 18344);
                     return return_v;
                 }
 
 
                 bool
-                f_127_18228_18271(Roslyn.Utilities.IReadOnlySet<string>
+                f_127_18302_18345(Roslyn.Utilities.IReadOnlySet<string>
                 this_param, string
                 item)
                 {
                     var return_v = this_param.Contains(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18228, 18271);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18302, 18345);
                     return return_v;
                 }
 
 
                 string
-                f_127_18514_18527(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_18588_18601(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18514, 18527);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18588, 18601);
                     return return_v;
                 }
 
 
                 bool
-                f_127_18486_18528(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_18560_18602(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
                 this_param, string
                 key)
                 {
                     var return_v = this_param.ContainsKey(key);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18486, 18528);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18560, 18602);
                     return return_v;
                 }
 
 
                 string
-                f_127_18710_18723(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_18784_18797(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18710, 18723);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18784, 18797);
                     return return_v;
                 }
 
 
                 int
-                f_127_18690_18730(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_18764_18804(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
                 this_param, string
                 key, Microsoft.CodeAnalysis.SyntaxTree
                 value)
                 {
                     this_param.Add(key, value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18690, 18730);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18764, 18804);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CompilationOptions
-                f_127_18894_18913(Microsoft.CodeAnalysis.Compilation
+                f_127_18968_18987(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.Options;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18894, 18913);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18968, 18987);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.SourceReferenceResolver
-                f_127_18894_18937(Microsoft.CodeAnalysis.CompilationOptions
+                f_127_18968_19011(Microsoft.CodeAnalysis.CompilationOptions
                 this_param)
                 {
                     var return_v = this_param.SourceReferenceResolver;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18894, 18937);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 18968, 19011);
                     return return_v;
                 }
 
 
                 int
-                f_127_18839_18975(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_18913_19049(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.SyntaxTree
                 tree, Microsoft.CodeAnalysis.SourceReferenceResolver
                 resolver, Microsoft.CodeAnalysis.Collections.OrderedSet<string>
@@ -2367,155 +2369,155 @@ namespace Microsoft.CodeAnalysis
                 diagnostics)
                 {
                     this_param.ResolveEmbeddedFilesFromExternalSourceDirectives(tree, resolver, embeddedFiles, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18839, 18975);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18913, 19049);
                     return 0;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_18095_18118_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_18169_18192_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18095, 18118);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 18169, 18192);
                     return return_v;
                 }
 
 
                 int
-                f_127_19077_19105(Microsoft.CodeAnalysis.Collections.OrderedSet<string>
+                f_127_19151_19179(Microsoft.CodeAnalysis.Collections.OrderedSet<string>
                 this_param)
                 {
                     var return_v = this_param.Count;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 19077, 19105);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 19151, 19179);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>.Builder
-                f_127_19033_19106(int
+                f_127_19107_19180(int
                 initialCapacity)
                 {
                     var return_v = ImmutableArray.CreateBuilder<EmbeddedText?>(initialCapacity);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19033, 19106);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19107, 19180);
                     return return_v;
                 }
 
 
                 bool
-                f_127_19276_19319(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_19350_19393(System.Collections.Generic.Dictionary<string, Microsoft.CodeAnalysis.SyntaxTree>
                 this_param, string
                 key, out Microsoft.CodeAnalysis.SyntaxTree?
                 value)
                 {
                     var return_v = this_param.TryGetValue(key, out value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19276, 19319);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19350, 19393);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceText
-                f_127_19398_19412(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_19472_19486(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.GetText();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19398, 19412);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19472, 19486);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.EmbeddedText
-                f_127_19368_19413(string
+                f_127_19442_19487(string
                 filePath, Microsoft.CodeAnalysis.Text.SourceText
                 text)
                 {
                     var return_v = EmbeddedText.FromSource(filePath, text);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19368, 19413);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19442, 19487);
                     return return_v;
                 }
 
 
                 int
-                f_127_19436_19462(bool
+                f_127_19510_19536(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19436, 19462);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19510, 19536);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.EmbeddedText?
-                f_127_19552_19597(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_19626_19671(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = this_param.TryReadEmbeddedFileContent(filePath, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19552, 19597);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19626, 19671);
                     return return_v;
                 }
 
 
                 bool
-                f_127_19649_19675(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_19723_19749(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.HasAnyErrors();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19649, 19675);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19723, 19749);
                     return return_v;
                 }
 
 
                 int
-                f_127_19620_19676(bool
+                f_127_19694_19750(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19620, 19676);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19694, 19750);
                     return 0;
                 }
 
 
                 int
-                f_127_19897_19926(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>.Builder
+                f_127_19971_20000(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>.Builder
                 this_param, Microsoft.CodeAnalysis.EmbeddedText?
                 item)
                 {
                     this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19897, 19926);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19971, 20000);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.Collections.OrderedSet<string>
-                f_127_19142_19164_I(Microsoft.CodeAnalysis.Collections.OrderedSet<string>
+                f_127_19216_19238_I(Microsoft.CodeAnalysis.Collections.OrderedSet<string>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19142, 19164);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19216, 19238);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>
-                f_127_19965_20002(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>.Builder
+                f_127_20039_20076(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>.Builder
                 this_param)
                 {
                     var return_v = this_param.MoveToImmutable();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 19965, 20002);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 20039, 20076);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 17498, 20014);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 17572, 20088);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 17498, 20014);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 17572, 20088);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -2530,79 +2532,79 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 20278, 21387);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 20352, 21461);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 20393, 20534) || true) && (arguments.EmbeddedFiles.IsEmpty)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 20467, 20608) || true) && (arguments.EmbeddedFiles.IsEmpty)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 20393, 20534);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 20462, 20519);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 20467, 20608);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 20536, 20593);
 
-                    return f_127_20469_20518();
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 20393, 20534);
+                    return f_127_20543_20592();
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 20467, 20608);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21152, 21227);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21226, 21301);
 
                 var
-                set = f_127_21162_21226(arguments.EmbeddedFiles.Select(f => f.Path))
+                set = f_127_21236_21300(arguments.EmbeddedFiles.Select(f => f.Path))
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21241, 21302);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21315, 21376);
 
-                f_127_21241_21301(set, arguments.SourceFiles.Select(f => f.Path));
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21316, 21376);
+                f_127_21315_21375(set, arguments.SourceFiles.Select(f => f.Path));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21390, 21450);
 
-                return f_127_21323_21375(set);
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 20278, 21387);
+                return f_127_21397_21449(set);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 20352, 21461);
 
                 Roslyn.Utilities.IReadOnlySet<string>
-                f_127_20469_20518()
+                f_127_20543_20592()
                 {
                     var return_v = SpecializedCollections.EmptyReadOnlySet<string>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 20469, 20518);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 20543, 20592);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.HashSet<string>
-                f_127_21162_21226(System.Collections.Generic.IEnumerable<string>
+                f_127_21236_21300(System.Collections.Generic.IEnumerable<string>
                 collection)
                 {
                     var return_v = new System.Collections.Generic.HashSet<string>(collection);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21162, 21226);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21236, 21300);
                     return return_v;
                 }
 
 
                 int
-                f_127_21241_21301(System.Collections.Generic.HashSet<string>
+                f_127_21315_21375(System.Collections.Generic.HashSet<string>
                 this_param, System.Collections.Generic.IEnumerable<string>
                 other)
                 {
                     this_param.IntersectWith(other);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21241, 21301);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21315, 21375);
                     return 0;
                 }
 
 
                 Roslyn.Utilities.IReadOnlySet<string>
-                f_127_21323_21375(System.Collections.Generic.HashSet<string>
+                f_127_21397_21449(System.Collections.Generic.HashSet<string>
                 set)
                 {
                     var return_v = SpecializedCollections.StronglyTypedReadOnlySet((System.Collections.Generic.ISet<string>)set);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21323, 21375);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21397, 21449);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 20278, 21387);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 20352, 21461);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 20278, 21387);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 20352, 21461);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -2611,139 +2613,139 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 21399, 22217);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21545, 21575);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 21473, 22291);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21619, 21649);
 
                 DiagnosticInfo
                 diagnosticInfo
                 = default(DiagnosticInfo);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21591, 22168) || true) && (e is FileNotFoundException || (DynAbs.Tracing.TraceSender.Expression_False(127, 21595, 21656) || e is DirectoryNotFoundException))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21665, 22242) || true) && (e is FileNotFoundException || (DynAbs.Tracing.TraceSender.Expression_False(127, 21669, 21730) || e is DirectoryNotFoundException))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21591, 22168);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21690, 21787);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21665, 22242);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21764, 21861);
 
-                    diagnosticInfo = f_127_21707_21786(messageProvider, f_127_21743_21775(messageProvider), filePath);
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21591, 22168);
+                    diagnosticInfo = f_127_21781_21860(messageProvider, f_127_21817_21849(messageProvider), filePath);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21665, 22242);
                 }
 
                 else
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21591, 22168);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21665, 22242);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21821, 22168) || true) && (e is InvalidDataException)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21895, 22242) || true) && (e is InvalidDataException)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21821, 22168);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21884, 21979);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21895, 22242);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 21958, 22053);
 
-                        diagnosticInfo = f_127_21901_21978(messageProvider, f_127_21937_21967(messageProvider), filePath);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21821, 22168);
+                        diagnosticInfo = f_127_21975_22052(messageProvider, f_127_22011_22041(messageProvider), filePath);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21895, 22242);
                     }
 
                     else
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21821, 22168);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22045, 22153);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 21895, 22242);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22119, 22227);
 
-                        diagnosticInfo = f_127_22062_22152(messageProvider, f_127_22098_22130(messageProvider), filePath, f_127_22142_22151(e));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21821, 22168);
+                        diagnosticInfo = f_127_22136_22226(messageProvider, f_127_22172_22204(messageProvider), filePath, f_127_22216_22225(e));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21895, 22242);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21591, 22168);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 21665, 22242);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22184, 22206);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22258, 22280);
 
                 return diagnosticInfo;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 21399, 22217);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 21473, 22291);
 
                 int
-                f_127_21743_21775(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_21817_21849(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_FileNotFound;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 21743, 21775);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 21817, 21849);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_21707_21786(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_21781_21860(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, int
                 errorCode, params object[]
                 arguments)
                 {
                     var return_v = new Microsoft.CodeAnalysis.DiagnosticInfo(messageProvider, errorCode, arguments);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21707, 21786);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21781, 21860);
                     return return_v;
                 }
 
 
                 int
-                f_127_21937_21967(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_22011_22041(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_BinaryFile;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 21937, 21967);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 22011, 22041);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_21901_21978(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_21975_22052(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, int
                 errorCode, params object[]
                 arguments)
                 {
                     var return_v = new Microsoft.CodeAnalysis.DiagnosticInfo(messageProvider, errorCode, arguments);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21901, 21978);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 21975, 22052);
                     return return_v;
                 }
 
 
                 int
-                f_127_22098_22130(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_22172_22204(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_NoSourceFile;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 22098, 22130);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 22172, 22204);
                     return return_v;
                 }
 
 
                 string
-                f_127_22142_22151(System.Exception
+                f_127_22216_22225(System.Exception
                 this_param)
                 {
                     var return_v = this_param.Message;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 22142, 22151);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 22216, 22225);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_22062_22152(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_22136_22226(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, int
                 errorCode, params object[]
                 arguments)
                 {
                     var return_v = new Microsoft.CodeAnalysis.DiagnosticInfo(messageProvider, errorCode, arguments);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22062, 22152);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22136, 22226);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 21399, 22217);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 21473, 22291);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 21399, 22217);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 21473, 22291);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -2752,22 +2754,22 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 22317, 25746);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22491, 22514);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 22391, 25820);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22565, 22588);
 
                 bool
                 hasErrors = false
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22528, 22699);
-                    foreach (var diag in f_127_22549_22560_I(diagnostics))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22602, 22773);
+                    foreach (var diag in f_127_22623_22634_I(diagnostics))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 22528, 22699);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22594, 22684);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 22602, 22773);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22668, 22758);
 
-                        f_127_22594_22683(diag, (DynAbs.Tracing.TraceSender.Conditional_F1(127, 22617, 22636) || ((compilation == null && DynAbs.Tracing.TraceSender.Conditional_F2(127, 22639, 22643)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 22646, 22682))) ? null : f_127_22646_22682(diag, compilation));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 22528, 22699);
+                        f_127_22668_22757(diag, (DynAbs.Tracing.TraceSender.Conditional_F1(127, 22691, 22710) || ((compilation == null && DynAbs.Tracing.TraceSender.Conditional_F2(127, 22713, 22717)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 22720, 22756))) ? null : f_127_22720_22756(diag, compilation));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 22602, 22773);
                     }
                 }
                 catch (System.Exception)
@@ -2779,7 +2781,7 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 172);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22715, 22732);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22789, 22806);
 
                 return hasErrors;
 
@@ -2787,67 +2789,67 @@ namespace Microsoft.CodeAnalysis
                 {
                     try
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 22780, 25735);
+                        DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 22854, 25809);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22885, 24045) || true) && (f_127_22889_22924(_reportedDiagnostics, diag))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 22959, 24119) || true) && (f_127_22963_22998(_reportedDiagnostics, diag))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 22885, 24045);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 23813, 23820);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 22959, 24119);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 23887, 23894);
 
                             return;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 22885, 24045);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 22959, 24119);
                         }
 
                         else
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 22885, 24045);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 22959, 24119);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 23862, 24045) || true) && (f_127_23866_23879(diag) == DiagnosticSeverity.Hidden)
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 23936, 24119) || true) && (f_127_23940_23953(diag) == DiagnosticSeverity.Hidden)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 23862, 24045);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24019, 24026);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 23936, 24119);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24093, 24100);
 
                                 return;
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 23862, 24045);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 23936, 24119);
                             }
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 22885, 24045);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 22959, 24119);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24255, 24308);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24329, 24382);
 
-                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(errorLoggerOpt, 127, 24255, 24307)?.LogDiagnostic(diag, suppressionInfo), 127, 24270, 24307);
+                        DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(errorLoggerOpt, 127, 24329, 24381)?.LogDiagnostic(diag, suppressionInfo), 127, 24344, 24381);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24586, 25201) || true) && (f_127_24590_24622(diag) != null)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24660, 25275) || true) && (f_127_24664_24696(diag) != null)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 24586, 25201);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 24660, 25275);
                             try
                             {
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24672, 25098);
-                                foreach (var (id, justification) in f_127_24708_24753_I(f_127_24708_24753(f_127_24708_24740(diag))))
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24746, 25172);
+                                foreach (var (id, justification) in f_127_24782_24827_I(f_127_24782_24827(f_127_24782_24814(diag))))
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 24672, 25098);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24803, 24876);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 24746, 25172);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24877, 24950);
 
                                     var
-                                    suppressionDiag = f_127_24825_24875(diag, id, justification)
+                                    suppressionDiag = f_127_24899_24949(diag, id, justification)
                                     ;
 
-                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24902, 25075) || true) && (f_127_24906_24947(_reportedDiagnostics, suppressionDiag))
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 24976, 25149) || true) && (f_127_24980_25021(_reportedDiagnostics, suppressionDiag))
                                     )
 
                                     {
-                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 24902, 25075);
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25005, 25048);
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 24976, 25149);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25079, 25122);
 
-                                        f_127_25005_25047(this, suppressionDiag, consoleOutput);
-                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 24902, 25075);
+                                        f_127_25079_25121(this, suppressionDiag, consoleOutput);
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 24976, 25149);
                                     }
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 24672, 25098);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 24746, 25172);
                                 }
                             }
                             catch (System.Exception)
@@ -2859,248 +2861,248 @@ namespace Microsoft.CodeAnalysis
                             {
                                 DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 427);
                             }
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25122, 25153);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25196, 25227);
 
-                            f_127_25122_25152(
+                            f_127_25196_25226(
                                                 _reportedDiagnostics, diag);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25175, 25182);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25249, 25256);
 
                             return;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 24586, 25201);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 24660, 25275);
                         }
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25221, 25310) || true) && (f_127_25225_25242(diag))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25295, 25384) || true) && (f_127_25299_25316(diag))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 25221, 25310);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25284, 25291);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 25295, 25384);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25358, 25365);
 
                             return;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 25221, 25310);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 25295, 25384);
                         }
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25494, 25617) || true) && (f_127_25498_25511(diag) == DiagnosticSeverity.Error)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25568, 25691) || true) && (f_127_25572_25585(diag) == DiagnosticSeverity.Error)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 25494, 25617);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25581, 25598);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 25568, 25691);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25655, 25672);
 
                             hasErrors = true;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 25494, 25617);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 25568, 25691);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25637, 25669);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25711, 25743);
 
-                        f_127_25637_25668(this, diag, consoleOutput);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25689, 25720);
+                        f_127_25711_25742(this, diag, consoleOutput);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 25763, 25794);
 
-                        f_127_25689_25719(
+                        f_127_25763_25793(
                                         _reportedDiagnostics, diag);
-                        DynAbs.Tracing.TraceSender.TraceExitMethod(127, 22780, 25735);
+                        DynAbs.Tracing.TraceSender.TraceExitMethod(127, 22854, 25809);
 
                         bool
-                        f_127_22889_22924(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
+                        f_127_22963_22998(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
                         this_param, Microsoft.CodeAnalysis.Diagnostic
                         item)
                         {
                             var return_v = this_param.Contains(item);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22889, 22924);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22963, 22998);
                             return return_v;
                         }
 
 
                         Microsoft.CodeAnalysis.DiagnosticSeverity
-                        f_127_23866_23879(Microsoft.CodeAnalysis.Diagnostic
+                        f_127_23940_23953(Microsoft.CodeAnalysis.Diagnostic
                         this_param)
                         {
                             var return_v = this_param.Severity;
-                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 23866, 23879);
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 23940, 23953);
                             return return_v;
                         }
 
 
                         Microsoft.CodeAnalysis.Diagnostics.ProgrammaticSuppressionInfo?
-                        f_127_24590_24622(Microsoft.CodeAnalysis.Diagnostic
+                        f_127_24664_24696(Microsoft.CodeAnalysis.Diagnostic
                         this_param)
                         {
                             var return_v = this_param.ProgrammaticSuppressionInfo;
-                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 24590, 24622);
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 24664, 24696);
                             return return_v;
                         }
 
 
                         Microsoft.CodeAnalysis.Diagnostics.ProgrammaticSuppressionInfo
-                        f_127_24708_24740(Microsoft.CodeAnalysis.Diagnostic
+                        f_127_24782_24814(Microsoft.CodeAnalysis.Diagnostic
                         this_param)
                         {
                             var return_v = this_param.ProgrammaticSuppressionInfo;
-                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 24708, 24740);
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 24782, 24814);
                             return return_v;
                         }
 
 
                         System.Collections.Immutable.ImmutableHashSet<(string Id, Microsoft.CodeAnalysis.LocalizableString Justification)>
-                        f_127_24708_24753(Microsoft.CodeAnalysis.Diagnostics.ProgrammaticSuppressionInfo
+                        f_127_24782_24827(Microsoft.CodeAnalysis.Diagnostics.ProgrammaticSuppressionInfo
                         this_param)
                         {
                             var return_v = this_param.Suppressions;
-                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 24708, 24753);
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 24782, 24827);
                             return return_v;
                         }
 
 
                         Microsoft.CodeAnalysis.CommonCompiler.SuppressionDiagnostic
-                        f_127_24825_24875(Microsoft.CodeAnalysis.Diagnostic
+                        f_127_24899_24949(Microsoft.CodeAnalysis.Diagnostic
                         originalDiagnostic, string
                         suppressionId, Microsoft.CodeAnalysis.LocalizableString
                         suppressionJustification)
                         {
                             var return_v = new Microsoft.CodeAnalysis.CommonCompiler.SuppressionDiagnostic(originalDiagnostic, suppressionId, suppressionJustification);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 24825, 24875);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 24899, 24949);
                             return return_v;
                         }
 
 
                         bool
-                        f_127_24906_24947(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
+                        f_127_24980_25021(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
                         this_param, Microsoft.CodeAnalysis.CommonCompiler.SuppressionDiagnostic
                         item)
                         {
                             var return_v = this_param.Add((Microsoft.CodeAnalysis.Diagnostic)item);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 24906, 24947);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 24980, 25021);
                             return return_v;
                         }
 
 
                         int
-                        f_127_25005_25047(Microsoft.CodeAnalysis.CommonCompiler
+                        f_127_25079_25121(Microsoft.CodeAnalysis.CommonCompiler
                         this_param, Microsoft.CodeAnalysis.CommonCompiler.SuppressionDiagnostic
                         diagnostic, System.IO.TextWriter
                         consoleOutput)
                         {
                             this_param.PrintError((Microsoft.CodeAnalysis.Diagnostic)diagnostic, consoleOutput);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25005, 25047);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25079, 25121);
                             return 0;
                         }
 
 
                         System.Collections.Immutable.ImmutableHashSet<(string Id, Microsoft.CodeAnalysis.LocalizableString Justification)>
-                        f_127_24708_24753_I(System.Collections.Immutable.ImmutableHashSet<(string Id, Microsoft.CodeAnalysis.LocalizableString Justification)>
+                        f_127_24782_24827_I(System.Collections.Immutable.ImmutableHashSet<(string Id, Microsoft.CodeAnalysis.LocalizableString Justification)>
                         i)
                         {
                             var return_v = i;
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 24708, 24753);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 24782, 24827);
                             return return_v;
                         }
 
 
                         bool
-                        f_127_25122_25152(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
+                        f_127_25196_25226(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
                         this_param, Microsoft.CodeAnalysis.Diagnostic
                         item)
                         {
                             var return_v = this_param.Add(item);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25122, 25152);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25196, 25226);
                             return return_v;
                         }
 
 
                         bool
-                        f_127_25225_25242(Microsoft.CodeAnalysis.Diagnostic
+                        f_127_25299_25316(Microsoft.CodeAnalysis.Diagnostic
                         this_param)
                         {
                             var return_v = this_param.IsSuppressed;
-                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 25225, 25242);
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 25299, 25316);
                             return return_v;
                         }
 
 
                         Microsoft.CodeAnalysis.DiagnosticSeverity
-                        f_127_25498_25511(Microsoft.CodeAnalysis.Diagnostic
+                        f_127_25572_25585(Microsoft.CodeAnalysis.Diagnostic
                         this_param)
                         {
                             var return_v = this_param.Severity;
-                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 25498, 25511);
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 25572, 25585);
                             return return_v;
                         }
 
 
                         int
-                        f_127_25637_25668(Microsoft.CodeAnalysis.CommonCompiler
+                        f_127_25711_25742(Microsoft.CodeAnalysis.CommonCompiler
                         this_param, Microsoft.CodeAnalysis.Diagnostic
                         diagnostic, System.IO.TextWriter
                         consoleOutput)
                         {
                             this_param.PrintError(diagnostic, consoleOutput);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25637, 25668);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25711, 25742);
                             return 0;
                         }
 
 
                         bool
-                        f_127_25689_25719(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
+                        f_127_25763_25793(System.Collections.Generic.HashSet<Microsoft.CodeAnalysis.Diagnostic>
                         this_param, Microsoft.CodeAnalysis.Diagnostic
                         item)
                         {
                             var return_v = this_param.Add(item);
-                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25689, 25719);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 25763, 25793);
                             return return_v;
                         }
 
                     }
                     catch
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 22780, 25735);
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 22854, 25809);
                         throw;
                     }
                     finally
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 22780, 25735);
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 22854, 25809);
                     }
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 22317, 25746);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 22391, 25820);
 
                 Microsoft.CodeAnalysis.Diagnostics.SuppressionInfo?
-                f_127_22646_22682(Microsoft.CodeAnalysis.Diagnostic
+                f_127_22720_22756(Microsoft.CodeAnalysis.Diagnostic
                 this_param, Microsoft.CodeAnalysis.Compilation
                 compilation)
                 {
                     var return_v = this_param.GetSuppressionInfo(compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22646, 22682);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22720, 22756);
                     return return_v;
                 }
 
 
                 int
-                f_127_22594_22683(Microsoft.CodeAnalysis.Diagnostic
+                f_127_22668_22757(Microsoft.CodeAnalysis.Diagnostic
                 diag, Microsoft.CodeAnalysis.Diagnostics.SuppressionInfo?
                 suppressionInfo)
                 {
                     reportDiagnostic(diag, suppressionInfo);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22594, 22683);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22668, 22757);
                     return 0;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_22549_22560_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
+                f_127_22623_22634_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22549, 22560);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 22623, 22634);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 22317, 25746);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 22391, 25820);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 22317, 25746);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 22391, 25820);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -3109,33 +3111,33 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 25998, 26088);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 26001, 26088);
-                return f_127_26001_26088(this, f_127_26019_26043(diagnostics), consoleOutput, errorLoggerOpt, compilation); DynAbs.Tracing.TraceSender.TraceExitMethod(127, 25998, 26088);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 26072, 26162);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 26075, 26162);
+                return f_127_26075_26162(this, f_127_26093_26117(diagnostics), consoleOutput, errorLoggerOpt, compilation); DynAbs.Tracing.TraceSender.TraceExitMethod(127, 26072, 26162);
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 25998, 26088);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 26072, 26162);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 25998, 26088);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 26072, 26162);
             }
             throw new System.Exception("Slicer error: unreachable code");
 
             System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
-            f_127_26019_26043(Microsoft.CodeAnalysis.DiagnosticBag
+            f_127_26093_26117(Microsoft.CodeAnalysis.DiagnosticBag
             this_param)
             {
                 var return_v = this_param.ToReadOnly();
-                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26019, 26043);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26093, 26117);
                 return return_v;
             }
 
 
             bool
-            f_127_26001_26088(Microsoft.CodeAnalysis.CommonCompiler
+            f_127_26075_26162(Microsoft.CodeAnalysis.CommonCompiler
             this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
             diagnostics, System.IO.TextWriter
             consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -3143,7 +3145,7 @@ namespace Microsoft.CodeAnalysis
             compilation)
             {
                 var return_v = this_param.ReportDiagnostics((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>)diagnostics, consoleOutput, errorLoggerOpt, compilation);
-                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26001, 26088);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26075, 26162);
                 return return_v;
             }
 
@@ -3153,34 +3155,34 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 26356, 26473);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 26359, 26473);
-                return f_127_26359_26473(this, f_127_26377_26428(diagnostics, info => Diagnostic.Create(info)), consoleOutput, errorLoggerOpt, compilation); DynAbs.Tracing.TraceSender.TraceExitMethod(127, 26356, 26473);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 26430, 26547);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 26433, 26547);
+                return f_127_26433_26547(this, f_127_26451_26502(diagnostics, info => Diagnostic.Create(info)), consoleOutput, errorLoggerOpt, compilation); DynAbs.Tracing.TraceSender.TraceExitMethod(127, 26430, 26547);
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 26356, 26473);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 26430, 26547);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 26356, 26473);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 26430, 26547);
             }
             throw new System.Exception("Slicer error: unreachable code");
 
             System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
-            f_127_26377_26428(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.DiagnosticInfo>
+            f_127_26451_26502(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.DiagnosticInfo>
             source, System.Func<Microsoft.CodeAnalysis.DiagnosticInfo, Microsoft.CodeAnalysis.Diagnostic>
             selector)
             {
                 var return_v = source.Select<Microsoft.CodeAnalysis.DiagnosticInfo, Microsoft.CodeAnalysis.Diagnostic>(selector);
-                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26377, 26428);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26451, 26502);
                 return return_v;
             }
 
 
             bool
-            f_127_26359_26473(Microsoft.CodeAnalysis.CommonCompiler
+            f_127_26433_26547(Microsoft.CodeAnalysis.CommonCompiler
             this_param, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
             diagnostics, System.IO.TextWriter
             consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -3188,7 +3190,7 @@ namespace Microsoft.CodeAnalysis
             compilation)
             {
                 var return_v = this_param.ReportDiagnostics(diagnostics, consoleOutput, errorLoggerOpt, compilation);
-                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26359, 26473);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 26433, 26547);
                 return return_v;
             }
 
@@ -3198,25 +3200,25 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 26961, 27296);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 27035, 27370);
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27057, 27258);
-                    foreach (var diag in f_127_27078_27104_I(f_127_27078_27104(diagnostics)))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27131, 27332);
+                    foreach (var diag in f_127_27152_27178_I(f_127_27152_27178(diagnostics)))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27057, 27258);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27131, 27332);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27138, 27243) || true) && (f_127_27142_27170(diag))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27212, 27317) || true) && (f_127_27216_27244(diag))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27138, 27243);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27212, 27224);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27212, 27317);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27286, 27298);
 
                             return true;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27138, 27243);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27212, 27317);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27057, 27258);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27131, 27332);
                     }
                 }
                 catch (System.Exception)
@@ -3228,49 +3230,49 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 202);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27272, 27285);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27346, 27359);
 
                 return false;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 26961, 27296);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 27035, 27370);
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_27078_27104(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_27152_27178(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.AsEnumerable();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27078, 27104);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27152, 27178);
                     return return_v;
                 }
 
 
                 bool
-                f_127_27142_27170(Microsoft.CodeAnalysis.Diagnostic
+                f_127_27216_27244(Microsoft.CodeAnalysis.Diagnostic
                 this_param)
                 {
                     var return_v = this_param.IsUnsuppressableError();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27142, 27170);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27216, 27244);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_27078_27104_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
+                f_127_27152_27178_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27078, 27104);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27152, 27178);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 26961, 27296);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 27035, 27370);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 26961, 27296);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 27035, 27370);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -3279,25 +3281,25 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 27578, 27928);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 27652, 28002);
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27672, 27888);
-                    foreach (Diagnostic diagnostic in f_127_27706_27732_I(f_127_27706_27732(diagnostics)))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27746, 27962);
+                    foreach (Diagnostic diagnostic in f_127_27780_27806_I(f_127_27780_27806(diagnostics)))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27672, 27888);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27746, 27962);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27766, 27873) || true) && (f_127_27770_27800(diagnostic))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27840, 27947) || true) && (f_127_27844_27874(diagnostic))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27766, 27873);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27842, 27854);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 27840, 27947);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27916, 27928);
 
                             return true;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27766, 27873);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27840, 27947);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27672, 27888);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 27746, 27962);
                     }
                 }
                 catch (System.Exception)
@@ -3309,49 +3311,49 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 217);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27904, 27917);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 27978, 27991);
 
                 return false;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 27578, 27928);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 27652, 28002);
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_27706_27732(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_27780_27806(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.AsEnumerable();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27706, 27732);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27780, 27806);
                     return return_v;
                 }
 
 
                 bool
-                f_127_27770_27800(Microsoft.CodeAnalysis.Diagnostic
+                f_127_27844_27874(Microsoft.CodeAnalysis.Diagnostic
                 this_param)
                 {
                     var return_v = this_param.IsUnsuppressedError;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 27770, 27800);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 27844, 27874);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_27706_27732_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
+                f_127_27780_27806_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27706, 27732);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 27780, 27806);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 27578, 27928);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 27652, 28002);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 27578, 27928);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 27652, 28002);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -3360,61 +3362,61 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 27940, 28131);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28047, 28120);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 28014, 28205);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28121, 28194);
 
-                f_127_28047_28119(consoleOutput, f_127_28071_28118(f_127_28071_28090(), diagnostic, f_127_28110_28117()));
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 27940, 28131);
+                f_127_28121_28193(consoleOutput, f_127_28145_28192(f_127_28145_28164(), diagnostic, f_127_28184_28191()));
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 28014, 28205);
 
                 Microsoft.CodeAnalysis.DiagnosticFormatter
-                f_127_28071_28090()
+                f_127_28145_28164()
                 {
                     var return_v = DiagnosticFormatter;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28071, 28090);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28145, 28164);
                     return return_v;
                 }
 
 
                 System.Globalization.CultureInfo
-                f_127_28110_28117()
+                f_127_28184_28191()
                 {
                     var return_v = Culture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28110, 28117);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28184, 28191);
                     return return_v;
                 }
 
 
                 string
-                f_127_28071_28118(Microsoft.CodeAnalysis.DiagnosticFormatter
+                f_127_28145_28192(Microsoft.CodeAnalysis.DiagnosticFormatter
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diagnostic, System.Globalization.CultureInfo
                 formatter)
                 {
                     var return_v = this_param.Format(diagnostic, (System.IFormatProvider)formatter);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28071, 28118);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28145, 28192);
                     return return_v;
                 }
 
 
                 int
-                f_127_28047_28119(System.IO.TextWriter
+                f_127_28121_28193(System.IO.TextWriter
                 this_param, string
                 value)
                 {
                     this_param.WriteLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28047, 28119);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28121, 28193);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 27940, 28131);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 28014, 28205);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 27940, 28131);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 28014, 28205);
             }
         }
 
@@ -3422,169 +3424,169 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 28143, 29715);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28270, 28324);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 28217, 29789);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28344, 28398);
 
-                f_127_28270_28323(f_127_28283_28314_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_127_28283_28308(f_127_28283_28292()), 127, 28283, 28314)?.Path) != null);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28340, 28386);
-
-                var
-                diagnostics = f_127_28358_28385()
-                ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28400, 28692);
+                f_127_28344_28397(f_127_28357_28388_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_127_28357_28382(f_127_28357_28366()), 127, 28357, 28388)?.Path) != null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28414, 28460);
 
                 var
-                errorLog = f_127_28415_28691(this, f_127_28424_28454(f_127_28424_28449(f_127_28424_28433())), diagnostics, FileMode.Create, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete)
+                diagnostics = f_127_28432_28459()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28708, 28733);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28474, 28766);
+
+                var
+                errorLog = f_127_28489_28765(this, f_127_28498_28528(f_127_28498_28523(f_127_28498_28507())), diagnostics, FileMode.Create, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete)
+                ;
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28782, 28807);
 
                 SarifErrorLogger?
                 logger
                 = default(SarifErrorLogger?);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28747, 29551) || true) && (errorLog == null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28821, 29625) || true) && (errorLog == null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 28747, 29551);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28801, 28842);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 28821, 29625);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28875, 28916);
 
-                    f_127_28801_28841(f_127_28814_28840(diagnostics));
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28860, 28874);
+                    f_127_28875_28915(f_127_28888_28914(diagnostics));
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28934, 28948);
 
                     logger = null;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 28747, 29551);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 28821, 29625);
                 }
 
                 else
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 28747, 29551);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28940, 28972);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 28821, 29625);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29014, 29046);
 
                     string
-                    toolName = f_127_28958_28971(this)
+                    toolName = f_127_29032_29045(this)
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 28990, 29036);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29064, 29110);
 
                     string
-                    compilerVersion = f_127_29015_29035(this)
+                    compilerVersion = f_127_29089_29109(this)
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29054, 29118);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29128, 29192);
 
                     Version
-                    assemblyVersion = f_127_29080_29100(this) ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Version?>(127, 29080, 29117) ?? f_127_29104_29117())
+                    assemblyVersion = f_127_29154_29174(this) ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Version?>(127, 29154, 29191) ?? f_127_29178_29191())
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29138, 29536) || true) && (f_127_29142_29180(f_127_29142_29167(f_127_29142_29151())) == SarifVersion.Sarif1)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29212, 29610) || true) && (f_127_29216_29254(f_127_29216_29241(f_127_29216_29225())) == SarifVersion.Sarif1)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 29138, 29536);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29245, 29340);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 29212, 29610);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29319, 29414);
 
-                        logger = f_127_29254_29339(errorLog, toolName, compilerVersion, assemblyVersion, f_127_29331_29338());
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 29138, 29536);
+                        logger = f_127_29328_29413(errorLog, toolName, compilerVersion, assemblyVersion, f_127_29405_29412());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 29212, 29610);
                     }
 
                     else
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 29138, 29536);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29422, 29517);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 29212, 29610);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29496, 29591);
 
-                        logger = f_127_29431_29516(errorLog, toolName, compilerVersion, assemblyVersion, f_127_29508_29515());
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 29138, 29536);
+                        logger = f_127_29505_29590(errorLog, toolName, compilerVersion, assemblyVersion, f_127_29582_29589());
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 29212, 29610);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 28747, 29551);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 28821, 29625);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29567, 29676);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29641, 29750);
 
-                f_127_29567_29675(this, f_127_29585_29616(diagnostics), consoleOutput, errorLoggerOpt: logger, compilation: null);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29690, 29704);
+                f_127_29641_29749(this, f_127_29659_29690(diagnostics), consoleOutput, errorLoggerOpt: logger, compilation: null);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29764, 29778);
 
                 return logger;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 28143, 29715);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 28217, 29789);
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_28283_28292()
+                f_127_28357_28366()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28283, 28292);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28357, 28366);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.ErrorLogOptions?
-                f_127_28283_28308(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_28357_28382(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ErrorLogOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28283, 28308);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28357, 28382);
                     return return_v;
                 }
 
 
                 string?
-                f_127_28283_28314_M(string?
+                f_127_28357_28388_M(string?
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28283, 28314);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28357, 28388);
                     return return_v;
                 }
 
 
                 int
-                f_127_28270_28323(bool
+                f_127_28344_28397(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28270, 28323);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28344, 28397);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticBag
-                f_127_28358_28385()
+                f_127_28432_28459()
                 {
                     var return_v = DiagnosticBag.GetInstance();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28358, 28385);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28432, 28459);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_28424_28433()
+                f_127_28498_28507()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28424, 28433);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28498, 28507);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.ErrorLogOptions
-                f_127_28424_28449(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_28498_28523(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ErrorLogOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28424, 28449);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28498, 28523);
                     return return_v;
                 }
 
 
                 string
-                f_127_28424_28454(Microsoft.CodeAnalysis.ErrorLogOptions
+                f_127_28498_28528(Microsoft.CodeAnalysis.ErrorLogOptions
                 this_param)
                 {
                     var return_v = this_param.Path;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28424, 28454);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 28498, 28528);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_28415_28691(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_28489_28765(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.FileMode
@@ -3593,110 +3595,110 @@ namespace Microsoft.CodeAnalysis
                 share)
                 {
                     var return_v = this_param.OpenFile(filePath, diagnostics, mode, access, share);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28415, 28691);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28489, 28765);
                     return return_v;
                 }
 
 
                 bool
-                f_127_28814_28840(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_28888_28914(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.HasAnyErrors();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28814, 28840);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28888, 28914);
                     return return_v;
                 }
 
 
                 int
-                f_127_28801_28841(bool
+                f_127_28875_28915(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28801, 28841);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28875, 28915);
                     return 0;
                 }
 
 
                 string
-                f_127_28958_28971(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_29032_29045(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.GetToolName();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 28958, 28971);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29032, 29045);
                     return return_v;
                 }
 
 
                 string
-                f_127_29015_29035(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_29089_29109(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.GetCompilerVersion();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29015, 29035);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29089, 29109);
                     return return_v;
                 }
 
 
                 System.Version?
-                f_127_29080_29100(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_29154_29174(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.GetAssemblyVersion();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29080, 29100);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29154, 29174);
                     return return_v;
                 }
 
 
                 System.Version
-                f_127_29104_29117()
+                f_127_29178_29191()
                 {
                     var return_v = new System.Version();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29104, 29117);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29178, 29191);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_29142_29151()
+                f_127_29216_29225()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29142, 29151);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29216, 29225);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.ErrorLogOptions
-                f_127_29142_29167(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_29216_29241(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ErrorLogOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29142, 29167);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29216, 29241);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.SarifVersion
-                f_127_29142_29180(Microsoft.CodeAnalysis.ErrorLogOptions
+                f_127_29216_29254(Microsoft.CodeAnalysis.ErrorLogOptions
                 this_param)
                 {
                     var return_v = this_param.SarifVersion;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29142, 29180);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29216, 29254);
                     return return_v;
                 }
 
 
                 System.Globalization.CultureInfo
-                f_127_29331_29338()
+                f_127_29405_29412()
                 {
                     var return_v = Culture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29331, 29338);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29405, 29412);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.SarifV1ErrorLogger
-                f_127_29254_29339(System.IO.Stream
+                f_127_29328_29413(System.IO.Stream
                 stream, string
                 toolName, string
                 toolFileVersion, System.Version
@@ -3704,22 +3706,22 @@ namespace Microsoft.CodeAnalysis
                 culture)
                 {
                     var return_v = new Microsoft.CodeAnalysis.SarifV1ErrorLogger(stream, toolName, toolFileVersion, toolAssemblyVersion, culture);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29254, 29339);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29328, 29413);
                     return return_v;
                 }
 
 
                 System.Globalization.CultureInfo
-                f_127_29508_29515()
+                f_127_29582_29589()
                 {
                     var return_v = Culture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29508, 29515);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29582, 29589);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.SarifV2ErrorLogger
-                f_127_29431_29516(System.IO.Stream
+                f_127_29505_29590(System.IO.Stream
                 stream, string
                 toolName, string
                 toolFileVersion, System.Version
@@ -3727,23 +3729,23 @@ namespace Microsoft.CodeAnalysis
                 culture)
                 {
                     var return_v = new Microsoft.CodeAnalysis.SarifV2ErrorLogger(stream, toolName, toolFileVersion, toolAssemblyVersion, culture);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29431, 29516);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29505, 29590);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_29585_29616(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_29659_29690(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.ToReadOnlyAndFree();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29585, 29616);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29659, 29690);
                     return return_v;
                 }
 
 
                 bool
-                f_127_29567_29675(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_29641_29749(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.SarifErrorLogger?
@@ -3751,19 +3753,19 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>)diagnostics, consoleOutput, errorLoggerOpt: (Microsoft.CodeAnalysis.ErrorLogger?)errorLoggerOpt, compilation: compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29567, 29675);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 29641, 29749);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 28143, 29715);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 28217, 29789);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 28143, 29715);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 28217, 29789);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -3772,13 +3774,13 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 29820, 31458);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 29940, 29989);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 29894, 31532);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30014, 30063);
 
                 var
-                saveUICulture = f_127_29960_29988()
+                saveUICulture = f_127_30034_30062()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30003, 30040);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30077, 30114);
 
                 SarifErrorLogger?
                 errorLogger = null
@@ -3786,204 +3788,204 @@ namespace Microsoft.CodeAnalysis
 
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30272, 30299);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30346, 30373);
 
                     var
-                    culture = f_127_30286_30298(this)
+                    culture = f_127_30360_30372(this)
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30317, 30436) || true) && (culture != null)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30391, 30510) || true) && (culture != null)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 30317, 30436);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30378, 30417);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 30391, 30510);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30452, 30491);
 
                         CultureInfo.CurrentUICulture = culture;
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 30317, 30436);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 30391, 30510);
                     }
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30456, 30755) || true) && (f_127_30460_30491_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_127_30460_30485(f_127_30460_30469()), 127, 30460, 30491)?.Path) != null)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30530, 30829) || true) && (f_127_30534_30565_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(f_127_30534_30559(f_127_30534_30543()), 127, 30534, 30565)?.Path) != null)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 30456, 30755);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30541, 30604);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 30530, 30829);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30615, 30678);
 
-                        errorLogger = f_127_30555_30603(this, consoleOutput, cancellationToken);
+                        errorLogger = f_127_30629_30677(this, consoleOutput, cancellationToken);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30626, 30736) || true) && (errorLogger == null)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30700, 30810) || true) && (errorLogger == null)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 30626, 30736);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30699, 30713);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 30700, 30810);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30773, 30787);
 
                             return Failed;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 30626, 30736);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 30700, 30810);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 30456, 30755);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 30530, 30829);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30775, 30837);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30849, 30911);
 
-                    return f_127_30782_30836(this, consoleOutput, errorLogger, cancellationToken);
+                    return f_127_30856_30910(this, consoleOutput, errorLogger, cancellationToken);
                 }
                 catch (OperationCanceledException)
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 30866, 31292);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 30933, 30986);
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 30940, 31366);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31007, 31060);
 
                     var
-                    errorCode = f_127_30949_30985(f_127_30949_30964())
+                    errorCode = f_127_31023_31059(f_127_31023_31038())
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31004, 31243) || true) && (errorCode > 0)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31078, 31317) || true) && (errorCode > 0)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 31004, 31243);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31063, 31121);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 31078, 31317);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31137, 31195);
 
                         var
-                        diag = f_127_31074_31120(f_127_31093_31108(), errorCode)
+                        diag = f_127_31148_31194(f_127_31167_31182(), errorCode)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31143, 31224);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31217, 31298);
 
-                        f_127_31143_31223(this, new[] { diag }, consoleOutput, errorLogger, compilation: null);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 31004, 31243);
+                        f_127_31217_31297(this, new[] { diag }, consoleOutput, errorLogger, compilation: null);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 31078, 31317);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31263, 31277);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31337, 31351);
 
                     return Failed;
-                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 30866, 31292);
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 30940, 31366);
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 31306, 31447);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31346, 31391);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 31380, 31521);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31420, 31465);
 
                     CultureInfo.CurrentUICulture = saveUICulture;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31409, 31432);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 31483, 31506);
 
-                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(errorLogger, 127, 31409, 31431)?.Dispose(), 127, 31421, 31431);
-                    DynAbs.Tracing.TraceSender.TraceExitFinally(127, 31306, 31447);
+                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(errorLogger, 127, 31483, 31505)?.Dispose(), 127, 31495, 31505);
+                    DynAbs.Tracing.TraceSender.TraceExitFinally(127, 31380, 31521);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 29820, 31458);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 29894, 31532);
 
                 System.Globalization.CultureInfo
-                f_127_29960_29988()
+                f_127_30034_30062()
                 {
                     var return_v = CultureInfo.CurrentUICulture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 29960, 29988);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30034, 30062);
                     return return_v;
                 }
 
 
                 System.Globalization.CultureInfo
-                f_127_30286_30298(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_30360_30372(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.Culture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30286, 30298);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30360, 30372);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_30460_30469()
+                f_127_30534_30543()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30460, 30469);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30534, 30543);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.ErrorLogOptions?
-                f_127_30460_30485(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_30534_30559(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ErrorLogOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30460, 30485);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30534, 30559);
                     return return_v;
                 }
 
 
                 string?
-                f_127_30460_30491_M(string?
+                f_127_30534_30565_M(string?
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30460, 30491);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30534, 30565);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.SarifErrorLogger?
-                f_127_30555_30603(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_30629_30677(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput, System.Threading.CancellationToken
                 cancellationToken)
                 {
                     var return_v = this_param.GetErrorLogger(consoleOutput, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 30555, 30603);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 30629, 30677);
                     return return_v;
                 }
 
 
                 int
-                f_127_30782_30836(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_30856_30910(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.SarifErrorLogger?
                 errorLogger, System.Threading.CancellationToken
                 cancellationToken)
                 {
                     var return_v = this_param.RunCore(consoleOutput, (Microsoft.CodeAnalysis.ErrorLogger?)errorLogger, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 30782, 30836);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 30856, 30910);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_30949_30964()
+                f_127_31023_31038()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30949, 30964);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 31023, 31038);
                     return return_v;
                 }
 
 
                 int
-                f_127_30949_30985(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_31023_31059(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_CompileCancelled;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 30949, 30985);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 31023, 31059);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_31093_31108()
+                f_127_31167_31182()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 31093, 31108);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 31167, 31182);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticInfo
-                f_127_31074_31120(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_31148_31194(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, int
                 errorCode)
                 {
                     var return_v = new Microsoft.CodeAnalysis.DiagnosticInfo(messageProvider, errorCode);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 31074, 31120);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 31148, 31194);
                     return return_v;
                 }
 
 
                 bool
-                f_127_31143_31223(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_31217_31297(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.DiagnosticInfo[]
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.SarifErrorLogger?
@@ -3991,19 +3993,19 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.DiagnosticInfo>)diagnostics, consoleOutput, (Microsoft.CodeAnalysis.ErrorLogger?)errorLoggerOpt, compilation: compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 31143, 31223);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 31217, 31297);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 29820, 31458);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 29894, 31532);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 29820, 31458);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 29894, 31532);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -4012,20 +4014,20 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 32357, 32662);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32647, 32660);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 32431, 32736);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32721, 32734);
 
                 return input;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 32357, 32662);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 32431, 32736);
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 32357, 32662);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 32431, 32736);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 32357, 32662);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 32431, 32736);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -4034,148 +4036,148 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 32674, 38044);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 32748, 38118);
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer> analyzers = default(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>);
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ISourceGenerator> generators = default(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ISourceGenerator>);
                 System.Threading.CancellationTokenSource? analyzerCts = default(System.Threading.CancellationTokenSource?);
                 bool reportAnalyzer = default(bool);
                 Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver? analyzerDriver = default(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver?);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32807, 32847);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32881, 32921);
 
-                f_127_32807_32846(f_127_32820_32845_M(!f_127_32821_32830().IsScriptRunner));
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32863, 32912);
+                f_127_32881_32920(f_127_32894_32919_M(!f_127_32895_32904().IsScriptRunner));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32937, 32986);
 
                 cancellationToken.ThrowIfCancellationRequested();
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32928, 33068) || true) && (f_127_32932_32956(f_127_32932_32941()))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33002, 33142) || true) && (f_127_33006_33030(f_127_33006_33015()))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 32928, 33068);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 32990, 33018);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33002, 33142);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33064, 33092);
 
-                    f_127_32990_33017(this, consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33036, 33053);
+                    f_127_33064_33091(this, consoleOutput);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33110, 33127);
 
                     return Succeeded;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 32928, 33068);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33002, 33142);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33084, 33234) || true) && (f_127_33088_33117(f_127_33088_33097()))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33158, 33308) || true) && (f_127_33162_33191(f_127_33162_33171()))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33084, 33234);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33151, 33184);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33158, 33308);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33225, 33258);
 
-                    f_127_33151_33183(this, consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33202, 33219);
+                    f_127_33225_33257(this, consoleOutput);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33276, 33293);
 
                     return Succeeded;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33084, 33234);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33158, 33308);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33250, 33349) || true) && (f_127_33254_33275(f_127_33254_33263()))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33324, 33423) || true) && (f_127_33328_33349(f_127_33328_33337()))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33250, 33349);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33309, 33334);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33324, 33423);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33383, 33408);
 
-                    f_127_33309_33333(this, consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33250, 33349);
+                    f_127_33383_33407(this, consoleOutput);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33324, 33423);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33365, 33499) || true) && (f_127_33369_33390(f_127_33369_33378()))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33439, 33573) || true) && (f_127_33443_33464(f_127_33443_33452()))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33365, 33499);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33424, 33449);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33439, 33573);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33498, 33523);
 
-                    f_127_33424_33448(this, consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33467, 33484);
+                    f_127_33498_33522(this, consoleOutput);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33541, 33558);
 
                     return Succeeded;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33365, 33499);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33439, 33573);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33515, 33664) || true) && (f_127_33519_33601(this, f_127_33537_33553(f_127_33537_33546()), consoleOutput, errorLogger, compilation: null))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33589, 33738) || true) && (f_127_33593_33675(this, f_127_33611_33627(f_127_33611_33620()), consoleOutput, errorLogger, compilation: null))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33515, 33664);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33635, 33649);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 33589, 33738);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33709, 33723);
 
                     return Failed;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33515, 33664);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 33589, 33738);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33680, 33775);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33754, 33849);
 
                 var
-                touchedFilesLogger = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 33705, 33741) || (((f_127_33706_33732(f_127_33706_33715()) != null) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 33744, 33767)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 33770, 33774))) ? f_127_33744_33767() : null
+                touchedFilesLogger = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 33779, 33815) || (((f_127_33780_33806(f_127_33780_33789()) != null) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 33818, 33841)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 33844, 33848))) ? f_127_33818_33841() : null
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33791, 33837);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33865, 33911);
 
                 var
-                diagnostics = f_127_33809_33836()
+                diagnostics = f_127_33883_33910()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33853, 33897);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33927, 33971);
 
                 AnalyzerConfigSet?
                 analyzerConfigSet = null
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33911, 33997);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 33985, 34071);
 
                 ImmutableArray<AnalyzerConfigOptionsResult>
                 sourceFileAnalyzerConfigOptions = default
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34011, 34069);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34085, 34143);
 
                 AnalyzerConfigOptionsResult
                 globalConfigOptions = default
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34085, 34958) || true) && (f_127_34089_34098().AnalyzerConfigPaths.Length > 0)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34159, 35032) || true) && (f_127_34163_34172().AnalyzerConfigPaths.Length > 0)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 34085, 34958);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 34159, 35032);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34163, 34495) || true) && (!f_127_34168_34258(this, f_127_34192_34221(f_127_34192_34201()), diagnostics, out analyzerConfigSet))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34237, 34569) || true) && (!f_127_34242_34332(this, f_127_34266_34295(f_127_34266_34275()), diagnostics, out analyzerConfigSet))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 34163, 34495);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34300, 34394);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 34237, 34569);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34374, 34468);
 
                         var
-                        hadErrors = f_127_34316_34393(this, diagnostics, consoleOutput, errorLogger, compilation: null)
+                        hadErrors = f_127_34390_34467(this, diagnostics, consoleOutput, errorLogger, compilation: null)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34416, 34440);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34490, 34514);
 
-                        f_127_34416_34439(hadErrors);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34462, 34476);
+                        f_127_34490_34513(hadErrors);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34536, 34550);
 
                         return Failed;
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 34163, 34495);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 34237, 34569);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34515, 34575);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34589, 34649);
 
-                    globalConfigOptions = f_127_34537_34574(analyzerConfigSet);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34593, 34719);
+                    globalConfigOptions = f_127_34611_34648(analyzerConfigSet);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34667, 34793);
 
-                    sourceFileAnalyzerConfigOptions = f_127_34627_34636().SourceFiles.SelectAsArray(f => analyzerConfigSet.GetOptionsForSourcePath(f.Path));
+                    sourceFileAnalyzerConfigOptions = f_127_34701_34710().SourceFiles.SelectAsArray(f => analyzerConfigSet.GetOptionsForSourcePath(f.Path));
                     try
                     {
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34739, 34943);
-                        foreach (var sourceFileAnalyzerConfigOption in f_127_34786_34817_I(sourceFileAnalyzerConfigOptions))
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34813, 35017);
+                        foreach (var sourceFileAnalyzerConfigOption in f_127_34860_34891_I(sourceFileAnalyzerConfigOptions))
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 34739, 34943);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34859, 34924);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 34813, 35017);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34933, 34998);
 
-                            f_127_34859_34923(diagnostics, sourceFileAnalyzerConfigOption.Diagnostics);
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 34739, 34943);
+                            f_127_34933_34997(diagnostics, sourceFileAnalyzerConfigOption.Diagnostics);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 34813, 35017);
                         }
                     }
                     catch (System.Exception)
@@ -4187,107 +4189,107 @@ namespace Microsoft.CodeAnalysis
                     {
                         DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 205);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 34085, 34958);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 34159, 35032);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 34974, 35121);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35048, 35195);
 
                 Compilation?
-                compilation = f_127_35001_35120(this, consoleOutput, touchedFilesLogger, errorLogger, sourceFileAnalyzerConfigOptions, globalConfigOptions)
+                compilation = f_127_35075_35194(this, consoleOutput, touchedFilesLogger, errorLogger, sourceFileAnalyzerConfigOptions, globalConfigOptions)
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35135, 35221) || true) && (compilation == null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35209, 35295) || true) && (compilation == null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 35135, 35221);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35192, 35206);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 35209, 35295);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35266, 35280);
 
                     return Failed;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 35135, 35221);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 35209, 35295);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35237, 35286);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35311, 35360);
 
                 var
-                diagnosticInfos = f_127_35259_35285()
+                diagnosticInfos = f_127_35333_35359()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35300, 35428);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35374, 35502);
 
-                f_127_35300_35427(this, diagnosticInfos, f_127_35347_35362(), f_127_35364_35387(f_127_35364_35373()), out analyzers, out generators);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35442, 35558);
+                f_127_35374_35501(this, diagnosticInfos, f_127_35421_35436(), f_127_35438_35461(f_127_35438_35447()), out analyzers, out generators);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35516, 35632);
 
                 var
-                additionalTextFiles = f_127_35468_35557(this, diagnosticInfos, f_127_35521_35536(), touchedFilesLogger)
+                additionalTextFiles = f_127_35542_35631(this, diagnosticInfos, f_127_35595_35610(), touchedFilesLogger)
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35572, 35714) || true) && (f_127_35576_35651(this, diagnosticInfos, consoleOutput, errorLogger, compilation))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35646, 35788) || true) && (f_127_35650_35725(this, diagnosticInfos, consoleOutput, errorLogger, compilation))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 35572, 35714);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35685, 35699);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 35646, 35788);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35759, 35773);
 
                     return Failed;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 35572, 35714);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 35646, 35788);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35730, 35823);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35804, 35897);
 
                 ImmutableArray<EmbeddedText?>
-                embeddedTexts = f_127_35776_35822(this, compilation, diagnostics)
+                embeddedTexts = f_127_35850_35896(this, compilation, diagnostics)
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35837, 35975) || true) && (f_127_35841_35912(this, diagnostics, consoleOutput, errorLogger, compilation))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35911, 36049) || true) && (f_127_35915_35986(this, diagnostics, consoleOutput, errorLogger, compilation))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 35837, 35975);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35946, 35960);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 35911, 36049);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 36020, 36034);
 
                     return Failed;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 35837, 35975);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 35911, 36049);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 35991, 36072);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 36065, 36146);
 
                 var
                 additionalTexts = ImmutableArray<AdditionalText>.CastUp(additionalTextFiles)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 36088, 36592);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 36162, 36666);
 
-                f_127_36088_36591(this, touchedFilesLogger, ref compilation, analyzers, generators, additionalTexts, analyzerConfigSet, sourceFileAnalyzerConfigOptions, embeddedTexts, diagnostics, cancellationToken, out analyzerCts, out reportAnalyzer, out analyzerDriver);
+                f_127_36162_36665(this, touchedFilesLogger, ref compilation, analyzers, generators, additionalTexts, analyzerConfigSet, sourceFileAnalyzerConfigOptions, embeddedTexts, diagnostics, cancellationToken, out analyzerCts, out reportAnalyzer, out analyzerDriver);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37026, 37119) || true) && (analyzerCts != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37100, 37193) || true) && (analyzerCts != null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37026, 37119);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37083, 37104);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37100, 37193);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37157, 37178);
 
-                    f_127_37083_37103(analyzerCts);
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37026, 37119);
+                    f_127_37157_37177(analyzerCts);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37100, 37193);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37135, 37277);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37209, 37351);
 
                 var
-                exitCode = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 37150, 37221) || ((f_127_37150_37221(this, diagnostics, consoleOutput, errorLogger, compilation) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 37241, 37247)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 37267, 37276))) ? Failed
+                exitCode = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 37224, 37295) || ((f_127_37224_37295(this, diagnostics, consoleOutput, errorLogger, compilation) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 37315, 37321)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 37341, 37350))) ? Failed
                 : Succeeded
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37455, 37723);
-                    foreach (var additionalFile in f_127_37486_37505_I(additionalTextFiles))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37529, 37797);
+                    foreach (var additionalFile in f_127_37560_37579_I(additionalTextFiles))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37455, 37723);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37529, 37797);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37539, 37708) || true) && (f_127_37543_37629(this, f_127_37561_37587(additionalFile), consoleOutput, errorLogger, compilation))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37613, 37782) || true) && (f_127_37617_37703(this, f_127_37635_37661(additionalFile), consoleOutput, errorLogger, compilation))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37539, 37708);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37671, 37689);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37613, 37782);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37745, 37763);
 
                             exitCode = Failed;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37539, 37708);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37613, 37782);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37455, 37723);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37529, 37797);
                     }
                 }
                 catch (System.Exception)
@@ -4299,199 +4301,199 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 269);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37739, 37758);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37813, 37832);
 
-                f_127_37739_37757(
+                f_127_37813_37831(
                             diagnostics);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37772, 38001) || true) && (reportAnalyzer)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37846, 38075) || true) && (reportAnalyzer)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37772, 38001);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37824, 37863);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 37846, 38075);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37898, 37937);
 
-                    f_127_37824_37862(analyzerDriver is object);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37881, 37986);
+                    f_127_37898_37936(analyzerDriver is object);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 37955, 38060);
 
-                    f_127_37881_37985(consoleOutput, analyzerDriver, f_127_37940_37947(), f_127_37949_37984(f_127_37949_37968(compilation)));
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37772, 38001);
+                    f_127_37955_38059(consoleOutput, analyzerDriver, f_127_38014_38021(), f_127_38023_38058(f_127_38023_38042(compilation)));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 37846, 38075);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38017, 38033);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38091, 38107);
 
                 return exitCode;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 32674, 38044);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 32748, 38118);
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_32821_32830()
+                f_127_32895_32904()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 32821, 32830);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 32895, 32904);
                     return return_v;
                 }
 
 
                 bool
-                f_127_32820_32845_M(bool
+                f_127_32894_32919_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 32820, 32845);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 32894, 32919);
                     return return_v;
                 }
 
 
                 int
-                f_127_32807_32846(bool
+                f_127_32881_32920(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 32807, 32846);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 32881, 32920);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_32932_32941()
+                f_127_33006_33015()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 32932, 32941);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33006, 33015);
                     return return_v;
                 }
 
 
                 bool
-                f_127_32932_32956(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_33006_33030(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.DisplayVersion;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 32932, 32956);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33006, 33030);
                     return return_v;
                 }
 
 
                 int
-                f_127_32990_33017(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_33064_33091(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput)
                 {
                     this_param.PrintVersion(consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 32990, 33017);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33064, 33091);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_33088_33097()
+                f_127_33162_33171()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33088, 33097);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33162, 33171);
                     return return_v;
                 }
 
 
                 bool
-                f_127_33088_33117(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_33162_33191(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.DisplayLangVersions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33088, 33117);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33162, 33191);
                     return return_v;
                 }
 
 
                 int
-                f_127_33151_33183(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_33225_33257(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput)
                 {
                     this_param.PrintLangVersions(consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33151, 33183);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33225, 33257);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_33254_33263()
+                f_127_33328_33337()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33254, 33263);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33328, 33337);
                     return return_v;
                 }
 
 
                 bool
-                f_127_33254_33275(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_33328_33349(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.DisplayLogo;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33254, 33275);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33328, 33349);
                     return return_v;
                 }
 
 
                 int
-                f_127_33309_33333(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_33383_33407(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput)
                 {
                     this_param.PrintLogo(consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33309, 33333);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33383, 33407);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_33369_33378()
+                f_127_33443_33452()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33369, 33378);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33443, 33452);
                     return return_v;
                 }
 
 
                 bool
-                f_127_33369_33390(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_33443_33464(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.DisplayHelp;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33369, 33390);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33443, 33464);
                     return return_v;
                 }
 
 
                 int
-                f_127_33424_33448(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_33498_33522(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput)
                 {
                     this_param.PrintHelp(consoleOutput);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33424, 33448);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33498, 33522);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_33537_33546()
+                f_127_33611_33620()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33537, 33546);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33611, 33620);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_33537_33553(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_33611_33627(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Errors;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33537, 33553);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33611, 33627);
                     return return_v;
                 }
 
 
                 bool
-                f_127_33519_33601(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_33593_33675(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4499,91 +4501,91 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.Diagnostic>)diagnostics, consoleOutput, errorLoggerOpt, compilation: compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33519, 33601);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33593, 33675);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_33706_33715()
+                f_127_33780_33789()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33706, 33715);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33780, 33789);
                     return return_v;
                 }
 
 
                 string?
-                f_127_33706_33732(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_33780_33806(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.TouchedFilesPath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33706, 33732);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 33780, 33806);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.TouchedFileLogger
-                f_127_33744_33767()
+                f_127_33818_33841()
                 {
                     var return_v = new Microsoft.CodeAnalysis.TouchedFileLogger();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33744, 33767);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33818, 33841);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticBag
-                f_127_33809_33836()
+                f_127_33883_33910()
                 {
                     var return_v = DiagnosticBag.GetInstance();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33809, 33836);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 33883, 33910);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_34089_34098()
+                f_127_34163_34172()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34089, 34098);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34163, 34172);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_34192_34201()
+                f_127_34266_34275()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34192, 34201);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34266, 34275);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<string>
-                f_127_34192_34221(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_34266_34295(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.AnalyzerConfigPaths;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34192, 34221);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34266, 34295);
                     return return_v;
                 }
 
 
                 bool
-                f_127_34168_34258(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_34242_34332(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Immutable.ImmutableArray<string>
                 analyzerConfigPaths, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, out Microsoft.CodeAnalysis.AnalyzerConfigSet?
                 analyzerConfigSet)
                 {
                     var return_v = this_param.TryGetAnalyzerConfigSet(analyzerConfigPaths, diagnostics, out analyzerConfigSet);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34168, 34258);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34242, 34332);
                     return return_v;
                 }
 
 
                 bool
-                f_127_34316_34393(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_34390_34467(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4591,63 +4593,63 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics(diagnostics, consoleOutput, errorLoggerOpt, compilation: compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34316, 34393);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34390, 34467);
                     return return_v;
                 }
 
 
                 int
-                f_127_34416_34439(bool
+                f_127_34490_34513(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34416, 34439);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34490, 34513);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult
-                f_127_34537_34574(Microsoft.CodeAnalysis.AnalyzerConfigSet
+                f_127_34611_34648(Microsoft.CodeAnalysis.AnalyzerConfigSet
                 this_param)
                 {
                     var return_v = this_param.GlobalConfigOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34537, 34574);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34611, 34648);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_34627_34636()
+                f_127_34701_34710()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34627, 34636);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 34701, 34710);
                     return return_v;
                 }
 
 
                 int
-                f_127_34859_34923(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_34933_34997(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics)
                 {
                     this_param.AddRange<Microsoft.CodeAnalysis.Diagnostic>(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34859, 34923);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34933, 34997);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
-                f_127_34786_34817_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
+                f_127_34860_34891_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34786, 34817);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 34860, 34891);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Compilation?
-                f_127_35001_35120(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_35075_35194(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.TouchedFileLogger?
                 touchedFilesLogger, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4656,50 +4658,50 @@ namespace Microsoft.CodeAnalysis
                 globalConfigOptions)
                 {
                     var return_v = this_param.CreateCompilation(consoleOutput, touchedFilesLogger, errorLoggerOpt, analyzerConfigOptions, globalConfigOptions);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35001, 35120);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35075, 35194);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.List<Microsoft.CodeAnalysis.DiagnosticInfo>
-                f_127_35259_35285()
+                f_127_35333_35359()
                 {
                     var return_v = new System.Collections.Generic.List<Microsoft.CodeAnalysis.DiagnosticInfo>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35259, 35285);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35333, 35359);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_35347_35362()
+                f_127_35421_35436()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35347, 35362);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35421, 35436);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_35364_35373()
+                f_127_35438_35447()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35364, 35373);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35438, 35447);
                     return return_v;
                 }
 
 
                 bool
-                f_127_35364_35387(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_35438_35461(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.SkipAnalyzers;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35364, 35387);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35438, 35461);
                     return return_v;
                 }
 
 
                 int
-                f_127_35300_35427(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_35374_35501(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Generic.List<Microsoft.CodeAnalysis.DiagnosticInfo>
                 diagnostics, Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, bool
@@ -4708,35 +4710,35 @@ namespace Microsoft.CodeAnalysis
                 generators)
                 {
                     this_param.ResolveAnalyzersFromArguments(diagnostics, messageProvider, skipAnalyzers, out analyzers, out generators);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35300, 35427);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35374, 35501);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_35521_35536()
+                f_127_35595_35610()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35521, 35536);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 35595, 35610);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>
-                f_127_35468_35557(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_35542_35631(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Generic.List<Microsoft.CodeAnalysis.DiagnosticInfo>
                 diagnostics, Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, Microsoft.CodeAnalysis.TouchedFileLogger?
                 touchedFilesLogger)
                 {
                     var return_v = this_param.ResolveAdditionalFilesFromArguments(diagnostics, messageProvider, touchedFilesLogger);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35468, 35557);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35542, 35631);
                     return return_v;
                 }
 
 
                 bool
-                f_127_35576_35651(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_35650_35725(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Generic.List<Microsoft.CodeAnalysis.DiagnosticInfo>
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4744,25 +4746,25 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.DiagnosticInfo>)diagnostics, consoleOutput, errorLoggerOpt, compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35576, 35651);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35650, 35725);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.EmbeddedText?>
-                f_127_35776_35822(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_35850_35896(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.Compilation
                 compilation, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = this_param.AcquireEmbeddedTexts(compilation, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35776, 35822);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35850, 35896);
                     return return_v;
                 }
 
 
                 bool
-                f_127_35841_35912(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_35915_35986(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4770,13 +4772,13 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics(diagnostics, consoleOutput, errorLoggerOpt, compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35841, 35912);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 35915, 35986);
                     return return_v;
                 }
 
 
                 int
-                f_127_36088_36591(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_36162_36665(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.TouchedFileLogger?
                 touchedFilesLogger, ref Microsoft.CodeAnalysis.Compilation
                 compilation, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
@@ -4793,23 +4795,23 @@ namespace Microsoft.CodeAnalysis
                 analyzerDriver)
                 {
                     this_param.CompileAndEmit(touchedFilesLogger, ref compilation, analyzers, generators, additionalTextFiles, analyzerConfigSet, sourceFileAnalyzerConfigOptions, embeddedTexts, diagnostics, cancellationToken, out analyzerCts, out reportAnalyzer, out analyzerDriver);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 36088, 36591);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 36162, 36665);
                     return 0;
                 }
 
 
                 int
-                f_127_37083_37103(System.Threading.CancellationTokenSource
+                f_127_37157_37177(System.Threading.CancellationTokenSource
                 this_param)
                 {
                     this_param.Cancel();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37083, 37103);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37157, 37177);
                     return 0;
                 }
 
 
                 bool
-                f_127_37150_37221(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_37224_37295(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4817,23 +4819,23 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics(diagnostics, consoleOutput, errorLoggerOpt, compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37150, 37221);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37224, 37295);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IList<Microsoft.CodeAnalysis.DiagnosticInfo>
-                f_127_37561_37587(Microsoft.CodeAnalysis.AdditionalTextFile
+                f_127_37635_37661(Microsoft.CodeAnalysis.AdditionalTextFile
                 this_param)
                 {
                     var return_v = this_param.Diagnostics;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 37561, 37587);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 37635, 37661);
                     return return_v;
                 }
 
 
                 bool
-                f_127_37543_37629(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_37617_37703(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Generic.IList<Microsoft.CodeAnalysis.DiagnosticInfo>
                 diagnostics, System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.ErrorLogger?
@@ -4841,91 +4843,91 @@ namespace Microsoft.CodeAnalysis
                 compilation)
                 {
                     var return_v = this_param.ReportDiagnostics((System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.DiagnosticInfo>)diagnostics, consoleOutput, errorLoggerOpt, compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37543, 37629);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37617, 37703);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>
-                f_127_37486_37505_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>
+                f_127_37560_37579_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37486, 37505);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37560, 37579);
                     return return_v;
                 }
 
 
                 int
-                f_127_37739_37757(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_37813_37831(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     this_param.Free();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37739, 37757);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37813, 37831);
                     return 0;
                 }
 
 
                 int
-                f_127_37824_37862(bool
+                f_127_37898_37936(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37824, 37862);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37898, 37936);
                     return 0;
                 }
 
 
                 System.Globalization.CultureInfo
-                f_127_37940_37947()
+                f_127_38014_38021()
                 {
                     var return_v = Culture;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 37940, 37947);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 38014, 38021);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CompilationOptions
-                f_127_37949_37968(Microsoft.CodeAnalysis.Compilation
+                f_127_38023_38042(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.Options;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 37949, 37968);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 38023, 38042);
                     return return_v;
                 }
 
 
                 bool
-                f_127_37949_37984(Microsoft.CodeAnalysis.CompilationOptions
+                f_127_38023_38058(Microsoft.CodeAnalysis.CompilationOptions
                 this_param)
                 {
                     var return_v = this_param.ConcurrentBuild;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 37949, 37984);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 38023, 38058);
                     return return_v;
                 }
 
 
                 int
-                f_127_37881_37985(System.IO.TextWriter
+                f_127_37955_38059(System.IO.TextWriter
                 consoleOutput, Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 analyzerDriver, System.Globalization.CultureInfo
                 culture, bool
                 isConcurrentBuild)
                 {
                     ReportAnalyzerExecutionTime(consoleOutput, analyzerDriver, culture, isConcurrentBuild);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37881, 37985);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 37955, 38059);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 32674, 38044);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 32748, 38118);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 32674, 38044);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 32748, 38118);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -4939,46 +4941,46 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 38056, 39939);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38532, 38613);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 38130, 40013);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38606, 38687);
 
                 var
-                builder = f_127_38546_38612()
+                builder = f_127_38620_38686()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38627, 38637);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38701, 38711);
 
                 int
                 i = 0
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38651, 39190);
-                    foreach (var syntaxTree in f_127_38678_38689_I(syntaxTrees))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38725, 39264);
+                    foreach (var syntaxTree in f_127_38752_38763_I(syntaxTrees))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 38651, 39190);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38725, 38790);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 38725, 39264);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38799, 38864);
 
                         var
                         options = sourceFileAnalyzerConfigOptions[i].AnalyzerOptions
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38896, 39153) || true) && (f_127_38900_38913(options) > 0)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38970, 39227) || true) && (f_127_38974_38987(options) > 0)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 38896, 39153);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 38959, 39044);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 38970, 39227);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39033, 39118);
 
-                            f_127_38959_39043(f_127_38972_39003(existing, syntaxTree) == f_127_39007_39042());
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39066, 39134);
+                            f_127_39033_39117(f_127_39046_39077(existing, syntaxTree) == f_127_39081_39116());
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39140, 39208);
 
-                            f_127_39066_39133(builder, syntaxTree, f_127_39090_39132(options));
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 38896, 39153);
+                            f_127_39140_39207(builder, syntaxTree, f_127_39164_39206(options));
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 38970, 39227);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39171, 39175);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39245, 39249);
 
                         i++;
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 38651, 39190);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 38725, 39264);
                     }
                 }
                 catch (System.Exception)
@@ -4990,38 +4992,38 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 540);
                 }
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39206, 39847) || true) && (f_127_39210_39236_M(!additionalFiles.IsDefault))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39280, 39921) || true) && (f_127_39284_39310_M(!additionalFiles.IsDefault))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 39206, 39847);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 39280, 39921);
                     try
                     {
-                        for (DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39275, 39280)
-   , i = 0; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39270, 39832) || true) && (i < additionalFiles.Length)
-   ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39310, 39313)
-   , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(127, 39270, 39832))
+                        for (DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39349, 39354)
+   , i = 0; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39344, 39906) || true) && (i < additionalFiles.Length)
+   ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39384, 39387)
+   , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(127, 39344, 39906))
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 39270, 39832);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39355, 39410);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 39344, 39906);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39429, 39484);
 
                             var
                             options = additionalFileOptions[i].AnalyzerOptions
                             ;
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39524, 39813) || true) && (f_127_39528_39541(options) > 0)
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39598, 39887) || true) && (f_127_39602_39615(options) > 0)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 39524, 39813);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39595, 39688);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 39598, 39887);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39669, 39762);
 
-                                f_127_39595_39687(f_127_39608_39647(existing, additionalFiles[i]) == f_127_39651_39686());
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39714, 39790);
+                                f_127_39669_39761(f_127_39682_39721(existing, additionalFiles[i]) == f_127_39725_39760());
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39788, 39864);
 
-                                f_127_39714_39789(builder, additionalFiles[i], f_127_39746_39788(options));
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 39524, 39813);
+                                f_127_39788_39863(builder, additionalFiles[i], f_127_39820_39862(options));
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 39598, 39887);
                             }
                         }
                     }
@@ -5034,195 +5036,195 @@ namespace Microsoft.CodeAnalysis
                     {
                         DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 563);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 39206, 39847);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 39280, 39921);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39863, 39928);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 39937, 40002);
 
-                return f_127_39870_39927(existing, f_127_39905_39926(builder));
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 38056, 39939);
+                return f_127_39944_40001(existing, f_127_39979_40000(builder));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 38130, 40013);
 
                 System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
-                f_127_38546_38612()
+                f_127_38620_38686()
                 {
                     var return_v = ImmutableDictionary.CreateBuilder<object, AnalyzerConfigOptions>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 38546, 38612);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 38620, 38686);
                     return return_v;
                 }
 
 
                 int
-                f_127_38900_38913(System.Collections.Immutable.ImmutableDictionary<string, string>
+                f_127_38974_38987(System.Collections.Immutable.ImmutableDictionary<string, string>
                 this_param)
                 {
                     var return_v = this_param.Count;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 38900, 38913);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 38974, 38987);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions
-                f_127_38972_39003(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
+                f_127_39046_39077(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 this_param, Microsoft.CodeAnalysis.SyntaxTree
                 tree)
                 {
                     var return_v = this_param.GetOptions(tree);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 38972, 39003);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39046, 39077);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
-                f_127_39007_39042()
+                f_127_39081_39116()
                 {
                     var return_v = CompilerAnalyzerConfigOptions.Empty;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39007, 39042);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39081, 39116);
                     return return_v;
                 }
 
 
                 int
-                f_127_38959_39043(bool
+                f_127_39033_39117(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 38959, 39043);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39033, 39117);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
-                f_127_39090_39132(System.Collections.Immutable.ImmutableDictionary<string, string>
+                f_127_39164_39206(System.Collections.Immutable.ImmutableDictionary<string, string>
                 properties)
                 {
                     var return_v = new Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions(properties);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39090, 39132);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39164, 39206);
                     return return_v;
                 }
 
 
                 int
-                f_127_39066_39133(System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
+                f_127_39140_39207(System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
                 this_param, Microsoft.CodeAnalysis.SyntaxTree
                 key, Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
                 value)
                 {
                     this_param.Add((object)key, (Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions)value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39066, 39133);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39140, 39207);
                     return 0;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_38678_38689_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_38752_38763_I(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 38678, 38689);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 38752, 38763);
                     return return_v;
                 }
 
 
                 bool
-                f_127_39210_39236_M(bool
+                f_127_39284_39310_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39210, 39236);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39284, 39310);
                     return return_v;
                 }
 
 
                 int
-                f_127_39528_39541(System.Collections.Immutable.ImmutableDictionary<string, string>
+                f_127_39602_39615(System.Collections.Immutable.ImmutableDictionary<string, string>
                 this_param)
                 {
                     var return_v = this_param.Count;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39528, 39541);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39602, 39615);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions
-                f_127_39608_39647(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
+                f_127_39682_39721(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 this_param, Microsoft.CodeAnalysis.AdditionalText
                 textFile)
                 {
                     var return_v = this_param.GetOptions(textFile);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39608, 39647);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39682, 39721);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
-                f_127_39651_39686()
+                f_127_39725_39760()
                 {
                     var return_v = CompilerAnalyzerConfigOptions.Empty;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39651, 39686);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 39725, 39760);
                     return return_v;
                 }
 
 
                 int
-                f_127_39595_39687(bool
+                f_127_39669_39761(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39595, 39687);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39669, 39761);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
-                f_127_39746_39788(System.Collections.Immutable.ImmutableDictionary<string, string>
+                f_127_39820_39862(System.Collections.Immutable.ImmutableDictionary<string, string>
                 properties)
                 {
                     var return_v = new Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions(properties);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39746, 39788);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39820, 39862);
                     return return_v;
                 }
 
 
                 int
-                f_127_39714_39789(System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
+                f_127_39788_39863(System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
                 this_param, Microsoft.CodeAnalysis.AdditionalText
                 key, Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
                 value)
                 {
                     this_param.Add((object)key, (Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions)value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39714, 39789);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39788, 39863);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>
-                f_127_39905_39926(System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
+                f_127_39979_40000(System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>.Builder
                 this_param)
                 {
                     var return_v = this_param.ToImmutable();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39905, 39926);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39979, 40000);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
-                f_127_39870_39927(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
+                f_127_39944_40001(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 this_param, System.Collections.Immutable.ImmutableDictionary<object, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions>
                 treeDict)
                 {
                     var return_v = this_param.WithAdditionalTreeOptions(treeDict);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39870, 39927);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 39944, 40001);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 38056, 39939);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 38130, 40013);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 38056, 39939);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 38130, 40013);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -5244,61 +5246,61 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 40174, 61322);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 40934, 40953);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 40248, 61396);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41008, 41027);
 
                 analyzerCts = null;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 40967, 40990);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41041, 41064);
 
                 reportAnalyzer = false;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41004, 41026);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41078, 41100);
 
                 analyzerDriver = null;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41149, 41261);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41223, 41335);
 
-                f_127_41149_41260(
+                f_127_41223_41334(
                             // Print the diagnostics produced during the parsing stage and exit if there were any errors.
                             compilation, CompilationStage.Parse, includeEarlierStages: false, diagnostics, cancellationToken);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41275, 41371) || true) && (f_127_41279_41315(diagnostics))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41349, 41445) || true) && (f_127_41353_41389(diagnostics))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 41275, 41371);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41349, 41356);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 41349, 41445);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41423, 41430);
 
                     return;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 41275, 41371);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 41349, 41445);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41387, 41438);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41461, 41512);
 
                 DiagnosticBag?
                 analyzerExceptionDiagnostics = null
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41452, 48381) || true) && (f_127_41456_41474_M(!analyzers.IsEmpty) || (DynAbs.Tracing.TraceSender.Expression_False(127, 41456, 41497) || f_127_41478_41497_M(!generators.IsEmpty)))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41526, 48455) || true) && (f_127_41530_41548_M(!analyzers.IsEmpty) || (DynAbs.Tracing.TraceSender.Expression_False(127, 41530, 41571) || f_127_41552_41571_M(!generators.IsEmpty)))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 41452, 48381);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41531, 41604);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 41526, 48455);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41605, 41678);
 
                     var
-                    analyzerConfigProvider = f_127_41560_41603()
+                    analyzerConfigProvider = f_127_41634_41677()
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41622, 42927) || true) && (f_127_41626_41635().AnalyzerConfigPaths.Length > 0)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41696, 43001) || true) && (f_127_41700_41709().AnalyzerConfigPaths.Length > 0)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 41622, 42927);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41708, 41750);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 41696, 43001);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41782, 41824);
 
-                        f_127_41708_41749(analyzerConfigSet is object);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41772, 41946);
+                        f_127_41782_41823(analyzerConfigSet is object);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 41846, 42020);
 
-                        analyzerConfigProvider = f_127_41797_41945(analyzerConfigProvider, f_127_41838_41944(f_127_41872_41927(analyzerConfigSet, string.Empty).AnalyzerOptions));
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42182, 42373);
+                        analyzerConfigProvider = f_127_41871_42019(analyzerConfigProvider, f_127_41912_42018(f_127_41946_42001(analyzerConfigSet, string.Empty).AnalyzerOptions));
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42256, 42447);
 
                         ImmutableArray<AnalyzerConfigOptionsResult>
                         additionalFileAnalyzerOptions =
@@ -5306,14 +5308,14 @@ namespace Microsoft.CodeAnalysis
                         ;
                         try
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42397, 42563);
-                            foreach (var result in f_127_42420_42449_I(additionalFileAnalyzerOptions))
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42471, 42637);
+                            foreach (var result in f_127_42494_42523_I(additionalFileAnalyzerOptions))
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 42397, 42563);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42499, 42540);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 42471, 42637);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42573, 42614);
 
-                                f_127_42499_42539(diagnostics, result.Diagnostics);
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 42397, 42563);
+                                f_127_42573_42613(diagnostics, result.Diagnostics);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 42471, 42637);
                             }
                         }
                         catch (System.Exception)
@@ -5325,138 +5327,138 @@ namespace Microsoft.CodeAnalysis
                         {
                             DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 167);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42587, 42908);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42661, 42982);
 
-                        analyzerConfigProvider = f_127_42612_42907(analyzerConfigProvider, f_127_42723_42746(compilation), sourceFileAnalyzerConfigOptions, additionalTextFiles, additionalFileAnalyzerOptions);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 41622, 42927);
+                        analyzerConfigProvider = f_127_42686_42981(analyzerConfigProvider, f_127_42797_42820(compilation), sourceFileAnalyzerConfigOptions, additionalTextFiles, additionalFileAnalyzerOptions);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 41696, 43001);
                     }
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 42947, 46845) || true) && (f_127_42951_42970_M(!generators.IsEmpty))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43021, 46919) || true) && (f_127_43025_43044_M(!generators.IsEmpty))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 42947, 46845);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43200, 43335);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 43021, 46919);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43274, 43409);
 
-                        compilation = f_127_43214_43334(this, compilation, f_127_43241_43263(f_127_43241_43250()), generators, analyzerConfigProvider, additionalTextFiles, diagnostics);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43359, 43424);
-
-                        bool
-                        hasAnalyzerConfigs = f_127_43385_43423_M(!f_127_43386_43395().AnalyzerConfigPaths.IsEmpty)
-                        ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43446, 43544);
+                        compilation = f_127_43288_43408(this, compilation, f_127_43315_43337(f_127_43315_43324()), generators, analyzerConfigProvider, additionalTextFiles, diagnostics);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43433, 43498);
 
                         bool
-                        hasGeneratedOutputPath = !f_127_43477_43543(f_127_43503_43542(f_127_43503_43512()))
+                        hasAnalyzerConfigs = f_127_43459_43497_M(!f_127_43460_43469().AnalyzerConfigPaths.IsEmpty)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43568, 43663);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43520, 43618);
+
+                        bool
+                        hasGeneratedOutputPath = !f_127_43551_43617(f_127_43577_43616(f_127_43577_43586()))
+                        ;
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43642, 43737);
 
                         var
-                        generatedSyntaxTrees = f_127_43595_43662(f_127_43595_43653(f_127_43595_43618(compilation), f_127_43624_43633().SourceFiles.Length))
+                        generatedSyntaxTrees = f_127_43669_43736(f_127_43669_43727(f_127_43669_43692(compilation), f_127_43698_43707().SourceFiles.Length))
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43687, 43826);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43761, 43900);
 
                         var
-                        analyzerOptionsBuilder = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 43716, 43734) || ((hasAnalyzerConfigs && DynAbs.Tracing.TraceSender.Conditional_F2(127, 43737, 43818)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 43821, 43825))) ? f_127_43737_43818(f_127_43791_43817(generatedSyntaxTrees)) : null
+                        analyzerOptionsBuilder = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 43790, 43808) || ((hasAnalyzerConfigs && DynAbs.Tracing.TraceSender.Conditional_F2(127, 43811, 43892)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 43895, 43899))) ? f_127_43811_43892(f_127_43865_43891(generatedSyntaxTrees)) : null
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43848, 43941);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 43922, 44015);
 
                         var
-                        embeddedTextBuilder = f_127_43874_43940(f_127_43913_43939(generatedSyntaxTrees))
+                        embeddedTextBuilder = f_127_43948_44014(f_127_43987_44013(generatedSyntaxTrees))
                         ;
                         try
                         {
                             try
                             {
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44015, 46141);
-                                foreach (var tree in f_127_44036_44056_I(generatedSyntaxTrees))
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44089, 46215);
+                                foreach (var tree in f_127_44110_44130_I(generatedSyntaxTrees))
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 44015, 46141);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44114, 44170);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 44089, 46215);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44188, 44244);
 
-                                    f_127_44114_44169(!f_127_44128_44168(f_127_44154_44167(tree)));
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44200, 44249);
+                                    f_127_44188_44243(!f_127_44202_44242(f_127_44228_44241(tree)));
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44274, 44323);
 
                                     cancellationToken.ThrowIfCancellationRequested();
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44281, 44330);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44355, 44404);
 
                                     var
-                                    sourceText = f_127_44298_44329(tree, cancellationToken)
+                                    sourceText = f_127_44372_44403(tree, cancellationToken)
                                     ;
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44461, 44537);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44535, 44611);
 
-                                    f_127_44461_44536(
+                                    f_127_44535_44610(
                                                                 // embed the generated text and get analyzer options for it if needed
-                                                                embeddedTextBuilder, f_127_44485_44535(f_127_44509_44522(tree), sourceText));
+                                                                embeddedTextBuilder, f_127_44559_44609(f_127_44583_44596(tree), sourceText));
 
-                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44567, 44786) || true) && (analyzerOptionsBuilder is object)
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44641, 44860) || true) && (analyzerOptionsBuilder is object)
                                     )
 
                                     {
-                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 44567, 44786);
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44669, 44755);
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 44641, 44860);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44743, 44829);
 
-                                        f_127_44669_44754(analyzerOptionsBuilder, f_127_44696_44753(analyzerConfigSet!, f_127_44739_44752(tree)));
-                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 44567, 44786);
+                                        f_127_44743_44828(analyzerOptionsBuilder, f_127_44770_44827(analyzerConfigSet!, f_127_44813_44826(tree)));
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 44641, 44860);
                                     }
 
-                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44895, 46114) || true) && (hasGeneratedOutputPath)
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44969, 46188) || true) && (hasGeneratedOutputPath)
                                     )
 
                                     {
-                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 44895, 46114);
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 44987, 45068);
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 44969, 46188);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45061, 45142);
 
                                         var
-                                        path = f_127_44998_45067(f_127_45011_45020().GeneratedFilesOutputDirectory!, f_127_45053_45066(tree))
+                                        path = f_127_45072_45141(f_127_45085_45094().GeneratedFilesOutputDirectory!, f_127_45127_45140(tree))
                                         ;
 
-                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45102, 45327) || true) && (f_127_45106_45163(f_127_45123_45162(f_127_45123_45132())))
+                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45176, 45401) || true) && (f_127_45180_45237(f_127_45197_45236(f_127_45197_45206())))
                                         )
 
                                         {
-                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 45102, 45327);
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45237, 45292);
+                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 45176, 45401);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45311, 45366);
 
-                                            f_127_45237_45291(f_127_45263_45290(path));
-                                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 45102, 45327);
+                                            f_127_45311_45365(f_127_45337_45364(path));
+                                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 45176, 45401);
                                         }
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45363, 45483);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45437, 45557);
 
                                         var
-                                        fileStream = f_127_45380_45482(this, path, diagnostics, FileMode.Create, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete)
+                                        fileStream = f_127_45454_45556(this, path, diagnostics, FileMode.Create, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete)
                                         ;
 
-                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45517, 46083) || true) && (fileStream is object)
+                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45591, 46157) || true) && (fileStream is object)
                                         )
 
                                         {
-                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 45517, 46083);
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45615, 45653);
+                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 45591, 46157);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45689, 45727);
 
-                                            f_127_45615_45652(f_127_45628_45641(tree) is object);
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45693, 45788);
-
-                                            using var
-                                            disposer = f_127_45714_45787(fileStream, path, diagnostics, f_127_45771_45786())
-                                            ;
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45826, 45889);
+                                            f_127_45689_45726(f_127_45702_45715(tree) is object);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45767, 45862);
 
                                             using var
-                                            writer = f_127_45845_45888(fileStream, f_127_45874_45887(tree))
+                                            disposer = f_127_45788_45861(fileStream, path, diagnostics, f_127_45845_45860())
                                             ;
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45929, 45973);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 45900, 45963);
 
-                                            f_127_45929_45972(
+                                            using var
+                                            writer = f_127_45919_45962(fileStream, f_127_45948_45961(tree))
+                                            ;
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46003, 46047);
+
+                                            f_127_46003_46046(
                                                                                 sourceText, writer, cancellationToken);
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46011, 46048);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46085, 46122);
 
-                                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(touchedFilesLogger, 127, 46011, 46047)?.AddWritten(path), 127, 46030, 46047);
-                                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 45517, 46083);
+                                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(touchedFilesLogger, 127, 46085, 46121)?.AddWritten(path), 127, 46104, 46121);
+                                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 45591, 46157);
                                         }
-                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 44895, 46114);
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 44969, 46188);
                                     }
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 44015, 46141);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 44089, 46215);
                                 }
                             }
                             catch (System.Exception)
@@ -5468,116 +5470,116 @@ namespace Microsoft.CodeAnalysis
                             {
                                 DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 2127);
                             }
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46169, 46229);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46243, 46303);
 
                             embeddedTexts = embeddedTexts.AddRange(embeddedTextBuilder);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46255, 46618) || true) && (analyzerOptionsBuilder is object)
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46329, 46692) || true) && (analyzerOptionsBuilder is object)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 46255, 46618);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46349, 46591);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 46329, 46692);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46423, 46665);
 
-                                analyzerConfigProvider = f_127_46374_46590(analyzerConfigProvider, generatedSyntaxTrees, f_127_46553_46589(analyzerOptionsBuilder));
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 46255, 46618);
+                                analyzerConfigProvider = f_127_46448_46664(analyzerConfigProvider, generatedSyntaxTrees, f_127_46627_46663(analyzerOptionsBuilder));
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 46329, 46692);
                             }
                         }
                         finally
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 46663, 46826);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46719, 46750);
+                            DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 46737, 46900);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46793, 46824);
 
-                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(analyzerOptionsBuilder, 127, 46719, 46749)?.Free(), 127, 46742, 46749);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46776, 46803);
+                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(analyzerOptionsBuilder, 127, 46793, 46823)?.Free(), 127, 46816, 46823);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46850, 46877);
 
-                            f_127_46776_46802(embeddedTextBuilder);
-                            DynAbs.Tracing.TraceSender.TraceExitFinally(127, 46663, 46826);
+                            f_127_46850_46876(embeddedTextBuilder);
+                            DynAbs.Tracing.TraceSender.TraceExitFinally(127, 46737, 46900);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 42947, 46845);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 43021, 46919);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46865, 46990);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 46939, 47064);
 
                     AnalyzerOptions
-                    analyzerOptions = f_127_46899_46989(this, additionalTextFiles, analyzerConfigProvider)
+                    analyzerOptions = f_127_46973_47063(this, additionalTextFiles, analyzerConfigProvider)
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47010, 48366) || true) && (f_127_47014_47032_M(!analyzers.IsEmpty))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47084, 48440) || true) && (f_127_47088_47106_M(!analyzers.IsEmpty))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 47010, 48366);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47074, 47155);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 47084, 48440);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47148, 47229);
 
-                        analyzerCts = f_127_47088_47154(cancellationToken);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47177, 47228);
+                        analyzerCts = f_127_47162_47228(cancellationToken);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47251, 47302);
 
-                        analyzerExceptionDiagnostics = f_127_47208_47227();
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47601, 47644);
+                        analyzerExceptionDiagnostics = f_127_47282_47301();
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47675, 47718);
 
                         var
                         severityFilter = SeverityFilter.Hidden
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47666, 47765) || true) && (f_127_47670_47692(f_127_47670_47679()) == null)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47740, 47839) || true) && (f_127_47744_47766(f_127_47744_47753()) == null)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 47666, 47765);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47727, 47765);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 47740, 47839);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47801, 47839);
 
                             severityFilter |= SeverityFilter.Info;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 47666, 47765);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 47740, 47839);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47789, 48261);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 47863, 48335);
 
-                        analyzerDriver = f_127_47806_48260(compilation, analyzers, analyzerOptions, f_127_47992_48022(analyzers), analyzerExceptionDiagnostics.Add, f_127_48108_48132(f_127_48108_48117()), severityFilter, out compilation, f_127_48242_48259(analyzerCts));
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48283, 48347);
+                        analyzerDriver = f_127_47880_48334(compilation, analyzers, analyzerOptions, f_127_48066_48096(analyzers), analyzerExceptionDiagnostics.Add, f_127_48182_48206(f_127_48182_48191()), severityFilter, out compilation, f_127_48316_48333(analyzerCts));
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48357, 48421);
 
-                        reportAnalyzer = f_127_48300_48324(f_127_48300_48309()) && (DynAbs.Tracing.TraceSender.Expression_True(127, 48300, 48346) && f_127_48328_48346_M(!analyzers.IsEmpty));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 47010, 48366);
+                        reportAnalyzer = f_127_48374_48398(f_127_48374_48383()) && (DynAbs.Tracing.TraceSender.Expression_True(127, 48374, 48420) && f_127_48402_48420_M(!analyzers.IsEmpty));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 47084, 48440);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 41452, 48381);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 41526, 48455);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48397, 48511);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48471, 48585);
 
-                f_127_48397_48510(
+                f_127_48471_48584(
                             compilation, CompilationStage.Declare, includeEarlierStages: false, diagnostics, cancellationToken);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48525, 48621) || true) && (f_127_48529_48565(diagnostics))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48599, 48695) || true) && (f_127_48603_48639(diagnostics))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 48525, 48621);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48599, 48606);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 48599, 48695);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48673, 48680);
 
                     return;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 48525, 48621);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 48599, 48695);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48637, 48686);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 48711, 48760);
 
                 cancellationToken.ThrowIfCancellationRequested();
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49083, 49154);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49157, 49228);
 
                 string
-                outputName = f_127_49103_49152(this, compilation, cancellationToken)!
+                outputName = f_127_49177_49226(this, compilation, cancellationToken)!
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49168, 49230);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49242, 49304);
 
                 var
-                finalPeFilePath = f_127_49190_49229(f_127_49190_49199(), outputName)
+                finalPeFilePath = f_127_49264_49303(f_127_49264_49273(), outputName)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49244, 49304);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49318, 49378);
 
                 var
-                finalPdbFilePath = f_127_49267_49303(f_127_49267_49276(), outputName)
+                finalPdbFilePath = f_127_49341_49377(f_127_49341_49350(), outputName)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49318, 49369);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49392, 49443);
 
                 var
-                finalXmlFilePath = f_127_49341_49368(f_127_49341_49350())
+                finalXmlFilePath = f_127_49415_49442(f_127_49415_49424())
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49385, 49443);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49459, 49517);
 
                 NoThrowStreamDisposer?
                 sourceLinkStreamDisposerOpt = null
@@ -5585,58 +5587,58 @@ namespace Microsoft.CodeAnalysis
 
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49629, 49836);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 49703, 49910);
 
                     var
-                    emitOptions = f_127_49647_49835(f_127_49647_49725(f_127_49647_49668(f_127_49647_49656()), outputName), f_127_49764_49834(finalPdbFilePath, f_127_49816_49833(f_127_49816_49825())))
+                    emitOptions = f_127_49721_49909(f_127_49721_49799(f_127_49721_49742(f_127_49721_49730()), outputName), f_127_49838_49908(finalPdbFilePath, f_127_49890_49907(f_127_49890_49899())))
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50088, 50355) || true) && (f_127_50092_50159(f_127_50092_50123(f_127_50092_50114(f_127_50092_50101())), "pdb-path-determinism") && (DynAbs.Tracing.TraceSender.Expression_True(127, 50092, 50209) && !f_127_50164_50209(f_127_50185_50208(emitOptions))))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50162, 50429) || true) && (f_127_50166_50233(f_127_50166_50197(f_127_50166_50188(f_127_50166_50175())), "pdb-path-determinism") && (DynAbs.Tracing.TraceSender.Expression_True(127, 50166, 50283) && !f_127_50238_50283(f_127_50259_50282(emitOptions))))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 50088, 50355);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50251, 50336);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 50162, 50429);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50325, 50410);
 
-                        emitOptions = f_127_50265_50335(emitOptions, f_127_50293_50334(f_127_50310_50333(emitOptions)));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 50088, 50355);
+                        emitOptions = f_127_50339_50409(emitOptions, f_127_50367_50408(f_127_50384_50407(emitOptions)));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 50162, 50429);
                     }
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50375, 51086) || true) && (f_127_50379_50399(f_127_50379_50388()) != null)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50449, 51160) || true) && (f_127_50453_50473(f_127_50453_50462()) != null)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 50375, 51086);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50449, 50693);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 50449, 51160);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50523, 50767);
 
                         var
-                        sourceLinkStreamOpt = f_127_50475_50692(this, f_127_50510_50530(f_127_50510_50519()), diagnostics, FileMode.Open, FileAccess.Read, FileShare.Read)
+                        sourceLinkStreamOpt = f_127_50549_50766(this, f_127_50584_50604(f_127_50584_50593()), diagnostics, FileMode.Open, FileAccess.Read, FileShare.Read)
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50717, 51067) || true) && (sourceLinkStreamOpt != null)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50791, 51141) || true) && (sourceLinkStreamOpt != null)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 50717, 51067);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50798, 51044);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 50791, 51141);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 50872, 51118);
 
-                            sourceLinkStreamDisposerOpt = f_127_50828_51043(sourceLinkStreamOpt, f_127_50934_50954(f_127_50934_50943()), diagnostics, f_127_51027_51042());
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 50717, 51067);
+                            sourceLinkStreamDisposerOpt = f_127_50902_51117(sourceLinkStreamOpt, f_127_51008_51028(f_127_51008_51017()), diagnostics, f_127_51101_51116());
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 50791, 51141);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 50375, 51086);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 50449, 51160);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51106, 51562);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51180, 51636);
 
                     var
-                    moduleBeingBuilt = f_127_51129_51561(compilation, diagnostics, f_127_51232_51259(f_127_51232_51241()), emitOptions, debugEntryPoint: null, sourceLinkStream: f_127_51378_51413_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(sourceLinkStreamDisposerOpt, 127, 51378, 51413)?.Stream), embeddedTexts: embeddedTexts, testData: null, cancellationToken: cancellationToken)
+                    moduleBeingBuilt = f_127_51203_51635(compilation, diagnostics, f_127_51306_51333(f_127_51306_51315()), emitOptions, debugEntryPoint: null, sourceLinkStream: f_127_51452_51487_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(sourceLinkStreamDisposerOpt, 127, 51452, 51487)?.Stream), embeddedTexts: embeddedTexts, testData: null, cancellationToken: cancellationToken)
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51582, 60355) || true) && (moduleBeingBuilt != null)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51656, 60429) || true) && (moduleBeingBuilt != null)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 51582, 60355);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51652, 51665);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 51656, 60429);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51726, 51739);
 
                         bool
                         success
@@ -5644,358 +5646,358 @@ namespace Microsoft.CodeAnalysis
 
                         try
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51741, 52151);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 51815, 52225);
 
-                            success = f_127_51751_52150(compilation, moduleBeingBuilt, f_127_51855_51872(f_127_51855_51864()), f_127_51903_51931(emitOptions), f_127_51962_51994(emitOptions), diagnostics, filterOpt: null, cancellationToken: cancellationToken);
+                            success = f_127_51825_52224(compilation, moduleBeingBuilt, f_127_51929_51946(f_127_51929_51938()), f_127_51977_52005(emitOptions), f_127_52036_52068(emitOptions), diagnostics, filterOpt: null, cancellationToken: cancellationToken);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 52752, 52975) || true) && (analyzerDriver != null && (DynAbs.Tracing.TraceSender.Expression_True(127, 52756, 52819) && f_127_52782_52819_M(!diagnostics.IsEmptyWithoutResolution)))
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 52826, 53049) || true) && (analyzerDriver != null && (DynAbs.Tracing.TraceSender.Expression_True(127, 52830, 52893) && f_127_52856_52893_M(!diagnostics.IsEmptyWithoutResolution)))
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 52752, 52975);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 52877, 52948);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 52826, 53049);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 52951, 53022);
 
-                                f_127_52877_52947(analyzerDriver, diagnostics, compilation);
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 52752, 52975);
+                                f_127_52951_53021(analyzerDriver, diagnostics, compilation);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 52826, 53049);
                             }
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53003, 53142) || true) && (f_127_53007_53041(diagnostics))
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53077, 53216) || true) && (f_127_53081_53115(diagnostics))
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 53003, 53142);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53099, 53115);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 53077, 53216);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53173, 53189);
 
                                 success = false;
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 53003, 53142);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 53077, 53216);
                             }
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53170, 56483) || true) && (success)
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53244, 56557) || true) && (success)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 53170, 56483);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53435, 53486);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 53244, 56557);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53509, 53560);
 
                                 NoThrowStreamDisposer?
                                 xmlStreamDisposerOpt = null
                                 ;
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53518, 54953) || true) && (finalXmlFilePath != null)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53592, 55027) || true) && (finalXmlFilePath != null)
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 53518, 54953);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53612, 53996);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 53592, 55027);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 53686, 54070);
 
                                     var
-                                    xmlStreamOpt = f_127_53631_53995(this, finalXmlFilePath, diagnostics, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete)
+                                    xmlStreamOpt = f_127_53705_54069(this, finalXmlFilePath, diagnostics, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete)
                                     ;
 
-                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54032, 54172) || true) && (xmlStreamOpt == null)
+                                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54106, 54246) || true) && (xmlStreamOpt == null)
                                     )
 
                                     {
-                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 54032, 54172);
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54130, 54137);
+                                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 54106, 54246);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54204, 54211);
 
                                         return;
-                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 54032, 54172);
+                                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 54106, 54246);
                                     }
 
                                     try
                                     {
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54284, 54310);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54358, 54384);
 
-                                        f_127_54284_54309(xmlStreamOpt, 0);
+                                        f_127_54358_54383(xmlStreamOpt, 0);
                                     }
                                     catch (Exception e)
                                     {
-                                        DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 54379, 54628);
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54471, 54548);
+                                        DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 54453, 54702);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54545, 54622);
 
-                                        f_127_54471_54547(f_127_54471_54486(), e, finalXmlFilePath, diagnostics);
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54586, 54593);
+                                        f_127_54545_54621(f_127_54545_54560(), e, finalXmlFilePath, diagnostics);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54660, 54667);
 
                                         return;
-                                        DynAbs.Tracing.TraceSender.TraceExitCatch(127, 54379, 54628);
+                                        DynAbs.Tracing.TraceSender.TraceExitCatch(127, 54453, 54702);
                                     }
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54662, 54922);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54736, 54996);
 
-                                    xmlStreamDisposerOpt = f_127_54685_54921(xmlStreamOpt, finalXmlFilePath, diagnostics, f_127_54905_54920());
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 53518, 54953);
+                                    xmlStreamDisposerOpt = f_127_54759_54995(xmlStreamOpt, finalXmlFilePath, diagnostics, f_127_54979_54994());
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 53592, 55027);
                                 }
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 54985, 55980);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55059, 56054);
                                 using (xmlStreamDisposerOpt)
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55078, 55949);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55152, 56023);
                                     using (var
-                                    win32ResourceStreamOpt = f_127_55114_55185(f_127_55132_55147(), f_127_55149_55158(), compilation, diagnostics)
+                                    win32ResourceStreamOpt = f_127_55188_55259(f_127_55206_55221(), f_127_55223_55232(), compilation, diagnostics)
                                     )
                                     {
 
-                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55259, 55427) || true) && (f_127_55263_55299(diagnostics))
+                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55333, 55501) || true) && (f_127_55337_55373(diagnostics))
                                         )
 
                                         {
-                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 55259, 55427);
-                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55381, 55388);
+                                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 55333, 55501);
+                                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55455, 55462);
 
                                             return;
-                                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 55259, 55427);
+                                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 55333, 55501);
                                         }
-                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55467, 55914);
+                                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 55541, 55988);
 
-                                        success = f_127_55477_55913(compilation, moduleBeingBuilt, f_127_55632_55660_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(xmlStreamDisposerOpt, 127, 55632, 55660)?.Stream), win32ResourceStreamOpt, f_127_55768_55798(emitOptions), diagnostics, cancellationToken);
-                                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 55078, 55949);
+                                        success = f_127_55551_55987(compilation, moduleBeingBuilt, f_127_55706_55734_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(xmlStreamDisposerOpt, 127, 55706, 55734)?.Stream), win32ResourceStreamOpt, f_127_55842_55872(emitOptions), diagnostics, cancellationToken);
+                                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 55152, 56023);
                                     }
-                                    DynAbs.Tracing.TraceSender.TraceExitUsing(127, 54985, 55980);
+                                    DynAbs.Tracing.TraceSender.TraceExitUsing(127, 55059, 56054);
                                 }
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56012, 56168) || true) && (f_127_56016_56056_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(xmlStreamDisposerOpt, 127, 56016, 56056)?.HasFailedToDispose) == true)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56086, 56242) || true) && (f_127_56090_56130_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(xmlStreamDisposerOpt, 127, 56090, 56130)?.HasFailedToDispose) == true)
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 56012, 56168);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56130, 56137);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 56086, 56242);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56204, 56211);
 
                                     return;
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 56012, 56168);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 56086, 56242);
                                 }
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56278, 56456) || true) && (success)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56352, 56530) || true) && (success)
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 56278, 56456);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56355, 56425);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 56352, 56530);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56429, 56499);
 
-                                    f_127_56355_56424(compilation, null, diagnostics, cancellationToken);
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 56278, 56456);
+                                    f_127_56429_56498(compilation, null, diagnostics, cancellationToken);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 56352, 56530);
                                 }
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 53170, 56483);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 53244, 56557);
                             }
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56511, 56543);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56585, 56617);
 
-                            f_127_56511_56542(
+                            f_127_56585_56616(
                                                     compilation, null);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56571, 57450) || true) && (analyzerDriver != null)
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56645, 57524) || true) && (analyzerDriver != null)
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 56571, 57450);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56901, 56978);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 56645, 57524);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 56975, 57052);
 
                                 var
-                                hostDiagnostics = f_127_56923_56977(f_127_56923_56970(analyzerDriver, compilation))
+                                hostDiagnostics = f_127_56997_57051(f_127_56997_57044(analyzerDriver, compilation))
                                 ;
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57008, 57046);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57082, 57120);
 
-                                f_127_57008_57045(diagnostics, hostDiagnostics);
+                                f_127_57082_57119(diagnostics, hostDiagnostics);
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57078, 57423) || true) && (f_127_57082_57119_M(!diagnostics.IsEmptyWithoutResolution))
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57152, 57497) || true) && (f_127_57156_57193_M(!diagnostics.IsEmptyWithoutResolution))
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 57078, 57423);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57321, 57392);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 57152, 57497);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57395, 57466);
 
-                                    f_127_57321_57391(                                // Apply diagnostic suppressions for analyzer and/or compiler diagnostics from diagnostic suppressors.
+                                    f_127_57395_57465(                                // Apply diagnostic suppressions for analyzer and/or compiler diagnostics from diagnostic suppressors.
                                                                     analyzerDriver, diagnostics, compilation);
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 57078, 57423);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 57152, 57497);
                                 }
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 56571, 57450);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 56645, 57524);
                             }
                         }
                         finally
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 57495, 57613);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57551, 57590);
+                            DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 57569, 57687);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57625, 57664);
 
-                            f_127_57551_57589(moduleBeingBuilt);
-                            DynAbs.Tracing.TraceSender.TraceExitFinally(127, 57495, 57613);
+                            f_127_57625_57663(moduleBeingBuilt);
+                            DynAbs.Tracing.TraceSender.TraceExitFinally(127, 57569, 57687);
                         }
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57637, 57764) || true) && (f_127_57641_57675(diagnostics))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57711, 57838) || true) && (f_127_57715_57749(diagnostics))
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 57637, 57764);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57725, 57741);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 57711, 57838);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57799, 57815);
 
                             success = false;
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 57637, 57764);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 57711, 57838);
                         }
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57788, 60336) || true) && (success)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57862, 60410) || true) && (success)
                         )
 
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 57788, 60336);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57849, 57926);
+                            DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 57862, 60410);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57923, 58000);
 
                             var
-                            peStreamProvider = f_127_57872_57925(this, finalPeFilePath)
+                            peStreamProvider = f_127_57946_57999(this, finalPeFilePath)
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 57952, 58065);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58026, 58139);
 
                             var
-                            pdbStreamProviderOpt = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 57979, 58000) || ((f_127_57979_58000(f_127_57979_57988()) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 58003, 58057)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 58060, 58064))) ? f_127_58003_58057(this, finalPdbFilePath) : null
+                            pdbStreamProviderOpt = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 58053, 58074) || ((f_127_58053_58074(f_127_58053_58062()) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 58077, 58131)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 58134, 58138))) ? f_127_58077_58131(this, finalPdbFilePath) : null
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58093, 58150);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58167, 58224);
 
                             string?
-                            finalRefPeFilePath = f_127_58122_58149(f_127_58122_58131())
+                            finalRefPeFilePath = f_127_58196_58223(f_127_58196_58205())
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58176, 58298);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58250, 58372);
 
                             var
-                            refPeStreamProviderOpt = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 58205, 58231) || ((finalRefPeFilePath != null && DynAbs.Tracing.TraceSender.Conditional_F2(127, 58234, 58290)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 58293, 58297))) ? f_127_58234_58290(this, finalRefPeFilePath) : null
+                            refPeStreamProviderOpt = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 58279, 58305) || ((finalRefPeFilePath != null && DynAbs.Tracing.TraceSender.Conditional_F2(127, 58308, 58364)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 58367, 58371))) ? f_127_58308_58364(this, finalRefPeFilePath) : null
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58326, 58362);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58400, 58436);
 
                             RSAParameters?
                             privateKeyOpt = null
                             ;
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58388, 58644) || true) && (f_127_58392_58430(f_127_58392_58411(compilation)) != null && (DynAbs.Tracing.TraceSender.Expression_True(127, 58392, 58470) && f_127_58442_58470(compilation)) && (DynAbs.Tracing.TraceSender.Expression_True(127, 58392, 58505) && f_127_58474_58505_M(!f_127_58475_58494(compilation).PublicSign)))
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58462, 58718) || true) && (f_127_58466_58504(f_127_58466_58485(compilation)) != null && (DynAbs.Tracing.TraceSender.Expression_True(127, 58466, 58544) && f_127_58516_58544(compilation)) && (DynAbs.Tracing.TraceSender.Expression_True(127, 58466, 58579) && f_127_58548_58579_M(!f_127_58549_58568(compilation).PublicSign)))
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 58388, 58644);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58563, 58617);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 58462, 58718);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58637, 58691);
 
-                                privateKeyOpt = f_127_58579_58605(compilation).PrivateKey;
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 58388, 58644);
+                                privateKeyOpt = f_127_58653_58679(compilation).PrivateKey;
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 58462, 58718);
                             }
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58851, 58931);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58925, 59005);
 
-                            emitOptions = f_127_58865_58930(emitOptions, f_127_58908_58929(this));
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 58959, 59493);
+                            emitOptions = f_127_58939_59004(emitOptions, f_127_58982_59003(this));
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59033, 59567);
 
-                            success = f_127_58969_59492(compilation, moduleBeingBuilt, peStreamProvider, refPeStreamProviderOpt, pdbStreamProviderOpt, testSymWriterFactory: null, diagnostics: diagnostics, emitOptions: emitOptions, privateKeyOpt: privateKeyOpt, cancellationToken: cancellationToken);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59521, 59557);
+                            success = f_127_59043_59566(compilation, moduleBeingBuilt, peStreamProvider, refPeStreamProviderOpt, pdbStreamProviderOpt, testSymWriterFactory: null, diagnostics: diagnostics, emitOptions: emitOptions, privateKeyOpt: privateKeyOpt, cancellationToken: cancellationToken);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59595, 59631);
 
-                            f_127_59521_59556(
+                            f_127_59595_59630(
                                                     peStreamProvider, diagnostics);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59583, 59626);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59657, 59700);
 
-                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(refPeStreamProviderOpt, 127, 59583, 59625)?.Close(diagnostics), 127, 59606, 59625);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59652, 59693);
+                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(refPeStreamProviderOpt, 127, 59657, 59699)?.Close(diagnostics), 127, 59680, 59699);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59726, 59767);
 
-                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(pdbStreamProviderOpt, 127, 59652, 59692)?.Close(diagnostics), 127, 59673, 59692);
+                            DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(pdbStreamProviderOpt, 127, 59726, 59766)?.Close(diagnostics), 127, 59747, 59766);
 
-                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59721, 60313) || true) && (success && (DynAbs.Tracing.TraceSender.Expression_True(127, 59725, 59762) && touchedFilesLogger != null))
+                            if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59795, 60387) || true) && (success && (DynAbs.Tracing.TraceSender.Expression_True(127, 59799, 59836) && touchedFilesLogger != null))
                             )
 
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 59721, 60313);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 59795, 60387);
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59820, 59997) || true) && (pdbStreamProviderOpt != null)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59894, 60071) || true) && (pdbStreamProviderOpt != null)
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 59820, 59997);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59918, 59966);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 59894, 60071);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 59992, 60040);
 
-                                    f_127_59918_59965(touchedFilesLogger, finalPdbFilePath);
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 59820, 59997);
+                                    f_127_59992_60039(touchedFilesLogger, finalPdbFilePath);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 59894, 60071);
                                 }
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60027, 60209) || true) && (refPeStreamProviderOpt != null)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60101, 60283) || true) && (refPeStreamProviderOpt != null)
                                 )
 
                                 {
-                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60027, 60209);
-                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60127, 60178);
+                                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60101, 60283);
+                                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60201, 60252);
 
-                                    f_127_60127_60177(touchedFilesLogger, finalRefPeFilePath!);
-                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60027, 60209);
+                                    f_127_60201_60251(touchedFilesLogger, finalRefPeFilePath!);
+                                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60101, 60283);
                                 }
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60239, 60286);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60313, 60360);
 
-                                f_127_60239_60285(touchedFilesLogger, finalPeFilePath);
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 59721, 60313);
+                                f_127_60313_60359(touchedFilesLogger, finalPeFilePath);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 59795, 60387);
                             }
-                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 57788, 60336);
+                            DynAbs.Tracing.TraceSender.TraceExitCondition(127, 57862, 60410);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 51582, 60355);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 51656, 60429);
                     }
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60375, 60483) || true) && (f_127_60379_60415(diagnostics))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60449, 60557) || true) && (f_127_60453_60489(diagnostics))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60375, 60483);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60457, 60464);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60449, 60557);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60531, 60538);
 
                         return;
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60375, 60483);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60449, 60557);
                     }
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 60512, 60606);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60552, 60591);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinally(127, 60586, 60680);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60626, 60665);
 
-                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(sourceLinkStreamDisposerOpt, 127, 60552, 60590)?.Dispose(), 127, 60580, 60590);
-                    DynAbs.Tracing.TraceSender.TraceExitFinally(127, 60512, 60606);
+                    DynAbs.Tracing.TraceSender.TraceInvocationWrapper(() => DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(sourceLinkStreamDisposerOpt, 127, 60626, 60664)?.Dispose(), 127, 60654, 60664);
+                    DynAbs.Tracing.TraceSender.TraceExitFinally(127, 60586, 60680);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60622, 60737) || true) && (f_127_60626_60673_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(sourceLinkStreamDisposerOpt, 127, 60626, 60673)?.HasFailedToDispose) == true)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60696, 60811) || true) && (f_127_60700_60747_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(sourceLinkStreamDisposerOpt, 127, 60700, 60747)?.HasFailedToDispose) == true)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60622, 60737);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60715, 60722);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60696, 60811);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60789, 60796);
 
                     return;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60622, 60737);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60696, 60811);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60753, 60802);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60827, 60876);
 
                 cancellationToken.ThrowIfCancellationRequested();
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60818, 61101) || true) && (analyzerExceptionDiagnostics != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60892, 61175) || true) && (analyzerExceptionDiagnostics != null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60818, 61101);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60892, 60943);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60892, 61175);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60966, 61017);
 
-                    f_127_60892_60942(diagnostics, analyzerExceptionDiagnostics);
+                    f_127_60966_61016(diagnostics, analyzerExceptionDiagnostics);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 60961, 61086) || true) && (f_127_60965_61018(analyzerExceptionDiagnostics))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61035, 61160) || true) && (f_127_61039_61092(analyzerExceptionDiagnostics))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 60961, 61086);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61060, 61067);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 61035, 61160);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61134, 61141);
 
                         return;
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60961, 61086);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 61035, 61160);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60818, 61101);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 60892, 61175);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61117, 61166);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61191, 61240);
 
                 cancellationToken.ThrowIfCancellationRequested();
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61182, 61311) || true) && (!f_127_61187_61255(this, diagnostics, touchedFilesLogger, finalXmlFilePath))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61256, 61385) || true) && (!f_127_61261_61329(this, diagnostics, touchedFilesLogger, finalXmlFilePath))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 61182, 61311);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61289, 61296);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 61256, 61385);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61363, 61370);
 
                     return;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 61182, 61311);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 61256, 61385);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 40174, 61322);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 40248, 61396);
 
                 int
-                f_127_41149_41260(Microsoft.CodeAnalysis.Compilation
+                f_127_41223_41334(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.CompilationStage
                 stage, bool
                 includeEarlierStages, Microsoft.CodeAnalysis.DiagnosticBag
@@ -6003,134 +6005,134 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     this_param.GetDiagnostics(stage, includeEarlierStages: includeEarlierStages, diagnostics, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41149, 41260);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41223, 41334);
                     return 0;
                 }
 
 
                 bool
-                f_127_41279_41315(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_41353_41389(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressableErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41279, 41315);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41353, 41389);
                     return return_v;
                 }
 
 
                 bool
-                f_127_41456_41474_M(bool
+                f_127_41530_41548_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41456, 41474);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41530, 41548);
                     return return_v;
                 }
 
 
                 bool
-                f_127_41478_41497_M(bool
+                f_127_41552_41571_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41478, 41497);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41552, 41571);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
-                f_127_41560_41603()
+                f_127_41634_41677()
                 {
                     var return_v = CompilerAnalyzerConfigOptionsProvider.Empty;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41560, 41603);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41634, 41677);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_41626_41635()
+                f_127_41700_41709()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41626, 41635);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 41700, 41709);
                     return return_v;
                 }
 
 
                 int
-                f_127_41708_41749(bool
+                f_127_41782_41823(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41708, 41749);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41782, 41823);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult
-                f_127_41872_41927(Microsoft.CodeAnalysis.AnalyzerConfigSet
+                f_127_41946_42001(Microsoft.CodeAnalysis.AnalyzerConfigSet
                 this_param, string
                 sourcePath)
                 {
                     var return_v = this_param.GetOptionsForSourcePath(sourcePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41872, 41927);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41946, 42001);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
-                f_127_41838_41944(System.Collections.Immutable.ImmutableDictionary<string, string>
+                f_127_41912_42018(System.Collections.Immutable.ImmutableDictionary<string, string>
                 properties)
                 {
                     var return_v = new Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions(properties);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41838, 41944);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41912, 42018);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
-                f_127_41797_41945(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
+                f_127_41871_42019(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 this_param, Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptions
                 globalOptions)
                 {
                     var return_v = this_param.WithGlobalOptions((Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptions)globalOptions);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41797, 41945);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 41871, 42019);
                     return return_v;
                 }
 
 
                 int
-                f_127_42499_42539(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_42573_42613(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics)
                 {
                     this_param.AddRange<Microsoft.CodeAnalysis.Diagnostic>(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 42499, 42539);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 42573, 42613);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
-                f_127_42420_42449_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
+                f_127_42494_42523_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 42420, 42449);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 42494, 42523);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_42723_42746(Microsoft.CodeAnalysis.Compilation
+                f_127_42797_42820(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.SyntaxTrees;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 42723, 42746);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 42797, 42820);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
-                f_127_42612_42907(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
+                f_127_42686_42981(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 existing, System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
                 syntaxTrees, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
                 sourceFileAnalyzerConfigOptions, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalText>
@@ -6138,42 +6140,42 @@ namespace Microsoft.CodeAnalysis
                 additionalFileOptions)
                 {
                     var return_v = UpdateAnalyzerConfigOptionsProvider(existing, syntaxTrees, sourceFileAnalyzerConfigOptions, additionalFiles, additionalFileOptions);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 42612, 42907);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 42686, 42981);
                     return return_v;
                 }
 
 
                 bool
-                f_127_42951_42970_M(bool
+                f_127_43025_43044_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 42951, 42970);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43025, 43044);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_43241_43250()
+                f_127_43315_43324()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43241, 43250);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43315, 43324);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.ParseOptions
-                f_127_43241_43263(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_43315_43337(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ParseOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43241, 43263);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43315, 43337);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Compilation
-                f_127_43214_43334(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_43288_43408(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.Compilation
                 input, Microsoft.CodeAnalysis.ParseOptions
                 parseOptions, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ISourceGenerator>
@@ -6183,325 +6185,325 @@ namespace Microsoft.CodeAnalysis
                 generatorDiagnostics)
                 {
                     var return_v = this_param.RunGenerators(input, parseOptions, generators, (Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptionsProvider)analyzerConfigOptionsProvider, additionalTexts, generatorDiagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43214, 43334);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43288, 43408);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_43386_43395()
+                f_127_43460_43469()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43386, 43395);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43460, 43469);
                     return return_v;
                 }
 
 
                 bool
-                f_127_43385_43423_M(bool
+                f_127_43459_43497_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43385, 43423);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43459, 43497);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_43503_43512()
+                f_127_43577_43586()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43503, 43512);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43577, 43586);
                     return return_v;
                 }
 
 
                 string?
-                f_127_43503_43542(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_43577_43616(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.GeneratedFilesOutputDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43503, 43542);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43577, 43616);
                     return return_v;
                 }
 
 
                 bool
-                f_127_43477_43543(string?
+                f_127_43551_43617(string?
                 value)
                 {
                     var return_v = string.IsNullOrWhiteSpace(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43477, 43543);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43551, 43617);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_43595_43618(Microsoft.CodeAnalysis.Compilation
+                f_127_43669_43692(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.SyntaxTrees;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43595, 43618);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43669, 43692);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_43624_43633()
+                f_127_43698_43707()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43624, 43633);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43698, 43707);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_43595_43653(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_43669_43727(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
                 source, int
                 count)
                 {
                     var return_v = source.Skip<Microsoft.CodeAnalysis.SyntaxTree>(count);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43595, 43653);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43669, 43727);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_43595_43662(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_43669_43736(System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>
                 source)
                 {
                     var return_v = source.ToList<Microsoft.CodeAnalysis.SyntaxTree>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43595, 43662);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43669, 43736);
                     return return_v;
                 }
 
 
                 int
-                f_127_43791_43817(System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_43865_43891(System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
                 this_param)
                 {
                     var return_v = this_param.Count;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43791, 43817);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43865, 43891);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
-                f_127_43737_43818(int
+                f_127_43811_43892(int
                 capacity)
                 {
                     var return_v = ArrayBuilder<AnalyzerConfigOptionsResult>.GetInstance(capacity);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43737, 43818);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43811, 43892);
                     return return_v;
                 }
 
 
                 int
-                f_127_43913_43939(System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_43987_44013(System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
                 this_param)
                 {
                     var return_v = this_param.Count;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43913, 43939);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 43987, 44013);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.EmbeddedText>
-                f_127_43874_43940(int
+                f_127_43948_44014(int
                 capacity)
                 {
                     var return_v = ArrayBuilder<EmbeddedText>.GetInstance(capacity);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43874, 43940);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 43948, 44014);
                     return return_v;
                 }
 
 
                 string
-                f_127_44154_44167(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_44228_44241(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 44154, 44167);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 44228, 44241);
                     return return_v;
                 }
 
 
                 bool
-                f_127_44128_44168(string
+                f_127_44202_44242(string
                 value)
                 {
                     var return_v = string.IsNullOrWhiteSpace(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44128, 44168);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44202, 44242);
                     return return_v;
                 }
 
 
                 int
-                f_127_44114_44169(bool
+                f_127_44188_44243(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44114, 44169);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44188, 44243);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.Text.SourceText
-                f_127_44298_44329(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_44372_44403(Microsoft.CodeAnalysis.SyntaxTree
                 this_param, System.Threading.CancellationToken
                 cancellationToken)
                 {
                     var return_v = this_param.GetText(cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44298, 44329);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44372, 44403);
                     return return_v;
                 }
 
 
                 string
-                f_127_44509_44522(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_44583_44596(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 44509, 44522);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 44583, 44596);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.EmbeddedText
-                f_127_44485_44535(string
+                f_127_44559_44609(string
                 filePath, Microsoft.CodeAnalysis.Text.SourceText
                 text)
                 {
                     var return_v = EmbeddedText.FromSource(filePath, text);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44485, 44535);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44559, 44609);
                     return return_v;
                 }
 
 
                 int
-                f_127_44461_44536(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.EmbeddedText>
+                f_127_44535_44610(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.EmbeddedText>
                 this_param, Microsoft.CodeAnalysis.EmbeddedText
                 item)
                 {
                     this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44461, 44536);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44535, 44610);
                     return 0;
                 }
 
 
                 string
-                f_127_44739_44752(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_44813_44826(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 44739, 44752);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 44813, 44826);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult
-                f_127_44696_44753(Microsoft.CodeAnalysis.AnalyzerConfigSet
+                f_127_44770_44827(Microsoft.CodeAnalysis.AnalyzerConfigSet
                 this_param, string
                 sourcePath)
                 {
                     var return_v = this_param.GetOptionsForSourcePath(sourcePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44696, 44753);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44770, 44827);
                     return return_v;
                 }
 
 
                 int
-                f_127_44669_44754(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
+                f_127_44743_44828(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
                 this_param, Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult
                 item)
                 {
                     this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44669, 44754);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44743, 44828);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_45011_45020()
+                f_127_45085_45094()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45011, 45020);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45085, 45094);
                     return return_v;
                 }
 
 
                 string
-                f_127_45053_45066(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_45127_45140(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.FilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45053, 45066);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45127, 45140);
                     return return_v;
                 }
 
 
                 string
-                f_127_44998_45067(string
+                f_127_45072_45141(string
                 path1, string
                 path2)
                 {
                     var return_v = Path.Combine(path1, path2);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44998, 45067);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45072, 45141);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_45123_45132()
+                f_127_45197_45206()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45123, 45132);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45197, 45206);
                     return return_v;
                 }
 
 
                 string?
-                f_127_45123_45162(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_45197_45236(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.GeneratedFilesOutputDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45123, 45162);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45197, 45236);
                     return return_v;
                 }
 
 
                 bool
-                f_127_45106_45163(string?
+                f_127_45180_45237(string?
                 path)
                 {
                     var return_v = Directory.Exists(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45106, 45163);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45180, 45237);
                     return return_v;
                 }
 
 
                 string?
-                f_127_45263_45290(string
+                f_127_45337_45364(string
                 path)
                 {
                     var return_v = Path.GetDirectoryName(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45263, 45290);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45337, 45364);
                     return return_v;
                 }
 
 
                 System.IO.DirectoryInfo
-                f_127_45237_45291(string?
+                f_127_45311_45365(string?
                 path)
                 {
                     var return_v = Directory.CreateDirectory(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45237, 45291);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45311, 45365);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_45380_45482(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_45454_45556(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.FileMode
@@ -6510,229 +6512,229 @@ namespace Microsoft.CodeAnalysis
                 share)
                 {
                     var return_v = this_param.OpenFile(filePath, diagnostics, mode, access, share);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45380, 45482);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45454, 45556);
                     return return_v;
                 }
 
 
                 System.Text.Encoding?
-                f_127_45628_45641(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_45702_45715(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.Encoding;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45628, 45641);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45702, 45715);
                     return return_v;
                 }
 
 
                 int
-                f_127_45615_45652(bool
+                f_127_45689_45726(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45615, 45652);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45689, 45726);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_45771_45786()
+                f_127_45845_45860()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45771, 45786);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45845, 45860);
                     return return_v;
                 }
 
 
                 Roslyn.Utilities.NoThrowStreamDisposer
-                f_127_45714_45787(System.IO.Stream
+                f_127_45788_45861(System.IO.Stream
                 stream, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider)
                 {
                     var return_v = new Roslyn.Utilities.NoThrowStreamDisposer(stream, filePath, diagnostics, messageProvider);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45714, 45787);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45788, 45861);
                     return return_v;
                 }
 
 
                 System.Text.Encoding
-                f_127_45874_45887(Microsoft.CodeAnalysis.SyntaxTree
+                f_127_45948_45961(Microsoft.CodeAnalysis.SyntaxTree
                 this_param)
                 {
                     var return_v = this_param.Encoding;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45874, 45887);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 45948, 45961);
                     return return_v;
                 }
 
 
                 System.IO.StreamWriter
-                f_127_45845_45888(System.IO.Stream
+                f_127_45919_45962(System.IO.Stream
                 stream, System.Text.Encoding
                 encoding)
                 {
                     var return_v = new System.IO.StreamWriter(stream, encoding);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45845, 45888);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45919, 45962);
                     return return_v;
                 }
 
 
                 int
-                f_127_45929_45972(Microsoft.CodeAnalysis.Text.SourceText
+                f_127_46003_46046(Microsoft.CodeAnalysis.Text.SourceText
                 this_param, System.IO.StreamWriter
                 textWriter, System.Threading.CancellationToken
                 cancellationToken)
                 {
                     this_param.Write((System.IO.TextWriter)textWriter, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 45929, 45972);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46003, 46046);
                     return 0;
                 }
 
 
                 System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
-                f_127_44036_44056_I(System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
+                f_127_44110_44130_I(System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44036, 44056);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 44110, 44130);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
-                f_127_46553_46589(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
+                f_127_46627_46663(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
                 this_param)
                 {
                     var return_v = this_param.ToImmutable();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46553, 46589);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46627, 46663);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
-                f_127_46374_46590(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
+                f_127_46448_46664(Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 existing, System.Collections.Generic.List<Microsoft.CodeAnalysis.SyntaxTree>
                 syntaxTrees, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AnalyzerConfigOptionsResult>
                 sourceFileAnalyzerConfigOptions)
                 {
                     var return_v = UpdateAnalyzerConfigOptionsProvider(existing, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.SyntaxTree>)syntaxTrees, sourceFileAnalyzerConfigOptions);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46374, 46590);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46448, 46664);
                     return return_v;
                 }
 
 
                 int
-                f_127_46776_46802(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.EmbeddedText>
+                f_127_46850_46876(Microsoft.CodeAnalysis.PooledObjects.ArrayBuilder<Microsoft.CodeAnalysis.EmbeddedText>
                 this_param)
                 {
                     this_param.Free();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46776, 46802);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46850, 46876);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.AnalyzerOptions
-                f_127_46899_46989(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_46973_47063(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalText>
                 additionalTextFiles, Microsoft.CodeAnalysis.Diagnostics.CompilerAnalyzerConfigOptionsProvider
                 analyzerConfigOptionsProvider)
                 {
                     var return_v = this_param.CreateAnalyzerOptions(additionalTextFiles, (Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptionsProvider)analyzerConfigOptionsProvider);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46899, 46989);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 46973, 47063);
                     return return_v;
                 }
 
 
                 bool
-                f_127_47014_47032_M(bool
+                f_127_47088_47106_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 47014, 47032);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 47088, 47106);
                     return return_v;
                 }
 
 
                 System.Threading.CancellationTokenSource
-                f_127_47088_47154(params System.Threading.CancellationToken[]
+                f_127_47162_47228(params System.Threading.CancellationToken[]
                 tokens)
                 {
                     var return_v = CancellationTokenSource.CreateLinkedTokenSource(tokens);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47088, 47154);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47162, 47228);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.DiagnosticBag
-                f_127_47208_47227()
+                f_127_47282_47301()
                 {
                     var return_v = new Microsoft.CodeAnalysis.DiagnosticBag();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47208, 47227);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47282, 47301);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_47670_47679()
+                f_127_47744_47753()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 47670, 47679);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 47744, 47753);
                     return return_v;
                 }
 
 
                 string?
-                f_127_47670_47692(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_47744_47766(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ErrorLogPath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 47670, 47692);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 47744, 47766);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.AnalyzerManager
-                f_127_47992_48022(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
+                f_127_48066_48096(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
                 analyzers)
                 {
                     var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerManager(analyzers);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47992, 48022);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 48066, 48096);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_48108_48117()
+                f_127_48182_48191()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48108, 48117);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48182, 48191);
                     return return_v;
                 }
 
 
                 bool
-                f_127_48108_48132(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_48182_48206(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ReportAnalyzer;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48108, 48132);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48182, 48206);
                     return return_v;
                 }
 
 
                 System.Threading.CancellationToken
-                f_127_48242_48259(System.Threading.CancellationTokenSource
+                f_127_48316_48333(System.Threading.CancellationTokenSource
                 this_param)
                 {
                     var return_v = this_param.Token;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48242, 48259);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48316, 48333);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
-                f_127_47806_48260(Microsoft.CodeAnalysis.Compilation
+                f_127_47880_48334(Microsoft.CodeAnalysis.Compilation
                 compilation, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer>
                 analyzers, Microsoft.CodeAnalysis.Diagnostics.AnalyzerOptions
                 options, Microsoft.CodeAnalysis.Diagnostics.AnalyzerManager
@@ -6744,42 +6746,42 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     var return_v = AnalyzerDriver.CreateAndAttachToCompilation(compilation, analyzers, options, analyzerManager, addExceptionDiagnostic, reportAnalyzer, severityFilter, out newCompilation, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47806, 48260);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 47880, 48334);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_48300_48309()
+                f_127_48374_48383()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48300, 48309);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48374, 48383);
                     return return_v;
                 }
 
 
                 bool
-                f_127_48300_48324(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_48374_48398(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ReportAnalyzer;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48300, 48324);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48374, 48398);
                     return return_v;
                 }
 
 
                 bool
-                f_127_48328_48346_M(bool
+                f_127_48402_48420_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48328, 48346);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 48402, 48420);
                     return return_v;
                 }
 
 
                 int
-                f_127_48397_48510(Microsoft.CodeAnalysis.Compilation
+                f_127_48471_48584(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.CompilationStage
                 stage, bool
                 includeEarlierStages, Microsoft.CodeAnalysis.DiagnosticBag
@@ -6787,69 +6789,49 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     this_param.GetDiagnostics(stage, includeEarlierStages: includeEarlierStages, diagnostics, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 48397, 48510);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 48471, 48584);
                     return 0;
                 }
 
 
                 bool
-                f_127_48529_48565(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_48603_48639(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressableErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 48529, 48565);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 48603, 48639);
                     return return_v;
                 }
 
 
                 string
-                f_127_49103_49152(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_49177_49226(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.Compilation
                 compilation, System.Threading.CancellationToken
                 cancellationToken)
                 {
                     var return_v = this_param.GetOutputFileName(compilation, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49103, 49152);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49177, 49226);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_49190_49199()
+                f_127_49264_49273()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49190, 49199);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49264, 49273);
                     return return_v;
                 }
 
 
                 string
-                f_127_49190_49229(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_49264_49303(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param, string
                 outputFileName)
                 {
                     var return_v = this_param.GetOutputFilePath(outputFileName);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49190, 49229);
-                    return return_v;
-                }
-
-
-                Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_49267_49276()
-                {
-                    var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49267, 49276);
-                    return return_v;
-                }
-
-
-                string
-                f_127_49267_49303(Microsoft.CodeAnalysis.CommandLineArguments
-                this_param, string
-                outputFileName)
-                {
-                    var return_v = this_param.GetPdbFilePath(outputFileName);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49267, 49303);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49264, 49303);
                     return return_v;
                 }
 
@@ -6863,218 +6845,238 @@ namespace Microsoft.CodeAnalysis
                 }
 
 
-                string?
-                f_127_49341_49368(Microsoft.CodeAnalysis.CommandLineArguments
-                this_param)
+                string
+                f_127_49341_49377(Microsoft.CodeAnalysis.CommandLineArguments
+                this_param, string
+                outputFileName)
                 {
-                    var return_v = this_param.DocumentationPath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49341, 49368);
+                    var return_v = this_param.GetPdbFilePath(outputFileName);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49341, 49377);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_49647_49656()
+                f_127_49415_49424()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49647, 49656);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49415, 49424);
+                    return return_v;
+                }
+
+
+                string?
+                f_127_49415_49442(Microsoft.CodeAnalysis.CommandLineArguments
+                this_param)
+                {
+                    var return_v = this_param.DocumentationPath;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49415, 49442);
+                    return return_v;
+                }
+
+
+                Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_49721_49730()
+                {
+                    var return_v = Arguments;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49721, 49730);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Emit.EmitOptions
-                f_127_49647_49668(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_49721_49742(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.EmitOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49647, 49668);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49721, 49742);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Emit.EmitOptions
-                f_127_49647_49725(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_49721_49799(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param, string
                 outputName)
                 {
                     var return_v = this_param.WithOutputNameOverride(outputName);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49647, 49725);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49721, 49799);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_49816_49825()
+                f_127_49890_49899()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49816, 49825);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49890, 49899);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, string>>
-                f_127_49816_49833(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_49890_49907(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.PathMap;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49816, 49833);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 49890, 49907);
                     return return_v;
                 }
 
 
                 string
-                f_127_49764_49834(string
+                f_127_49838_49908(string
                 filePath, System.Collections.Immutable.ImmutableArray<System.Collections.Generic.KeyValuePair<string, string>>
                 pathMap)
                 {
                     var return_v = PathUtilities.NormalizePathPrefix(filePath, pathMap);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49764, 49834);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49838, 49908);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Emit.EmitOptions
-                f_127_49647_49835(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_49721_49909(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param, string
                 path)
                 {
                     var return_v = this_param.WithPdbFilePath(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49647, 49835);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 49721, 49909);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_50092_50101()
+                f_127_50166_50175()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50092, 50101);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50166, 50175);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.ParseOptions
-                f_127_50092_50114(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_50166_50188(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ParseOptions;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50092, 50114);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50166, 50188);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IReadOnlyDictionary<string, string>
-                f_127_50092_50123(Microsoft.CodeAnalysis.ParseOptions
+                f_127_50166_50197(Microsoft.CodeAnalysis.ParseOptions
                 this_param)
                 {
                     var return_v = this_param.Features;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50092, 50123);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50166, 50197);
                     return return_v;
                 }
 
 
                 bool
-                f_127_50092_50159(System.Collections.Generic.IReadOnlyDictionary<string, string>
+                f_127_50166_50233(System.Collections.Generic.IReadOnlyDictionary<string, string>
                 this_param, string
                 key)
                 {
                     var return_v = this_param.ContainsKey(key);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50092, 50159);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50166, 50233);
                     return return_v;
                 }
 
 
                 string?
-                f_127_50185_50208(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_50259_50282(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param)
                 {
                     var return_v = this_param.PdbFilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50185, 50208);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50259, 50282);
                     return return_v;
                 }
 
 
                 bool
-                f_127_50164_50209(string?
+                f_127_50238_50283(string?
                 value)
                 {
                     var return_v = string.IsNullOrEmpty(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50164, 50209);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50238, 50283);
                     return return_v;
                 }
 
 
                 string
-                f_127_50310_50333(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_50384_50407(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param)
                 {
                     var return_v = this_param.PdbFilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50310, 50333);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50384, 50407);
                     return return_v;
                 }
 
 
                 string?
-                f_127_50293_50334(string
+                f_127_50367_50408(string
                 path)
                 {
                     var return_v = Path.GetFileName(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50293, 50334);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50367, 50408);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Emit.EmitOptions
-                f_127_50265_50335(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_50339_50409(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param, string
                 path)
                 {
                     var return_v = this_param.WithPdbFilePath(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50265, 50335);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50339, 50409);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_50379_50388()
+                f_127_50453_50462()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50379, 50388);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50453, 50462);
                     return return_v;
                 }
 
 
                 string?
-                f_127_50379_50399(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_50453_50473(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.SourceLink;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50379, 50399);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50453, 50473);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_50510_50519()
+                f_127_50584_50593()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50510, 50519);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50584, 50593);
                     return return_v;
                 }
 
 
                 string
-                f_127_50510_50530(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_50584_50604(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.SourceLink;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50510, 50530);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50584, 50604);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_50475_50692(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_50549_50766(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.FileMode
@@ -7083,83 +7085,83 @@ namespace Microsoft.CodeAnalysis
                 share)
                 {
                     var return_v = this_param.OpenFile(filePath, diagnostics, mode, access, share);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50475, 50692);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50549, 50766);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_50934_50943()
+                f_127_51008_51017()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50934, 50943);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51008, 51017);
                     return return_v;
                 }
 
 
                 string
-                f_127_50934_50954(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_51008_51028(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.SourceLink;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 50934, 50954);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51008, 51028);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_51027_51042()
+                f_127_51101_51116()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51027, 51042);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51101, 51116);
                     return return_v;
                 }
 
 
                 Roslyn.Utilities.NoThrowStreamDisposer
-                f_127_50828_51043(System.IO.Stream
+                f_127_50902_51117(System.IO.Stream
                 stream, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider)
                 {
                     var return_v = new Roslyn.Utilities.NoThrowStreamDisposer(stream, filePath, diagnostics, messageProvider);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50828, 51043);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 50902, 51117);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_51232_51241()
+                f_127_51306_51315()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51232, 51241);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51306, 51315);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ResourceDescription>
-                f_127_51232_51259(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_51306_51333(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.ManifestResources;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51232, 51259);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51306, 51333);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_51378_51413_M(System.IO.Stream?
+                f_127_51452_51487_M(System.IO.Stream?
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51378, 51413);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51452, 51487);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder?
-                f_127_51129_51561(Microsoft.CodeAnalysis.Compilation
+                f_127_51203_51635(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.ResourceDescription>
                 manifestResources, Microsoft.CodeAnalysis.Emit.EmitOptions
@@ -7171,52 +7173,52 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     var return_v = this_param.CheckOptionsAndCreateModuleBuilder(diagnostics, (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.ResourceDescription>)manifestResources, options, debugEntryPoint: debugEntryPoint, sourceLinkStream: sourceLinkStream, embeddedTexts: (System.Collections.Generic.IEnumerable<Microsoft.CodeAnalysis.EmbeddedText>)embeddedTexts, testData: testData, cancellationToken: cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 51129, 51561);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 51203, 51635);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_51855_51864()
+                f_127_51929_51938()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51855, 51864);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51929, 51938);
                     return return_v;
                 }
 
 
                 bool
-                f_127_51855_51872(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_51929_51946(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.EmitPdb;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51855, 51872);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51929, 51946);
                     return return_v;
                 }
 
 
                 bool
-                f_127_51903_51931(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_51977_52005(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param)
                 {
                     var return_v = this_param.EmitMetadataOnly;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51903, 51931);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51977, 52005);
                     return return_v;
                 }
 
 
                 bool
-                f_127_51962_51994(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_52036_52068(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param)
                 {
                     var return_v = this_param.EmitTestCoverageData;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 51962, 51994);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 52036, 52068);
                     return return_v;
                 }
 
 
                 bool
-                f_127_51751_52150(Microsoft.CodeAnalysis.Compilation
+                f_127_51825_52224(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder
                 moduleBuilder, bool
                 emittingPdb, bool
@@ -7227,45 +7229,45 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     var return_v = this_param.CompileMethods(moduleBuilder, emittingPdb, emitMetadataOnly, emitTestCoverageData, diagnostics, filterOpt: filterOpt, cancellationToken: cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 51751, 52150);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 51825, 52224);
                     return return_v;
                 }
 
 
                 bool
-                f_127_52782_52819_M(bool
+                f_127_52856_52893_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 52782, 52819);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 52856, 52893);
                     return return_v;
                 }
 
 
                 int
-                f_127_52877_52947(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_52951_53021(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 reportedDiagnostics, Microsoft.CodeAnalysis.Compilation
                 compilation)
                 {
                     this_param.ApplyProgrammaticSuppressions(reportedDiagnostics, compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 52877, 52947);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 52951, 53021);
                     return 0;
                 }
 
 
                 bool
-                f_127_53007_53041(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_53081_53115(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressedErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 53007, 53041);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 53081, 53115);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_53631_53995(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_53705_54069(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.FileMode
@@ -7274,129 +7276,129 @@ namespace Microsoft.CodeAnalysis
                 share)
                 {
                     var return_v = this_param.OpenFile(filePath, diagnostics, mode, access, share);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 53631, 53995);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 53705, 54069);
                     return return_v;
                 }
 
 
                 int
-                f_127_54284_54309(System.IO.Stream
+                f_127_54358_54383(System.IO.Stream
                 this_param, int
                 value)
                 {
                     this_param.SetLength((long)value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 54284, 54309);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 54358, 54383);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_54471_54486()
+                f_127_54545_54560()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 54471, 54486);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 54545, 54560);
                     return return_v;
                 }
 
 
                 int
-                f_127_54471_54547(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_54545_54621(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, System.Exception
                 e, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     this_param.ReportStreamWriteException(e, filePath, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 54471, 54547);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 54545, 54621);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_54905_54920()
+                f_127_54979_54994()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 54905, 54920);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 54979, 54994);
                     return return_v;
                 }
 
 
                 Roslyn.Utilities.NoThrowStreamDisposer
-                f_127_54685_54921(System.IO.Stream
+                f_127_54759_54995(System.IO.Stream
                 stream, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider)
                 {
                     var return_v = new Roslyn.Utilities.NoThrowStreamDisposer(stream, filePath, diagnostics, messageProvider);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 54685, 54921);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 54759, 54995);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_55132_55147()
+                f_127_55206_55221()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55132, 55147);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55206, 55221);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_55149_55158()
+                f_127_55223_55232()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55149, 55158);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55223, 55232);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_55114_55185(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_55188_55259(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, Microsoft.CodeAnalysis.CommandLineArguments
                 arguments, Microsoft.CodeAnalysis.Compilation
                 compilation, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = GetWin32Resources(messageProvider, arguments, compilation, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 55114, 55185);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 55188, 55259);
                     return return_v;
                 }
 
 
                 bool
-                f_127_55263_55299(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_55337_55373(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressableErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 55263, 55299);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 55337, 55373);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_55632_55660_M(System.IO.Stream?
+                f_127_55706_55734_M(System.IO.Stream?
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55632, 55660);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55706, 55734);
                     return return_v;
                 }
 
 
                 string?
-                f_127_55768_55798(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_55842_55872(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param)
                 {
                     var return_v = this_param.OutputNameOverride;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55768, 55798);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 55842, 55872);
                     return return_v;
                 }
 
 
                 bool
-                f_127_55477_55913(Microsoft.CodeAnalysis.Compilation
+                f_127_55551_55987(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder
                 moduleBeingBuilt, System.IO.Stream?
                 xmlDocumentationStream, System.IO.Stream?
@@ -7406,273 +7408,273 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     var return_v = this_param.GenerateResourcesAndDocumentationComments(moduleBeingBuilt, xmlDocumentationStream, win32ResourcesStream, outputNameOverride, diagnostics, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 55477, 55913);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 55551, 55987);
                     return return_v;
                 }
 
 
                 bool?
-                f_127_56016_56056_M(bool?
+                f_127_56090_56130_M(bool?
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 56016, 56056);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 56090, 56130);
                     return return_v;
                 }
 
 
                 int
-                f_127_56355_56424(Microsoft.CodeAnalysis.Compilation
+                f_127_56429_56498(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.SyntaxTree?
                 filterTree, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.Threading.CancellationToken
                 cancellationToken)
                 {
                     this_param.ReportUnusedImports(filterTree, diagnostics, cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 56355, 56424);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 56429, 56498);
                     return 0;
                 }
 
 
                 int
-                f_127_56511_56542(Microsoft.CodeAnalysis.Compilation
+                f_127_56585_56616(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.SyntaxTree?
                 filterTree)
                 {
                     this_param.CompleteTrees(filterTree);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 56511, 56542);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 56585, 56616);
                     return 0;
                 }
 
 
                 System.Threading.Tasks.Task<System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>>
-                f_127_56923_56970(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_56997_57044(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param, Microsoft.CodeAnalysis.Compilation
                 compilation)
                 {
                     var return_v = this_param.GetDiagnosticsAsync(compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 56923, 56970);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 56997, 57044);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_56923_56977(System.Threading.Tasks.Task<System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>>
+                f_127_56997_57051(System.Threading.Tasks.Task<System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>>
                 this_param)
                 {
                     var return_v = this_param.Result;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 56923, 56977);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 56997, 57051);
                     return return_v;
                 }
 
 
                 int
-                f_127_57008_57045(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_57082_57119(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics)
                 {
                     this_param.AddRange<Microsoft.CodeAnalysis.Diagnostic>(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57008, 57045);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57082, 57119);
                     return 0;
                 }
 
 
                 bool
-                f_127_57082_57119_M(bool
+                f_127_57156_57193_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 57082, 57119);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 57156, 57193);
                     return return_v;
                 }
 
 
                 int
-                f_127_57321_57391(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_57395_57465(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 reportedDiagnostics, Microsoft.CodeAnalysis.Compilation
                 compilation)
                 {
                     this_param.ApplyProgrammaticSuppressions(reportedDiagnostics, compilation);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57321, 57391);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57395, 57465);
                     return 0;
                 }
 
 
                 int
-                f_127_57551_57589(Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder
+                f_127_57625_57663(Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder
                 this_param)
                 {
                     this_param.CompilationFinished();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57551, 57589);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57625, 57663);
                     return 0;
                 }
 
 
                 bool
-                f_127_57641_57675(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_57715_57749(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressedErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57641, 57675);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57715, 57749);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider
-                f_127_57872_57925(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_57946_57999(Microsoft.CodeAnalysis.CommonCompiler
                 compiler, string
                 filePath)
                 {
                     var return_v = new Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider(compiler, filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57872, 57925);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 57946, 57999);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_57979_57988()
+                f_127_58053_58062()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 57979, 57988);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58053, 58062);
                     return return_v;
                 }
 
 
                 bool
-                f_127_57979_58000(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_58053_58074(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.EmitPdbFile;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 57979, 58000);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58053, 58074);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider
-                f_127_58003_58057(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_58077_58131(Microsoft.CodeAnalysis.CommonCompiler
                 compiler, string
                 filePath)
                 {
                     var return_v = new Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider(compiler, filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58003, 58057);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58077, 58131);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_58122_58131()
+                f_127_58196_58205()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58122, 58131);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58196, 58205);
                     return return_v;
                 }
 
 
                 string?
-                f_127_58122_58149(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_58196_58223(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.OutputRefFilePath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58122, 58149);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58196, 58223);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider
-                f_127_58234_58290(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_58308_58364(Microsoft.CodeAnalysis.CommonCompiler
                 compiler, string
                 filePath)
                 {
                     var return_v = new Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider(compiler, filePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58234, 58290);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58308, 58364);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CompilationOptions
-                f_127_58392_58411(Microsoft.CodeAnalysis.Compilation
+                f_127_58466_58485(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.Options;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58392, 58411);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58466, 58485);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.StrongNameProvider?
-                f_127_58392_58430(Microsoft.CodeAnalysis.CompilationOptions
+                f_127_58466_58504(Microsoft.CodeAnalysis.CompilationOptions
                 this_param)
                 {
                     var return_v = this_param.StrongNameProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58392, 58430);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58466, 58504);
                     return return_v;
                 }
 
 
                 bool
-                f_127_58442_58470(Microsoft.CodeAnalysis.Compilation
+                f_127_58516_58544(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.SignUsingBuilder;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58442, 58470);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58516, 58544);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CompilationOptions
-                f_127_58475_58494(Microsoft.CodeAnalysis.Compilation
+                f_127_58549_58568(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.Options;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58475, 58494);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58549, 58568);
                     return return_v;
                 }
 
 
                 bool
-                f_127_58474_58505_M(bool
+                f_127_58548_58579_M(bool
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58474, 58505);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58548, 58579);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.StrongNameKeys
-                f_127_58579_58605(Microsoft.CodeAnalysis.Compilation
+                f_127_58653_58679(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.StrongNameKeys;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58579, 58605);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 58653, 58679);
                     return return_v;
                 }
 
 
                 System.Text.Encoding?
-                f_127_58908_58929(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_58982_59003(Microsoft.CodeAnalysis.CommonCompiler
                 this_param)
                 {
                     var return_v = this_param.GetFallbackEncoding();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58908, 58929);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58982, 59003);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Emit.EmitOptions
-                f_127_58865_58930(Microsoft.CodeAnalysis.Emit.EmitOptions
+                f_127_58939_59004(Microsoft.CodeAnalysis.Emit.EmitOptions
                 this_param, System.Text.Encoding?
                 fallbackSourceFileEncoding)
                 {
                     var return_v = this_param.WithFallbackSourceFileEncoding(fallbackSourceFileEncoding);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58865, 58930);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58939, 59004);
                     return return_v;
                 }
 
 
                 bool
-                f_127_58969_59492(Microsoft.CodeAnalysis.Compilation
+                f_127_59043_59566(Microsoft.CodeAnalysis.Compilation
                 this_param, Microsoft.CodeAnalysis.Emit.CommonPEModuleBuilder
                 moduleBeingBuilt, Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider
                 peStreamProvider, Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider?
@@ -7685,117 +7687,117 @@ namespace Microsoft.CodeAnalysis
                 cancellationToken)
                 {
                     var return_v = this_param.SerializeToPeStream(moduleBeingBuilt, (Microsoft.CodeAnalysis.Compilation.EmitStreamProvider)peStreamProvider, (Microsoft.CodeAnalysis.Compilation.EmitStreamProvider?)metadataPEStreamProvider, (Microsoft.CodeAnalysis.Compilation.EmitStreamProvider?)pdbStreamProvider, testSymWriterFactory: testSymWriterFactory, diagnostics: diagnostics, emitOptions: emitOptions, privateKeyOpt: privateKeyOpt, cancellationToken: cancellationToken);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 58969, 59492);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 59043, 59566);
                     return return_v;
                 }
 
 
                 int
-                f_127_59521_59556(Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider
+                f_127_59595_59630(Microsoft.CodeAnalysis.CommonCompiler.CompilerEmitStreamProvider
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     this_param.Close(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 59521, 59556);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 59595, 59630);
                     return 0;
                 }
 
 
                 int
-                f_127_59918_59965(Microsoft.CodeAnalysis.TouchedFileLogger
+                f_127_59992_60039(Microsoft.CodeAnalysis.TouchedFileLogger
                 this_param, string
                 path)
                 {
                     this_param.AddWritten(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 59918, 59965);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 59992, 60039);
                     return 0;
                 }
 
 
                 int
-                f_127_60127_60177(Microsoft.CodeAnalysis.TouchedFileLogger
+                f_127_60201_60251(Microsoft.CodeAnalysis.TouchedFileLogger
                 this_param, string
                 path)
                 {
                     this_param.AddWritten(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60127, 60177);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60201, 60251);
                     return 0;
                 }
 
 
                 int
-                f_127_60239_60285(Microsoft.CodeAnalysis.TouchedFileLogger
+                f_127_60313_60359(Microsoft.CodeAnalysis.TouchedFileLogger
                 this_param, string
                 path)
                 {
                     this_param.AddWritten(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60239, 60285);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60313, 60359);
                     return 0;
                 }
 
 
                 bool
-                f_127_60379_60415(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_60453_60489(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressableErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60379, 60415);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60453, 60489);
                     return return_v;
                 }
 
 
                 bool?
-                f_127_60626_60673_M(bool?
+                f_127_60700_60747_M(bool?
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 60626, 60673);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 60700, 60747);
                     return return_v;
                 }
 
 
                 int
-                f_127_60892_60942(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_60966_61016(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 bag)
                 {
                     this_param.AddRange(bag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60892, 60942);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60966, 61016);
                     return 0;
                 }
 
 
                 bool
-                f_127_60965_61018(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_61039_61092(Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = HasUnsuppressableErrors(diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 60965, 61018);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61039, 61092);
                     return return_v;
                 }
 
 
                 bool
-                f_127_61187_61255(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_61261_61329(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, Microsoft.CodeAnalysis.TouchedFileLogger?
                 touchedFilesLogger, string?
                 finalXmlFilePath)
                 {
                     var return_v = this_param.WriteTouchedFiles(diagnostics, touchedFilesLogger, finalXmlFilePath);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61187, 61255);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61261, 61329);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 40174, 61322);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 40248, 61396);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 40174, 61322);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 40248, 61396);
             }
         }
 
@@ -7805,28 +7807,28 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 61587, 61673);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61590, 61673);
-                return f_127_61590_61673(additionalTextFiles, analyzerConfigOptionsProvider); DynAbs.Tracing.TraceSender.TraceExitMethod(127, 61587, 61673);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 61661, 61747);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61664, 61747);
+                return f_127_61664_61747(additionalTextFiles, analyzerConfigOptionsProvider); DynAbs.Tracing.TraceSender.TraceExitMethod(127, 61661, 61747);
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 61587, 61673);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 61661, 61747);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 61587, 61673);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 61661, 61747);
             }
             throw new System.Exception("Slicer error: unreachable code");
 
             Microsoft.CodeAnalysis.Diagnostics.AnalyzerOptions
-            f_127_61590_61673(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalText>
+            f_127_61664_61747(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalText>
             additionalFiles, Microsoft.CodeAnalysis.Diagnostics.AnalyzerConfigOptionsProvider
             optionsProvider)
             {
                 var return_v = new Microsoft.CodeAnalysis.Diagnostics.AnalyzerOptions(additionalFiles, optionsProvider);
-                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61590, 61673);
+                DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61664, 61747);
                 return return_v;
             }
 
@@ -7836,299 +7838,299 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 61686, 63502);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 61760, 63576);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61833, 63463) || true) && (f_127_61837_61863(f_127_61837_61846()) != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61907, 63537) || true) && (f_127_61911_61937(f_127_61911_61920()) != null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 61833, 63463);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61905, 61946);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 61907, 63537);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61979, 62020);
 
-                    f_127_61905_61945(touchedFilesLogger != null);
+                    f_127_61979_62019(touchedFilesLogger != null);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 61966, 62103) || true) && (finalXmlFilePath != null)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62040, 62177) || true) && (finalXmlFilePath != null)
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 61966, 62103);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62036, 62084);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 62040, 62177);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62110, 62158);
 
-                        f_127_62036_62083(touchedFilesLogger, finalXmlFilePath);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 61966, 62103);
+                        f_127_62110_62157(touchedFilesLogger, finalXmlFilePath);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 62040, 62177);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62123, 62183);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62197, 62257);
 
                     string
-                    readFilesPath = f_127_62146_62172(f_127_62146_62155()) + ".read"
+                    readFilesPath = f_127_62220_62246(f_127_62220_62229()) + ".read"
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62201, 62265);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62275, 62339);
 
                     string
-                    writtenFilesPath = f_127_62227_62253(f_127_62227_62236()) + ".write"
+                    writtenFilesPath = f_127_62301_62327(f_127_62301_62310()) + ".write"
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62285, 62368);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62359, 62442);
 
                     var
-                    readStream = f_127_62302_62367(this, readFilesPath, diagnostics, mode: FileMode.OpenOrCreate)
+                    readStream = f_127_62376_62441(this, readFilesPath, diagnostics, mode: FileMode.OpenOrCreate)
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62386, 62475);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62460, 62549);
 
                     var
-                    writtenStream = f_127_62406_62474(this, writtenFilesPath, diagnostics, mode: FileMode.OpenOrCreate)
+                    writtenStream = f_127_62480_62548(this, writtenFilesPath, diagnostics, mode: FileMode.OpenOrCreate)
                     ;
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62495, 62616) || true) && (readStream == null || (DynAbs.Tracing.TraceSender.Expression_False(127, 62499, 62542) || writtenStream == null))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62569, 62690) || true) && (readStream == null || (DynAbs.Tracing.TraceSender.Expression_False(127, 62573, 62616) || writtenStream == null))
                     )
 
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 62495, 62616);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62584, 62597);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 62569, 62690);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62658, 62671);
 
                         return false;
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 62495, 62616);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 62569, 62690);
                     }
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62636, 62660);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62710, 62734);
 
                     string?
                     filePath = null
                     ;
                     try
                     {
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62722, 62747);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62796, 62821);
 
                         filePath = readFilesPath;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62769, 62932);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62843, 63006);
                         using (var
-                        writer = f_127_62789_62817(readStream)
+                        writer = f_127_62863_62891(readStream)
                         )
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62867, 62909);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62941, 62983);
 
-                            f_127_62867_62908(touchedFilesLogger, writer);
-                            DynAbs.Tracing.TraceSender.TraceExitUsing(127, 62769, 62932);
+                            f_127_62941_62982(touchedFilesLogger, writer);
+                            DynAbs.Tracing.TraceSender.TraceExitUsing(127, 62843, 63006);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 62956, 62984);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63030, 63058);
 
                         filePath = writtenFilesPath;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63006, 63175);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63080, 63249);
                         using (var
-                        writer = f_127_63026_63057(writtenStream)
+                        writer = f_127_63100_63131(writtenStream)
                         )
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63107, 63152);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63181, 63226);
 
-                            f_127_63107_63151(touchedFilesLogger, writer);
-                            DynAbs.Tracing.TraceSender.TraceExitUsing(127, 63006, 63175);
+                            f_127_63181_63225(touchedFilesLogger, writer);
+                            DynAbs.Tracing.TraceSender.TraceExitUsing(127, 63080, 63249);
                         }
                     }
                     catch (Exception e)
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 63212, 63448);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63272, 63303);
+                        DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 63286, 63522);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63346, 63377);
 
-                        f_127_63272_63302(filePath != null);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63325, 63394);
+                        f_127_63346_63376(filePath != null);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63399, 63468);
 
-                        f_127_63325_63393(f_127_63325_63340(), e, filePath, diagnostics);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63416, 63429);
+                        f_127_63399_63467(f_127_63399_63414(), e, filePath, diagnostics);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63490, 63503);
 
                         return false;
-                        DynAbs.Tracing.TraceSender.TraceExitCatch(127, 63212, 63448);
+                        DynAbs.Tracing.TraceSender.TraceExitCatch(127, 63286, 63522);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 61833, 63463);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 61907, 63537);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63479, 63491);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63553, 63565);
 
                 return true;
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 61686, 63502);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 61760, 63576);
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_61837_61846()
+                f_127_61911_61920()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 61837, 61846);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 61911, 61920);
                     return return_v;
                 }
 
 
                 string?
-                f_127_61837_61863(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_61911_61937(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.TouchedFilesPath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 61837, 61863);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 61911, 61937);
                     return return_v;
                 }
 
 
                 int
-                f_127_61905_61945(bool
+                f_127_61979_62019(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61905, 61945);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 61979, 62019);
                     return 0;
                 }
 
 
                 int
-                f_127_62036_62083(Microsoft.CodeAnalysis.TouchedFileLogger
+                f_127_62110_62157(Microsoft.CodeAnalysis.TouchedFileLogger
                 this_param, string
                 path)
                 {
                     this_param.AddWritten(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62036, 62083);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62110, 62157);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_62146_62155()
+                f_127_62220_62229()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62146, 62155);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62220, 62229);
                     return return_v;
                 }
 
 
                 string
-                f_127_62146_62172(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_62220_62246(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.TouchedFilesPath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62146, 62172);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62220, 62246);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_62227_62236()
+                f_127_62301_62310()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62227, 62236);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62301, 62310);
                     return return_v;
                 }
 
 
                 string
-                f_127_62227_62253(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_62301_62327(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.TouchedFilesPath;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62227, 62253);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 62301, 62327);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_62302_62367(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_62376_62441(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.FileMode
                 mode)
                 {
                     var return_v = this_param.OpenFile(filePath, diagnostics, mode: mode);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62302, 62367);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62376, 62441);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_62406_62474(Microsoft.CodeAnalysis.CommonCompiler
+                f_127_62480_62548(Microsoft.CodeAnalysis.CommonCompiler
                 this_param, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics, System.IO.FileMode
                 mode)
                 {
                     var return_v = this_param.OpenFile(filePath, diagnostics, mode: mode);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62406, 62474);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62480, 62548);
                     return return_v;
                 }
 
 
                 System.IO.StreamWriter
-                f_127_62789_62817(System.IO.Stream
+                f_127_62863_62891(System.IO.Stream
                 stream)
                 {
                     var return_v = new System.IO.StreamWriter(stream);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62789, 62817);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62863, 62891);
                     return return_v;
                 }
 
 
                 int
-                f_127_62867_62908(Microsoft.CodeAnalysis.TouchedFileLogger
+                f_127_62941_62982(Microsoft.CodeAnalysis.TouchedFileLogger
                 this_param, System.IO.StreamWriter
                 s)
                 {
                     this_param.WriteReadPaths((System.IO.TextWriter)s);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62867, 62908);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 62941, 62982);
                     return 0;
                 }
 
 
                 System.IO.StreamWriter
-                f_127_63026_63057(System.IO.Stream
+                f_127_63100_63131(System.IO.Stream
                 stream)
                 {
                     var return_v = new System.IO.StreamWriter(stream);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63026, 63057);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63100, 63131);
                     return return_v;
                 }
 
 
                 int
-                f_127_63107_63151(Microsoft.CodeAnalysis.TouchedFileLogger
+                f_127_63181_63225(Microsoft.CodeAnalysis.TouchedFileLogger
                 this_param, System.IO.StreamWriter
                 s)
                 {
                     this_param.WriteWrittenPaths((System.IO.TextWriter)s);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63107, 63151);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63181, 63225);
                     return 0;
                 }
 
 
                 int
-                f_127_63272_63302(bool
+                f_127_63346_63376(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63272, 63302);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63346, 63376);
                     return 0;
                 }
 
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_63325_63340()
+                f_127_63399_63414()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 63325, 63340);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 63399, 63414);
                     return return_v;
                 }
 
 
                 int
-                f_127_63325_63393(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_63399_63467(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, System.Exception
                 e, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     this_param.ReportStreamWriteException(e, filePath, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63325, 63393);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63399, 63467);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 61686, 63502);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 61760, 63576);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 61686, 63502);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 61760, 63576);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -8137,22 +8139,22 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 63514, 64024);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63739, 63804);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 63588, 64098);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63813, 63878);
 
                 var
-                builder = f_127_63753_63803()
+                builder = f_127_63827_63877()
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63820, 63963);
-                    foreach (var file in f_127_63841_63866_I(f_127_63841_63866(f_127_63841_63850())))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63894, 64037);
+                    foreach (var file in f_127_63915_63940_I(f_127_63915_63940(f_127_63915_63924())))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 63820, 63963);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63900, 63948);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 63894, 64037);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63974, 64022);
 
-                        f_127_63900_63947(builder, f_127_63912_63946(file, this));
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 63820, 63963);
+                        f_127_63974_64021(builder, f_127_63986_64020(file, this));
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 63894, 64037);
                     }
                 }
                 catch (System.Exception)
@@ -8164,89 +8166,89 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 144);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 63979, 64013);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64053, 64087);
 
-                return f_127_63986_64012(builder);
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 63514, 64024);
+                return f_127_64060_64086(builder);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 63588, 64098);
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>.Builder
-                f_127_63753_63803()
+                f_127_63827_63877()
                 {
                     var return_v = ImmutableArray.CreateBuilder<AdditionalTextFile>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63753, 63803);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63827, 63877);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CommandLineArguments
-                f_127_63841_63850()
+                f_127_63915_63924()
                 {
                     var return_v = Arguments;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 63841, 63850);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 63915, 63924);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
-                f_127_63841_63866(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_63915_63940(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.AdditionalFiles;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 63841, 63866);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 63915, 63940);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.AdditionalTextFile
-                f_127_63912_63946(Microsoft.CodeAnalysis.CommandLineSourceFile
+                f_127_63986_64020(Microsoft.CodeAnalysis.CommandLineSourceFile
                 sourceFile, Microsoft.CodeAnalysis.CommonCompiler
                 compiler)
                 {
                     var return_v = new Microsoft.CodeAnalysis.AdditionalTextFile(sourceFile, compiler);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63912, 63946);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63986, 64020);
                     return return_v;
                 }
 
 
                 int
-                f_127_63900_63947(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>.Builder
+                f_127_63974_64021(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>.Builder
                 this_param, Microsoft.CodeAnalysis.AdditionalTextFile
                 item)
                 {
                     this_param.Add(item);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63900, 63947);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63974, 64021);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
-                f_127_63841_63866_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
+                f_127_63915_63940_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63841, 63866);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63915, 63940);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>
-                f_127_63986_64012(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>.Builder
+                f_127_64060_64086(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>.Builder
                 builder)
                 {
                     var return_v = builder.ToImmutableArray<Microsoft.CodeAnalysis.AdditionalTextFile>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 63986, 64012);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64060, 64086);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 63514, 64024);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 63588, 64098);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 63514, 64024);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 63588, 64098);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -8255,145 +8257,145 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 64036, 67505);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64210, 64270);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 64110, 67579);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64284, 64344);
 
-                f_127_64210_64269(f_127_64223_64260(analyzerDriver) != null);
+                f_127_64284_64343(f_127_64297_64334(analyzerDriver) != null);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64284, 64389) || true) && (f_127_64288_64333(f_127_64288_64325(analyzerDriver)))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64358, 64463) || true) && (f_127_64362_64407(f_127_64362_64399(analyzerDriver)))
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 64284, 64389);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64367, 64374);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 64358, 64463);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64441, 64448);
 
                     return;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 64284, 64389);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 64358, 64463);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64405, 64511);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64479, 64585);
 
                 var
-                totalAnalyzerExecutionTime = f_127_64438_64510(f_127_64438_64475(analyzerDriver), kvp => kvp.Value.TotalSeconds)
+                totalAnalyzerExecutionTime = f_127_64512_64584(f_127_64512_64549(analyzerDriver), kvp => kvp.Value.TotalSeconds)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64525, 64601);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64599, 64675);
 
                 Func<double, string>
                 getFormattedTime = d => d.ToString("##0.000", culture)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64615, 64641);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64689, 64715);
 
-                f_127_64615_64640(consoleOutput);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64655, 64790);
+                f_127_64689_64714(consoleOutput);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64729, 64864);
 
-                f_127_64655_64789(consoleOutput, f_127_64679_64788(f_127_64693_64741(), f_127_64743_64787(getFormattedTime, totalAnalyzerExecutionTime)));
+                f_127_64729_64863(consoleOutput, f_127_64753_64862(f_127_64767_64815(), f_127_64817_64861(getFormattedTime, totalAnalyzerExecutionTime)));
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64806, 64958) || true) && (isConcurrentBuild)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64880, 65032) || true) && (isConcurrentBuild)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 64806, 64958);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64861, 64943);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 64880, 65032);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64935, 65017);
 
-                    f_127_64861_64942(consoleOutput, f_127_64885_64941());
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 64806, 64958);
+                    f_127_64935_65016(consoleOutput, f_127_64959_65015());
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 64880, 65032);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 64974, 65193);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65048, 65267);
 
                 var
-                analyzersByAssembly = f_127_65000_65192(f_127_65000_65112(f_127_65000_65037(analyzerDriver), kvp => kvp.Key.GetType().GetTypeInfo().Assembly), kvp => kvp.Sum(entry => entry.Value.Ticks))
+                analyzersByAssembly = f_127_65074_65266(f_127_65074_65186(f_127_65074_65111(analyzerDriver), kvp => kvp.Key.GetType().GetTypeInfo().Assembly), kvp => kvp.Sum(entry => entry.Value.Ticks))
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65209, 65235);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65283, 65309);
 
-                f_127_65209_65234(
+                f_127_65283_65308(
                             consoleOutput);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65251, 65412);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65325, 65486);
 
                 getFormattedTime = d => d < 0.001 ?
                                 string.Format(culture, "{0,8:<0.000}", 0.001) :
                                 string.Format(culture, "{0,8:##0.000}", d);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65426, 65526);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65500, 65600);
 
                 Func<int, string>
                 getFormattedPercentage = i => string.Format("{0,5}", i < 1 ? "<1" : i.ToString())
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65540, 65604);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65614, 65678);
 
                 Func<string?, string>
                 getFormattedAnalyzerName = s => "   " + s
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65649, 65754);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65723, 65828);
 
                 var
-                analyzerTimeColumn = f_127_65674_65753("{0,8}", f_127_65697_65752())
+                analyzerTimeColumn = f_127_65748_65827("{0,8}", f_127_65771_65826())
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65768, 65827);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65842, 65901);
 
                 var
-                analyzerPercentageColumn = f_127_65799_65826("{0,5}", "%")
+                analyzerPercentageColumn = f_127_65873_65900("{0,5}", "%")
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65841, 65939);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65915, 66013);
 
                 var
-                analyzerNameColumn = f_127_65866_65938(getFormattedAnalyzerName, f_127_65891_65937())
+                analyzerNameColumn = f_127_65940_66012(getFormattedAnalyzerName, f_127_65965_66011())
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 65953, 66045);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66027, 66119);
 
-                f_127_65953_66044(consoleOutput, analyzerTimeColumn + analyzerPercentageColumn + analyzerNameColumn);
+                f_127_66027_66118(consoleOutput, analyzerTimeColumn + analyzerPercentageColumn + analyzerNameColumn);
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66109, 67494);
-                    foreach (var analyzerGroup in f_127_66139_66158_I(analyzersByAssembly))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66183, 67568);
+                    foreach (var analyzerGroup in f_127_66213_66232_I(analyzersByAssembly))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 66109, 67494);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66192, 66261);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 66183, 67568);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66266, 66335);
 
                         var
-                        executionTime = f_127_66212_66260(analyzerGroup, kvp => kvp.Value.TotalSeconds)
+                        executionTime = f_127_66286_66334(analyzerGroup, kvp => kvp.Value.TotalSeconds)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66279, 66352);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66353, 66426);
 
                         var
                         percentage = (int)(executionTime * 100 / totalAnalyzerExecutionTime)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66372, 66425);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66446, 66499);
 
-                        analyzerTimeColumn = f_127_66393_66424(getFormattedTime, executionTime);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66443, 66505);
+                        analyzerTimeColumn = f_127_66467_66498(getFormattedTime, executionTime);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66517, 66579);
 
-                        analyzerPercentageColumn = f_127_66470_66504(getFormattedPercentage, percentage);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66523, 66597);
+                        analyzerPercentageColumn = f_127_66544_66578(getFormattedPercentage, percentage);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66597, 66671);
 
-                        analyzerNameColumn = f_127_66544_66596(getFormattedAnalyzerName, f_127_66569_66595(f_127_66569_66586(analyzerGroup)));
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66617, 66709);
+                        analyzerNameColumn = f_127_66618_66670(getFormattedAnalyzerName, f_127_66643_66669(f_127_66643_66660(analyzerGroup)));
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66691, 66783);
 
-                        f_127_66617_66708(
+                        f_127_66691_66782(
                                         consoleOutput, analyzerTimeColumn + analyzerPercentageColumn + analyzerNameColumn);
                         try
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66800, 67433);
-                            foreach (var kvp in f_127_66820_66869_I(f_127_66820_66869(analyzerGroup, kvp => kvp.Value)))
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66874, 67507);
+                            foreach (var kvp in f_127_66894_66943_I(f_127_66894_66943(analyzerGroup, kvp => kvp.Value)))
                             {
-                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 66800, 67433);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66911, 66950);
+                                DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 66874, 67507);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66985, 67024);
 
                                 executionTime = kvp.Value.TotalSeconds;
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 66972, 67041);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67046, 67115);
 
                                 percentage = (int)(executionTime * 100 / totalAnalyzerExecutionTime);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67065, 67118);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67139, 67192);
 
-                                analyzerTimeColumn = f_127_67086_67117(getFormattedTime, executionTime);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67140, 67202);
+                                analyzerTimeColumn = f_127_67160_67191(getFormattedTime, executionTime);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67214, 67276);
 
-                                analyzerPercentageColumn = f_127_67167_67201(getFormattedPercentage, percentage);
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67224, 67298);
+                                analyzerPercentageColumn = f_127_67241_67275(getFormattedPercentage, percentage);
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67298, 67372);
 
-                                analyzerNameColumn = f_127_67245_67297(getFormattedAnalyzerName, "   " + f_127_67278_67296(kvp.Key));
-                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67322, 67414);
+                                analyzerNameColumn = f_127_67319_67371(getFormattedAnalyzerName, "   " + f_127_67352_67370(kvp.Key));
+                                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67396, 67488);
 
-                                f_127_67322_67413(
+                                f_127_67396_67487(
                                                     consoleOutput, analyzerTimeColumn + analyzerPercentageColumn + analyzerNameColumn);
-                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 66800, 67433);
+                                DynAbs.Tracing.TraceSender.TraceExitCondition(127, 66874, 67507);
                             }
                         }
                         catch (System.Exception)
@@ -8405,11 +8407,11 @@ namespace Microsoft.CodeAnalysis
                         {
                             DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 634);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67453, 67479);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67527, 67553);
 
-                        f_127_67453_67478(
+                        f_127_67527_67552(
                                         consoleOutput);
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 66109, 67494);
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 66183, 67568);
                     }
                 }
                 catch (System.Exception)
@@ -8421,424 +8423,424 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 1386);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 64036, 67505);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 64110, 67579);
 
                 System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
-                f_127_64223_64260(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_64297_64334(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param)
                 {
                     var return_v = this_param.AnalyzerExecutionTimes;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64223, 64260);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64297, 64334);
                     return return_v;
                 }
 
 
                 int
-                f_127_64210_64269(bool
+                f_127_64284_64343(bool
                 condition)
                 {
                     Debug.Assert(condition);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64210, 64269);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64284, 64343);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
-                f_127_64288_64325(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_64362_64399(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param)
                 {
                     var return_v = this_param.AnalyzerExecutionTimes;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64288, 64325);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64362, 64399);
                     return return_v;
                 }
 
 
                 bool
-                f_127_64288_64333(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
+                f_127_64362_64407(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
                 this_param)
                 {
                     var return_v = this_param.IsEmpty;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64288, 64333);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64362, 64407);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
-                f_127_64438_64475(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_64512_64549(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param)
                 {
                     var return_v = this_param.AnalyzerExecutionTimes;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64438, 64475);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64512, 64549);
                     return return_v;
                 }
 
 
                 double
-                f_127_64438_64510(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
+                f_127_64512_64584(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
                 source, System.Func<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>, double>
                 selector)
                 {
                     var return_v = source.Sum<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>(selector);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64438, 64510);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64512, 64584);
                     return return_v;
                 }
 
 
                 int
-                f_127_64615_64640(System.IO.TextWriter
+                f_127_64689_64714(System.IO.TextWriter
                 this_param)
                 {
                     this_param.WriteLine();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64615, 64640);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64689, 64714);
                     return 0;
                 }
 
 
                 string
-                f_127_64693_64741()
+                f_127_64767_64815()
                 {
                     var return_v = CodeAnalysisResources.AnalyzerTotalExecutionTime;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64693, 64741);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64767, 64815);
                     return return_v;
                 }
 
 
                 string
-                f_127_64743_64787(System.Func<double, string>
+                f_127_64817_64861(System.Func<double, string>
                 this_param, double
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64743, 64787);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64817, 64861);
                     return return_v;
                 }
 
 
                 string
-                f_127_64679_64788(string
+                f_127_64753_64862(string
                 format, string
                 arg0)
                 {
                     var return_v = string.Format(format, (object)arg0);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64679, 64788);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64753, 64862);
                     return return_v;
                 }
 
 
                 int
-                f_127_64655_64789(System.IO.TextWriter
+                f_127_64729_64863(System.IO.TextWriter
                 this_param, string
                 value)
                 {
                     this_param.WriteLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64655, 64789);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64729, 64863);
                     return 0;
                 }
 
 
                 string
-                f_127_64885_64941()
+                f_127_64959_65015()
                 {
                     var return_v = CodeAnalysisResources.MultithreadedAnalyzerExecutionNote;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64885, 64941);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 64959, 65015);
                     return return_v;
                 }
 
 
                 int
-                f_127_64861_64942(System.IO.TextWriter
+                f_127_64935_65016(System.IO.TextWriter
                 this_param, string
                 value)
                 {
                     this_param.WriteLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64861, 64942);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 64935, 65016);
                     return 0;
                 }
 
 
                 System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
-                f_127_65000_65037(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
+                f_127_65074_65111(Microsoft.CodeAnalysis.Diagnostics.AnalyzerDriver
                 this_param)
                 {
                     var return_v = this_param.AnalyzerExecutionTimes
                     ;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 65000, 65037);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 65074, 65111);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.IEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
-                f_127_65000_65112(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
+                f_127_65074_65186(System.Collections.Immutable.ImmutableDictionary<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>
                 source, System.Func<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>, System.Reflection.Assembly>
                 keySelector)
                 {
                     var return_v = source.GroupBy<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>, System.Reflection.Assembly>(keySelector);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65000, 65112);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65074, 65186);
                     return return_v;
                 }
 
 
                 System.Linq.IOrderedEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
-                f_127_65000_65192(System.Collections.Generic.IEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
+                f_127_65074_65266(System.Collections.Generic.IEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
                 source, System.Func<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>, long>
                 keySelector)
                 {
                     var return_v = source.OrderByDescending<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>, long>(keySelector);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65000, 65192);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65074, 65266);
                     return return_v;
                 }
 
 
                 int
-                f_127_65209_65234(System.IO.TextWriter
+                f_127_65283_65308(System.IO.TextWriter
                 this_param)
                 {
                     this_param.WriteLine();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65209, 65234);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65283, 65308);
                     return 0;
                 }
 
 
                 string
-                f_127_65697_65752()
+                f_127_65771_65826()
                 {
                     var return_v = CodeAnalysisResources.AnalyzerExecutionTimeColumnHeader;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 65697, 65752);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 65771, 65826);
                     return return_v;
                 }
 
 
                 string
-                f_127_65674_65753(string
+                f_127_65748_65827(string
                 format, string
                 arg0)
                 {
                     var return_v = string.Format(format, (object)arg0);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65674, 65753);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65748, 65827);
                     return return_v;
                 }
 
 
                 string
-                f_127_65799_65826(string
+                f_127_65873_65900(string
                 format, string
                 arg0)
                 {
                     var return_v = string.Format(format, (object)arg0);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65799, 65826);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65873, 65900);
                     return return_v;
                 }
 
 
                 string
-                f_127_65891_65937()
+                f_127_65965_66011()
                 {
                     var return_v = CodeAnalysisResources.AnalyzerNameColumnHeader;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 65891, 65937);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 65965, 66011);
                     return return_v;
                 }
 
 
                 string
-                f_127_65866_65938(System.Func<string?, string>
+                f_127_65940_66012(System.Func<string?, string>
                 this_param, string
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65866, 65938);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65940, 66012);
                     return return_v;
                 }
 
 
                 int
-                f_127_65953_66044(System.IO.TextWriter
+                f_127_66027_66118(System.IO.TextWriter
                 this_param, string
                 value)
                 {
                     this_param.WriteLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 65953, 66044);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66027, 66118);
                     return 0;
                 }
 
 
                 double
-                f_127_66212_66260(System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
+                f_127_66286_66334(System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
                 source, System.Func<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>, double>
                 selector)
                 {
                     var return_v = source.Sum<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>(selector);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66212, 66260);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66286, 66334);
                     return return_v;
                 }
 
 
                 string
-                f_127_66393_66424(System.Func<double, string>
+                f_127_66467_66498(System.Func<double, string>
                 this_param, double
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66393, 66424);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66467, 66498);
                     return return_v;
                 }
 
 
                 string
-                f_127_66470_66504(System.Func<int, string>
+                f_127_66544_66578(System.Func<int, string>
                 this_param, int
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66470, 66504);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66544, 66578);
                     return return_v;
                 }
 
 
                 System.Reflection.Assembly
-                f_127_66569_66586(System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
+                f_127_66643_66660(System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
                 this_param)
                 {
                     var return_v = this_param.Key;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 66569, 66586);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 66643, 66660);
                     return return_v;
                 }
 
 
                 string?
-                f_127_66569_66595(System.Reflection.Assembly
+                f_127_66643_66669(System.Reflection.Assembly
                 this_param)
                 {
                     var return_v = this_param.FullName;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 66569, 66595);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 66643, 66669);
                     return return_v;
                 }
 
 
                 string
-                f_127_66544_66596(System.Func<string?, string>
+                f_127_66618_66670(System.Func<string?, string>
                 this_param, string?
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66544, 66596);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66618, 66670);
                     return return_v;
                 }
 
 
                 int
-                f_127_66617_66708(System.IO.TextWriter
+                f_127_66691_66782(System.IO.TextWriter
                 this_param, string
                 value)
                 {
                     this_param.WriteLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66617, 66708);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66691, 66782);
                     return 0;
                 }
 
 
                 System.Linq.IOrderedEnumerable<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
-                f_127_66820_66869(System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
+                f_127_66894_66943(System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
                 source, System.Func<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>, System.TimeSpan>
                 keySelector)
                 {
                     var return_v = source.OrderByDescending<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>, System.TimeSpan>(keySelector);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66820, 66869);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66894, 66943);
                     return return_v;
                 }
 
 
                 string
-                f_127_67086_67117(System.Func<double, string>
+                f_127_67160_67191(System.Func<double, string>
                 this_param, double
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67086, 67117);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67160, 67191);
                     return return_v;
                 }
 
 
                 string
-                f_127_67167_67201(System.Func<int, string>
+                f_127_67241_67275(System.Func<int, string>
                 this_param, int
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67167, 67201);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67241, 67275);
                     return return_v;
                 }
 
 
                 string
-                f_127_67278_67296(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
+                f_127_67352_67370(Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer
                 this_param)
                 {
                     var return_v = this_param.ToString();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67278, 67296);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67352, 67370);
                     return return_v;
                 }
 
 
                 string
-                f_127_67245_67297(System.Func<string?, string>
+                f_127_67319_67371(System.Func<string?, string>
                 this_param, string
                 arg)
                 {
                     var return_v = this_param.Invoke(arg);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67245, 67297);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67319, 67371);
                     return return_v;
                 }
 
 
                 int
-                f_127_67322_67413(System.IO.TextWriter
+                f_127_67396_67487(System.IO.TextWriter
                 this_param, string
                 value)
                 {
                     this_param.WriteLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67322, 67413);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67396, 67487);
                     return 0;
                 }
 
 
                 System.Linq.IOrderedEnumerable<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
-                f_127_66820_66869_I(System.Linq.IOrderedEnumerable<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
+                f_127_66894_66943_I(System.Linq.IOrderedEnumerable<System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66820, 66869);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66894, 66943);
                     return return_v;
                 }
 
 
                 int
-                f_127_67453_67478(System.IO.TextWriter
+                f_127_67527_67552(System.IO.TextWriter
                 this_param)
                 {
                     this_param.WriteLine();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67453, 67478);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 67527, 67552);
                     return 0;
                 }
 
 
                 System.Linq.IOrderedEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
-                f_127_66139_66158_I(System.Linq.IOrderedEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
+                f_127_66213_66232_I(System.Linq.IOrderedEnumerable<System.Linq.IGrouping<System.Reflection.Assembly, System.Collections.Generic.KeyValuePair<Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer, System.TimeSpan>>>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66139, 66158);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 66213, 66232);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 64036, 67505);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 64110, 67579);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 64036, 67505);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 64110, 67579);
             }
         }
 
@@ -8850,20 +8852,20 @@ namespace Microsoft.CodeAnalysis
             {
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 67947, 68050);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 67953, 68048);
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 68021, 68124);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68027, 68122);
 
-                    return _fileOpen ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Func<string, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, System.IO.Stream>?>(127, 67960, 68047) ?? ((path, mode, access, share) => new FileStream(path, mode, access, share)));
-                    DynAbs.Tracing.TraceSender.TraceExitMethod(127, 67947, 68050);
+                    return _fileOpen ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Func<string, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, System.IO.Stream>?>(127, 68034, 68121) ?? ((path, mode, access, share) => new FileStream(path, mode, access, share)));
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(127, 68021, 68124);
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 67851, 68101);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 67925, 68175);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 67851, 68101);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 67925, 68175);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -8871,20 +8873,20 @@ namespace Microsoft.CodeAnalysis
             {
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 68064, 68090);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68070, 68088);
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 68138, 68164);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68144, 68162);
 
                     _fileOpen = value;
-                    DynAbs.Tracing.TraceSender.TraceExitMethod(127, 68064, 68090);
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(127, 68138, 68164);
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 67851, 68101);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 67925, 68175);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 67851, 68101);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 67925, 68175);
                 }
             }
         }
@@ -8900,83 +8902,68 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 68198, 68753);
+                DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 68272, 68827);
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68500, 68547);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68574, 68621);
 
                     // LAFHIS
-                    //return f_127_68507_68546(FileOpen, filePath, mode, access, share);
+                    //return f_127_68581_68620(FileOpen, filePath, mode, access, share);
                     var temp = FileOpen(filePath, mode, access, share);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 68507, 68546);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 68581, 68620);
                     return temp;
                 }
                 catch (Exception e)
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 68576, 68742);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68628, 68697);
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 68650, 68816);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68702, 68771);
 
-                    f_127_68628_68696(f_127_68628_68643(), e, filePath, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68715, 68727);
+                    f_127_68702_68770(f_127_68702_68717(), e, filePath, diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 68789, 68801);
 
                     return null;
-                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 68576, 68742);
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 68650, 68816);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 68198, 68753);
+                DynAbs.Tracing.TraceSender.TraceExitMethod(127, 68272, 68827);
 
                 System.Func<string, System.IO.FileMode, System.IO.FileAccess, System.IO.FileShare, System.IO.Stream>
-                f_127_68507_68515()
+                f_127_68581_68589()
                 {
                     var return_v = FileOpen;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 68507, 68515);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 68581, 68589);
                     return return_v;
                 }
-
-
-                System.IO.Stream
-                f_127_68507_68546(Microsoft.CodeAnalysis.CommonCompiler
-                this_param, string
-                arg1, System.IO.FileMode
-                arg2, System.IO.FileAccess
-                arg3, System.IO.FileShare
-                arg4)
-                {
-                    var return_v = this_param.FileOpen(arg1, arg2, arg3, arg4);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 68507, 68546);
-                    return return_v;
-                }
-
 
                 Microsoft.CodeAnalysis.CommonMessageProvider
-                f_127_68628_68643()
+                f_127_68702_68717()
                 {
                     var return_v = MessageProvider;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 68628, 68643);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 68702, 68717);
                     return return_v;
                 }
 
 
                 int
-                f_127_68628_68696(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_68702_68770(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, System.Exception
                 e, string
                 filePath, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     this_param.ReportStreamWriteException(e, filePath, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 68628, 68696);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 68702, 68770);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 68198, 68753);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 68272, 68827);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 68198, 68753);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 68272, 68827);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -8989,65 +8976,65 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 68798, 69419);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69061, 69107);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 68872, 69493);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69135, 69181);
 
                 var
-                diagnostics = f_127_69079_69106()
+                diagnostics = f_127_69153_69180()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69121, 69206);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69195, 69280);
 
                 var
-                stream = f_127_69134_69205(messageProvider, arguments, compilation, diagnostics)
+                stream = f_127_69208_69279(messageProvider, arguments, compilation, diagnostics)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69220, 69380);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69294, 69454);
 
-                errors = f_127_69229_69260(diagnostics).SelectAsArray(diag => new DiagnosticInfo(messageProvider, diag.IsWarningAsError, diag.Code, (object[])diag.Arguments));
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69394, 69408);
+                errors = f_127_69303_69334(diagnostics).SelectAsArray(diag => new DiagnosticInfo(messageProvider, diag.IsWarningAsError, diag.Code, (object[])diag.Arguments));
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69468, 69482);
 
                 return stream;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 68798, 69419);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 68872, 69493);
 
                 Microsoft.CodeAnalysis.DiagnosticBag
-                f_127_69079_69106()
+                f_127_69153_69180()
                 {
                     var return_v = DiagnosticBag.GetInstance();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69079, 69106);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69153, 69180);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_69134_69205(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_69208_69279(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, Microsoft.CodeAnalysis.CommandLineArguments
                 arguments, Microsoft.CodeAnalysis.Compilation
                 compilation, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = GetWin32Resources(messageProvider, arguments, compilation, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69134, 69205);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69208, 69279);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_69229_69260(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_69303_69334(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param)
                 {
                     var return_v = this_param.ToReadOnlyAndFree();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69229, 69260);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69303, 69334);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 68798, 69419);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 68872, 69493);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 68798, 69419);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 68872, 69493);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -9060,93 +9047,93 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 69431, 70768);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 69505, 70842);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69672, 69905) || true) && (f_127_69676_69703(arguments) != null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69746, 69979) || true) && (f_127_69750_69777(arguments) != null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 69672, 69905);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69745, 69890);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 69746, 69979);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69819, 69964);
 
-                    return f_127_69752_69889(messageProvider, f_127_69780_69807(arguments), f_127_69809_69832(arguments), f_127_69834_69875(messageProvider), diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 69672, 69905);
+                    return f_127_69826_69963(messageProvider, f_127_69854_69881(arguments), f_127_69883_69906(arguments), f_127_69908_69949(messageProvider), diagnostics);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 69746, 69979);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69921, 70729);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 69995, 70803);
                 using (Stream?
-                manifestStream = f_127_69953_70044(messageProvider, f_127_69989_70019(f_127_69989_70008(compilation)), arguments, diagnostics)
+                manifestStream = f_127_70027_70118(messageProvider, f_127_70063_70093(f_127_70063_70082(compilation)), arguments, diagnostics)
                 )
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70078, 70714);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70152, 70788);
                     using (Stream?
-                    iconStream = f_127_70106_70231(messageProvider, f_127_70134_70153(arguments), f_127_70155_70178(arguments), f_127_70180_70217(messageProvider), diagnostics)
+                    iconStream = f_127_70180_70305(messageProvider, f_127_70208_70227(arguments), f_127_70229_70252(arguments), f_127_70254_70291(messageProvider), diagnostics)
                     )
                     {
                         try
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70325, 70433);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70399, 70507);
 
-                            return f_127_70332_70432(compilation, true, f_127_70378_70403(arguments), manifestStream, iconStream);
+                            return f_127_70406_70506(compilation, true, f_127_70452_70477(arguments), manifestStream, iconStream);
                         }
                         catch (Exception ex)
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 70478, 70695);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70547, 70672);
+                            DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 70552, 70769);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70621, 70746);
 
-                            f_127_70547_70671(diagnostics, f_127_70563_70670(messageProvider, f_127_70596_70642(messageProvider), f_127_70644_70657(), f_127_70659_70669(ex)));
-                            DynAbs.Tracing.TraceSender.TraceExitCatch(127, 70478, 70695);
+                            f_127_70621_70745(diagnostics, f_127_70637_70744(messageProvider, f_127_70670_70716(messageProvider), f_127_70718_70731(), f_127_70733_70743(ex)));
+                            DynAbs.Tracing.TraceSender.TraceExitCatch(127, 70552, 70769);
                         }
-                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 70078, 70714);
+                        DynAbs.Tracing.TraceSender.TraceExitUsing(127, 70152, 70788);
                     }
-                    DynAbs.Tracing.TraceSender.TraceExitUsing(127, 69921, 70729);
+                    DynAbs.Tracing.TraceSender.TraceExitUsing(127, 69995, 70803);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70745, 70757);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70819, 70831);
 
                 return null;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 69431, 70768);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 69505, 70842);
 
                 string?
-                f_127_69676_69703(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_69750_69777(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Win32ResourceFile;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69676, 69703);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69750, 69777);
                     return return_v;
                 }
 
 
                 string
-                f_127_69780_69807(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_69854_69881(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Win32ResourceFile;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69780, 69807);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69854, 69881);
                     return return_v;
                 }
 
 
                 string?
-                f_127_69809_69832(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_69883_69906(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.BaseDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69809, 69832);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69883, 69906);
                     return return_v;
                 }
 
 
                 int
-                f_127_69834_69875(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_69908_69949(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_CantOpenWin32Resource;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69834, 69875);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69908, 69949);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_69752_69889(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_69826_69963(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, string
                 path, string?
                 baseDirectory, int
@@ -9154,76 +9141,76 @@ namespace Microsoft.CodeAnalysis
                 diagnostics)
                 {
                     var return_v = OpenStream(messageProvider, path, baseDirectory, errorCode, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69752, 69889);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69826, 69963);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.CompilationOptions
-                f_127_69989_70008(Microsoft.CodeAnalysis.Compilation
+                f_127_70063_70082(Microsoft.CodeAnalysis.Compilation
                 this_param)
                 {
                     var return_v = this_param.Options;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69989, 70008);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70063, 70082);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.OutputKind
-                f_127_69989_70019(Microsoft.CodeAnalysis.CompilationOptions
+                f_127_70063_70093(Microsoft.CodeAnalysis.CompilationOptions
                 this_param)
                 {
                     var return_v = this_param.OutputKind;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 69989, 70019);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70063, 70093);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_69953_70044(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_70027_70118(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, Microsoft.CodeAnalysis.OutputKind
                 outputKind, Microsoft.CodeAnalysis.CommandLineArguments
                 arguments, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = OpenManifestStream(messageProvider, outputKind, arguments, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 69953, 70044);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70027, 70118);
                     return return_v;
                 }
 
 
                 string?
-                f_127_70134_70153(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_70208_70227(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Win32Icon;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70134, 70153);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70208, 70227);
                     return return_v;
                 }
 
 
                 string?
-                f_127_70155_70178(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_70229_70252(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.BaseDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70155, 70178);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70229, 70252);
                     return return_v;
                 }
 
 
                 int
-                f_127_70180_70217(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_70254_70291(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_CantOpenWin32Icon;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70180, 70217);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70254, 70291);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_70106_70231(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_70180_70305(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, string?
                 path, string?
                 baseDirectory, int
@@ -9231,23 +9218,23 @@ namespace Microsoft.CodeAnalysis
                 diagnostics)
                 {
                     var return_v = OpenStream(messageProvider, path, baseDirectory, errorCode, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70106, 70231);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70180, 70305);
                     return return_v;
                 }
 
 
                 bool
-                f_127_70378_70403(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_70452_70477(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.NoWin32Manifest;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70378, 70403);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70452, 70477);
                     return return_v;
                 }
 
 
                 System.IO.Stream
-                f_127_70332_70432(Microsoft.CodeAnalysis.Compilation
+                f_127_70406_70506(Microsoft.CodeAnalysis.Compilation
                 this_param, bool
                 versionResource, bool
                 noManifest, System.IO.Stream?
@@ -9255,72 +9242,72 @@ namespace Microsoft.CodeAnalysis
                 iconInIcoFormat)
                 {
                     var return_v = this_param.CreateDefaultWin32Resources(versionResource, noManifest, manifestContents, iconInIcoFormat);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70332, 70432);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70406, 70506);
                     return return_v;
                 }
 
 
                 int
-                f_127_70596_70642(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_70670_70716(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_ErrorBuildingWin32Resource;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70596, 70642);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70670, 70716);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Location
-                f_127_70644_70657()
+                f_127_70718_70731()
                 {
                     var return_v = Location.None;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70644, 70657);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70718, 70731);
                     return return_v;
                 }
 
 
                 string
-                f_127_70659_70669(System.Exception
+                f_127_70733_70743(System.Exception
                 this_param)
                 {
                     var return_v = this_param.Message;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70659, 70669);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 70733, 70743);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostic
-                f_127_70563_70670(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_70637_70744(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, int
                 code, Microsoft.CodeAnalysis.Location
                 location, params object[]
                 args)
                 {
                     var return_v = this_param.CreateDiagnostic(code, location, args);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70563, 70670);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70637, 70744);
                     return return_v;
                 }
 
 
                 int
-                f_127_70547_70671(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_70621_70745(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diag)
                 {
                     this_param.Add(diag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70547, 70671);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70621, 70745);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 69431, 70768);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 69505, 70842);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 69431, 70768);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 69505, 70842);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -9329,55 +9316,55 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 70780, 71187);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 70967, 71176);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 70854, 71261);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71041, 71250);
 
-                return (DynAbs.Tracing.TraceSender.Conditional_F1(127, 70974, 70998) || ((f_127_70974_70998(outputKind) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 71018, 71022)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 71042, 71175))) ? null
-                : f_127_71042_71175(messageProvider, f_127_71070_71093(arguments), f_127_71095_71118(arguments), f_127_71120_71161(messageProvider), diagnostics);
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 70780, 71187);
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(127, 71048, 71072) || ((f_127_71048_71072(outputKind) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 71092, 71096)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 71116, 71249))) ? null
+                : f_127_71116_71249(messageProvider, f_127_71144_71167(arguments), f_127_71169_71192(arguments), f_127_71194_71235(messageProvider), diagnostics);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 70854, 71261);
 
                 bool
-                f_127_70974_70998(Microsoft.CodeAnalysis.OutputKind
+                f_127_71048_71072(Microsoft.CodeAnalysis.OutputKind
                 kind)
                 {
                     var return_v = kind.IsNetModule();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 70974, 70998);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71048, 71072);
                     return return_v;
                 }
 
 
                 string?
-                f_127_71070_71093(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_71144_71167(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.Win32Manifest;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71070, 71093);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71144, 71167);
                     return return_v;
                 }
 
 
                 string?
-                f_127_71095_71118(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_71169_71192(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.BaseDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71095, 71118);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71169, 71192);
                     return return_v;
                 }
 
 
                 int
-                f_127_71120_71161(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_71194_71235(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.ERR_CantOpenWin32Manifest;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71120, 71161);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71194, 71235);
                     return return_v;
                 }
 
 
                 System.IO.Stream?
-                f_127_71042_71175(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_71116_71249(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, string?
                 path, string?
                 baseDirectory, int
@@ -9385,19 +9372,19 @@ namespace Microsoft.CodeAnalysis
                 diagnostics)
                 {
                     var return_v = OpenStream(messageProvider, path, baseDirectory, errorCode, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71042, 71175);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71116, 71249);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 70780, 71187);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 70854, 71261);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 70780, 71187);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 70854, 71261);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -9406,130 +9393,130 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 71199, 72003);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 71273, 72077);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71375, 71452) || true) && (path == null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71449, 71526) || true) && (path == null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 71375, 71452);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71425, 71437);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 71449, 71526);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71499, 71511);
 
                     return null;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 71375, 71452);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 71449, 71526);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71468, 71558);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71542, 71632);
 
                 string?
-                fullPath = f_127_71487_71557(messageProvider, path, baseDirectory, diagnostics)
+                fullPath = f_127_71561_71631(messageProvider, path, baseDirectory, diagnostics)
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71572, 71653) || true) && (fullPath == null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71646, 71727) || true) && (fullPath == null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 71572, 71653);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71626, 71638);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 71646, 71727);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71700, 71712);
 
                     return null;
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 71572, 71653);
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 71646, 71727);
                 }
 
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71705, 71769);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71779, 71843);
 
-                    return f_127_71712_71768(fullPath, FileMode.Open, FileAccess.Read);
+                    return f_127_71786_71842(fullPath, FileMode.Open, FileAccess.Read);
                 }
                 catch (Exception ex)
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 71798, 71964);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71851, 71949);
+                    DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 71872, 72038);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71925, 72023);
 
-                    f_127_71851_71948(diagnostics, f_127_71867_71947(messageProvider, errorCode, f_127_71911_71924(), fullPath, f_127_71936_71946(ex)));
-                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 71798, 71964);
+                    f_127_71925_72022(diagnostics, f_127_71941_72021(messageProvider, errorCode, f_127_71985_71998(), fullPath, f_127_72010_72020(ex)));
+                    DynAbs.Tracing.TraceSender.TraceExitCatch(127, 71872, 72038);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 71980, 71992);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72054, 72066);
 
                 return null;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 71199, 72003);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 71273, 72077);
 
                 string?
-                f_127_71487_71557(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_71561_71631(Microsoft.CodeAnalysis.CommonMessageProvider
                 messageProvider, string
                 path, string?
                 baseDirectory, Microsoft.CodeAnalysis.DiagnosticBag
                 diagnostics)
                 {
                     var return_v = ResolveRelativePath(messageProvider, path, baseDirectory, diagnostics);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71487, 71557);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71561, 71631);
                     return return_v;
                 }
 
 
                 System.IO.FileStream
-                f_127_71712_71768(string
+                f_127_71786_71842(string
                 path, System.IO.FileMode
                 mode, System.IO.FileAccess
                 access)
                 {
                     var return_v = new System.IO.FileStream(path, mode, access);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71712, 71768);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71786, 71842);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Location
-                f_127_71911_71924()
+                f_127_71985_71998()
                 {
                     var return_v = Location.None;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71911, 71924);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71985, 71998);
                     return return_v;
                 }
 
 
                 string
-                f_127_71936_71946(System.Exception
+                f_127_72010_72020(System.Exception
                 this_param)
                 {
                     var return_v = this_param.Message;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 71936, 71946);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72010, 72020);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostic
-                f_127_71867_71947(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_71941_72021(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, int
                 code, Microsoft.CodeAnalysis.Location
                 location, params object[]
                 args)
                 {
                     var return_v = this_param.CreateDiagnostic(code, location, args);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71867, 71947);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71941, 72021);
                     return return_v;
                 }
 
 
                 int
-                f_127_71851_71948(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_71925_72022(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diag)
                 {
                     this_param.Add(diag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71851, 71948);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 71925, 72022);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 71199, 72003);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 71273, 72077);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 71199, 72003);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 71273, 72077);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -9538,90 +9525,90 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 72015, 72503);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72184, 72258);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 72089, 72577);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72258, 72332);
 
                 string?
-                fullPath = f_127_72203_72257(path, baseDirectory)
+                fullPath = f_127_72277_72331(path, baseDirectory)
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72272, 72460) || true) && (fullPath == null)
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72346, 72534) || true) && (fullPath == null)
                 )
 
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 72272, 72460);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72326, 72445);
+                    DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 72346, 72534);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72400, 72519);
 
-                    f_127_72326_72444(diagnostics, f_127_72342_72443(messageProvider, f_127_72375_72415(messageProvider), f_127_72417_72430(), path ?? (DynAbs.Tracing.TraceSender.Expression_Null<string>(127, 72432, 72442) ?? "")));
-                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 72272, 72460);
+                    f_127_72400_72518(diagnostics, f_127_72416_72517(messageProvider, f_127_72449_72489(messageProvider), f_127_72491_72504(), path ?? (DynAbs.Tracing.TraceSender.Expression_Null<string>(127, 72506, 72516) ?? "")));
+                    DynAbs.Tracing.TraceSender.TraceExitCondition(127, 72346, 72534);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72476, 72492);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72550, 72566);
 
                 return fullPath;
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 72015, 72503);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 72089, 72577);
 
                 string?
-                f_127_72203_72257(string
+                f_127_72277_72331(string
                 path, string?
                 baseDirectory)
                 {
                     var return_v = FileUtilities.ResolveRelativePath(path, baseDirectory);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72203, 72257);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72277, 72331);
                     return return_v;
                 }
 
 
                 int
-                f_127_72375_72415(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_72449_72489(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param)
                 {
                     var return_v = this_param.FTL_InvalidInputFileName;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72375, 72415);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72449, 72489);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Location
-                f_127_72417_72430()
+                f_127_72491_72504()
                 {
                     var return_v = Location.None;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72417, 72430);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72491, 72504);
                     return return_v;
                 }
 
 
                 Microsoft.CodeAnalysis.Diagnostic
-                f_127_72342_72443(Microsoft.CodeAnalysis.CommonMessageProvider
+                f_127_72416_72517(Microsoft.CodeAnalysis.CommonMessageProvider
                 this_param, int
                 code, Microsoft.CodeAnalysis.Location
                 location, params object[]
                 args)
                 {
                     var return_v = this_param.CreateDiagnostic(code, location, args);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72342, 72443);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72416, 72517);
                     return return_v;
                 }
 
 
                 int
-                f_127_72326_72444(Microsoft.CodeAnalysis.DiagnosticBag
+                f_127_72400_72518(Microsoft.CodeAnalysis.DiagnosticBag
                 this_param, Microsoft.CodeAnalysis.Diagnostic
                 diag)
                 {
                     this_param.Add(diag);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72326, 72444);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72400, 72518);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 72015, 72503);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 72089, 72577);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 72015, 72503);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 72089, 72577);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -9630,67 +9617,67 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 72515, 72829);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72648, 72657);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 72589, 72903);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72722, 72731);
 
                 code = 0;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72671, 72818);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 72745, 72892);
 
-                return f_127_72678_72743(diagnosticId, expectedPrefix, StringComparison.Ordinal) && (DynAbs.Tracing.TraceSender.Expression_True(127, 72678, 72817) && f_127_72747_72817(f_127_72761_72806(diagnosticId, f_127_72784_72805(expectedPrefix)), out code));
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 72515, 72829);
+                return f_127_72752_72817(diagnosticId, expectedPrefix, StringComparison.Ordinal) && (DynAbs.Tracing.TraceSender.Expression_True(127, 72752, 72891) && f_127_72821_72891(f_127_72835_72880(diagnosticId, f_127_72858_72879(expectedPrefix)), out code));
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 72589, 72903);
 
                 bool
-                f_127_72678_72743(string
+                f_127_72752_72817(string
                 this_param, string
                 value, System.StringComparison
                 comparisonType)
                 {
                     var return_v = this_param.StartsWith(value, comparisonType);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72678, 72743);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72752, 72817);
                     return return_v;
                 }
 
 
                 int
-                f_127_72784_72805(string
+                f_127_72858_72879(string
                 this_param)
                 {
                     var return_v = this_param.Length;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72784, 72805);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 72858, 72879);
                     return return_v;
                 }
 
 
                 string
-                f_127_72761_72806(string
+                f_127_72835_72880(string
                 this_param, int
                 startIndex)
                 {
                     var return_v = this_param.Substring(startIndex);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72761, 72806);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72835, 72880);
                     return return_v;
                 }
 
 
                 bool
-                f_127_72747_72817(string
+                f_127_72821_72891(string
                 s, out uint
                 result)
                 {
                     var return_v = uint.TryParse(s, out result);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72747, 72817);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 72821, 72891);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 72515, 72829);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 72589, 72903);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 72515, 72829);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 72589, 72903);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
@@ -9701,48 +9688,48 @@ namespace Microsoft.CodeAnalysis
             {
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 73131, 73247);
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73167, 73232);
+                    DynAbs.Tracing.TraceSender.TraceEnterMethod(127, 73205, 73321);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73241, 73306);
 
-                    return f_127_73174_73199(f_127_73174_73183()) ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Globalization.CultureInfo?>(127, 73174, 73231) ?? f_127_73203_73231());
-                    DynAbs.Tracing.TraceSender.TraceExitMethod(127, 73131, 73247);
+                    return f_127_73248_73273(f_127_73248_73257()) ?? (DynAbs.Tracing.TraceSender.Expression_Null<System.Globalization.CultureInfo?>(127, 73248, 73305) ?? f_127_73277_73305());
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(127, 73205, 73321);
 
                     Microsoft.CodeAnalysis.CommandLineArguments
-                    f_127_73174_73183()
+                    f_127_73248_73257()
                     {
                         var return_v = Arguments;
-                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73174, 73183);
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73248, 73257);
                         return return_v;
                     }
 
 
                     System.Globalization.CultureInfo?
-                    f_127_73174_73199(Microsoft.CodeAnalysis.CommandLineArguments
+                    f_127_73248_73273(Microsoft.CodeAnalysis.CommandLineArguments
                     this_param)
                     {
                         var return_v = this_param.PreferredUILang;
-                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73174, 73199);
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73248, 73273);
                         return return_v;
                     }
 
 
                     System.Globalization.CultureInfo
-                    f_127_73203_73231()
+                    f_127_73277_73305()
                     {
                         var return_v = CultureInfo.CurrentUICulture;
-                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73203, 73231);
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73277, 73305);
                         return return_v;
                     }
 
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 73069, 73258);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 73143, 73332);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 73069, 73258);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 73143, 73332);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -9752,139 +9739,139 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 73270, 73799);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73426, 73495);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 73344, 73873);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73500, 73569);
 
                 var
-                key = f_127_73436_73494(args, rawArgs, baseDirectory, parser)
+                key = f_127_73510_73568(args, rawArgs, baseDirectory, parser)
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73509, 73589);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73583, 73663);
 
                 var
-                filePath = f_127_73524_73588(f_127_73537_73557(args), f_127_73559_73578(args) + ".key")
+                filePath = f_127_73598_73662(f_127_73611_73631(args), f_127_73633_73652(args) + ".key")
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73603, 73788);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73677, 73862);
                 using (var
-                stream = f_127_73623_73644(filePath)
+                stream = f_127_73697_73718(filePath)
                 )
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73678, 73718);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73752, 73792);
 
                     var
-                    bytes = f_127_73690_73717(f_127_73690_73703(), key)
+                    bytes = f_127_73764_73791(f_127_73764_73777(), key)
                     ;
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73736, 73773);
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 73810, 73847);
 
-                    f_127_73736_73772(stream, bytes, 0, f_127_73759_73771(bytes));
-                    DynAbs.Tracing.TraceSender.TraceExitUsing(127, 73603, 73788);
+                    f_127_73810_73846(stream, bytes, 0, f_127_73833_73845(bytes));
+                    DynAbs.Tracing.TraceSender.TraceExitUsing(127, 73677, 73862);
                 }
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 73270, 73799);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 73344, 73873);
 
                 string
-                f_127_73436_73494(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_73510_73568(Microsoft.CodeAnalysis.CommandLineArguments
                 args, string[]
                 rawArgs, string
                 baseDirectory, Microsoft.CodeAnalysis.CommandLineParser
                 parser)
                 {
                     var return_v = CreateDeterminismKey(args, rawArgs, baseDirectory, parser);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73436, 73494);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73510, 73568);
                     return return_v;
                 }
 
 
                 string
-                f_127_73537_73557(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_73611_73631(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.OutputDirectory;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73537, 73557);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73611, 73631);
                     return return_v;
                 }
 
 
                 string?
-                f_127_73559_73578(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_73633_73652(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.OutputFileName;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73559, 73578);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73633, 73652);
                     return return_v;
                 }
 
 
                 string
-                f_127_73524_73588(string
+                f_127_73598_73662(string
                 path1, string
                 path2)
                 {
                     var return_v = Path.Combine(path1, path2);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73524, 73588);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73598, 73662);
                     return return_v;
                 }
 
 
                 System.IO.FileStream
-                f_127_73623_73644(string
+                f_127_73697_73718(string
                 path)
                 {
                     var return_v = File.Create(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73623, 73644);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73697, 73718);
                     return return_v;
                 }
 
 
                 System.Text.Encoding
-                f_127_73690_73703()
+                f_127_73764_73777()
                 {
                     var return_v = Encoding.UTF8;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73690, 73703);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73764, 73777);
                     return return_v;
                 }
 
 
                 byte[]
-                f_127_73690_73717(System.Text.Encoding
+                f_127_73764_73791(System.Text.Encoding
                 this_param, string
                 s)
                 {
                     var return_v = this_param.GetBytes(s);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73690, 73717);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73764, 73791);
                     return return_v;
                 }
 
 
                 int
-                f_127_73759_73771(byte[]
+                f_127_73833_73845(byte[]
                 this_param)
                 {
                     var return_v = this_param.Length;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73759, 73771);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 73833, 73845);
                     return return_v;
                 }
 
 
                 int
-                f_127_73736_73772(System.IO.FileStream
+                f_127_73810_73846(System.IO.FileStream
                 this_param, byte[]
                 array, int
                 offset, int
                 count)
                 {
                     this_param.Write(array, offset, count);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73736, 73772);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 73810, 73846);
                     return 0;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 73270, 73799);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 73344, 73873);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 73270, 73799);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 73344, 73873);
             }
         }
 
@@ -9892,47 +9879,47 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
-                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 74329, 76073);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74489, 74543);
+                DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(127, 74403, 76147);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74563, 74617);
 
                 List<Diagnostic>
-                diagnostics = f_127_74520_74542()
+                diagnostics = f_127_74594_74616()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74557, 74605);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74631, 74679);
 
                 List<string>
-                flattenedArgs = f_127_74586_74604()
+                flattenedArgs = f_127_74660_74678()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74619, 74696);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74693, 74770);
 
-                f_127_74619_74695(parser, rawArgs, diagnostics, flattenedArgs, null, baseDirectory);
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74712, 74746);
+                f_127_74693_74769(parser, rawArgs, diagnostics, flattenedArgs, null, baseDirectory);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74786, 74820);
 
                 var
-                builder = f_127_74726_74745()
+                builder = f_127_74800_74819()
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74760, 74970);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74834, 75044);
 
                 var
-                name = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 74771, 74813) || ((!f_127_74772_74813(f_127_74793_74812(args)) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 74833, 74904)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 74924, 74969))) ? f_127_74833_74904(f_127_74866_74903(f_127_74883_74902(args))) : $"no-output-name-{Guid.NewGuid().ToString()}"
+                name = (DynAbs.Tracing.TraceSender.Conditional_F1(127, 74845, 74887) || ((!f_127_74846_74887(f_127_74867_74886(args)) && DynAbs.Tracing.TraceSender.Conditional_F2(127, 74907, 74978)) || DynAbs.Tracing.TraceSender.Conditional_F3(127, 74998, 75043))) ? f_127_74907_74978(f_127_74940_74977(f_127_74957_74976(args))) : $"no-output-name-{Guid.NewGuid().ToString()}"
                 ;
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 74986, 75016);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75060, 75090);
 
-                f_127_74986_75015(
+                f_127_75060_75089(
                             builder, $"{name}");
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75030, 75067);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75104, 75141);
 
-                f_127_75030_75066(builder, $"Command Line:");
+                f_127_75104_75140(builder, $"Command Line:");
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75081, 75202);
-                    foreach (var current in f_127_75105_75118_I(flattenedArgs))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75155, 75276);
+                    foreach (var current in f_127_75179_75192_I(flattenedArgs))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 75081, 75202);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75152, 75187);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 75155, 75276);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75226, 75261);
 
-                        f_127_75152_75186(builder, $"\t{current}");
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 75081, 75202);
+                        f_127_75226_75260(builder, $"\t{current}");
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 75155, 75276);
                     }
                 }
                 catch (System.Exception)
@@ -9944,64 +9931,64 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 122);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75218, 75254);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75292, 75328);
 
-                f_127_75218_75253(
+                f_127_75292_75327(
                             builder, "Source Files:");
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75268, 75292);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75342, 75366);
 
                 var
-                hash = f_127_75279_75291()
+                hash = f_127_75353_75365()
                 ;
                 try
                 {
-                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75306, 76020);
-                    foreach (var sourceFile in f_127_75333_75349_I(f_127_75333_75349(args)))
+                    DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75380, 76094);
+                    foreach (var sourceFile in f_127_75407_75423_I(f_127_75407_75423(args)))
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 75306, 76020);
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75383, 75438);
+                        DynAbs.Tracing.TraceSender.TraceEnterCondition(127, 75380, 76094);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75457, 75512);
 
                         var
-                        sourceFileName = f_127_75404_75437(sourceFile.Path)
+                        sourceFileName = f_127_75478_75511(sourceFile.Path)
                         ;
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75458, 75475);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75532, 75549);
 
                         string
                         hashValue
                         = default(string);
                         try
                         {
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75537, 75584);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75611, 75658);
 
                             var
-                            bytes = f_127_75549_75583(sourceFile.Path)
+                            bytes = f_127_75623_75657(sourceFile.Path)
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75606, 75646);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75680, 75720);
 
                             var
-                            hashBytes = f_127_75622_75645(hash, bytes)
+                            hashBytes = f_127_75696_75719(hash, bytes)
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75668, 75712);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75742, 75786);
 
                             var
-                            data = f_127_75679_75711(hashBytes)
+                            data = f_127_75753_75785(hashBytes)
                             ;
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75734, 75768);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75808, 75842);
 
-                            hashValue = f_127_75746_75767(data, "-", "");
+                            hashValue = f_127_75820_75841(data, "-", "");
                         }
                         catch (Exception ex)
                         {
-                            DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 75805, 75931);
-                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75866, 75912);
+                            DynAbs.Tracing.TraceSender.TraceEnterCatch(127, 75879, 76005);
+                            DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75940, 75986);
 
-                            hashValue = $"Could not compute {f_127_75899_75909(ex)}";
-                            DynAbs.Tracing.TraceSender.TraceExitCatch(127, 75805, 75931);
+                            hashValue = $"Could not compute {f_127_75973_75983(ex)}";
+                            DynAbs.Tracing.TraceSender.TraceExitCatch(127, 75879, 76005);
                         }
-                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 75949, 76005);
+                        DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 76023, 76079);
 
-                        f_127_75949_76004(builder, $"\t{sourceFileName} - {hashValue}");
-                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 75306, 76020);
+                        f_127_76023_76078(builder, $"\t{sourceFileName} - {hashValue}");
+                        DynAbs.Tracing.TraceSender.TraceExitCondition(127, 75380, 76094);
                     }
                 }
                 catch (System.Exception)
@@ -10013,31 +10000,31 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceExitLoop(127, 1, 715);
                 }
-                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 76036, 76062);
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(127, 76110, 76136);
 
-                return f_127_76043_76061(builder);
-                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 74329, 76073);
+                return f_127_76117_76135(builder);
+                DynAbs.Tracing.TraceSender.TraceExitStaticMethod(127, 74403, 76147);
 
                 System.Collections.Generic.List<Microsoft.CodeAnalysis.Diagnostic>
-                f_127_74520_74542()
+                f_127_74594_74616()
                 {
                     var return_v = new System.Collections.Generic.List<Microsoft.CodeAnalysis.Diagnostic>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74520, 74542);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74594, 74616);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.List<string>
-                f_127_74586_74604()
+                f_127_74660_74678()
                 {
                     var return_v = new System.Collections.Generic.List<string>();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74586, 74604);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74660, 74678);
                     return return_v;
                 }
 
 
                 int
-                f_127_74619_74695(Microsoft.CodeAnalysis.CommandLineParser
+                f_127_74693_74769(Microsoft.CodeAnalysis.CommandLineParser
                 this_param, string[]
                 rawArguments, System.Collections.Generic.List<Microsoft.CodeAnalysis.Diagnostic>
                 diagnostics, System.Collections.Generic.List<string>
@@ -10046,245 +10033,245 @@ namespace Microsoft.CodeAnalysis
                 baseDirectory)
                 {
                     this_param.FlattenArgs((System.Collections.Generic.IEnumerable<string>)rawArguments, (System.Collections.Generic.IList<Microsoft.CodeAnalysis.Diagnostic>)diagnostics, processedArgs, scriptArgsOpt, baseDirectory);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74619, 74695);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74693, 74769);
                     return 0;
                 }
 
 
                 System.Text.StringBuilder
-                f_127_74726_74745()
+                f_127_74800_74819()
                 {
                     var return_v = new System.Text.StringBuilder();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74726, 74745);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74800, 74819);
                     return return_v;
                 }
 
 
                 string?
-                f_127_74793_74812(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_74867_74886(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.OutputFileName;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 74793, 74812);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 74867, 74886);
                     return return_v;
                 }
 
 
                 bool
-                f_127_74772_74813(string?
+                f_127_74846_74887(string?
                 value)
                 {
                     var return_v = string.IsNullOrEmpty(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74772, 74813);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74846, 74887);
                     return return_v;
                 }
 
 
                 string
-                f_127_74883_74902(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_74957_74976(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.OutputFileName;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 74883, 74902);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 74957, 74976);
                     return return_v;
                 }
 
 
                 string?
-                f_127_74866_74903(string
+                f_127_74940_74977(string
                 path)
                 {
                     var return_v = Path.GetFileName(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74866, 74903);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74940, 74977);
                     return return_v;
                 }
 
 
                 string?
-                f_127_74833_74904(string
+                f_127_74907_74978(string
                 path)
                 {
                     var return_v = Path.GetFileNameWithoutExtension(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74833, 74904);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74907, 74978);
                     return return_v;
                 }
 
 
                 System.Text.StringBuilder
-                f_127_74986_75015(System.Text.StringBuilder
+                f_127_75060_75089(System.Text.StringBuilder
                 this_param, string
                 value)
                 {
                     var return_v = this_param.AppendLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 74986, 75015);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75060, 75089);
                     return return_v;
                 }
 
 
                 System.Text.StringBuilder
-                f_127_75030_75066(System.Text.StringBuilder
+                f_127_75104_75140(System.Text.StringBuilder
                 this_param, string
                 value)
                 {
                     var return_v = this_param.AppendLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75030, 75066);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75104, 75140);
                     return return_v;
                 }
 
 
                 System.Text.StringBuilder
-                f_127_75152_75186(System.Text.StringBuilder
+                f_127_75226_75260(System.Text.StringBuilder
                 this_param, string
                 value)
                 {
                     var return_v = this_param.AppendLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75152, 75186);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75226, 75260);
                     return return_v;
                 }
 
 
                 System.Collections.Generic.List<string>
-                f_127_75105_75118_I(System.Collections.Generic.List<string>
+                f_127_75179_75192_I(System.Collections.Generic.List<string>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75105, 75118);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75179, 75192);
                     return return_v;
                 }
 
 
                 System.Text.StringBuilder
-                f_127_75218_75253(System.Text.StringBuilder
+                f_127_75292_75327(System.Text.StringBuilder
                 this_param, string
                 value)
                 {
                     var return_v = this_param.AppendLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75218, 75253);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75292, 75327);
                     return return_v;
                 }
 
 
                 System.Security.Cryptography.MD5
-                f_127_75279_75291()
+                f_127_75353_75365()
                 {
                     var return_v = MD5.Create();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75279, 75291);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75353, 75365);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
-                f_127_75333_75349(Microsoft.CodeAnalysis.CommandLineArguments
+                f_127_75407_75423(Microsoft.CodeAnalysis.CommandLineArguments
                 this_param)
                 {
                     var return_v = this_param.SourceFiles;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 75333, 75349);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 75407, 75423);
                     return return_v;
                 }
 
 
                 string?
-                f_127_75404_75437(string
+                f_127_75478_75511(string
                 path)
                 {
                     var return_v = Path.GetFileName(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75404, 75437);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75478, 75511);
                     return return_v;
                 }
 
 
                 byte[]
-                f_127_75549_75583(string
+                f_127_75623_75657(string
                 path)
                 {
                     var return_v = File.ReadAllBytes(path);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75549, 75583);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75623, 75657);
                     return return_v;
                 }
 
 
                 byte[]
-                f_127_75622_75645(System.Security.Cryptography.MD5
+                f_127_75696_75719(System.Security.Cryptography.MD5
                 this_param, byte[]
                 buffer)
                 {
                     var return_v = this_param.ComputeHash(buffer);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75622, 75645);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75696, 75719);
                     return return_v;
                 }
 
 
                 string
-                f_127_75679_75711(byte[]
+                f_127_75753_75785(byte[]
                 value)
                 {
                     var return_v = BitConverter.ToString(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75679, 75711);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75753, 75785);
                     return return_v;
                 }
 
 
                 string
-                f_127_75746_75767(string
+                f_127_75820_75841(string
                 this_param, string
                 oldValue, string
                 newValue)
                 {
                     var return_v = this_param.Replace(oldValue, newValue);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75746, 75767);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75820, 75841);
                     return return_v;
                 }
 
 
                 string
-                f_127_75899_75909(System.Exception
+                f_127_75973_75983(System.Exception
                 this_param)
                 {
                     var return_v = this_param.Message;
-                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 75899, 75909);
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(127, 75973, 75983);
                     return return_v;
                 }
 
 
                 System.Text.StringBuilder
-                f_127_75949_76004(System.Text.StringBuilder
+                f_127_76023_76078(System.Text.StringBuilder
                 this_param, string
                 value)
                 {
                     var return_v = this_param.AppendLine(value);
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75949, 76004);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 76023, 76078);
                     return return_v;
                 }
 
 
                 System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
-                f_127_75333_75349_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
+                f_127_75407_75423_I(System.Collections.Immutable.ImmutableArray<Microsoft.CodeAnalysis.CommandLineSourceFile>
                 i)
                 {
                     var return_v = i;
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75333, 75349);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 75407, 75423);
                     return return_v;
                 }
 
 
                 string
-                f_127_76043_76061(System.Text.StringBuilder
+                f_127_76117_76135(System.Text.StringBuilder
                 this_param)
                 {
                     var return_v = this_param.ToString();
-                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 76043, 76061);
+                    DynAbs.Tracing.TraceSender.TraceEndInvocation(127, 76117, 76135);
                     return return_v;
                 }
 
             }
             catch
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 74329, 76073);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(127, 74403, 76147);
                 throw;
             }
             finally
             {
-                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 74329, 76073);
+                DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(127, 74403, 76147);
             }
             throw new System.Exception("Slicer error: unreachable code");
         }
