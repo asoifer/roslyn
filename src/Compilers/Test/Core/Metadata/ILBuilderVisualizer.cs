@@ -65,13 +65,19 @@ namespace Roslyn.Test.Utilities
             }
 
             object reference = _tokenDeferral.GetReferenceFromToken(token);
-            ISymbol symbol = ((reference as ISymbolInternal) ?? (reference as Cci.IReference)?.GetInternalSymbol())?.GetISymbol();
+            // LAFHIS
+            //ISymbol symbol = ((reference as ISymbolInternal) ?? (reference as Cci.IReference)?.GetInternalSymbol())?.GetISymbol();
+            var temp = (reference as ISymbolInternal) ?? ((reference is Cci.IReference) ? ((Cci.IReference)reference).GetInternalSymbol() : null);
+            ISymbol symbol = temp != null ? temp.GetISymbol() : null;
             return string.Format("\"{0}\"", symbol == null ? (object)reference : symbol.ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat));
         }
 
         public override string VisualizeLocalType(object type)
         {
-            return (((type as ISymbolInternal) ?? (type as Cci.IReference)?.GetInternalSymbol()) is ISymbolInternal symbol) ? symbol.GetISymbol().ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat) : type.ToString();
+            // LAFHIS
+            //return (((type as ISymbolInternal) ?? (type as Cci.IReference)?.GetInternalSymbol()) is ISymbolInternal symbol) ? symbol.GetISymbol().ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat) : type.ToString();
+            var temp = ((type as ISymbolInternal) ?? ((type is Cci.IReference) ? ((Cci.IReference)type).GetInternalSymbol() : null));
+            return (temp is ISymbolInternal) ? ((ISymbolInternal)temp).GetISymbol().ToDisplayString(SymbolDisplayFormat.ILVisualizationFormat) : type.ToString();
         }
 
         /// <summary>
