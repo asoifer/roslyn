@@ -29,7 +29,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         private readonly LookupResultKind _resultKind;
 
         internal ExtendedErrorTypeSymbol(CSharpCompilation compilation, string name, int arity, DiagnosticInfo? errorInfo, bool unreported = false, bool variableUsedBeforeDeclaration = false)
-        : this(f_10065_1353_1389_C(f_10065_1353_1389(f_10065_1353_1373(compilation))), name, arity, errorInfo, unreported, variableUsedBeforeDeclaration)
+        // LAFHIS
+        //: this(f_10065_1353_1389_C(f_10065_1353_1389(f_10065_1353_1373(compilation))), name, arity, errorInfo, unreported, variableUsedBeforeDeclaration)
+        : this(f_10065_1353_1389(f_10065_1353_1373(f_10065_1353_1389_C(compilation))), name, arity, errorInfo, unreported, variableUsedBeforeDeclaration)
         {
             try
             {
@@ -152,7 +154,9 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         }
 
         internal ExtendedErrorTypeSymbol(NamespaceOrTypeSymbol guessSymbol, LookupResultKind resultKind, DiagnosticInfo errorInfo, bool unreported = false)
-        : this(f_10065_3223_3262_C(f_10065_3223_3262(guessSymbol)), guessSymbol, resultKind, errorInfo, unreported)
+        // LAFHIS
+        //: this(f_10065_3223_3262_C(f_10065_3223_3262(guessSymbol)), guessSymbol, resultKind, errorInfo, unreported)
+        : this(f_10065_3223_3262(f_10065_3223_3262_C(guessSymbol)), guessSymbol, resultKind, errorInfo, unreported)
         {
             try
             {
@@ -1410,8 +1414,8 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         }
 
 
-        static Microsoft.CodeAnalysis.CSharp.Symbols.NamespaceOrTypeSymbol
-        f_10065_1353_1389_C(Microsoft.CodeAnalysis.CSharp.Symbols.NamespaceOrTypeSymbol
+        static CSharpCompilation
+        f_10065_1353_1389_C(CSharpCompilation
         i)
         {
             var return_v = i;

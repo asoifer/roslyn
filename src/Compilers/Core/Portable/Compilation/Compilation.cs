@@ -85,7 +85,8 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 22433, 22495);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 22623, 22681);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 44166, 44281);
-                this._getTypeCache = f_145_44195_44281(50, ReferenceEqualityComparer.Instance); DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 136118, 136152);
+                this._getTypeCache = f_145_44195_44281(50, ReferenceEqualityComparer.Instance); 
+                DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 136118, 136152);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(532, 1678, 1747);
                 // LAFHIS // new WeakList<IAssemblySymbolInternal>(); (532)
                 //this._retargetingAssemblySymbols = f_577_1708_1747();

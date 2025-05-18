@@ -62,7 +62,8 @@ namespace Microsoft.CodeAnalysis
         }
 
         public SourceLocation(in SyntaxToken token)
-        : this(f_201_967_984_C(token.SyntaxTree!), token.Span)
+        // LAFHIS
+        : this(f_201_967_983(f_201_967_984_C(token))!, f_201_986_996(token))
         {
             try
             {
@@ -81,7 +82,8 @@ namespace Microsoft.CodeAnalysis
         }
 
         public SourceLocation(in SyntaxNodeOrToken nodeOrToken)
-        : this(f_201_1107_1130_C(nodeOrToken.SyntaxTree!), nodeOrToken.Span)
+        // LAFHIS
+        : this(f_201_1107_1129(f_201_1107_1130_C(nodeOrToken))!, f_201_1132_1148(nodeOrToken))
         {
             try
             {
@@ -103,7 +105,8 @@ namespace Microsoft.CodeAnalysis
         }
 
         public SourceLocation(in SyntaxTrivia trivia)
-        : this(f_201_1310_1328_C(trivia.SyntaxTree!), trivia.Span)
+        // LAFHIS
+        : this(f_201_1310_1327(f_201_1310_1328_C(trivia))!, f_201_1330_1341(trivia))
         {
             try
             {
@@ -561,12 +564,32 @@ namespace Microsoft.CodeAnalysis
         }
 
 
-        static Microsoft.CodeAnalysis.SyntaxTree
-        f_201_967_984_C(Microsoft.CodeAnalysis.SyntaxTree
+        static SyntaxToken
+        f_201_967_984_C(SyntaxToken
         i)
         {
             var return_v = i;
             DynAbs.Tracing.TraceSender.TraceBaseCall(201, 903, 1019);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.SyntaxTree
+        f_201_967_983(SyntaxToken
+        this_param)
+        {
+            var return_v = this_param.SyntaxTree;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(201, 967, 983);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.Text.TextSpan
+        f_201_986_996(SyntaxToken
+        this_param)
+        {
+            var return_v = this_param.Span;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(201, 986, 996);
             return return_v;
         }
 
@@ -581,12 +604,31 @@ namespace Microsoft.CodeAnalysis
         }
 
 
-        static Microsoft.CodeAnalysis.SyntaxTree
-        f_201_1107_1130_C(Microsoft.CodeAnalysis.SyntaxTree
+        static SyntaxNodeOrToken
+        f_201_1107_1130_C(SyntaxNodeOrToken
         i)
         {
             var return_v = i;
             DynAbs.Tracing.TraceSender.TraceBaseCall(201, 1031, 1232);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.SyntaxTree
+        f_201_1107_1129(SyntaxNodeOrToken
+        this_param)
+        {
+            var return_v = this_param.SyntaxTree;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(201, 1107, 1129);
+            return return_v;
+        }
+
+        static Microsoft.CodeAnalysis.Text.TextSpan
+        f_201_1132_1148(SyntaxNodeOrToken
+        this_param)
+        {
+            var return_v = this_param.Span;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(201, 1132, 1148);
             return return_v;
         }
 
@@ -601,12 +643,31 @@ namespace Microsoft.CodeAnalysis
         }
 
 
-        static Microsoft.CodeAnalysis.SyntaxTree
-        f_201_1310_1328_C(Microsoft.CodeAnalysis.SyntaxTree
+        static SyntaxTrivia
+        f_201_1310_1328_C(SyntaxTrivia
         i)
         {
             var return_v = i;
             DynAbs.Tracing.TraceSender.TraceBaseCall(201, 1244, 1420);
+            return return_v;
+        }
+
+
+        static Microsoft.CodeAnalysis.SyntaxTree
+        f_201_1310_1327(SyntaxTrivia
+        this_param)
+        {
+            var return_v = this_param.SyntaxTree;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(201, 1310, 1327);
+            return return_v;
+        }
+
+        static Microsoft.CodeAnalysis.Text.TextSpan
+        f_201_1330_1341(SyntaxTrivia
+        this_param)
+        {
+            var return_v = this_param.Span;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(201, 1330, 1341);
             return return_v;
         }
 
