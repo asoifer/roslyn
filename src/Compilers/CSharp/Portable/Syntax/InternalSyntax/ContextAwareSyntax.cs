@@ -49,6 +49,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10822, 299, 524);
         }
 
-        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10822, 299, 524);
+        // LAFHIS: the real constructor is not instrumented
+        //int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10822, 299, 524);
     }
 }

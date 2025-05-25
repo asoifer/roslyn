@@ -301,6 +301,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10047, 315, 2723);
         }
 
-        int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10047, 315, 2723);
+        // LAFHIS
+        //int ___ignore_me___ = DynAbs.Tracing.TraceSender.TraceBeforeConstructor(10047, 315, 2723);
     }
 }
