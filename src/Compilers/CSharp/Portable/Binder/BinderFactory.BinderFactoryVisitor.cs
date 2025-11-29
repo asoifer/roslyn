@@ -2200,7 +2200,13 @@ namespace Microsoft.CodeAnalysis.CSharp
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(10077, 15171, 15372);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10077, 15279, 15357);
 
-                    return f_10077_15286_15356(f_10077_15286_15310(this, f_10077_15296_15309(parent)), f_10077_15339_15355(parent));
+                    // LAFHIS: forcing the original order execution
+                    // Original: return f_10077_15286_15356(f_10077_15286_15310(this, f_10077_15296_15309(parent)), f_10077_15339_15355(parent));
+                    var firstArg = f_10077_15296_15309(parent);
+                    var receiver = f_10077_15286_15310(this, firstArg);
+                    var secondArg = f_10077_15339_15355(parent);
+
+                    return f_10077_15286_15356(receiver, secondArg);
                     DynAbs.Tracing.TraceSender.TraceExitMethod(10077, 15171, 15372);
 
                     Microsoft.CodeAnalysis.CSharp.CSharpSyntaxNode?

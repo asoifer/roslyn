@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.CodeAnalysis.Text;
 using Roslyn.Utilities;
 
 namespace Microsoft.CodeAnalysis
@@ -626,7 +627,17 @@ namespace Microsoft.CodeAnalysis
                 DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(657, 6084, 8886);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(657, 6273, 6326);
 
-                f_657_6273_6325(node.FullSpan.Contains(targetPosition));
+                // LAFHIS
+                TextSpan
+                f_657_6286_6299(SyntaxNode
+                syntaxNode)
+                {
+                    var return_v = syntaxNode.FullSpan;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(657, 6286, 6299);
+                    return return_v;
+                }
+
+                f_657_6273_6325(f_657_6286_6299(node).Contains(targetPosition));
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(657, 6342, 6372);
 
                 GreenNode?

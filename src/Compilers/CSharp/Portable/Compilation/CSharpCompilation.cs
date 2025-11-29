@@ -4920,9 +4920,17 @@ namespace Microsoft.CodeAnalysis.CSharp
                 {
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 50728, 50733);
 
+                    // LAFHIS
+                    ImmutableArray<AssemblySymbol> f_10038_50739_50776(ReferenceManager referenceManager)
+                    {
+                        var return_v = referenceManager.ReferencedAssemblies;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10038, 50739, 50776);
+                        return return_v;
+                    }
+
                     for (int
         i = 0
-        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 50719, 51023) || true) && (i < referenceManager.ReferencedAssemblies.Length)
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 50719, 51023) || true) && (i < f_10038_50739_50776(referenceManager).Length)
         ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 50785, 50788)
         , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(10038, 50719, 51023))
 
@@ -5059,9 +5067,17 @@ namespace Microsoft.CodeAnalysis.CSharp
                 {
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 51532, 51537);
 
+                    // LAFHIS
+                    ImmutableArray<AssemblySymbol> f_10038_51543_51580(ReferenceManager referenceManager)
+                    {
+                        var return_v = referenceManager.ReferencedAssemblies;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10038, 51543, 51580);
+                        return return_v;
+                    }
+
                     for (int
         i = 0
-        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 51523, 51817) || true) && (i < referenceManager.ReferencedAssemblies.Length)
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 51523, 51817) || true) && (i < f_10038_51543_51580(referenceManager).Length)
         ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 51589, 51592)
         , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(10038, 51523, 51817))
 
@@ -5841,10 +5857,18 @@ namespace Microsoft.CodeAnalysis.CSharp
                 ;
                 try
                 {
+                    // LAFHIS
+                    ImmutableArray<AssemblySymbol> f_10038_57989_58026(ReferenceManager referenceManager)
+                    {
+                        var return_v = referenceManager.ReferencedAssemblies;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10038, 57989, 58026);
+                        return return_v;
+                    }
+
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 57978, 57983);
                     for (int
         i = 0
-        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 57969, 58378) || true) && (i < referenceManager.ReferencedAssemblies.Length)
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 57969, 58378) || true) && (i < f_10038_57989_58026(referenceManager).Length)
         ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10038, 58035, 58038)
         , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(10038, 57969, 58378))
 

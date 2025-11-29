@@ -411,12 +411,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 4379, 4454);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 4422, 4443);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 4379, 4454);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 4422, 4443);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -445,12 +445,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 4466, 4598);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 4509, 4587);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 4466, 4598);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 4509, 4587);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -636,12 +636,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 5043, 5436);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 5088, 5323);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 5043, 5436);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 5088, 5323);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -657,12 +657,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 5043, 5436);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 5339, 5425);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 5043, 5436);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 5339, 5425);
                 }
             }
         }
@@ -1225,12 +1225,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 9420, 9506);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 9469, 9495);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 9420, 9506);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 9469, 9495);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1292,12 +1292,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 9735, 9952);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 9783, 9941);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 9735, 9952);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 9783, 9941);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1317,12 +1317,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 9964, 10139);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10016, 10128);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 9964, 10139);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10016, 10128);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1342,12 +1342,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10151, 10326);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10203, 10315);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10151, 10326);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10203, 10315);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1367,12 +1367,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10338, 10519);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10393, 10508);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10338, 10519);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10393, 10508);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1392,12 +1392,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10531, 10706);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10587, 10695);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10531, 10706);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10587, 10695);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1417,12 +1417,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10718, 10903);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10779, 10892);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10718, 10903);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10779, 10892);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1442,12 +1442,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10915, 11088);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 10970, 11077);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10915, 11088);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 10970, 11077);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1467,12 +1467,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11100, 11275);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11156, 11264);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11100, 11275);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11156, 11264);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1492,12 +1492,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11287, 11462);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11343, 11451);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11287, 11462);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11343, 11451);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1517,12 +1517,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11517, 11738);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11562, 11631);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11517, 11738);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11562, 11631);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1538,12 +1538,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11517, 11738);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11647, 11727);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11517, 11738);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11647, 11727);
                 }
             }
         }
@@ -1582,12 +1582,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11750, 11942);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 11799, 11931);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11750, 11942);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 11799, 11931);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1721,12 +1721,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 12367, 12523);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 12420, 12512);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 12367, 12523);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 12420, 12512);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1756,12 +1756,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 12535, 12693);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 12589, 12682);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 12535, 12693);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 12589, 12682);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -3653,12 +3653,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 23583, 23652);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 23622, 23650);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 23583, 23652);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 23622, 23650);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -5269,12 +5269,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 31269, 31523);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(661, 31319, 31512);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 31269, 31523);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(661, 31319, 31512);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }

@@ -55,12 +55,12 @@ namespace Microsoft.Cci
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(438, 1437, 1512);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(438, 1472, 1509);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(438, 1437, 1512);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(438, 1472, 1509);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }

@@ -336,12 +336,12 @@ namespace Microsoft.CodeAnalysis.CSharp
                     }
                     catch
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10755, 3679, 3864);
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(10755, 3755, 3849);
                         throw;
                     }
                     finally
                     {
-                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10755, 3679, 3864);
+                        DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10755, 3755, 3849);
                     }
                     throw new System.Exception("Slicer error: unreachable code");
                 }

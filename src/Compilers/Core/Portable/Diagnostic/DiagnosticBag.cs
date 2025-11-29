@@ -424,12 +424,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch (System.Exception)
                 {
-                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(182, 1, 124);
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(182, 5660, 5783);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceExitLoop(182, 1, 124);
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(182, 5660, 5783);
                 }
                 DynAbs.Tracing.TraceSender.TraceExitMethod(182, 5578, 5794);
 
@@ -911,12 +911,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch (System.Exception)
                 {
-                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(182, 1, 251);
+                    DynAbs.Tracing.TraceSender.TraceExitLoopByException(182, 8633, 8883);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceExitLoop(182, 1, 251);
+                    DynAbs.Tracing.TraceSender.TraceExitLoop(182, 8633, 8883);
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(182, 8899, 8981);
 

@@ -36,7 +36,10 @@ namespace Microsoft.CodeAnalysis.CSharp
                 f_10319_1650_1689(isVar == symbol.IsDefault);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 1704, 1790);
 
-                return (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 1711, 1716) || ((isVar && DynAbs.Tracing.TraceSender.Conditional_F2(10319, 1719, 1726)) || DynAbs.Tracing.TraceSender.Conditional_F3(10319, 1729, 1789))) ? default : f_10319_1729_1769(this, symbol, diagnostics, syntax).TypeWithAnnotations;
+                return (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 1711, 1716) || 
+                    ((isVar && DynAbs.Tracing.TraceSender.Conditional_F2(10319, 1719, 1726)) || 
+                    DynAbs.Tracing.TraceSender.Conditional_F3(10319, 1729, 1789))) ? default : 
+                    f_10319_1729_1769(this, symbol, diagnostics, syntax).TypeWithAnnotations;
                 DynAbs.Tracing.TraceSender.TraceExitMethod(10319, 1427, 1801);
 
                 Microsoft.CodeAnalysis.CSharp.Binder.NamespaceOrTypeOrAliasSymbolWithAnnotations
@@ -841,10 +844,13 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 15146, 15291);
 
                 var
-                symbol = f_10319_15159_15290(this, syntax, diagnostics, basesBeingResolved, basesBeingResolved != null || (DynAbs.Tracing.TraceSender.Expression_False(10319, 15233, 15289) || suppressUseSiteDiagnostics))
+                symbol = f_10319_15159_15290(this, syntax, diagnostics, basesBeingResolved, basesBeingResolved != null || 
+                (DynAbs.Tracing.TraceSender.Expression_False(10319, 15233, 15289) || suppressUseSiteDiagnostics))
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 15379, 15933) || true) && (symbol.IsType || (DynAbs.Tracing.TraceSender.Expression_False(10319, 15383, 15510) || (symbol.IsAlias && (DynAbs.Tracing.TraceSender.Expression_True(10319, 15418, 15509) && f_10319_15436_15495(symbol.Symbol, basesBeingResolved) is TypeSymbol))))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 15379, 15933) || true) && (symbol.IsType || 
+                    (DynAbs.Tracing.TraceSender.Expression_False(10319, 15383, 15510) || (symbol.IsAlias && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(10319, 15418, 15509) && f_10319_15436_15495(symbol.Symbol, basesBeingResolved) is TypeSymbol))))
                 )
 
                 {
@@ -867,12 +873,12 @@ namespace Microsoft.CodeAnalysis.CSharp
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 15949, 16100);
 
-                var
-                diagnosticInfo = f_10319_15970_16099(diagnostics, ErrorCode.ERR_BadSKknown, f_10319_16012_16027(syntax), syntax, f_10319_16037_16064(symbol.Symbol), f_10319_16066_16098(MessageID.IDS_SK_TYPE))
-                ;
+                var diagnosticInfo = f_10319_15970_16099(diagnostics, ErrorCode.ERR_BadSKknown, f_10319_16012_16027(syntax), syntax, 
+                    f_10319_16037_16064(symbol.Symbol), f_10319_16066_16098(MessageID.IDS_SK_TYPE));
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 16114, 16291);
 
-                return TypeWithAnnotations.Create(f_10319_16148_16289(f_10319_16176_16219(this, symbol.Symbol), symbol.Symbol, LookupResultKind.NotATypeOrNamespace, diagnosticInfo));
+                return TypeWithAnnotations.Create(f_10319_16148_16289(f_10319_16176_16219(this, symbol.Symbol), symbol.Symbol, 
+                    LookupResultKind.NotATypeOrNamespace, diagnosticInfo));
                 DynAbs.Tracing.TraceSender.TraceExitMethod(10319, 14862, 16302);
 
                 int
@@ -1057,7 +1063,16 @@ namespace Microsoft.CodeAnalysis.CSharp
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10319, 16730, 17707);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 16849, 17696) || true) && (node.Identifier.Kind() == SyntaxKind.GlobalKeyword)
+                SyntaxToken f_10319_16853_16868(IdentifierNameSyntax node)
+                {
+                    var return_v = node.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 16853, 16868);
+                    return return_v;
+                }
+
+                // LAFHIS
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 16849, 17696) || true) && 
+                    (f_10319_16853_16868(node).Kind() == SyntaxKind.GlobalKeyword)
                 )
 
                 {
@@ -1079,9 +1094,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                     = default(bool);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 17080, 17122);
 
-                    var
-                    plainName = node.Identifier.ValueText
-                    ;
+                    SyntaxToken f_10319_17096_17111(IdentifierNameSyntax node)
+                    {
+                        var return_v = node.Identifier;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 17096, 17111);
+                        return return_v;
+                    }
+
+                    // LAFHIS
+                    var plainName = f_10319_17096_17111(node).ValueText;
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 17140, 17180);
 
                     var
@@ -1534,7 +1555,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                         location = questionToken.GetLocation()
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 25177, 25903) || true) && (typeArgument.HasType && (DynAbs.Tracing.TraceSender.Expression_True(10319, 25181, 25228) && f_10319_25205_25228_M(!ShouldCheckConstraints)))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 25177, 25903) || true) && (typeArgument.HasType && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(10319, 25181, 25228) && f_10319_25205_25228_M(!ShouldCheckConstraints)))
                         )
 
                         {
@@ -1663,7 +1685,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                             DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 26587, 27573);
                             DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 26656, 26787);
 
-                            f_10319_26656_26786(diagnostics, f_10319_26672_26763(f_10319_26718_26745(f_10319_26718_26729()), constructedType), f_10319_26765_26785(syntax));
+                            f_10319_26656_26786(diagnostics, f_10319_26672_26763(f_10319_26718_26745(f_10319_26718_26729()), constructedType), 
+                                f_10319_26765_26785(syntax));
                             DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 26587, 27573);
                         }
 
@@ -1699,7 +1722,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                             {
                                 DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 26829, 27573);
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 27333, 27573) || true) && (f_10319_27337_27441(f_10319_27396_27423(f_10319_27396_27407()), constructedType) is { } diagnosticInfo)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 27333, 27573) || true) && 
+                                    (f_10319_27337_27441(f_10319_27396_27423(f_10319_27396_27407()), constructedType) is { } diagnosticInfo)
                                 )
 
                                 {
@@ -2055,14 +2079,25 @@ namespace Microsoft.CodeAnalysis.CSharp
                         left = (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 28517, 28534) || (((alias is object) && DynAbs.Tracing.TraceSender.Conditional_F2(10319, 28537, 28549)) || DynAbs.Tracing.TraceSender.Conditional_F3(10319, 28552, 28588))) ? f_10319_28537_28549(alias) : (NamespaceOrTypeSymbol)bindingResult
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 28609, 28915) || true) && (f_10319_28613_28622(left) == SymbolKind.NamedType)
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 28609, 28915) || true) && 
+                            (f_10319_28613_28622(left) == SymbolKind.NamedType)
                         )
 
                         {
                             DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 28609, 28915);
                             DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 28688, 28896);
 
-                            return TypeWithAnnotations.Create(f_10319_28722_28894(left, LookupResultKind.NotATypeOrNamespace, f_10319_28794_28893(diagnostics, ErrorCode.ERR_ColColWithTypeAlias, f_10319_28845_28864(f_10319_28845_28855(node)), f_10319_28866_28876(node).Identifier.Text)));
+                            SyntaxToken f_10319_28866_28881(IdentifierNameSyntax node)
+                            {
+                                var return_v = node.Identifier;
+                                DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 28866, 28881);
+                                return return_v;
+                            }
+
+                            // LAFHIS
+                            return TypeWithAnnotations.Create(f_10319_28722_28894(left, LookupResultKind.NotATypeOrNamespace, 
+                                f_10319_28794_28893(diagnostics, ErrorCode.ERR_ColColWithTypeAlias, 
+                                f_10319_28845_28864(f_10319_28845_28855(node)), f_10319_28866_28881(f_10319_28866_28876(node)).Text)));
                             DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 28609, 28915);
                         }
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 28935, 29064);
@@ -2926,8 +2961,18 @@ namespace Microsoft.CodeAnalysis.CSharp
                 {
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 32393, 32426);
 
+                    SyntaxList<ArrayRankSpecifierSyntax> f_10319_32397_32416(ArrayTypeSyntax node)
+                    {
+                        var return_v = node.RankSpecifiers;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 32397, 32416);
+                        return return_v;
+                    }
+
+                    var temp = f_10319_32397_32416(node);
+
+                    // LAFHIS
                     for (int
-        i = node.RankSpecifiers.Count - 1
+        i = temp.Count - 1
         ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 32384, 33260) || true) && (i >= 0)
         ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 32436, 32439)
         , i--, DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 32384, 33260))
@@ -2945,7 +2990,10 @@ namespace Microsoft.CodeAnalysis.CSharp
                         dimension = f_10319_32550_32569(rankSpecifier)
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 32588, 33003) || true) && (!permitDimensions && (DynAbs.Tracing.TraceSender.Expression_True(10319, 32592, 32633) && dimension.Count != 0) && (DynAbs.Tracing.TraceSender.Expression_True(10319, 32592, 32697) && f_10319_32637_32656(dimension[0]) != SyntaxKind.OmittedArraySizeExpression))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 32588, 33003) || true) && 
+                            (!permitDimensions && (DynAbs.Tracing.TraceSender.Expression_True(10319, 32592, 32633) && dimension.Count != 0) && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(10319, 32592, 32697) && 
+                            f_10319_32637_32656(dimension[0]) != SyntaxKind.OmittedArraySizeExpression))
                         )
 
                         {
@@ -3223,8 +3271,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10319, 33311, 36792);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 33460, 33500);
 
+                SeparatedSyntaxList<TupleElementSyntax> f_10319_33478_33491(TupleTypeSyntax node)
+                {
+                    var return_v = node.Elements;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 33478, 33491);
+                    return return_v;
+                }
+
+                // LAFHIS
                 int
-                numElements = syntax.Elements.Count
+                numElements = f_10319_33478_33491(syntax).Count
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 33514, 33585);
 
@@ -4036,6 +4092,13 @@ namespace Microsoft.CodeAnalysis.CSharp
             throw new System.Exception("Slicer error: unreachable code");
         }
 
+        SyntaxToken f_10319_39211_39223(PredefinedTypeSyntax node)
+        {
+            var return_v = node.Keyword;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 39211, 39223);
+            return return_v;
+        }
+
         private NamedTypeSymbol BindPredefinedTypeSymbol(PredefinedTypeSyntax node, DiagnosticBag diagnostics)
         {
             try
@@ -4043,7 +4106,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10319, 39062, 39279);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 39189, 39268);
 
-                return f_10319_39196_39267(this, f_10319_39211_39247(node.Keyword.Kind()), diagnostics, node);
+                // LAFHIS
+                return f_10319_39196_39267(this, f_10319_39211_39247(f_10319_39211_39223(node).Kind()), diagnostics, node);
                 DynAbs.Tracing.TraceSender.TraceExitMethod(10319, 39062, 39279);
 
                 Microsoft.CodeAnalysis.SpecialType
@@ -4243,7 +4307,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                             case SymbolKind.Alias:
                                 DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 41302, 41665);
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 41406, 41476) || true) && (f_10319_41410_41438(f_10319_41410_41433(((AliasSymbol)s))) == SymbolKind.NamedType)
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 41406, 41476) || true) && 
+                                    (f_10319_41410_41438(f_10319_41410_41433(((AliasSymbol)s))) == SymbolKind.NamedType)
                                 )
                                 {
                                     DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 41406, 41476);
@@ -4366,18 +4431,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10319, 41732, 45579);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 42089, 42141);
 
-                var
-                identifierValueText = node.Identifier.ValueText
-                ;
+                var identifierValueText = node.Identifier.ValueText;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 42478, 42805) || true) && (f_10319_42482_42528(identifierValueText))
-                )
-
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 42478, 42805) || true) && (f_10319_42482_42528(identifierValueText)))
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 42478, 42805);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 42562, 42790);
 
-                    return TypeWithAnnotations.Create(f_10319_42596_42788(f_10319_42646_42682(f_10319_42646_42666(f_10319_42646_42657())), identifierValueText, 0, f_10319_42729_42787(ErrorCode.ERR_SingleTypeNameNotFound)));
+                    return TypeWithAnnotations.Create(f_10319_42596_42788(f_10319_42646_42682(f_10319_42646_42666(f_10319_42646_42657())), 
+                        identifierValueText, 0, f_10319_42729_42787(ErrorCode.ERR_SingleTypeNameNotFound)));
                     DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 42478, 42805);
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 42821, 42938);
@@ -4427,19 +4489,33 @@ namespace Microsoft.CodeAnalysis.CSharp
                 bindingResult = null
                 ;
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 43799, 44676) || true) && ((object)qualifierOpt == null && (DynAbs.Tracing.TraceSender.Expression_True(10319, 43803, 43873) && !f_10319_43853_43873(result)))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 43799, 44676) || true) && ((object)qualifierOpt == null && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(10319, 43803, 43873) && !f_10319_43853_43873(result)))
                 )
 
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 43799, 44676);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 43907, 44661) || true) && (node.Identifier.ValueText == "dynamic")
+                    SyntaxToken f_10319_43911_43926(IdentifierNameSyntax node)
+                    {
+                        var return_v = node.Identifier;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 43911, 43926);
+                        return return_v;
+                    }
+
+                    // LAFHIS
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 43907, 44661) || true) && (f_10319_43911_43926(node).ValueText == "dynamic")
                     )
 
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 43907, 44661);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 43991, 44496) || true) && ((f_10319_43996_44007(node) == null || (DynAbs.Tracing.TraceSender.Expression_False(10319, 43996, 44197) || f_10319_44046_44064(f_10319_44046_44057(node)) != SyntaxKind.Attribute && (DynAbs.Tracing.TraceSender.Expression_True(10319, 44046, 44197) && f_10319_44160_44197(node)))) && (DynAbs.Tracing.TraceSender.Expression_True(10319, 43995, 44304) && f_10319_44227_44254(f_10319_44227_44238()) >= f_10319_44258_44304(MessageID.IDS_FeatureDynamic)))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 43991, 44496) || true) && ((f_10319_43996_44007(node) == null || 
+                            (DynAbs.Tracing.TraceSender.Expression_False(10319, 43996, 44197) || 
+                            f_10319_44046_44064(f_10319_44046_44057(node)) != SyntaxKind.Attribute && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(10319, 44046, 44197) && f_10319_44160_44197(node)))) && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(10319, 43995, 44304) && 
+                            f_10319_44227_44254(f_10319_44227_44238()) >= f_10319_44258_44304(MessageID.IDS_FeatureDynamic)))
                         )
 
                         {
@@ -4901,7 +4977,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                 = default(SpecialType);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 45966, 46327);
 
-                switch (node.Identifier.Text)
+                SyntaxToken f_10319_45974_45989(IdentifierNameSyntax node)
+                {
+                    var return_v = node.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 45974, 45989);
+                    return return_v;
+                }
+
+                // LAFHIS
+                switch (f_10319_45974_45989(node).Text)
                 {
 
                     case "nint":
@@ -5230,7 +5314,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                     DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 50381, 51340);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 51108, 51216);
 
-                    return (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 51115, 51135) || ((isVerbatimIdentifier && DynAbs.Tracing.TraceSender.Conditional_F2(10319, 51138, 51181)) || DynAbs.Tracing.TraceSender.Conditional_F3(10319, 51184, 51215))) ? LookupOptions.VerbatimNameAttributeTypeOnly : LookupOptions.AttributeTypeOnly;
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 51115, 51135) || ((isVerbatimIdentifier && 
+                        DynAbs.Tracing.TraceSender.Conditional_F2(10319, 51138, 51181)) || DynAbs.Tracing.TraceSender.Conditional_F3(10319, 51184, 51215))) 
+                        ? LookupOptions.VerbatimNameAttributeTypeOnly : LookupOptions.AttributeTypeOnly;
                     DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 50381, 51340);
                 }
 
@@ -5339,7 +5425,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                     = default(AliasSymbol);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 52027, 52229);
 
-                    return NamespaceOrTypeOrAliasSymbolWithAnnotations.CreateUnannotated(symbol.IsNullableEnabled, f_10319_52145_52227(this, symbol.Symbol, out discarded, diagnostics, syntax, basesBeingResolved));
+                    return NamespaceOrTypeOrAliasSymbolWithAnnotations.CreateUnannotated(symbol.IsNullableEnabled, 
+                        f_10319_52145_52227(this, symbol.Symbol, out discarded, diagnostics, syntax, basesBeingResolved));
                     DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 51935, 52244);
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 52260, 52274);
@@ -5606,8 +5693,16 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10319, 54356, 60744);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 57602, 57644);
 
+                SyntaxToken f_10319_57618_57633(GenericNameSyntax node)
+                {
+                    var return_v = node.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 57618, 57633);
+                    return return_v;
+                }
+
+                // LAFHIS
                 var
-                plainName = node.Identifier.ValueText
+                plainName = f_10319_57618_57633(node).ValueText
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 57660, 57740);
 
@@ -5680,7 +5775,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 58141, 60037);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 59172, 60037) || true) && ((Flags & BinderFlags.SuppressTypeArgumentBinding) != 0)
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 59172, 60037) || true) && 
+                        ((Flags & BinderFlags.SuppressTypeArgumentBinding) != 0)
                     )
 
                     {
@@ -5697,7 +5793,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 59172, 60037);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 59723, 60022);
 
-                        resultType = f_10319_59736_60021(this, unconstructedType, node, typeArguments, f_10319_59880_59945(this, typeArguments, diagnostics, basesBeingResolved), basesBeingResolved, diagnostics);
+                        resultType = f_10319_59736_60021(this, unconstructedType, node, typeArguments, 
+                            f_10319_59880_59945(this, typeArguments, diagnostics, basesBeingResolved), basesBeingResolved, diagnostics);
                         DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 59172, 60037);
                     }
                     DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 58141, 60037);
@@ -8481,14 +8578,37 @@ namespace Microsoft.CodeAnalysis.CSharp
                     }
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83134, 83208);
 
-                    int
-                    aLocationsCount = (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 83156, 83180) || ((f_10319_83156_83180_M(!snd.Locations.IsDefault) && DynAbs.Tracing.TraceSender.Conditional_F2(10319, 83183, 83203)) || DynAbs.Tracing.TraceSender.Conditional_F3(10319, 83206, 83207))) ? snd.Locations.Length : 0
-                    ;
+                    ImmutableArray<Location> f_10319_83157_83170(Symbol s)
+                    {
+                        var return_v = s.Locations;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 83157, 83170);
+                        return return_v;
+                    }
+
+                    ImmutableArray<Location> f_10319_83183_83196(Symbol s)
+                    {
+                        var return_v = s.Locations;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 83183, 83196);
+                        return return_v;
+                    }
+
+                    ImmutableArray<Location> f_10319_83248_83261(Symbol s)
+                    {
+                        var return_v = s.Locations;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 83248, 83261);
+                        return return_v;
+                    }
+
+                    // LAFHIS
+                    int aLocationsCount = (DynAbs.Tracing.TraceSender.Conditional_F1(10319, 83156, 83180) || 
+                        ((f_10319_83156_83180_M(!(f_10319_83157_83170(snd).IsDefault)) 
+                        && DynAbs.Tracing.TraceSender.Conditional_F2(10319, 83183, 83203)) || 
+                        DynAbs.Tracing.TraceSender.Conditional_F3(10319, 83206, 83207))) 
+                        ? f_10319_83183_83196(snd).Length : 0;
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83226, 83269);
 
-                    int
-                    bLocationsCount = fst.Locations.Length
-                    ;
+                    // LAFHIS
+                    int bLocationsCount = f_10319_83248_83261(fst).Length;
 
                     if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83287, 83368) || true) && (aLocationsCount != bLocationsCount)
                     )
@@ -8500,7 +8620,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                         DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 83287, 83368);
                     }
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83386, 83495) || true) && (aLocationsCount == 0 && (DynAbs.Tracing.TraceSender.Expression_True(10319, 83390, 83434) && bLocationsCount == 0))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83386, 83495) || true) && (aLocationsCount == 0 && 
+                        (DynAbs.Tracing.TraceSender.Expression_True(10319, 83390, 83434) && bLocationsCount == 0))
                     )
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 83386, 83495);
@@ -8545,7 +8666,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                         DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 83787, 83830);
                     }
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83848, 83957) || true) && (containerResult == 0 && (DynAbs.Tracing.TraceSender.Expression_True(10319, 83852, 83906) && f_10319_83876_83889(la) == f_10319_83893_83906(lb)))
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 83848, 83957) || true) && (containerResult == 0 && 
+                        (DynAbs.Tracing.TraceSender.Expression_True(10319, 83852, 83906) && f_10319_83876_83889(la) == f_10319_83893_83906(lb)))
                     )
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 83848, 83957);
@@ -8972,7 +9094,8 @@ namespace Microsoft.CodeAnalysis.CSharp
 
                                 f_10319_86256_86288(f_10319_86269_86287_M(!secondBest.IsNone));
 
-                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 86317, 90043) || true) && (best.IsFromCompilation && (DynAbs.Tracing.TraceSender.Expression_True(10319, 86321, 86376) && f_10319_86347_86376_M(!secondBest.IsFromCompilation)))
+                                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 86317, 90043) || true) && (best.IsFromCompilation && 
+                                    (DynAbs.Tracing.TraceSender.Expression_True(10319, 86321, 86376) && f_10319_86347_86376_M(!secondBest.IsFromCompilation)))
                                 )
 
                                 {
@@ -9000,7 +9123,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 86617, 87031);
                                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 86710, 86765);
 
-                                        arg0 = f_10319_86717_86764(f_10319_86717_86755(srcSymbol.Locations.First()));
+                                        ImmutableArray<Location> f_10319_86717_86736(Symbol s)
+                                        {
+                                            var return_v = s.Locations;
+                                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 86717, 86736);
+                                            return return_v;
+                                        }
+
+                                        // LAFHIS
+                                        arg0 = f_10319_86717_86764(f_10319_86717_86755(f_10319_86717_86736(srcSymbol).First()));
                                         DynAbs.Tracing.TraceSender.TraceExitCondition(10319, 86617, 87031);
                                     }
 
@@ -9105,10 +9236,15 @@ namespace Microsoft.CodeAnalysis.CSharp
                                 ;
                                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 90196, 90448);
 
-                                f_10319_90196_90447(!f_10319_90210_90323(originalSymbols[best.Index], originalSymbols[secondBest.Index], TypeCompareKind.ConsiderEverything) || (DynAbs.Tracing.TraceSender.Expression_False(10319, 90209, 90358) || f_10319_90327_90358(options)), "This kind of ambiguity is only possible for attributes.");
+                                f_10319_90196_90447(!f_10319_90210_90323(originalSymbols[best.Index], originalSymbols[secondBest.Index], 
+                                    TypeCompareKind.ConsiderEverything) || (DynAbs.Tracing.TraceSender.Expression_False(10319, 90209, 90358) 
+                                    || f_10319_90327_90358(options)), "This kind of ambiguity is only possible for attributes.");
                                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 90476, 90763);
 
-                                f_10319_90476_90762(!f_10319_90490_90554(first, second, TypeCompareKind.ConsiderEverything) || (DynAbs.Tracing.TraceSender.Expression_False(10319, 90489, 90672) || !f_10319_90559_90672(originalSymbols[best.Index], originalSymbols[secondBest.Index], TypeCompareKind.ConsiderEverything)), "Why does the LookupResult contain the same symbol twice?");
+                                f_10319_90476_90762(!f_10319_90490_90554(first, second, TypeCompareKind.ConsiderEverything) || 
+                                    (DynAbs.Tracing.TraceSender.Expression_False(10319, 90489, 90672) || 
+                                    !f_10319_90559_90672(originalSymbols[best.Index], originalSymbols[secondBest.Index], 
+                                    TypeCompareKind.ConsiderEverything)), "Why does the LookupResult contain the same symbol twice?");
                                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 90791, 90813);
 
                                 CSDiagnosticInfo
@@ -9614,7 +9750,15 @@ f_10319_102759_102832(second, f_10319_102787_102831())});
                                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10319, 107246, 107486);
                                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(10319, 107352, 107423);
 
-                                        aliasOpt = f_10319_107363_107401(((AliasQualifiedNameSyntax)node)).Identifier.ValueText;
+                                        SyntaxToken f_10319_107363_107412(IdentifierNameSyntax s)
+                                        {
+                                            var return_v = s.Identifier;
+                                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10319, 107363, 107412);
+                                            return return_v;
+                                        }
+
+                                        // LAFHIS
+                                        aliasOpt = f_10319_107363_107412(f_10319_107363_107401(((AliasQualifiedNameSyntax)node))).ValueText;
                                         DynAbs.Tracing.TraceSender.TraceBreak(10319, 107453, 107459);
 
                                         break;

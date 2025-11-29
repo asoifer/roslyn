@@ -1285,10 +1285,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                     f_26001_7576_7622(f_26001_7594_7621(_treeEnumerator!));
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(26001, 7641, 7698);
 
-                    f_26001_7641_7697(kind, _treeEnumerator.Current.Kind());
+                    SyntaxNodeOrToken f_26001_7666_7689(IEnumerator<SyntaxNodeOrToken> e)
+                    {
+                        var return_v = e.Current;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(26001, 7666, 7689);
+                        return return_v;
+                    }
+
+                    f_26001_7641_7697(kind, f_26001_7666_7689(_treeEnumerator).Kind());
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(26001, 7716, 7770);
 
-                    f_26001_7716_7769(_treeEnumerator.Current.IsMissing);
+                    SyntaxNodeOrToken f_26001_7735_7758(IEnumerator<SyntaxNodeOrToken> e)
+                    {
+                        var return_v = e.Current;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(26001, 7735, 7758);
+                        return return_v;
+                    }
+
+                    f_26001_7716_7769(f_26001_7735_7758(_treeEnumerator).IsMissing);
 
                     if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(26001, 7790, 7930) || true) && (value != null)
                     )
@@ -1297,7 +1311,14 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(26001, 7790, 7930);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(26001, 7849, 7911);
 
-                        f_26001_7849_7910(_treeEnumerator.Current.ToString(), value);
+                        SyntaxNodeOrToken f_26001_7868_7891(IEnumerator<SyntaxNodeOrToken> e)
+                        {
+                            var return_v = e.Current;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(26001, 7868, 7891);
+                            return return_v;
+                        }
+
+                        f_26001_7849_7910(f_26001_7868_7891(_treeEnumerator).ToString(), value);
                         DynAbs.Tracing.TraceSender.TraceExitCondition(26001, 7790, 7930);
                     }
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(26001, 7950, 7981);

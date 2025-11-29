@@ -1558,7 +1558,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                     DeclarationModifiers modifiers,
                     bool modifierErrors,
                     DiagnosticBag diagnostics)
-        : base(f_10258_12850_12864_C(containingType), modifiers, declarator.Identifier.ValueText, f_10258_12910_12935(declarator), declarator.Identifier.GetLocation())
+        : base(f_10258_12850_12864_C(containingType), modifiers, f_10258_12877_12898(declarator).ValueText, f_10258_12910_12935(declarator), f_10258_12937_12958(declarator).GetLocation())
         {
             try
             {
@@ -1635,6 +1635,22 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             {
                 DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10258, 12552, 13951);
             }
+        }
+
+        // LAFHIS
+        static SyntaxToken f_10258_12877_12898(Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax declarator)
+        {
+            var return_v = declarator.Identifier;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10258, 12877, 12898);
+            return return_v;
+        }
+
+        // LAFHIS
+        static SyntaxToken f_10258_12937_12958(Microsoft.CodeAnalysis.CSharp.Syntax.VariableDeclaratorSyntax declarator)
+        {
+            var return_v = declarator.Identifier;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10258, 12937, 12958);
+            return return_v;
         }
 
         protected sealed override TypeSyntax TypeSyntax

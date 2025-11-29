@@ -78,7 +78,21 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 f_10272_2149_2236(f_10272_2180_2191(syntax), f_10272_2193_2214(syntax), syntax, diagnostics);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10272, 2251, 2866);
 
-                return f_10272_2258_2865(containingType, property, propertyModifiers, syntax.Keyword.GetLocation(), syntax, hasBody, hasExpressionBody, isIterator: f_10272_2551_2594(f_10272_2582_2593(syntax)), f_10272_2613_2629(syntax), methodKind, syntax.Keyword.IsKind(SyntaxKind.InitKeyword), isAutoPropertyAccessor, isNullableAnalysisEnabled: isNullableAnalysisEnabled, diagnostics);
+                // LAFHIS
+                SyntaxToken f_10272_2677_2691(AccessorDeclarationSyntax accessorDeclarationSyntax)
+                {
+                    var return_v = accessorDeclarationSyntax.Keyword;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10272, 2677, 2691);
+                    return return_v;
+                }
+
+                return f_10272_2258_2865(containingType, property, propertyModifiers, 
+                    syntax.Keyword.GetLocation(), 
+                    syntax, hasBody, hasExpressionBody, 
+                    isIterator: f_10272_2551_2594(f_10272_2582_2593(syntax)), 
+                    f_10272_2613_2629(syntax), methodKind,
+                    f_10272_2677_2691(syntax).IsKind(SyntaxKind.InitKeyword), 
+                    isAutoPropertyAccessor, isNullableAnalysisEnabled: isNullableAnalysisEnabled, diagnostics);
                 DynAbs.Tracing.TraceSender.TraceExitStaticMethod(10272, 1143, 2877);
 
                 Microsoft.CodeAnalysis.CSharp.SyntaxKind

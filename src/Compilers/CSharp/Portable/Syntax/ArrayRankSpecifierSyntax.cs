@@ -15,7 +15,14 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(10738, 365, 440);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10738, 401, 425);
 
-                    return this.Sizes.Count;
+                    SeparatedSyntaxList<ExpressionSyntax> f_10738_408_418(ArrayRankSpecifierSyntax arrayRankSpecifierSyntax)
+                    {
+                        var result = arrayRankSpecifierSyntax.Sizes;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10738, 408, 418);
+                        return result;
+                    }
+
+                    return f_10738_408_418(this).Count;
                     DynAbs.Tracing.TraceSender.TraceExitMethod(10738, 365, 440);
                 }
                 catch

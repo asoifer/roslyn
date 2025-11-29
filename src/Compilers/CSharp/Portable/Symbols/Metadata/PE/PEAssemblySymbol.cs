@@ -52,16 +52,32 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols.Metadata.PE
                 _documentationProvider = documentationProvider;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10703, 2979, 3035);
 
+                // LAFHIS
+                ImmutableArray<PEModule> f_10703_3010_3026(PEAssembly assembly_param)
+                {
+                    var return_v = assembly_param.Modules;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10703, 3010, 3026);
+                    return return_v;
+                }
+
                 var
-                modules = new ModuleSymbol[assembly.Modules.Length]
+                modules = new ModuleSymbol[f_10703_3010_3026(assembly).Length]
                 ;
                 try
                 {
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10703, 3060, 3065);
 
+                    // LAFHIS
+                    ImmutableArray<PEModule> f_10703_3071_3087(PEAssembly assembly_param)
+                    {
+                        var return_v = assembly_param.Modules;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10703, 3071, 3087);
+                        return return_v;
+                    }
+
                     for (int
         i = 0
-        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10703, 3051, 3225) || true) && (i < assembly.Modules.Length)
+        ; (DynAbs.Tracing.TraceSender.TraceSimpleStatement(10703, 3051, 3225) || true) && (i < f_10703_3071_3087(assembly).Length)
         ; DynAbs.Tracing.TraceSender.TraceSimpleStatement(10703, 3096, 3099)
         , i++, DynAbs.Tracing.TraceSender.TraceExitCondition(10703, 3051, 3225))
 

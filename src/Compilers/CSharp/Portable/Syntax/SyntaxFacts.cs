@@ -2624,7 +2624,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                 DynAbs.Tracing.TraceSender.TraceEnterStaticMethod(10032, 22420, 22961);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10032, 22564, 22950);
 
-                return node is object && (DynAbs.Tracing.TraceSender.Expression_True(10032, 22571, 22949) && f_10032_22609_22949(f_10032_22609_22913(node, child =>
+                return node is object && (DynAbs.Tracing.TraceSender.Expression_True(10032, 22571, 22949) && 
+                    f_10032_22609_22949(f_10032_22609_22913(node, child =>
                    {
                        Debug.Assert(ReferenceEquals(node, child) || child is not (MemberDeclarationSyntax or TypeDeclarationSyntax));
                        return !IsNestedFunction(child) && !(node is ExpressionSyntax);

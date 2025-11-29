@@ -1,4 +1,4 @@
-// Licensed to the .NET Foundation under one or more agreements.
+﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
@@ -1786,12 +1786,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 13457, 13593);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 13503, 13582);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 13457, 13593);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 13503, 13582);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1906,12 +1906,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 14143, 14297);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 14198, 14286);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 14143, 14297);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 14198, 14286);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -1971,12 +1971,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 14436, 14631);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 14492, 14620);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 14436, 14631);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 14492, 14620);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2016,12 +2016,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 14765, 14921);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 14821, 14910);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 14765, 14921);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 14821, 14910);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2061,12 +2061,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 15066, 15220);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 15121, 15209);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 15066, 15220);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 15121, 15209);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2106,12 +2106,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 15401, 15557);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 15457, 15546);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 15401, 15557);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 15457, 15546);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2123,7 +2123,17 @@ namespace Microsoft.CodeAnalysis
             {
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(687, 15736, 16525);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 15799, 15919) || true) && (node == null || (DynAbs.Tracing.TraceSender.Expression_False(687, 15803, 15857) || !this.FullSpan.Contains(f_687_15843_15856(node))))
+                // LAFHIS
+                TextSpan f_687_15820_15833(Microsoft.CodeAnalysis.SyntaxNode syntaxNode)
+                {
+                    var return_v = syntaxNode.FullSpan;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(687, 15820, 15833);
+                    return return_v;
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 15799, 15919) || true) && (node == null || 
+                    (DynAbs.Tracing.TraceSender.Expression_False(687, 15803, 15857) || 
+                    !f_687_15820_15833(this).Contains(f_687_15843_15856(node))))
                 )
 
                 {
@@ -2282,12 +2292,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 16650, 16806);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 16703, 16795);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 16650, 16806);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 16703, 16795);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2317,12 +2327,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 16932, 17090);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 16986, 17079);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 16932, 17090);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 16986, 17079);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2717,12 +2727,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 19296, 20484);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 19347, 20473);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 19296, 20484);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 19347, 20473);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2828,12 +2838,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 21481, 21608);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 21531, 21597);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 21481, 21608);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 21531, 21597);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2853,12 +2863,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 21620, 21776);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 21685, 21765);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 21620, 21776);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 21685, 21765);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -2889,12 +2899,12 @@ namespace Microsoft.CodeAnalysis
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 21788, 21974);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 21864, 21963);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 21788, 21974);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 21864, 21963);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -3796,9 +3806,17 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
+                // LAFHIS
+                TextSpan f_687_33629_33642(SyntaxNode s)
+                {
+                    var return_v = s.FullSpan;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(687, 33629, 33642);
+                    return return_v;
+                }
+
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(687, 33490, 34663);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 33624, 33758) || true) && (!this.FullSpan.Contains(span))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 33624, 33758) || true) && (!f_687_33629_33642(this).Contains(span))
                 )
 
                 {
@@ -4385,9 +4403,17 @@ namespace Microsoft.CodeAnalysis
         {
             try
             {
+                // LAFHIS
+                TextSpan f_687_39928_39941(SyntaxNode s)
+                {
+                    var return_v = s.FullSpan;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(687, 39928, 39941);
+                    return return_v;
+                }
+
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(687, 39819, 40133);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 39924, 40077) || true) && (this.FullSpan.Contains(position))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 39924, 40077) || true) && (f_687_39928_39941(this).Contains(position))
                 )
 
                 {
@@ -4618,12 +4644,12 @@ recurse:
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 44072, 44185);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 44128, 44174);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 44072, 44185);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 44128, 44174);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }
@@ -5813,7 +5839,15 @@ recurse:
                     DynAbs.Tracing.TraceSender.TraceExitCondition(687, 53961, 54060);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 54076, 54218) || true) && (!this.FullSpan.Contains(position))
+                // LAFHIS
+                TextSpan f_687_54081_54094(SyntaxNode s)
+                {
+                    var return_v = s.FullSpan;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(687, 54081, 54094);
+                    return return_v;
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(687, 54076, 54218) || true) && (!f_687_54081_54094(this).Contains(position))
                 )
 
                 {
@@ -6499,12 +6533,12 @@ recurse:
                 }
                 catch
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 61638, 61894);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalCatch(687, 61686, 61883);
                     throw;
                 }
                 finally
                 {
-                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 61638, 61894);
+                    DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(687, 61686, 61883);
                 }
                 throw new System.Exception("Slicer error: unreachable code");
             }

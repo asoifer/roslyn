@@ -131,7 +131,8 @@ namespace Roslyn.Utilities
         {
             DynAbs.Tracing.TraceSender.TraceEnterStaticConstructor(386, 798, 1807);
             DynAbs.Tracing.TraceSender.TraceSimpleStatement(386, 931, 969);
-            Instance = f_386_942_969(); DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(386, 798, 1807);
+            Instance = f_386_942_969(); 
+            DynAbs.Tracing.TraceSender.TraceExitStaticConstructor(386, 798, 1807);
 
             DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(386, 798, 1807);
         }

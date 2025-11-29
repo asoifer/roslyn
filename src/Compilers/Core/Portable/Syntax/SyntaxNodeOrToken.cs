@@ -229,7 +229,11 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(692, 3443, 3492);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(692, 3446, 3492);
-                    return f_692_3446_3461_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_token, 692, 3446, 3461)?.RawKind) ?? (DynAbs.Tracing.TraceSender.Expression_Null<int?>(692, 3446, 3492) ?? f_692_3465_3487_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_nodeOrParent, 692, 3465, 3487)?.RawKind) ?? (DynAbs.Tracing.TraceSender.Expression_Null<int?>(692, 3465, 3492) ?? 0)); DynAbs.Tracing.TraceSender.TraceExitMethod(692, 3443, 3492);
+                    return f_692_3446_3461_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_token, 692, 3446, 3461)?.RawKind) ?? 
+                        (DynAbs.Tracing.TraceSender.Expression_Null<int?>(692, 3446, 3492) ?? 
+                        f_692_3465_3487_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(_nodeOrParent, 692, 3465, 3487)?.RawKind) ?? 
+                        (DynAbs.Tracing.TraceSender.Expression_Null<int?>(692, 3465, 3492) ?? 0)); 
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(692, 3443, 3492);
                 }
                 catch
                 {

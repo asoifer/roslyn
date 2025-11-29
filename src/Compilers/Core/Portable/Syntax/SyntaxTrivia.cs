@@ -61,7 +61,9 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(705, 1434, 1465);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(705, 1437, 1465);
-                    return f_705_1437_1460_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(UnderlyingNode, 705, 1437, 1460)?.RawKind) ?? (DynAbs.Tracing.TraceSender.Expression_Null<int?>(705, 1437, 1465) ?? 0); DynAbs.Tracing.TraceSender.TraceExitMethod(705, 1434, 1465);
+                    return f_705_1437_1460_M(DynAbs.Tracing.TraceSender.TraceConditionalAccessExpression(UnderlyingNode, 705, 1437, 1460)?.RawKind) 
+                        ?? (DynAbs.Tracing.TraceSender.Expression_Null<int?>(705, 1437, 1465) ?? 0); 
+                    DynAbs.Tracing.TraceSender.TraceExitMethod(705, 1434, 1465);
                 }
                 catch
                 {

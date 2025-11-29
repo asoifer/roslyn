@@ -784,7 +784,15 @@ namespace Microsoft.CodeAnalysis
                             DynAbs.Tracing.TraceSender.TraceEnterCondition(530, 15569, 19439);
                             DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 15631, 19420);
 
-                            switch (peReference.Properties.Kind)
+                            MetadataReferenceProperties f_530_15639_15661(PortableExecutableReference peReference)
+                            {
+                                var return_v = peReference.Properties;
+                                DynAbs.Tracing.TraceSender.TraceEndMemberAccess(530, 15639, 15661);
+                                return return_v;
+                            }
+
+                            // LAFHIS
+                            switch (f_530_15639_15661(peReference).Kind)
                             {
 
                                 case MetadataImageKind.Assembly:
@@ -832,9 +840,18 @@ namespace Microsoft.CodeAnalysis
                                         }
                                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 17014, 17442);
 
-                                        var
-                                        asmData = f_530_17028_17441(this, assembly, cachedSymbols, f_530_17191_17224(peReference), SimpleAssemblyName, f_530_17320_17361(f_530_17320_17339(compilation)), peReference.Properties.EmbedInteropTypes)
-                                        ;
+                                        MetadataReferenceProperties f_530_17400_17422(PortableExecutableReference peReference)
+                                        {
+                                            var return_v = peReference.Properties;
+                                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(530, 17400, 17422);
+                                            return return_v;
+                                        }
+
+                                        // LAFHIS
+                                        var asmData = f_530_17028_17441(this, assembly, cachedSymbols, 
+                                            f_530_17191_17224(peReference), SimpleAssemblyName, 
+                                            f_530_17320_17361(f_530_17320_17339(compilation)),
+                                            f_530_17400_17422(peReference).EmbedInteropTypes);
                                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 17478, 17548);
 
                                         f_530_17478_17547(asmData, referenceIndex, referenceMap, assembliesBuilder);
@@ -1859,7 +1876,8 @@ namespace Microsoft.CodeAnalysis
                 recursiveAliasesOpt
                 = default(ImmutableArray<string>);
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 21536, 22327) || true) && (propertyMapOpt != null && (DynAbs.Tracing.TraceSender.Expression_True(530, 21540, 21640) && f_530_21566_21640(propertyMapOpt, reference, out mergedProperties)))
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 21536, 22327) || true) && (propertyMapOpt != null && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(530, 21540, 21640) && f_530_21566_21640(propertyMapOpt, reference, out mergedProperties)))
                 )
 
                 {
@@ -1877,17 +1895,31 @@ namespace Microsoft.CodeAnalysis
                 {
                     DynAbs.Tracing.TraceSender.TraceEnterCondition(530, 21536, 22327);
 
-                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 21940, 22327) || true) && (reference.Properties.HasRecursiveAliases)
+                    MetadataReferenceProperties f_530_21944_21964(MetadataReference m)
+                    {
+                        var return_v = m.Properties;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(530, 21944, 21964);
+                        return return_v;
+                    }
+
+                    if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 21940, 22327) || true) && (f_530_21944_21964(reference).HasRecursiveAliases)
                     )
 
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(530, 21940, 22327);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 22018, 22063);
 
+                        MetadataReferenceProperties f_530_22103_22131(MetadataReference m)
+                        {
+                            var return_v = m.Properties;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(530, 22103, 22131);
+                            return return_v;
+                        }
+
                         aliasesOpt = default(ImmutableArray<string>);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 22081, 22132);
 
-                        recursiveAliasesOpt = reference.Properties.Aliases;
+                        recursiveAliasesOpt = f_530_22103_22131(reference).Aliases;
                         DynAbs.Tracing.TraceSender.TraceExitCondition(530, 21940, 22327);
                     }
 
@@ -1897,7 +1929,14 @@ namespace Microsoft.CodeAnalysis
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(530, 21940, 22327);
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 22198, 22240);
 
-                        aliasesOpt = reference.Properties.Aliases;
+                        MetadataReferenceProperties f_530_22211_22239(MetadataReference m)
+                        {
+                            var return_v = m.Properties;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(530, 22211, 22239);
+                            return return_v;
+                        }
+
+                        aliasesOpt = f_530_22211_22239(reference).Aliases;
                         DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 22258, 22312);
 
                         recursiveAliasesOpt = default(ImmutableArray<string>);
@@ -2042,7 +2081,16 @@ namespace Microsoft.CodeAnalysis
                     DynAbs.Tracing.TraceSender.TraceEnterCatch(530, 23941, 24253);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 24049, 24201);
 
-                    newDiagnostic = f_530_24065_24200(e, messageProvider, location, f_530_24145_24164(peReference) ?? (DynAbs.Tracing.TraceSender.Expression_Null<string?>(530, 24145, 24170) ?? ""), peReference.Properties.Kind);
+                    MetadataReferenceProperties f_530_24172_24194(PortableExecutableReference peReference)
+                    {
+                        var return_v = peReference.Properties;
+                        DynAbs.Tracing.TraceSender.TraceEndMemberAccess(530, 24172, 24194);
+                        return return_v;
+                    }
+
+                    newDiagnostic = f_530_24065_24200(e, messageProvider, location, 
+                        f_530_24145_24164(peReference) ?? (DynAbs.Tracing.TraceSender.Expression_Null<string?>(530, 24145, 24170) ?? ""),
+                        f_530_24172_24194(peReference).Kind);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(530, 24219, 24238);
 
                     newMetadata = null;

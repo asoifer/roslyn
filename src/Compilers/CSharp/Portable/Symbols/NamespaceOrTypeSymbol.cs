@@ -287,8 +287,20 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10053, 7323, 7533);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10053, 7429, 7522);
 
-                return f_10053_7436_7521(this, syntax.Identifier.ValueText, f_10053_7485_7497(syntax), f_10053_7499_7512(syntax), syntax);
+                // LAFHIS
+                var syntaxToken = f_10053_7456_7473(syntax);
+                return f_10053_7436_7521(this, syntaxToken.ValueText, f_10053_7485_7497(syntax), f_10053_7499_7512(syntax), syntax);
                 DynAbs.Tracing.TraceSender.TraceExitMethod(10053, 7323, 7533);
+
+                // LAFHIS
+                SyntaxToken
+                f_10053_7456_7473(Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax
+                this_param)
+                {
+                    var return_v = this_param.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10053, 7456, 7473);
+                    return return_v;
+                }
 
                 int
                 f_10053_7485_7497(Microsoft.CodeAnalysis.CSharp.Syntax.TypeDeclarationSyntax
@@ -343,8 +355,20 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 DynAbs.Tracing.TraceSender.TraceEnterMethod(10053, 7738, 7952);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(10053, 7848, 7941);
 
-                return f_10053_7855_7940(this, syntax.Identifier.ValueText, f_10053_7904_7916(syntax), f_10053_7918_7931(syntax), syntax);
+                // LAFHIS
+                var syntaxToken = f_10053_7875_7892(syntax);
+                return f_10053_7855_7940(this, syntaxToken.ValueText, f_10053_7904_7916(syntax), f_10053_7918_7931(syntax), syntax);
                 DynAbs.Tracing.TraceSender.TraceExitMethod(10053, 7738, 7952);
+
+                // LAFHIS
+                SyntaxToken
+                f_10053_7875_7892(Microsoft.CodeAnalysis.CSharp.Syntax.DelegateDeclarationSyntax
+                this_param)
+                {
+                    var return_v = this_param.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10053, 7875, 7892);
+                    return return_v;
+                }
 
                 int
                 f_10053_7904_7916(Microsoft.CodeAnalysis.CSharp.Syntax.DelegateDeclarationSyntax
@@ -436,7 +460,12 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                                     {
                                         DynAbs.Tracing.TraceSender.TraceEnterCondition(10053, 8863, 9194);
 
-                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10053, 8958, 9167) || true) && (f_10053_8962_8976(loc) && (DynAbs.Tracing.TraceSender.Expression_True(10053, 8962, 9015) && f_10053_8980_8994(loc) == f_10053_8998_9015(syntax)) && (DynAbs.Tracing.TraceSender.Expression_True(10053, 8962, 9055) && syntax.Span.Contains(f_10053_9040_9054(loc))))
+                                        // LAFHIS: adding f_10053_9019_9030
+                                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10053, 8958, 9167) || true) && 
+                                            (f_10053_8962_8976(loc) && (DynAbs.Tracing.TraceSender.Expression_True(10053, 8962, 9015) && 
+                                            f_10053_8980_8994(loc) == f_10053_8998_9015(syntax)) && 
+                                            (DynAbs.Tracing.TraceSender.Expression_True(10053, 8962, 9055) &&
+                                            f_10053_9019_9030(syntax).Contains(f_10053_9040_9054(loc))))
                                         )
 
                                         {
@@ -495,6 +524,16 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
                 {
                     var return_v = kind.ToDeclarationKind();
                     DynAbs.Tracing.TraceSender.TraceEndInvocation(10053, 8491, 8515);
+                    return return_v;
+                }
+
+
+                // LAFHIS
+                Microsoft.CodeAnalysis.Text.TextSpan
+                f_10053_9019_9030(CSharpSyntaxNode syntax)
+                {
+                    var return_v = syntax.Span;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10053, 9019, 9030);
                     return return_v;
                 }
 

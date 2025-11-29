@@ -19,7 +19,10 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax
                     DynAbs.Tracing.TraceSender.TraceEnterMethod(10815, 459, 594);
                     DynAbs.Tracing.TraceSender.TraceSimpleStatement(10815, 495, 579);
 
-                    return (DynAbs.Tracing.TraceSender.Conditional_F1(10815, 502, 532) || ((f_10815_502_524(this) == null && DynAbs.Tracing.TraceSender.Conditional_F2(10815, 535, 536)) || DynAbs.Tracing.TraceSender.Conditional_F3(10815, 539, 578))) ? 0 : f_10815_539_561(this).Parameters.Count;
+                    return (DynAbs.Tracing.TraceSender.Conditional_F1(10815, 502, 532) || 
+                        ((f_10815_502_524(this) == null && DynAbs.Tracing.TraceSender.Conditional_F2(10815, 535, 536)) || 
+                        DynAbs.Tracing.TraceSender.Conditional_F3(10815, 539, 578))) ? 0 : 
+                        f_10815_539_561(this).Parameters.Count;
                     DynAbs.Tracing.TraceSender.TraceExitMethod(10815, 459, 594);
 
                     Microsoft.CodeAnalysis.CSharp.Syntax.TypeParameterListSyntax?

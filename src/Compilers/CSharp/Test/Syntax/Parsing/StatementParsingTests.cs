@@ -4460,7 +4460,14 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                 ;
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(26002, 15114, 15156);
 
-                f_26002_15114_15155(0, ds.Modifiers.Count);
+                SyntaxTokenList f_26002_15136_15148(LocalDeclarationStatementSyntax s)
+                {
+                    var return_v = s.Modifiers;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(26002, 15136, 15148);
+                    return return_v;
+                }
+
+                f_26002_15114_15155(0, f_26002_15136_15148(ds).Count);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(26002, 15170, 15212);
 
                 f_26002_15170_15211(f_26002_15191_15210(f_26002_15191_15205(ds)));
@@ -4472,10 +4479,24 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
                 f_26002_15302_15375(SyntaxKind.IdentifierName, f_26002_15348_15374(f_26002_15348_15367(f_26002_15348_15362(ds))));
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(26002, 15390, 15500);
 
-                f_26002_15390_15499(SyntaxKind.IdentifierToken, ((IdentifierNameSyntax)f_26002_15460_15479(f_26002_15460_15474(ds))).Identifier.Kind());
+                SyntaxToken f_26002_15437_15491(IdentifierNameSyntax s)
+                {
+                    var return_v = s.Identifier;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(26002, 15437, 15491);
+                    return return_v;
+                }
+
+                f_26002_15390_15499(SyntaxKind.IdentifierToken, f_26002_15437_15491(((IdentifierNameSyntax)f_26002_15460_15479(f_26002_15460_15474(ds)))).Kind());
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(26002, 15514, 15568);
 
-                f_26002_15514_15567(1, f_26002_15536_15550(ds).Variables.Count);
+                SeparatedSyntaxList<VariableDeclaratorSyntax> f_26002_15536_15560(VariableDeclarationSyntax s)
+                {
+                    var return_v = s.Variables;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(26002, 15536, 15560);
+                    return return_v;
+                }
+
+                f_26002_15514_15567(1, f_26002_15536_15560(f_26002_15536_15550(ds)).Count);
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(26002, 15584, 15655);
 
                 f_26002_15584_15654(default, f_26002_15615_15653(f_26002_15615_15639(f_26002_15615_15629(ds))[0]));

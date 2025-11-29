@@ -8480,7 +8480,24 @@ namespace Microsoft.CodeAnalysis
                 }
                 DynAbs.Tracing.TraceSender.TraceSimpleStatement(145, 86196, 87492);
 
-                return f_145_86203_87491(persistentIdentifier: moduleVersionId, corFlags: f_145_86328_86426(machine, f_145_86355_86368(), prefers32Bit: platform == Platform.AnyCpu32BitPreferred), fileAlignment: fileAlignment, sectionAlignment: Cci.ModulePropertiesForSerialization.DefaultSectionAlignment, targetRuntimeVersion: targetRuntimeVersion, machine: machine, baseAddress: baseAddress, sizeOfHeapReserve: sizeOfHeapReserve, sizeOfHeapCommit: sizeOfHeapCommit, sizeOfStackReserve: sizeOfStackReserve, sizeOfStackCommit: sizeOfStackCommit, dllCharacteristics: f_145_86968_87104(f_145_86990_87032(emitOptions), f_145_87034_87063(compilationOptions) == OutputKind.WindowsRuntimeApplication), imageCharacteristics: f_145_87145_87190(outputKind, requires32Bit), subsystem: f_145_87220_87244(outputKind), majorSubsystemVersion: (ushort)subsystemVersion.Major, minorSubsystemVersion: (ushort)subsystemVersion.Minor, linkerMajorVersion: f_145_87427_87450(this), linkerMinorVersion: 0);
+                return f_145_86203_87491(persistentIdentifier: moduleVersionId, 
+                    corFlags: f_145_86328_86426(machine, f_145_86355_86368(), prefers32Bit: platform == Platform.AnyCpu32BitPreferred), 
+                    fileAlignment: fileAlignment, 
+                    sectionAlignment: Cci.ModulePropertiesForSerialization.DefaultSectionAlignment, 
+                    targetRuntimeVersion: targetRuntimeVersion, 
+                    machine: machine, 
+                    baseAddress: baseAddress, 
+                    sizeOfHeapReserve: sizeOfHeapReserve, 
+                    sizeOfHeapCommit: sizeOfHeapCommit, 
+                    sizeOfStackReserve: sizeOfStackReserve, 
+                    sizeOfStackCommit: sizeOfStackCommit, 
+                    dllCharacteristics: f_145_86968_87104(f_145_86990_87032(emitOptions), f_145_87034_87063(compilationOptions) == OutputKind.WindowsRuntimeApplication), 
+                    imageCharacteristics: f_145_87145_87190(outputKind, requires32Bit), 
+                    subsystem: f_145_87220_87244(outputKind), 
+                    majorSubsystemVersion: (ushort)subsystemVersion.Major, 
+                    minorSubsystemVersion: (ushort)subsystemVersion.Minor, 
+                    linkerMajorVersion: f_145_87427_87450(this), 
+                    linkerMinorVersion: 0);
                 DynAbs.Tracing.TraceSender.TraceExitMethod(145, 81625, 87503);
 
                 Microsoft.CodeAnalysis.CompilationOptions

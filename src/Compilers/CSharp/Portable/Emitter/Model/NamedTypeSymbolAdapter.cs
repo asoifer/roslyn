@@ -3579,7 +3579,18 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
 
                         f_10198_22871_22907((object)method != null);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10198, 22928, 23152) || true) && ((alwaysIncludeConstructors && (DynAbs.Tracing.TraceSender.Expression_True(10198, 22933, 23005) && f_10198_22962_22979(method) == MethodKind.Constructor)) || (DynAbs.Tracing.TraceSender.Expression_False(10198, 22932, 23055) || f_10198_23010_23032(method).ShouldInclude(context)))
+                        // LAFHIS
+                        bool f_10198_23010_23055(MethodSymbolAdapter methodSymbolAdapter, EmitContext emitContext)
+                        {
+                            var return_v = methodSymbolAdapter.ShouldInclude(emitContext);
+                            DynAbs.Tracing.TraceSender.TraceEndInvocation(10198, 23010, 23055);
+                            return return_v;
+                        }
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(10198, 22928, 23152) || true) && ((alwaysIncludeConstructors && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(10198, 22933, 23005) && f_10198_22962_22979(method) == MethodKind.Constructor)) || 
+                            (DynAbs.Tracing.TraceSender.Expression_False(10198, 22932, 23055) ||
+                            f_10198_23010_23055(f_10198_23010_23032(method), context)))
                         )
 
                         {

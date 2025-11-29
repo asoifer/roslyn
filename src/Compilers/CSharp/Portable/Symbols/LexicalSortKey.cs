@@ -6,6 +6,7 @@
 
 using System.Diagnostics;
 using System.Threading;
+using Microsoft.CodeAnalysis.Text;
 
 namespace Microsoft.CodeAnalysis.CSharp.Symbols
 {
@@ -174,7 +175,7 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
         // LAFHIS
         public LexicalSortKey(Location location, CSharpCompilation compilation)
         //: this(f_10113_3724_3755_C((SyntaxTree)f_10113_3736_3755(location)), location.SourceSpan.Start, compilation)
-        : this(f_10113_3736_3755(location), location.SourceSpan.Start, compilation)
+        : this(f_10113_3736_3755(location), f_10113_3757_3776(location).Start, compilation)
         {
             try
             {
@@ -190,6 +191,14 @@ namespace Microsoft.CodeAnalysis.CSharp.Symbols
             {
                 DynAbs.Tracing.TraceSender.TraceEnterFinalFinally(10113, 3632, 3818);
             }
+        }
+
+        // LAFHIS
+        static TextSpan f_10113_3757_3776(Location location)
+        {
+            TextSpan return_v = location.SourceSpan;
+            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(10113, 3757, 3776);
+            return return_v;
         }
 
         // LAFHIS

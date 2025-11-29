@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using Microsoft.CodeAnalysis.PooledObjects;
 using Roslyn.Utilities;
@@ -225,7 +226,8 @@ namespace Microsoft.CodeAnalysis
                     {
                         DynAbs.Tracing.TraceSender.TraceEnterCondition(529, 9759, 10131);
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(529, 9901, 10112) || true) && (f_529_9905_10020(this, boundInputs, candidateInputAssemblySymbols, allAssemblies, corLibraryIndex))
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(529, 9901, 10112) || true) && 
+                            (f_529_9905_10020(this, boundInputs, candidateInputAssemblySymbols, allAssemblies, corLibraryIndex))
                         )
 
                         {
@@ -4092,7 +4094,20 @@ namespace Microsoft.CodeAnalysis
                         assembly = assemblies[i]
                         ;
 
-                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(529, 52103, 52983) || true) && (f_529_52107_52125_M(!assembly.IsLinked) && (DynAbs.Tracing.TraceSender.Expression_True(529, 52107, 52189) && assembly.AssemblyReferences.Length == 0) && (DynAbs.Tracing.TraceSender.Expression_True(529, 52107, 52247) && f_529_52214_52247_M(!assembly.ContainsNoPiaLocalTypes)) && (DynAbs.Tracing.TraceSender.Expression_True(529, 52107, 52365) && (!supersedeLowerVersions || (DynAbs.Tracing.TraceSender.Expression_False(529, 52273, 52364) || !f_529_52301_52364(f_529_52314_52331(assembly), assemblyReferencesBySimpleName)))))
+                        ImmutableArray<AssemblyIdentity> f_529_52150_52177(AssemblyData assemblyData)
+                        {
+                            var return_v = assemblyData.AssemblyReferences;
+                            DynAbs.Tracing.TraceSender.TraceEndMemberAccess(529, 52150, 52177);
+                            return return_v;
+                        }
+
+                        if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(529, 52103, 52983) || true) && 
+                            (f_529_52107_52125_M(!assembly.IsLinked) && (DynAbs.Tracing.TraceSender.Expression_True(529, 52107, 52189) &&
+                            f_529_52150_52177(assembly).Length == 0) && (DynAbs.Tracing.TraceSender.Expression_True(529, 52107, 52247) && 
+                            f_529_52214_52247_M(!assembly.ContainsNoPiaLocalTypes)) && 
+                            (DynAbs.Tracing.TraceSender.Expression_True(529, 52107, 52365) && (!supersedeLowerVersions || 
+                            (DynAbs.Tracing.TraceSender.Expression_False(529, 52273, 52364) || 
+                            !f_529_52301_52364(f_529_52314_52331(assembly), assemblyReferencesBySimpleName)))))
                         )
 
                         {
@@ -4173,7 +4188,15 @@ namespace Microsoft.CodeAnalysis
                     DynAbs.Tracing.TraceSender.TraceExitCondition(529, 53178, 53879);
                 }
 
-                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(529, 54035, 54167) || true) && (assemblies.Length == 1 && (DynAbs.Tracing.TraceSender.Expression_True(529, 54039, 54109) && assemblies[0].AssemblyReferences.Length == 0))
+                ImmutableArray<AssemblyIdentity> f_529_54065_54097(AssemblyData assemblyData)
+                {
+                    var return_v = assemblyData.AssemblyReferences;
+                    DynAbs.Tracing.TraceSender.TraceEndMemberAccess(529, 54065, 54097);
+                    return return_v;
+                }
+
+                if ((DynAbs.Tracing.TraceSender.TraceSimpleStatement(529, 54035, 54167) || true) && (assemblies.Length == 1 && 
+                    (DynAbs.Tracing.TraceSender.Expression_True(529, 54039, 54109) && f_529_54065_54097(assemblies[0]).Length == 0))
                 )
 
                 {
